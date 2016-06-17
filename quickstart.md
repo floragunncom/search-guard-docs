@@ -8,7 +8,7 @@ Start easy with Search Guard. The bundle ships Elasticsearch + Search Guard with
 
 This feature is still in Beta, but if you want to give it a try, download the Search Guard Bundle here:
 
-[https://cdn.filestackcontent.com/V6Ya0KtkRfyMN9XpEnab](https://cdn.filestackcontent.com/V6Ya0KtkRfyMN9XpEnab)
+[https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle](https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle)
 
 ## How to use it
 * ``tar -xzvf elasticsearch-<UUID>.tar.gz``
