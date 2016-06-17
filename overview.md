@@ -1,0 +1,56 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
+# Overview
+
+Search Guard is a security plugin for Elasticsearch. It offers authentication and authorization against backend systems like LDAP or Kerberos, and adds audit logging and document-/field-level-security to Elasticsearch.
+
+All **basic** security features are free, while you need to obtain a **license** if you want to use our **enterprise features** in a commercial project.
+
+The basic features include:
+
+* Node-to-node encryption through SSL/TLS
+* Secure REST layer through HTTPS (SSL/TLS)
+* Flexible REST layer access control (User/Role based; on aliases, indices and types)		
+* Flexible transport layer access control (User/Role based; on aliases, indices and types)		
+* HTTP basic authentication		
+* HTTP proxy authentication		
+* HTTP SSL/CLIENT-CERT authentication	
+* X-Forwarded-For (XFF) support		
+* Internal authentication/authorization	
+* Anonymous login/unauthenticated access
+* User Impersonation		
+
+The enterprise features include:
+
+* HTTP SPNEGO/Kerberos authentication	
+* LDAP/Active Directory authentication/authorisation
+* Document level security (DLS): Retrieve only documents matching criterias
+* Field level security (FLS): Filter out fields/sourceparts from a search response		
+* JSON web token support
+* Audit logging		
+
+
+Search Guard supports **OpenSSL** and works with **Kibana** and **logstash**. The complete source code (including the code for the enterprise features) is available, so you can inspect it and perform security audits if necessary.
+
+## Comparison to Shield
+
+todo: work out this chapter, main points:
+
+* OpenSSL
+* Infrastructure agnostic
+* HTTP Proxy Authentication
+* JWT authentication
+* Source code available
+
+## License model
+
+Search Guard, including all enterprise features, can be used **free of charge for personal, non-commercial projects** as well as for **academic purposes**.
+
+In order to use the enterprise features for commercial projects, you need to obtain a license (todo: link to website).
+
+On contrast to competitor products, our licenses are issued per **production cluster**, regardless of its size. In other words, whether your cluster contains only a single node, or hundreds of nodes, you just need one license.
+
+All your development, staging and QA-systems are also covered, there are no additional costs involved.
+
