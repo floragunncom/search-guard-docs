@@ -27,8 +27,7 @@ The configuration consists of the following files. These are shipped with Search
 
 ## Hot config reloading: Using sgadmin
 
-Configuration settings are loaded into the Search Guard index using the `sgadmin` tool.
-sgadmin identifies itself against the Elasticsearch cluster (which is secured by SG 2) by a _special_ client SSL certificate. Ok, not the certificate is special, it's just that the CN (common name) of the certificate is known by SG 2 by adding it to the ``searchguard.authcz.admin_dn:`` property in elasticsearch.yml. This is described [here](https://github.com/floragunncom/search-guard/wiki/Installation). If you use the [example SSL scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates it's for example the _kirk_ or _spock_ client certificate.
+Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG 2 secured Elasticsearch cluster by a _special_ client SSL certificate. Ok, not the certificate is special, it's just that the CN (common name) of the certificate is known by SG 2 by adding it to the ``searchguard.authcz.admin_dn:`` property in elasticsearch.yml. This is described [here](installation.md). If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates, it's for example the _kirk_ or _spock_ client certificate.
  
 ```
 chmod +x plugins/search-guard-2/tools/sgadmin.sh
@@ -68,7 +67,7 @@ plugins/search-guard-2/tools/sgadmin.sh \
 * -nhnv: disable-host-name-verification, do not validate hostname
 * -nrhn: disable-resolve-hostname, do not resolve hostname (only relevant if -nhnv is not set)
 
-After one or more files are updated Search Guard will automatically reconfigure and the changes will take effect almost immediately. No need to restart ES nodes and deal with config files on the servers. The sgadmin tool can also be used fom a desktop machine as long as ES servers are reachable through 9300 port (transport protocol).
+After one or more files are updated, Search Guard will automatically reconfigure and the changes will take effect almost immediately. No need to restart ES nodes and deal with config files on the servers. The sgadmin tool can also be used fom a desktop machine as long as ES servers are reachable through 9300 port (transport protocol).
 
 ### Examples
 
@@ -121,6 +120,8 @@ searchguard:
 
 In short, these sections are used to specify how Search Guard retrieves the user credentials, how to verify these credentials, and where to get the (additional) users roles from. The latter is optional.
 
+Note: Some versions ago, the configuration had a `static` and `dynamic` part. Since we made the complete configuration hot reloadable, there is no `static` part anymore, and thus we might remove the `dynamic` entry in future versions.
+
 ### Authentication
 
 Let's first look at the `authc` section. This section has the following format:
@@ -156,13 +157,13 @@ Allowed values for `type` are:
 * basic
  * HTTP basic authentication. This type needs `challenging` set to `true`. No additonal configuration is needed.
 * kerberos
- * Kerberos authentication. This type needs `challenging` set to `false`. Additonal. Kerberos-specific configuration is needed.
-* clientcert (not challenging, needs https)
- * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See also Search Guard SSL (todo: link) docs on certificates and Root CAs. This type needs `challenging` set to `false`. No additonal configuration is needed.
+ * Kerberos authentication. This type needs `challenging` set to `false`. Additonal, Kerberos-specific configuration is needed.
+* clientcert
+ * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See also Search Guard SSL (todo: link) docs on certificates and Root CAs. This type needs `challenging` set to `false`. HTTPS is mandatory. No additonal configuration is needed.
 * proxy
  * Use an external, proxy based authentication. This type needs `challenging` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See "Proxy authentication" for further details.
 
-The config section contains configuration settings for the selected type. At the moment, only the Kerberos and Proxy type need additional configuration. See these sections in the documentation for further information.
+The config section contains specific configuration settings for the selected type. At the moment, only the Kerberos and Proxy type need additional configuration. See these sections in the documentation for further information.
 
 After the HTTP authenticator was executed, you need to specify against which backend system you want to authenticate the user. This is specified in the `authentication_backend` section and has the following format:
 
@@ -176,7 +177,7 @@ authentication_backend:
 Possible vales for `type` are:
 
 * noop
- * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user, or if the request carries some credentials that are implicitely trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. Note that while it would theoretically be possible to validate an already Kerberos-authenticated user a second time against an LDAP server, this scenario is probably not a real-word use-case. 
+ * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user, or if the request carries some credentials that are implicitely trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. 
 * internal
  * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml`, and load them into Search Guard by using the `sgadmin` command line tool.
 * ldap
@@ -207,20 +208,7 @@ Possible vales for `type` are:
 
 ### HTTP
 
-```
-anonymous_auth_enabled: <true|false>
-xff:
-  enabled: <true|false>
-  internalProxies: '192\.168\.0\.10|192\.168\.0\.11' # regex pattern
-  #internalProxies: '.*' # trust all internal proxies, regex pattern
-  remoteIpHeader:  'x-forwarded-for'
-  proxiesHeader:   'x-forwarded-by'
-  #trustedProxies: '.*' # trust all external proxies, regex pattern
-  ###### see https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html for regex help
-  ###### more information about XFF https://en.wikipedia.org/wiki/X-Forwarded-For
-  ###### and here https://tools.ietf.org/html/rfc7239
-  ###### and https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Remote_IP_Valve
-```
+(coming soon)
 
 #### LDAP and Active Directory
 
@@ -270,7 +258,7 @@ config:
   username_attribute: null
 ```
 
-If used in the authz section, the following additional `parameters` are available:
+If used in the authz section, the following additional parameters are available:
 
 ```
 config:
@@ -304,15 +292,15 @@ acceptor_principal: 'HTTP/localhost'
 
 #### Proxy authentication
 
-todo: write
+Coming soon.
 
 #### Examples
 
-Please refer to the Addendum A of this documentation for some common configuration examples.
+Please refer to the [Addendum A](addendum_a_configuration_examples.md) of this documentation for some common configuration examples.
 
 ## Configure internal users and roles
 
-If you do not have any external authentication backend like LDAP or Kerberos, you can also define an internal list of users and their passwords and roles, and use that for authentication and authorization. This is done in the file `sg_internal_users.yml`.
+If you do not have any external authentication backend like LDAP or Kerberos, you can also define an internal list of users and their passwords and roles, and use that for authentication and authorization. This is done in the file `sg_internal_users.yml`. The syntax is:
 
 ```
 admin:
@@ -327,6 +315,7 @@ analyst:
     - readall
 
 ```
+
 In `sg_config.yml`, authenticating a user against this intern user databse is referred to as `internal`.  
 
 ### Generate hashed passwords
@@ -353,11 +342,11 @@ sg_read_write:
 ```
 As you see, you can map users directly to a Search Guard role, but also any backend role found during the authorisation phase. These backend roles can for example stem from an LDAP server, but you can also use internal roles defined in `sg_config.yml`.
 
-When using TLS certificates for authentication, you can also use hostnames. Wildcards are allowed.
+You can also set up a permission schema based on hostnames and/or IP addressed. Use the `hosts` entry for that. You can also use wildcards in this section.
 
 ## Define roles and the associated permissions
 
-Search Guard roles and their associated opemrissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions is as follows:
+Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions with it, is as follows:
 
 ```
 <sg_role_name>:
@@ -375,9 +364,9 @@ Search Guard roles and their associated opemrissions are defined in the file `sg
 
 The `cluster` entry is used to define permissions on cluster level. The `indices` entry is used to define permissions as well as DSL/FLS on index level.
 
-When a user make a request to elasticsearch then all defined roles will be evaluated to see if the user has permissions for the request. A request is always associated with an action and is executed against and index (or alias) and a type. If a request is executed against all indices (or all types) then the asterix ('*') can be used. 
+When a user make a request to elasticsearch then all defined roles will be evaluated to see if the user has permissions for that request. A request is always associated with an action and is executed against and index (or alias) and a type. If a request is executed against all indices (or all types) then the asterix ('*') can be used. 
 
-Every role a user has will be examined if it allows the action against an index (or type). At least one role must match for the request to be successful. If no role matches then the request will be denied. 
+Every role a user has will be examined to determine if it allows the action against an index (or type). At least one role must match the request/action to be successful. If no role(s) match then the execution will be denied. 
 
 Currently a match must happen within one single role - that means that permissions can not span multiple roles. 
 
@@ -390,14 +379,11 @@ Example: `\*my\*index` will match `my_first_index` as well as `myindex` but not 
 
 Example: `?kibana` will match `.kibana` but not `kibana`
 
-**Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> name/wildcard**
-
-For <permission>, <indexname or alias> and <type> also regular expressions are possible. 
-You have to pre- and apend a `/` to use regex instead of simple wildcards: `/<java regex>/`.
+For <permission>, <indexname or alias> and <type> also regular expressions are possible. You have to pre- and apend a `/` to use regex instead of simple wildcards: `/<java regex>/`.
 
 Example: `/\S*/` will match any non whitespace characters
 
-Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> regex. Use `\S` instead.
+**Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> regex. Use `\S` instead.**
 
 See [https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
 
@@ -439,9 +425,9 @@ In a typical use-case, you probably want to display only certain types of docume
 _dls_: '{"term" : {"_type" : "payroll"}}'
 ```
 
-This grants the bearer of this permission to view documents of type `payroll`. You can define multiple queries, if this is the case they are OR'ed.
+This grants the bearer of this permission to view documents of type `payroll`. You can also define multiple queries. If this is the case they are `OR'ed`.
 
-Note that you can make the DSL query as complex as you want, but since it has to be executed for each request, this of course comes with a performance penalty.
+Note that you can make the DSL query as complex as you want, but since it has to be executed for each query, this of course comes with a performance penalty.
 
 Defining FLS is even simpler: You specify one or more fields that the bearer of the permissions is able to see:
 
@@ -458,7 +444,7 @@ In this case the fields `firstname`, `lastname` and `salary` would be visible. Y
 
 ### Examples
 
-Please refer to the Addendum B of this documentation for some common permission settings examples. (todo: link)
+Please refer to the [Addendum B](addendum_b_permission settings examples.md) of this documentation for some common permission settings examples.
 
 ## Define action groups
 

@@ -31,26 +31,23 @@ The enterprise features include:
 * JSON web token support
 * Audit logging		
 
-
 Search Guard supports **OpenSSL** and works with **Kibana** and **logstash**. The complete source code (including the code for the enterprise features) is available, so you can inspect it and perform security audits if necessary.
 
 ## Comparison to Shield
 
-todo: work out this chapter, main points:
+Search Guard offers the same authentication / authorization features as Shield, and adds:
 
-* OpenSSL
-* Infrastructure agnostic
+* OpenSSL support
 * HTTP Proxy Authentication
-* JWT authentication
+* JWT authentication (coming soon)
 * Source code available
 
 ## License model
 
 Search Guard, including all enterprise features, can be used **free of charge for personal, non-commercial projects** as well as for **academic purposes**.
 
-In order to use the enterprise features for commercial projects, you need to obtain a license (todo: link to website).
+In order to use the enterprise features for commercial projects, you need to obtain a license. For more information on enterprise licensing, see here: [Search Guard enterprise licensing](https://floragunn.com/searchguard/searchguard-license-support/).
 
-On contrast to competitor products, our licenses are issued per **production cluster**, regardless of its size. In other words, whether your cluster contains only a single node, or hundreds of nodes, you just need one license.
+On contrast to competitor products, our licenses are issued per **production cluster**, regardless of its size. In other words, whether your cluster contains only a single node, or hundreds of nodes, you just need one license with a fixed price.
 
 All your development, staging and QA-systems are also covered, there are no additional costs involved.
-

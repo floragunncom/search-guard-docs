@@ -6,6 +6,10 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 Start easy with Search Guard. The bundle ships Elasticsearch + Search Guard with a preconfigured environment, which allows easy testing and evaluation. The bundle contains the latest version of Search Guard, Search Guard SSL and all commercial modules like Ldap Authentication, Kerberos Authentication, Document- and Fieldlevel Security as well as Audit Logging.
 
+This feature is still in Beta, but if you want to give it a try, download the Search Guard Bundle here:
+
+[https://cdn.filestackcontent.com/V6Ya0KtkRfyMN9XpEnab](https://cdn.filestackcontent.com/V6Ya0KtkRfyMN9XpEnab)
+
 ## How to use it
 * ``tar -xzvf elasticsearch-<UUID>.tar.gz``
 * ``./elasticsearch-2.3.3-localhost/bin/elasticsearch``

@@ -8,23 +8,16 @@ In order to use Search Guard, you need to install and configure the free and Ope
 
 You can find Search Guard SSL and the documentation for it also on github:
 
-* todo: Link to SG SSL
-* todo: Link to docs
+* [Search Guard SSL](https://github.com/floragunncom/search-guard-ssl)
+* [Search Guard SSL Documentation](https://github.com/floragunncom/search-guard-ssl-docs)
 
 Search Guard SSL has to be installed on all nodes in your cluster.
 
-(todo: graphic)
-
 **Search Guard** builds on Search Guard SSL and adds **user- and role-based authentication and authorisation**. 
-
-(todo: graphic)
 
 Since the requirements for authentication vary greatly depending on the infrastructure you run, Search Guard comes with **pluggable authentication modules**. 
 
-All free modules, such as HTTP basic authentication, are already built-in. The **enterprise features** are implemented as **separate modules**. Depending on your requirements, you have to download the modules you need and place them in the `plugins/search-guard-2/` folder of your Elasticsearch installation. See the installation and configuration section of this document for further information (todo: link). For added security we strongly recommend to only install and run the modules you need.
-
-(todo: Graphic)
-
+All free modules, such as HTTP basic authentication, are already built-in. The **enterprise features** are implemented as **separate modules**. Depending on your requirements, you have to download the modules you need and place them in the `plugins/search-guard-2/` folder of your Elasticsearch installation. See the [installation](installation.md) and [configuration](condifuration.md) section of this document for further information . For added security we strongly recommend to only install and run the modules you need.
 
 ## Why do I need SSL/TLS when running Search Guard?
 
@@ -43,7 +36,7 @@ It is our belief that before you start adding authentication/authorisation, you 
 * Only trusted nodes can join the cluster
 * Only trusted users can access Elasticsearch
  
-This is exactly what Search Guard SSL provides. Please refer to the Search Guard SSL documentation (todo: link) for further information. 
+This is exactly what Search Guard SSL provides. Please refer to the [Search Guard SSL Documentation](https://github.com/floragunncom/search-guard-ssl-docs) for further information. 
 
 ## Client- and Server Certificates
 
@@ -53,4 +46,6 @@ Server nodes are identified by having a special [Subject Alternative Name entry 
 
 * ``oid:1.2.3.4.5.5``
 
-Please see the section certificates (todo: link) for further information and especially read it before you generate the TLS certificates for your Elasticsearch installation.
+Please see the section [Certificates section in the installation chapter](installation.md) for further information and especially read it before you generate the TLS certificates for your Elasticsearch installation.
+
+If you use the example PKI scripts shipped with Search Guard SSL, like `example.sh` or `gen_server_node.sh`, the SAN entry is already set correctly.
