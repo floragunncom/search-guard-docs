@@ -309,9 +309,6 @@ The definition for the `administrators` role looks like:
 
 ```
 administrators:
-  cluster: 
-    - cluster:monitor/nodes/info
-    - cluster:monitor/health
   indices:
     'logstash-*':
       '*':
@@ -334,13 +331,13 @@ administrators:
         - indices:data/write/update*
 ```
 
-First, let's look at the permissions for the logstash index. The permissions, including mainly all read permissions and some limited admin permission (needed because of the inner workings of Kibana), are applied to the every index starting with `logstash-`, due to the wildcard we use. The permissions are applied to any document type.
+First, let's look at the permissions for the logstash index. The permissions, including mainly all read permissions and some limited admin permissions (needed because of the inner workings of Kibana), are applied to every index starting with `logstash-`, due to the wildcard we use. The permissions are applied to any document type.
 
-Due to the nature of Kibana, the logged in user also needs limited permission to access (read and write) the .kibana index, and some monitoring permissions on cluster-level.
+Due to the nature of Kibana, the logged in user also needs permission to access (read and write) the .kibana index.
 
 So, our permissions list is quite long. Since we need the same set of permissions also for the `developers` role, we would need to repeat all these settings also for this role.
 
-Here is where action groups come to the rescue. We will move the definition of all three permission lists to `sg_action_groups.yml` and then just reference them in `sg_roles.yml`.
+Here is where action groups come to the rescue. We will move the definition of both permission lists to `sg_action_groups.yml` and then just reference them in `sg_roles.yml`.
 
 `sg_action_groups.yml`:
 
@@ -363,18 +360,12 @@ KIBANA_USER:
   - indices:admin/mappings/fields/get*
   - indices:admin/validate/query*
   - indices:admin/get*
-
-KIBANA_CLUSTER:
-  - cluster:monitor/nodes/info
-  - cluster:monitor/health
 ```
 
 And our changed `sg_roles.yml`:
 
 ```
 administrators:
-  cluster: 
-    - KIBANA_CLUSTER
   indices:
     'logstash-*':
       '*':
@@ -388,8 +379,6 @@ Now we can easily add the `developers` role to this file. The only difference is
 
 ```
 developers:
-  cluster: 
-    - KIBANA_CLUSTER
   indices:
     'logstash-staging-*':
       '*':
