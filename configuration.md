@@ -67,7 +67,7 @@ plugins/search-guard-2/tools/sgadmin.sh \
 * -nhnv: disable-host-name-verification, do not validate hostname
 * -nrhn: disable-resolve-hostname, do not resolve hostname (only relevant if -nhnv is not set)
 
-After one or more files are updated, Search Guard will automatically reconfigure and the changes will take effect almost immediately. No need to restart ES nodes and deal with config files on the servers. The sgadmin tool can also be used fom a desktop machine as long as ES servers are reachable through 9300 port (transport protocol).
+After one or more files are updated, Search Guard will automatically reconfigure and the changes will take effect almost immediately. No need to restart ES nodes and deal with config files on the servers. The sgadmin tool can also be used from a desktop machine as long as ES servers are reachable through 9300 port (transport protocol).
 
 ### Examples
 
@@ -155,11 +155,11 @@ http_authenticator:
 Allowed values for `type` are:
 
 * basic
- * HTTP basic authentication. This type needs `challenging` set to `true`. No additonal configuration is needed.
+ * HTTP basic authentication. This type needs `challenging` set to `true`. No additional configuration is needed.
 * kerberos
- * Kerberos authentication. This type needs `challenging` set to `false`. Additonal, Kerberos-specific configuration is needed.
+ * Kerberos authentication. This type needs `challenging` set to `false`. Additional, Kerberos-specific configuration is needed.
 * clientcert
- * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See also Search Guard SSL (todo: link) docs on certificates and Root CAs. This type needs `challenging` set to `false`. HTTPS is mandatory. No additonal configuration is needed.
+ * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See also Search Guard SSL (todo: link) docs on certificates and Root CAs. This type needs `challenging` set to `false`. HTTPS is mandatory. No additional configuration is needed.
 * proxy
  * Use an external, proxy based authentication. This type needs `challenging` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See "Proxy authentication" for further details.
 
@@ -177,7 +177,7 @@ authentication_backend:
 Possible vales for `type` are:
 
 * noop
- * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user, or if the request carries some credentials that are implicitely trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. 
+ * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user, or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. 
 * internal
  * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml`, and load them into Search Guard by using the `sgadmin` command line tool.
 * ldap
@@ -232,7 +232,7 @@ authorization_backend:
     ...    
 ```
     
-For both entris you need to specify additional configuration parameters. Most of them are identical between the `authc` and `authz` section. For `authz`, you need to specify some additional settings.
+For both entries you need to specify additional configuration parameters. Most of them are identical between the `authc` and `authz` section. For `authz`, you need to specify some additional settings.
 
 Common configuration parameters:
 
@@ -320,7 +320,7 @@ In `sg_config.yml`, authenticating a user against this intern user databse is re
 
 ### Generate hashed passwords
 
-The password hash is a salted bcrypt hash of your cleartext password. You can use the `hasher.sh` script that is shipped with Search Gueard to generate them:
+The password hash is a salted bcrypt hash of your cleartext password. You can use the `hasher.sh` script that is shipped with Search Guard to generate them:
 
 ``plugins/search-guard-2/tools/hasher.sh -p mycleartextpassword``
 
@@ -364,7 +364,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 
 The `cluster` entry is used to define permissions on cluster level. The `indices` entry is used to define permissions as well as DSL/FLS on index level.
 
-When a user make a request to elasticsearch then all defined roles will be evaluated to see if the user has permissions for that request. A request is always associated with an action and is executed against and index (or alias) and a type. If a request is executed against all indices (or all types) then the asterix ('*') can be used. 
+When a user make a request to elasticsearch then all defined roles will be evaluated to see if the user has permissions for that request. A request is always associated with an action and is executed against and index (or alias) and a type. If a request is executed against all indices (or all types) then the asterisk ('*') can be used. 
 
 Every role a user has will be examined to determine if it allows the action against an index (or type). At least one role must match the request/action to be successful. If no role(s) match then the execution will be denied. 
 
@@ -372,14 +372,14 @@ Currently a match must happen within one single role - that means that permissio
 
 For <permission>, <indexname or alias> and <type> simple wildcards are possible:
  
-* An asterix (\*) will match any character sequence (or an empty sequence)
+* An asterisk (\*) will match any character sequence (or an empty sequence)
 * A question mark (?) will match any single character (but NOT empty character)
 
 Example: `\*my\*index` will match `my_first_index` as well as `myindex` but not `myindex1`
 
 Example: `?kibana` will match `.kibana` but not `kibana`
 
-For <permission>, <indexname or alias> and <type> also regular expressions are possible. You have to pre- and apend a `/` to use regex instead of simple wildcards: `/<java regex>/`.
+For <permission>, <indexname or alias> and <type> also regular expressions are possible. You have to pre- and append a `/` to use regex instead of simple wildcards: `/<java regex>/`.
 
 Example: `/\S*/` will match any non whitespace characters
 

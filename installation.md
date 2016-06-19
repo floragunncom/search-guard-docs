@@ -10,7 +10,7 @@ First you need to install and configure Search Guard SSL on all nodes in your cl
 
 The required Search Guard SSL version for Elasticsearch 2.3.3 is 2.3.3.13.
 
-Search Guard itslef can be installed like any other Elasticsearch plugin. 
+Search Guard itself can be installed like any other Elasticsearch plugin. 
 
 Change to the directory of your Elasticsearch installation and type:
 
@@ -52,7 +52,7 @@ Most of these modules require additional configuration settings. Please see the 
 
 ## Certificates
 
-In order to generate the correct certificates for all participating nodes and clients, you first need to identify for whichy type of node or client you are generating a certificate.
+In order to generate the correct certificates for all participating nodes and clients, you first need to identify for which type of node or client you are generating a certificate.
 
 Again, if you use the example PKI scripts shipped with Search Guard SSL, or use the [Search Guard Bundle](quickstart.md), these certificates already have the correct settings.
  
@@ -84,11 +84,11 @@ This is the [Java Node Client](https://www.elastic.co/blog/found-interfacing-ela
 
 ### Generating a Server Certificate
 
-The only requirement for a server certificate is that it has the follwing entry as subject alternative name (SAN):
+The only requirement for a server certificate is that it has the following entry as subject alternative name (SAN):
 
 * ```oid:1.2.3.4.5.5```
 
-If you use the example scripts that ship with Search Guard SSL, the certificates already contain this setting. For example, the script ```gen_node_cert.sh``` uses the follwing call to ```keytool``` to generate the certificate. Pay attention to the last line:
+If you use the example scripts that ship with Search Guard SSL, the certificates already contain this setting. For example, the script ```gen_node_cert.sh``` uses the following call to ```keytool``` to generate the certificate. Pay attention to the last line:
 
 ```
 keytool -genkey \
@@ -105,7 +105,7 @@ keytool -genkey \
 
 ### Generating a Client Certificate
 
-There are no special requirements for a client certificate, other than that it is signed with a Root CA that is trusted by all nodes. You do not need to specify a special SAN entry. As with server certificates, if you use the example scripts shipped with Search Guard SSL, this is already configured. For example, the script ```gen_client_cert.sh``` uses the follwing call to ```keytool``` to generate the certificate:
+There are no special requirements for a client certificate, other than that it is signed with a Root CA that is trusted by all nodes. You do not need to specify a special SAN entry. As with server certificates, if you use the example scripts shipped with Search Guard SSL, this is already configured. For example, the script ```gen_client_cert.sh``` uses the following call to ```keytool``` to generate the certificate:
 
 ```
 keytool -genkey \

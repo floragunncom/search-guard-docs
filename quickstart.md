@@ -13,7 +13,7 @@ This feature is still in Beta, but if you want to give it a try, download the Se
 ## How to use it
 * ``tar -xzvf elasticsearch-<UUID>.tar.gz``
 * ``./elasticsearch-2.3.3-localhost/bin/elasticsearch``
-* Open a new shell and ``cd``into the directory where you unpacked the bundle
+* Open a new shell and ``cd`` into the directory where you unpacked the bundle
 * ``cd searchguard-client``
 * ``./sgadmin.sh``
  * This will install the configuration from ``searchguard-client/plugins/search-guard-2/sgconfig/`` (.yml files)

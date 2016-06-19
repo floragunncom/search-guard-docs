@@ -11,7 +11,7 @@ However, there is a basic pattern of steps that Search Guard executes when decid
 * A user wants to **interact** with an Elasticsearch cluster
  *  this means any kind of interaction, ranging from issuing simple queries to changing the cluster topology
 * Search Guard retrieves the **credentials** of the user
- * This can be achieved by explicitely asking (challenging) the user to provide this information, or it can be extracted directly from the request. Credentials can be something like a username/password combination, but also something like a hostname.
+ * This can be achieved by explicitly asking (challenging) the user to provide this information, or it can be extracted directly from the request. Credentials can be something like a username/password combination, but also something like a hostname.
 * Search Guard **authenticates** the credentials against an authentication backend.
  * This step is optional if you use for example Kerberos, TLS client or proxy authentication.
 * Search Guard **authorizes** the user by retrieving a list of roles for the user
@@ -19,7 +19,7 @@ However, there is a basic pattern of steps that Search Guard executes when decid
 * Search Guard **maps** the user and her backend roles to **internal Search Guard roles**
  * sometimes this mapping resembles the backend roles 1:1, but more often than not you want to define dedicated roles for your specific ES use case.
 * Search Guard determines the **permissions** associated with the internal Search Guard role, and decides whether the action the user wants to perform is allowed or not
- * If your are using docuement- and field-level-security, you can also apply more fine grained permissions based on document types and individual fields  
+ * If your are using document- and field-level-security, you can also apply more fine grained permissions based on document types and individual fields  
 
 ## Credentials
 

@@ -65,7 +65,7 @@ elasticsearch.ssl.verify: false
 
 ### Adding the Kibana server user
 
-At this point, if you simply start Kibana, you will see an Authentication Exeption in the logfile:
+At this point, if you simply start Kibana, you will see an Authentication Exception in the logfile:
 
 ```
 [plugin:elasticsearch] Status changed from yellow to red 
@@ -78,7 +78,7 @@ And if you try to access Kibana, you will see the Authentication Exception also 
 
 Why? Kibana works by setting up its own index (default name `.kibana`) in your Elasticsearch cluster. Since we secured Elasticsearch with Search Guard, you need to also set up this user in Search Guard, and grant all permissions to create and modify the `.kibana` index to this user. If you do not do this, Search Guard will reject the requests from Kibana, hence the Authentication Exception.
 
-First, we'll need to specify the username and passwort of the Kibana server user. Add or uncomment the follwing lines in the `kibana.yml` file, and choose a username and password:
+First, we'll need to specify the username and password of the Kibana server user. Add or uncomment the following lines in the `kibana.yml` file, and choose a username and password:
 
 ```
 elasticsearch.username: "kibanaserver"
@@ -219,7 +219,7 @@ Kibana should now prompt you for a username and password by a regular HTTP basic
 
 ![](images/kibana_basic_auth.png)
 
-Type in the username and pasword of your `kibanaserver` user, and you should be able to access Kibana without errors:
+Type in the username and password of your `kibanaserver` user, and you should be able to access Kibana without errors:
 
 ![](images/kibana_main_screen.png)
 
@@ -338,7 +338,7 @@ First, let's look at the permissions for the logstash index. The permissions, in
 
 Due to the nature of Kibana, the logged in user also needs limited permission to access (read and write) the .kibana index, and some monitoring permissions on cluster-level.
 
-So, our permissions list is quite long. Since we need the same set of permissions also for the `developers` role, we would need to repeate all these settings also for this role.
+So, our permissions list is quite long. Since we need the same set of permissions also for the `developers` role, we would need to repeat all these settings also for this role.
 
 Here is where action groups come to the rescue. We will move the definition of all three permission lists to `sg_action_groups.yml` and then just reference them in `sg_roles.yml`.
 

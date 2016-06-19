@@ -26,8 +26,8 @@ The enterprise features include:
 
 * HTTP SPNEGO/Kerberos authentication	
 * LDAP/Active Directory authentication/authorisation
-* Document level security (DLS): Retrieve only documents matching criterias
-* Field level security (FLS): Filter out fields/sourceparts from a search response		
+* Document level security (DLS): Retrieve only documents matching criteria
+* Field level security (FLS): Filter out fields from a search response		
 * JSON web token support
 * Audit logging		
 
