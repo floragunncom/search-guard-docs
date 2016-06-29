@@ -4,6 +4,18 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 # Addendum A: Configuration examples
 
+## Enabling/disabling proxy/XFF support
+
+To prevent hostname spoofing, XFF support is enabled by default. If you do not run Elasticsearch behind a proxy, you need to disable it explicitely:
+
+```
+searchguard:
+  dynamic:
+    http:
+      xff:
+        enabled: false
+```
+
 ## Use HTTP basic auth and validate against the internal user database
 
 ```
