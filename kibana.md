@@ -27,7 +27,7 @@ Again, since all configuration changes for Search Guard regarding users, permiss
 
 ## Setting up SSL/TLS
 
-If you use TLS on the Elasticsearch REST-layer, you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearc.url` to `https`:
+If you use TLS on the Elasticsearch REST-layer (as you should), you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearc.url` to `https`:
 
 ```
 elasticsearch.url: "https://localhost:9200" 
