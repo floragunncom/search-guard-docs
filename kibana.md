@@ -10,7 +10,7 @@ In the following description, we assume that you have already set up an Search G
 
 We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend to use this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
-Please check the `elasicsearch.yml` file and see wether TLS on the REST-layer is enabled:
+Please check the `elasicsearch.yml` file and see whether TLS on the REST-layer is enabled:
 
 ```
 searchguard.ssl.http.enabled: true
@@ -37,7 +37,7 @@ All requests that Kibana makes to Elasticsearch are now using HTTPS instead of H
 
 ### Configuring the Root CA
 
-Since Kibana acts as a proxy for Elasticsearch, the handling of certificates is very similar to that of a browser. If you use your own Root CA on Elasticsearch, this especially means that Kibana checks wether the certificate can be trusted or not.
+Since Kibana acts as a proxy for Elasticsearch, the handling of certificates is very similar to that of a browser. If you use your own Root CA on Elasticsearch, this especially means that Kibana checks whether the certificate can be trusted or not.
 
 If you use your own Root CA, this is obviously not the case. If you use a browser to connect, you would get an error message like this:
 
