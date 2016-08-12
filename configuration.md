@@ -27,7 +27,7 @@ The configuration consists of the following files. These are shipped with Search
 
 ## Hot config reloading: Using sgadmin
 
-Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG 2 secured Elasticsearch cluster by a _special_ client SSL certificate. Ok, not the certificate is special, it's just that the CN (common name) of the certificate is known by SG 2 by adding it to the ``searchguard.authcz.admin_dn:`` property in elasticsearch.yml. This is described [here](installation.md). If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates, it's for example the _kirk_ or _spock_ client certificate.
+Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG 2 secured Elasticsearch cluster by a _special_ client SSL certificate. Ok, not that the certificate is in any way special, it's just a certificate where the CN (common name) of the certificate is known by SG 2 through the addition of the ``searchguard.authcz.admin_dn:`` property to the elasticsearch.yml file. This is described [here](installation.md). If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates, it's for example the _kirk_ or _spock_ client certificate.
  
 ```
 chmod +x plugins/search-guard-2/tools/sgadmin.sh
