@@ -480,7 +480,7 @@ On cluster-level, this permission grants the right to display the cluster health
 cluster:monitor/health
 ```
 
-There is a plethora of permissions you can set. Search Guard is compatible with the permission definition of Shield up to version 2.1, so you can see [here](hhttps://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list) for a complete list.
+There is a plethora of permissions you can set. Search Guard is compatible with the permission definition of Shield up to version 2.1, so you can see [here](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list) for a complete list.
 
 Since there are so many permissions you can use, we strongly recommend to use action grouping (see next chapter) and work with action group aliases in `sg_roles.yml`.
 
