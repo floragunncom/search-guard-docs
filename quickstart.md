@@ -4,9 +4,7 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 # Quick start: Search Guard Bundle
 
-Start easy with Search Guard. The bundle ships Elasticsearch + Search Guard with a preconfigured environment, which allows easy testing and evaluation. The bundle contains the latest version of Search Guard, Search Guard SSL and all commercial modules like Ldap Authentication, Kerberos Authentication, Document- and Fieldlevel Security as well as Audit Logging.
-
-This feature is still in Beta, but if you want to give it a try, download the Search Guard Bundle here:
+Start easy with Search Guard. The bundle ships Elasticsearch + Search Guard with a preconfigured environment, which allows easy testing and evaluation. The bundle contains the latest version of Search Guard, Search Guard SSL and all commercial modules like Ldap Authentication, Kerberos Authentication, Document- and Field-level Security as well as Audit Logging.
 
 [https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle](https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle)
 

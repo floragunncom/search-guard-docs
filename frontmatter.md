@@ -10,7 +10,7 @@ Official documentation for Search Guard 2
 </p>
 <br />
 <p align="center" style="font-size:24px;">
-Version: 1.0
+Version: 2.x.x.6
 </p>
 <br />
 <p align="center" style="font-size:18px;">

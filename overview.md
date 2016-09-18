@@ -20,14 +20,15 @@ The basic features include:
 * X-Forwarded-For (XFF) support		
 * Internal authentication/authorization	
 * Anonymous login/unauthenticated access
-* User Impersonation		
+* User Impersonation
+* Tribe node support		
 
 The enterprise features include:
 
 * HTTP SPNEGO/Kerberos authentication	
 * LDAP/Active Directory authentication/authorisation
 * Document level security (DLS): Retrieve only documents matching criteria
-* Field level security (FLS): Filter out fields from a search response		
+* Field level security (FLS): Filter out fields from a search response
 * JSON web token support
 * Audit logging		
 
@@ -39,12 +40,14 @@ Search Guard offers the same authentication / authorization features as Shield, 
 
 * OpenSSL support
 * HTTP Proxy Authentication
-* JWT authentication (coming soon)
+* JWT authentication
 * Source code available
 
 ## License model
 
-Search Guard, including all enterprise features, can be used **free of charge for personal, non-commercial projects** as well as for **academic purposes**.
+Search Guard, including all enterprise features, can be used **free of charge for personal, non-commercial projects**.
+
+Search Guard is also free for **academic purposes**, but you have to grant us the permission to name your institute as reference on our website.
 
 In order to use the enterprise features for commercial projects, you need to obtain a license. For more information on enterprise licensing, see here: [Search Guard enterprise licensing](https://floragunn.com/searchguard/searchguard-license-support/).
 

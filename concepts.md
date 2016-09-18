@@ -11,9 +11,9 @@ However, there is a basic pattern of steps that Search Guard executes when decid
 * A user wants to **interact** with an Elasticsearch cluster
  *  this means any kind of interaction, ranging from issuing simple queries to changing the cluster topology
 * Search Guard retrieves the **credentials** of the user
- * This can be achieved by explicitly asking (challenging) the user to provide this information, or it can be extracted directly from the request. Credentials can be something like a username/password combination, but also something like a hostname.
+ * This can be achieved by explicitly asking (challenging) the user to provide this information, or it can be extracted directly from the request. Credentials can be something like a username/password combination, but also a hostname or the DN of a TLS certificate.
 * Search Guard **authenticates** the credentials against an authentication backend.
- * This step is optional if you use for example Kerberos, TLS client or proxy authentication.
+ * This step is optional if you use for TLS client or proxy authentication.
 * Search Guard **authorizes** the user by retrieving a list of roles for the user
  * Roles retrieved in this step are called **backend roles**, for they are retrieved from a backend system. This step is optional. 
 * Search Guard **maps** the user and her backend roles to **internal Search Guard roles**
@@ -33,11 +33,9 @@ An credential provider can either be **challenging** or **non-challenging**. A c
 
 ## Authentication (authc)
 
-Search Guard then **authenticates** the credentials **against a backend authentication module**. This step is performed by a so called **Authenticator**. 
+Search Guard then **authenticates** the credentials **against a backend authentication module**. This step is performed by a so called **Authenticator**. Authenticators can be very diverse regarding their principles and inner workings, but they always verify if provided credentials are correct. 
 
-Authenticators can be very diverse regarding their principles and inner workings. For example, a file based authenticator might simply verify a user against a file containing usernames and (hashed) passwords. An LDAP authenticator on the other hand verifies the users credentials against an LDAP server.
-
-In order for Search Guard to work, there always has to be at least one authenticator configured. If this is not the case, an implicit one will be created. This will authenticate the credentials against the internal user database and use HTTP Basic as the credentials provider.
+In order for Search Guard to work, there has to be at least one authenticator configured. If this is not the case, an implicit one will be created. This will authenticate the credentials against the internal user database and use HTTP Basic as the credentials provider.
 
 You can define more than one authenticator if necessary, but in most cased you will have exactly one authenticator talking to one authentication backend.
 
@@ -94,21 +92,25 @@ SUGGEST:
   - "indices:data/read/suggest*"
 ```
 
-## Document- and field-level-security
+## Configuration settings: The Search Guard index
 
-You can use document- and field-level security (DLS/FLS) to control access to documents and even individual fields.
+All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is specially secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, which we'll call **admin certificates**.
 
-For example, you can define that only members of the `HR department` group have access to documents of type `payroll`, and that the field `bonus` is only displayed to users in the group `HR department lead`.
+Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user-, role- and permission settings at runtime , without restarting your nodes**. Configuration changes will **take effect nearly immediately**. You can load and **change the settings from any machine** which has access to your Elasticsearch cluster. 
 
-DLS is defined by one or more queries. Only documents that match the queries are accessible by the corresponding role:
+**This also means that you do not need to keep any configuration files on the nodes themselves.** No more dealing with configuration files on different servers!
 
-```
-_dls_: '{"term" : {"_type" : "payroll"}}'
-```
+The configuration consists of the following files. These are shipped with Search Guard, and you can use them as templates for your own configuration settings:
 
-FLS is defined by specifying the fields that should be visible to the authenticated user:
+* sg\_config.yml
+ * Configure authenticators and authorisation backends
+* sg\_roles.yml
+ * define the roles and the associated permissions
+* sg\_roles\_mapping.yml
+ * map backend roles, hosts and users to roles
+* sg\_internal\_users.yml
+ * user and hashed passwords (hash with hasher.sh), used for the internal user database
+* sg\_action\_groups.yml
+ * group permissions together
 
-```
- _fls_:
-        - 'bonus'
-```
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do so, use the `sgadmin` tool that ships with Search Guard. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shard and replica settings, since you want to make sure that the Search Guard index is available on all nodes.
