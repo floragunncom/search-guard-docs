@@ -10,7 +10,7 @@ In the following description, we assume that you have already set up an Search G
 
 We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend to use this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
-Please check the `elasicsearch.yml` file and see whether TLS on the REST-layer is enabled:
+Please check the `elasticsearch.yml` file and see whether TLS on the REST-layer is enabled:
 
 ```
 searchguard.ssl.http.enabled: true
@@ -27,7 +27,7 @@ Again, since all configuration changes for Search Guard regarding users, permiss
 
 ## Setting up SSL/TLS
 
-If you use TLS on the Elasticsearch REST-layer (as you should), you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearc.url` to `https`:
+If you use TLS on the Elasticsearch REST-layer (as you should), you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearch.url` to `https`:
 
 ```
 elasticsearch.url: "https://localhost:9200" 
