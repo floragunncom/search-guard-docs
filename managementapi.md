@@ -350,7 +350,7 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 ```
 {
   "status":"OK",
-  "message":"rolesmapping sg_role_starfleet created."
+  "message":"role sg_role_starfleet created."
 }
 ```		
 		
@@ -399,26 +399,22 @@ DELETE /_searchguard/api/actiongroup/SEARCH
 ### PUT
 
 ```
-PUT /_searchguard/api/user/{username}
+PUT /_searchguard/api/actiongroup/{actiongroup}
 ```
 
-Replaces or creates the user specified by `username`.
+Replaces or creates the action group specified by `actiongroup `.
 
 ```
-PUT /_searchguard/api/user/{username}
+PUT /_searchguard/api/actiongroup/SEARCH
 {
-  "hash": <password hash>,
-  "password": <cleartext password>,
-  "roles": ["role1", "role2]
+  "permissions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
 ```
-You need to specify either `hash` or `password`. `hash` contains the hashed password of the user. `password` contains the cleartext password, and it is hashed internally. If both are specified, `hash` takes precedence.
-
-`roles` contains an array of the users backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
+The field permissions is mandatory and contains permissions or references to other action groups.
 
 ```
 {
   "status":"CREATED",
-  "message":"User spock created"
+  "message":"action group SEARCH created"
 }
 ```
