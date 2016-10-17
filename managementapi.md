@@ -2,9 +2,7 @@
 
 This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api.
 
-The management API is part of the enterprise features, thus it requires a license when used in production. The management API can be used with Search Guard from version 7 onwards (e.g. Search Guard 2.4.1.7).
-
-**The API is in beta at the time of writing, so please report any bugs or missing features on our [github issue tracker](https://github.com/floragunncom/search-guard-rest-api/issues).**
+The management API is part of the enterprise features, thus it requires a license when used in production. The management API can be used with Search Guard from version 7 onwards (e.g. Search Guard 2.x.x.7).
  
 ## Prerequisites
 
