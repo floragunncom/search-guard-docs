@@ -1,10 +1,10 @@
 # Managing the Search Guard index
 
-## Structure
-
-## Replica shards
+## Index name
 
 Beginning with Search Guard 2.x.x.6, you can configure the name of the Search Guard index itself. This is only necessary in very special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
+
+## Replica shards
 
 If the Search Guard index is created for the first time, the number of replica shards is determined automatically and is set to the number of nodes - 1. This means that a primary or replica shard of the Search Guard index is available on all nodes.
 
