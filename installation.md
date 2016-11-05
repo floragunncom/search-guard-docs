@@ -75,6 +75,29 @@ Each module lives in its own github repository. You can either download the repo
 
 Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
 
+## Expert settings
+
+**WARNING: Do only use if you know what you are doing. If you set wrong values here this could be a security risk or make Search Guard stop working! In most cases, you do not need to change the default settings.**
+
+### Search Guard index name
+
+Search Guard stores all configuration information in a specially secured index. By default, this index is named `searchguard`. You can change this index name with the following configuration key:
+
+```
+searchguard.config_index_name: searchguard
+```
+
+### Server certificate OID
+
+All certificates used by the nodes on transport level need to have the `oid` field set to a specific value. By default, this is `1.2.3.4.5.5`.
+
+This oid value is checked by Search Guard to identify if an incoming request comes from a trusted node in the cluster or not. In the former case, all actions are allowed, in the latter case, privilege checks apply. Plus, the oid is also checked whenever a node wants to join the cluster. This prohibits that a malicious attacker can join the cluster by using a client certificate.
+
+You can change the oid value with this confguration key:
+
+```
+searchguard.cert.oid: '1.2.3.4.5.5'
+```
 
 ## Known Issues
 
