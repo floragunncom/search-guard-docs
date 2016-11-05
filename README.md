@@ -2,9 +2,11 @@
 Copryight 2016 floragunn UG (haftungsbeschränkt)
 -->
 
-# Search Guard 2 Documentation
+# Search Guard Documentation
 
-This is the official documentation for Search Guard 2. If you find any errors, or want to contribute, feel free to fork this repository and issue pull requests.
+This is the official documentation for Search Guard 2 and Search Guard 5. If you find any errors, or want to contribute, feel free to fork this repository and issue pull requests.
+
+Unless stated otherwise, all instructions apply for Search Guard 2 and Search Guard 5. If there are differences between the versions, this will be made clear in the documentation.
 
 Copyright 2016 floragunn UG (haftungsbeschränkt)
 

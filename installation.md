@@ -10,20 +10,35 @@ Since Search Guard build on Search Guard SSL, you need to install both plugins. 
 
 In order to find the correct Search Guard and Search Guard SSL version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki) in the github repository. This matrix will be kept up-to-date with each release.
 
-## Installing the plugins
-Search Guard itself can be installed like any other Elasticsearch plugin. 
+If you use the enterprise features, please make sure that also the versions of these modules match.
 
-Change to the directory of your Elasticsearch installation and type:
+## Installing the plugins
+
+Search Guard itself can be installed like any other Elasticsearch plugin. Of course, replace the version number in the following examples with the version suitable for your Elasticsearch installation.
+
+Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`. 
+
+**Search Guard 2**
+
+For Search Guard 2, you need to install Search Guard SSL first, and after that Search Guard itself. Change to the directory of your Elasticsearch installation and type:
 
 ```
 bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.16
 bin/plugin install -b com.floragunn/search-guard-2/2.4.1.7
 ```
-Of course, replace the version number with the version suitable for your Elasticsearch installation.
+After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
 
-After that you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
+**Search Guard 5**
 
-Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`. 
+For Search Guard 5, you only need to install one plugin, namely Search Guard. The SSL layer is bundled with the main plugin.
+
+Change to the directory of your Elasticsearch installation and type:
+
+```
+bin/elasticsearch-plugin install com.floragunn/search-guard-5/5.0.0.8
+```
+
+After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
 
 ## Configure the admin certificate
 
@@ -38,7 +53,15 @@ You can configure one or more of those admin certificates.
 
 ## Installing enterprise modules
 
-If you want to use any of the enterprise modules, download the respective jar file and place it in the folder `<ES installation directory>/plugins/search-guard-2`.
+If you want to use any of the enterprise modules, download the respective jar file and place it in the folder 
+
+* `<ES installation directory>/plugins/search-guard-2` 
+
+or
+
+* `<ES installation directory>/plugins/search-guard-5` 
+
+if you're using Search Guard 5.
 
 Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) directly from Maven.
 

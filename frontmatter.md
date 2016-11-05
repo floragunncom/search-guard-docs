@@ -6,11 +6,11 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 <br />
 <p align="center" style="font-size:36px;">
-Official documentation for Search Guard 2
+Official documentation for Search Guard 2 and Search Guard 5
 </p>
 <br />
 <p align="center" style="font-size:24px;">
-Version: 2.x.x.6
+Version: 5.0.0.8
 </p>
 <br />
 <p align="center" style="font-size:18px;">

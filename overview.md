@@ -36,7 +36,7 @@ Search Guard supports **OpenSSL** and works with **Kibana** and **logstash**. Th
 
 ## Comparison to Shield
 
-Search Guard offers the same authentication / authorization features as Shield, and adds:
+Search Guard offers similar authentication / authorization features as Shield, and adds:
 
 * OpenSSL support
 * HTTP Proxy Authentication
