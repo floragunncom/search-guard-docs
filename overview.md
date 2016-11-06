@@ -34,14 +34,20 @@ The enterprise features include:
 
 Search Guard supports **OpenSSL** and works with **Kibana** and **logstash**. The complete source code (including the code for the enterprise features) is available, so you can inspect it and perform security audits if necessary.
 
-## Comparison to Shield
+## Comparison to X-Pack Security / Shield
 
-Search Guard offers similar authentication / authorization features as Shield, and adds:
+Search Guard is an independent implementation of a security access layer for Elasticsearch, and is completely independent from Elasticsearch own security offering – X-Pack Security, formerly known as Shield.
+
+Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
+
+floragunn GmbH is not affiliated with Elasticsearch BV.
+
+Search Guard offers similar authentication / authorization features as X-Pack Security, and adds:
 
 * OpenSSL support
 * HTTP Proxy Authentication
 * JWT authentication
-* Source code available
+* Source code availability
 
 ## License model
 
