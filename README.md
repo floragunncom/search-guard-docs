@@ -8,6 +8,10 @@ This is the official documentation for Search Guard 2 and Search Guard 5. If you
 
 Unless stated otherwise, all instructions apply for Search Guard 2 and Search Guard 5. If there are differences between the versions, this will be made clear in the documentation.
 
+floragunn GmbH is not affiliated with Elasticsearch BV.
+
+Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
+
 Copyright 2016 floragunn UG (haftungsbeschränkt)
 
 ## Table of contents
