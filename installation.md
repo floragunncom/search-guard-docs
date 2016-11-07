@@ -23,8 +23,8 @@ Make sure to install the plugins with the same user you run Elasticsearch. For e
 For Search Guard 2, you need to install Search Guard SSL first, and after that Search Guard itself. Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.16
-bin/plugin install -b com.floragunn/search-guard-2/2.4.1.7
+bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.17
+bin/plugin install -b com.floragunn/search-guard-2/2.4.1.8
 ```
 After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
 
@@ -35,7 +35,7 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install com.floragunn/search-guard-5/5.0.0.8
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-ssl:5.0.0-8
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
