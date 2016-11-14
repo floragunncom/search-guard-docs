@@ -4,17 +4,17 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 # Installation
 
-Since Search Guard build on Search Guard SSL, you need to install both plugins. The order in which you install them is not relevant. Due to how the Elasticsearch plugin mechanism works, you have to install the Search Guard version matching your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
+**General**
 
-## Versioning
+Due to how the Elasticsearch plugin mechanism works, you have to install the Search Guard version matching your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
 
 In order to find the correct Search Guard and Search Guard SSL version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki) in the github repository. This matrix will be kept up-to-date with each release.
 
 If you use the enterprise features, please make sure that also the versions of these modules match.
 
-## Installing the plugins
+## Installing the plugin(s)
 
-Search Guard itself can be installed like any other Elasticsearch plugin. Of course, replace the version number in the following examples with the version suitable for your Elasticsearch installation.
+Search Guard itself can be installed like any other Elasticsearch plugin. Of course, **replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
 
 Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`. 
 
@@ -35,10 +35,14 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-ssl:5.0.0-8
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.0.0-8
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
+
+## Configuring TLS/SSL
+
+Search Guard requires TLS on the transport level in order to operate correctly. We provide a brief configuration example for the TLS layer here. If you need more in-depth information, please refer to the https://github.com/floragunncom/search-guard-ssl-docs
 
 ## Configure the admin certificate
 
