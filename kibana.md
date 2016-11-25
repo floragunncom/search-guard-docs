@@ -309,6 +309,9 @@ The definition for the `administrators` role looks like:
 
 ```
 administrators:
+  cluster:
+    - indices:data/read/mget*
+    - indices:data/read/msearch* 
   indices:
     'logstash-*':
       '*':
@@ -335,6 +338,16 @@ First, let's look at the permissions for the logstash index. The permissions, in
 
 Due to the nature of Kibana, the logged in user also needs permission to access (read and write) the .kibana index.
 
+**Kibana 5 (only):**
+
+**For Search Guard 5 / Kibana 5 you will also need the following cluster privileges:**
+
+```
+  cluster:
+    - indices:data/read/mget*
+    - indices:data/read/msearch*
+```
+ 
 So, our permissions list is quite long. Since we need the same set of permissions also for the `developers` role, we would need to repeat all these settings also for this role.
 
 Here is where action groups come to the rescue. We will move the definition of both permission lists to `sg_action_groups.yml` and then just reference them in `sg_roles.yml`.
