@@ -18,15 +18,33 @@ Defining FLS is even simpler: You specify one or more fields that the bearer of 
 
 ```
 _fls_:
-        - 'firstname'
-        - 'lastname'
-        - 'salary'
+  - 'firstname'
+  - 'lastname'
+  - 'salary'
 ```       
 
 In this case the fields `firstname`, `lastname` and `salary` would be visible. You can add as many fields as you like.
 
-**Note that DLS and FLS is applied on Lucene-level, not Elasticsearch-level. This means that the final documents handed from Lucene to Elasticsearch are already filtered according to the DLS and FLS settings for added security.**
+**The DLS and FLS entries need to be on the same indentation level as the types. If you put them on the index level, this would lead to an exception.**
 
-### Examples
+Note that DLS and FLS is applied on Lucene-level, not Elasticsearch-level. This means that the final documents handed from Lucene to Elasticsearch are already filtered according to the DLS and FLS settings for added security.
 
-Please refer to the [Addendum B](addendum_b_permission settings examples.md) of this documentation for some common permission settings examples.
+## Example
+
+```
+my_role:
+  indices:
+    '*':
+      '*':
+        - READ    
+      _dls_: '{"term" : {"_type" : "payroll"}}'
+      _fls_:
+        - 'firstname'
+        - 'lastname'
+```
+
+## Further reading
+      
+You can read more about this feature in our blog post about [document- and field-level security](https://floragunn.com/document-field-level-security-search-guard/)
+       
+Please refer also to the [Addendum B](addendum_b_permission settings examples.md) of this documentation for some common permission settings examples.
