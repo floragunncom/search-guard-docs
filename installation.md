@@ -40,6 +40,39 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.0.0-8
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
 
+
+## Additional permissions dialogue
+
+
+Since ES 2.2, you will see the following warning message when installating Search Guard and/or Search Guard SSL. For some ES versions, you need to actively confirm it by pressing 'y':
+
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@     WARNING: plugin requires additional permissions     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+* java.lang.RuntimePermission accessClassInPackage.sun.misc
+* java.lang.RuntimePermission getClassLoader
+* java.lang.RuntimePermission loadLibrary.*
+* java.lang.reflect.ReflectPermission suppressAccessChecks
+* java.security.SecurityPermission getProperty.ssl.KeyManagerFactory.algorithm
+See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
+for descriptions of what these permissions allow and the associated risks.
+```
+
+In any case, if you see 
+
+```
+Installed search-guard-ssl into /usr/share/elasticsearch/plugins/search-guard-ssl
+```
+
+and
+
+```
+Installed search-guard-2 into /usr/share/elasticsearch/plugins/search-guard-2
+```
+
+at the end of the respective installation process, everything was installed correctly.
+
 ## Configuring TLS/SSL
 
 Search Guard requires TLS on the transport level in order to operate correctly. We provide a brief configuration example for the TLS layer here. If you need more in-depth information, please refer to the https://github.com/floragunncom/search-guard-ssl-docs
