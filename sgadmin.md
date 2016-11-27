@@ -24,7 +24,15 @@ You can find the sgadmin tool in the following directory:
 <ES installation directory>/plugins/search-guard-2/tools
 ```
 
-First, change the permissions on that script and give it execution rights:
+For Windows users there is a sgadmin.bat file. Before executes it check that you have JAVA_HOME environment variable and if you don't have, you can set it by next command:
+
+```
+set JAVA_HOME=Path_to_jre_root_directory (without quotes)
+```
+
+For x64 system "Path_to_jre_root_directory" will by something like C:\Program Files\Java\jre_version.
+
+For Linux, change the permissions on that script and give it execution rights:
 
 ```
 chmod +x plugins/search-guard-2/tools/sgadmin.sh
