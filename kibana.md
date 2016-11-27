@@ -61,6 +61,18 @@ Another, but not recommended, way to avoid this problem is to disable the validi
 elasticsearch.ssl.verify: false
 ```
 
+#### Kibana 5
+
+For Kibana 5, SSL has to be configured separately for the so called "Dev Tools" (a.k.a Console, a.k.a. Sense). You can follow the setup and installation guide of [Sense](https://www.elastic.co/guide/en/sense/current/installing.html), and replace every occurence of "sense" in configuration keys with "console". For example, to disbale the certificate validity check, you can use:
+
+```
+console.proxyConfig:
+  - match:
+      protocol: "https"
+    ssl:
+      verify: false 
+```
+      
 ## Configuring the Kibana server user
 
 ### Adding the Kibana server user
