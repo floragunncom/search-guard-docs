@@ -24,11 +24,23 @@ You can find the sgadmin tool in the following directory:
 <ES installation directory>/plugins/search-guard-2/tools
 ```
 
-First, change the permissions on that script and give it execution rights:
+### Linux
+
+Change the permissions on that script and give it execution rights:
 
 ```
 chmod +x plugins/search-guard-2/tools/sgadmin.sh
 ```
+
+### Windows 
+
+Before executing sgadmin.bat check that you have set JAVA_HOME environment variable and if you don't have, you can set it like:
+
+```
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65
+```
+
+Replace `jdk1.8.0_65` with your installed JDK or JRE version
 
 After that you can execute the script against any node in your cluster. The configuration settings are pushed to that node, and depending on your shard settings, replicated to the other nodes.
 
