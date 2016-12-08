@@ -182,6 +182,8 @@ Example: `/\S*/` will match any non whitespace characters
 
 See [https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
 
+For `<indexname or alias> also the placeholder `${user.name}` is allowed to support indices or aliases, which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the actual username.
+
 ### Defining permissions
 
 Permissions can be applied on cluster- and index level. Cluster-level permissions always start with `cluster:`, while index-level permissions start with `indices:`. After that, a REST-style path further defines the exact action the permission grants.
