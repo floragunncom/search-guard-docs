@@ -99,9 +99,44 @@ Configuration parameter:
 | Name  | Description  |
 |---|---|
 | signing_key  |  The base64-encoded secret key that the issuer of the token used to sign the message. This is a shared secret between the token issuer and Search Guard. |
-|  jwt\_header |  The HTTP header in which the token is stored. This is typically the `Authentication` header with the `Bearer` schema:  `Authorization: Bearer <token>`|
+|  jwt\_header |  The HTTP header in which the token is stored. This is typically the `Authentication` header with the `Bearer` schema:  `Authorization: Bearer <token>`. Default is `Authentication`.|
 | jwt\_url\_parameter  | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here.  |
-| subject_key  | The key in the JSON payload that stores the users name.|
+| subject_key  | The key in the JSON payload that stores the users name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is taken.|
 | roles_key  | The key in the JSON payload that stores the users roles. The value of this key must be a comma-separated list of roles. |
 
 Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
+
+## Supported formats and algorithms
+
+The following JWT types are supported: 
+
+* Creating and parsing plaintext compact JWTs 
+* Creating, parsing and verifying digitally signed compact JWTs (aka JWSs) with all standard JWS algorithms: 
+
+```
+HS256: HMAC using SHA-256 
+HS384: HMAC using SHA-384 
+HS512: HMAC using SHA-512 
+RS256: RSASSA-PKCS-v1_5 using SHA-256 
+RS384: RSASSA-PKCS-v1_5 using SHA-384 
+RS512: RSASSA-PKCS-v1_5 using SHA-512 
+PS256: RSASSA-PSS using SHA-256 and MGF1 with SHA-256 
+PS384: RSASSA-PSS using SHA-384 and MGF1 with SHA-384 
+PS512: RSASSA-PSS using SHA-512 and MGF1 with SHA-512 
+ES256: ECDSA using P-256 and SHA-256 
+ES384: ECDSA using P-384 and SHA-384 
+ES512: ECDSA using P-521 and SHA-512 
+```
+
+## Validated registered claims
+
+The following registered claims are validated:
+
+* "iat" (Issued At) Claim
+* "nbf" (Not Before) Claim
+* "exp" (Expiration Time) Claim
+
+## Misc
+
+* "sub" (Subject) Claim
+ * If no `subject_key` is defined, the value of the  [`sub`](https://tools.ietf.org/html/rfc7519#section-4.1.2)  claim is used as username.
