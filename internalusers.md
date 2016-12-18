@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # Configure internal users and roles
 
 ## Defining users, roles and passwords

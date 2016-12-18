@@ -1,6 +1,7 @@
 <!---
-Copryight 2016 floragunn UG (haftungsbeschränkt)
+Copryight 2016 floragunn GmbH
 -->
+
 
 ![](images/sg.png)
 
@@ -17,7 +18,7 @@ Version: 5.0.0.8
 floragunn GmbH is not affiliated with Elasticsearch BV. Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
 </p>
 <p align="center" style="font-size:18px;">
-Copyright 2016 floragunn UG (haftungsbeschränkt)
+Copyright 2016 floragunn GmbH
 </p>
 
 

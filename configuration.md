@@ -1,6 +1,7 @@
 <!---
-Copryight 2016 floragunn UG (haftungsbeschränkt)
+Copryight 2016 floragunn GmbH
 -->
+
 # Configuration Basics
 
 ## Configuring authentication and authorisation 

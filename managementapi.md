@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # REST management API
 
 This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api.

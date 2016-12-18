@@ -1,5 +1,5 @@
 <!---
-Copryight 2016 floragunn UG (haftungsbeschränkt)
+Copryight 2016 floragunn GmbH
 -->
 
 # Addendum A: Configuration examples
@@ -32,7 +32,7 @@ searchguard:
           type: intern
 ```
 
-## Use HTTP basic auth and validate LDAP
+## Use HTTP basic auth and LDAP authentication bacjend
 
 ```
 searchguard:

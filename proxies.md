@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 ### Proxies/Loadbalancers and XFF support
 
 **Note: If you do not run Elasticsearch behind any proxy or loadbalancer, you can ignore this chapter.**

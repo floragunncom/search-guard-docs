@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # JSON web tokens
 
 ## Token based authentication

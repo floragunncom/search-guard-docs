@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # Document- and field level security
 
 As with regular permissions, settings for document- and field-level security can be applied on index-level, meaning that you can have different settings for each index.

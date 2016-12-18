@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # LDAP and Active Directory
 
 LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. Active Directory also uses the LDAP protocol.

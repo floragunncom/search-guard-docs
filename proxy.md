@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # Proxies and SSO authentication
 
 ## Proxies/Loadbalancers and XFF support

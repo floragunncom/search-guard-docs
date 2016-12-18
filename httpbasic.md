@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # HTTP Basic Authentication
 
 In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:

@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn GmbH
+-->
+
 # Using Search Guard with logstash
 
 Configuring logstash is very similar to configuring Kibana, so we highly recommend to read the Kibana chapter as well. Most principles, especially the Kibana server user / logstash user, are nearly identical.
