@@ -17,9 +17,13 @@ searchguard.kerberos.acceptor_keytab_filepath: 'eskeytab.tab'
 
 `searchguard.kerberos.krb5_filepath` defines the path to your Kerberos configuration file. This file contains various settings regarding your Kerberos installation, for example the realm name(s) and the hostname(s) and port(s) of the Kerberos Key Distribution Center services.
 
-`searchguard.kerberos.acceptor_keytab_filepath` defines the path to the keytab file, containing the principal which Search Guard will use to issue requests against Kerberos.
+`searchguard.kerberos.acceptor_keytab_filepath` defines the path to the keytab file, containing the principal that Search Guard will use to issue requests against Kerberos/KDC.
 
-If you do not know where to get these from, refer to the administrator of your Kerberos infrastructure.
+`acceptor_principal: 'HTTP/localhost'` defines the principal that Search Guard will use to issue requests against Kerberos/KDC. 
+
+The `acceptor_principal` defines the acceptor/server principal name Search Guard uses to issue requests against Kerberos/KDC. This must be present in the keytab file.
+
+**Due to security restrictions the keytab file must be placed in the `<ES installation directory>/conf` directory or a subdirectory, and the path in `elasticsearch.yml` must be configured relative, not absolute.**
 
 ## Dynamic configuration in sgconfig.yml
 
@@ -35,7 +39,6 @@ A typical Kerberos authentication domain in sgconfig.yml looks like this:
           challenge: true
           config:
             krb_debug: false
-            acceptor_principal: 'HTTP/localhost'
             strip_realm_from_principal: true
         authentication_backend:
           type: noop
@@ -48,8 +51,6 @@ As with [HTTP Basic Authentication](httpbasic.md), this flag determines how Sear
 If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenging` to false thus only makes sense if the Kerberos credentials are sent in the inital request. 
 
 As the name implies, setting `krb_debug` to true will output a lot of Kerberos specific debugging messages will be outputted to standard out. Use this if you encounter any problems with your Kerberos integration.
-
-The `acceptor_principal` defines the acceptor/server principal name Search Guard uses. This must be present in the keytab file configured in `elasticsearch.yml`.
 
 If you set `strip_realm_from_principal` to true, Search Guard will strip the realm from the user name.
 
