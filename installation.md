@@ -100,7 +100,7 @@ or
 
 if you're using Search Guard 5.
 
-Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) directly from Maven.
+Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (choose jar file(s) with dependencies) directly from Maven.
 
 #### REST management API:
 [https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
