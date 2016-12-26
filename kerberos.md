@@ -57,3 +57,14 @@ If you set `strip_realm_from_principal` to true, Search Guard will strip the rea
 ## Authentication backend
 
 Since SPNEGO/Kerberos authenticates a user on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
+
+## Troubleshooting
+
+Set `krb_debug: true` in the dynamic configuration and set the following JVM porperties:
+
+* `-Dsun.security.krb5.debug=true`
+* `-Djava.security.debug=all`
+* `-Djava.security.auth.debug=all`
+* `-Dsun.security.spnego.debug=true`
+
+More on how to set JVM properties in Elasticsearch [2.x](https://www.elastic.co/guide/en/elasticsearch/reference/2.0/setup-service.html) and [5.x](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/heap-size.html)
