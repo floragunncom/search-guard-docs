@@ -60,11 +60,12 @@ Since SPNEGO/Kerberos authenticates a user on HTTP level, no additional `authent
 
 ## Troubleshooting
 
-Set `krb_debug: true` in the dynamic configuration and set the following JVM porperties:
+Set `krb_debug: true` in the dynamic configuration. Now any login attempt with a SPNEGO token should print diagnostic information to stdout.
+
+If you do not see any output or use an older Search Guard Kerberos module set the following JVM porperties manually:
 
 * `-Dsun.security.krb5.debug=true`
-* `-Djava.security.debug=all`
-* `-Djava.security.auth.debug=all`
+* `-Djava.security.debug=gssloginconfig,logincontext,configparser,configfile`
 * `-Dsun.security.spnego.debug=true`
 
 More on how to set JVM properties in Elasticsearch [2.x](https://www.elastic.co/guide/en/elasticsearch/reference/2.0/setup-service.html) and [5.x](https://www.elastic.co/guide/en/elasticsearch/reference/5.0/heap-size.html)
