@@ -432,6 +432,18 @@ No perm match for indices:admin/mappings/fields/get and [developers]
 This means that the user does not have the permission to execute the `admin/mappings/fields/get` action on the index `logstash-production-*`. And that means, our setup works as expected.
 
 
+**Using xff for Kibana 5:**
+
+
+It is possible to use an SSO instead of ldap or internal authentication.
+To do so, you need to explicitly configure the list of headers Kibana 5 should pass to elasticsearch.
+For instance:
+
+```
+/etc/kibana/kibana.yml:
+elasticsearch.requestHeadersWhitelist: ["x-authenticated-user", "authorization", "x-forwarded-for", "x-forwarded-server"]
+```
+
 ## Troubleshooting
 
 Most configuration errors somehow manifest not in the Kibana logs, but in the Elasticsearch logs. So, if something does not work as expected, please have a look in the Elasticsearch logs first. We've listed some of the more common configuration errors below. Feel free to contribute, or contact us if you feel something is missing.
