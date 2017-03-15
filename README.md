@@ -19,7 +19,7 @@ Copyright 2016 floragunn GmbH
 * [Frontmatter](frontmatter.md)
 * [Overview](overview.md)
 * [Architecture](architecture.md)
-* [Quickstart](quickstart.md)
+* [Quickstart: Search Guard Bundle](quickstart.md)
 * [Installing Search Guard](installation.md)
 * [Search Guard Main Concepts](concepts.md)
 * [Configuration basics](configuration.md)

@@ -30,9 +30,11 @@ The enterprise features include:
 * Document level security (DLS): Retrieve only documents matching criteria
 * Field level security (FLS): Filter out fields from a search response
 * JSON web token support
-* Audit logging		
+* Audit logging
+* REST management API
+* Kibana multitenancy support		
 
-Search Guard supports **OpenSSL** and works with **Kibana** and **logstash**. The complete source code (including the code for the enterprise features) is available, so you can inspect it and perform security audits if necessary.
+Search Guard supports **OpenSSL** and works with **Kibana**, **logstash** and **beats**. The complete source code (including the code for the enterprise features) is available, so you can inspect it and perform security audits if necessary.
 
 ## Disclaimer
 
@@ -46,10 +48,10 @@ floragunn GmbH is not affiliated with Elasticsearch BV.
 
 Search Guard, including all enterprise features, can be used **free of charge for personal, non-commercial projects**.
 
-Search Guard is also free for **academic purposes**, but you have to grant us the permission to name your institute as reference on our website.
+Search Guard is also free for **academic purposes**, but you have to grant us the permission to name your institute as reference on our website. For more information, please download our [academic and scientific licensing overview PDF](https://floragunn.com/wp-content/uploads/2016/11/Academic-Licensing.pdf).
 
-In order to use the enterprise features for commercial projects, you need to obtain a license. For more information on enterprise licensing, see here: [Search Guard enterprise licensing](https://floragunn.com/searchguard/searchguard-license-support/).
+In order to use the enterprise features for commercial projects, you need to obtain a license. For more information on enterprise licensing, see the [Search Guard enterprise licensing page on our website](https://floragunn.com/searchguard/searchguard-license-support/), or download our [licensing overview PDF](https://floragunn.com/wp-content/uploads/2016/11/Search-Guard-Licensing.pdf).
 
-On contrast to competitor products, our licenses are issued per **production cluster**, regardless of its size. In other words, whether your cluster contains only a single node, or hundreds of nodes, you just need one license with a fixed price.
+In contrast to competitor products, our licenses are issued per **production cluster**, regardless of its size. In other words, whether your cluster contains only a single node, or hundreds of nodes, you just need one license with a fixed price. Scale your cluster, not your cost!
 
 All your development, staging and QA-systems are also covered, there are no additional costs involved.

@@ -11,7 +11,7 @@ Official documentation for Search Guard 2 and Search Guard 5
 </p>
 <br />
 <p align="center" style="font-size:24px;">
-Version: 5.0.0.8
+Version: 5.x-11
 </p>
 <br />
 <p align="center" style="font-size:18px;">
