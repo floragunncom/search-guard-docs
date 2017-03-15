@@ -34,6 +34,7 @@ Copyright 2016 floragunn GmbH
 * [Document- and field-level security](dlsfls.md)
 * [Audit Logging](auditlogging.md)
 * [Using Search Guard with Kibana](kibana.md)
+* [Kibana Multitenancy (BETA)](multitenancy.md)
 * [Using Search Guard with logstash](logstash.md)
 * [Snapshot & Restore](snapshots.md)
 * [Search Guard index management](sgindex.md)
