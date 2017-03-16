@@ -40,4 +40,4 @@ Copyright 2016 floragunn GmbH
 * [Search Guard index management](sgindex.md)
 * [Tribe nodes](tribenodes.md)
 * [Addendum A: Configuration Examples](addendum_a_configuration_examples.md)
-* [Addendum B: Permission settings Examples](addendum_b_permission settings examples.md)
+* [Addendum B: Permission settings Examples](addendum_b_permission_settings_examples.md)
