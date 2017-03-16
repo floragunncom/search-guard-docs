@@ -29,7 +29,7 @@ Copyright 2016 floragunn GmbH
 * [Internal user database](internalusers.md)
 * [LDAP and Active Directory](ldap.md)
 * [Kerberos](kerberos.md)
-* [JSON Web token] (jwt.md)
+* [JSON Web token](jwt.md)
 * [Proxies and SSO authentication](proxy.md)
 * [Document- and field-level security](dlsfls.md)
 * [Audit Logging](auditlogging.md)
