@@ -4,27 +4,58 @@ Copryight 2016 floragunn GmbH
 
 # LDAP and Active Directory
 
-LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. Active Directory also uses the LDAP protocol.
+In order to authenticate and authorise a user against an LDAP server like OpenLDAP or ActiveDirectory, download the LDAP enterprise module from Maven Central: 
+
+[LDAP module on Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22) 
+
+and place it in the folder 
+
+* `<ES installation directory>/plugins/search-guard-2` 
+
+or
+
+* `<ES installation directory>/plugins/search-guard-5` 
+
+if you are using Search Guard 5. 
+
+After that, restart all nodes for the module to become activated.
+
+LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, means to check if the user has entered the correct credentials. The `authz` is used for authorisation, and defines how the role(s) for an authenticated user are fetched and mapped.
+
+In most cases, you want to configure both authentication and authorization, however, it is also possible to use authentication only and map the users retrieved from LDAP directly to Search Guard roles. This can be done in the `sg_roles_mappig.yml` configuration.
+
+To enable LDAP authentication and authorization, add the following lines to sg_config.yml
 
 **Authentication:**
 
 ```
-authentication_backend:
-  type: ldap 
-  config:
-    ...
+authc:
+  ldap:
+    enabled: true
+    order: 1
+    http_authenticator:
+      type: basic
+      challenge: false
+    authentication_backend:
+      type: ldap
+      config:
+        ...
 ```
 
 **Authorization:**
 
-```    
-authorization_backend:
-  type: ldap 
-  config:
-    ...    
 ```
+authz:
+  ldap:
+    enabled: true
+  authorization_backend:
+    type: ldap
+    config:
+      ...
+```
+## Configuring the connection settings
     
-For both entries you need to specify additional configuration parameters. Most of them are identical between the `authc` and `authz` section. For `authz`, you need to specify some additional settings.
+For both entries you need to specify additional configuration parameters. Some of them are identical between the `authc` and `authz` section. For `authz`, you need to specify some additional settings.
 
 Common configuration parameters:
 
@@ -42,25 +73,19 @@ config:
     - localhost:8389
   bind_dn: null
   password: null
-  userbase: 'ou=people,dc=example,dc=com'
-  # Filter to search for users (currently in the whole subtree beneath userbase)
-  # {0} is substituted with the username 
-  usersearch: '(uid={0})'
-  # Use this attribute from the user as username (if not set then DN is used)
-  username_attribute: null
 ```
 
-## TLS settings
+### TLS settings
 
 The first entries control the TLS settings of the connection to your LDAP server.
 
 | Name  | Description  |
 |---|---|
 | enable_ssl  |  Whether to use LDAP over SSL (LDAPS) or not |
-|  enable_\start\_tls |  Whether to use STARTTLS or not. Cannot be used in combination with LDAPS. |
+|  enable\_start\_tls |  Whether to use STARTTLS or not. Cannot be used in combination with LDAPS. |
 | enable\_ssl\_client\_auth  | Whether to send the client certificate to the LDAP server or not   |
 
-## LDAP server settings
+### LDAP server settings
 
 Next, configure how Search Guard connects to your LDAP server(s):
 
@@ -70,7 +95,31 @@ Next, configure how Search Guard connects to your LDAP server(s):
 |  bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, can be set to null |
 | password  | The password to use when connecting to LDAP. If anonymous auth is allowed, can be set to null   |
 
-## Authentication settings
+## Configuring Authentication
+
+Authentication works by issuing an *LDAP query* containing the *username* against the *user subtree* of the *LDAP tree*. 
+
+Search Guard first takes the configured LDAP query, and replaces the placeholder `{0}` with the username, for example:
+
+```
+usersearch: '(sAMAccountName={0})'
+```
+
+Search Guard then issues this query against the user subtree ("userbase"). Currently the whole subtree beneath the configured userbase is searched:
+
+```
+userbase: 'ou=people,dc=example,dc=com'
+```
+
+If the query was successful, Search Guard retrieves username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as username:
+
+```
+username_attribute: uid
+```
+
+If this key is not set, or null, then the DN of the LDAP entry is used.
+
+### Configuration summary
 
 | Name  | Description  |
 |---|---|
@@ -78,23 +127,109 @@ Next, configure how Search Guard connects to your LDAP server(s):
 |  usersearch | The actual LDAP query that Search Guard executes when trying to authenticate a user. The variable {0} is substituted by the username.|
 | username_attribute  | Search Guard uses this attribute of the directory entry to look for the user name. If set to null, the DN is used (default).  |
 
-## Additional authorization settings
-
-If used in the authz section, the following additional parameters are available:
+### Complete authentication example
 
 ```
-config:
-  rolebase: 'ou=groups,dc=example,dc=com'
-  # Filter to search for roles (currently in the whole subtree beneath rolebase)
-  rolesearch: '(uniqueMember={0})'
-  userroleattribute: null
-  # Roles as an attribute of the user entry
-  userrolename: memberOf
-  # The attribute in a role entry containing the name of that role
-  rolename: cn
-  # Resolve nested roles transitive (roles which are members of other roles and so on ...)
-  resolve_nested_roles: <true|false>
+ldap:
+  enabled: false
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: ldap
+    config:
+      enable_ssl: true
+      enable_start_tls: false
+      enable_ssl_client_auth: false
+      verify_hostnames: true
+      hosts:
+        - ldap.example.com:636
+      bind_dn: cn=admin,dc=example,dc=com
+      password: password
+      userbase: 'ou=people,dc=example,dc=com'
+      usersearch: '(uid={0})'
+      username_attribute: uid
 ```
+            
+## Configuring Authorisation
+
+Authorisation is the process of retrieving backend roles for an authenticated user from an LDAP server. This is typically the same server(s) you used for authentication, but you can also use a different server if necessary. The only requirement is that the user to fetch the roles for actually exists on the LDAP server.
+
+Since Search Guard always checks if a user actually exists in the LDAP server, you need to configure `userbase`, `usersearch` and `username_attribute` also in the `authz` section.
+      
+Authorisation works very similar to authentication. Search Guard issues an *LDAP query* containing the *username* against the *role subtree* of the *LDAP tree*.
+
+As an alternative, Search Guard can also fetch roles that are defined as an attribute of the user entry in the user subtree. 
+
+Both methods can also be combined, however, usually you will have either roles defined as an attribute of the user entry, or roles stored in a seperate subtree.
+
+### Approach 1: Querying the role subtree
+
+Search Guard first takes the LDAP query for fetching roles ("rolesearch"), and substitutes any variables found in the query.
+
+```
+rolesearch: '(uniqueMember={0})'
+```
+
+You can use the following variables:
+
+* {0} is substituted with the DN of the user
+* {1} is substituted with the username, as defined by the `username_attribute` setting
+* {2} is substituted with an arbitrary attribute value from the authenticated user's directory entry 
+
+The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use here can be specified by the `userroleattribute` setting.
+
+```
+userroleattribute: myattribute
+```
+
+Search Guard then issues the substituted query against the configured role subtree:
+
+```
+rolebase: 'ou=groups,dc=example,dc=com'
+```
+
+If you use nested roles (roles which are members of other roles etc.), you can configure Search Guard to resolve these roles as well:
+
+```
+resolve_nested_roles: false
+```
+
+After all roles have been fetched, Search Guard extracts the final role name from a configurable attribute of the role entries:
+
+```
+rolename: cn
+```
+
+If this is not set, the DN of the role entry is used. You can now use this role name for mapping it to one or more Search Guard roles, as defined in `roles_mapping.yml`.
+
+### Approach 2: Using a user's attribute as role name
+
+If you store the roles as a direct attribute of the user entries in the user subtree, you only need to configure the attributes name:
+
+```
+userrolename: roles
+```
+
+### Exclude certain users from role lookup
+
+If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
+
+Consider the following scenario for a typical Kibana usage: All Kibana users are stored in an LDAP/Active Directory server, and you want to use this server for authentication and authorisation. However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but rather store it in the Search Guard user database.
+
+In this case it makes sense to exclude this user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the skip_users configuration setting to define which users should be skipped:
+
+```
+skip_users:
+  - kibanaserver 
+  - 'cn=Michael Jackson,ou*people,o=TEST'
+  - '/\S*/' 
+```
+
+As you can see, you can also use wildcards and regular expressions here.
+
+### Configuration summary
 
 | Name  | Description  |
 |---|---|
@@ -102,15 +237,39 @@ config:
 |  rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below)|
 | userrolename  | If the roles/groups of a user are not stored in the groups subtree, but as an attribute of the user's directory entry, define this attribute name here. |
 | userroleattribute  | The attribute of the user's directory entry |
-| rolename  | The attribute in a role entry containing the name of that role to use for `{2}` variable substitution (see below)|
+| rolename  | The attribute in a role entry containing the name of that role to use for `{2}` variable substitution|
 | resolve\_nested\_roles  | Whether ot not to resolve nested roles transitively (roles which are members of other roles and so on ...)  |
+| skip_users  | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported.  |
 
-For `rolesearch`, you can use the following variables:
 
-* {0} is substituted with the DN of the user
-* {1} is substituted with the username 
-* {2} is substituted with an attribute value from user's directory entry, of the authenticated user. 
+### Complete authorization example
 
-The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to here can be specified by the `userroleattribute` setting.
-
-The concrete settings very much depend on the setup of your LDAP directory. For example, the LDAP schema if Actice Direcrory is not the same as the 'standard' LDAP schema.
+```
+authz:    
+  ldap:
+    enabled: true
+    authorization_backend:
+      type: ldap
+      config:
+        enable_ssl: true
+        enable_start_tls: false
+        enable_ssl_client_auth: false
+        verify_hostnames: true
+        hosts:
+          - ldap.example.com:636
+        bind_dn: cn=admin,dc=example,dc=com
+        password: password
+        userbase: 'ou=people,dc=example,dc=com'
+        usersearch: '(uid={0})'
+        username_attribute: uid        
+        rolebase: 'ou=groups,dc=example,dc=com'
+        rolesearch: '(uniqueMember={0})'
+        userroleattribute: null
+        userrolename: null
+        rolename: cn
+        resolve_nested_roles: true
+        skip_users:
+          - kibanaserver 
+          - 'cn=Michael Jackson,ou*people,o=TEST'
+          - '/\S*/'        
+```
