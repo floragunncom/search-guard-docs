@@ -159,11 +159,8 @@ You can change the oid value with this confguration key:
 searchguard.cert.oid: '1.2.3.4.5.5'
 ```
 
-## Known Issues
+## Compatibility
 
-### License plugin and audit logging
-
-At the moment, the [audit log module breaks](https://github.com/floragunncom/search-guard-module-auditlog/issues/4) if you have the Elasticsearch license plugin installed. 
 
 ### Compatibility with other plugins
 
@@ -175,9 +172,26 @@ If the plugin talks to Elasticsearch on the REST layer, and you have REST TLS en
 
 If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://floragunn.com/searchguard-elasicsearch-transport-clients/).
 
-Incompatible plugins and products include:
+#### Compatible plugins and tools
+
+The following plugins and tools have been tested for compatibility with Search Guard:
+
+* Kibana (with the Search Guard Kibana plugin installed)
+* Logstash
+* Beats
+* Curator
+* [Kibi](https://siren.solutions/kibi/)
+* Kopf / Cerebro
+* Grafana
+* ES-Hadoop / Spark
+
+#### Incompatible plugins and tools
 
 * [Graylog](https://www.graylog.org/)
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
 
-We will work on making them compatible, however, this depends on the authors of these products accepting our pull requests.
+We will work on making them compatible, however, this also depends on the authors of these products accepting our pull requests.
+
+### License plugin and audit logging
+
+Up until Search Guard v7, the [audit log module broke](https://github.com/floragunncom/search-guard-module-auditlog/issues/4) if you have the Elasticsearch license plugin installed. This has been fixed in v8.
