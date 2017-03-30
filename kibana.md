@@ -77,7 +77,15 @@ If you use your own root CA on Elasticsearch, you need to either disable the val
 Request error, retrying -- self signed certificate in certificate chain
 ```
 
-In order to disable certificate validation, set:
+You can disable certificate validation in `kibana.yml`:
+
+Kibana >= 5.3.0
+
+```
+elasticsearch.ssl.verificationMode: none
+```
+
+Kibana < 5.3.0:
 
 ```
 elasticsearch.ssl.verify: false
