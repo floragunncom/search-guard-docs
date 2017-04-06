@@ -201,7 +201,7 @@ If the plugin is installed correctly, you will see a new entry in the left navig
 After clicking on it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:
 
 <p align="center">
-<img src="images/kibana_mt_select_tenants.png" style="border: 1px solid"/>
+<img src="images/kibana_select_tenants.png" style="border: 1px solid"/>
 </p>
 
 All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user, so you do not need to change it every time you log in.
