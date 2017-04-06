@@ -42,7 +42,7 @@ The Search Guard Kibana plugin provides session management features for Kibana. 
 |  searchguard.cookie.secure |  boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
 | searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
 | searchguard.cookie.password  | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password'  |
-| searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to null for session cookie. Default: 1 hour  |
+| searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour  |
 | searchguard.session.ttl  | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour  |
 | searchguard.session.keepalive  | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true   |
 
@@ -120,6 +120,25 @@ console.proxyConfig:
     ssl:
       ca: "/path/to/your/root-ca.pem"
 ```
+
+### Customising the login page
+
+Since v2, you can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
+
+<p align="center">
+<img src="images/kibana_login.jpg" style="width: 60%;border: 1px solid"/>
+</p>
+
+Use the following setting in kibana.yml to customize one or more elements:
+
+| Name  | Description  |
+|---|---|
+| searchguard.basicauth.login.showbrandimage  |  boolean, show or hide the brand image, Default: true|
+|  searchguard.basicauth.login.brandimage |  String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
+| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
+| searchguard.basicauth.login.title  | String, title of the login page. |
+| searchguard.basicauth.login.subtitle  | String, subtitle of the login page. |
+| searchguard.basicauth.login.buttonstyle  | String, style attribute of the login button.  |
       
 ## Configuring Elasticsearch
 

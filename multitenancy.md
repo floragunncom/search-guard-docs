@@ -1,10 +1,6 @@
-<!---
-Copryight 2017 floragunn GmbH
--->
-
 # Kibana Multitenancy
 
-**WARNING: Kibana multitenancy support is beta at the moment. Use it at your own risk, and do not use it in production yet!**
+**Kibana multitenancy support is beta at the moment. Use it at your own risk, and do not use it in production yet!**
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as Dashboards, Visualizations and Saved Searches are stored in a global Kibana index.
@@ -56,17 +52,19 @@ Multi tenancy will not work properly if you install only one of the modules / pl
 
 Make sure you have a Search Guard version with multi tenancy support installed and configured. Search Guard supports multi tenancy from v12 onwards.
 
-**At the time of writing, the only available version is a beta snapshot for Elasticsearch 5.2.2:** 
+**At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
 
-```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.2.2-11-mtbeta2
-```
+[Download Search Guard snapshot for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.3.x-HEAD-SNAPSHOT/search-guard-5-5.3.x-HEAD-20170405.211946-6.zip)
 
-Download the multi tenancy enterprise module, place it in the plugins/search-guard-5 folder of every node, and restart each node. 
+[Download Search Guard snapshot for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.2.x-HEAD-SNAPSHOT/search-guard-5-5.2.x-HEAD-20170405.211548-3.zip)
 
-**At the time of writing, the only available version is a beta snapshot for Elasticsearch 5.2.2:** 
+Download the multi tenancy enterprise module, and place it in the plugins/search-guard-5 folder of every node. After that, restart each node. 
 
-[Kibana Multitenancy module 5.2-1-beta2](https://oss.sonatype.org/content/repositories/releases/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.2-1-beta2/dlic-search-guard-module-kibana-multitenancy-5.2-1-beta2-jar-with-dependencies.jar)
+**At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
+
+[Download Kibana Multitenancy module for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.3-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.3-1-beta3-20170405.211301-2-jar-with-dependencies.jar)
+
+[Download Kibana Multitenancy module for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.2-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.2-1-beta3-20170405.211221-1-jar-with-dependencies.jar)
 
 If everything is installed correctly, you should see the following entries in the elasticsearch logs on startup:
 
@@ -103,9 +101,9 @@ The following configuration keys are available:
 
 | Name  | Description  |
 |---|---|
-| searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Defaut: true|
-|  searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations, otherwise multi tenancy will not work. Default: 'kibanaserver'|
-| searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations, otherwise multi tenancy will not work. Default: '.kibana' |
+| searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Default: true|
+|  searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations, otherwise multi tenancy will not work. Default: `kibanaserver`|
+| searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations, otherwise multi tenancy will not work. Default: `.kibana` |
 | searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see silently. If disabled, a security exceptions is returned. Default: false  |
     
 #### Adding tenants
@@ -138,11 +136,14 @@ The installation procedure is the same as for any other Kibana plugin:
 * cd into your Kibana installaton directory
 * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip` 
 
-**At the time of writing, the only available version is a beta snapshot for Kibana 5.2.2:** 
+**At the time of writing, we offer beta versions for offline install only. Supported Kibana versions: 5.3.0 and 5.2.2**
 
-[Search Guard Kibana plugin 5.2.2-beta2](https://github.com/floragunncom/search-guard-kibana-plugin/releases/tag/v5.2.2-beta2)
+[Search Guard Kibana plugin for Kibana 5.3.0](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.3.0-beta3/searchguard-kibana-5.3.0-beta3.zip)
 
-### Kibana: Configuration
+[Search Guard Kibana plugin for Kibana 5.2.2](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.2-beta3/searchguard-kibana-5.2.2-beta3.zip)
+
+
+### Kibana: Plugin Configuration
 
 Enable the multi tenancy feature in `kibana.yml` by adding:
 
@@ -155,6 +156,8 @@ In addition, Kibana requires you to whitelist all HTTP headers that should be pa
 ```
 elasticsearch.requestHeadersWhitelist: ["sg_tenant", ..., ...]
 ```
+
+If this header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
 
 Check that both the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
 
@@ -172,17 +175,62 @@ kibana.yml: kibana.index
 sg_config: searchguard.dynamic.kibana.index 
 ```
 
+### Kibana: Tenant Configuration
+
+By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users, and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
+
+The Private tenant is meant as a users private space, and thus is shared by no one.
+
+You can enable and disable these tenants by the following `kibana.yml` configuration keys:
+
+| Name  | Description  |
+|---|---|
+| searchguard.multitenancy.tenants.enable_global  |  boolean, enable or disable the global tenant. Default: true|
+| searchguard.multitenancy.tenants.enable_private  |  boolean, enable or disable the private tenant. Default: true|
+
+**Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
+
 ## Selecting tenants in Kibana
 
 If the plugin is installed correctly, you will see a new entry in the left navigation panel called "Tenants":
 
-<img src="images/kibana_mt_nav.png" height="400" style="text-align:center">
+<p align="center">
+<img src="images/kibana_mt_nav.png" height="400" style="border: 1px solid"/>
+</p>
 
 After clicking on it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:
 
-<img src="images/kibana_mt.png" >
+<p align="center">
+<img src="images/kibana_mt_select_tenants.png" style="border: 1px solid"/>
+</p>
 
-All saved objects will be placed in the selected tenant.
+All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user, so you do not need to change it every time you log in.
+
+## Troubleshooting
+
+### Kibana: Header not whitelisted
+
+During Kibana startup, Search Guard checks whether the `sg_tenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Kibana.
+
+### Elasticsearch: Multi tenancy not enabled
+
+If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
+
+<p align="center">
+<img src="images/kibana_mt_disabled.png" style="border: 1px solid"/>
+</p>
+
+Make sure the enterprise module is installed, and also check that   `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
+
+### Kibana and Elasticsearch: Configuration mismatch
+
+If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
+
+<p align="center">
+<img src="images/kibana_config_mismatch.png" style="border: 1px solid"/>
+</p>
+
+Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
 
 ## Under the hood: Index rewriting, Snapshot & Restore
 
