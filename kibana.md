@@ -126,7 +126,7 @@ console.proxyConfig:
 Since v2, you can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
 
 <p align="center">
-<img src="images/kibana_customize_login.jpg" style="width: 60%;border: 1px solid"/>
+<img src="images/kibana_customize_login.jpg" style="width: 40%;border: 1px solid"/>
 </p>
 
 Use the following setting in kibana.yml to customize one or more elements:
