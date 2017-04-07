@@ -138,9 +138,9 @@ The installation procedure is the same as for any other Kibana plugin:
 
 **At the time of writing, we offer beta versions for offline install only. Supported Kibana versions: 5.3.0 and 5.2.2**
 
-[Search Guard Kibana plugin for Kibana 5.3.0](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.3.0-beta3/searchguard-kibana-5.3.0-beta3.zip)
+[Search Guard Kibana plugin for Kibana 5.3.0 Beta 3.1](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.3.0-beta3.1/searchguard-kibana-5.3.0-beta3.1.zip)
 
-[Search Guard Kibana plugin for Kibana 5.2.2](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.2-beta3/searchguard-kibana-5.2.2-beta3.zip)
+[Search Guard Kibana plugin for Kibana 5.2.2](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.2-beta3.1/searchguard-kibana-5.2.2-beta3.1.zip)
 
 
 ### Kibana: Plugin Configuration
@@ -231,6 +231,14 @@ If either the configured Kibana server username or the configured Kibana index n
 </p>
 
 Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
+
+### Kibana: Cookie mismatch
+
+In case the Search Guard cookies are not readable anymore, e.g. if you changed the encryption key, simply delete them. The plugin uses three cookies:
+
+* searchguard_authentication: Stores the users login credentials
+* searchguard_tenant: Stores the currently selected tenant
+* searchguard_preferences: Stores the user's preferres tenants
 
 ## Under the hood: Index rewriting, Snapshot & Restore
 
