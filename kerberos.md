@@ -48,7 +48,7 @@ Authentication against Kerberos via a browser on HTTP level is achieved by using
 
 As with [HTTP Basic Authentication](httpbasic.md), this flag determines how Search Guard should behave when no `Authorization` header is found in the HTTP request, or if this header does not equal `negotiate`.
 
-If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenging` to false thus only makes sense if the Kerberos credentials are sent in the inital request. 
+If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenge` to false thus only makes sense if the Kerberos credentials are sent in the inital request. 
 
 As the name implies, setting `krb_debug` to true will output a lot of Kerberos specific debugging messages will be outputted to standard out. Use this if you encounter any problems with your Kerberos integration.
 

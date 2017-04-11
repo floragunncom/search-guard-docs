@@ -30,4 +30,4 @@ Copryight 2016 floragunn GmbH
 
 <<[addendum_a_config_examples.md]
 
-<<[addendum_b_permission settings examples.md]
+<<[addendum_b_permission_settings_examples.md]
