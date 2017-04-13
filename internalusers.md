@@ -4,6 +4,10 @@ Copryight 2016 floragunn GmbH
 
 # Configure internal users and roles
 
+## Installation
+
+Search Guard already ships with the internal user database, no additional installation steps are required.
+
 ## Defining users, roles and passwords
 
 If you do not have any external authentication backend like LDAP or Kerberos, you can define an internal list of users and their passwords and roles. This is done in the file `sg_internal_users.yml`. The syntax is:
@@ -23,6 +27,14 @@ analyst:
 ```
 
 This internal user database is stored in the Search Guard index, and updated by using [sgadmin](sgadmin.sh).
+
+**Please note that the username cannot contain dots. If you need usernames with dots, use the `username` attribute:**
+
+```
+mister_picard:
+  username: mister.picard
+  hash: ...
+```
 
 ## Generating hashed passwords
 
