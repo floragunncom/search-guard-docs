@@ -54,7 +54,7 @@ Make sure you have a Search Guard version with multi tenancy support installed a
 
 **At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
 
-[Download Search Guard snapshot for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.3.x-HEAD-SNAPSHOT/search-guard-5-5.3.x-HEAD-20170405.211946-6.zip)
+[Download Search Guard snapshot for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.3.x-HEAD-SNAPSHOT/search-guard-5-5.3.x-HEAD-20170413.181019-20.zip)
 
 [Download Search Guard snapshot for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.2.x-HEAD-SNAPSHOT/search-guard-5-5.2.x-HEAD-20170405.211548-3.zip)
 
@@ -62,7 +62,7 @@ Download the multi tenancy enterprise module, and place it in the plugins/search
 
 **At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
 
-[Download Kibana Multitenancy module for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.3-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.3-1-beta3-20170405.211301-2-jar-with-dependencies.jar)
+[Download Kibana Multitenancy module for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.3-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.3-1-beta3-20170412.221331-12-jar-with-dependencies.jar)
 
 [Download Kibana Multitenancy module for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.2-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.2-1-beta3-20170405.211221-1-jar-with-dependencies.jar)
 
@@ -190,12 +190,26 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
 
+### Kibana Experimental: Filter bar for tenants
+
+If you have a huge amount of tenants, the tenant list can get long. We introduced an experimental filter bar to quickly filter the tenants list. Enable it in `kibana.yml` like:
+
+```
+searchguard.multitenancy.enable_filter: true
+```
+
+Which will display a filter bar in the top navigation of the page:
+
+<p align="center">
+<img src="images/kibana_filter_roles.png" />
+</p>
+
 ## Selecting tenants in Kibana
 
 If the plugin is installed correctly, you will see a new entry in the left navigation panel called "Tenants":
 
 <p align="center">
-<img src="images/kibana_mt_nav.png" height="400" style="border: 1px solid"/>
+<img src="images/kibana_mt_nav.png" height="400" style="border: 0px solid"/>
 </p>
 
 After clicking on it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:
