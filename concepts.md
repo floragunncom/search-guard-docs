@@ -103,14 +103,14 @@ Keeping the configuration settings in an Elasticsearch index enables hot config 
 The configuration consists of the following files. These are shipped with Search Guard, and you can use them as templates for your own configuration settings:
 
 * sg\_config.yml
- * Configure authenticators and authorisation backends
+  * Configure authenticators and authorisation backends
 * sg\_roles.yml
- * define the roles and the associated permissions
+  * define the roles and the associated permissions
 * sg\_roles\_mapping.yml
- * map backend roles, hosts and users to roles
+  * map backend roles, hosts and users to roles
 * sg\_internal\_users.yml
- * user and hashed passwords (hash with hasher.sh), used for the internal user database
+  * user and hashed passwords (hash with hasher.sh), used for the internal user database
 * sg\_action\_groups.yml
- * group permissions together
+  * group permissions together
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do so, use the `sgadmin` tool that ships with Search Guard. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shard and replica settings, since you want to make sure that the Search Guard index is available on all nodes.

@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## Enabling/disabling proxy/XFF support
 
-To prevent hostname spoofing, XFF support is enabled by default. If you do not run Elasticsearch behind a proxy, you need to disable it explicitely:
+To prevent hostname spoofing, XFF support is enabled by default. If you do not run Elasticsearch behind a proxy, you need to disable it explicitly:
 
 ```
 searchguard:
@@ -32,7 +32,7 @@ searchguard:
           type: intern
 ```
 
-## Use HTTP basic auth and LDAP authentication bacjend
+## Use HTTP basic auth and LDAP authentication backend
 
 ```
 searchguard:

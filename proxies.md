@@ -27,7 +27,7 @@ searchguard:
         internalProxies: '192\.168\.0\.11'
 ```
 
-This feature is enabled by default, and you need to explicitely disable it if you are not behind any proxy/loadbalancer.
+This feature is enabled by default, and you need to explicitly disable it if you are not behind any proxy/loadbalancer.
 
 You can configure the following settings:
 

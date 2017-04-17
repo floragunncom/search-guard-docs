@@ -56,15 +56,15 @@ http_authenticator:
 Allowed values for `type` are:
 
 * basic
- * HTTP basic authentication. This type needs `challenging` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
+ * HTTP basic authentication. This type needs `challenge` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
 * kerberos
- * Kerberos authentication. This type needs `challenging` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
+ * Kerberos authentication. This type needs `challenge` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
 * clientcert
  * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See [TLS Client Certification](httpbasic.md) for further details.
 * jwt
  * Use JSON web tokens as authentication method. Needs additonal settings.
 * proxy
- * Use an external, proxy based authentication. This type needs `challenging` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
+ * Use an external, proxy based authentication. This type needs `challenge` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
 
 The config section contains specific configuration settings for the selected type. At the moment, only Kerberos, JWT and Proxy need additional configuration. See these sections in the documentation for further information.
 
