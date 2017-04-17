@@ -1,6 +1,6 @@
 # Kibana Multitenancy
 
-**Kibana multitenancy support is beta at the moment. Use it at your own risk, and do not use it in production yet!**
+**Note: Kibana multitenancy is available for Kibana 5.0 and above!**
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as Dashboards, Visualizations and Saved Searches are stored in a global Kibana index.
@@ -52,19 +52,23 @@ Multi tenancy will not work properly if you install only one of the modules / pl
 
 Make sure you have a Search Guard version with multi tenancy support installed and configured. Search Guard supports multi tenancy from v12 onwards.
 
-**At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
+Download the LDAP enterprise module from Maven Central: 
 
-[Download Search Guard snapshot for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.3.x-HEAD-SNAPSHOT/search-guard-5-5.3.x-HEAD-20170413.181019-20.zip)
+[Kibana multitenancy module on Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-kibana-multitenancy%22) 
 
-[Download Search Guard snapshot for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/search-guard-5/5.2.x-HEAD-SNAPSHOT/search-guard-5-5.2.x-HEAD-20170405.211548-3.zip)
+and place it in the folder 
 
-Download the multi tenancy enterprise module, and place it in the plugins/search-guard-5 folder of every node. After that, restart each node. 
+* `<ES installation directory>/plugins/search-guard-2` 
 
-**At the time of writing, we offer beta versions for offline install only. Supported Elasticsearch versions: 5.3.0 and 5.2.2** 
+or
 
-[Download Kibana Multitenancy module for 5.3.0](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.3-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.3-1-beta3-20170412.221331-12-jar-with-dependencies.jar)
+* `<ES installation directory>/plugins/search-guard-5` 
 
-[Download Kibana Multitenancy module for 5.2.2](https://oss.sonatype.org/content/repositories/snapshots/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.2-1-beta3-SNAPSHOT/dlic-search-guard-module-kibana-multitenancy-5.2-1-beta3-20170405.211221-1-jar-with-dependencies.jar)
+if you are using Search Guard 5. 
+
+**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+
+After that, restart all nodes for the module to become activated.
 
 If everything is installed correctly, you should see the following entries in the elasticsearch logs on startup:
 
@@ -74,9 +78,6 @@ Search Guard Kibana Multitenancy module is not free
 software for commercial use in production.
 You have to obtain a license if you 
 use it in production.
-***************************************************
-Search Guard Kibana Multitenancy module is BETA
-software, do not use it in production
 ***************************************************
 ```
 
@@ -131,17 +132,12 @@ Download the latest [Search Guard Kibana plugin](https://github.com/floragunncom
 
 [Search Guard Kibana plugin releases](https://github.com/floragunncom/search-guard-kibana-plugin/releases)
 
+For example, if you are on Kibana 5.3.0, you need the Kibana plugin 5.3.0-2 or above.
+
 The installation procedure is the same as for any other Kibana plugin:
 
 * cd into your Kibana installaton directory
 * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip` 
-
-**At the time of writing, we offer beta versions for offline install only. Supported Kibana versions: 5.3.0 and 5.2.2**
-
-[Search Guard Kibana plugin for Kibana 5.3.0 Beta 3.1](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.3.0-beta3.1/searchguard-kibana-5.3.0-beta3.1.zip)
-
-[Search Guard Kibana plugin for Kibana 5.2.2](https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.2-beta3.1/searchguard-kibana-5.2.2-beta3.1.zip)
-
 
 ### Kibana: Plugin Configuration
 
@@ -191,6 +187,8 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
 
 ### Kibana Experimental: Filter bar for tenants
+
+This feature is available for Kibana 5.1.1 and above.
 
 If you have a huge amount of tenants, the tenant list can get long. We introduced an experimental filter bar to quickly filter the tenants list. Enable it in `kibana.yml` like:
 

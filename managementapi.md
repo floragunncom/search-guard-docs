@@ -6,7 +6,25 @@ Copryight 2016 floragunn GmbH
 
 This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api.
 
-The management API is part of the enterprise features, thus it requires a license when used in production. The management API can be used with Search Guard from version 7 onwards (e.g. Search Guard 2.x.x.7).
+## Installation
+
+Download the REST management API enterprise module from Maven Central: 
+
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
+
+and place it in the folder 
+
+* `<ES installation directory>/plugins/search-guard-2` 
+
+or
+
+* `<ES installation directory>/plugins/search-guard-5` 
+
+if you are using Search Guard 5. 
+
+**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+
+After that, restart all nodes for the module to become activated.
  
 ## Prerequisites
 
@@ -359,6 +377,7 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 ## Action groups API				
 
 Used to receive, create, update and delete action groups.
+
 ### Endpoint
 
 ```
@@ -418,5 +437,30 @@ The field permissions is mandatory and contains permissions or references to oth
 {
   "status":"CREATED",
   "message":"action group SEARCH created"
+}
+```
+
+## Cache API
+
+Used to manage the Search Guard internal user, authentication and authorization  cache.
+
+### Endpoint
+
+```
+/_searchguard/api/cache
+```
+
+### Delete
+
+```
+DELETE /_searchguard/api/cache
+```
+
+Flushes the Search Guard cache
+
+```
+{
+  "status":"OK",
+  "message":"Cache flushed successfully."
 }
 ```

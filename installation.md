@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Installation
 
-**General**
+## General
 
 Due to how the Elasticsearch plugin mechanism works, you have to install the Search Guard version matching your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
 
@@ -25,7 +25,7 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.0.0-8
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.3.0-12
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
@@ -73,21 +73,6 @@ Installed search-guard-2 into /usr/share/elasticsearch/plugins/search-guard-2
 
 at the end of the respective installation process, everything was installed correctly.
 
-## Configuring TLS/SSL
-
-Search Guard requires TLS on the transport level in order to operate correctly. We provide a brief configuration example for the TLS layer here. If you need more in-depth information, please refer to the https://github.com/floragunncom/search-guard-ssl-docs
-
-## Configure the admin certificate
-
-Nearly all configuration settings for Search Guard are kept in Elasticsearch itself and can be changed at runtime by using the ```sgadmin``` command line tool. The only static configuration is the definition of the admin TLS certificate(s). This certificate is required by [```sgadmin```](sgadmin.md). sgadmin is a command line tool to change the Search Guard configuration at runtime. To use a TLS certificate as admin certificate with sgadmin, you must configure the DN of it in elasticsearch.yml:
-
-```
-searchguard.authcz.admin_dn:
-  - cn=admin,ou=Test,ou=ou,dc=company,dc=com
-```
-
-You can configure one or more of those admin certificates.
-
 ## Installing enterprise modules
 
 If you want to use any of the enterprise modules, download the respective jar file and place it in the folder 
@@ -100,12 +85,7 @@ or
 
 if you're using Search Guard 5.
 
-Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (choose jar file(s) with dependencies) directly from Maven.
-
-#### REST management API:
-[https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
-
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
+Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (**choose jar file(s) with dependencies**) directly from Maven.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
 [https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap) 
@@ -125,13 +105,22 @@ Each module lives in its own github repository. You can either download the repo
 #### Document- and field level security:
 [https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls)
 
-
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22) 
 
 #### Audit logging:
  [https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog) 
  
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22) 
+
+#### REST management API:
+[https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
+
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
+
+#### Kibana multi tenancy module:
+[https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy)
+
+[Maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22) 
 
 Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
 
@@ -191,7 +180,3 @@ The following plugins and tools have been tested for compatibility with Search G
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
 
 We will work on making them compatible, however, this also depends on the authors of these products accepting our pull requests.
-
-### License plugin and audit logging
-
-Up until Search Guard v7, the [audit log module broke](https://github.com/floragunncom/search-guard-module-auditlog/issues/4) if you have the Elasticsearch license plugin installed. This has been fixed in v8.

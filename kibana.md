@@ -121,7 +121,7 @@ console.proxyConfig:
       ca: "/path/to/your/root-ca.pem"
 ```
 
-### Customising the login page
+### Customising the login page (5.0 and above)
 
 Since v2, you can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
 

@@ -2,6 +2,10 @@
 Copryight 2016 floragunn GmbH
 -->
 
+## Installation
+
+Search Guard already ships with HTTP Basic Authentication, no additional installation steps are required.
+
 # HTTP Basic Authentication
 
 In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:

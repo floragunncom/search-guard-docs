@@ -2,7 +2,7 @@
 Copryight 2016 floragunn GmbH
 -->
 
-# sgadmin in details
+# Using sgadmin
 
 ## Configuring the admin certificate
 

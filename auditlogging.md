@@ -22,11 +22,27 @@ Audit logging enables you to track access to your Elasticsearch cluster. Search 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging, see chapter "Finetuning the thread pool" below.
   
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Thus, changes to the audit log settings require a restart of all participating nodes in the cluster.
+
+## Installation
+
+Download the Audit Log enterprise module from Maven Central: 
+
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22) 
+
+and place it in the folder 
+
+* `<ES installation directory>/plugins/search-guard-2` 
+
+or
+
+* `<ES installation directory>/plugins/search-guard-5` 
+
+if you are using Search Guard 5. 
+
+**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+
+After that, restart all nodes for the module to become activated.
   
-## Enabling audit logging
-
-In order to enable audit logging, download the jar file from [Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-auditlog%22), and put it in the following folder: `<ES installation directory>/plugins/search-guard-2` or `<ES installation directory>/plugins/search-guard-5`
-
 ## Configuring audit logging
 
 ### Configuring the categories to be logged

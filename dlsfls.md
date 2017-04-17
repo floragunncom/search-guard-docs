@@ -10,6 +10,25 @@ As the name implies, document-level security restricts access to certain documen
 
 As with regular permissions, settings for document- and field-level security can be applied on index-level, meaning that you can have different settings for each index.
 
+## Installation
+
+Download the DLS/FLS module from Maven Central: 
+
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22) 
+ 
+and place it in the folder 
+
+* `<ES installation directory>/plugins/search-guard-2` 
+
+or
+
+* `<ES installation directory>/plugins/search-guard-5` 
+
+if you are using Search Guard 5. 
+
+**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+
+After that, restart all nodes for the module to become activated.
 
 ## Document-level security
 

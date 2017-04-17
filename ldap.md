@@ -4,7 +4,9 @@ Copryight 2016 floragunn GmbH
 
 # LDAP and Active Directory
 
-In order to authenticate and authorise a user against an LDAP server like OpenLDAP or ActiveDirectory, download the LDAP enterprise module from Maven Central: 
+## Installation
+
+Download the LDAP enterprise module from Maven Central: 
 
 [LDAP module on Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22) 
 
@@ -18,7 +20,11 @@ or
 
 if you are using Search Guard 5. 
 
+**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+
 After that, restart all nodes for the module to become activated.
+
+## Activating the module
 
 LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, means to check if the user has entered the correct credentials. The `authz` is used for authorisation, and defines how the role(s) for an authenticated user are fetched and mapped.
 
@@ -211,12 +217,22 @@ If you store the roles as a direct attribute of the user entries in the user sub
 userrolename: roles
 ```
 
-### Advanced: Disable the role search completely
+### Advanced: Exclude certain users from role lookup
 
-If your roles are not stored in a role subtree (approach 1 from above), but only as direct attributes of the user's entry in the user subtree (approach 2 from above), you can disable the role search completely for better performance.
+If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
+
+Consider the following scenario for a typical Kibana setup: 
+
+All Kibana users are stored in an LDAP/Active Directory server.
+However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but rather store it in the Search Guard internal user database.
+
+In this case it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
 
 ```
-rolesearch_enabled: <true|false>
+skip_users:
+  - kibanaserver 
+  - 'cn=Michael Jackson,ou*people,o=TEST'
+  - '/\S*/' 
 ```
 
 ### Advanced: Exclude roles from nested roles lookups
@@ -242,22 +258,12 @@ nested_role_filter: <true|false>
   - ... 
 ```
 
-### Advanced: Exclude certain users from role lookup
+### Advanced: Disable the role search completely
 
-If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
-
-Consider the following scenario for a typical Kibana setup: 
-
-All Kibana users are stored in an LDAP/Active Directory server.
-However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but rather store it in the Search Guard internal user database.
-
-In this case it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
+If your roles are not stored in a role subtree (approach 1 from above), but only as direct attributes of the user's entry in the user subtree (approach 2 from above), you can disable the role search completely for better performance.
 
 ```
-skip_users:
-  - kibanaserver 
-  - 'cn=Michael Jackson,ou*people,o=TEST'
-  - '/\S*/' 
+rolesearch_enabled: <true|false>
 ```
 
 ### Configuration summary

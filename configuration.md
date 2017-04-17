@@ -2,7 +2,7 @@
 Copryight 2016 floragunn GmbH
 -->
 
-# Configuration Basics
+# Configuring Search Guard
 
 ## Configuring authentication and authorisation 
 
@@ -20,8 +20,6 @@ searchguard:
 ```
 
 In short, these sections are used to specify how Search Guard retrieves the user credentials, how to verify these credentials, and where to get the (additional) users roles from. The latter is optional.
-
-_Note: Some versions ago, the configuration had a `static` and `dynamic` part. Since we made the complete configuration hot reloadable, there is no `static` part anymore, and thus we might remove the `dynamic` entry in future versions._
 
 ### Authentication
 
@@ -158,10 +156,10 @@ Search Guard roles and their associated permissions are defined in the file `sg_
     '<indexname or alias>':
       '<type>':  
         - '<permission>'
-    _dls_: '<querydsl query>'
-    _fls_:
-      - '<field>'
-      - '<field>'
+      _dls_: '<querydsl query>'
+      _fls_:
+        - '<field>'
+        - '<field>'
 ```
 
 The `cluster` entry is used to define permissions on cluster level. The `indices` entry is used to define permissions as well as [Document- and field-level security](dlsfls.md) on index level.
@@ -183,7 +181,7 @@ Example: `/\S*/` will match any non whitespace characters
 
 See [https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
 
-For `<indexname or alias> also the placeholder `${user.name}` is allowed to support indices or aliases, which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the actual username.
+For `<indexname or alias>` also the placeholder `${user.name}` is allowed to support indices or aliases, which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the actual username.
 
 ### Defining permissions
 
