@@ -218,6 +218,20 @@ After clicking on it, you will see all available tenants for the currently logge
 
 All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user, so you do not need to change it every time you log in.
 
+## Expert setting: Handling missing index privileges
+
+In the default settings of Search Guard, if a request affects multiple indices, and the user in question is lacking permissions for one of those indices, the request fails.
+
+In some situations, you might want to allow the requests, and only return data from indices the user has access to. You can enable this behavior by setting:
+
+```
+searchguard.dynamic.kibana.do_not_fail_on_forbidden: true
+```
+
+If this is set to true, Search Guard will return data only from indices the user has access to, and discard requests for other indices silently.
+
+While this behavior is in line with the behavior of competitor products, it also bears the risk of relying on wrong data. For example, if you calculate sums over data in multiple indices, and you only have permissions for some of the indices in question, the returned value will be wrong, since parts of the query will de discarded.
+
 ## Troubleshooting
 
 ### Kibana: Header not whitelisted
