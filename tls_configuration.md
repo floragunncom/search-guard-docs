@@ -69,7 +69,7 @@ Use the following settings to configure the location and password of your keysto
 
 ## Using X.509 PEM certificates and PKCS #8 keys
 
-As an alternative to using keystore- and trustore files, you can also use X.509 PEM certificates and PKCS #8 keys. This for example makes it easy to configure and use letsencrypt certificates. Instead of using the keystore- and truststore configuration described above, use the following keys to configure PEM certificates:
+As an alternative to using keystore and trustore files, you can also use X.509 PEM certificates and PKCS #8 keys. This, for example, makes it easy to configure and use letsencrypt certificates. Instead of using the keystore and truststore configuration described above, use the following keys to configure PEM certificates:
 
 ### Transport layer TLS
 
@@ -121,18 +121,18 @@ While these settings require a dedicated certificate for each node, and also cor
 
 TLS client authentication is used by servers (in our case Search Guard / Elasticsearch) to accept/request TLS certificates from REST clients.
 
-While in a typical web scenario it is common that only the server, e.g. an online banking website, provides it's identity to the client, TLS is not limited to that. Also clients can provide identity information in the form of a TLS certificate to the server. The server can then use this information to verify the clients identity.
+While in a typical web scenario it is common that only the server, e.g. an online banking website, provides its identity to the client, TLS is not limited to that. Also clients can provide identity information in the form of a TLS certificate to the server. The server can then use this information to verify the client's identity.
 
 For Search Guard, there are two main usage scenarios for TLS client authentication:
 
-* Providing an admin certificate when using the REST management API
-* Configuring roles and permissions based on a client certificate
+* Providing an admin certificate when using the REST management API.
+* Configuring roles and permissions based on a client certificate.
 
 TLS client authentication has three modes:
 
-* `NONE`: Search Guard does not accept TLS client certificates. If one is sent, it is discarded
-* `OPTIONAL`: Search Guard accepts TLS client certificates if they are sent, but does not enforce them
-* `REQUIRE`: Search Guard only accepts REST request when a valid client TLS certificate is sent
+* `NONE`: Search Guard does not accept TLS client certificates. If one is sent, it is discarded.
+* `OPTIONAL`: Search Guard accepts TLS client certificates if they are sent, but does not enforce them.
+* `REQUIRE`: Search Guard only accepts REST requests when a valid client TLS certificate is sent.
 
 For the REST management API, the client authentication modes has to be OPTIONAL at least.
 
