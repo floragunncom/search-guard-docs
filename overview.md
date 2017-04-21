@@ -91,7 +91,7 @@ SUGGEST:
 
 ## Configuration settings: The Search Guard index
 
-All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You define one or more of these certificates, called **admin certificates**.
+All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You define one or more of these certificates, called **admin certificates**, [defined here] https://github.com/werowe/search-guard-docs/blob/master/tls_overview.md.
 
 Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take affect immediately**. You can load and **change the settings from any machine** which has access to your Elasticsearch cluster. 
 
