@@ -53,16 +53,11 @@ http_authenticator:
 
 Allowed values for `type` are:
 
-* basic
- * HTTP basic authentication. This type needs `challenge` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
-* kerberos
- * Kerberos authentication. This type needs `challenge` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
-* clientcert
- * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See [TLS Client Certification](httpbasic.md) for further details.
-* jwt
- * Use JSON web tokens as authentication method. Needs additonal settings.
-* proxy
- * Use an external, proxy based authentication. This type needs `challenge` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
+* basic—HTTP basic authentication. This type needs `challenge` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
+* kerberos—Kerberos authentication. This type needs `challenge` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
+* clientcert—authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See [TLS Client Certification](httpbasic.md) for further details.
+* jwt-Use JSON web tokens as authentication method. Needs additonal settings.
+* proxy-Use an external, proxy based authentication. This type needs `challenge` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
 
 The config section contains specific configuration settings for the selected type. At the moment, only Kerberos, JWT and Proxy need additional configuration. See these sections in the documentation for further information.
 
@@ -77,12 +72,9 @@ authentication_backend:
 
 Possible vales for `type` are:
 
-* noop
- * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type. The latter is true if you choose Proxy as HTTP authentication type. 
-* internal
- * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml` and load them into Search Guard by using the `sgadmin` command line tool.
-* ldap
- *  Authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
+* noop-This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type. The latter is true if you choose Proxy as HTTP authentication type. 
+* internal—use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml` and load them into Search Guard by using the `sgadmin` command line tool.
+* ldap—authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
 
 ### Authorization
 
@@ -102,10 +94,8 @@ You can also define multiple entries in this section, the same way as you can fo
 
 Possible vales for `type` are:
 
-* noop
- * Used for skipping this step altogether
-* ldap 
- * Fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
+* noop—used for skipping this step altogether
+* ldap—fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
 
 
 #### Examples
