@@ -23,20 +23,24 @@ To enable native support for Open SSL follow these steps:
  * Fedora based linux: `_64-fedora.jar_` (RHEL, CentOS)
  * Mac: `_osx-x86_64.jar_`
  * Windows: `_windows-x86_64.jar_`
-## Search Guard 2:
+ 
+### Search Guard 2:
 
  * Version: 1.1.33.Fork17
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/)
  * Choose the correct version for you platform, one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
- or `_windows-x86_64.jar_` 
- * Put it into the elasticsearch `plugins/searchguard-ssl/` folder on every node
-## Search Guard 5.0/5.1:
+ or `_windows-x86_64.jar_`.
+ * Put it into the elasticsearch `plugins/searchguard-ssl/` folder on every node.
+ 
+### Search Guard 5.0/5.1:
 
  * Version: 1.1.33.Fork23
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_`
-* **Search Guard 5.2:**
+ 
+### Search Guard 5.2:
+
  * Version: 1.1.33.Fork25
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
  * Choose the correct version for you platform, one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
