@@ -37,7 +37,7 @@ Let's first look at the `authc` section. This section has the following format:
 
 An entry in the `authc` section of the config file is called an `authentication domain`. It specifies where to get the user credentials from, and against which backend they should be authenticated.
 
-The first thing you'll notice is that you can define more than one authentication domains in this section. Each authentication domain has a telling name (e.g. "basic\_auth\_internal"), an `enabled` flag and an `order`. This makes it possible to chain authentication domains together, and Search Guard will execute them in the order provided. Let's concentrate on a single entry first.
+The first thing you'll notice is that you can define more than one authentication domain in this section. Each authentication domain has a name (e.g. "basic\_auth\_internal"), an `enabled` flag and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. Let's concentrate on a single entry first.
 
 The two sections you need to fill are `http_authenticator` and the `authentication_backend`. The `http_authenticator` specifies which authentication method you want to use on the HTTP layer.
 
@@ -72,7 +72,7 @@ authentication_backend:
 
 Possible vales for `type` are:
 
-* noop-This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type. The latter is true if you choose Proxy as HTTP authentication type. 
+* noop—This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type. The latter is true if you choose Proxy as HTTP authentication type. 
 * internal—use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml` and load them into Search Guard by using the `sgadmin` command line tool.
 * ldap—authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
 
@@ -90,12 +90,12 @@ authz:
         ...
 ```
 
-You can also define multiple entries in this section, the same way as you can for authentication entries. The execution order is not relevant here, hence there is no `order` field.
+You can also define multiple entries in this section the same way as you can for authentication entries. The execution order is not relevant here, hence there is no `order` field.
 
 Possible vales for `type` are:
 
-* noop—used for skipping this step altogether
-* ldap—fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
+* noop—used for skipping this step altogether.
+* ldap—fetch additional roles from an LDAP server. This requires additional configuration settings. See section "LDAP and Active Directory" for further details.
 
 
 #### Examples
@@ -104,7 +104,7 @@ Please refer to the [Addendum A](addendum_a_configuration_examples.md) of this d
 
 ## Map users, backend roles and hosts to Search Guard roles
 
-As outlined in chapter [Search Guard main concepts](concepts.md), Search Guard 
+As outlined in chapter [Search Guard main concepts](concepts.md), Search Guard: 
 
 * Retrieves the user credentials.
 * Validates them against the configured authentication backend(s).
@@ -171,7 +171,7 @@ Example: `/\S*/` will match any non whitespace characters.
 
 See [https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
 
-For `<indexname or alias>` also the placeholder `${user.name}` is allowed to support indices or aliases, which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the actual username.
+For `<indexname or alias>` also the placeholder `${user.name}` is allowed to support indices or aliases, which contains the name of the user. During evaluation of the permissions, the placeholder is replaced with the actual username.
 
 ### Defining permissions
 
@@ -195,7 +195,7 @@ On cluster-level, this permission grants the right to display the cluster health
 cluster:monitor/health
 ```
 
-There is a plethora of permissions you can set. Search Guard is compatible with the permission definition of Shield up to version 2.1, so you can see [here](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list) for a complete list.
+There is a plethora of permissions you can set. Search Guard is compatible with the permission definition of Shield up to version 2.1.  [Here](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list) is a complete list.
 
 Since there are so many permissions you can use, we strongly recommend to use action grouping (see next section) and work with action group aliases in `sg_roles.yml`.
 
