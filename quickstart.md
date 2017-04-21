@@ -49,7 +49,7 @@ Note that the script only works with out of the box Elasticsearch installations.
 
 This will generate the truststore and two keystore files. You can find them in the ``config`` directory of your Elasticsearch installation:
 
-* ``truststore.jks``—the Root CA and intermediate/signing CA.
+* ``truststore.jks``—the root CA and intermediate/signing CA.
 * ``keystore.jks``—the node certificate. 
 * ``kirk.jks``—the admin certificate required for running ``sgadmin``
 
