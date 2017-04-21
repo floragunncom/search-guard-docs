@@ -12,24 +12,26 @@ To enable native support for Open SSL follow these steps:
 
 **(Open SSL and Apache Portable Runtime needs to be installed)**
 
-* If you are on Alpine Linux pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ)
-* Install latest 1.0.2 OpenSSL version on every node (1.0.1 does also work but is outdated). OpenSSL 1.1.x is not supported currently.
+* If you are on Alpine Linux pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ).
+* Install latest 1.0.2 OpenSSL version on every node (1.0.1 does also work but is outdated.). OpenSSL 1.1.x is not supported currently.
  *  [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
-* Install APR - Apache Portable Runtime (libapr1) on every node
+* Install APR - Apache Portable Runtime (libapr1) on every node.
  * [https://apr.apache.org](https://apr.apache.org)
- * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`
-* Download netty-tcnative for **your** platform and Search Guard version
+ * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`.
+* Download netty-tcnative for **your** platform and Search Guard version.
  * Linux (non fedora based): `_linux-x86.jar_` (Debian, Ubuntu, ...) 
  * Fedora based linux: `_64-fedora.jar_` (RHEL, CentOS)
  * Mac: `_osx-x86_64.jar_`
  * Windows: `_windows-x86_64.jar_`
-* **Search Guard 2:**
+## Search Guard 2:
+
  * Version: 1.1.33.Fork17
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/)
  * Choose the correct version for you platform, one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_` 
  * Put it into the elasticsearch `plugins/searchguard-ssl/` folder on every node
-* **Search Guard 5.0/5.1:**
+## Search Guard 5.0/5.1:
+
  * Version: 1.1.33.Fork23
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
