@@ -106,16 +106,16 @@ Please refer to the [Addendum A](addendum_a_configuration_examples.md) of this d
 
 As outlined in chapter [Search Guard main concepts](concepts.md), Search Guard 
 
-* retrieves the user credentials
-* validates them against the configured authentication backend(s)
-* collects additional roles from the configured authorization backend(s)
+* Retrieves the user credentials.
+* Validates them against the configured authentication backend(s).
+* Collects additional roles from the configured authorization backend(s).
 
 Depending on your configuration, you can now use the following data to assign the request to one or more Search Guard role:
 
-* username: the name of the user
-* backend roles: the additional roles fetched by the authorization backend(s)
-* hostname / IP: the hostname or IP the request originated from
-* Common name: The DN of the client certificate sent with the request
+* username—the name of the user.
+* backend roles—the additional roles fetched by the authorization backend(s).
+* hostname / IP—the hostname or IP the request originated from.
+* Common name—rhe DN of the client certificate sent with the request.
 
 Backend users, roles and hosts need to be mapped to Search Guard roles. This is done in the file `sg_roles_mapping.yml`. 
 
@@ -134,7 +134,7 @@ sg_read_write:
 
 A request can be assigned to one or more Search Guard roles. If a request is mapped to more than one role, the permissions of these roles are combined with `AND`.
 
-## Define roles and the associated permissions
+## Define roles and their associated permissions
 
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions with it, is as follows:
 
@@ -156,16 +156,16 @@ The `cluster` entry is used to define permissions on cluster level. The `indices
 
 For `<permission>`, `<indexname or alias>` and `<type>` simple wildcards are possible:
  
-* An asterisk (\*) will match any character sequence (or an empty sequence)
-* A question mark (?) will match any single character (but NOT empty character)
+* An asterisk (\*) will match any character sequence (or an empty sequence).
+* A question mark (?) will match any single character (but NOT empty character).
 
-Example: `\*my\*index` will match `my_first_index` as well as `myindex` but not `myindex1`
+Example: `\*my\*index` will match `my_first_index` as well as `myindex` but not `myindex1`.
 
-Example: `?kibana` will match `.kibana` but not `kibana`
+Example: `?kibana` will match `.kibana` but not `kibana`.
 
 For <permission>, <indexname or alias> and <type> also regular expressions are possible. You have to pre- and append a `/` to use regex instead of simple wildcards: `/<java regex>/`.
 
-Example: `/\S*/` will match any non whitespace characters
+Example: `/\S*/` will match any non whitespace characters.
 
 **Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> regex. Use `\S` instead.**
 
@@ -175,7 +175,7 @@ For `<indexname or alias>` also the placeholder `${user.name}` is allowed to sup
 
 ### Defining permissions
 
-Permissions can be applied on cluster- and index level. Cluster-level permissions always start with `cluster:`, while index-level permissions start with `indices:`. After that, a REST-style path further defines the exact action the permission grants.
+Permissions can be applied on the cluster and index level. Cluster-level permissions always start with `cluster:`, while index-level permissions start with `indices:`. After that, a REST-style path further defines the exact action the permission grants.
 
 For example, this permission would grant the right to execute a search on an index:
 
@@ -183,7 +183,7 @@ For example, this permission would grant the right to execute a search on an ind
 indices:data/read/search
 ```
 
-While this permission grants the right to delete write to the index:
+While this permission grants the right to write to the index:
 
 ```
 indices:data/write/index
@@ -197,7 +197,7 @@ cluster:monitor/health
 
 There is a plethora of permissions you can set. Search Guard is compatible with the permission definition of Shield up to version 2.1, so you can see [here](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list) for a complete list.
 
-Since there are so many permissions you can use, we strongly recommend to use action grouping (see next chapter) and work with action group aliases in `sg_roles.yml`.
+Since there are so many permissions you can use, we strongly recommend to use action grouping (see next section) and work with action group aliases in `sg_roles.yml`.
 
 ## Defining action groups
 
@@ -213,7 +213,7 @@ Action groups are defined in the file `sg_action_groups.yml`. The file structure
     - ...
 ```
 
-The definition of actions is the same as outlined in the chapter "Defining permissions". Wildcards are also supported. You can use any telling name you want, and you can also refernce an action group from within another action group:
+The definition of actions is the same as outlined in the chapter "Defining permissions". Wildcards are also supported. You can use any name you want. And you can also reference an action group from within another action group:
 
 ```
 SEARCH:
