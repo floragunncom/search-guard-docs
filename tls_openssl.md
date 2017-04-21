@@ -4,7 +4,7 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 # OpenSSL setup
 
-Search Guard SSL can use Open SSL as the SSL implementation. This will result in better performance and better support for strong and modern cipher suites. With Open SSL its also possible to use strong chipers without installing Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files. 
+Search Guard SSL can use Open SSL as the SSL implementation. This will result in better performance and better support for strong and modern cipher suites. With Open SSL it's also possible to use strong chipers without installing Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files. 
 
 To enable native support for Open SSL follow these steps:
 
@@ -15,7 +15,7 @@ To enable native support for Open SSL follow these steps:
 * If you are on Alpine Linux pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ).
 * Install latest 1.0.2 OpenSSL version on every node (1.0.1 does also work but is outdated.). OpenSSL 1.1.x is not supported currently.
  *  [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
-* Install APR - Apache Portable Runtime (libapr1) on every node.
+* Install APR, Apache Portable Runtime, (libapr1) on every node.
  * [https://apr.apache.org](https://apr.apache.org)
  * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`.
 * Download netty-tcnative for **your** platform and Search Guard version.
@@ -37,7 +37,7 @@ To enable native support for Open SSL follow these steps:
  * Version: 1.1.33.Fork23
  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
- or `_windows-x86_64.jar_`
+ or `_windows-x86_64.jar_`.
  
 ### Search Guard 5.2:
 
@@ -80,11 +80,11 @@ If you did all the steps above and start your nodes, you should see an entry sim
 
 If one of the following messages OpenSSL is not available, Search Guard SSL will use the built-in Java SSL implementation:
 
-### java.lang.ClassNotFoundException: org.apache.tomcat.jni.SSL
+#### java.lang.ClassNotFoundException: org.apache.tomcat.jni.SSL
 * netty-tcnative jar is missing.
 * Make sure you use the netty-tcnative jar **matching your platform**, either `_linux-x86.jar_` or `_64-fedora.jar_` or `_osx-x86_64.jar_` or `_windows-x86_64.jar_`. 
 
-### java.lang.UnsatisfiedLinkError
+#### java.lang.UnsatisfiedLinkError
 * OpenSSL is not installed.  See above.
 * Apache Portable Runtime (APR) is not installed.  See above,
 
