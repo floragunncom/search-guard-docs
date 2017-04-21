@@ -22,25 +22,25 @@ Regardless of what authentication technique you select, the basic flow is as fol
 
 ## Credentials
 
-In order to **identify** the user who wants to interact with the cluster, Search Guard first needs the users **credentials**. 
+In order to **identify** the user who wants to interact with the cluster, Search Guard first needs the user's **credentials**. 
 
-What the term credential means depends on the technology you use for user identification. For example, if you use HTTP basic auth, then the credentials are the username/password combination the user provides.
+What the term credential means depends on the technology you use for user identification. For example, if you use HTTP basic auth, then the credentials are username and password.
 
-If you use TLS certificates for identifying clients, then the credentials are already included in the certificate.
+If you use TLS certificates for identifying clients, then the credentials are included in the certificate.
 
-An credential provider can either be **challenging** or **non-challenging**. A challenging provider actively asks the user for its credentials (e.g. HTTP basic auth). A non-challenging authenticator extracts the user credentials from some other source (e.g. TLS certificate) without the need for user interaction.
+An credential provider can either be **challenging** or **non-challenging**. A challenging provider actively asks the user for his or her credentials (e.g. HTTP basic auth). A non-challenging authenticator extracts the user credentials from some other source (e.g. TLS certificate) without the need for user interaction.
 
 ## Authentication (authc)
 
-Search Guard then **authenticates** the credentials **against a backend authentication module**. This step is performed by a so called **Authenticator**.  
+Search Guard then **authenticates** the credentials **against a backend authentication module**. This step is performed by an **Authenticator**.  
 
-In order for Search Guard to work, there has to be at least one authenticator configured. If this is not the case, an implicit one will be created. This will authenticate the credentials against the internal user database and use HTTP Basic Authentication.
+There needs to be at least one authenticator configured. If not, an implicit one will be created. This will authenticate the credentials against the internal user database and use HTTP Basic Authentication.
 
 You can define more than one authenticator if needed, but in most cases you will have just one.
 
 ### External authentication / SSO
 
-Search Guard also supports external authentication and Single Sign On (SSO) solutions. In most cases, these systems act as a proxy or store authentication information in special HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. In that case, Search Guard has to **trust the external authentication system** to work correctly. This is explained below.
+Search Guard also supports external authentication and Single Sign On (SSO) solutions. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. In that case, Search Guard has to **trust the external authentication system** to work correctly. This is explained below.
 
 ## Authorisation (authz)
 
@@ -52,7 +52,7 @@ These roles are called **backend roles**.
 
 After the user is verified and roles have been retrieved, Search Guard will **map** the **user and any backend roles** to **Search Guard roles**. 
 
-In some cases you want to map the backend roles 1:1 to Search Guard roles, but more often than not you want to have a differing and roles for granular control over your Elasticsearch installation.
+In some cases you want to map the backend roles 1:1 to Search Guard roles, but more often than not you want to have differing roles for granular control over Elasticsearch.
 
 ## Permissions
 
@@ -60,21 +60,21 @@ On a high level, each interaction with Elasticsearch means that a particular **u
 
 Permissions in Search Guard are based on exactly this model. A permission defines:
 
-* which role
-* can perform which action
-* against wich cluster or index
+* which role,
+* can perform which action,
+* against wich cluster or index.
 
 A definition of a permission that allows searching a particular index looks like:
 
 * `indices:data/read/search*`
 
-Permissions are defined per role can be applied on a cluster and index level.
+Permissions are defined per role and can be applied on a cluster or index level.
 
 ## Action groups
 
 The action model of Elasticsearch, and thus the permission model of Search Guard, allows for very fine grained settings. This can lead to long lists of permission settings that you need to repeat for several roles.
 
-You can use **action groups** in order to save you from repeating permission definitions. An action group is an **alias for a set of permissions**. Action groups can also be **nested**. 
+So you can use **action groups** in order to avoid repeating permission definitions. An action group is an **alias for a set of permissions**. Action groups can also be **nested**. 
 
 If you define action groups, you can use the name of the action groups in the permission settings configuration.
 
@@ -105,4 +105,4 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_internal\_users.yml—stores user and hashed passwords (hash with hasher.sh) is using the internal user database.
 * sg\_action\_groups.yml—group permissions.
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do so, use the `sgadmin` tool. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shared and replica settings, since you want to make sure that the Search Guard index is available on all nodes.
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do this, use the `sgadmin` tool. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shared and replica settings, since you want to make sure that the Search Guard index is available on all nodes.
