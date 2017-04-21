@@ -78,9 +78,9 @@ authentication_backend:
 Possible vales for `type` are:
 
 * noop
- * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user , or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. 
+ * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type. The latter is true if you choose Proxy as HTTP authentication type. 
 * internal
- * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml`, and load them into Search Guard by using the `sgadmin` command line tool.
+ * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml` and load them into Search Guard by using the `sgadmin` command line tool.
 * ldap
  *  Authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
 
