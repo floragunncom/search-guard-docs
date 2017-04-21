@@ -19,7 +19,7 @@ searchguard:
       ...
 ```
 
-In short, these sections are used to specify how Search Guard retrieves the user credentials, how to verify these credentials, and where to get the (additional) users roles from. The latter is optional.
+In short, these sections are used to specify how Search Guard retrieves the user credentials, how it verifies these credentials, and where to get the (additional) users roles from. The latter is optional.
 
 ### Authentication
 
