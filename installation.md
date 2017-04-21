@@ -126,7 +126,7 @@ Most of these modules require additional configuration settings. Please see the 
 
 ## Expert settings
 
-**WARNING: Only use the following instructions if you know what you are doing. If you set wrong values here this could be a security risk or make Search Guard stop working! In most cases, you do not need to change the default settings.**
+**WARNING: Only use the following instructions if you know what you are doing. If you set wrong values this could be a security risk or make Search Guard stop working! In most cases, you do not need to change the default settings.**
 
 ### Search Guard index name
 
