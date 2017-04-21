@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques.  
 
-Regardless of what authentication technique you pick, the basic flow is as follows:
+Regardless of what authentication technique you select, the basic flow is as follows:
 
 * A user wants to **access** an Elasticsearch cluster, such as issuing simple queries to changing the cluster topology.
 * Search Guard retrieves the user's **credentials**.
