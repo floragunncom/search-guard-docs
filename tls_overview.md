@@ -43,7 +43,7 @@ Search Guard distinguishes between the following types of certificates
 
 **Client certificates** are regular TLS certificates without any special requirements. They are used to identify Elasticsearch clients on the REST and transport layer. They can be used for HTTP client certificate authentication or when using a Java Transport Client to talk to an Search Guard secured cluster. All permission checks apply.
 
-**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](sgadmin.md) command line tool, or to use the [REST management API](managementapi.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as admin certificate.  And you can configure multiple admin certificates as well. Not all permission checks are applied for admin certificates, and the certificates especially grant the permission to modify the [Search Guard configuration index](sgindex.md).
+**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](sgadmin.md) command line tool, or to use the [REST management API](managementapi.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as an admin certificate.  And you can configure multiple admin certificates as well. Not all permission checks are applied for admin certificates, and the certificates especially grant the permission to modify the [Search Guard configuration index](sgindex.md).
 
 **Node certificates** are used to identify and secure traffic between Elasticsearch nodes on the transport level (inter-node traffic). For this kind of traffic, no permission checks are applied, i.e. every request is allowed. Therefore, these certificates must meet some special requirements. If you plan to generate certificates using your own PKI infrastructure, please refer to the chapter [Node certificates](tls_node_certificates.md) for details.
 
@@ -55,9 +55,8 @@ If you just want to try out Search Guard, and deal with the TLS details later, w
 
 ### Search Guard Bundle
 
-The Search Guard Bundle is an Elasticsearch package that comes pre-installed and pre-configured with the latest Search Guard version, all required TLS certificates and all enterprise modules. All features are fully functional, and you can test for as along as you like with no trial license required. Just download, unzip and run.  This is the easiest way to test all of our features. We provide bundles for the 2.x and 5.x series, you can find the latest version [here](https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle):
+The Search Guard Bundle is an Elasticsearch package that comes pre-installed and pre-configured with the latest Search Guard version, all required TLS certificates and all enterprise modules. All features are fully functional, and you can test for as along as you like with no trial license required. Just download, unzip and run.  This is the easiest way to test all of our features. We provide bundles for the 2.x and 5.x series, you can find the latest version [here](https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle).
 
-[Search Guard Bundle](https://github.com/floragunncom/search-guard/wiki/Search-Guard-Bundle)
 
 ### Demo certificate installation script
 
@@ -111,7 +110,7 @@ Which should print a list of available `keytool` commands. If this is not the ca
 
 In order to obtain and run the scripts, you need to download the Search Guard SSL source code onto your machine. You can either clone the repository, or download it as zip file. The repository is located here:
 
-[Search Guard SSL 5.x]((https://github.com/floragunncom/search-guard-ssl/tree/5.3.0))
+[Search Guard SSL 5.x](https://github.com/floragunncom/search-guard-ssl/tree/5.3.0)
 
 [Search Guard SSL 2.x](https://github.com/floragunncom/search-guard-ssl/tree/es-2.4.4)
 
