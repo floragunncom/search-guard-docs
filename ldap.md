@@ -276,7 +276,7 @@ rolesearch_enabled: <true|false>
 |  rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below).|
 | userroleattribute  | The attribute in a user entry to use for `{2}` variable substitution. |
 | userrolename  | If the roles/groups of a user are not stored in the groups subtree, but as an attribute of the user's directory entry, define this attribute name here. |
-| rolename  | The attribute of the role entry which should be used as role name|.
+| rolename  | The attribute of the role entry which should be used as role name. |
 | resolve\_nested\_roles  | Boolean, whether or not to resolve nested roles transitively (roles which are members of other roles and so on ...), default: false. |
 | skip_users  | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported.  |
 | nested\_role\_filter  | Array of role DNs that should be filtered before resolving nested roles. Wildcards and regular expressions are supported.  |
