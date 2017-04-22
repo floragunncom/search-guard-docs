@@ -180,9 +180,9 @@ rolesearch: '(member={0})'
 
 You can use the following variables:
 
-* {0} is substituted with the DN of the user
-* {1} is substituted with the username, as defined by the `username_attribute` setting
-* {2} is substituted with an arbitrary attribute value from the authenticated user's directory entry 
+* {0} is substituted with the DN of the user.
+* {1} is substituted with the username, as defined by the `username_attribute` setting.
+* {2} is substituted with an arbitrary attribute value from the authenticated user's directory entry.
 
 The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use is specified by the `userroleattribute` setting.
 
