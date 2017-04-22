@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## Configuring the admin certificate
 
-Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG 2 secured Elasticsearch cluster via a client SSL certificate. We'll call this an *admin certificate*. The DN of this certificate must be configured ``elasticsearch.yml``. 
+Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG 2 secured Elasticsearch cluster via a client SSL certificate. We'll call this an *admin certificate*. The DN of this certificate must be configured in ``elasticsearch.yml``. 
 
 ```
 searchguard.authcz.admin_dn:
