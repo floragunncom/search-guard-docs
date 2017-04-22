@@ -26,7 +26,7 @@ After that, restart all nodes for the module to become activated.
 
 ## Activating the module
 
-LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, means to check if the user has entered the correct credentials. The `authz` is used for authorisation, and defines how the role(s) for an authenticated user are fetched and mapped.
+LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, which means to check if the user has entered the correct credentials. The `authz` is used for authorisation, which defines how the role(s) for an authenticated user are retrieved and mapped.
 
 In most cases, you want to configure both authentication and authorization, however, it is also possible to use authentication only and map the users retrieved from LDAP directly to Search Guard roles. This can be done in the `sg_roles_mappig.yml` configuration.
 
@@ -86,9 +86,9 @@ The first entries control the TLS settings of the connection to your LDAP server
 
 | Name  | Description  |
 |---|---|
-| enable_ssl  |  Whether to use LDAP over SSL (LDAPS) or not |
+| enable_ssl  |  Whether to use LDAP over SSL (LDAPS) or not. |
 |  enable\_start\_tls |  Whether to use STARTTLS or not. Cannot be used in combination with LDAPS. |
-| enable\_ssl\_client\_auth  | Whether to send the client certificate to the LDAP server or not. The client certificate is taken from the keystore configured in `elasticsearch.yml` |
+| enable\_ssl\_client\_auth  | Whether to send the client certificate to the LDAP server or not. The client certificate is taken from the keystore configured in `elasticsearch.yml`. |
 
 ### LDAP server settings
 
@@ -96,15 +96,15 @@ Next, configure how Search Guard connects to your LDAP server(s):
 
 | Name  | Description  |
 |---|---|
-| hosts  |  Host and port of your LDAP server(s). Hostnames and IPs are allowed, and you can define multiple LDAP servers. |
-|  bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, can be set to null |
-| password  | The password to use when connecting to LDAP. If anonymous auth is allowed, can be set to null   |
+| hosts  |  Host and port of your LDAP server(s). Hostnames and IPs are allowed.  You can define multiple LDAP servers. |
+|  bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, can be set to null. |
+| password  | The password to use when connecting to LDAP. If anonymous auth is allowed, can be set to null.   |
 
 ## Configuring Authentication
 
 Authentication works by issuing an *LDAP query* containing the *username* against the *user subtree* of the *LDAP tree*. 
 
-Search Guard first takes the configured LDAP query, and replaces the placeholder `{0}` with the username from users credentials. 
+Search Guard first takes the configured LDAP query, and replaces the placeholder `{0}` with the username from the user's credentials. 
 
 ```
 usersearch: '(sAMAccountName={0})'
@@ -116,7 +116,7 @@ Search Guard then issues this query against the user subtree ("userbase"). Curre
 userbase: 'ou=people,dc=example,dc=com'
 ```
 
-If the query was successful, Search Guard retrieves username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as username:
+If the query was successful, Search Guard retrieves the username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as the username:
 
 ```
 username_attribute: uid
@@ -128,7 +128,7 @@ If this key is not set, or null, then the DN of the LDAP entry is used.
 
 | Name  | Description  |
 |---|---|
-| userbase  | Specifies the subtree in the directory where user information is stored |
+| userbase  | Specifies the subtree in the directory where user information is stored. |
 |  usersearch | The actual LDAP query that Search Guard executes when trying to authenticate a user. The variable {0} is substituted with the username.|
 | username_attribute  | Search Guard uses this attribute of the directory entry to look for the user name. If set to null, the DN is used (default).  |
 
@@ -159,11 +159,11 @@ ldap:
             
 ## Configuring Authorisation
 
-Authorisation is the process of retrieving backend roles for an authenticated user from an LDAP server. This is typically the same server(s) you used for authentication, but you can also use a different server if necessary. The only requirement is that the user to fetch the roles for actually exists on the LDAP server.
+Authorisation is the process of retrieving backend roles for an authenticated user from an LDAP server. This is typically the same server(s) you use for authentication, but you can also use a different server if necessary. The only requirement is that the user to fetch the roles for actually exists on the LDAP server.
 
 Since Search Guard always checks if a user exists in the LDAP server, you need to configure `userbase`, `usersearch` and `username_attribute` also in the `authz` section.
       
-Authorisation works very similar to authentication. Search Guard issues an *LDAP query* containing the *username* against the *role subtree* of the *LDAP tree*.
+Authorisation works similarly to authentication. Search Guard issues an *LDAP query* containing the *username* against the *role subtree* of the *LDAP tree*.
 
 As an alternative, Search Guard can also fetch roles that are defined as a direct attribute of the user entry in the user subtree. 
 
