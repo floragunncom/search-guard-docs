@@ -6,7 +6,7 @@ Copryight 2017 floragunn GmbH
 
 Search Guard supports Elasticsearch installations running behind one or more proxies or loadbalancers. This can be a single nginx, load balancer or forwarding requests to an Elasticsearch cluster or a chain of proxies.
 
-If a request is routed via one or more proxies orloadbalancers, the host field of the HTTP request only contains the proxies/loadbalancers hostname.  The remote IP is set to the proxies' IP. This effectively hides the client's hostname and IP, which means that you cannot configure permissions based on hostname or IP.
+If a request is routed via one or more proxies or loadbalancers, the host field of the HTTP request only contains the proxies/loadbalancers hostname.  The remote IP is set to the proxy's IP. This effectively hides the client's hostname and IP, which means that you cannot configure permissions based on hostname or IP.
 
 To mitigate this, a proxy/loadbalancer usually sets its own hostname in the hosts field of the request and appends the previous value of this field to a special HTTP header field, usually "x-fowarded-for". If you are running several proxies, this field contains a comma separated list of all proxies, including the client the request originated from ("proxy chain"). Search Guard can extract the original hostname and apply permissions accordingly.
 
