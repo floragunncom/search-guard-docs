@@ -22,7 +22,7 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes to activate the module.
 
 ## Activating the module
 
@@ -98,8 +98,8 @@ Next, configure how Search Guard connects to your LDAP server(s):
 | Name  | Description  |
 |---|---|
 | hosts  |  Host and port of your LDAP server(s). Hostnames and IPs are allowed.  You can define multiple LDAP servers. |
-|  bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, can be set to null. |
-| password  | The password to use when connecting to LDAP. If anonymous auth is allowed, can be set to null.   |
+|  bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, this can be set to null. |
+| password  | The password to use when connecting to LDAP. If anonymous auth is allowed, this can be set to null.   |
 
 ## Configuring Authentication
 
@@ -168,7 +168,7 @@ Authorisation works similarly to authentication. Search Guard issues an *LDAP qu
 
 As an alternative, Search Guard can also fetch roles that are defined as a direct attribute of the user entry in the user subtree. 
 
-Both methods can also be combined, however, usually you will have either roles defined as an attribute of the user entry, or roles stored in a seperate subtree.
+Both methods can also be combined.  Usually you will have either roles defined as an attribute of the user entry or roles stored in a seperate subtree.
 
 ### Approach 1: Querying the role subtree
 
@@ -184,7 +184,7 @@ You can use the following variables:
 * {1} is substituted with the username, as defined by the `username_attribute` setting
 * {2} is substituted with an arbitrary attribute value from the authenticated user's directory entry 
 
-The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use here can be specified by the `userroleattribute` setting.
+The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use is specified by the `userroleattribute` setting.
 
 ```
 userroleattribute: myattribute
@@ -225,9 +225,10 @@ If you are using multiple authentication methods, it can make sense to exclude c
 Consider the following scenario for a typical Kibana setup: 
 
 All Kibana users are stored in an LDAP/Active Directory server.
-However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but rather store it in the Search Guard internal user database.
 
-In this case it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
+However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but store it in the Search Guard internal user database.
+
+In this case, it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
 
 ```
 skip_users:
@@ -238,10 +239,10 @@ skip_users:
 
 ### Advanced: Exclude roles from nested roles lookups
 
-If the users in your LDAP installation have a huge amount of roles, and you have the requirement to resolve nested roles as well, you might run into the following performance issue:
+If the users in your LDAP installation have a large amount of roles, and you have the requirement to resolve nested roles as well, you might run into the following performance issue:
 
-* For each of the users roles, Search Guard resolves nested roles
-* This means at least one additional LDAP query per role
+* For each of the users roles, Search Guard resolves nested roles.
+* This means at least one additional LDAP query per role.
 * If a user has many roles, and these roles are deeply nested, this results in a lot of additional LDAP queries
 * This means more network roundtrips and thus, depending on your network latency and LDAP response times, a performance penalty.
 
@@ -271,12 +272,12 @@ rolesearch_enabled: <true|false>
 
 | Name  | Description  |
 |---|---|
-| rolebase  | Specifies the subtree in the directory where role/group information is stored |
-|  rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below)|
-| userroleattribute  | The attribute in a user entry to use for `{2}` variable substitution |
+| rolebase  | Specifies the subtree in the directory where role/group information is stored. |
+|  rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below).|
+| userroleattribute  | The attribute in a user entry to use for `{2}` variable substitution. |
 | userrolename  | If the roles/groups of a user are not stored in the groups subtree, but as an attribute of the user's directory entry, define this attribute name here. |
-| rolename  | The attribute of the role entry which should be used as role name|
-| resolve\_nested\_roles  | Boolean, whether or not to resolve nested roles transitively (roles which are members of other roles and so on ...), default: false  |
+| rolename  | The attribute of the role entry which should be used as role name|.
+| resolve\_nested\_roles  | Boolean, whether or not to resolve nested roles transitively (roles which are members of other roles and so on ...), default: false. |
 | skip_users  | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported.  |
 | nested\_role\_filter  | Array of role DNs that should be filtered before resolving nested roles. Wildcards and regular expressions are supported.  |
 | rolesearch_enabled  | Boolean, enable or disable the role search, default: true.  |
