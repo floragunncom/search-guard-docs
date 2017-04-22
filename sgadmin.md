@@ -44,7 +44,7 @@ Before executing sgadmin.bat check that you have set JAVA_HOME environment varia
 set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65
 ```
 
-Replace `jdk1.8.0_65` with your installed JDK or JRE version
+Replace `jdk1.8.0_65` with your installed JDK or JRE version.
 
 Then you can execute the script against any node in your cluster. The configuration settings are pushed to that node, and depending on your shared settings, replicated to the other nodes.
 
@@ -54,7 +54,7 @@ You can find sample configuration files in this directory:
 <ES installation directory>/plugins/search-guard-2/sgconfig
 ```
 
-For basic usage, you need to specify the key and truststore, their respective passwords, and the directory where the configuation files can be found. In addition, you either specify the cluster name (`-cn` option), or as in this example, tell `sgadmin` to ignore the cluster name altogether (`-icl` option).
+For basic usage, you need to specify the key and truststore, their respective passwords, and the directory where the configuation files can be found. In addition, you either specify the cluster name (`-cn` option), or, as in this example, tell `sgadmin` to ignore the cluster name altogether (`-icl` option).
 
 ```
 ./sgadmin.sh -ts <path/to/truststore> -tspass <truststore password> 
@@ -74,29 +74,29 @@ This will push all configuration files in the sgconfig directory to your cluster
 
 After one or more files are updated, Search Guard will automatically load the new configuration. There is no need to restart ES nodes.
 
-**Note that you can execute sgadmin from any machine that has access to your cluster on transport level (default port 9300).** 
+**Note that you can execute sgadmin from any machine (default port 9300).** 
 
 ## Command line options
 
-sgadmin comes with a bunch of command line options. You can execute `./sgadmin.sh` without any options to list them.
+sgadmin comes with command line options. Execute `./sgadmin.sh` without any options to list them.
 
 ### Elasticsearch settings
 
-If you run a default Elasticsearch installation which listens on transport port 9300 and uses `elasticsearch` as cluster name, you can omit the following settings altogether. Otherwise, specify your Elasticsearch settings by using the following switches:
+If you run a default Elasticsearch installation, which listens on transport port 9300, and uses `elasticsearch` as cluster name, you can omit the following settings altogether. Otherwise, specify your Elasticsearch settings by using the following switches:
 
 | Name  | Description  |
 |---|---|
 | -h  |  elasticsearch hostname, default: localhost |
 |  -p |  elasticsearch port, default: 9300 (NOT the http port!) |
 | -cn  | clustername, default: elasticsearch  |
-| -icl  | Ignore clustername  |
-| -sniff  | Sniff cluster nodes  |
+| -icl  | Ignore clustername.  |
+| -sniff  | Sniff cluster nodes.  |
 
 Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).
 
 ### TLS settings
 
-In order to authenticate against Search Guard as admin, sgadmin needs a client certificate, contained in the keystore, and the root CA and any intermediate certificates, contained in the truststore. This is basically the same as configuring the keystore and truststore for a node. The ony difference is that the DN of the client certificate is configured in elasticsearch.yml as admin certificate.
+In order to authenticate against Search Guard as admin, sgadmin needs a client certificate, contained in the keystore, and the root CA and any intermediate certificates, contained in the truststore. This is basically the same as configuring the keystore and truststore for a node. The ony difference is that the DN of the client certificate is configured in elasticsearch.yml as an admin certificate.
 
 Use the following options to control the key and truststore settings:
 
@@ -107,7 +107,7 @@ Use the following options to control the key and truststore settings:
 | -kst  | The key store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension. |
 | -ksalias  |The keystore alias, if any.   |
 | -ts  |  Truststore that contains the root certificate, as an absolute or relative path. Relative paths are resolved based on the execution directory of sgadmin.  |
-|  -tspass |  The password for the trutstore. |
+|  -tspass |  The password for the truststore. |
 | -tst  | The trust store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.  |
 | -tsalias  | The truststore alias, if any. |
 | -nhnv  | disable-host-name-verification, do not validate hostname. |
@@ -120,7 +120,7 @@ The following switches define which configuration file(s) you want to push to Se
 
 | Name  | Description  |
 |---|---|
-| -cd  |  Configuration directory containing a bunch of .yml files. |
+| -cd  |  Configuration directory containing more than one .yml file. |
 | -f  |  Single config file (cannot be used together with -cd).  |
 | -t  |  File type. |
 | -rl  |  Reload the current configuration and flush the internal cache. |
@@ -133,7 +133,7 @@ If you push a single configuration file, the filetype must be one of:
 * internalusers
 * actiongroups
 
-### Index- and replica settings
+### Index and replica settings
 
 The following switched control the Search Guard index settings.
 
