@@ -2,7 +2,7 @@
 
 ## Custom Principal Extractor
 
-When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X500 Principal of the certificate as username per default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.
+When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X.500 princila as username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.
 
 Create a class that implements the `com.floragunn.searchguard.ssl.transport.PrincipalExtractor` interface:
 
@@ -45,7 +45,7 @@ searchguard.ssl.transport.principal_extractor_class: com.example.MyPrincipalExtr
 ```
 ## Injecting an SSLContext
 
-If you are integrating Search Guard with your own software, you might already have an `javax.net.ssl.SSLContext` object available which you want to use. In this case, instead of building an `SSLContext` from the configured keystore and truststore, you can instruct Search Guard to use your `SSLContext` object directly.
+If you are integrating Search Guard with your own software, you might already have an `javax.net.ssl.SSLContext` object available that you want to use. In this case, instead of building an `SSLContext` from the configured keystore and truststore, you can instruct Search Guard to use your `SSLContext` object directly.
 
 Search Guard is able to manage multiple `SSLContext` objects. You need to register the objects you want to use with the `com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore` and an id first. When constructing the `Settings` object used for instantiating the `TransportClient`, you can configure which `SSLContext` should be used for this `TransportClient`. 
 
