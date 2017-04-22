@@ -53,7 +53,7 @@ Copyright 2016-2017 floragunn GmbH
 * [Proxy Authentication](proxy_auth.md)
  
 ### Document- and Field-Level-Security
-* [Document- and field-level security](dlsfls.md)
+* [Document and field level security](dlsfls.md)
 
 ### Audit Logging
 * [Audit Logging](auditlogging.md)
