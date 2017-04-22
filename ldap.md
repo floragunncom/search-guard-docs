@@ -62,6 +62,7 @@ authz:
 ## Configuring the connection settings
     
 For both entries you need to specify additional configuration parameters. Some of them are identical between the `authc` and `authz` section. 
+
 Common configuration parameters:
 
 ```
