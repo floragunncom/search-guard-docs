@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Using Search Guard with Kibana
 
-Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana). Since Kibana mainly acts as a client (or to be more precise: a proxy) for Elasticsearch, you can use nearly all features of Search Guard also in combination with Kibana. 
+Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana). Since Kibana mainly acts as a client (or to be more precise, a proxy) for Elasticsearch, you can use nearly all features of Search Guard with Kibana. 
 
 In the following description, we assume that you have already set up an Search Guard secured Elasticsearch cluster. We'll walk through all additional steps needed for integrating Kibana with your setup. 
 
@@ -25,26 +25,26 @@ First download the [Search Guard Kibana plugin](https://github.com/floragunncom/
 
 The installation procedure is the same as for any other Kibana plugin:
 
-* Kibana >= 5
- * cd into your Kibana installaton directory
- * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip` 
-* Kibana < 5
- * cd into your Kibana installaton directory
- * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip` 
+* Kibana >= 5:
+ * cd into your Kibana installaton directory.
+ * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip`. 
+* Kibana < 5;
+ * cd into your Kibana installaton directory.
+ * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip`. 
 
 ### Configuring the Search Guard Kibana Plugin
 
-The Search Guard Kibana plugin provides session management features for Kibana. If not already authenticated, the user is redirected to a login page. The credentials, once validated, are stored in an encrypted cookie on the users browser. Use the following settings in kibana.yml to configure the plugin:
+The Search Guard Kibana plugin provides session management for Kibana. If not already authenticated, the user is redirected to a login page. The credentials, once validated, are stored in an encrypted cookie on the user's browser. Use the following settings in kibana.yml to configure the plugin:
 
 | Name  | Description  |
 |---|---|
-| searchguard.basicauth.enabled  |  boolean, enable or disable the session management. Defaut: true|
+| searchguard.basicauth.enabled  |  boolean, enable or disable the session management. Defaut: true.|
 |  searchguard.cookie.secure |  boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
 | searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
-| searchguard.cookie.password  | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password'  |
-| searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour  |
-| searchguard.session.ttl  | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour  |
-| searchguard.session.keepalive  | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true   |
+| searchguard.cookie.password  | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password'.  |
+| searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour.  |
+| searchguard.session.ttl  | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour.  |
+| searchguard.session.keepalive  | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true.   |
 
 ### Configuring the Kibana server user
 
@@ -61,17 +61,17 @@ elasticsearch.password: "kibanaserver"
 
 ### Setting up SSL/TLS
 
-If you use TLS on the Elasticsearch REST-layer, you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearch.url` to `https`:
+If you use TLS on the Elasticsearch REST layer, you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearch.url` to `https`:
 
 ```
 elasticsearch.url: "https://localhost:9200" 
 ```
 
-All requests that Kibana makes to Elasticsearch are now using HTTPS instead of HTTP.
+All requests that Kibana makes to Elasticsearch will now use HTTPS instead of HTTP.
 
 #### Configuring the Root CA
 
-If you use your own root CA on Elasticsearch, you need to either disable the validation of the certificate, or provide the root CA and all intermediate certififcates (if any) to Kibana. Otherwise, you'll see the following error message in the Kibana logfile:
+If you use your own root CA on Elasticsearch, you need to either disable certificate validation or provide the root CA and all intermediate certififcates (if any) to Kibana. Otherwise, you'll see the following error message in the Kibana logfile:
 
 ```
 Request error, retrying -- self signed certificate in certificate chain
@@ -101,7 +101,7 @@ In this case, you can leave the `elasticsearch.ssl.verify` set to `true`.
 
 #### Kibana 5
 
-For Kibana 5, SSL has to be configured separately for the so called "Dev Tools" (a.k.a Console, a.k.a. Sense). You can follow the setup and installation guide of [Sense](https://www.elastic.co/guide/en/sense/current/installing.html), and replace every occurence of "sense" in configuration keys with "console". For example, to disable the certificate validity check, you can use:
+For Kibana 5, SSL has to be configured separately for the so-called "Dev Tools" (a.k.a Console, a.k.a. Sense). You can follow the setup and installation guide of [Sense](https://www.elastic.co/guide/en/sense/current/installing.html) and replace every occurence of "sense" in configuration keys with "console". For example, to disable the certificate validity check, you can use:
 
 ```
 console.proxyConfig:
@@ -133,16 +133,16 @@ Use the following setting in kibana.yml to customize one or more elements:
 
 | Name  | Description  |
 |---|---|
-| searchguard.basicauth.login.showbrandimage  |  boolean, show or hide the brand image, Default: true|
+| searchguard.basicauth.login.showbrandimage  |  boolean, show or hide the brand image, Default: true.|
 |  searchguard.basicauth.login.brandimage |  String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
-| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
+| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'.  |
 | searchguard.basicauth.login.title  | String, title of the login page. |
 | searchguard.basicauth.login.subtitle  | String, subtitle of the login page. |
 | searchguard.basicauth.login.buttonstyle  | String, style attribute of the login button.  |
       
 ## Configuring Elasticsearch
 
-Tip: For a quickstart, you can use the role definitions that ship with Search Guard. The Kibana server user role is `sg_kibana_server`, the role for regular users is `sg_kibana`. Both are defined in `sg_roles.yml`.
+Tip: For a quickstart, you can use the role definitions that ships with Search Guard. The Kibana server user role is `sg_kibana_server`, the role for regular users is `sg_kibana`. Both are defined in `sg_roles.yml`.
 
 ### Adding the Kibana server user
 
@@ -210,11 +210,11 @@ searchguard:
 
 Adding Kibana users is no different from adding any other user to Search Guard. You need to:
 
-* Add the users to your authentication backend (e.g. LDAP, internal Search Guard database)
-* Define a role mapping for these users
-* Set the permissions for these roles
+* Add the users to your authentication backend (e.g. LDAP, internal Search Guard database).
+* Define a role mapping for these users.
+* Set the permissions for these roles.
 
-You can use all features of Search Guard to configure the permitted access for these users, such as index- and document-type-based permissions, and also Document- and Field-level security.
+You can use all features of Search Guard to configure the permitted access for these users, such as index and document-type-based permissions, and also document and field-level security.
 
 The following defines the minimum permissions a Kibana user needs:
 
