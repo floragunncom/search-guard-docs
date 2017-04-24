@@ -58,7 +58,7 @@ Copyright 2016-2017 floragunn GmbH
 ### Audit Logging
 * [Audit Logging](auditlogging.md)
 
-### REST-Management API
+### REST Management API
 * [REST management API](managementapi.md)
 
 ### Integrating with the Elastic Stack
