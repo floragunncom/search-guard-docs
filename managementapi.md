@@ -181,9 +181,9 @@ PUT /_searchguard/api/user/kirk
   "roles": ["captains", "starfleet"]
 }
 ```
-You need to specify either `hash` or `password`. `hash` is the hashed password of the user. `password` is the cleartext password.  It is hashed automatically. If both are specified, `hash` takes precedence.
+You need to specify either `hash` or `password`. `hash` is the hashed user password. `password` is the cleartext password.  It is hashed automatically. If both are specified, `hash` takes precedence.
 
-`roles` contains an array of the users backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
+`roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
 
 ```
 {
@@ -209,7 +209,7 @@ Where `rolename` is the name of the role.
 GET /_searchguard/api/rolesmapping/{rolename}
 ```
 
-Retrieve a rolemapping, specified by rolename, in JSON format.
+Retrieve a role mapping, specified by rolename, in JSON format.
 
 ```
 GET /_searchguard/api/rolesmapping/sg_role_starfleet
@@ -456,7 +456,7 @@ Used to manage the Search Guard internal user, authentication and authorization 
 DELETE /_searchguard/api/cache
 ```
 
-Flushes the Search Guard cache
+Flushes the Search Guard cache.
 
 ```
 {
