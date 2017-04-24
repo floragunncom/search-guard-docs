@@ -2,7 +2,7 @@
 Copryight 2017 floragunn UG (haftungsbeschränkt)
 -->
 
-## Motivation for using TLS
+## Reasons for using TLS
 
 While Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box. 
 
