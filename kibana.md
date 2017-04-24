@@ -8,7 +8,7 @@ Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana)
 
 In the following description, we assume that you have already set up an Search Guard secured Elasticsearch cluster. We'll walk through all additional steps needed for integrating Kibana with your setup. 
 
-We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend to use this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
+We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
 Please check the `elasticsearch.yml` file and see whether TLS on the REST-layer is enabled:
 
