@@ -6,16 +6,16 @@ Copryight 2016 floragunn GmbH
 
 Configuring logstash is similar to configuring Kibana, so we recommend that you read the Kibana chapter. Most principles, especially the Kibana server user / logstash user, are nearly identical.
 
-The sample configuration files that ship with Search Guard already contains a user named `logstash`. The correct permissions for this user are already configured as well.  So you can use the sample config files to quickly set up a Search Guard secured logstash installation for testing purposes.
+The sample configuration files that ship with Search Guard already contains a `logstash` user with the necessary permissions.  So you can use the sample config files to quickly set up a Search Guard secured logstash installation for testing purposes.
 
 ## Principles
 
-From an Elasticsearch / Search Guard point of view, logstash is merely an HTTP client, just like curl or a browser. Logstash connects to Elasticsearch via the REST API, creates indices and reads and writes documents from and to these indices. So, in order to use Search Guard in conjunction with logstash, you just need to perform the following steps:
+From an Elasticsearch / Search Guard point of view, logstash is merely an HTTP client, just like curl or a browser. Logstash connects to Elasticsearch via the REST API, creates indices and reads and writes documents to and from these indices. In order to use Search Guard in conjunction with logstash, you just need to perform the following steps:
 
 * Configure logstash to use HTTPS instead of HTTP.
- * If you want to verify the servers certificate (optional, but recommended), you need to provide the path to the keystore containing your Root CA as well. 
+ * If you want to verify the server's certificate (optional, but recommended), you need to provide the path to the keystore containing your Root CA as well. 
 * Configure the logstash username and password.
- * When talking to Elasticsearch, logstash uses this username and password to identify itself.
+ * When talking to Elasticsearch, logstash uses this username and password.
 * Set up the logstash user and its permissions in the Search Guard configuration.
  * You can use the sample config files shipped with Search Guard for a quick start. 
 
