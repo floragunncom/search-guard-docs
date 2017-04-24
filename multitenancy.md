@@ -3,7 +3,7 @@
 **Note: Kibana multitenancy is available for Kibana 5.0 and above!**
 
 ## Overview
-Kibana does not support multi tenancy out of the box. This means that all stored objects, such as Dashboards, Visualizations and Saved Searches are stored in a global Kibana index.
+Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
 
 This index is configured in `kibana.yml`:
 
@@ -18,9 +18,9 @@ elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
 ```
 
-This means that regardless of the permissions an authenticated user has, he/she will always be able to see and modify all Dashboards and Visualizations.
+This means that regardless of the permissions a user has, he or she will be able to see and modify all dashboards and visualizations.
 
-In case the user does not have permissions to access the underlying index of a Visualization, the Visualization will simply be blank and a security exception is logged in Elasticsearch.
+In case the user does not have permissions to access the underlying index of a Visualization, the visualization will simply be blank and a security exception is logged in Elasticsearch.
 
 The Kibana multitenancy module brings true separation of stored objects based on the configured **tenants** of a users **role**.
 
@@ -28,25 +28,22 @@ The Kibana multitenancy module brings true separation of stored objects based on
 
 ### Definition
 
-A Kibana tenant is
+A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
-> a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles, and the role can have read-write or read-only access to the tenant and thus the saved objects in it. A Kibana user selects the tenant that he/she wants to work with, and Search Guard ensures that the saved objects are placed in the selected tenant.
+Any Kibana user always has access to two preconfigured tenants: Global and Private.
 
-Any Kibana user always has acces to two preconfigured tenants: Global and Private.
+The Global tenant is shared with every user. This is the default tenant if no other tenenat is selected.  You'll find objects that you have created before installing the multi tenancy module there.
 
-The Global tenant is shared with every user. This is the default tenant if no other tenenat is selected, and you'll find all saved objects that you have created before installing the multi tenancy module there.
-
-The Private tenant is shared with no one, and only accessible for the currently logged in user.
-
+The Private tenant is not shared.  It is only accessible for the currently logged in user.
 
 ## Installation and configuration
 
-In order for multitenancy to work, you need to install and configure
+In order for multitenancy to work, you need to install and configure:
 
 * Elasticsearch: Search Guard > v11 and the Kibana multitenancy enterprise module
 * Kibana: the Search Guard Kibana plugin
 
-Multi tenancy will not work properly if you install only one of the modules / plugins, or if the configuration does not match on both Elasticsearch and Kibana side.
+Multi tenancy will not work properly if you install only one of the modules or plugins,or if the configuration does not match on both Elasticsearch and Kibana side.
 
 ### Elasticsearch: Installation
 
@@ -68,7 +65,7 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes for to activate the module.
 
 If everything is installed correctly, you should see the following entries in the elasticsearch logs on startup:
 
