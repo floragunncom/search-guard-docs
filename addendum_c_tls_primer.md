@@ -8,11 +8,11 @@ While Elasticsearch is often used for storing and searching sensitive data, it d
 
 In order to secure your sensitive data, the first step is to encrypt the entire traffic from and to your ES cluster via TLS. 
 
-By using TLS the traffic between ES nodes and ES clients will be encrypted, which means that:
+By using TLS, the traffic between ES nodes and ES clients will be encrypted, which means that:
 
-* nobody can spying on the traffic
-* nobody can tamper with the traffic
-* only trusted nodes can join your cluster
+* Nobody can spy on the traffic.
+* Nobody can tamper with the traffic.
+* Only trusted nodes can join your cluster.
 
 Search Guard supports OpenSSL for improved performance and the most modern cipher suites.
 
