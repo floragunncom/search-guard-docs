@@ -8,9 +8,9 @@ Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana)
 
 In the following description, we assume that you have already set up an Search Guard secured Elasticsearch cluster. We'll walk through all additional steps needed for integrating Kibana with your setup. 
 
-We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
+We also assume that you have enabled TLS support on the REST layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
-Please check the `elasticsearch.yml` file and see whether TLS on the REST-layer is enabled:
+Please check the `elasticsearch.yml` file and see whether TLS on the REST layer is enabled:
 
 ```
 searchguard.ssl.http.enabled: true
@@ -26,11 +26,11 @@ First download the [Search Guard Kibana plugin](https://github.com/floragunncom/
 The installation procedure is the same as for any other Kibana plugin:
 
 * Kibana >= 5:
- * cd into your Kibana installaton directory.
- * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip`. 
-* Kibana < 5;
- * cd into your Kibana installaton directory.
- * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip`. 
+  * cd into your Kibana installaton directory.
+  * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip`. 
+* Kibana < 5:
+  * cd into your Kibana installaton directory.
+  * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip`. 
 
 ### Configuring the Search Guard Kibana Plugin
 
@@ -38,9 +38,9 @@ The Search Guard Kibana plugin provides session management for Kibana. If not al
 
 | Name  | Description  |
 |---|---|
-| searchguard.basicauth.enabled  |  boolean, enable or disable the session management. Defaut: true.|
+| searchguard.basicauth.enabled  |  boolean, enable or disable the session management. Default: true.|
 |  searchguard.cookie.secure |  boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
-| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
+| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'.  |
 | searchguard.cookie.password  | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password'.  |
 | searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour.  |
 | searchguard.session.ttl  | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour.  |
@@ -48,9 +48,9 @@ The Search Guard Kibana plugin provides session management for Kibana. If not al
 
 ### Configuring the Kibana server user
 
-For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user. We'll call it the Kibana server user.
+For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the `kibanaserver`.
 
-This user needs special privileges for the Kibana index, and is used "under the hood" by Kibana. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
+This user needs special privileges for the Kibana index, and is used under the hood by Kibana. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
 
 The username and password for the Kibana server user can be configured in `kibana.yml` by setting:
 
@@ -111,7 +111,7 @@ console.proxyConfig:
       verify: false 
 ```
 
-Instead you may also pass the Root CA in pem format to establish a chain of trust:
+Instead, you may also pass the Root CA in pem format to establish a chain of trust:
 
 ```
 console.proxyConfig:
@@ -174,7 +174,7 @@ CLUSTER_COMPOSITE_OPS:
   - CLUSTER_COMPOSITE_OPS_RO
 ```
 
-You can use any type of authentication mechanism for the Kibana server user, given that the credentials can be extracted from the HTTP reques as HTTP Basic Authentication headers. In other words, SSO authentication like JWT will not work for the Kibana server user.
+You can use any type of authentication mechanism for the Kibana server user, given that the credentials can be extracted from the HTTP request as HTTP Basic Authentication headers. In other words, SSO authentication like JWT will not work for the Kibana server user.
 
 #### Example: Internal authentication
 
