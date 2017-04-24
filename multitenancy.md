@@ -20,9 +20,9 @@ elasticsearch.password: "kibanaserver"
 
 This means that regardless of the permissions a user has, he or she will be able to see and modify all dashboards and visualizations.
 
-In case the user does not have permissions to access the underlying index of a Visualization, the visualization will simply be blank and a security exception is logged in Elasticsearch.
+In case the user does not have permissions to access the underlying index of a visualization, the visualization will simply be blank and a security exception is logged in Elasticsearch.
 
-The Kibana multitenancy module brings true separation of stored objects based on the configured **tenants** of a users **role**.
+The Kibana multitenancy module brings true separation of stored objects based on the configured **tenants** of a user's **role**.
 
 ## Tenants
 
@@ -32,7 +32,7 @@ A Kibana tenant is a named container for storing saved objects. A tenant can be 
 
 Any Kibana user always has access to two preconfigured tenants: Global and Private.
 
-The Global tenant is shared with every user. This is the default tenant if no other tenenat is selected.  You'll find objects that you have created before installing the multi tenancy module there.
+The Global tenant is shared with every user. This is the default tenant if no other tenant is selected.  You'll find objects that you have created before installing the multi tenancy module there.
 
 The Private tenant is not shared.  It is only accessible for the currently logged in user.
 
@@ -40,10 +40,10 @@ The Private tenant is not shared.  It is only accessible for the currently logge
 
 In order for multitenancy to work, you need to install and configure:
 
-* Elasticsearch: Search Guard > v11 and the Kibana multitenancy enterprise module
-* Kibana: the Search Guard Kibana plugin
+* Elasticsearch: Search Guard > v11 and the Kibana multitenancy enterprise module.
+* Kibana: the Search Guard Kibana plugin.
 
-Multi tenancy will not work properly if you install only one of the modules or plugins,or if the configuration does not match on both Elasticsearch and Kibana side.
+Multi tenancy will not work properly if you install only one of the modules or plugins or if the configuration does not match in Elasticsearch and Kibana.
 
 ### Elasticsearch: Installation
 
@@ -100,9 +100,9 @@ The following configuration keys are available:
 | Name  | Description  |
 |---|---|
 | searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Default: true.|
-|  searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations, otherwise multi tenancy will not work. Default: `kibanaserver`.|
-| searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations, otherwise multi tenancy will not work. Default: `.kibana`. |
-| searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see silently. If disabled, a security exceptions is returned. Default: false.  |
+|  searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
+| searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
+| searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Default: false.  |
     
 #### Adding tenants
 
@@ -172,7 +172,7 @@ sg_config: searchguard.dynamic.kibana.index
 
 By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
 
-The Private tenant is meant as a users private space, thus is shared by no one.
+The Private tenant is meant as a user's private space, thus is not shared.
 
 You can enable and disable these tenants by the following `kibana.yml` configuration keys:
 
@@ -225,7 +225,7 @@ In some situations, you might want to allow the requests, and only return data f
 searchguard.dynamic.kibana.do_not_fail_on_forbidden: true
 ```
 
-If this is set to true, Search Guard will return data only from indices the user has access to, and discard requests for other indices silently.
+If this is set to true, Search Guard will return data only from indices the user has access to and discard requests for other indices silently.
 
 While this behavior is in line with the behavior of competitor products, it also bears the risk of relying on wrong data. For example, if you calculate sums over data in multiple indices, and you only have permissions for some of the indices in question, the returned value will be wrong, since parts of the query will de discarded.
 
@@ -261,13 +261,13 @@ In case the Search Guard cookies are not readable anymore, e.g. if you changed t
 
 * searchguard_authentication: Stores the users login credentials.
 * searchguard_tenant: Stores the currently selected tenant.
-* searchguard_preferences: Stores the user's preferres tenants.
+* searchguard_preferences: Stores the user's preferred tenants.
 
 ## Under the hood: Index rewriting, Snapshot & Restore
 
-In a plain vanilla Kibana installation all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.
+In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.
 
-For example, if your Kibana index is called ".kibana", and the currently selected tenant is "human_resources", Search Guard will create a new index called something like ".kibana\_1592542611\_humanresources", and makes sure all saved objects will be placed in this index.
+For example, if your Kibana index is called ".kibana", and the currently selected tenant is "human_resources", Search Guard will create a new index called something like ".kibana\_1592542611\_humanresources", and places saved objects will in this index.
 
 The structure of the index name for a regular tenant is:
 
@@ -287,7 +287,7 @@ The structure of the index name for the Global tenants is:
 <kibana index name>
 ``` 
 
-Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the users permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana.md) for further information.
+Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana.md) for further information.
 
 **If you use snapshot / restore, you need to include all tenant indices, otherwise you will loose data!**
 
