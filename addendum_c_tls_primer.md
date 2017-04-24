@@ -18,15 +18,15 @@ Search Guard supports OpenSSL for improved performance and the most modern ciphe
 
 ## TLS in a nutshell
 
-TLS (often referred to as "SSL" for historical reasons) is a cryptographic protocol to secure the communication over a computer network. It uses **symmetric encryption** to encrypt the transmitted data, by negotiating a **unique secret** at the start of any **TLS session** between two participating parties. It uses **public key cryptography** to authenticate the identity of the participating parties.
+TLS (aka SSLv3) is a cryptographic protocol to secure the communication over a computer network. It uses **symmetric encryption** to encrypt the transmitted data, by negotiating a **unique secret** at the start of any **TLS session** between two participating parties. It uses **public key cryptography** to authenticate the identity of the participating parties.
 
-TLS supports many different ways for exchanging keys and encrypting data. 
+TLS supports different ways to exchange keys and encrypt data. 
 
 ### Certificates & Certificate authorities
 
-TLS uses certificates ("digital certificates") for encrypting traffic and for identifying and authenticating the two participating parties in a TLS session. 
+TLS uses certificates ("digital certificates") for encrypting traffic and for identifying and authenticating the two parties in a TLS session. 
 
-To be more precise, a digital certificate certifies the ownership of a public key by the named subject of the certificate. 
+To be more precise, a digital certificate certifies the ownership of a public key by the common name in the certificate. 
 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security#Digital_certificates)).
 
 The public key is then used for the actual encryption. 
@@ -35,7 +35,7 @@ The public key is then used for the actual encryption.
 
 A certificate can be used to issue and sign other certificates, building a trust hierarchy among these certificates. The certificates can be **intermediate root certificates** or **end entity certificates**.
 
-A **root certificate**, issued by a **root certificate authority (root CA)** is at the root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert and Comodo. 
+A **root certificate**, issued by a **root certificate authority (root CA)**, is at the root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert and Comodo. 
 
 A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certificates, while an end entity certificate is intended to be installed directly on a server. With an end entity certificate do you not to sign other certificates.
 
@@ -45,11 +45,11 @@ To establish a TLS session, all certificates in the hierarchy are verified, up t
 
 Before any user data is sent between these parties, first a **TLS session** has to be established. This process is called **TLS handshake**.   
 
-The details of this handshake can vary slighty, depending on the selected cipher suite, but at a very high level the following steps are performed:
+The details of this handshake can vary slighty, depending on the selected cipher suite. At a high level the following steps are performed:
 
-* The client sends a ClientHello message, containing the information which TLS version and cipher protocols it supports.
-* The server sends a ServerHello message, containing the chosen protocol version and cipher suite.
-* The server sends its certificate, containing the public key.
+* The client sends a ClientHello message containing the information which TLS version and cipher protocols it supports.
+* The server sends a ServerHello message containing the chosen protocol version and cipher suite.
+* The server sends its certificate containing the public key.
 * The client verifies the certificate and all intermediate certificates against its list of installed root CAs.
 * If the client cannot verify the certificate, it aborts the connection or displays a warning, depending on the client and settings. 
 * If the certificate can be verified, the client sends a "PreMasterSecret" to compute a common secret, called the "master secret". This master secret is used for encrypting the traffic. The PreMasterSecret is encrypted using the public key of the server certificate.
@@ -63,7 +63,7 @@ While at this point the server's identity is verified, the client's identity is 
 * The server verifies the certificate using its own installed list of root CAs and intermediate CA.
 * If thus succeeds, the connection is mutually authenticated.
 
-Note that this is a simplified explanation of the handshake protocol to demonstrate the basic principles. In short: The handshake protocol uses a combination of certificates and public/private keys to verify the identities of the communication partners and to negotiate a master secret for encrypting the traffic.
+Note that this is a simplified explanation of the handshake protocol to demonstrate the basic principles. In short: the handshake protocol uses a combination of certificates and public/private keys to verify the identities of the communication partners and to negotiate a master secret for encrypting the traffic.
 
 ### Keystore and Truststore
 
@@ -75,9 +75,9 @@ Search Guard supports two key and truststore formats: JKS and PKCS12. In additio
 
 In a typical Search Guard setup, each node in the cluster has both a keystore and a truststore. If a node wants to communicate with another node, it uses its own certificate stored in the keystore to identify itself.
 
-The other node uses the root CA stored in the truststore to verify the other nodes certificate.
+The other node uses the root CA stored in the truststore to verify the other node's certificate.
 
-This of course is performed in both ways, because a node acts as a "client" and "server" at the same time: it sends requests to other nodes, acting as a client, and receives requests, acting as a server.
+This, of course, is run in both directions because a node acts as a "client" and "server" at the same time: it sends requests to other nodes, acting as a client, and receives requests, acting as a server.
 
 ## Minimal setup
 
