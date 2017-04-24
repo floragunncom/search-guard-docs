@@ -9,9 +9,9 @@ Audit logging enables you to track access to your Elasticsearch cluster. Search 
 * SSL_EXCEPTION—an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
 * BAD_HEADERS—an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
 * FAILED_LOGIN—the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
-* MISSING_PRIVILEGES—an attempt was made to access Elasticsearch, but the authenticated user lacks the respective privileges for the requested action
-* SG\_INDEX\_ATTEMPT—an attempt was made to access the Search Guard internal user- and privileges index without a valid admin TLS certificate 
-* AUTHENTICATED—represents a successful request to Elasticsearch 
+* MISSING_PRIVILEGES—an attempt was made to access Elasticsearch, but the user does not have the required permissions.
+* SG\_INDEX\_ATTEMPT—an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
+* AUTHENTICATED—represents a successful request to Elasticsearch. 
 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging.  See the section "Finetuning the thread pool" below.
   
@@ -84,11 +84,11 @@ searchguard.audit.type: <debug|internal_elasticsearch|external_elasticsearch|web
 
 Note that it is not possible to specify more than one storage type at the moment.
 
-You can also use your own, custom implementation of the storage in case you have special requirements that are not covered by the built-in types. See the section "Custom storage types" below.
+You can also use your own, custom implementation of storage in case you have special requirements that are not covered by the built-in types. See the section "Custom storage types" below.
 
 ## Storage type 'debug'
 
-There are no special configuration settings for this audit type, so you just add the audit type setting in `elasticsearch.yml`:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
 
 ```
 searchguard.audit.type: debug
@@ -98,7 +98,7 @@ This will output tracked events to stdout.
 
 ## Storage type 'internal_elasticsearch'
 
-In addition to specifying the type as `internal_elasticsearch`, you can set the index name and the document type to be used:
+In addition to specifying the type as `internal_elasticsearch`, you can set the index name and the document type:
 
 ```
 searchguard.audit.type: internal_elasticsearch
@@ -119,7 +119,7 @@ searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
 ``` 
 
-SearchGuard uses the REST API to send the tracked events.  So for `searchguard.audit.config.http_endpoints`, use a comma-separated list of hostname/IP and the REST port (default 9200). For example:
+SearchGuard uses the REST API to send the tracked events.  So for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
 
 ```
 searchguard.audit.config.http_endpoints: 192.168.178.1:9200,192.168.178.2:9200
@@ -129,7 +129,7 @@ searchguard.audit.config.http_endpoints: 192.168.178.1:9200,192.168.178.2:9200
 
 If you use `external_elasticsearch` as audit type, and the cluster you want to store the audit logs in is also secured by Search Guard, you need to supply some additional configuration parameters.
 
-The parameters you need to specify depends on what authentication type you configured on the REST layer.
+The parameters depend on what authentication type you configured on the REST layer.
 
 ### TLS settings
 
@@ -150,7 +150,7 @@ searchguard.audit.config.enable_ssl_client_auth: <true|false>
 ```
 Whether or not to enable SSL/TLS client authentication. If you set this to true, the audit log module will send the nodes certificate from the keystore along with the request. The receiving cluster can use this certificate to verify the identity of the caller.
 
-Note: The audit log module will use the key and truststore settings configured in the HTTP/REST layer SSL section of the elasticsearch.yml file. Please refer to the [Search Guard SSL](https://github.com/floragunncom/search-guard-ssl-docs/blob/master/configuration.md) configuration chapter for more information.
+Note: The audit log module will use the key and truststore settings configured in the HTTP/REST layer SSL section of elasticsearch.yml. Please refer to the [Search Guard SSL](https://github.com/floragunncom/search-guard-ssl-docs/blob/master/configuration.md) configuration chapter for more information.
 
 ### Basic auth settings
 
@@ -163,7 +163,7 @@ searchguard.audit.config.password: <password>
 
 ## Storage type 'webhook'
 
-This storage type ships the audit log events to an arbitrary HTTP endpoint. Enable this storage type adding the following to `elasticsearch.yml:`
+This storage type ships the audit log events to an arbitrary HTTP endpoint. Enable this storage type by adding the following to `elasticsearch.yml:`
 
 ```
 searchguard.audit.type: webhook
@@ -194,7 +194,7 @@ The audit log message is submitted to the configured webhook URL as HTTP GET. Al
 
 **URL\_PARAMETER\_POST**
 
-The audit log message is submitted to the configured webhook URL as HTTP POST. All logged information is appended to the URL as request parameters.
+The audit log message is submitted to the configured webhook URL as an HTTP POST. All logged information is appended to the URL as request parameters.
 
 **TEXT**
 
@@ -202,11 +202,11 @@ The audit log message is submitted to the configured webhook URL as HTTP POST. T
 
 **JSON**
 
-The audit log message is submitted to the configured webhook URL as HTTP POST. The body of the HTTP POST request contains the audit log message in JSON format.
+The audit log message is submitted to the configured webhook URL as an HTTP POST. The body of the HTTP POST request contains the audit log message in JSON format.
 
 **SLACK**
 
-The audit log message is submitted to the configured webhook URL as HTTP POST. The body of the HTTP POST request contains the audit log message in JSON format suitable for consumption by Slack. The default implementation returns `"text": "<AuditMessage#toText>"`
+The audit log message is submitted to the configured webhook URL as an HTTP POST. The body of the HTTP POST request contains the audit log message in JSON format suitable for consumption by Slack. The default implementation returns `"text": "<AuditMessage#toText>"`
 
 ### Customizing the audit log event format
 
