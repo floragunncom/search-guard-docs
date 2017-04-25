@@ -1,6 +1,6 @@
 # Node certificates
 
-This chapter explains the requirements regarding node certificates. It is only relevant if you plan to generate your own certificates with your own PKI infrastructure. 
+This chapter explains the requirements regarding node certificates. It is only relevant if you plan to generate your own certificates with your own PKI infrastructure.
 
 If you generated the certificates with one of the methods described in the chapter [Prerequisites](tls_overview.md), everything is already set and you can jump to [TLS Configuration](tls_configuration.md) directly.
  
@@ -81,7 +81,7 @@ org.elasticsearch.common.settings.Settings
 as argument. For example:
 
 ```
-public final class MyInterClusterRequestEvaluator 
+public final class MyInterClusterRequestEvaluator
   implements InterClusterRequestEvaluator {
     
     public MyInterClusterRequestEvaluator(final Settings settings) {
@@ -91,7 +91,7 @@ public final class MyInterClusterRequestEvaluator
     @Override
     public boolean isInterClusterRequest(
        TransportRequest request,
-       X509Certificate[] localCerts, 
+       X509Certificate[] localCerts,
        X509Certificate[] peerCerts,
        final String principal) {
        ...

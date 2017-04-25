@@ -12,19 +12,19 @@ As with regular permissions, settings for document- and field-level security can
 
 ## Installation
 
-Download the DLS/FLS module from Maven Central: 
+Download the DLS/FLS module from Maven Central:
 
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22) 
- 
-and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-2` 
+and place it in the folder
+
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
@@ -34,7 +34,7 @@ After that, restart all nodes for the module to become activated.
 
 Document-level security restricts the user's access to a certain set of documents within an index. These "certain documents" are defined by a **standard Elasticsearch query**. Only documents matching this query will be visible for the role that the DLS is defined for.
 
-### Example 
+### Example
 
 Let's imagine we have an index called `humanresources`. This index contains documents with type `employees`, and these documents have a field called `department`. We want to define a query that allows access to all employee documents, except those where the department is set to "Management". 
 
@@ -44,7 +44,7 @@ The respective query to filter these documents in regular query DSL would look l
 {
   "query": {
     "bool": {
-      "must_not": { "match": { "department": "Management"  }}
+      "must_not": { "match": { "department": "Management" }}
     }
   }
 }
@@ -58,7 +58,7 @@ hr_employee:
     'humanresources':
       'employees':
         - '*'
-      _dls_: '{"query": { "bool": { "must_not": { "match": { "department": "Management"  }}}}}'
+      _dls_: '{"query": { "bool": { "must_not": { "match": { "department": "Management" }}}}}'
 ```
 
 If a user has the role `hr_employee`, Search Guard now filters all documents where the `department` field is set to "Management" from any search result before passing it back to the user.
@@ -85,7 +85,7 @@ management:
         - '*'
       _dls_: '{"term" : {"manager" : "${user.name}"}}'
 ```
-    
+
 Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
 
 ### Multiple roles and document-level security
@@ -121,7 +121,7 @@ hr_employee:
      ...
 ```
 
-### Excluding fields      
+### Excluding fields
 
 If you rather want to exclude than include fields, simply prefix all fields with a `~`. In the example below, all fields except `Designation`, `FirstName` and `LastName` are returned by Search Guard:
 

@@ -16,7 +16,7 @@ If you use the enterprise features, please make sure that also the versions of t
 
 Search Guard itself can be installed like any other Elasticsearch plugin. Of course, **replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
 
-Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`. 
+Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`.
 
 **Search Guard 5**
 
@@ -59,7 +59,7 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 ```
 
-In any case, if you see 
+In any case, if you see
 
 ```
 Installed search-guard-ssl into /usr/share/elasticsearch/plugins/search-guard-ssl
@@ -77,50 +77,50 @@ at the end of the respective installation process, everything was installed corr
 
 If you want to use any of the enterprise modules, download the respective jar file and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-2` 
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
 if you're using Search Guard 5.
 
 Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (**choose jar file(s) with dependencies**) directly from Maven.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
-[https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap) 
+[https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22) 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
 
 #### Kerberos Authentication/Authorisation:
- [https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos) 
+ [https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22) 
- 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
+
 #### JWT Authentication/Authorisation:
  [https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt)
- 
+
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
- 
+
 #### Document- and field level security:
 [https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22) 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
 
 #### Audit logging:
- [https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog) 
- 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22) 
+ [https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog)
+
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
 
 #### REST management API:
 [https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
 
 #### Kibana multi tenancy module:
 [https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy)
 
-[Maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22) 
+[Maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22)
 
 Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
 
@@ -153,11 +153,11 @@ searchguard.cert.oid: '1.2.3.4.5.5'
 
 ### Compatibility with other plugins
 
-If you have other plugins like kopf installed, please check the compatibility with Search Guard. 
+If you have other plugins like kopf installed, please check the compatibility with Search Guard.
 
 As a rule of thumb, if a plugin is compatible with Shield, it is also compatible with Search Guard. In detail:
 
-If the plugin talks to Elasticsearch on the REST layer, and you have REST TLS enabled, the plugin must also support TLS. 
+If the plugin talks to Elasticsearch on the REST layer, and you have REST TLS enabled, the plugin must also support TLS.
 
 If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://floragunn.com/searchguard-elasicsearch-transport-clients/).
 

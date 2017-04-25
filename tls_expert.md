@@ -47,7 +47,7 @@ searchguard.ssl.transport.principal_extractor_class: com.example.MyPrincipalExtr
 
 If you are integrating Search Guard with your own software, you might already have an `javax.net.ssl.SSLContext` object available which you want to use. In this case, instead of building an `SSLContext` from the configured keystore and truststore, you can instruct Search Guard to use your `SSLContext` object directly.
 
-Search Guard is able to manage multiple `SSLContext` objects. You need to register the objects you want to use with the `com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore` and an id first. When constructing the `Settings` object used for instantiating the `TransportClient`, you can configure which `SSLContext` should be used for this `TransportClient`. 
+Search Guard is able to manage multiple `SSLContext` objects. You need to register the objects you want to use with the `com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore` and an id first. When constructing the `Settings` object used for instantiating the `TransportClient`, you can configure which `SSLContext` should be used for this `TransportClient`.
 
 Example:
 
@@ -55,7 +55,7 @@ Example:
 SSLContext sslContext = …
 
 ExternalSearchGuardKeyStore.registerExternalSslContext(
-    "mycontext", 
+    "mycontext",
      sslContext
 );
 

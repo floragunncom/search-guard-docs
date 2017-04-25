@@ -8,24 +8,24 @@ This module adds the capability of managing users, roles, roles mapping and acti
 
 ## Installation
 
-Download the REST management API enterprise module from Maven Central: 
+Download the REST management API enterprise module from Maven Central:
 
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
 
-and place it in the folder 
+and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2` 
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
 After that, restart all nodes for the module to become activated.
- 
+
 ## Prerequisites
 
 The Search Guard index is specially secured, so that it can only be accessed with a valid admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
@@ -36,7 +36,7 @@ In order for Search Guard to pick up this certificate on the REST layer, you nee
 searchguard.ssl.http.clientauth_mode: OPTIONAL
 ```
 
-If you plan to use the REST API via a browser, you will need to install the admin certificate in your browser. This varies from browser to browser, so please refer to the documentation of your browser-of-choice to learn how to do so. 
+If you plan to use the REST API via a browser, you will need to install the admin certificate in your browser. This varies from browser to browser, so please refer to the documentation of your browser-of-choice to learn how to do so.
 
 For curl, you need to specify the admin certificate with it's complete certificate chain, and also the key:
 
@@ -81,7 +81,7 @@ The response body has the format:
 {
   "status":<HTTP status code>,
   "message":<message>
-  "invalid_keys": 
+  "invalid_keys":
   "missing_mandatory_keys"
   "specify_one_of:"
 }
@@ -146,7 +146,7 @@ GET /_searchguard/api/user/kirk
     "roles" : [ "captains", "starfleet" ]
   }
 }
-```  
+```
 ### Delete
 
 ```
@@ -256,7 +256,7 @@ PUT /_searchguard/api/rolesmapping/sg_role_starfleet
 }
 ```
 
-You need to specify at least one of `backendroles`, `hosts` or `users`. 
+You need to specify at least one of `backendroles`, `hosts` or `users`.
 
 If the call is succesful, a JSON structure is returned, indicating whether the roles mapping was created or updated.
 
@@ -265,7 +265,7 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
   "status":"OK",
   "message":"rolesmapping sg_role_starfleet created."
 }
-```		
+```
 
 ## Roles API
 
@@ -372,9 +372,9 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
   "status":"OK",
   "message":"role sg_role_starfleet created."
 }
-```		
-		
-## Action groups API				
+```
+
+## Action groups API
 
 Used to receive, create, update and delete action groups.
 
@@ -398,7 +398,7 @@ GET /_searchguard/api/actiongroup/SEARCH
 {
   "SEARCH" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
-```  
+```
 ### Delete
 
 ```
@@ -442,7 +442,7 @@ The field permissions is mandatory and contains permissions or references to oth
 
 ## Cache API
 
-Used to manage the Search Guard internal user, authentication and authorization  cache.
+Used to manage the Search Guard internal user, authentication and authorization cache.
 
 ### Endpoint
 

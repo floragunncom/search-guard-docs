@@ -4,9 +4,9 @@ Copryight 2016 floragunn GmbH
 
 # Using Search Guard with Kibana
 
-Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana). Since Kibana mainly acts as a client (or to be more precise: a proxy) for Elasticsearch, you can use nearly all features of Search Guard also in combination with Kibana. 
+Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana). Since Kibana mainly acts as a client (or to be more precise: a proxy) for Elasticsearch, you can use nearly all features of Search Guard also in combination with Kibana.
 
-In the following description, we assume that you have already set up an Search Guard secured Elasticsearch cluster. We'll walk through all additional steps needed for integrating Kibana with your setup. 
+In the following description, we assume that you have already set up an Search Guard secured Elasticsearch cluster. We'll walk through all additional steps needed for integrating Kibana with your setup.
 
 We also assume that you have enabled TLS support on the REST-layer via Search Guard SSL. While this is optional, we strongly recommend to use this feature. Otherwise, all traffic between Kibana and Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
@@ -26,25 +26,25 @@ First download the [Search Guard Kibana plugin](https://github.com/floragunncom/
 The installation procedure is the same as for any other Kibana plugin:
 
 * Kibana >= 5
- * cd into your Kibana installaton directory
- * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip` 
+  * cd into your Kibana installaton directory
+  * Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip`
 * Kibana < 5
- * cd into your Kibana installaton directory
- * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip` 
+  * cd into your Kibana installaton directory
+  * Execute: `bin/kibana plugin -i searchguard-kibana-alpha -u file:///path/to/searchguard-kibana-<version>.zip`
 
 ### Configuring the Search Guard Kibana Plugin
 
 The Search Guard Kibana plugin provides session management features for Kibana. If not already authenticated, the user is redirected to a login page. The credentials, once validated, are stored in an encrypted cookie on the users browser. Use the following settings in kibana.yml to configure the plugin:
 
-| Name  | Description  |
+| Name | Description |
 |---|---|
-| searchguard.basicauth.enabled  |  boolean, enable or disable the session management. Defaut: true|
-|  searchguard.cookie.secure |  boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
-| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
-| searchguard.cookie.password  | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password'  |
-| searchguard.cookie.ttl  | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour  |
-| searchguard.session.ttl  | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour  |
-| searchguard.session.keepalive  | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true   |
+| searchguard.basicauth.enabled | boolean, enable or disable the session management. Defaut: true|
+| searchguard.cookie.secure | boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
+| searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
+| searchguard.cookie.password | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password' |
+| searchguard.cookie.ttl | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour |
+| searchguard.session.ttl | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour |
+| searchguard.session.keepalive | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true |
 
 ### Configuring the Kibana server user
 
@@ -64,7 +64,7 @@ elasticsearch.password: "kibanaserver"
 If you use TLS on the Elasticsearch REST-layer, you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearch.url` to `https`:
 
 ```
-elasticsearch.url: "https://localhost:9200" 
+elasticsearch.url: "https://localhost:9200"
 ```
 
 All requests that Kibana makes to Elasticsearch are now using HTTPS instead of HTTP.
@@ -108,7 +108,7 @@ console.proxyConfig:
   - match:
       protocol: "https"
     ssl:
-      verify: false 
+      verify: false
 ```
 
 Instead you may also pass the Root CA in pem format to establish a chain of trust:
@@ -131,22 +131,22 @@ Since v2, you can fully customize the login page to adapt it to your needs. Per 
 
 Use the following setting in kibana.yml to customize one or more elements:
 
-| Name  | Description  |
+| Name | Description |
 |---|---|
-| searchguard.basicauth.login.showbrandimage  |  boolean, show or hide the brand image, Default: true|
-|  searchguard.basicauth.login.brandimage |  String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
-| searchguard.cookie.name  | String, name of the cookie. Default: 'searchguard_authentication'  |
-| searchguard.basicauth.login.title  | String, title of the login page. |
-| searchguard.basicauth.login.subtitle  | String, subtitle of the login page. |
-| searchguard.basicauth.login.buttonstyle  | String, style attribute of the login button.  |
-      
+| searchguard.basicauth.login.showbrandimage | boolean, show or hide the brand image, Default: true|
+| searchguard.basicauth.login.brandimage | String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
+| searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
+| searchguard.basicauth.login.title | String, title of the login page. |
+| searchguard.basicauth.login.subtitle | String, subtitle of the login page. |
+| searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
+
 ## Configuring Elasticsearch
 
 Tip: For a quickstart, you can use the role definitions that ship with Search Guard. The Kibana server user role is `sg_kibana_server`, the role for regular users is `sg_kibana`. Both are defined in `sg_roles.yml`.
 
 ### Adding the Kibana server user
 
-As outlined above, Kibana internally uses a special user to talk to Elasticsearch when performing management calls. 
+As outlined above, Kibana internally uses a special user to talk to Elasticsearch when performing management calls.
 
 The username and password for this user is configured in kibana.yml. On the Elasticsearch side, make sure that this user has the following permissions:
 
@@ -194,7 +194,7 @@ searchguard:
     http:
      ...
     authc:
-      kibana_auth_domain: 
+      kibana_auth_domain:
         enabled: true
         order: 1
         http_authenticator:
@@ -241,7 +241,7 @@ CLUSTER_COMPOSITE_OPS_RO:
   - "indices:data/read/coordinate-msearch*"
   - "indices:admin/aliases/exists*"
   - "indices:admin/aliases/get*"
-  - 
+  -
 READ:
   - "indices:data/read*"
 ALL:

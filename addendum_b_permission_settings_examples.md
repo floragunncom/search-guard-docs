@@ -12,7 +12,7 @@ sg_readall:
   indices:
     '*':
       '*':
-        - indices:data/read* 
+        - indices:data/read*
 ```
 
 ## Defining a "read-only" role for all indices and types, but with added DLS and FLS. 
@@ -25,7 +25,7 @@ sg_readall_dls_fls:
   indices:
     '*':
       '*':
-        - READ    
+        - READ
       _dls_: '{"term" : {"_type" : "payroll"}}'
       _fls_:
         - 'firstname'
@@ -41,14 +41,14 @@ Defining read permission on all indices that start with `pub`. On index `employe
 sg_indices_fls:
   indices:
     employees:
-       developers:  
+       developers:
          - CRUD
-       operations:  
+       operations:
          - CRUD
-       management:  
-         - READ       
+       management:
+         - READ
     'pub*':
-       '*':  
+       '*':
          - READ
 ```
 

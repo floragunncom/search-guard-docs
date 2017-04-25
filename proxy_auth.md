@@ -1,7 +1,7 @@
 <!---
 Copryight 2017 floragunn GmbH
 -->
- 
+
 # HTTP-header/Proxy based authentication
 
 You might already have a (single sign on) authentication solution in place, and you want to use this instead of an authentication backend of Search Guard.
@@ -32,10 +32,10 @@ proxy_auth_domain:
     type: noop
 ```
 
-| Name  | Description  |
+| Name | Description |
 |---|---|
-| user_header  |  String, The HTTP header field containing the authenticated username. Default: `x-proxy-user` |
-| roles_header  |  String, The HTTP header field containing the comma separated list of authenticated role names. Default: `x-proxy-roles` |
+| user_header | String, The HTTP header field containing the authenticated username. Default: `x-proxy-user` |
+| roles_header | String, The HTTP header field containing the comma separated list of authenticated role names. Default: `x-proxy-roles` |
 
 ## Security considerations
 

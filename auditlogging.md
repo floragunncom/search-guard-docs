@@ -7,42 +7,42 @@ Copryight 2016 floragunn GmbH
 Audit logging enables you to track access to your Elasticsearch cluster. Search Guard tracks the following types of events, on REST- and transport level:
 
 * SSL_EXCEPTION
- * An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
+  * An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
 * BAD_HEADERS
- * An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers
+  * An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers
 * FAILED_LOGIN
- *  The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
+  *  The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
 * MISSING_PRIVILEGES
- * An attempt was made to access Elasticsearch, but the authenticated user lacks the respective privileges for the requested action
+  * An attempt was made to access Elasticsearch, but the authenticated user lacks the respective privileges for the requested action
 * SG\_INDEX\_ATTEMPT
- * An attempt was made to access the Search Guard internal user- and privileges index without a valid admin TLS certificate 
+  * An attempt was made to access the Search Guard internal user- and privileges index without a valid admin TLS certificate 
 * AUTHENTICATED
- * Represents a successful request to Elasticsearch 
+  * Represents a successful request to Elasticsearch
 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging, see chapter "Finetuning the thread pool" below.
-  
+
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Thus, changes to the audit log settings require a restart of all participating nodes in the cluster.
 
 ## Installation
 
-Download the Audit Log enterprise module from Maven Central: 
+Download the Audit Log enterprise module from Maven Central:
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22) 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
 
-and place it in the folder 
+and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2` 
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
 After that, restart all nodes for the module to become activated.
-  
+
 ## Configuring audit logging
 
 ### Configuring the categories to be logged
@@ -78,13 +78,13 @@ Since this extended logging comes with an performance overhead, the default sett
 Search guard comes with three audit log storage types built in. This specifies where you want to store the tracked events. You can choose from:
 
 * debug
- * Outputs the events on standard out
+  * Outputs the events on standard out
 * internal_elasticsearch
- * Writes the events in a separate audit index on the same cluster
+  * Writes the events in a separate audit index on the same cluster
 * external_elasticsearch
- * Writes the events in a separate audit index on another ES cluster
+  * Writes the events in a separate audit index on another ES cluster
 * webhook
- * Writes the events to an arbitrary HTTP endpoint
+  * Writes the events to an arbitrary HTTP endpoint
 
 You configure the type of audit logging in the `elasticsearch.yml` file:
 
@@ -102,7 +102,7 @@ There are no special configuration settings for this audit type, so you just add
 
 ```
 searchguard.audit.type: debug
-```  
+```
 
 This will output all tracked events on standard out.
 
@@ -114,7 +114,7 @@ In addition to specifying the type as `internal_elasticsearch`, you can set the 
 searchguard.audit.type: internal_elasticsearch
 searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
-``` 
+```
 
 If not specified, Search Guard uses the default value `auditlog` for both index name and document type.
 
@@ -127,7 +127,7 @@ searchguard.audit.type: internal_elasticsearch
 searchguard.audit.config.http_endpoints: <endpoints>
 searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
-``` 
+```
 
 SearchGuard uses the REST-API to send the tracked events, so for `searchguard.audit.config.http_endpoints`, use a comma-separated list of hostname/IP and the REST port (default 9200). For example:
 
@@ -177,7 +177,7 @@ This storage type ships the audit log events to an arbitrary HTTP endpoint. Enab
 
 ```
 searchguard.audit.type: webhook
-``` 
+```
 
 In addition, you can configure the following keys:
 
@@ -199,7 +199,7 @@ webhook.format: <URL_PARAMETER_GET|URL_PARAMETER_POST|TEXT|JSON|SLACK>
 The format in which the audit log message is logged:
 
 **URL\_PARAMETER\_GET**
- 
+
 The audit log message is submitted to the configured webhook URL as HTTP GET. All logged information is appended to the URL as request parameters.
 
 **URL\_PARAMETER\_POST**
@@ -272,7 +272,7 @@ In order for Search Guard to pick up your custom implementation, specify its ful
 
 ```
 searchguard.audit.type: com.example.MyCustomAuditLogStorage
-``` 
+```
 
 Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-2` or `plugins/search-guard-5` folder.
 
@@ -285,4 +285,4 @@ All events are logged asynchronously, so the overall performance of our cluster 
 searchguard.audit.threadpool.size: <integer>
 ```
 
-The default setting is `10`. Setting this value to `0` disableds the thread pool completey, and the events are logged synchronously. 
+The default setting is `10`. Setting this value to `0` disableds the thread pool completey, and the events are logged synchronously.

@@ -4,9 +4,9 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 # Prerequisites: TLS
 
-Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory. 
+Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
 
-By using TLS 
+By using TLS
 
 * you can be sure that nobody is spying on the traffic
 * you can be sure that nobody tampered with the traffic
@@ -24,12 +24,12 @@ If you have your own PKI infrastructure in place and are already familiar with T
 
 Search Guard supports certificates in the following formats:
 
-* Keystores and truststores in JKS or PKCS12 format  
-* X509 / PEM 
+* Keystores and truststores in JKS or PKCS12 format
+* X509 / PEM
 
 The **keystore** holds private keys and the associated certificates. It is used to **provide credentials** to the communication partner.
 
-The **truststore** contains all trusted certificates, typically root CAs and intermediate/signing certificates. It is used to **verify credentials** from a communication partner. 
+The **truststore** contains all trusted certificates, typically root CAs and intermediate/signing certificates. It is used to **verify credentials** from a communication partner.
 
 In a typical scenario, the certificate(s) contained in the keystore have been signed by the root CA or the intermediate/signing CA contained in the truststore.
 
@@ -61,7 +61,7 @@ The Search Guard Bundle is an Elasticsearch package that comes pre-installed and
 
 ### Demo certificate installation script
 
-Since v12, Search Guard ships with a demo certificate installation script. This script can be used on any **vanilla** Elasticsearch installation. It will generate the keystore and truststore, and add the necessary configuration entries to the `elasticsearch.yml` configuration file. Please note that the script only works flawlessly on an unchanged `elasticsearch.yml` file. 
+Since v12, Search Guard ships with a demo certificate installation script. This script can be used on any **vanilla** Elasticsearch installation. It will generate the keystore and truststore, and add the necessary configuration entries to the `elasticsearch.yml` configuration file. Please note that the script only works flawlessly on an unchanged `elasticsearch.yml` file.
 
 After installing Search Guard, you will find the script here:
 
@@ -85,11 +85,11 @@ You can find the TLS generator service here:
 
 ### Using the example PKI scripts
 
-If you use Linux or OS X, you can use the example scripts that ship with Search Guard SSL. 
+If you use Linux or OS X, you can use the example scripts that ship with Search Guard SSL.
 
 #### Prerequisites
 
-The scripts use OpenSSL and the Java `keytool` for generating all required artifacts. 
+The scripts use OpenSSL and the Java `keytool` for generating all required artifacts.
 
 In order to find out if you have OpenSSL installed, open a terminal and type
 
@@ -104,7 +104,7 @@ The `keytool` ships with the JDK itself and thus should be already available on 
 ```
 keytool
 ```
- 
+
 Which should print a list of available `keytool` commands. If this is not the case, please check your JDK installation and make sure the `keytool` is on your `PATH`.
 
 #### Generating the certificates

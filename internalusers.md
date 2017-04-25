@@ -47,7 +47,7 @@ The password hash is a salted bcrypt hash of your cleartext password. You can us
 On order to use the internal user database, you just need to set the `authentication_backend` to `internal`. For example, if you want to use HTTP Basic Authentication and the interna user database, the configuration looks like:
 
 ```
-basic_internal_auth_domain: 
+basic_internal_auth_domain:
   enabled: true
   order: 1
   http_authenticator:

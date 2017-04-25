@@ -27,7 +27,7 @@ cluster:
   cluster:admin/snapshot/restore
 indices:
   - indices:data/write/index
-  - indices:admin/create  
+  - indices:admin/create
 ```
 
 Note that by default a snapshot can only be restored when it does not contain global state and does not restore the 'searchguard' index

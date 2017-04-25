@@ -52,19 +52,19 @@ Multi tenancy will not work properly if you install only one of the modules / pl
 
 Make sure you have a Search Guard version with multi tenancy support installed and configured. Search Guard supports multi tenancy from v12 onwards.
 
-Download the LDAP enterprise module from Maven Central: 
+Download the LDAP enterprise module from Maven Central:
 
 [Kibana multitenancy module on Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-kibana-multitenancy%22) 
 
-and place it in the folder 
+and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2` 
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
@@ -100,13 +100,13 @@ searchguard:
 ```
 The following configuration keys are available:
 
-| Name  | Description  |
+| Name | Description |
 |---|---|
-| searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Default: true|
-|  searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations, otherwise multi tenancy will not work. Default: `kibanaserver`|
-| searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations, otherwise multi tenancy will not work. Default: `.kibana` |
-| searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see silently. If disabled, a security exceptions is returned. Default: false  |
-    
+| searchguard.dynamic.kibana.multitenancy_enabled | boolean, enable or disable multi tenancy. Default: true |
+| searchguard.dynamic.kibana.server_username | String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations, otherwise multi tenancy will not work. Default: `kibanaserver` |
+| searchguard.dynamic.kibana.index | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations, otherwise multi tenancy will not work. Default: `.kibana` |
+| searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see silently. If disabled, a security exceptions is returned. Default: false |
+
 #### Adding tenants
 
 If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.
@@ -137,7 +137,7 @@ For example, if you are on Kibana 5.3.0, you need the Kibana plugin 5.3.0-2 or a
 The installation procedure is the same as for any other Kibana plugin:
 
 * cd into your Kibana installaton directory
-* Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip` 
+* Execute: `bin/kibana-plugin install file:///path/to/searchguard-kibana-<version>.zip`
 
 ### Kibana: Plugin Configuration
 
@@ -168,7 +168,7 @@ Kibana index name:
 
 ```
 kibana.yml: kibana.index
-sg_config: searchguard.dynamic.kibana.index 
+sg_config: searchguard.dynamic.kibana.index
 ```
 
 ### Kibana: Tenant Configuration
@@ -179,10 +179,10 @@ The Private tenant is meant as a users private space, and thus is shared by no o
 
 You can enable and disable these tenants by the following `kibana.yml` configuration keys:
 
-| Name  | Description  |
+| Name | Description |
 |---|---|
-| searchguard.multitenancy.tenants.enable_global  |  boolean, enable or disable the global tenant. Default: true|
-| searchguard.multitenancy.tenants.enable_private  |  boolean, enable or disable the private tenant. Default: true|
+| searchguard.multitenancy.tenants.enable_global | boolean, enable or disable the global tenant. Default: true |
+| searchguard.multitenancy.tenants.enable_private | boolean, enable or disable the private tenant. Default: true |
 
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
 
@@ -246,7 +246,7 @@ If the Search Guard multitenancy module is not installed or is disabled, you wil
 <img src="images/kibana_mt_disabled.png" style="border: 1px solid"/>
 </p>
 
-Make sure the enterprise module is installed, and also check that   `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
+Make sure the enterprise module is installed, and also check that `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
 
 ### Kibana and Elasticsearch: Configuration mismatch
 
@@ -276,19 +276,19 @@ The structure of the index name for a regular tenant is:
 
 ```
 <kibana index name>_<tenant hashcode>_<tenant name>
-``` 
+```
 
 There are two default tenants in additions, Global and Private. The structure of the index name for the Private tenants is:
 
 ```
 <kibana index name>_<username hashcode>_<username>
-``` 
+```
 
 The structure of the index name for the Global tenants is:
 
 ```
 <kibana index name>
-``` 
+```
 
 Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the users permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana.md) for further information.
 
@@ -298,4 +298,4 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 
 ```
 <kibana index name>*
-``` 
+```

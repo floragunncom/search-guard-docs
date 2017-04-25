@@ -22,7 +22,7 @@ searchguard:
 searchguard:
   dynamic:
     authc:
-      basic_internal_auth_domain: 
+      basic_internal_auth_domain:
         enabled: true
         order: 1
         http_authenticator:
@@ -86,7 +86,7 @@ searchguard:
         enabled: true
         internalProxies: '192\.168\.0\.10|192\.168\.0\.11' # regex pattern
         remoteIpHeader:  'x-forwarded-for'
-        proxiesHeader:   'x-forwarded-by'    
+        proxiesHeader:   'x-forwarded-by'
     authc:
       proxy_auth_domain:
         enabled: true

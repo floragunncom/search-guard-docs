@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Configuring Search Guard
 
-## Configuring authentication and authorisation 
+## Configuring authentication and authorisation
 
 The main configuration file for Search Guard is `sg_config.yml`. This file is used to specify both authentication and authorisation and has three main parts:
 
@@ -26,7 +26,7 @@ In short, these sections are used to specify how Search Guard retrieves the user
 Let's first look at the `authc` section. This section has the following format:
 
 ```
-<name>: 
+<name>:
   enabled: <true|false>
   order: <integer>
     http_authenticator:
@@ -54,15 +54,15 @@ http_authenticator:
 Allowed values for `type` are:
 
 * basic
- * HTTP basic authentication. This type needs `challenge` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
+  * HTTP basic authentication. This type needs `challenge` set to `true`. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
 * kerberos
- * Kerberos authentication. This type needs `challenge` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
+  * Kerberos authentication. This type needs `challenge` set to `false`. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
 * clientcert
- * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See [TLS Client Certification](httpbasic.md) for further details.
+  * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes. See [TLS Client Certification](httpbasic.md) for further details.
 * jwt
- * Use JSON web tokens as authentication method. Needs additonal settings.
+  * Use JSON web tokens as authentication method. Needs additonal settings.
 * proxy
- * Use an external, proxy based authentication. This type needs `challenge` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
+  * Use an external, proxy based authentication. This type needs `challenge` set to `false`. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](proxy.md) for further details.
 
 The config section contains specific configuration settings for the selected type. At the moment, only Kerberos, JWT and Proxy need additional configuration. See these sections in the documentation for further information.
 
@@ -78,18 +78,18 @@ authentication_backend:
 Possible vales for `type` are:
 
 * noop
- * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user , or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type. 
+  * This means that no authentication against a backend system is performed. This setting only makes sense if the HTTP authenticator already authenticated the user , or if the request carries some credentials that are implicitly trusted. The former is true if you choose Kerberos as HTTP authentication type, the latter is true if you choose Proxy as HTTP authentication type.
 * internal
- * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml`, and load them into Search Guard by using the `sgadmin` command line tool.
+  * Use the users and roles defined in `sg_internal_users` for authentication. This requires you to specify users and roles in the file `sg_internal_users.yml`, and load them into Search Guard by using the `sgadmin` command line tool.
 * ldap
- *  Authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
+  * Authenticate users against an LDAP server. This requires additional configuration settings, see [LDAP and Active Directory](ldap.md) for further details.
 
 ### Authorization
 
 After the user has been authenticated, Search Guard can optionally collect additional user roles from backend systems. Authorisation configuration has the following format:
 
 ```
-authz:    
+authz:
   <name>:
     enabled: <true|false>
     authorization_backend:
@@ -103,9 +103,9 @@ You can also define multiple entries in this section, the same way as you can fo
 Possible vales for `type` are:
 
 * noop
- * Used for skipping this step altogether
-* ldap 
- * Fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
+  * Used for skipping this step altogether
+* ldap
+  * Fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
 
 
 #### Examples
@@ -114,7 +114,7 @@ Please refer to the [Addendum A](addendum_a_configuration_examples.md) of this d
 
 ## Map users, backend roles and hosts to Search Guard roles
 
-As outlined in chapter [Search Guard main concepts](concepts.md), Search Guard 
+As outlined in chapter [Search Guard main concepts](concepts.md), Search Guard
 
 * retrieves the user credentials
 * validates them against the configured authentication backend(s)
@@ -127,7 +127,7 @@ Depending on your configuration, you can now use the following data to assign th
 * hostname / IP: the hostname or IP the request originated from
 * Common name: The DN of the client certificate sent with the request
 
-Backend users, roles and hosts need to be mapped to Search Guard roles. This is done in the file `sg_roles_mapping.yml`. 
+Backend users, roles and hosts need to be mapped to Search Guard roles. This is done in the file `sg_roles_mapping.yml`.
 
 ```
 sg_read_write:
@@ -165,7 +165,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 The `cluster` entry is used to define permissions on cluster level. The `indices` entry is used to define permissions as well as [Document- and field-level security](dlsfls.md) on index level.
 
 For `<permission>`, `<indexname or alias>` and `<type>` simple wildcards are possible:
- 
+
 * An asterisk (\*) will match any character sequence (or an empty sequence)
 * A question mark (?) will match any single character (but NOT empty character)
 
@@ -231,10 +231,10 @@ SEARCH:
   - "indices:data/read/msearch*"
   - SUGGEST
 SUGGEST:
-  - "indices:data/read/suggest*" 
+  - "indices:data/read/suggest*"
 ```
- 
-In this case, the action group `SEARCH` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `SUGGEST`. 
+
+In this case, the action group `SEARCH` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `SUGGEST`.
 
 You can then reference these action groups in the file `sg_roles.yml` simply by name:
 
@@ -243,5 +243,5 @@ sg_readall:
   indices:
     '*':
       '*':
-        - SEARCH 
+        - SEARCH
 ```

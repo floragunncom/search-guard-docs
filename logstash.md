@@ -13,11 +13,11 @@ The sample configuration files that ship with Search Guard already contain a use
 From an Elasticsearch / Search Guard point of view, logstash is merely an HTTP client, just like curl or a browser: Logstash connects to Elasticsearch via the REST API, creates indices and reads and writes documents from and to these indices. So, in order to use Search Guard in conjunction with logstash, you just need to perform the following steps:
 
 * Configure logstash to use HTTPS instead of HTTP
- * If you want to verify the servers certificate (optional, but recommended), you need to provide the path to the keystore containing your Root CA as well 
+  * If you want to verify the servers certificate (optional, but recommended), you need to provide the path to the keystore containing your Root CA as well
 * Configure the logstash username and password
- * When talking to Elasticsearch, logstash uses this username and password to identify itself
+  * When talking to Elasticsearch, logstash uses this username and password to identify itself
 * Set up the logstash user and its permissions in the Search Guard configuration
- * You can use the sample config files shipped with Search Guard for a quick start 
+  * You can use the sample config files shipped with Search Guard for a quick start
 
 ## Setting up TLS/SSL
 
@@ -99,7 +99,7 @@ sg_logstash:
   cluster:
     - indices:admin/template/get
     - indices:admin/template/put
-    - indices:data/write/bulk*  
+    - indices:data/write/bulk*
   indices:
     'logstash-*':
       '*':

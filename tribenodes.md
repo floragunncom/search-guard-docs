@@ -31,7 +31,7 @@ tribe:
 ```
 As with regular nodes, you can, and probably should, create a certificater for each node separately, or use the same certificate on all nodes.
 
-You can also use all the other configuration options for TLS, for example if  OpenSSL should be used, if hostname verification should be enabled, or if the hostname should be resolved.  
+You can also use all the other configuration options for TLS, for example if OpenSSL should be used, if hostname verification should be enabled, or if the hostname should be resolved.
 
 ```
 searchguard.ssl.transport.enable_openssl_if_available: true

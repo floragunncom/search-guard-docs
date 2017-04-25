@@ -7,17 +7,17 @@ INFO: Open SSL not available because of java.lang.ClassNotFoundException:
  org.apache.tomcat.jni.SSL
 ```
 
-By default, OpenSSL support is enabled, and Search Guard tries to use 
+By default, OpenSSL support is enabled, and Search Guard tries to use
 
 This means that you use JCE (Java Cryptography extensions) as your TLS implementation. On startup, SG looks for OpenSSL support on your system. Since we have not installed it yet, SG falls back to the built-in Java SSL implementation.
 
 ```
-WARN: AES 256 not supported, max key length for AES is 128. 
-To enable AES 256 install 'Java Cryptography Extension (JCE) 
+WARN: AES 256 not supported, max key length for AES is 128.
+To enable AES 256 install 'Java Cryptography Extension (JCE)
 Unlimited Strength Jurisdiction Policy Files'
 ```
 
-If you use Oracle JDK, the length of the cryptographic keys is is limited for judical reasons. You'll have to install the [Java Cryptography Extension (JCE) 
+If you use Oracle JDK, the length of the cryptographic keys is is limited for judical reasons. You'll have to install the [Java Cryptography Extension (JCE)
 Unlimited Strength Jurisdiction Policy Files](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) to use longer keys. For our quickstart tutorial, you can ignore this warning for the moment.
 
 **Congrats. Your ES nodes now talk TLS to each other on the transport layer!**

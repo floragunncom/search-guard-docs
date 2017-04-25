@@ -6,19 +6,19 @@ Copryight 2016 floragunn GmbH
 
 ## Installation
 
-Download the Kerberos module from Maven Central: 
+Download the Kerberos module from Maven Central:
 
 [Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22) 
- 
-and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-2` 
+and place it in the folder
+
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
@@ -50,7 +50,7 @@ A typical Kerberos authentication domain in sgconfig.yml looks like this:
 
 ```
     authc:
-      kerberos_auth_domain: 
+      kerberos_auth_domain:
         enabled: true
         order: 1
         http_authenticator:
@@ -67,7 +67,7 @@ Authentication against Kerberos via a browser on HTTP level is achieved by using
 
 As with [HTTP Basic Authentication](httpbasic.md), this flag determines how Search Guard should behave when no `Authorization` header is found in the HTTP request, or if this header does not equal `negotiate`.
 
-If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenge` to false thus only makes sense if the Kerberos credentials are sent in the inital request. 
+If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenge` to false thus only makes sense if the Kerberos credentials are sent in the inital request.
 
 As the name implies, setting `krb_debug` to true will output a lot of Kerberos specific debugging messages will be outputted to standard out. Use this if you encounter any problems with your Kerberos integration.
 
