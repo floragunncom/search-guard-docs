@@ -24,11 +24,11 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes to activate the module.
  
 ## Prerequisites
 
-The Search Guard index is specially secured, so that it can only be accessed with a valid admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
+The Search Guard index can only be accessed with an admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
 
 In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRED`:
 
@@ -36,7 +36,7 @@ In order for Search Guard to pick up this certificate on the REST layer, you nee
 searchguard.ssl.http.clientauth_mode: OPTIONAL
 ```
 
-If you plan to use the REST API via a browser, you will need to install the admin certificate in your browser. This varies from browser to browser, so please refer to the documentation of your browser-of-choice to learn how to do so. 
+If you plan to use the REST API via a browser, you will need to install the admin certificate in your browser. This varies from browser to browser, so please refer to the documentation of your browser-of-choice to learn how to do that. 
 
 For curl, you need to specify the admin certificate with it's complete certificate chain, and also the key:
 
@@ -59,7 +59,7 @@ The API provides `GET`, `PUT` and `DELETE` handlers for users, roles, roles mapp
 /_searchguard/api/<configuration type>/{resource name}
 ```
 
-The `configuration type` specifies the configuration you want to operate on, and can be one of:
+The `configuration type` can be one of:
 
 * internalusers
 * rolesmapping
@@ -87,7 +87,7 @@ The response body has the format:
 }
 ```
 
-The last three entries are returned if you `PUT` a new resource, but the content is malformed. `invalid_keys` is used when the content contains invalid keys, `missing_mandatory_keys` is used when a mandatory key is missing, and `specify_one_of` is used when the content is missing at least one of the specified keys.
+The last three entries are returned if you `PUT` a new resource but the content is malformed. `invalid_keys` is used when the content contains invalid keys. `missing_mandatory_keys` is used when a mandatory key is missing. And`specify_one_of` is used when the content is missing a key.
 
 
 ## Get Configuration API
@@ -121,7 +121,7 @@ A successful call returns a JSON structure containing the complete settings for 
 
 ## User API
 
-Used to receive, create, update and delete users. Users are added to the internal user database. This API only makes sense if you use `internal` as `authentication_backend`.
+Used to receive, create, update and delete users. Users are added to the internal user database. It only makes sense to use this if you use `internal` as the `authentication_backend`.
 
 ### Endpoint
 
@@ -181,9 +181,9 @@ PUT /_searchguard/api/user/kirk
   "roles": ["captains", "starfleet"]
 }
 ```
-You need to specify either `hash` or `password`. `hash` contains the hashed password of the user. `password` contains the cleartext password, and is hashed automatically. If both are specified, `hash` takes precedence.
+You need to specify either `hash` or `password`. `hash` is the hashed user password. You can either use an already hashed password (“hash” field) or provide it in clear text (“password”). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,`hash` takes precedence.
 
-`roles` contains an array of the users backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
+`roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
 
 ```
 {
@@ -209,7 +209,7 @@ Where `rolename` is the name of the role.
 GET /_searchguard/api/rolesmapping/{rolename}
 ```
 
-Retrieve a rolemapping, specified by rolename, in JSON format.
+Retrieve a role mapping, specified by rolename, in JSON format.
 
 ```
 GET /_searchguard/api/rolesmapping/sg_role_starfleet
@@ -456,7 +456,7 @@ Used to manage the Search Guard internal user, authentication and authorization 
 DELETE /_searchguard/api/cache
 ```
 
-Flushes the Search Guard cache
+Flushes the Search Guard cache.
 
 ```
 {

@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## General
 
-Due to how the Elasticsearch plugin mechanism works, you have to install the Search Guard version matching your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
+You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
 
 In order to find the correct Search Guard and Search Guard SSL version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki) in the github repository. This matrix will be kept up-to-date with each release.
 
@@ -16,7 +16,7 @@ If you use the enterprise features, please make sure that also the versions of t
 
 Search Guard itself can be installed like any other Elasticsearch plugin. Of course, **replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
 
-Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official debian packages, it is executed with user `elasticsearch`. 
+Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official Debian packages, it is executed with user `elasticsearch`. 
 
 **Search Guard 5**
 
@@ -32,7 +32,7 @@ After the installation you should see a folder called "search-guard-5" in the pl
 
 **Search Guard 2**
 
-For Search Guard 2, you need to install Search Guard SSL first, and after that Search Guard itself. Change to the directory of your Elasticsearch installation and type:
+For Search Guard 2, you need to install Search Guard SSL first and after that Search Guard itself. Change to the directory of your Elasticsearch installation and type:
 
 ```
 bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.17
@@ -59,7 +59,7 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 ```
 
-In any case, if you see 
+In any case, if you see: 
 
 ```
 Installed search-guard-ssl into /usr/share/elasticsearch/plugins/search-guard-ssl
@@ -71,7 +71,7 @@ and
 Installed search-guard-2 into /usr/share/elasticsearch/plugins/search-guard-2
 ```
 
-at the end of the respective installation process, everything was installed correctly.
+at the end of the respective installation process then everything was installed correctly.
 
 ## Installing enterprise modules
 
@@ -83,7 +83,7 @@ or
 
 * `<ES installation directory>/plugins/search-guard-5` 
 
-if you're using Search Guard 5.
+**Search Guard 5**
 
 Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (**choose jar file(s) with dependencies**) directly from Maven.
 
@@ -126,7 +126,7 @@ Most of these modules require additional configuration settings. Please see the 
 
 ## Expert settings
 
-**WARNING: Do only use if you know what you are doing. If you set wrong values here this could be a security risk or make Search Guard stop working! In most cases, you do not need to change the default settings.**
+**WARNING: Only use the following instructions if you know what you are doing. If you set wrong values this could be a security risk or make Search Guard stop working! In most cases, you do not need to change the default settings.**
 
 ### Search Guard index name
 
@@ -140,7 +140,7 @@ searchguard.config_index_name: searchguard
 
 All certificates used by the nodes on transport level need to have the `oid` field set to a specific value. By default, this is `1.2.3.4.5.5`.
 
-This oid value is checked by Search Guard to identify if an incoming request comes from a trusted node in the cluster or not. In the former case, all actions are allowed, in the latter case, privilege checks apply. Plus, the oid is also checked whenever a node wants to join the cluster. This prohibits that a malicious attacker can join the cluster by using a client certificate.
+This oid value is checked by Search Guard to identify if an incoming request comes from a trusted node in the cluster or not. In the former case, all actions are allowed, in the latter case, privilege checks apply. Plus, the oid is also checked whenever a node wants to join the cluster. This prohibits a malicious attacker from joinng the cluster by using a client certificate.
 
 You can change the oid value with this confguration key:
 
@@ -155,9 +155,9 @@ searchguard.cert.oid: '1.2.3.4.5.5'
 
 If you have other plugins like kopf installed, please check the compatibility with Search Guard. 
 
-As a rule of thumb, if a plugin is compatible with Shield, it is also compatible with Search Guard. In detail:
+As a rule of thumb, if a plugin is compatible with Shield, it is also compatible with Search Guard. Specifically:
 
-If the plugin talks to Elasticsearch on the REST layer, and you have REST TLS enabled, the plugin must also support TLS. 
+If the plugin talks to Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS. 
 
 If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://floragunn.com/searchguard-elasicsearch-transport-clients/).
 
@@ -179,4 +179,4 @@ The following plugins and tools have been tested for compatibility with Search G
 * [Graylog](https://www.graylog.org/)
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
 
-We will work on making them compatible, however, this also depends on the authors of these products accepting our pull requests.
+We will work on making these compatible, however, this also depends on the authors of these products accepting our pull requests.

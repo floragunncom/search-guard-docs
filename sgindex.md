@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## Index name
 
-Beginning with Search Guard 2.x.x.6, you can configure the name of the Search Guard index itself. This is only necessary in very special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
+Beginning with Search Guard 2.x.x.6, you can configure the name of the Search Guard index. This is only necessary in special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
 
 ## Replica shards
 
@@ -18,4 +18,4 @@ If you want Search Guard to manage the number of replica shards automatically, y
 
 You read more about Search Guard and replica shards [in this blog post](https://floragunn.com/search-guard-index-replica-shards/).
 
-Note that the `-us`, `-era` and `-dra` only work if there is an existing Search Guard index.
+Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search Guard index.
