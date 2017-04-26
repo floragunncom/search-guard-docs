@@ -121,7 +121,7 @@ While these settings require a dedicated certificate for each node, and also cor
 
 TLS client authentication is used by servers (in our case Search Guard / Elasticsearch) to accept/request TLS certificates from REST clients.
 
-While in a typical web scenario it is common that only the server, e.g. an online banking website, provides its identity to the client, TLS is not limited to that. Also clients can provide identity information in the form of a TLS certificate to the server. The server can then use this information to verify the client's identity.
+While in a typical web scenario it is common that only the server, e.g. an online banking website, provides its identity to the client, TLS is not limited to that. Also clients can provide identity information in the form of a TLS X.509 certificate to the server. The server can then use this information to verify the client's identity.
 
 For Search Guard, there are two main usage scenarios for TLS client authentication:
 
