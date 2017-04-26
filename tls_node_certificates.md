@@ -111,7 +111,7 @@ A node certificate is used for server authentication and client authentication:
 
 If a node issues an request to another node, it acts like a client, requesting data from a server.
 
-If a node receives requests from another noder, it acts like a server, accepting requests from the client node.
+If a node receives requests from another node, it acts like a server, accepting requests from the client node.
 
 Therefore, node certificates have to have the extended key usage setting to containing both `serverAuth` and `clientAuth`:
 

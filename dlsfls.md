@@ -2,13 +2,13 @@
 Copryight 2016 floragunn GmbH
 -->
 
-# Document- and field-level security
+# Document and field-level security
 
-Document- and field-level-security (DLS/FLS) allows for a very fine grained control to documents and fields.
+Document and field-level-security (DLS/FLS) allows for fine grained control to documents and fields.
 
 As the name implies, document-level security restricts access to certain documents within an index. Field level security restricts access to certain fields within a document.
 
-As with regular permissions, settings for document- and field-level security can be applied on index-level, meaning that you can have different settings for each index.
+As with regular permissions, settings for document and field-level security can be applied on anindex-level, meaning that you can have different settings for each index.
 
 ## Installation
 
@@ -28,7 +28,7 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes for to activate the module.
 
 ## Document-level security
 
@@ -69,13 +69,13 @@ The format of the query is the same as if it was used in a search request. It su
 
 The specified query expects the same format as if it was defined in the search request and supports ELasticsearch’s full Query DSL.
 
-This means that you can make the DSL query as complex as you want, but since it has to be executed for each query, this of course comes with a small performance penalty.
+This means that you can make the DSL query as complex as you want, but since it has to be executed for each query, this, of course, comes with a small performance penalty.
 
 ### Username substitution
 
 In addition to the regular query DSL of Elasticsearch, Search Guard also supports username substitution. You can use the variable `${user.name}` in the DLS query, and Search Guard will replace it with the username of the currently logged in user.
 
-Let's imagine that each employee document has a field called `manager`, which contains the username of the employee's manager. Each logged in user should only have access to employees he is manager of. You can do so by defining:
+Let's imagine that each employee document has a field called `manager`, which contains the username of the employee's manager. Each logged in user should only have access to employees he manages. You can do so by defining:
 
 ```
 management:

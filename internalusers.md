@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## Installation
 
-Search Guard already ships with the internal user database, no additional installation steps are required.
+Search Guard already ships with an internal user database. No additional installation steps are required.
 
 ## Defining users, roles and passwords
 
@@ -44,7 +44,7 @@ The password hash is a salted bcrypt hash of your cleartext password. You can us
 
 ## Configuration
 
-On order to use the internal user database, you just need to set the `authentication_backend` to `internal`. For example, if you want to use HTTP Basic Authentication and the interna user database, the configuration looks like:
+In order to use the internal user database, set the `authentication_backend` to `internal`. For example, if you want to use HTTP Basic Authentication and the internal user database, the configuration looks like:
 
 ```
 basic_internal_auth_domain:

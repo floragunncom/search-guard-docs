@@ -4,7 +4,7 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 # OpenSSL setup
 
-Search Guard SSL can use Open SSL as the SSL implementation. This will result in better performance and better support for strong and modern cipher suites. With Open SSL its also possible to use strong chipers without installing Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files.
+Search Guard SSL can use Open SSL as the SSL implementation. This will result in better performance and better support for strong and modern cipher suites. With Open SSL it's also possible to use strong chipers without installing Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files.
 
 To enable native support for Open SSL follow these steps:
 
@@ -12,7 +12,7 @@ To enable native support for Open SSL follow these steps:
 
 **(Open SSL and Apache Portable Runtime needs to be installed)**
 
-* If you are on Alpine Linux pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ)
+* If you are on Alpine Linux please refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ)
 * Install latest 1.0.2 OpenSSL version on every node (1.0.1 does also work but is outdated). OpenSSL 1.1.x is not supported currently.
   * [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
 * Install APR - Apache Portable Runtime (libapr1) on every node
@@ -67,19 +67,19 @@ If you did all the steps above and start your nodes, you should see an entry sim
 [INFO ][com.floragunn.searchguard.ssl.SearchGuardKeyStore] Open SSL available ciphers [ECDHE-RSA-AES256-GCM-SHA384,...
 ```
 
-If you face one of the following messages OpenSSL is not available and Search Guard SSL will use the built-in Java SSL implementation:
+If you see one of those two error messages in the logfile, OpenSSL is not available and we fall back to JCE. 
+
 
 ### java.lang.ClassNotFoundException: org.apache.tomcat.jni.SSL
 * netty-tcnative jar is missing
 * make sure you use the netty-tcnative jar **matching your platform**, either `_linux-x86.jar_` or `_64-fedora.jar_` or `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
 
-### java.lang.UnsatisfiedLinkError
-* OpenSSL is not installed, see above
-* Apache Portable Runtime (APR) is not installed, see above
+#### java.lang.UnsatisfiedLinkError
+* OpenSSL is not installed.  See above.
+* Apache Portable Runtime (APR) is not installed.  See above,
 
 ### Alpine Linux
-Alpine Linux does not work out of the box. You need to compile the tc-native library yourself. Please refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ) and this github repository [https://github.com/pires/netty-tcnative-alpine](https://github.com/pires/netty-tcnative-alpine)
+Alpine Linux does not work out of the box. You need to compile the tc-native library yourself. Please refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ) and this github repository [https://github.com/pires/netty-tcnative-alpine](https://github.com/pires/netty-tcnative-alpine).
 
-###Further reading
-* More about netty-tcnative can be found here:
-  * [http://netty.io/wiki/forked-tomcat-native.html](http://netty.io/wiki/forked-tomcat-native.html)
+### Further reading
+More about netty-tcnative can be found [here](http://netty.io/wiki/forked-tomcat-native.html).

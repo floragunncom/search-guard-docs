@@ -22,11 +22,11 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes to activate the module.
 
 ## Activating the module
 
-LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, means to check if the user has entered the correct credentials. The `authz` is used for authorisation, and defines how the role(s) for an authenticated user are fetched and mapped.
+LDAP and Active Directory can be used both in the `authc` and `authz` section of the configuration. The `authc` section is used for configuring authentication, which means to check if the user has entered the correct credentials. The `authz` is used for authorisation, which defines how the role(s) for an authenticated user are retrieved and mapped.
 
 In most cases, you want to configure both authentication and authorization, however, it is also possible to use authentication only and map the users retrieved from LDAP directly to Search Guard roles. This can be done in the `sg_roles_mappig.yml` configuration.
 
@@ -62,6 +62,7 @@ authz:
 ## Configuring the connection settings
     
 For both entries you need to specify additional configuration parameters. Some of them are identical between the `authc` and `authz` section. 
+
 Common configuration parameters:
 
 ```
@@ -116,7 +117,7 @@ Search Guard then issues this query against the user subtree ("userbase"). Curre
 userbase: 'ou=people,dc=example,dc=com'
 ```
 
-If the query was successful, Search Guard retrieves username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as username:
+If the query was successful, Search Guard retrieves the username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as the username:
 
 ```
 username_attribute: uid
@@ -159,15 +160,15 @@ ldap:
             
 ## Configuring Authorisation
 
-Authorisation is the process of retrieving backend roles for an authenticated user from an LDAP server. This is typically the same server(s) you used for authentication, but you can also use a different server if necessary. The only requirement is that the user to fetch the roles for actually exists on the LDAP server.
+Authorisation is the process of retrieving backend roles for an authenticated user from an LDAP server. This is typically the same server(s) you use for authentication, but you can also use a different server if necessary. The only requirement is that the user to fetch the roles for actually exists on the LDAP server.
 
 Since Search Guard always checks if a user exists in the LDAP server, you need to configure `userbase`, `usersearch` and `username_attribute` also in the `authz` section.
-
-Authorisation works very similar to authentication. Search Guard issues an *LDAP query* containing the *username* against the *role subtree* of the *LDAP tree*.
+      
+Authorisation works similarly to authentication. Search Guard issues an *LDAP query* containing the *username* against the *role subtree* of the *LDAP tree*.
 
 As an alternative, Search Guard can also fetch roles that are defined as a direct attribute of the user entry in the user subtree.
 
-Both methods can also be combined, however, usually you will have either roles defined as an attribute of the user entry, or roles stored in a seperate subtree.
+Both methods can also be combined.  Usually you will have either roles defined as an attribute of the user entry or roles stored in a seperate subtree.
 
 ### Approach 1: Querying the role subtree
 
@@ -183,7 +184,7 @@ You can use the following variables:
 * {1} is substituted with the username, as defined by the `username_attribute` setting
 * {2} is substituted with an arbitrary attribute value from the authenticated user's directory entry
 
-The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use here can be specified by the `userroleattribute` setting.
+The variable `{2}` refers to an attribute from the user's directory entry. Which attribute you want to use is specified by the `userroleattribute` setting.
 
 ```
 userroleattribute: myattribute
@@ -224,9 +225,10 @@ If you are using multiple authentication methods, it can make sense to exclude c
 Consider the following scenario for a typical Kibana setup:
 
 All Kibana users are stored in an LDAP/Active Directory server.
-However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but rather store it in the Search Guard internal user database.
 
-In this case it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
+However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but store it in the Search Guard internal user database.
+
+In this case, it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
 
 ```
 skip_users:
@@ -237,10 +239,10 @@ skip_users:
 
 ### Advanced: Exclude roles from nested roles lookups
 
-If the users in your LDAP installation have a huge amount of roles, and you have the requirement to resolve nested roles as well, you might run into the following performance issue:
+If the users in your LDAP installation have a large amount of roles, and you have the requirement to resolve nested roles as well, you might run into the following performance issue:
 
-* For each of the users roles, Search Guard resolves nested roles
-* This means at least one additional LDAP query per role
+* For each of the users roles, Search Guard resolves nested roles.
+* This means at least one additional LDAP query per role.
 * If a user has many roles, and these roles are deeply nested, this results in a lot of additional LDAP queries
 * This means more network roundtrips and thus, depending on your network latency and LDAP response times, a performance penalty.
 
@@ -270,16 +272,15 @@ rolesearch_enabled: <true|false>
 
 | Name | Description |
 |---|---|
-| rolebase | Specifies the subtree in the directory where role/group information is stored |
-| rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below) |
-| userroleattribute | The attribute in a user entry to use for `{2}` variable substitution |
-| userrolename | If the roles/groups of a user are not stored in the groups subtree, but as an attribute of the user's directory entry, define this attribute name here. |
-| rolename | The attribute of the role entry which should be used as role name |
-| resolve\_nested\_roles | Boolean, whether or not to resolve nested roles transitively (roles which are members of other roles and so on ...), default: false |
-| skip_users | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported. |
-| nested\_role\_filter | Array of role DNs that should be filtered before resolving nested roles. Wildcards and regular expressions are supported. |
-| rolesearch_enabled | Boolean, enable or disable the role search, default: true. |
-
+| rolebase  | Specifies the subtree in the directory where role/group information is stored. |
+| rolesearch | The actual LDAP query that Search Guard executes when trying to determine the roles of a user. You can use three variables here (see below).|
+| userroleattribute  | The attribute in a user entry to use for `{2}` variable substitution. |
+| userrolename  | If the roles/groups of a user are not stored in the groups subtree, but as an attribute of the user's directory entry, define this attribute name here. |
+| rolename  | The attribute of the role entry which should be used as role name. |
+| resolve\_nested\_roles  | Boolean, whether or not to resolve nested roles transitively (roles which are members of other roles and so on ...), default: false. |
+| skip_users  | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported.  |
+| nested\_role\_filter  | Array of role DNs that should be filtered before resolving nested roles. Wildcards and regular expressions are supported.  |
+| rolesearch_enabled  | Boolean, enable or disable the role search, default: true.  |
 
 ### Complete authorization example
 
