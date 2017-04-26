@@ -4,7 +4,7 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 # Prerequisites: TLS
 
-Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory. 
+Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory. **TLS on transport layer** means using TLS on the Elasticsearch transport layer, which uses a special wire protocol for inter-node communication.**TLS on REST layer** means using TLS (HTTPS) for communicating with Elasticsearch via its REST API.
 
 By using TLS: 
 
@@ -27,7 +27,10 @@ Search Guard supports certificates in the following formats:
 * Keystores and truststores in JKS or PKCS12 format  
 * X509 / PEM 
 
-The **keystore** holds private keys and the associated certificates. It is used to **provide credentials** to the communication partner.
+The **keystore** holds private keys and the associated certificates. It is used to **provide credentials** to the communication partner.  **Clarification of communication partner:** In a typical web (HTTPS) scenario, a server would send its certificate from its keystore to the client, which validates it against the Root (and possibly intermediate) certificates in its truststore. In our case, Elasticsearch nodes act as clients (send requests to other nodes) and servers (serving requests from other nodes) at the same time. When they act as clients, they need to authenticate against the server (nodes) as well. In that case, they need to send their certificate from their keystore as well. So TLS authentication is mutual in our case. That’s why we use the loose term **communication partner**.
+
+
+When they act as clients, they need to authenticate against the server 
 
 The **truststore** contains all trusted certificates, which are typically root CAs and intermediate/signing certificates. It is used to **verify credentials** from a communication partner. 
 
