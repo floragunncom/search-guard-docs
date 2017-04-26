@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Quickstart
 
-If you just want to try out Search Guard or if you want to verify that Search Guard will work with your specific environment, we provide two options. Both options use a self-signed demo TLS certificates, so **do not use in production**!
+If you just want to try out Search Guard or if you want to verify that Search Guard will work with your specific environment, we provide two options: (1) using the Search Guard Bundle or (2) using the Demo installation script. Both options use a self-signed demo TLS certificates, so **do not use in production**!
 
 # Search Guard Bundle
 
@@ -25,7 +25,7 @@ After downloading and unpacking:
 * ``cd`` into the ``searchguard-client`` folder
 * Execute ``./sgadmin.sh``, ``chmod`` the script first if necessary.
  * This will install the yml configuration files from ``searchguard-client/plugins/search-guard-2/sgconfig/`` or ``searchguard-client/plugins/search-guard-5/sgconfig/``.
- * If you would like to change the configuration, do it in that directory.
+ * If you would like to change the configuration, do it in the directory shown above.
  * If you need to configure SSL and a few other options which are not hot reloadable,do this in elasticsearch.yml, which is here: ``elasticsearch-<VERSION>-localhost/config/elasticsearch.yml``.
 * Open ``https://localhost:9200/_searchguard/authinfo``.
 * Accept the self-signed demo TLS certificate.
