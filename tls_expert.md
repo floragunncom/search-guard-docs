@@ -2,7 +2,10 @@
 
 ## Custom Principal Extractor
 
-When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X.500 princila as username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.
+When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X.500 principal as username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.  **Note on principal:** . Principal is an abstract term here and refers to the “entity” the certificate is issued to. If no custom extractor is used, Search Guard by default uses a X.500 Principal, which is  the string representation of the Distinguished Name (DN) of the certificate.
+
+So yes, the default username is in fact the DN of the certificate.
+
 
 Create a class that implements the `com.floragunn.searchguard.ssl.transport.PrincipalExtractor` interface:
 
