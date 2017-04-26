@@ -181,7 +181,7 @@ PUT /_searchguard/api/user/kirk
   "roles": ["captains", "starfleet"]
 }
 ```
-You need to specify either `hash` or `password`. `hash` is the hashed user password. `password` is the cleartext password.  It is hashed automatically. If both are specified, `hash` takes precedence.
+You need to specify either `hash` or `password`. `hash` is the hashed user password. You can either use an already hashed password (“hash” field) or provide it in clear text (“password”). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,`hash` takes precedence.
 
 `roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
 
