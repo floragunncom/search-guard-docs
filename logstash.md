@@ -16,7 +16,6 @@ From an Elasticsearch / Search Guard point of view, logstash is merely an HTTP c
  * If you want to verify the server's certificate (optional, but recommended), you need to provide the path to the keystore containing your Root CA as well. 
 * Configure the logstash username and password.
  * When talking to Elasticsearch, logstash uses this username and password.
-* Set up the logstash user and its permissions in the Search Guard configuration.
  * You can use the sample config files shipped with Search Guard for a quick start. 
 
 ## Setting up TLS/SSL
