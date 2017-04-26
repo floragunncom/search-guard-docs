@@ -78,7 +78,7 @@ If you did all the steps above and start your nodes, you should see an entry sim
 [INFO ][com.floragunn.searchguard.ssl.SearchGuardKeyStore] Open SSL available ciphers [ECDHE-RSA-AES256-GCM-SHA384,...
 ```
 
-If one of the following messages OpenSSL is not available, Search Guard SSL will use the built-in Java SSL implementation:
+If you see one of those two error messages in the logfile, OpenSSL is not available and we fall back to JCE. 
 
 #### java.lang.ClassNotFoundException: org.apache.tomcat.jni.SSL
 * netty-tcnative jar is missing.
