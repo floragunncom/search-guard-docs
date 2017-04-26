@@ -39,18 +39,18 @@ It is our belief that before you start adding authentication/authorisation, you 
 * No one can alter the Elasticsearch traffic
 * Only trusted nodes can join the cluster
 * Only trusted users can access Elasticsearch
- 
-This is exactly what Search Guard SSL provides. Please refer to the [Search Guard SSL Documentation](https://github.com/floragunncom/search-guard-ssl-docs) for further information. 
+
+This is exactly what Search Guard SSL provides. Please refer to the [Search Guard SSL Documentation](https://github.com/floragunncom/search-guard-ssl-docs) for further information.
 
 ## Client- and Server Certificates
 
-Search Guard needs to identifiy the type of traffic to secure. Without going too much into detail, Search Guard in particular needs to know wether a request comes from a trusted node in the cluster (server node), or from a client (non-server node). 
+Search Guard needs to identifiy the type of traffic to secure. Without going too much into detail, Search Guard in particular needs to know wether a request comes from a trusted node in the cluster (server node), or from a client (non-server node).
 
 Server nodes are identified by having a special [Subject Alternative Name entry (SAN)](https://github.com/floragunncom/search-guard-ssl/blob/master/example-pki-scripts/gen_node_cert.sh) in their certificate:
 
 * ``oid:1.2.3.4.5.5``
 
-Please see the section [Certificates section in the installation chapter](installation.md) for further information and especially read it before you generate the TLS certificates for your Elasticsearch installation. 
+Please see the section [Certificates section in the installation chapter](installation.md) for further information and especially read it before you generate the TLS certificates for your Elasticsearch installation.
 
 If you use the example PKI scripts shipped with Search Guard SSL, like `example.sh` or `gen_server_node.sh`, the SAN entry is already set correctly.
 

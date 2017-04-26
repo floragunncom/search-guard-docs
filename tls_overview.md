@@ -4,10 +4,9 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 # Prerequisites: TLS
 
-Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory. **TLS on transport layer** means using TLS on the Elasticsearch transport layer, which uses a special wire protocol for inter-node communication.**TLS on REST layer** means using TLS (HTTPS) for communicating with Elasticsearch via its REST API.
+Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
 
-By using TLS: 
-
+By using TLS:
 * You can be sure that nobody is spying on the traffic.
 * You can be sure that nobody tampered with the traffic.
 * Only trusted nodes can join your cluster.
@@ -24,14 +23,12 @@ If you have your own PKI infrastructure and are already familiar with TLS certif
 
 Search Guard supports certificates in the following formats:
 
-* Keystores and truststores in JKS or PKCS12 format  
-* X509 / PEM 
+* Keystores and truststores in JKS or PKCS12 format
+* X509 / PEM
 
-The **keystore** holds private keys and the associated certificates. It is used to **provide credentials** to the communication partner.  **Clarification of communication partner:** In a typical web (HTTPS) scenario, a server would send its certificate from its keystore to the client, which validates it against the Root (and possibly intermediate) certificates in its truststore. In our case, Elasticsearch nodes act as clients (send requests to other nodes) and servers (serving requests from other nodes) at the same time. When they act as clients, they need to authenticate against the server (nodes) as well. In that case, they need to send their certificate from their keystore as well. So TLS authentication is mutual in our case. That’s why we use the loose term **communication partner**.
+The **keystore** holds private keys and the associated certificates. It is used to **provide credentials** to the communication partner.
 
-When they act as clients, they need to authenticate against the server 
-
-The **truststore** contains all trusted certificates, which are typically root CAs and intermediate/signing certificates. It is used to **verify credentials** from a communication partner. 
+The **truststore** contains all trusted certificates, typically root CAs and intermediate/signing certificates. It is used to **verify credentials** from a communication partner.
 
 In a typical scenario, the certificate(s) contained in the keystore have been signed by the root CA or the intermediate/signing CA contained in the truststore.
 
@@ -86,11 +83,11 @@ You can find the TLS generator service here:
 
 ### Using the example PKI scripts
 
-If you use Linux or OS X, you can use the example scripts that ship with Search Guard SSL. 
+If you use Linux or OS X, you can use the example scripts that ship with Search Guard SSL.
 
 #### Prerequisites
 
-The scripts use OpenSSL and the Java `keytool` for generating all required artifacts. 
+The scripts use OpenSSL and the Java `keytool` for generating all required artifacts.
 
 In order to find out if you have OpenSSL installed, open a terminal and type
 

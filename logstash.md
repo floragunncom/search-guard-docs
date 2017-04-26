@@ -98,7 +98,7 @@ sg_logstash:
   cluster:
     - indices:admin/template/get
     - indices:admin/template/put
-    - indices:data/write/bulk*  
+    - indices:data/write/bulk*
   indices:
     'logstash-*':
       '*':

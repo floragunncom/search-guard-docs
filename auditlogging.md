@@ -19,19 +19,19 @@ For security reasons, audit logging has to be configured in `elasticsearch.yml`,
 
 ## Installation
 
-Download the Audit Log enterprise module from Maven Central: 
+Download the Audit Log enterprise module from Maven Central:
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22) 
+[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
 
-and place it in the folder 
+and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2` 
+* `<ES installation directory>/plugins/search-guard-2`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5` 
+* `<ES installation directory>/plugins/search-guard-5`
 
-if you are using Search Guard 5. 
+if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
@@ -92,7 +92,7 @@ There are no special configuration settings for this audit type.  Just add the a
 
 ```
 searchguard.audit.type: debug
-```  
+```
 
 This will output tracked events to stdout.
 
@@ -104,7 +104,7 @@ In addition to specifying the type as `internal_elasticsearch`, you can set the 
 searchguard.audit.type: internal_elasticsearch
 searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
-``` 
+```
 
 If not specified, Search Guard uses the default value `auditlog` for both index name and document type.
 
@@ -117,7 +117,7 @@ searchguard.audit.type: internal_elasticsearch
 searchguard.audit.config.http_endpoints: <endpoints>
 searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
-``` 
+```
 
 SearchGuard uses the REST API to send the tracked events.  So for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
 
@@ -167,7 +167,7 @@ This storage type ships the audit log events to an arbitrary HTTP endpoint. Enab
 
 ```
 searchguard.audit.type: webhook
-``` 
+```
 
 In addition, you can configure the following keys:
 
@@ -189,7 +189,7 @@ webhook.format: <URL_PARAMETER_GET|URL_PARAMETER_POST|TEXT|JSON|SLACK>
 The format in which the audit log message is logged:
 
 **URL\_PARAMETER\_GET**
- 
+
 The audit log message is submitted to the configured webhook URL as HTTP GET. All logged information is appended to the URL as request parameters.
 
 **URL\_PARAMETER\_POST**
@@ -262,7 +262,7 @@ In order for Search Guard to pick up your custom implementation, specify its ful
 
 ```
 searchguard.audit.type: com.example.MyCustomAuditLogStorage
-``` 
+```
 
 Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-2` or `plugins/search-guard-5` folder.
 
@@ -275,4 +275,4 @@ All events are logged asynchronously, so the overall performance of our cluster 
 searchguard.audit.threadpool.size: <integer>
 ```
 
-The default setting is `10`. Setting this value to `0` disableds the thread pool completey, and the events are logged synchronously. 
+The default setting is `10`. Setting this value to `0` disables the thread pool completey, and the events are logged synchronously. 

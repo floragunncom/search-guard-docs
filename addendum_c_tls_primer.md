@@ -4,9 +4,9 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 ## Reasons for using TLS
 
-While Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box. 
+While Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box.
 
-In order to secure your sensitive data, the first step is to encrypt the entire traffic from and to your ES cluster via TLS. 
+In order to secure your sensitive data, the first step is to encrypt the entire traffic from and to your ES cluster via TLS.
 
 By using TLS, the traffic between ES nodes and ES clients will be encrypted, which means that:
 
@@ -26,16 +26,17 @@ TLS supports different ways to exchange keys and encrypt data.
 
 TLS uses certificates ("digital certificates") for encrypting traffic and for identifying and authenticating the two parties in a TLS session. 
 
-To be more precise, a digital certificate certifies the ownership of a public key by the common name in the certificate. 
+To be more precise, 
+> a digital certificate certifies the ownership of a public key by the common name in the certificate. 
 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security#Digital_certificates)).
 
-The public key is then used for the actual encryption. 
+The public key is then used for the actual encryption.
 
 #### Trust Hierarchies
 
 A certificate can be used to issue and sign other certificates, building a trust hierarchy among these certificates. The certificates can be **intermediate root certificates** or **end entity certificates**.
 
-A **root certificate**, issued by a **root certificate authority (root CA)**, is at the root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert and Comodo. 
+A **root certificate**, issued by a **root certificate authority (root CA)**, is at the root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert and Comodo.
 
 A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certificates, while an end entity certificate is intended to be installed directly on a server. With an end entity certificate do you not to sign other certificates.
 
@@ -43,7 +44,7 @@ To establish a TLS session, all certificates in the hierarchy are verified, up t
 
 ### SSL handshake
 
-Before any user data is sent between these parties, first a **TLS session** has to be established. This process is called **TLS handshake**.   
+Before any user data is sent between these parties, first a **TLS session** has to be established. This process is called **TLS handshake**.
 
 The details of this handshake can vary slighty, depending on the selected cipher suite. At a high level the following steps are performed:
 
@@ -51,7 +52,7 @@ The details of this handshake can vary slighty, depending on the selected cipher
 * The server sends a ServerHello message containing the chosen protocol version and cipher suite.
 * The server sends its certificate containing the public key.
 * The client verifies the certificate and all intermediate certificates against its list of installed root CAs.
-* If the client cannot verify the certificate, it aborts the connection or displays a warning, depending on the client and settings. 
+* If the client cannot verify the certificate, it aborts the connection or displays a warning, depending on the client and settings.
 * If the certificate can be verified, the client sends a "PreMasterSecret" to compute a common secret, called the "master secret". This master secret is used for encrypting the traffic. The PreMasterSecret is encrypted using the public key of the server certificate.
 * The server tries to decrypt the clients message using its private key. If this fails, the handshake is considered failed.
 * If decryption succeeds, the handshake is complete, and all traffic is encrypted using the master secret.
@@ -85,7 +86,7 @@ A minimal Search Guard regarding TLS setup might look like this:
 
 ### Root CA
 
-You need a root CA in order to create the required certificates for the nodes. If you already have a PKI infrastructure in place, you're good to go. Otherwise, you need to create a root CA first. 
+You need a root CA in order to create the required certificates for the nodes. If you already have a PKI infrastructure in place, you're good to go. Otherwise, you need to create a root CA first.
 
 ### Generate certificates
 
