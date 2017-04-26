@@ -4,15 +4,15 @@ Copryight 2016 floragunn GmbH
 
 # Tribe nodes
 
-Beginning with version 2.x.x.6, Search Guard offers support for tribe nodes. A tribe node ["acts as a federated client across multiple clusters"](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-tribe.html) and is commonly used to retrieve information from multiple Elasticsearch clusters, making it look like one combined cluster.
+Search Guard offers support for tribe nodes. A tribe node ["acts as a federated client across multiple clusters"](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-tribe.html) and is commonly used to retrieve information from multiple Elasticsearch clusters making it look like one combined cluster.
 
 ## Preconditions
 
-In order for tribe nodes to work with Search Guard, please make sure that the Search Guard index, i.e. the configuration settings, is identical on each particpiating cluster.
+In order for tribe nodes to work with Search Guard, please make sure that the Search Guard index, i.e., the configuration settings, are identical on each particpiating cluster.
 
 ## Configuration
 
-A tribe node will create a node client to connect to each configured cluster. If the participating clusters are secured via Search Guard, you need to configure the TLS settings on the transport layer for each cluster. Think of the node client the tribe node creates for each cluster as a regular node in that cluster. This means that you need to create a keystore with a valid TLS certificate, and the truststore containing the root CA and any intermediate certificate.
+A tribe node will create a node client to connect to each configured cluster. If the participating clusters are secured via Search Guard, you need to configure the TLS settings on the transport layer for each. Think of the node client the tribe node as a regular node. This means that you need to create a keystore with a valid TLS certificate and the truststore containing the root CA and any intermediate certificate.
 
 ```
 tribe:
@@ -29,9 +29,9 @@ tribe:
     searchguard.ssl.transport.truststore_filepath: truststore.jks
     searchguard.ssl.transport.truststore_password: changeit
 ```
-As with regular nodes, you can, and probably should, create a certificater for each node separately, or use the same certificate on all nodes.
+As with regular nodes, you can, and probably should, create a certificate for each node separately, or use the same certificate on all nodes.
 
-You can also use all the other configuration options for TLS, for example if  OpenSSL should be used, if hostname verification should be enabled, or if the hostname should be resolved.  
+You can also use all the other configuration options for TLS, for example if OpenSSL should be used, if hostname verification should be enabled, or if the hostname should be resolved.  
 
 ```
 searchguard.ssl.transport.enable_openssl_if_available: true

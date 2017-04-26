@@ -22,25 +22,25 @@ if you are using Search Guard 5.
 
 **Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
 
-After that, restart all nodes for the module to become activated.
+After that, restart all nodes to activate the module.
 
 ## Token based authentication
 
 JSON Web Tokens (JWT) are JSON-based access tokens that assert one or more claims. They are commonly used to implement Single-Sign-On solutions and fall in the category of token based authentication system:
 
-* A user logs in to an application by providing credentials, e.g. username and password
-* The application validates the credentials
-* The application creates an access token and signs it
-* The application returns the token to the user
-* The user stores the access token
-* The user sends the access token along with every request
-* The server verifies the user by verifying the sent token
+* A user logs in to an application by providing credentials, e.g. username and password.
+* The application validates the credentials.
+* The application creates an access token and signs it.
+* The application returns the token to the user.
+* The user stores the access token.
+* The user sends the access token along with every request.
+* The server verifies the user by verifying the sent token.
 
-You can read more about token based authentication [in this blog post.](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication)
+You can read more about token based authentication [in this blog post.](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication).
 
 ## JSON web tokens
 
-A JSON web token is self-contained in the sense that it carries all necessary information within itself. The tokens are basically Base64-encoded and signed JSON objects, so the can be passed around easily
+A JSON web token is self-contained in the sense that it carries all necessary information within itself. The tokens are basically Base64-encoded and signed JSON objects. So the can be passed around easily.
 
 A JSON web token consists of three parts:
 
@@ -63,11 +63,11 @@ In this case, the header states that the message was signed using HMAC-SHA256.
 
 ### Payload
 
-The payload of a JSON web token contains the so-called [JWT Claims](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName). A claim can be any piece of information that the application who created the token has verified.
+The payload of a JSON web token contains the so-called [JWT Claims](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName). A claim can be any piece of information that the application that created the token has verified.
 
-The specification defines a set of standard claims with reserved names ("registered claims"). These include for example the issuer of the token, the expiration date of the token or the creation date of the token.
+The specification defines a set of standard claims with reserved names ("registered claims"). These include, for example, the token issue, the expiration date, or the creation date.
 
-Public claims can be created freely by the issuer of the token, and can contain arbitrary information such as the user name and the roles of the user.
+Public claims can be created freely by the token issuer of the token.  They can contain arbitrary information, such as the user name and the roles of the user.
 
 Example:
 
@@ -81,7 +81,7 @@ Example:
 ```
 ### Signature
 
-The issuer of the token now calculates the signature of the token by using a cryptographic hash function and a secret key over the base-64 encoded header and payload. These three parts are then concatenated via a `.` sign. We now have a complete JSON web token:
+The issuer of the token calculates the signature of the token by using a cryptographic hash function and a secret key over the base-64 encoded header and payload. These three parts are then concatenated via a `.` dot. We now have a complete JSON web token:
 
 
 ```
