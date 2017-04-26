@@ -10,7 +10,7 @@ Regardless of what authentication technique you select, the basic flow is as fol
 
 * A user wants to **access** an Elasticsearch cluster, such as issuing simple queries to changing the cluster topology.
 * Search Guard retrieves the user's **credentials**.
- * The authentication mechanism challenges (prompts) the user for a username and password. Or it can be extracted directly from the request.  
+ * The authentication mechanism challenges (prompts) the user for a username and password. Or it can be extracted directly from the request HTTP headers, which could be Basic Authentication, JSON web token, or SPNEGO/Kerberos. 
 * Search Guard **authenticates** the credentials against the authentication backend.  
  * This step is optional.  If you use TLS client or proxy authentication, Search Guard uses the DN of a TLS certificate for authentication.
 * Search Guard **authorizes** the user by retrieving a list of user roles.
