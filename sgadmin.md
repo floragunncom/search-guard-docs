@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 ## Configuring the admin certificate
 
-Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an SG secured Elasticsearch cluster via a client SSL certificate. We'll call this an *admin certificate*. The DN of this certificate must be configured ``elasticsearch.yml``.
+Configuration settings are loaded into the Search Guard index using the `sgadmin` tool. `sgadmin` identifies itself against an Search Guard secured Elasticsearch cluster via a client SSL certificate. We'll call this an *admin certificate*. The DN of this certificate must be configured ``elasticsearch.yml``.
 
 ```
 searchguard.authcz.admin_dn:
@@ -25,7 +25,7 @@ searchguard.authcz.admin_dn:
 You can find the sgadmin tool in the following directory:
 
 ```
-<ES installation directory>/plugins/search-guard-2/tools
+<ES installation directory>/plugins/search-guard-5/tools
 ```
 
 ### Linux
@@ -33,7 +33,7 @@ You can find the sgadmin tool in the following directory:
 Change the permissions on that script and give it execution rights:
 
 ```
-chmod +x plugins/search-guard-2/tools/sgadmin.sh
+chmod +x plugins/search-guard-5/tools/sgadmin.sh
 ```
 
 ### Windows
@@ -51,7 +51,7 @@ Then you can execute the script against any node in your cluster. The configurat
 You can find sample configuration files in this directory:
 
 ```
-<ES installation directory>/plugins/search-guard-2/sgconfig
+<ES installation directory>/plugins/search-guard-5/sgconfig
 ```
 
 For basic usage, you need to specify the key and truststore, their respective passwords, and the directory where the configuation files can be found. In addition, you either specify the cluster name (`-cn` option), or, as in this example, tell `sgadmin` to ignore the cluster name altogether (`-icl` option).
@@ -80,17 +80,23 @@ After one or more files are updated, Search Guard will automatically load the ne
 
 sgadmin comes with command line options. Execute `./sgadmin.sh` without any options to list them.
 
+### General
+
+| Name  | Description  |
+|---|---|
+| -f | fail fast if something goes wrong, no retry |
+
 ### Elasticsearch settings
 
 If you run a default Elasticsearch installation, which listens on transport port 9300, and uses `elasticsearch` as cluster name, you can omit the following settings altogether. Otherwise, specify your Elasticsearch settings by using the following switches:
 
 | Name | Description |
 |---|---|
-| -h  |  elasticsearch hostname, default: localhost |
-| -p |  elasticsearch port, default: 9300 (NOT the http port!) |
-| -cn  | clustername, default: elasticsearch  |
-| -icl  | Ignore clustername.  |
-| -sniff  | Sniff cluster nodes.  |
+| -h | elasticsearch hostname, default: localhost |
+| -p | elasticsearch port, default: 9300 (NOT the http port!) |
+| -cn | clustername, default: elasticsearch |
+| -icl | Ignore clustername. |
+| -sniff | Sniff cluster nodes. |
 
 Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).
 
@@ -102,16 +108,16 @@ Use the following options to control the key and truststore settings:
 
 | Name | Description |
 |---|---|
-| -ks  |  The keystore containing the admin certificate, using an absolute or relative path. Relative paths are resolved based on the execution directory of sgadmin. |
-| -kspass |  The password for the keystore. |
-| -kst  | The key store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension. |
-| -ksalias  |The keystore alias, if any.   |
-| -ts  |  Truststore that contains the root certificate, as an absolute or relative path. Relative paths are resolved based on the execution directory of sgadmin.  |
-| -tspass |  The password for the truststore. |
-| -tst  | The trust store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.  |
-| -tsalias  | The truststore alias, if any. |
-| -nhnv  | disable-host-name-verification, do not validate hostname. |
-| -nrhn  | disable-resolve-hostname, do not resolve hostname (Only relevant if -nhnv is not set.).|
+| -ks | The keystore containing the admin certificate, using an absolute or relative path. Relative paths are resolved based on the execution directory of sgadmin.|
+| -kspass | The password for the keystore.|
+| -kst | The key store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.|
+| -ksalias | The keystore alias, if any.|
+| -ts | Truststore that contains the root certificate, as an absolute or relative path. Relative paths are resolved based on the execution directory of sgadmin.|
+| -tspass | The password for the truststore.|
+| -tst | The trust store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.|
+| -tsalias | The truststore alias, if any.|
+| -nhnv | disable-host-name-verification, do not validate hostname.|
+| -nrhn | disable-resolve-hostname, do not resolve hostname (Only relevant if -nhnv is not set.).|
 
 ### Configuration settings
 
@@ -119,10 +125,10 @@ The following switches define which configuration file(s) you want to push to Se
 
 | Name | Description |
 |---|---|
-| -cd |  Configuration directory containing more than one .yml file. |
-| -f |  Single config file (cannot be used together with -cd).  |
-| -t |  File type. |
-| -rl |  Reload the current configuration and flush the internal cache. |
+| -cd | Configuration directory containing more than one .yml file. |
+| -f | Single config file (cannot be used together with -cd).  |
+| -t | File type. |
+| -rl | Reload the current configuration and flush the internal cache. |
 
 If you push a single configuration file, the filetype must be one of:
 
@@ -138,10 +144,10 @@ The following switched control the Search Guard index settings.
 
 | Name | Description |
 |---|---|
-| -i |  Search Guard index name, defaults to searchguard. |
-| -us | Update the replica settings.  |
-| -era |  Enable replica auto-expand. |
-| -dra |  Disable replica auto-expand. |
+| -i | Search Guard index name, defaults to searchguard.|
+| -us | Update the replica settings.|
+| -era | Enable replica auto-expand.|
+| -dra | Disable replica auto-expand.|
 
 See chapter [index management](sgindex.md) for more details on how the Search Guard index is structured and how to manage it.
 
@@ -151,8 +157,8 @@ Usually you do not need to change with the cipher settings. If you do, use the f
 
 | Name | Description |
 |---|---|
-| -ec |  enabled-ciphers, comma separated list of TLS ciphers. |
-| -ep | enabled-protocols, comma separated list of TLS protocols. |
+| -ec | enabled-ciphers, comma separated list of TLS ciphers.|
+| -ep | enabled-protocols, comma separated list of TLS protocols.|
 
 ### Examples
 
@@ -192,6 +198,26 @@ plugins/search-guard-2/tools/sgadmin.sh \
    -ts plugins/search-guard-2/sgconfig/truststore.jks \
    -tspass changeit
    -icl
+```
+#### Retrieving the current active Search Guard configuration from a cluster
+```
+plugins/search-guard-2/tools/sgadmin.sh \
+   -ks plugins/search-guard-2/sgconfig/keystore.jks \
+   -kspass changeit
+   -ts plugins/search-guard-2/sgconfig/truststore.jks  \
+   -tspass changeit
+   -r
+```
+
+#### Reload the current configuration, thus flushing the Search Guard user caches
+
+```
+plugins/search-guard-2/tools/sgadmin.sh \
+   -ks plugins/search-guard-2/sgconfig/keystore.jks \
+   -kspass changeit
+   -ts plugins/search-guard-2/sgconfig/truststore.jks  \
+   -tspass changeit
+   -r  
 ```
 
 #### Setting the number of replica shards to 5
