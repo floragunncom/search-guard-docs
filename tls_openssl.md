@@ -34,7 +34,7 @@ To enable native support for Open SSL follow these steps:
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
   * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_`
-* **Search Guard 5.2:**
+* **Search Guard 5.2/5.3:**
   * Version: 1.1.33.Fork25
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
   * Choose the correct version for you platform, one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
