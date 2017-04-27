@@ -8,17 +8,17 @@ Search Guard can be used to secure your Elasticsearch cluster by working with di
 
 Regardless of what authentication technique you select, the basic flow is as follows:
 
-* A user wants to **access** an Elasticsearch cluster, such as issuing simple queries to changing the cluster topology.
+* A user wants to **access** an Elasticsearch cluster, for example by issuing  a simple query.
 * Search Guard retrieves the user's **credentials**.
- * The authentication mechanism challenges (prompts) the user for a username and password. Or it can be extracted directly from the request HTTP headers, which could be Basic Authentication, JSON web token, or SPNEGO/Kerberos. 
+  * The authentication mechanism challenges (prompts) the user for a username and password. Or it can be extracted directly from the request HTTP headers, which could be Basic Authentication, JSON web token, or SPNEGO/Kerberos. 
 * Search Guard **authenticates** the credentials against the authentication backend.  
- * This step is optional.  If you use TLS client or proxy authentication, Search Guard uses the DN of a TLS certificate for authentication.
+  * This step is optional.  If you use TLS client or proxy authentication, Search Guard uses the DN of a TLS certificate for authentication.
 * Search Guard **authorizes** the user by retrieving a list of user roles.
- * Roles retrieved in this step are called **backend roles**. Roles are optional. 
+  * Roles retrieved in this step are called **backend roles**. Roles are optional. 
 * Search Guard **maps** the user and backend roles to **internal Search Guard roles**.
- * Often this mapping is one-for-one, like "all".  But more likely you want to define specific roles for specific ES use cases.
+  * Often this mapping is one-for-one, like "all".  But more likely you want to define specific roles for specific ES use cases.
 * Search Guard determines the **permissions** associated with the internal Search Guard role and decides whether the action the user wants to perform is allowed or not.
- * If your are using document- and field-level-security, you can also apply more fine grained permissions based on document types and individual fields.  
+  * If your are using document- and field-level-security, you can also apply more fine grained permissions based on document types and individual fields.  
 
 ## Credentials
 
@@ -44,7 +44,7 @@ Search Guard also supports external authentication and Single Sign On (SSO) solu
 
 ## Authorisation (authz)
 
-After an authenticator has **verified** a user's **credentials**, an (optional) authorisation module can collect additional roles for the authenticated user from a configured backend. 
+After an authenticator has **verified** a user's **credentials**, an (optional) authorisation module can collect additional roles for the authenticated user from a configured backend.
 
 These roles are called **backend roles**.
 
@@ -93,7 +93,7 @@ SUGGEST:
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You define one or more of these certificates, called **admin certificates**, [defined here](https://github.com/werowe/search-guard-docs/blob/master/tls_overview.md).
 
-Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take affect immediately**. You can load and **change the settings from any machine** which has access to your Elasticsearch cluster. 
+Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. You can load and **change the settings from any machine** which has access to your Elasticsearch cluster. 
 
 **This also means that you do not need to keep any configuration files on the nodes themselves.** No more dealing with configuration files on different servers!
 
@@ -103,6 +103,6 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_roles.yml—define roles and the associated permissions.
 * sg\_roles\_mapping.yml—map backend roles, hosts and users to roles.
 * sg\_internal\_users.yml—stores user and hashed passwords (hash with hasher.sh) is using the internal user database.
-* sg\_action\_groups.yml—group permissions.
+* sg\_action\_groups.yml—define named permission groups.
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do this, use the `sgadmin` tool. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shared and replica settings, since you want to make sure that the Search Guard index is available on all nodes.

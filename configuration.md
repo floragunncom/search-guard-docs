@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Configuring Search Guard
 
-## Configuring authentication and authorisation 
+## Configuring authentication and authorisation
 
 The main configuration file for Search Guard is `sg_config.yml`. This file is used to specify both authentication and authorisation and has three main parts:
 
@@ -26,7 +26,7 @@ In short, these sections are used to specify how Search Guard retrieves the user
 Let's first look at the `authc` section. This section has the following format:
 
 ```
-<name>: 
+<name>:
   enabled: <true|false>
   order: <integer>
     http_authenticator:
@@ -81,7 +81,7 @@ Possible vales for `type` are:
 After the user has been authenticated, Search Guard can optionally collect additional user roles from backend systems. Authorisation configuration has the following format:
 
 ```
-authz:    
+authz:
   <name>:
     enabled: <true|false>
     authorization_backend:
@@ -94,9 +94,10 @@ You can also define multiple entries in this section the same way as you can for
 
 Possible vales for `type` are:
 
-* noop—used for skipping this step altogether.
-* ldap—fetch additional roles from an LDAP server. This requires additional configuration settings. See section "LDAP and Active Directory" for further details.
-
+* noop
+  * Used for skipping this step altogether
+* ldap
+  * Fetch additional roles from an LDAP server. This requires additional configuration settings, see section "LDAP and Active Directory" for further details.
 
 #### Examples
 
@@ -117,7 +118,7 @@ Depending on your configuration, you can now use the following data to assign th
 * hostname / IP—the hostname or IP the request originated from.
 * Common name—rhe DN of the client certificate sent with the request.
 
-Backend users, roles and hosts need to be mapped to Search Guard roles. This is done in the file `sg_roles_mapping.yml`. 
+Backend users, roles and hosts need to be mapped to Search Guard roles. This is done in the file `sg_roles_mapping.yml`.
 
 ```
 sg_read_write:
@@ -221,10 +222,10 @@ SEARCH:
   - "indices:data/read/msearch*"
   - SUGGEST
 SUGGEST:
-  - "indices:data/read/suggest*" 
+  - "indices:data/read/suggest*"
 ```
- 
-In this case, the action group `SEARCH` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `SUGGEST`. 
+
+In this case, the action group `SEARCH` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `SUGGEST`.
 
 You can then reference these action groups in the file `sg_roles.yml` simply by name:
 
@@ -233,5 +234,5 @@ sg_readall:
   indices:
     '*':
       '*':
-        - SEARCH 
+        - SEARCH
 ```
