@@ -13,7 +13,7 @@ searchguard.authcz.admin_dn:
   - cn=admin,ou=Test,ou=ou,dc=company,dc=com
 ```
 
-If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates, it's the _kirk_ or _spock_ client certificate:
+If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) to generate the certificates, you can use the _kirk_ or _spock_ client certificate:
 
 ```
 searchguard.authcz.admin_dn:
@@ -22,11 +22,22 @@ searchguard.authcz.admin_dn:
 
 ## Executing sgadmin
 
-You can find the sgadmin tool in the following directory:
+The sgadmin CLI tool can be run from any machine that has access to the transport port of your Elasticsearch cluster. This means that you can change the Search Guard configuration without having to access your nodes directly. You do not need to change any configuration files on the nodes, and changes take effect immediately.
+
+Search Guard ships with sgadmin included. You can find it in the following directory:
 
 ```
 <ES installation directory>/plugins/search-guard-5/tools
 ```
+
+As an alternative, you can also download the sgadmin standalone version. It comes with all dependencies so you can use it on any machine you want, provided Java is installed.
+
+* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.2-12/search-guard-5-5.3.2-12-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.2.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.2.2-12/search-guard-5-5.2.2-12-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.1.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.1.2-12/search-guard-5-5.1.2-12-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.0.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.0.2-12/search-guard-5-5.0.2-12-sgadmin-standalone.zip)
+* [Download for Search Guard 2 and Elasticsearch 2.4.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-2/2.4.5.12/search-guard-2-2.4.5.12-sgadmin-standalone.zip)
+* [Download for Search Guard 2 and Elasticsearch 2.3.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-2/2.3.5.12/search-guard-2-2.3.5.12-sgadmin-standalone.zip)
 
 ### Linux
 
@@ -46,7 +57,7 @@ set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_65
 
 Replace `jdk1.8.0_65` with your installed JDK or JRE version.
 
-Then you can execute the script against any node in your cluster. The configuration settings are pushed to that node, and depending on your shared settings, replicated to the other nodes.
+Then you can execute the script against any node in your cluster. The configuration settings are pushed to that node, and depending on your shard settings, replicated to the other nodes.
 
 You can find sample configuration files in this directory:
 
@@ -171,6 +182,7 @@ plugins/search-guard-2/tools/sgadmin.sh \
    -ts plugins/search-guard-2/sgconfig/truststore.jks \
    -tspass changeit
    -nhnv
+   -icl
 ```
 
 #### Apply single file to cluster named "myclustername"
