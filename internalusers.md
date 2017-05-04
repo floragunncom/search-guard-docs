@@ -6,11 +6,11 @@ Copryight 2016 floragunn GmbH
 
 ## Installation
 
-Search Guard already ships with an internal user database. No additional installation steps are required.
+Search Guard already ships with an internal user database. No additional installation steps are required.  
 
 ## Defining users, roles and passwords
 
-If you do not have any external authentication backend like LDAP or Kerberos, you can define an internal list of users and their passwords and roles. This is done in the file `sg_internal_users.yml`. The syntax is:
+If you do not have any external authentication backend like LDAP or Kerberos, you can define an internal list of users and their passwords and roles. This is done in the file `<ES installation directory>/plugins/search-guard-x/sgconfig/sg_internal_users.yml`. The syntax is:
 
 ```
 admin:
@@ -25,6 +25,7 @@ analyst:
     - readall
 
 ```
+There are some userids and passwords already configured in `sg_internal_users.yml` so you can login after you install Search Guard and enable it the first time.
 
 This internal user database is stored in the Search Guard index, and updated by using [sgadmin](sgadmin.sh).
 
