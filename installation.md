@@ -8,10 +8,12 @@ Copryight 2016 floragunn GmbH
 
 The basic installation procedure is to:
 
-1. Install SearchGuard, as explained below.
-2. Generate TLS certificates.
-3. Configure the certificates in elasticsearch.yml.
-5. Initialise SearchGuard by running sgadmin.
+1. Stop ElasticSearch.
+2. Install SearchGuard, as explained below.
+3. Generate TLS certificates.
+4. Configure the certificates in elasticsearch.yml.
+5. Restart ElasticSearch.
+6. Initialise SearchGuard by running sgadmin.
 
 ## Get Version of Search Guard that Matched ElasticSearch
 
