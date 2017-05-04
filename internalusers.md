@@ -25,7 +25,7 @@ analyst:
     - readall
 
 ```
-There are some userids and passwords already configured in `sg_internal_users.yml` so you can login after you install Search Guard and enable it the first time.
+There are some userids and passwords already configured in `sg_internal_users.yml` so you can login after you first install Search Guard.
 
 This internal user database is stored in the Search Guard index, and updated by using [sgadmin](sgadmin.sh).
 
