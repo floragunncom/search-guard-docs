@@ -66,6 +66,11 @@ After installing Search Guard, you will find the script here:
 ```
 <ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh
 ```
+Then restart ElasticSearch and then run:
+
+```
+<ES dir>/plugins/search-guard-5/tools/sgadmin_demo.sh
+```
 
 After executing the script (you might have to run `chmod` first), all artefacts and configuration entries are generated, and you should be able to start your cluster without problems.
 
