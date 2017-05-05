@@ -49,7 +49,7 @@ Multi tenancy will not work properly if you install only one of the modules or p
 
 Make sure you have a Search Guard version with multi tenancy support installed and configured. Search Guard supports multi tenancy from v12 onwards.
 
-Download the LDAP enterprise module from Maven Central:
+Download the Kibana multitenancy enterprise module from Maven Central:
 
 [Kibana multitenancy module on Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-kibana-multitenancy%22) 
 
