@@ -18,7 +18,7 @@ To enable native support for Open SSL follow these steps:
 
 * Install latest 1.0.2 OpenSSL version on every node (1.0.1 does also work but is outdated and may lack hostname validation functionality). OpenSSL 1.1.x is not supported currently.
   * [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
-* Install APR - Apache Portable Runtime (libapr1) on every node
+* Install APR - Apache Portable Runtime on every node
   * [https://apr.apache.org](https://apr.apache.org)
   * On Debian/Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`
   * On RHEL/CentOS/Fedora, Apache Portable Runtime can be installed with `sudo yum install apr`
@@ -52,8 +52,8 @@ To enable native support for Open SSL follow these steps:
 
 * **Search Guard 5.4 (Open SSL 1.0.2):**  
   * Version: 2.0.0.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
-  * [Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar)
+  * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-non-fedora-linux-x86_64.jar)
+  * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar)
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
