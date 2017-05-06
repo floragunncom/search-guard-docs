@@ -14,7 +14,7 @@ If you use the enterprise features, please make sure that also the versions of t
 
 ## Installing the plugin(s)
 
-Search Guard itself can be installed like any other Elasticsearch plugin. Of course, **replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
+Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
 
 Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official Debian packages, it is executed with user `elasticsearch`.
 
@@ -147,6 +147,8 @@ You can change the oid value with this confguration key:
 searchguard.cert.oid: '1.2.3.4.5.5'
 ```
 
+For other ways to identify nodes, please check the chapter on [TLS node certificates](tls_node_certificates.md).
+
 ## Compatibility
 
 
@@ -177,5 +179,3 @@ The following plugins and tools have been tested for compatibility with Search G
 
 * [Graylog](https://www.graylog.org/)
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
-
-We will work on making these compatible, however, this also depends on the authors of these products accepting our pull requests.
