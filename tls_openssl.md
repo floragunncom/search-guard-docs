@@ -37,18 +37,20 @@ To enable native support for Open SSL follow these steps:
 * **Search Guard 5.0/5.1:**
   * Version: 1.1.33.Fork23
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
-  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
+  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_`
 * **Search Guard 5.2/5.3:**
   * Version: 1.1.33.Fork25
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
+  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
-* **Search Guard 5.4:**
+* **Search Guard 5.4 (Open SSL 1.0.1):**
   * Version: 2.0.0.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
+  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
+
+* **Search Guard 5.4 (Open SSL 1.0.2):**  
   * Version: 2.0.0.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
   * [Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-non-fedora-linux-x86_64.jar)
   * [CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar)
