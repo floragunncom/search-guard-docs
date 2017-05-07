@@ -27,6 +27,7 @@ Copyright 2016-2017 floragunn GmbH
 ### Installation
 
 * [Installing Search Guard](installation.md)
+* [Upgrading Search Guard](upgrading.md)
 
 ### Configuring Search Guard SSL
 

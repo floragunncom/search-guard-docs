@@ -8,12 +8,12 @@ Copryight 2016 floragunn GmbH
 
 The basic installation procedure is to:
 
-1. Stop ElasticSearch.
+1. Stop Elasticsearch.
 2. Install SearchGuard, as explained below.
 3. Generate TLS certificates.
 4. Configure the certificates in elasticsearch.yml.
-5. Restart ElasticSearch.
-6. Initialise SearchGuard by running sgadmin.
+5. Restart Elasticsearch.
+6. Initialise Search Guard by running sgadmin.
 
 ## Get Version of Search Guard that Matched ElasticSearch
 
@@ -25,7 +25,7 @@ If you use the enterprise features, please make sure that also the versions of t
 
 ## Installing the plugin(s)
 
-Search Guard itself can be installed like any other Elasticsearch plugin. Of course, **replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
+Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the version suitable for your Elasticsearch installation.
 
 Make sure to install the plugins with the same user you run Elasticsearch. For example, if you installed Elasticsearch using the official Debian packages, it is executed with user `elasticsearch`.
 
@@ -36,7 +36,7 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.3.1-12
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.3.2-12
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
@@ -46,8 +46,8 @@ After the installation you should see a folder called "search-guard-5" in the pl
 For Search Guard 2, you need to install Search Guard SSL first and after that Search Guard itself. Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.17
-bin/plugin install -b com.floragunn/search-guard-2/2.4.1.8
+bin/plugin install -b com.floragunn/search-guard-ssl/2.4.5.21
+bin/plugin install -b com.floragunn/search-guard-2/2.4.5.12
 ```
 After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
 
@@ -158,6 +158,8 @@ You can change the oid value with this confguration key:
 searchguard.cert.oid: '1.2.3.4.5.5'
 ```
 
+For other ways to identify nodes, please check the chapter on [TLS node certificates](tls_node_certificates.md).
+
 ## Compatibility
 
 
@@ -188,5 +190,3 @@ The following plugins and tools have been tested for compatibility with Search G
 
 * [Graylog](https://www.graylog.org/)
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
-
-We will work on making these compatible, however, this also depends on the authors of these products accepting our pull requests.
