@@ -15,7 +15,7 @@ The basic installation procedure is to:
 5. Restart Elasticsearch.
 6. Initialise Search Guard by running sgadmin.
 
-## Get Version of Search Guard that Matched ElasticSearch
+## Get Version of Search Guard that Matches Elasticsearch
 
 You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
 
@@ -36,7 +36,7 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.3.2-12
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.4.0-12
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
@@ -87,50 +87,63 @@ at the end of the respective installation process then everything was installed 
 
 If you want to use any of the enterprise modules, download the respective jar file and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-2`
+* `<ES installation directory>/plugins/search-guard-5`
 
 or
 
-* `<ES installation directory>/plugins/search-guard-5`
+* `<ES installation directory>/plugins/search-guard-2`
 
-**Search Guard 5**
 
 Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (**choose jar file(s) with dependencies**) directly from Maven.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
+
 [https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
+[LDAP and Active Directory documentation](ldap.md)
 
-#### Kerberos Authentication/Authorisation:
- [https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos)
+#### Kerberos/SPNEGO Authentication/Authorisation:
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
+[https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos)
+
+[Kerberos/SPNEGO documentation](kerberos.md)
 
 #### JWT Authentication/Authorisation:
- [https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt)
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
+[https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt)
+
+[JSON Web token documentation](jwt.md)
 
 #### Document- and field level security:
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
+
 [https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
+[Document and field level security documentation](dlsfls.md)
 
 #### Audit logging:
- [https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog)
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
+[https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog)
+
+[Audit Logging documentation](auditlogging.md)
 
 #### REST management API:
+[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
+
 [https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
+[REST management API documentation](managementapi.md)
 
 #### Kibana multi tenancy module:
+[All version on maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22)
+
 [https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy)
 
-[Maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22)
+[Kibana Multitenancy documentation](multitenancy.md)
 
 Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
 
