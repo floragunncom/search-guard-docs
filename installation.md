@@ -15,9 +15,9 @@ The basic installation procedure is to:
 5. Restart Elasticsearch.
 6. Initialise Search Guard by running sgadmin.
 
-## Get Version of Search Guard that Matches Elasticsearch
+## Get the version of Search Guard that matches Elasticsearch
 
-You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 2.3.3 will not run on ES 2.3.4 and vice versa.
+You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 5.3.1 will not run on ES 5.3.2 and vice versa.
 
 In order to find the correct Search Guard and Search Guard SSL version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki) in the github repository. This matrix will be kept up-to-date with each release.
 
@@ -51,6 +51,33 @@ bin/plugin install -b com.floragunn/search-guard-2/2.4.5.12
 ```
 After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
 
+### Offline installation
+
+If you are behind a firewall and need to perform an offline installation, follow these steps:
+
+**Search Guard 5**
+
+* Download the [Search Guard 5 version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
+  * [All versions of Search Guard 5](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-5%22) 
+  * Download the **zip file** of the Search Guard plugin
+* Change to the directory of your Elasticsearch installation and type:
+
+```
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-<version>.zip
+```
+**Search Guard 2**
+
+* Download the Search Guard SSL and Search Guard plugins [version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
+  * [All versions of Search Guard 2 SSL](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22) 
+  * [All versions of Search Guard 2](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-2%22) 
+
+  * Download the **zip files** of Search Guard plugins
+* Change to the directory of your Elasticsearch installation and type:
+
+```
+bin/plugin install -b file:///location/of/search-guard-ssl-<version>.zip
+bin/plugin install -b file:///location/of/search-guard-2-<version>.zip
+```
 
 ## Additional permissions dialogue
 
@@ -69,19 +96,6 @@ Since ES 2.2, you will see the following warning message when installating Searc
 See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
 for descriptions of what these permissions allow and the associated risks.
 ```
-In any case, if you see: 
-
-```
-Installed search-guard-ssl into /usr/share/elasticsearch/plugins/search-guard-ssl
-```
-
-and
-
-```
-Installed search-guard-2 into /usr/share/elasticsearch/plugins/search-guard-2
-```
-
-at the end of the respective installation process then everything was installed correctly.
 
 ## Installing enterprise modules
 
@@ -97,49 +111,49 @@ or
 Each module lives in its own github repository. You can either download the repository and build the jar files yourself via a simple ```mvn install``` command. Or you can choose to download the jar file(s) (**choose jar file(s) with dependencies**) directly from Maven.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
 
 [https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap)
 
 [LDAP and Active Directory documentation](ldap.md)
 
 #### Kerberos/SPNEGO Authentication/Authorisation:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
 
 [https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos)
 
 [Kerberos/SPNEGO documentation](kerberos.md)
 
 #### JWT Authentication/Authorisation:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
 
 [https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt)
 
 [JSON Web token documentation](jwt.md)
 
 #### Document- and field level security:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
 
 [https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls)
 
 [Document and field level security documentation](dlsfls.md)
 
 #### Audit logging:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
 
 [https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog)
 
 [Audit Logging documentation](auditlogging.md)
 
 #### REST management API:
-[All version on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
+[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
 
 [https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
 
 [REST management API documentation](managementapi.md)
 
 #### Kibana multi tenancy module:
-[All version on maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22)
+[All versions on maven central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22dlic-search-guard-module-kibana-multitenancy%22)
 
 [https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy)
 
