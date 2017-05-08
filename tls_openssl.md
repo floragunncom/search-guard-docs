@@ -46,7 +46,7 @@ To enable native support for OpenSSL follow these steps:
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 * **Search Guard 5.4 (Open SSL 1.0.1):**
   * Version: 2.0.0.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
-  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
+  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.0.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.0.Final)
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 
