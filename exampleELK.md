@@ -12,7 +12,7 @@ ElasticSearch Enable SSL	5
 
 
 # Install SearchGuard Plugin in ElasticSearch
-Match correct version.  Show version support matrix.
+Match correct version.  Show [version support matrix](https://github.com/floragunncom/search-guard/wiki).
 
 sysctl -w vm.max_map_count=262144
 
