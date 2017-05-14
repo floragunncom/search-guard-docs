@@ -1,7 +1,7 @@
 Example
 
 
-[Install SearchGuard Plugin in ElasticSearch](exampleELK.md#isgine)
+[Install SearchGuard Plugin in ElasticSearch](exampleELK.md#1)
 Generate TLS certificates	2
 Load Sample Data to ElasticSearch	3
 Kibana Install SearchGuard Plugin	3
@@ -11,7 +11,7 @@ ElasticSearch Enable SSL	5
  
 
 
-#<a name="isgine"></a>  Install SearchGuard Plugin in ElasticSearch
+## <a name="1"></a>  Install SearchGuard Plugin in ElasticSearch
 Match correct version.  Show [version support matrix](https://github.com/floragunncom/search-guard/wiki).
 
 sysctl -w vm.max_map_count=262144
@@ -23,7 +23,7 @@ Generate TLS certificates
 
 https://floragunn.com/tls-certificate-generator/
 
-## Demo Cert Installation
+## <a name="2"></a> Demo Cert Installation
 
 After installing Search Guard, you will find the script here:
 
@@ -44,7 +44,7 @@ searchguard.ssl.transport.enforce_hostname_verification: false
 
 
 
-# Whether to enable TLS on the REST layer or not
+# <a name="3"></a> Whether to enable TLS on the REST layer or not
 searchguard.ssl.http.enabled: true
 searchguard.ssl.http.keystore_filepath: keystore.jks
 searchguard.ssl.http.truststore_filepath: truststore.jks
@@ -73,7 +73,7 @@ Which you can see by telling curl to ignore cert validation and logging with the
 curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
 
 
-## Kibana Install SearchGuard Plugin
+## <a name="4"></a> Kibana Install SearchGuard Plugin
 Kibana instructions on Git.
 
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
@@ -145,7 +145,7 @@ TypeError: "field" is a required parameter
 http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:5942
 
 
-## FileBeat Configure and Start
+## <a name="5"></a> FileBeat Configure and Start
 
 
 
@@ -161,12 +161,12 @@ output.logstash:
 ```
   
 
-### Start FileBeat:
+### <a name="6"></a> Start FileBeat:
 
 sudo ./filebeat -e -c filebeat.yml -d "publish"
 
 
-## Logstash Config
+## <a name="7"></a> Logstash Config
 
  
 bin/logstash -f first-pipeline.conf 
