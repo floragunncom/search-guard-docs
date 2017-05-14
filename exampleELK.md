@@ -1,13 +1,13 @@
 Example
 
 
-[Install SearchGuard Plugin in ElasticSearch](exampleELK.md#1)
-Generate TLS certificates	2
-Load Sample Data to ElasticSearch	3
-Kibana Install SearchGuard Plugin	3
-Kibana Config	3
-FileBeat Configure and Start	4
-ElasticSearch Enable SSL	5
+1. [Install SearchGuard Plugin in ElasticSearch](exampleELK.md#1)
+2. Generate TLS certificates 
+3. Load Sample Data to ElasticSearch	 
+4. Kibana Install SearchGuard Plugin	 
+5. Kibana Config	 
+6. FileBeat Configure and Start	 
+7. ElasticSearch Enable SSL	 
  
 
 
