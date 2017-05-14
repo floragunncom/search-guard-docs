@@ -1,7 +1,7 @@
 Example
 
 
-[Install SearchGuard Plugin in ElasticSearch](..#isgine)
+[Install SearchGuard Plugin in ElasticSearch](../blob/#isgine)
 Generate TLS certificates	2
 Load Sample Data to ElasticSearch	3
 Kibana Install SearchGuard Plugin	3
