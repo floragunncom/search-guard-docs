@@ -8,26 +8,13 @@ Kibana Install SearchGuard Plugin	3
 Kibana Config	3
 FileBeat Configure and Start	4
 ElasticSearch Enable SSL	5
-
-
-
  
 
 
- 
-
-
-
+# Install SearchGuard Plugin in ElasticSearch
+Match correct version.  Show version support matrix.
 
 sysctl -w vm.max_map_count=262144
-
-
-Features
-https://floragunn.com/searchguard/
-
-
-Install SearchGuard Plugin in ElasticSearch
-Match correct version.  Show version support matrix.
 
 
 ./elasticsearch-plugin install -b com.floragunn:search-guard-5:5.2.2-12
@@ -36,7 +23,7 @@ Generate TLS certificates
 
 https://floragunn.com/tls-certificate-generator/
 
-##Demo Cert Installation
+## Demo Cert Installation
 
 After installing Search Guard, you will find the script here:
 
@@ -48,14 +35,12 @@ Then restart ElasticSearch and then run:
 Then elasticsearch.yml will be update to:
 
  
-
-
-
-
+'''
 ######## Start Search Guard Demo Configuration ########
 searchguard.ssl.transport.keystore_filepath: keystore.jks
 searchguard.ssl.transport.truststore_filepath: truststore.jks
 searchguard.ssl.transport.enforce_hostname_verification: false
+'''
 
 
 
@@ -88,7 +73,7 @@ Which you can see by telling curl to ignore cert validation and logging with the
 curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
 
 
-Kibana Install SearchGuard Plugin
+## Kibana Install SearchGuard Plugin
 Kibana instructions on Git.
 
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
@@ -124,7 +109,7 @@ Certificate chain
 '''
 
 
- 
+ '''
 
 
 
@@ -136,6 +121,8 @@ elasticsearch.password: "kibanaserver"
 elasticsearch.url: "https://localhost:9200"
 elasticsearch.ssl.verificationMode: none
 #elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
+
+'''
 
 
 bin/kibana-plugin install (zip file)
@@ -158,48 +145,48 @@ TypeError: "field" is a required parameter
 http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:5942
 
 
-FileBeat Configure and Start
+## FileBeat Configure and Start
 
 
 
 cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
-
+```
  filebeat.prospectors:
 - input_type: log
   paths:
     - /tmp/logs/*
 output.logstash:
-  hosts: ["localhost:5043"]
+  hosts: ["localhost:5043"]
+```
+  
 
-
-
-Start FB:
+### Start FileBeat:
 
 sudo ./filebeat -e -c filebeat.yml -d "publish"
 
-Logstash Config
 
-bin/logstash -f first-pipeline.conf --config.test_and_exit
+## Logstash Config
+
+ 
+bin/logstash -f first-pipeline.conf 
 
 
+```
 input {
     beats {
         port => "5043"
     }
 }
-# The filter part of this file is commented out to indicate that it is
-# optional.
-# filter {
-#
-# }
+ {
+}
 output {
   elasticsearch {
         ssl_certificate_verification => false
         hosts => [ "https://localhost:9200" ]
     }
 }
-
+```
  
 
 
