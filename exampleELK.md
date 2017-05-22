@@ -14,23 +14,27 @@ Example
 ## <a name="1"></a>  Install SearchGuard Plugin in ElasticSearch
 Match correct version.  Show [version support matrix](https://github.com/floragunncom/search-guard/wiki).
 
-sysctl -w vm.max_map_count=262144
+If you get any errors about not having enough memory you can increase the user quota by:
 
 
-./elasticsearch-plugin install -b com.floragunn:search-guard-5:5.2.2-12
-Generate TLS certificates
+`sysctl -w vm.max_map_count=262144`
 
 
-https://floragunn.com/tls-certificate-generator/
+`./elasticsearch-plugin install -b com.floragunn:search-guard-5:5.2.2-12`
+
+**Generate TLS certificates**
+You can use your own cerificate authority, get [Florgunn to do it for you](https://floragunn.com/tls-certificate-generator/), or use the demo install explained below.
+
 
 ## <a name="2"></a> Demo Cert Installation
 
 After installing Search Guard, you will find the script here:
 
-<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh
+`<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh`
+
 Then restart ElasticSearch and then run:
 
-<ES dir>/plugins/search-guard-5/tools/sgadmin_demo.sh
+`<ES dir>/plugins/search-guard-5/tools/sgadmin_demo.sh`
 
 Then elasticsearch.yml will be update to:
 
@@ -64,13 +68,13 @@ keytool -list  -storepass changeit -keystore trusttore.jks -printcert -file /tmp
 
 Load Sample Data to ElasticSearch
 
-load_sampledata.sh.
+`load_sampledata.sh.`
 
 It created two indices: humanresources and finance and populates them with sample data.
 
 Which you can see by telling curl to ignore cert validation and logging with the admin user:
 
-curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
+`curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'`
 
 
 ## <a name="4"></a> Kibana Install SearchGuard Plugin
