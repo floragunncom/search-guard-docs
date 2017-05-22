@@ -28,7 +28,9 @@ If you get any errors about not having enough memory you can increase the user q
 
 Run:
 
-`<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh`
+`sudo chmod +x <ES dir>/plugins/search-guard-5/tools/
+
+<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh`
 
 Then restart ElasticSearch and then run:
 
