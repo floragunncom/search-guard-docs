@@ -4,10 +4,9 @@ Here we show how to configure the ELK stack (ElasticSearch, LogStash, Kibana) an
 
 1. [Install SearchGuard Plugin in ElasticSearch](exampleELK.md#install)
 2. [Generate TLS Demo certificates](exampleELK.md#cert) 
-3. [Load Sample Data to ElasticSearch](exampleELK.md#load)	 
-4. [Kibana Install SearchGuard Plugin](exampleELK.md#kibana)	 
-5. [FileBeat Configure and Start](exampleELK.md#filebeat)	 
-6. [Install and Configure Logstash](exampleELK.md#logstash)	 
+3. [Kibana Install SearchGuard Plugin](exampleELK.md#kibana)	 
+4. [FileBeat Configure and Start](exampleELK.md#filebeat)	 
+5. [Install and Configure Logstash](exampleELK.md#logstash)	 
  
 
 
@@ -75,16 +74,6 @@ Now log into https://localhost:9200/ with admin/admin, click through the certifi
 
 
 
-## <a name="load"></a> Load Sample Data to ElasticSearch
-
-`load_sampledata.sh.`
-
-This creates two indices: **humanresources** and **finance** and populates them with sample data.
-
-Which you can see by telling curl to ignore cert validation and logging with the admin user:
-
-`curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'`
-
 
 ## <a name="kibana"></a> Kibana Install SearchGuard Plugin
 [Kibana instructions on Git](https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md).
@@ -104,7 +93,6 @@ elasticsearch.url: "https://localhost:9200"
 
 
 ## <a name="filebeat"></a> FileBeat Configure and Start
-
 
 
 ```
@@ -145,7 +133,3 @@ output {
     }
 }
 ```
- 
-
-
-
