@@ -35,12 +35,12 @@ Then restart ElasticSearch and then run:
 Then elasticsearch.yml will be update to:
 
  
-'''
+```
 ######## Start Search Guard Demo Configuration ########
 searchguard.ssl.transport.keystore_filepath: keystore.jks
 searchguard.ssl.transport.truststore_filepath: truststore.jks
 searchguard.ssl.transport.enforce_hostname_verification: false
-'''
+```
 
 
 
@@ -76,6 +76,7 @@ curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
 ## <a name="4"></a> Kibana Install SearchGuard Plugin
 Kibana instructions on Git.
 
+```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
 
 sudo cat /usr/share/kibana/kibana-5.3.2-linux-x86_64/config/kibana.yml
@@ -92,10 +93,11 @@ elasticsearch.ssl.verificationMode: none
 
 https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md
 
-'''
+```
 
+```
 openssl s_client -connect localhost:9200
- 
+
 CONNECTED(00000003)
 depth=1 DC = com, DC = example, O = Example Com Inc., OU = Example Com Inc. Signing CA, CN = Example Com Inc. Signing CA
 verify error:num=20:unable to get local issuer certificate
@@ -106,10 +108,9 @@ Certificate chain
    i:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Signing CA/CN=Example Com Inc. Signing CA
  1 s:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Signing CA/CN=Example Com Inc. Signing CA
    i:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Root CA/CN=Example Com Inc. Root CA
-'''
+```
 
-
- '''
+ 
 
 
 
