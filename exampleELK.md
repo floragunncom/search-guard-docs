@@ -55,6 +55,25 @@ network.host: 0.0.0.0
 ######## End Search Guard Demo Configuration ########
 ```
 
+Now log into https://localhost:9200/ with admin/admin, click through the certificate warning.  It should show:
+
+```
+{
+  "name" : "2EPefDX",
+  "cluster_name" : "searchguard_demo",
+  "cluster_uuid" : "sZ6iqxppQrCKpqvaHqbgZQ",
+  "version" : {
+    "number" : "5.2.2",
+    "build_hash" : "f9d9b74",
+    "build_date" : "2017-02-24T17:26:45.835Z",
+    "build_snapshot" : false,
+    "lucene_version" : "6.4.1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+
+
 
 ## <a name="load"></a> Load Sample Data to ElasticSearch
 
@@ -84,51 +103,14 @@ elasticsearch.url: "https://localhost:9200"
 ```
 
 
-Test SSL connection to ElasticSearch:
-
-```
-openssl s_client -connect localhost:9200
-
-CONNECTED(00000003)
-depth=1 DC = com, DC = example, O = Example Com Inc., OU = Example Com Inc. Signing CA, CN = Example Com Inc. Signing CA
-verify error:num=20:unable to get local issuer certificate
-verify return:0
----
-Certificate chain
- 0 s:/C=DE/L=Test/O=Test/OU=SSL/CN=node-0.example.com
-   i:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Signing CA/CN=Example Com Inc. Signing CA
- 1 s:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Signing CA/CN=Example Com Inc. Signing CA
-   i:/DC=com/DC=example/O=Example Com Inc./OU=Example Com Inc. Root CA/CN=Example Com Inc. Root CA
-```
-
- 
-
-
-curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
-
-
-TypeError: "field" is a required parameter
-    at FieldAggParamFactory.FieldAggParam.write (http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:9103)
-    at http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:5942
-    at AggParams.forEach (native)
-    at AggParamsFactory.AggParams.write (http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:5900)
-    at AggConfigFactory.AggConfig.write (http://localhost:5601/bundles/kibana.bundle.js?v=14849:76:3473)
-    at AggConfigFactory.AggConfig.toDsl (http://localhost:5601/bundles/kibana.bundle.js?v=14849:76:4230)
-    at http://localhost:5601/bundles/kibana.bundle.js?v=14849:76:25195
-    at Array.forEach (native)
-    at AggConfigsFactory.AggConfigs.toDsl (http://localhost:5601/bundles/kibana.bundle.js?v=14849:76:24978)
-    at http://localhost:5601/bundles/kibana.bundle.js?v=14849:71:890
-
-http://localhost:5601/bundles/kibana.bundle.js?v=14849:73:5942
-
-
 ## <a name="filebeat"></a> FileBeat Configure and Start
 
 
 
+```
 cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
-```
+
  filebeat.prospectors:
 - input_type: log
   paths:
