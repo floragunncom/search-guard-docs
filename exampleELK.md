@@ -24,7 +24,7 @@ If you get any errors about not having enough memory you can increase the user q
 `sysctl -w vm.max_map_count=262144`
 
 
-## <a name="demo"></a> Demo Cert Installation
+## <a name="cert"></a> Demo Cert Installation
 
 Run:
 
@@ -65,7 +65,7 @@ Which you can see by telling curl to ignore cert validation and logging with the
 `curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'`
 
 
-## <a name="4"></a> Kibana Install SearchGuard Plugin
+## <a name="kibana"></a> Kibana Install SearchGuard Plugin
 [Kibana instructions on Git](https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md).
 
 ```
