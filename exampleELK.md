@@ -28,6 +28,8 @@ You can use your own cerificate authority, get [Florgunn to do it for you](https
 
 ## <a name="2"></a> Demo Cert Installation
 
+2017-05-22T21:42:25,338][INFO ][c.f.s.c.IndexBaseConfigurationRepository] searchguard index does not exist yet, so no need to load config on node startup. Use sgadmin to initialize cluster
+
 After installing Search Guard, you will find the script here:
 
 `<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh`
@@ -49,6 +51,7 @@ searchguard.ssl.transport.enforce_hostname_verification: false
 
 
 # <a name="3"></a> Whether to enable TLS on the REST layer or not
+```
 searchguard.ssl.http.enabled: true
 searchguard.ssl.http.keystore_filepath: keystore.jks
 searchguard.ssl.http.truststore_filepath: truststore.jks
@@ -57,16 +60,16 @@ searchguard.authcz.admin_dn:
 
 cluster.name: searchguard_demo
 network.host: 0.0.0.0
+```
+
 
 Print cert:
 
 Issuer: CN=Example Com Inc. Signing CA, OU=Example Com Inc. Signing CA, O=Example Com Inc., DC=example, DC=com
-
 keytool -list  -storepass changeit -keystore keystore.jks -printcert -file /tmp/keystore.crt -alias node-0
-
 keytool -list  -storepass changeit -keystore trusttore.jks -printcert -file /tmp/keystore.crt -alias root-ca-chain
 
-Load Sample Data to ElasticSearch
+## Load Sample Data to ElasticSearch
 
 `load_sampledata.sh.`
 
@@ -78,26 +81,22 @@ Which you can see by telling curl to ignore cert validation and logging with the
 
 
 ## <a name="4"></a> Kibana Install SearchGuard Plugin
-Kibana instructions on Git.
+[Kibana instructions on Git](https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md).
 
 ```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
-
-sudo cat /usr/share/kibana/kibana-5.3.2-linux-x86_64/config/kibana.yml
-
-
-searchguard.basicauth.enabled: true
-elasticsearch.username: "kibanaserver"
-elasticsearch.password: "kibanaserver"
-elasticsearch.url: "https://localhost:9200"
-elasticsearch.ssl.verificationMode: none
-#elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
-
-
-
-https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md
+```
+It is not necessary to add any config options to kibana.yml except the ElasticSearch username and password.  The default values will work:
 
 ```
+sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml 
+
+elasticsearch.username: "kibanaserver"
+elasticsearch.password: "kibanaserver"
+```
+
+
+Test SSL connection to ElasticSearch:
 
 ```
 openssl s_client -connect localhost:9200
@@ -116,21 +115,6 @@ Certificate chain
 
  
 
-
-
-#searchguard
-
-searchguard.basicauth.enabled: true
-elasticsearch.username: "kibanaserver"
-elasticsearch.password: "kibanaserver"
-elasticsearch.url: "https://localhost:9200"
-elasticsearch.ssl.verificationMode: none
-#elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
-
-'''
-
-
-bin/kibana-plugin install (zip file)
 
 curl --insecure -u admin:admin -k 'https://localhost:9200/_cat/indices?v'
 
@@ -168,13 +152,13 @@ output.logstash:
 
 ### <a name="6"></a> Start FileBeat:
 
-sudo ./filebeat -e -c filebeat.yml -d "publish"
+`sudo ./filebeat -e -c filebeat.yml -d "publish"`
 
 
 ## <a name="7"></a> Logstash Config
 
  
-bin/logstash -f first-pipeline.conf 
+`bin/logstash -f first-pipeline.conf `
 
 
 ```
