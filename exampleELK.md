@@ -100,6 +100,7 @@ cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
 ```
 cat /etc/logstash/conf.d/wordpress.conf
+
 input {
     file {
         path => "/tmp/log/so*"
@@ -111,11 +112,13 @@ input {
 output {
   elasticsearch {
     hosts => ["eurovps:9200"]
+ssl => true
 ssl_certificate_verification => false
        truststore => "/usr/share/elasticsearch/elasticsearch-5.2.2/config/truststore.jks"
        truststore_password => changeit
   }
 }
+
 
 ```
 
