@@ -27,9 +27,9 @@ If you get any errors about not having enough memory you can increase the user q
 
 Run:
 
-`sudo chmod +x <ES dir>/plugins/search-guard-5/tools/
+```sudo chmod +x <ES dir>/plugins/search-guard-5/tools/
 
-<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh`
+<ES dir>/plugins/search-guard-5/tools/install_demo_configuration.sh```
 
 Then restart ElasticSearch and then run:
 
@@ -76,7 +76,7 @@ Now log into https://localhost:9200/ with admin/admin, click through the certifi
 
 
 ## <a name="kibana"></a> Kibana Install SearchGuard Plugin
-[Kibana instructions on Git](https://github.com/floragunncom/search-guard-docs/blob/master/kibana.md).
+
 
 ```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
