@@ -53,7 +53,12 @@ network.host: 0.0.0.0
 ######## End Search Guard Demo Configuration ########
 ```
 
-Now log into https://localhost:9200/ with admin/admin, click through the certificate warning.  It should show:
+Now log into https://localhost:9200/ with admin/admin, click through the certificate warning or:
+
+`curl -k --user admin:admin https://localhost:9200`
+
+
+It should show:
 
 ```
 {
