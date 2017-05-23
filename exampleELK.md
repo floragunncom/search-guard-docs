@@ -89,46 +89,37 @@ elasticsearch.url: "https://localhost:9200"
 elasticsearch.ssl.verification: none
 ```
 
-**Note** elasticsearch.ssl.verification is spelled elasticsearch.ssl.verificationMode in earlier versions in Kibana. 
+**Note:** elasticsearch.ssl.verification is spelled elasticsearch.ssl.verificationMode in earlier versions in Kibana. 
 
 
 Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>pluginonfig/sg_internal_users.yml.
 
 cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
-## <a name="filebeat"></a> FileBeat Configure and Start
-
- filebeat.prospectors:
-- input_type: log
-  paths:
-    - /tmp/logs/*
-output.logstash:
-  hosts: ["localhost:5043"]
-```
- 
-Start FileBeat:
-
-`sudo ./filebeat -e -c filebeat.yml -d "publish"`
-
-
-## <a name="logstash"></a> Logstash Config
-
- 
-`bin/logstash -f first-pipeline.conf `
+## <a name="logstash|"></a> Configure LogStash
 
 
 ```
+cat /etc/logstash/conf.d/wordpress.conf
 input {
-    beats {
-        port => "5043"
+    file {
+        path => "/tmp/log/so*"
+        type => "apache"
+        start_position => "beginning"
     }
 }
- {
-}
+
 output {
   elasticsearch {
-        ssl_certificate_verification => false
-        hosts => [ "https://localhost:9200" ]
-    }
+    hosts => ["eurovps:9200"]
+ssl_certificate_verification => false
+       truststore => "/usr/share/elasticsearch/elasticsearch-5.2.2/config/truststore.jks"
+       truststore_password => changeit
+  }
 }
+
 ```
+
+Then start logstash
+
+`sudo ./logstash -f wordpress.conf`
