@@ -81,7 +81,7 @@ Now log into https://localhost:9200/ with admin/admin, click through the certifi
 ```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
 ```
-It is not necessary to add any config options to kibana.yml except the ElasticSearch username and password.  The default values will work:
+It is not necessary to add any config options to kibana.yml except the ElasticSearch username and password, turn off cert validation, and change http to https.  The default values for other parameters will work, so it is not necessary to put those.
 
 ```
 sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml 
@@ -89,15 +89,17 @@ sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml
 elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
 elasticsearch.url: "https://localhost:9200"
+elasticsearch.ssl.verification: none
 ```
 
+**Note** elasticsearch.ssl.verification is spelled elasticsearch.ssl.verificationMode in earlier versions in Kibana. 
 
-## <a name="filebeat"></a> FileBeat Configure and Start
 
+Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>pluginonfig/sg_internal_users.yml.
 
-```
 cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
+## <a name="filebeat"></a> FileBeat Configure and Start
 
  filebeat.prospectors:
 - input_type: log
