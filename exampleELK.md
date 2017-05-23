@@ -97,6 +97,7 @@ cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
 ## <a name="logstash|"></a> Configure LogStash
 
+`sudo vi /etc/logstash/conf.d/wordpress.conf`
 
 ```
 input {
