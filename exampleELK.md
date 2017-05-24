@@ -104,6 +104,19 @@ cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
 ## <a name="roles"></a> Add User Roles
 
+```
+cat sg_internal_users.yml
+
+sg_kibana_server:
+  cluster:
+      - CLUSTER_MONITOR
+      - CLUSTER_COMPOSITE_OPS
+  indices:
+    '?kibana':
+      '*':
+        - ALL
+        ```
+
 ## <a name="logstash|"></a> Configure LogStash
 
 `sudo vi /etc/logstash/conf.d/wordpress.conf`
