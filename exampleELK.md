@@ -77,13 +77,14 @@ It should show:
 }
 ```
 
-## <a name="kibana"></a> Kibana Install SearchGuard Plugin
+## <a name="kibana"></a> Configure Kibana
 
+Install the plugin.
 
 ```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
 ```
-It is not necessary to add any config options to kibana.yml except the ElasticSearch username and password, turn off cert validation, and change http to https.  The default values for other parameters will work, so it is not necessary to put those.
+Edit kibana.yml. It is not necessary to add any config optionsexcept the ElasticSearch username and password, turn off cert validation, and change http to https.  The values you leave out will default to the default values, which is fine.
 
 ```
 sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml 
@@ -94,7 +95,7 @@ elasticsearch.url: "https://localhost:9200"
 elasticsearch.ssl.verification: none
 ```
 
-**Note:** elasticsearch.ssl.verification is spelled elasticsearch.ssl.verificationMode in earlier versions in Kibana. 
+**Note:** **elasticsearch.ssl.verification** is spelled **elasticsearch.ssl.verificationMode** in some versions of Kibana. 
 
 
 Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
@@ -113,7 +114,7 @@ sg_kibana_server:
     '?kibana':
       '*':
         - ALL
-        ```
+```
 
 ## <a name="logstash|"></a> Configure LogStash
 
@@ -160,3 +161,5 @@ sg_logstash:
 Then start logstash
 
 `sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
+
+Now you can copy some Apache logs other other and see that show up in Elasticsearch.
