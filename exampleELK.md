@@ -84,7 +84,7 @@ Install the plugin.
 ```
 bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
 ```
-Edit kibana.yml. It is not necessary to add any config optionsexcept the ElasticSearch username and password, turn off cert validation, and change http to https.  The values you leave out will default to the default values, which is fine.
+Edit kibana.yml. It is not necessary to add any config options except the ElasticSearch username and password, turn off cert validation, and change http to https.  The values you leave out will default to the default values, which is fine.
 
 ```
 sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml 
