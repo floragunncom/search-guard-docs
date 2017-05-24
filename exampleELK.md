@@ -87,7 +87,7 @@ bin/kibana-plugin install file:///searchguard-kibana-5.3.2-2.zip
 Edit kibana.yml. It is not necessary to add any config options except the ElasticSearch username and password, turn off cert validation, and change http to https.  The values you leave out will default to the default values, which is fine.
 
 ```
-sudo cat /usr/share/kibana/kibana-5.2.2-linux-x86_64/config/kibana.yml 
+sudo cat <Kibana directory>config/kibana.yml 
 
 elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
@@ -114,11 +114,11 @@ sg_kibana_server:
 ```
 
 
-Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
+Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.  The SearchGuard login dialog box should appear.
 
 ## <a name="logstash"></a> Configure LogStash
 
-`sudo vi /etc/logstash/conf.d/wordpress.conf`
+Create a logstash config file.  Here we make wordpress.conf.
 
 ```
 input { file { path => "/tmp/log/*" type => "apache" start_position => "beginning" } }
@@ -160,7 +160,7 @@ sg_logstash:
 
 Then start logstash.
 
-`sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
+`sudo ./logstash -f config/wordpress.conf`
 
 
-Now you can copy some Apache logs to /tmp/log and see that show up in Elasticsearch. The traffic will now be encrypted and authenticated.
+Now you can copy some Apache logs to /tmp/log and see that show up in Elasticsearch and Kibana. The traffic will now be encrypted and authenticated.
