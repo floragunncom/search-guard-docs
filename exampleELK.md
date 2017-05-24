@@ -116,7 +116,7 @@ sg_kibana_server:
 
 Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
 
-## <a name="logstash|"></a> Configure LogStash
+## <a name="logstash"></a> Configure LogStash
 
 `sudo vi /etc/logstash/conf.d/wordpress.conf`
 
