@@ -4,9 +4,8 @@ Here we show how to configure the ELK stack (ElasticSearch, LogStash, Kibana) to
 
 1. [Install SearchGuard Plugin in ElasticSearch](exampleELK.md#install)
 2. [Generate TLS Demo certificates](exampleELK.md#cert) 
-3. [Add User Roles](exampleELK.md#roles)
-4. [Kibana Install SearchGuard Plugin](exampleELK.md#kibana)	 
-5. [Install and Configure Logstash](exampleELK.md#logstash)	 
+3. [Configure Kibana](exampleELK.md#kibana)	 
+4. [Configure Logstash](exampleELK.md#logstash)	 
 
  
 
@@ -98,11 +97,10 @@ elasticsearch.ssl.verification: none
 **Note:** elasticsearch.ssl.verification is spelled elasticsearch.ssl.verificationMode in earlier versions in Kibana. 
 
 
-Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>pluginonfig/sg_internal_users.yml.
+Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
 
-cat /usr/share/filebeat/filebeat-5.4.0-linux-x86_64/filebeat.yml
 
-## <a name="roles"></a> Add User Roles
+You need to give the Kibana users these rights in <ES_DIR>plugin/config/sg_internal_users.yml:
 
 ```
 cat sg_internal_users.yml
@@ -136,6 +134,7 @@ truststore_password => changeit } }
 
 ```
 
+You need to give the Kibana users these rights in <ES_DIR>plugin/config/sg_internal_users.yml
 
 ```
 cat sg_internal_users.yml
