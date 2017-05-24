@@ -136,6 +136,28 @@ truststore_password => changeit } }
 
 ```
 
+
+```
+cat sg_internal_users.yml
+
+
+sg_logstash:
+  cluster:
+    - indices:admin/template/get
+    - indices:admin/template/put
+    - indices:data/write/bulk*
+  indices:
+    'logstash-*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+    '*beat*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+   
+        ```
+
 Then start logstash
 
 `sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
