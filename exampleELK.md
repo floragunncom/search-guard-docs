@@ -122,25 +122,17 @@ sg_kibana_server:
 `sudo vi /etc/logstash/conf.d/wordpress.conf`
 
 ```
-input {
-    file {
-        path => "/tmp/log/*"
-        type => "apache"
-        start_position => "beginning"
-    }
-}
+input { file { path => "/tmp/log/*" type => "apache" start_position => "beginning" } }
 
-output {
-  elasticsearch {
-    hosts => ["eurovps:9200"]
-  user => logstash
-       password => logstash
-ssl => true
-ssl_certificate_verification => false
-       truststore => "/usr/share/elasticsearch/elasticsearch-5.2.2/config/truststore.jks"
-       truststore_password => changeit
-  }
-}
+output { elasticsearch 
+{ hosts => ["localhost:9200"] 
+user => logstash 
+password => logstash 
+ssl => true 
+ssl_certificate_verification => false 
+truststore => "/usr/share/elasticsearch/elasticsearch-5.3.2/config/truststore.jks" 
+truststore_password => changeit } }
+
 
 ```
 
