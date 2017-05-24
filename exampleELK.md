@@ -98,9 +98,6 @@ elasticsearch.ssl.verification: none
 **Note:** **elasticsearch.ssl.verification** is spelled **elasticsearch.ssl.verificationMode** in some versions of Kibana. 
 
 
-Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
-
-
 You need to give the Kibana users these rights in <ES_DIR>plugin/config/sg_internal_users.yml:
 
 ```
@@ -115,6 +112,9 @@ sg_kibana_server:
       '*':
         - ALL
 ```
+
+
+Now login to http://localhost:5601.  You can use any of the passwords in <ES_DIR>plugin/config/sg_internal_users.yml.
 
 ## <a name="logstash|"></a> Configure LogStash
 
@@ -158,7 +158,7 @@ sg_logstash:
    
 ```
 
-Then start logstash
+Then start logstash.
 
 `sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
 
