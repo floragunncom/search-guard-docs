@@ -146,4 +146,4 @@ ssl_certificate_verification => false
 
 Then start logstash
 
-`sudo ./logstash -f /etc/logstash/conf.d/wordpress.conf`
+`sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
