@@ -156,10 +156,11 @@ sg_logstash:
         - CRUD
         - CREATE_INDEX
    
-        ```
+```
 
 Then start logstash
 
 `sudo ./logstash -f /usr/logstash/logstash-5.4.0/config/wordpress.conf`
+
 
 Now you can copy some Apache logs other other and see that show up in Elasticsearch.
