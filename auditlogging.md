@@ -6,12 +6,12 @@ Copryight 2016 floragunn GmbH
 
 Audit logging enables you to track access to your Elasticsearch cluster. Search Guard tracks the following types of events, on REST and transport levels:
 
-* SSL_EXCEPTION—an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
-* BAD_HEADERS—an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
+* AUTHENTICATED—represents a successful request to Elasticsearch. 
 * FAILED_LOGIN—the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
 * MISSING_PRIVILEGES—an attempt was made to access Elasticsearch, but the user does not have the required permissions.
+* BAD_HEADERS—an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
+* SSL_EXCEPTION—an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
 * SG\_INDEX\_ATTEMPT—an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
-* AUTHENTICATED—represents a successful request to Elasticsearch. 
 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging.  See the section "Finetuning the thread pool" below.
   
