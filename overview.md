@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Overview
 
-Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, clientcert, jwt, TLS certificate, JSON web tokens, proxy, and LDAP. 
+Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, LDAP / Active Directory, JSON web tokens, TLS certificates and Proxy authentication / SSO.
 
 Regardless of what authentication technique you select, the basic flow is as follows:
 
