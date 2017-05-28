@@ -6,20 +6,33 @@ If you generated the certificates with one of the methods described in the chapt
  
 ## Identifying inter-node traffic
 
-Search Guard needs to securely and reliably identify internal communication between Elasticsearch nodes (inter-node traffic). This communication happens for example if one node receives a GET request on the HTTP layer, but needs to forward it to another node that holds the actual data. Search Guard does not perform any security checks for this kind of traffic.
+Search Guard needs to securely and reliably identify internal communication between Elasticsearch nodes (inter-node traffic). This communication happens for example if one node receives a GET request on the HTTP layer, but needs to forward it to another node that holds the actual data. 
 
-Since Search Guard makes heavy use of TLS already, it also uses TLS certificates for identifying inter-node traffic. Search Guard offers several ways of dealing with inter-node traffic. Depending on your PKI setup and capabilities, you can choose from one of the following methods:
+Search Guard offers several ways of dealing with inter-node traffic. Depending on your PKI setup and capabilities, you can choose from one of the following methods:
 
-## Using the default OID value
+## Listing DNs of node certificates
 
-This is the default setting of Search Guard. When Search Guard receives a request on the transport layer (remember that TLS is mandatory here), it checks the calling node's certificate for a certain `OID` value.
+The simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`:
+
+```
+searchguard.nodes_dn:
+  - "CN=*.example.com, OU=SSL, O=Test, L=Test, C=DE"
+  - "CN=node.other.com, OU=SSL, O=Test, L=Test, C=DE"
+  - "CN=elk-devcluster*"
+```
+
+All certificate DNs listed here are considered valid node certificates. **Wildcards** and **regular expressions** are supported. If you use this approach, please make sure to list only node certificates. 
+
+## Using an OID value as SAN entry
+
+This is the default setting of Search Guard. When Search Guard receives a request on the transport layer it checks the calling nodes certificate for a certain `OID` value.
 
 `OID` stands for an object identifier and in this context it is used to identify an X.509 certificate extension, i.e. additional data fields stored in the certificate, which are not predefined by the standard.
 
 If you want to learn more about OIDs in TLS certificates, refer to Red Hats [Standard X.509 v3 Certificate Extension Reference](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.0/html/Admin_Guide/Standard_X.509_v3_Certificate_Extensions.html
 ).
 
-The `OID` is configured in the `Subject Alternative Name (SAN)` section of the certificate, and must have the value `1.2.3.4.5.5`. If this value is not found, the certificate is considered invalid.
+The `OID` is configured in the `Subject Alternative Name (SAN)` section of the certificate, and must have the default value `1.2.3.4.5.5`. If this value is not found, the certificate is considered invalid.
 
 If you are unsure if the certificates in the keystore contain the correct OID value, you can check it with the following `keytool` command:
 
@@ -50,19 +63,6 @@ If you cannot set the `OID` to the default value `1.2.3.4.5.5`, but you are able
 searchguard.cert.oid: <String>
 ```
 
-## Configuring valid node certificates
-
-If you cannot set an `OID` value when generating certificates, for example if your PKI infrastructure simply does not support this, you can simply list all node certificate DNs in `elasticsearch.yml`:
-
-```
-searchguard.nodes_dn:
-  - "CN=*.example.com, OU=SSL, O=Test, L=Test, C=DE"
-  - "CN=node.other.com, OU=SSL, O=Test, L=Test, C=DE"
-```
-
-All certificate DNs listed here are considered valid node certificates. **Wildcards** and **regular expressions** are supported.
-
-If you use this approach, please make sure to list only node certificates. Since a node certificate has all acess privileges to your cluster, listing wrong certificates here could pose a security risk!
 
 ## Expert: Custom implementation
 
