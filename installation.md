@@ -209,8 +209,9 @@ The following plugins and tools have been tested for compatibility with Search G
 * Beats
 * Curator
 * [Kibi](https://siren.solutions/kibi/)
-* Kopf / Cerebro
-* Grafana
+* [syslog-ng](https://syslog-ng.org/) 
+* Kopf / [Cerebro](https://github.com/lmenezes/cerebro)
+* [Grafana](https://grafana.com/)
 * ES-Hadoop / Spark
 
 #### Incompatible plugins and tools
