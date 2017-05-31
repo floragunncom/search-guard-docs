@@ -63,21 +63,21 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 
 * **Search Guard 2:**
-  * [Alpine (1.1.33.Fork17 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork17-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork17 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork17-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork17 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork17-fedora-linux-x86_64.jar)
+  * [Alpine (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-alpine-linux-x86_64.jar)
+  * [Debian/Ubuntu (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-non-fedora-linux-x86_64.jar)
+  * [CentOS/RHEL/Fedora (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-fedora-linux-x86_64.jar)
 * **Search Guard 5.0/5.1:**
-  * [Alpine (1.1.33.Fork23 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork23-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork23 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork23-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork23 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork23-fedora-linux-x86_64.jar)
+  * [Alpine (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-alpine-linux-x86_64.jar)
+  * [Debian/Ubuntu (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-non-fedora-linux-x86_64.jar)
+  * [CentOS/RHEL/Fedora (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-fedora-linux-x86_64.jar)
 * **Search Guard 5.2/5.3:**
-  * [Alpine (1.1.33.Fork25 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork25-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork25 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork25-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork25 compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-1.1.33.Fork25-fedora-linux-x86_64.jar)
+  * [Alpine (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-alpine-linux-x86_64.jar)
+  * [Debian/Ubuntu (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-non-fedora-linux-x86_64.jar)
+  * [CentOS/RHEL/Fedora (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-fedora-linux-x86_64.jar)
 * **Search Guard 5.4:**
-  * [Alpine (2.0.0.Final compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-2.0.0.Final-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (2.0.0.Final compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-2.0.0.Final-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (2.0.0.Final compiled with OpenSSL 1.0.2k)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2k-static-2.0.0.Final-fedora-linux-x86_64.jar)
+  * [Alpine (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-alpine-linux-x86_64.jar)
+  * [Debian/Ubuntu (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-non-fedora-linux-x86_64.jar)
+  * [CentOS/RHEL/Fedora (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-fedora-linux-x86_64.jar)
 
 Put it into the elasticsearch `plugins/search-guard-ssl/` or `plugins/search-guard-5/` folder on every node
 
