@@ -6,12 +6,12 @@ Copryight 2016 floragunn GmbH
 
 Audit logging enables you to track access to your Elasticsearch cluster. Search Guard tracks the following types of events, on REST and transport levels:
 
-* AUTHENTICATED—represents a successful request to Elasticsearch. 
 * FAILED_LOGIN—the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
 * MISSING_PRIVILEGES—an attempt was made to access Elasticsearch, but the user does not have the required permissions.
 * BAD_HEADERS—an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
 * SSL_EXCEPTION—an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
 * SG\_INDEX\_ATTEMPT—an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
+* AUTHENTICATED—represents a successful request to Elasticsearch. 
 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging.  See the section "Finetuning the thread pool" below.
   
@@ -104,6 +104,15 @@ However, before increasing the field limit, please think about if it is really n
 
 Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy.  
 
+### Configuring excluded users (requires Audit Log v5 or above)
+
+By default, Search Guard logs events from all users. In some cases you might want to exclude events created by certain users from being logged. For example, you might want to exclude the Kibana server user or the logstash user. You can define users to be excluded by setting the following configuration:
+
+```
+searchguard.audit.ignore_users:
+  - kibanaserver
+```
+
 ### Configuring the storage type
 
 Search guard comes with three audit log storage types. This specifies where you want to store the tracked events. You can choose from:
@@ -145,6 +154,15 @@ searchguard.audit.config.type: <typename>
 
 If not specified, Search Guard uses the default value `auditlog` for both index name and document type.
 
+Since v5, you can use a date/time pattern in the index name as well, for example to set up a daily rolling index. For a reference on the date/time pattern format, please refer to the [Joda DateTimeFormat docs](http://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html).
+
+Example:
+
+```
+searchguard.audit.config.index: "'auditlog-'YYYY.MM.dd"
+```
+ 
+
 ## Storage type 'external_elasticsearch'
 
 If you want to store the tracked events in a different Elasticsearch cluster than the cluster producing the events, you use `external_elasticsearch` as audit type, configure the Elasticsearch endpoints with hostname/IP and port and optionally the index name and document type:
@@ -156,7 +174,9 @@ searchguard.audit.config.index: <indexname>
 searchguard.audit.config.type: <typename>
 ```
 
-SearchGuard uses the REST API to send the tracked events.  So for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
+Since v5, you can use date/time pattern in the index name as well, as described for storage type `internal_elasticsearch`.
+
+SearchGuard uses the Elasticsearch REST API to send the tracked events. So, for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
 
 ```
 searchguard.audit.config.http_endpoints: 192.168.178.1:9200,192.168.178.2:9200
