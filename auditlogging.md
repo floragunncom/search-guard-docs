@@ -67,6 +67,43 @@ searchguard.audit.enable_request_details: <boolean>
 
 Since this extended logging comes with an performance overhead, the default setting is `false`.
 
+#### Extended logging caveats
+
+The extended logging can produce a considerable amount of log information. If you plan to use extended logging in production, please keep the following things in mind:
+
+**Exclude the AUTHENTICATED category**
+
+If the AUTHENTICATED category is enabled, Search Guard will log all requests, including valid, authenticated requests. This can lead to a huge amount of messages and **should be avoided in combination with extended logging**.
+
+**Composite requests and field limits**
+
+If a request contains subrequests, Search Guard adds audit information for each subrequest to the audit message separately. This includes the index name, the document type or the source. Each subrequest is identified by a consecutive number, appended to the field name of the logged data.
+
+For example, if a request contains three subrequests, the audit message will contain the affected indices for each subrequest, like:
+
+```
+audit_trace_indices_sub_1: ...
+audit_trace_indices_sub_2: ...
+audit_trace_indices_sub_3: ...
+```
+
+If your composite request contains a huge number of subrequests, the produced audit messages will contain a huge number of fields as well. You will likely hit the field limit of Elasticsearch, which defaults to 1000 per index (see the corresponding issue on [GitHub](https://github.com/elastic/elasticsearch/pull/17357)).
+
+If necessary, you can set a higher value for the field limit, even after the index has been created:
+
+```
+PUT auditlog/_settings
+{
+  "index.mapping.total_fields.limit": 10000
+} 
+```
+
+However, before increasing the field limit, please think about if it is really necessary to log these kinds of messages at all.
+
+**Use an external storage type**
+
+Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy.  
+
 ### Configuring the storage type
 
 Search guard comes with three audit log storage types. This specifies where you want to store the tracked events. You can choose from:
@@ -94,7 +131,7 @@ There are no special configuration settings for this audit type.  Just add the a
 searchguard.audit.type: debug
 ```
 
-This will output tracked events to stdout.
+This will output tracked events to stdout, and is mainly useful when debugging or testing.
 
 ## Storage type 'internal_elasticsearch'
 
