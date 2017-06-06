@@ -36,9 +36,9 @@ elasticsearch-5.3.0
 
 TLS is configured in the `config/elasticsearch.yml` file of your ES installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while you cannot switch it off for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
 
-**Note: If you make changes to the `config/elasticsearch.yml` file, you need to restart the node in order for the changes to take effect.**
-
 Use the following settings to configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer, however, for this example we use the same files for both layers.
+
+*Note: It's common practice to put the certificates and trusted Root CAs in a keystore and a truststore file respectively. As an alternative, you can also store the complete certificate chain in one file, and use aliases to refer to them.* 
 
 ### Transport layer TLS
 
