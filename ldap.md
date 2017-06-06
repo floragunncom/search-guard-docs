@@ -91,6 +91,8 @@ The first entries control the TLS settings of the connection to your LDAP server
 | enable\_start\_tls | Whether to use STARTTLS or not. Cannot be used in combination with LDAPS. |
 | enable\_ssl\_client\_auth | Whether to send the client certificate to the LDAP server or not. The client certificate is taken from the keystore configured in `elasticsearch.yml` |
 
+To verify the validity of the certificates, Search Guard uses the transport truststore configured in `elasticsearch.yml`. This means that the certificate (-chain) from your LDAP server must be signed by one of the certificates in the transport truststore.
+
 ### LDAP server settings
 
 Next, configure how Search Guard connects to your LDAP server(s):
