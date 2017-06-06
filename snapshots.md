@@ -23,8 +23,10 @@ A role definition in `roles.yml` which allows all snapshot and restore operation
 ```
 sg_snapshot_restore:
   cluster:
-    - cluster:admin/snapshot/status
+    - cluster:admin/repository/put
     - cluster:admin/repository/get
+    - cluster:admin/snapshot/status
+    - cluster:admin/snapshot/get
     - cluster:admin/snapshot/create
     - cluster:admin/snapshot/restore
     - cluster:admin/snapshot/delete
