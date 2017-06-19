@@ -42,8 +42,8 @@ The Search Guard Kibana plugin provides session management for Kibana. If not al
 | searchguard.cookie.secure | boolean, if set to true cookies are only stored when using HTTPS. Default: false. |
 | searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
 | searchguard.cookie.password | String, key used to encrypt the cookie. Must be at least 32 characters long. Default: 'searchguard\_cookie\_default\_password' |
-| searchguard.cookie.ttl | Integer, lifetime of the cookie. Can be set to 0 for session cookie. Default: 1 hour |
-| searchguard.session.ttl | Integer, lifetime of the session. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour |
+| searchguard.cookie.ttl | Integer, lifetime of the cookie in milliseconds. Can be set to 0 for session cookie. Default: 1 hour |
+| searchguard.session.ttl | Integer, lifetime of the session in milliseconds. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour |
 | searchguard.session.keepalive | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true |
 
 ### Configuring the Kibana server user
