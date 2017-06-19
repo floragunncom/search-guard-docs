@@ -6,9 +6,22 @@ Copryight 2017 floragunn GmbH
 
 ## Default behaviour
 
-Since all user, role and permission settings are stored in the Search Guard index inside Elasticsearch, they will also be part of a snapshot. Snaphots and restores are therefore **only allowed if an admin certificate** is sent with the snapshot or restore request. This is the default behaviour of Search Guard.
+Since all user, role and permission settings are stored in the Search Guard index inside Elasticsearch, they will also be part of a snapshot. Restores are therefore **only allowed if an admin certificate** is sent with the restore request. This is the default behaviour of Search Guard.
 
-## Enabling snapshot and restore for regular users
+For curl, you need to specify the admin certificate with it's complete certificate chain, and also the key:
+
+```
+curl --insecure --cert chain.pem --key kirk.key.pem -XPOST '<host>:9200/_snapshot/my_backup/snapshot_1/_restore?pretty'
+```
+
+If you use the example PKI scripts provided by Search Guard SSL, the `kirk.key.pem` is already generated for you. You can generate the chain file by `cat`ing the certificate and the ca chain file:
+
+```
+cd search-guard-sll
+cat example-pki-scripts/kirk.crt.pem example-pki-scripts/ca/chain-ca.pem > chain.pem
+```
+
+## Enabling snapshot and restore for regular users (ES 5.x and above only)
 
 If you want to allow snapshot and restore requests also for regular users without an admin certificate, you need to enable this feature explicitly in `elasticsearch.yml`:
 
