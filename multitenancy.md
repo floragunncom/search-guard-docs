@@ -183,6 +183,35 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
 
+### Kibana: Setting preferred / default tenants
+
+If a user logs in the first time and has not chosen a tenant yet, Search Guard will
+
+* collect all available tenants for the logged in user
+* sort them alphabetically
+* if enabled, add the global and private tenant on top 
+* choose the first tenant from this list  
+
+If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `kibana.yml`:
+
+```
+searchguard.multitenancy.tenants.preferred: ["tenant1","tenant2",...]
+```
+
+Search Guard will compare the list of preferred tenants with the list of available tenants for the logged in user, and chose the first matching tenant.
+
+### Kibana: Selecting tenants by query parameter
+
+Tenants can also be switched by adding a query parameter to the URL. This is especially handy if you want to share a visualization or dashboard.
+
+For any Kibana URL, you can add a query param `sg_tenant` which will overwrite the currently selected tenant.
+
+```
+http://localhost:5601/app/kibana?sg_tenant=mytenant#/visualize/edit/919f5810-55ff-11e7-a198-5f6d82ac1c15?_g=()
+```
+
+Make sure to add the the query parameter before the hash sign.
+
 ### Kibana Experimental: Filter bar for tenants
 
 This feature is available for Kibana 5.1.1 and above.
