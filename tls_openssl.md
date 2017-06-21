@@ -6,6 +6,9 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
 
+**Known Issues with ES 5.3.x and 5.4.x**
+If you run in exceptions with ES 5.3.x and 5.4.x pls [look here](https://github.com/floragunncom/search-guard/issues/343) for more informations how to fix it.
+
 To enable native support for OpenSSL follow these steps:
 
 ## Dynamically linked
@@ -56,13 +59,13 @@ To enable native support for OpenSSL follow these steps:
   * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar)
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 
-* **Search Guard 5.4.1 (Open SSL 1.0.1):**
+* **Search Guard 5.4.1 and higher (Open SSL 1.0.1):**
   * Version: 2.0.1.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.1.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.1.Final)
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 
-* **Search Guard 5.4.1 (Open SSL 1.0.2):**  
+* **Search Guard 5.4.1 and higher (Open SSL 1.0.2):**  
   * Version: 2.0.1.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
   * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.1.Final-non-fedora-linux-x86_64.jar)
   * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.1.Final-fedora-linux-x86_64.jar)
@@ -91,7 +94,7 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
   * [Alpine (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-alpine-linux-x86_64.jar)
   * [Debian/Ubuntu (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-non-fedora-linux-x86_64.jar)
   * [CentOS/RHEL/Fedora (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-fedora-linux-x86_64.jar)
-* **Search Guard 5.4.1:**
+* **Search Guard 5.4.1 and higher:**
   * [Alpine (2.0.1.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.1.Final-alpine-linux-x86_64.jar)
   * [Debian/Ubuntu (2.0.1.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.1.Final-non-fedora-linux-x86_64.jar)
   * [CentOS/RHEL/Fedora (2.0.1.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.1.Final-fedora-linux-x86_64.jar)
