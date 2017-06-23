@@ -168,7 +168,11 @@ For <permission>, <indexname or alias> and <type> also regular expressions are p
 
 Example: `/\S*/` will match any non whitespace characters.
 
-**Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> regex. Use `\S` instead.**
+**Note: You cannot have a dot (.) in the <permission>, <indexname or alias> or <type> regex. Use `(\S|\s)` instead.**
+
+Example
+  * `.` == `(\S|\s)` and `.*` == `(\S|\s)*`
+  * `[.]`, `[\.]` or `\.` == `\x2E`
 
 See [https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
 
