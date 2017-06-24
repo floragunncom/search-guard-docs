@@ -213,6 +213,7 @@ The following plugins and tools have been tested for compatibility with Search G
 * Kopf / [Cerebro](https://github.com/lmenezes/cerebro)
 * [Grafana](https://grafana.com/)
 * ES-Hadoop / Spark
+* [Elastalert](https://github.com/Yelp/elastalert)
 
 #### Incompatible plugins and tools
 
