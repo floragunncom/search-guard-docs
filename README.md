@@ -74,3 +74,6 @@ Copyright 2016-2017 floragunn GmbH
 * [Addendum A: Configuration Examples](addendum_a_configuration_examples.md)
 * [Addendum B: Permission settings Examples](addendum_b_permission_settings_examples.md)
 * [Addendum C: TLS explained](addendum_c_tls_primer.md)
+
+### Search Guard End Of Life policy
+* [Search Guard End Of Life policy](eol.md)
