@@ -67,6 +67,7 @@ Copyright 2016-2017 floragunn GmbH
 * [Using Search Guard with Kibana](kibana.md)
 * [Kibana Multitenancy](multitenancy.md)
 * [Using Search Guard with logstash](logstash.md)
+* [Using Search Guard with X-Pack Monitoring](monitoring.md)
 * [Tribe nodes](tribenodes.md)
 * [Snapshot & Restore](snapshots.md)
 
