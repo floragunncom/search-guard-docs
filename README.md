@@ -22,7 +22,6 @@ Copyright 2016-2017 floragunn GmbH
 
 * [Frontmatter](frontmatter.md)
 * [Quickstart](quickstart.md)
-* [Simple ELK Example](exampleELK.md)
 * [Search Guard Overview](overview.md)
 
 ### Installation

@@ -17,7 +17,7 @@ The basic installation procedure is to:
 
 ## Get the version of Search Guard that matches Elasticsearch
 
-You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 5.3.1 will not run on ES 5.3.2 and vice versa.
+You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 5.4.1 will not run on ES 5.4.2 and vice versa.
 
 In order to find the correct Search Guard and Search Guard SSL version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki) in the github repository. This matrix will be kept up-to-date with each release.
 
@@ -36,7 +36,7 @@ For Search Guard 5, you only need to install one plugin, namely Search Guard. Th
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.4.0-12
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.4.2-13
 ```
 
 After the installation you should see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
@@ -47,7 +47,7 @@ For Search Guard 2, you need to install Search Guard SSL first and after that Se
 
 ```
 bin/plugin install -b com.floragunn/search-guard-ssl/2.4.5.21
-bin/plugin install -b com.floragunn/search-guard-2/2.4.5.12
+bin/plugin install -b com.floragunn/search-guard-2/2.4.5.13
 ```
 After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
 
