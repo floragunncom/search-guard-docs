@@ -70,7 +70,7 @@ Copyright 2016-2017 floragunn GmbH
 * [Tribe nodes](tribenodes.md)
 * [Snapshot & Restore](snapshots.md)
 
-### Integrating with X-Pack Alterntives
+### Integrating with X-Pack Alternatives
 * [Using Search Guard with ElastAlert](elastalert.md)
 
 ### Addendum
