@@ -70,6 +70,9 @@ Copyright 2016-2017 floragunn GmbH
 * [Tribe nodes](tribenodes.md)
 * [Snapshot & Restore](snapshots.md)
 
+### Integrating with the X-Pack Alterntives
+* [Using Search Guard with ElastAlert](elastalert.md)
+
 ### Addendum
 * [Addendum A: Configuration Examples](addendum_a_configuration_examples.md)
 * [Addendum B: Permission settings Examples](addendum_b_permission_settings_examples.md)
