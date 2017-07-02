@@ -18,9 +18,9 @@ Search Guard releases that **have reached end of life** are called **inactive re
 
 The Search Guard versioning scheme is: 
 
-* e1.e2.e3.sgv (for 2.x)
 * e1.e2.e3-sgv (for 5.x)
-
+* e1.e2.e3.sgv (for 2.x)
+* 
 where 
 
 * e1: Elasticsearch Major Version
