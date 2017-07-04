@@ -32,7 +32,8 @@ Search Guard ships with sgadmin included. You can find it in the following direc
 
 As an alternative, you can also download the sgadmin standalone version. It comes with all dependencies so you can use it on any machine you want, provided Java is installed.
 
-* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.2-12/search-guard-5-5.3.2-12-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.4.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.4.3-14/search-guard-5-5.4.3-14-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.3-14/search-guard-5-5.3.4-14-sgadmin-standalone.zip)
 * [Download for Search Guard 5 and Elasticsearch 5.2.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.2.2-12/search-guard-5-5.2.2-12-sgadmin-standalone.zip)
 * [Download for Search Guard 5 and Elasticsearch 5.1.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.1.2-12/search-guard-5-5.1.2-12-sgadmin-standalone.zip)
 * [Download for Search Guard 5 and Elasticsearch 5.0.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.0.2-12/search-guard-5-5.0.2-12-sgadmin-standalone.zip)
@@ -108,6 +109,7 @@ If you run a default Elasticsearch installation, which listens on transport port
 | -cn | clustername, default: elasticsearch |
 | -icl | Ignore clustername. |
 | -sniff | Sniff cluster nodes. |
+| -arc,--accept-red-cluster | Execute sgadmin even if the cluster state is red. Default: sgadmin won't execute on red cluster state |
 
 Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).
 
@@ -129,6 +131,7 @@ Use the following options to control the key and truststore settings:
 | -tsalias | The truststore alias, if any.|
 | -nhnv | disable-host-name-verification, do not validate hostname.|
 | -nrhn | disable-resolve-hostname, do not resolve hostname (Only relevant if -nhnv is not set.).|
+|-noopenssl| Do not use OpenSSL even if available (default: use OpenSSL if available)|
 
 ### Configuration settings
 
