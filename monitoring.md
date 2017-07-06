@@ -26,6 +26,7 @@ For the `http` monitoring type, add a user with all permissions to carry out the
 sg_monitor:
   cluster:
     - "cluster:admin/xpack/monitoring/*"
+    - "cluster:admin/ingest/pipeline/get"
     - "indices:admin/template/get"
     - "indices:admin/template/put"
     - "indices:admin/*get"
