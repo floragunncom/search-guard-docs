@@ -39,9 +39,9 @@ mister_picard:
 
 ## Generating hashed passwords
 
-The password hash is a salted bcrypt hash of your cleartext password. You can use the `hasher.sh` script that is shipped with Search Guard to generate them:
+The password hash is a salted bcrypt hash of your cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them. You may need to `chmod` the script first.
 
-``plugins/search-guard-2/tools/hasher.sh -p mycleartextpassword``
+``plugins/search-guard-5/tools/hash.sh -p mycleartextpassword``
 
 ## Configuration
 
