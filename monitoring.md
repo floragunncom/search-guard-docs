@@ -14,7 +14,6 @@ In `elasticsearch.yml`, disable all componentes but monitoring:
 xpack.monitoring.enabled: true
 xpack.graph.enabled: false
 xpack.ml.enabled: false
-xpack.reporting.enabled: false
 xpack.security.enabled: false
 xpack.watcher.enabled: false
 ```
@@ -33,7 +32,7 @@ sg_monitor:
     - CLUSTER_MONITOR
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '.monitoring*':
+    '?monitoring*':
       '*':
         - INDICES_ALL
 ```
@@ -91,7 +90,6 @@ xpack.graph.enabled: false
 xpack.ml.enabled: false
 xpack.reporting.enabled: false
 xpack.security.enabled: false
-xpack.watcher.enabled: false
 ```
 
 ## Known issues and limitations
