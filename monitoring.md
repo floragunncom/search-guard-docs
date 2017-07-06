@@ -14,7 +14,6 @@ In `elasticsearch.yml`, disable all componentes but monitoring:
 xpack.monitoring.enabled: true
 xpack.graph.enabled: false
 xpack.ml.enabled: false
-xpack.reporting.enabled: false
 xpack.security.enabled: false
 xpack.watcher.enabled: false
 ```
@@ -27,13 +26,14 @@ For the `http` monitoring type, add a user with all permissions to carry out the
 sg_monitor:
   cluster:
     - "cluster:admin/xpack/monitoring/*"
+    - "cluster:admin/ingest/pipeline/get"
     - "indices:admin/template/get"
     - "indices:admin/template/put"
     - "indices:admin/*get"
     - CLUSTER_MONITOR
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '.monitoring*':
+    '?monitoring*':
       '*':
         - INDICES_ALL
 ```
@@ -91,7 +91,6 @@ xpack.graph.enabled: false
 xpack.ml.enabled: false
 xpack.reporting.enabled: false
 xpack.security.enabled: false
-xpack.watcher.enabled: false
 ```
 
 ## Known issues and limitations
