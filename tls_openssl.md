@@ -6,8 +6,8 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
 
-**Known Issues with ES 5.3.x and 5.4.x**
-If you run in exceptions with ES 5.3.x and 5.4.x pls [look here](https://github.com/floragunncom/search-guard/issues/343) for more informations how to fix it.
+**Known Issues with ES 5.3.x, 5.4.x and 5.5.x**
+If you run in exceptions with ES 5.3.x, 5.4.x and 5.5.x pls [look here](https://github.com/floragunncom/search-guard/issues/343) for more informations how to fix it.
 
 To enable native support for OpenSSL follow these steps:
 
