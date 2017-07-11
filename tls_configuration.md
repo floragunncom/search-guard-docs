@@ -163,6 +163,10 @@ searchguard.ssl.http.enabled_protocols:
   - "TLSv1.2"
 ```
 
+## Expert: Disable client initiated renegotiation for Java 8
+
+Set `-Djdk.tls.rejectClientInitiatedRenegotiation=true` to disable secure client initiated renegotiation (which is enabled by default). This can be set via `ES_JAVA_OPTS` in config/jvm.options. See also [#362](https://github.com/floragunncom/search-guard/issues/362) for more details.
+
 ## Configuration example
 
 For an up-to-date, complete configuration example with all features, please refer to the configuration template in the Search Guard SSL repository:
