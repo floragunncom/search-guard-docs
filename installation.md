@@ -15,6 +15,11 @@ The basic installation procedure is to:
 5. Restart Elasticsearch.
 6. Initialise Search Guard by running sgadmin.
 
+## Ensure that you Java Virtual Machine is supported
+
+* We support only OpenJDK 7/8 or Oracle JVM 7/8.
+* There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM
+
 ## Get the version of Search Guard that matches Elasticsearch
 
 You need to install the Search Guard version that matches your Elasticsearch Version. For example, a plugin built for ES 5.4.1 will not run on ES 5.4.2 and vice versa.
