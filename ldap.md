@@ -270,6 +270,19 @@ If your roles are not stored in a role subtree (approach 1 from above), but only
 rolesearch_enabled: <true|false>
 ```
 
+### Advanced: Active Directory Global Catalog
+
+Depending on your configuration you may need to use port 3268 instead of 389 so that the LDAP module is able to query the global catalog. Changing the port can help to avoid warnings like
+
+```
+[WARN ][o.l.r.SearchReferralHandler] Could not follow referral to ldap://ForestDnsZones.xxx.xxx.local/DC=ForestDnsZones,DC=xxx,DC=xxx,DC=local
+org.ldaptive.LdapException: javax.naming.NamingException: [LDAP: error code 1 - 000004DC: LdapErr: DSID-0C0906DC, comment: In order to perform this operation a successful bind must be completed on the connection., data 0, v1db0]; remaining name 'DC=ForestDnsZones,DC=xxx,DC=xxx,DC=local'
+...
+Caused by: javax.naming.NamingException: [LDAP: error code 1 - 000004DC: LdapErr: DSID-0C0906DC, comment: In order to perform this operation a successful bind must be completed on the connection., data 0, v1db0]
+```
+
+For more details refer to https://technet.microsoft.com/en-us/library/cc978012.aspx
+
 ### Configuration summary
 
 | Name | Description |
