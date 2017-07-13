@@ -102,7 +102,7 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_config.yml—configure authenticators and authorisation backends.
 * sg\_roles.yml—define roles and the associated permissions.
 * sg\_roles\_mapping.yml—map backend roles, hosts and users to roles.
-* sg\_internal\_users.yml—stores user and hashed passwords (hash with hasher.sh) is using the internal user database.
+* sg\_internal\_users.yml—stores user and hashed passwords (hash with hash.sh) is using the internal user database.
 * sg\_action\_groups.yml—define named permission groups.
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster. To do this, use the `sgadmin` tool. For details, refer to the chapter [sgadmin](sgadmin.md). Please pay also attention to the shared and replica settings, since you want to make sure that the Search Guard index is available on all nodes.
