@@ -109,7 +109,7 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_roles\_mapping.yml
   * map backend roles, hosts and users to roles
 * sg\_internal\_users.yml
-  * user and hashed passwords (hash with hasher.sh), used for the internal user database
+  * user and hashed passwords (hash with hash.sh), used for the internal user database
 * sg\_action\_groups.yml
   * group permissions together
 
