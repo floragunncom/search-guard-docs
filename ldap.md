@@ -270,7 +270,7 @@ If your roles are not stored in a role subtree (approach 1 from above), but only
 rolesearch_enabled: <true|false>
 ```
 
-### Advanced: Active Directory Global Catalog
+### Advanced: Active Directory Global Catalog (DSID-0C0906DC)
 
 Depending on your configuration you may need to use port 3268 instead of 389 so that the LDAP module is able to query the global catalog. Changing the port can help to avoid warnings like
 
