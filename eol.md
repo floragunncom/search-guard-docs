@@ -33,11 +33,11 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 5.4.3/5.4.2/5.4.1/5.4.0 at the time of writing
+  * 5.5.0/5.5.1 at the time of writing
 * Current release of the previous minor version of the current major version
-  * 5.3.3 at the time of writing
+  * 5.4.3 at the time of writing
 * Last release of the previous major version (not all feature will be backported)
-  * 2.4.5 at the time of writing
+  * 2.4.6 at the time of writing
 
 ## Inactive releases
 
