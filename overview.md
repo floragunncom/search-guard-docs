@@ -26,8 +26,7 @@ Regardless of what authentication method you use, the basic flow is as follows:
 
 # Authentication flow
 
-<p align="center">
-![Search Guard authentication flow](images/auhentication_flow.png)
+![Search Guard authentication flow](images/authentication_flow.png)
 
 
 ## Credentials
