@@ -8,14 +8,12 @@ This documentation assumes that you already installed and configured Kibana and 
 
 Install X-Pack on every node in your Elasticsearch Cluster. Please refer to the official X-Pack documentation regarding [installation instructions](https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html).
 
-In `elasticsearch.yml`, disable all componentes but monitoring:
+In `elasticsearch.yml`, disable X-Pack Security and enable X-Pack Monitoring:
 
 ```
-xpack.monitoring.enabled: true
-xpack.graph.enabled: false
-xpack.ml.enabled: false
 xpack.security.enabled: false
-xpack.watcher.enabled: false
+xpack.monitoring.enabled: true
+...
 ```
 
 ## Elasticsearch: Add the monitoring user
@@ -92,16 +90,14 @@ xpack.monitoring.exporters:
 
 As with Elasticsearch, install X-Pack on Kibana. Please refer to the official X-Pack documentation regarding [installation instructions](https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html).
       
-## Kibana: Configure X-Pack
+## Kibana: Enable X-Pack Monitoring
 
-As with Elasticsearch, disable all components but monitoring:
+In `kibana.yml`, disable X-Pack Security and enable X-Pack Monitoring:
 
 ```
-xpack.monitoring.enabled: true
-xpack.graph.enabled: false
-xpack.ml.enabled: false
-xpack.reporting.enabled: false
 xpack.security.enabled: false
+xpack.monitoring.enabled: true
+...
 ```
 
 ## Known issues and limitations

@@ -8,14 +8,13 @@ This documentation assumes that you already installed and configured Kibana and 
 
 Install X-Pack on every node in your Elasticsearch Cluster. Please refer to the official X-Pack documentation regarding [installation instructions](https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html).
 
-In `elasticsearch.yml`, disable all componentes but monitoring:
+In `elasticsearch.yml`, disable X-Pack Security and enable X-Pack Machine Learning:
+
 
 ```
-xpack.ml.enabled: true
-xpack.watcher.enabled: false
-xpack.monitoring.enabled: false
-xpack.graph.enabled: false
 xpack.security.enabled: false
+xpack.ml.enabled: true
+...
 ```
 
 ## Elasticsearch: Add the machine learning user
@@ -47,15 +46,13 @@ sg_machine_learning:
 
 As with Elasticsearch, install X-Pack on Kibana. Please refer to the official X-Pack documentation regarding [installation instructions](https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html).
       
-## Kibana: Configure X-Pack
+## Kibana: Enable X-Pack Machine Learning
 
-As with Elasticsearch, disable all components but monitoring:
+In `kibana.yml`, disable X-Pack Security and enable X-Pack Machine Learning:
+
 
 ```
-xpack.ml.enabled: true
-xpack.watcher.enabled: false
-xpack.monitoring.enabled: false
-xpack.graph.enabled: false
-xpack.reporting.enabled: false
 xpack.security.enabled: false
+xpack.ml.enabled: true
+...
 ```
