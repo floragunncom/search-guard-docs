@@ -48,7 +48,7 @@ The Search Guard Kibana plugin provides session management for Kibana. If not al
 
 ### Configuring the Kibana server user
 
-For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the `kibanaserver`.
+For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the Kibana server users.
 
 This user needs special privileges for the Kibana index, and is used under the hood by Kibana. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
 
@@ -120,6 +120,16 @@ console.proxyConfig:
     ssl:
       ca: "/path/to/your/root-ca.pem"
 ```
+
+### Upgrading the Search Guard Kibana Plugin
+
+In order to upgrade the Search Guard Kibana Plugin:
+
+* Stop Kibana
+* Delete the Search Guard Kibana plugin from the `plugins` directory 
+* Restart Kibana, which will clear all cached files
+* Stop Kibana, and install the new version of the plugin
+
 
 ### Customising the login page (5.0 and above)
 

@@ -1,12 +1,14 @@
 <!---
-Copryight 2016 floragunn GmbH
+Copryight 2017 floragunn GmbH
 -->
 
 # Managing the Search Guard index
 
 ## Index name
 
-Beginning with Search Guard 2.x.x.6, you can configure the name of the Search Guard index. This is only necessary in special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
+If nothing else is specified, Search Guard uses `searchguard` as the name of the index where all configuration settings are stored.
+
+You can configure the name of the Search Guard index. This is only necessary in special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
 
 ## Replica shards
 

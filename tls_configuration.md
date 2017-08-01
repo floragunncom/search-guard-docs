@@ -1,56 +1,24 @@
 # Configuring TLS
 
-## Prerequisites: Copying the keystore and truststore
-
-The keystore and truststore files need to be placed in the `config` directory of Elasticsearch, or a subdirectory of the `config` directory. Make sure that the files are readable by the user that runs the Elasticsearch process.
-
-If you have used the example PKI script, it generated three keystore files:
-
-* `node-0-keystore.jks`
-* `node-1-keystore.jks`
-* `node-2-keystore.jks`
-
-and one truststore file:
-
-* `truststore.jks`
-
-Copy one of the keystores and the truststore to the config directory. If you have used the TLS generator, the names of these files differ.
-
-The config directory should now look like:
-
-```
-elasticsearch-5.3.0
-│
-└─── config
-    │   elasticsearch.yml
-    │   log4j2.properties
-    │   node-0-keystore.jks
-    │   truststore.jks
-    ├─── scripts
-    │    │   ...
-    │ ...
- 
-```
-
-## Configuring the keystore and the truststore
-
 TLS is configured in the `config/elasticsearch.yml` file of your ES installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while you cannot switch it off for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
 
-Use the following settings to configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer, however, for this example we use the same files for both layers.
+## Using Keystore and Truststore files
 
-*Note: It's common practice to put the certificates and trusted Root CAs in a keystore and a truststore file respectively. As an alternative, you can also store the complete certificate chain in one file, and use aliases to refer to them.* 
+The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
+
+*Note: It's common practice to put the certificates and trusted Root CAs in separate keystore and a truststore files. As an alternative, you can also store all certificates in one file, and refer to the relevant certificate by using an alias.* 
 
 ### Transport layer TLS
 
 | Name | Description |
 |---|---|
 | searchguard.ssl.transport.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
-| searchguard.ssl.transport.keystore\_filepath | Path to the keystore file, relative to the `config/` directory (mandatory) |
-| searchguard.ssl.transport.keystore\_alias: my\_alias | Alias name (Optional, default: first alias which could be found) |
+| searchguard.ssl.transport.keystore\_filepath | Path to the keystore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.keystore\_alias: my\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.transport.keystore_password | Keystore password (default: changeit) |
 | searchguard.ssl.transport.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
-| searchguard.ssl.transport.truststore_filepath | Path to the truststore file, relative to the `config/` directory (mandatory) |
-| searchguard.ssl.transport.truststore\_alias | Alias name (default: first alias which could be found) |
+| searchguard.ssl.transport.truststore_filepath | Path to the truststore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.transport.truststore_password | Truststore password (default: changeit) |
 
 ### REST layer TLS
@@ -59,35 +27,61 @@ Use the following settings to configure the location and password of your keysto
 |---|---|
 | searchguard.ssl.http.enabled | Whether to enable TLS on the REST layer or not. If enabled, only HTTPS is allowed. (Optional, default: false) |
 | searchguard.ssl.http.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
-| searchguard.ssl.http.keystore\_filepath | Path to the keystore file, relative to the `config/` directory (mandatory) |
-| searchguard.ssl.http.keystore\_alias | Alias name (Optional, default: first alias which could be found) |
+| searchguard.ssl.http.keystore\_filepath | Path to the keystore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.keystore\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.http.keystore_password | Keystore password (default: changeit) |
 | searchguard.ssl.http.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
-| searchguard.ssl.http.truststore_filepath | Path to the truststore file, relative to the `config/` directory (mandatory) |
-| searchguard.ssl.http.truststore\_alias | Alias name (default: first alias which could be found) |
+| searchguard.ssl.http.truststore_filepath | Path to the truststore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.http.truststore_password | Truststore password (default: changeit) |
 
 ## Using X.509 PEM certificates and PKCS #8 keys
 
-As an alternative to using keystore and trustore files, you can also use X.509 PEM certificates and PKCS #8 keys. This, for example, makes it easy to configure and use letsencrypt certificates. Instead of using the keystore and truststore configuration described above, use the following keys to configure PEM certificates:
+As an alternative to using keystore and trustore files, you can also use X.509 PEM certificates and PKCS #8 keys. This, for example, makes it easy to configure and use Let's Encrypt certificates. Instead of using the keystore and truststore configuration keys described above, use the following keys to configure PEM certificates:
 
 ### Transport layer TLS
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.transport.pemkey_filepath | Relative path to the certificates key file (PKCS #8), must be placed under the `config` directory |
-| searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. |
-| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, must be placed under the `config` directory |
-| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates |
+| searchguard.ssl.transport.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
+| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
 
 ### REST layer TLS
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.http.pemkey_filepath | Relative path to the certificates key file (PKCS #8), must be placed under the `config` directory |
-| searchguard.ssl.http.pemkey_password | Key password, omit this setting if the key has no password |
-| searchguard.ssl.http.pemcert_filepath | X509 node certificate chain in PEM format, must be placed under the `config` directory |
-| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates |
+| searchguard.ssl.http.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
+| searchguard.ssl.http.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
+
+## Configuring Node certificates
+
+Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. While there are several possibilites, the simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`. Search Guard supports wildcards and regular expressions:
+
+```
+searchguard.nodes_dn:
+  - 'CN=node.other.com,OU=SSL,O=Test,L=Test,C=DE'
+  - 'CN=*.example.com,OU=SSL,O=Test,L=Test,C=DE'
+  - 'CN=elk-devcluster*'
+  - '/CN=.*regex/'
+```
+
+See [TLS for production environments](tls_certificates_production.md) for more details and options regarding node certificates.
+
+## Configuring Admin certificates
+
+Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](sgadmin.md) command line tool, or to use the [REST management API](managementapi.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
+
+```
+searchguard.authcz.admin_dn:
+  - CN=admin,OU=SSL,O=Test,L=Test,C=DE
+```
+
+For security reasons, you cannot use wildcards or regular expressions here.
+
 
 ## Using OpenSSL
 
@@ -97,8 +91,8 @@ If OpenSSL is enabled, but for one reason or another the installation does not w
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.transport.enable_openssl_if_available | Enable OpenSSL on the transport layer. (Optional, default: true) |
-| searchguard.ssl.http.enable_openssl_if_available | Enable OpenSSL on the REST layer. (Optional, default: true) |
+| searchguard.ssl.transport.enable\_openssl\_if\_available | Enable OpenSSL on the transport layer if avaliable. (Optional, default: true) |
+| searchguard.ssl.http.enable\_openssl\_if\_available | Enable OpenSSL on the REST layer if available. (Optional, default: true) |
 
 See the [OpenSSL](tls_openssl.md) chapter for more information on how to install all required components.
 
@@ -119,11 +113,7 @@ While these settings require a dedicated certificate for each node, and also cor
 
 ## Advanced: Client authentication
 
-TLS client authentication is used by servers (in our case Search Guard / Elasticsearch) to accept/request TLS certificates from REST clients.
-
-While in a typical web scenario it is common that only the server, e.g. an online banking website, provides its identity to the client, TLS is not limited to that. Also clients can provide identity information in the form of a TLS X.509 certificate to the server. The server can then use this information to verify the client's identity.
-
-For Search Guard, there are two main usage scenarios for TLS client authentication:
+With TLS client authentication enabled, REST clients can send a TLS certificate in the HTTP request to provide identity information to Search Guard. There are two main usage scenarios for TLS client authentication:
 
 * Providing an admin certificate when using the REST management API.
 * Configuring roles and permissions based on a client certificate.
@@ -160,6 +150,16 @@ searchguard.ssl.http.enabled_ciphers:
   - "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
   - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
 searchguard.ssl.http.enabled_protocols:
+  - "TLSv1.1"
+  - "TLSv1.2"
+```
+
+**Note: By default Search Guard disables `TLSv1` because it is unsecure. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
+
+```
+searchguard.ssl.http.enabled_protocols:
+  - "TLSv1"
+  - "TLSv1.1"
   - "TLSv1.2"
 ```
 

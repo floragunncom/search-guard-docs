@@ -20,22 +20,33 @@ xpack.watcher.enabled: false
 
 ## Elasticsearch: Add the monitoring user
 
-For the `http` monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you're using Search Guard v13 and above, you can simply map a new or existing user to the `sg_monitor` role. For Search Guard v12 and below, add the following role definition to sg_roles.yml, and map a user to it: 
+For the `http` monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you're using Elasticsearch 5.5.0 with Search Guard v14 and above, you can simply map a new or existing user to the `sg_monitor` role. For Search Guard v12 and below, add the following role definition to sg_roles.yml, and map a user to it.
+
+In addition to the `sg_monitor` role, the user should also be assigned to the `sg_kibana` role.
 
 ```
 sg_monitor:
   cluster:
-    - "cluster:admin/xpack/monitoring/*"
-    - "cluster:admin/ingest/pipeline/get"
-    - "indices:admin/template/get"
-    - "indices:admin/template/put"
-    - "indices:admin/*get"
+    - cluster:admin/xpack/monitoring/*
+    - cluster:admin/ingest/pipeline/put       
+    - cluster:admin/ingest/pipeline/get
+    - indices:admin/template/get
+    - indices:admin/template/put
     - CLUSTER_MONITOR
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '?monitoring*':
+    '?monitor*':
       '*':
         - INDICES_ALL
+    '?marvel*':
+      '*':
+        - INDICES_ALL
+    '?kibana*':
+      '*':
+        - READ
+    '*':
+      '*':
+        - indices:data/read/field_caps
 ```
 
 ## Elasticsearch: Add additional permissions to the Kibana server user
