@@ -34,8 +34,8 @@ To generate the certificates:
 
 This will generate the truststore and two keystore files. You can find them in the ``config`` directory of your Elasticsearch installation:
 
-* ``truststore.jks``—the root CA and intermediate/signing CA.
-* ``keystore.jks``—the node certificate. 
+* ``truststore.jks``—the root CA
+* ``keystore.jks``— the node certificate 
 * ``kirk.jks``—the admin certificate required for running ``sgadmin``
 
 The script will also add the TLS configuration to the `config/elasticsearch.yml` file automatically.
@@ -108,17 +108,17 @@ The main artifacts are:
 ```
 truststore.jks
 ```
-The truststore containing the root CA and a signing CA used to sign all other certificates.
+The truststore containing the root CA used to sign all other certificates.
 
 ```
-node-0-keystore.jks, node-0-keystore.jks, node-2-keystore.jks
+node-0-keystore.jks, node-1-keystore.jks, node-2-keystore.jks
 ```
-Keystores containing node certificates. These certificates can be used on all Elasticsearch nodes.
+Keystores containing node certificates and the intermediate certificates. These keystores can be used on all Elasticsearch nodes.
 
 ```
 kirk-keystore.jks
 ```
-Keystore containing a client certificate. In the sample configuration files, this certificate is configured to be an admin certificate.
+Keystore containing a client certificate. In the sample configuration files, this certificate is configured to be an admin certificate and can be used with `sgadmin`.
 
 ```
 spock-keystore.jks
