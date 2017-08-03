@@ -4,7 +4,7 @@ Copryight 2016 floragunn GmbH
 
 # Quickstart
 
-Two quickly set up a Search Guard secured Elasticsearch cluster, you have two options:
+To quickly set up a Search Guard secured Elasticsearch cluster, you have two options:
 
 1. Using the Search Guard demo installation scripts
 2. Using the Search Guard bundle
