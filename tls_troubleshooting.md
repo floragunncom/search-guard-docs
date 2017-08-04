@@ -8,7 +8,7 @@ Add the following lines in `config/log4j2.properties` and restart your node:
 
 ```
 logger.searchguard.name = com.floragunn
-loger.searchguard.level = debug
+logger.searchguard.level = debug
 ```
 
 This will already print out a lot if helpful information in your log file. If this information is not sufficient, you can also set the log level to `trace`.
