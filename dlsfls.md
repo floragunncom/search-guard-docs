@@ -8,7 +8,7 @@ Document and field-level-security (DLS/FLS) allows for fine grained control to d
 
 As the name implies, document-level security restricts access to certain documents within an index. Field level security restricts access to certain fields within a document.
 
-As with regular permissions, settings for document and field-level security can be applied on anindex-level, meaning that you can have different settings for each index.
+As with regular permissions, settings for document and field-level security can be applied on an index-level, meaning that you can have different settings for each index.
 
 ## Installation
 
