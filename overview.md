@@ -75,7 +75,7 @@ A permission defines:
 
 * which role,
 * can perform which action,
-* against wich cluster or index.
+* against which cluster or index.
 
 A definition of a permission that allows searching a particular index looks like:
 
