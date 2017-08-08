@@ -1,6 +1,6 @@
 # Kibana Multitenancy
 
-**Note: Kibana multitenancy is available for Kibana 5.0.2 and above!**
+**Note: Kibana multitenancy is available for Elasticsearch/Kibana 5.0.2 and above!**
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
