@@ -1,3 +1,7 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
 # Index alias handling
 
 Search Guard will resolve any aliases on any index to their underlying index name. This makes sure that all security related checks apply in all situations. The same is true for 
@@ -10,7 +14,7 @@ Search Guard will resolve any aliases on any index to their underlying index nam
 
 ## Handling multiple filtered index aliases
 
-Filtered index aliases can be used to filter some documents from the underlying index. However, using filteres aliases is not a secure way to restrict access to certain documents. In order to do that, please use the [Document Level Security](dlsfls.md) feature of Search Guard.
+Filtered index aliases can be used to filter some documents from the underlying index. However, **using filteres aliases is not a secure way to restrict access to certain documents**. In order to do that, please use the [Document Level Security](dlsfls.md) feature of Search Guard.
 
 Because of this potential security leak, Search Guard detects and treats multiple filtered index aliases in a special way. You can either disallow them completely, or issue a warning message on `WARN` or `DEBUG` level.
 

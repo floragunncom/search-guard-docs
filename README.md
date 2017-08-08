@@ -28,7 +28,7 @@ Copyright 2016-2017 floragunn GmbH
 
 * [Installing Search Guard](installation.md)
 * [Upgrading Search Guard](upgrading.md)
-* [Removing Search Guard](removing.md)
+* [Disabling or Removing Search Guard](removing.md)
 * [Compatibility with other plugins](compatibility.md)
 
 ### Configuring TLS
@@ -51,7 +51,8 @@ Copyright 2016-2017 floragunn GmbH
 * [Defining roles and permissions](configuration_roles_permissions.md)
 * [Using and defining action groups](configuration_action_groups.md)
 * [Moving the configuration to production](configuration_production.md)
-
+* [User cache settings](configuration_cache.md)
+* [Index alias handling](configuration_alias.md)
 
 ### Configuring Authentication and Authorisation modules
 

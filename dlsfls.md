@@ -10,6 +10,8 @@ As the name implies, document-level security restricts access to certain documen
 
 As with regular permissions, settings for document and field-level security can be applied on anindex-level, meaning that you can have different settings for each index.
 
+**Note: Do not use filtered aliases for security relevant document filtering. Instead, use Document Level Security.**
+
 ## Installation
 
 Download the DLS/FLS module from Maven Central:
