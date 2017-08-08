@@ -131,7 +131,7 @@ In order to upgrade the Search Guard Kibana Plugin:
 * Stop Kibana, and install the new version of the plugin
 
 
-### Customising the login page (5.0 and above)
+### Customising the login page (5.0.2 and above)
 
 Since v2, you can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
 
