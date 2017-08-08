@@ -112,7 +112,7 @@ sg_logstash:
 
 **The permission indices:data/write/bulk* on cluster level is only required for Logstash 5.**
 
-This config entry assumes that the logstash user is assigned to the role `sg_logstash`. You can set or change this in the file `sg_roles_mapping.yml` if necessary. The user needs the permission to `put` and get `get` templates on the cluster level. It also needs to have the permission to create and modify indices starting with `logstash-`, and of course the permission to create, read, update and modify documents in these indices. The `*beat*` entry is necessary if you use any of the beats datashippers.
+This config entry assumes that the logstash user is assigned to the role `sg_logstash`. You can set or change this in the file `sg_roles_mapping.yml` if necessary. The user needs the permission to `put` and `get` templates on the cluster level. It also needs to have the permission to create and modify indices starting with `logstash-`, and of course the permission to create, read, update and modify documents in these indices. The `*beat*` entry is necessary if you use any of the beats datashippers.
 
 Please note that the permissions `CRUD` and `CREATE_INDEX` are action groups. An action group is a named set of permissions. Think of action groups as shortcuts. You can find the actual permissions definition for these groups in the file `sg_action_groups.yml`:
 

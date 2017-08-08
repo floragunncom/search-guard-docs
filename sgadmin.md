@@ -6,7 +6,7 @@ Copryight 2016 floragunn GmbH
 
 The Search Guard configuration, including users, roles and permissions, is stored in an index on the Elasticsearch cluster. This allows for hot configuration reloading, and eliminates the need to place configuration files on each node.
 
-Configuration settings are loaded into this Search Guard configuration index using the `sgadmin` tool. `sgadmin` identifies itself against an Search Guard secured Elasticsearch cluster via an admin TLS certificate, either in `.jks` or `.pem` format. An admin certificate grants full access to the cluster, including making changes to the Search Guard configuration index.
+Configuration settings are loaded into this Search Guard configuration index using the `sgadmin` tool. `sgadmin` identifies itself against a Search Guard secured Elasticsearch cluster via an admin TLS certificate, either in `.jks` or `.pem` format. An admin certificate grants full access to the cluster, including making changes to the Search Guard configuration index.
 
 ## Configuring the admin certificate
 

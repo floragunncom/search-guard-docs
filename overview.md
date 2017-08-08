@@ -69,13 +69,13 @@ In some cases you want to map the backend roles 1:1 to Search Guard roles, but m
 
 ## Permissions
 
-Each interaction with Elasticsearch means that a particular **user** wants to **execute** an **action** on an Elasticsearch **cluster** and **one ore more indices**. 
+Each interaction with Elasticsearch means that a particular **user** wants to **execute** an **action** on an Elasticsearch **cluster** and **one or more indices**. 
 
 A permission defines:
 
 * which role,
 * can perform which action,
-* against wich cluster or index.
+* against which cluster or index.
 
 A definition of a permission that allows searching a particular index looks like:
 
