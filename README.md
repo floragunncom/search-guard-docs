@@ -61,7 +61,7 @@ Copyright 2016-2017 floragunn GmbH
 * [Kerberos](kerberos.md)
 * [JSON Web token](jwt.md)
 * [Proxy Authentication](proxy_auth.md)
-* [Client Certificate Authentication](proxy_auth.md)
+* [Client Certificate Authentication](clientcert_auth.md)
 
 ### Document- and Field-Level-Security
 * [Document and field level security](dlsfls.md)
