@@ -93,6 +93,41 @@ The first entries control the TLS settings of the connection to your LDAP server
 
 To verify the validity of the certificates, Search Guard uses the transport truststore configured in `elasticsearch.yml`. This means that the certificate (-chain) from your LDAP server must be signed by one of the certificates in the transport truststore.
 
+### Enabled ciphers and protocols
+
+You can limit the allowed ciphers and TLS protocols for the LDAP connection. For example, you can only allow strong ciphers and limit the TLS versions to the most recent ones.
+
+| Name | Description |
+|---|---|
+| enabled\_ssl\_ciphers | Array, enabled TLS ciphers. Only Java format is supported. |
+| enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
+
+Example:
+
+```
+ldap:
+  enabled: true
+  ...
+  authentication_backend:
+    type: ldap
+    config:
+      enabled_ssl_ciphers:
+        - "TLS_DHE_RSA_WITH_AES_256_CBC_SHA"
+        - "TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"
+      enabled_ssl_protocols:
+        - "TLSv1.1"
+        - "TLSv1.2"
+```
+
+**Note: By default Search Guard disables `TLSv1` because it is unsecure. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
+
+```
+enabled_ssl_protocols:
+  - "TLSv1"
+  - "TLSv1.1"
+  - "TLSv1.2"
+```
+
 ### LDAP server settings
 
 Next, configure how Search Guard connects to your LDAP server(s):
