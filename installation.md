@@ -103,7 +103,7 @@ Search Guard requires the following minumum pre-requisited to run:
 * TLS configuration settings in `elasticsearch.yml`
 * Initialization of the Search Guard index
 
-Search Guard ships with scripts to aid you with the initial setup. Before moving your installation to production, please read the [moving Search Guard to production](move_to_production.md) chapter.
+Search Guard ships with scripts to aid you with the initial setup. Before moving your installation to production, please read the [moving Search Guard to production](configuration_production.md) chapter.
 
 ### Configuring Search Guard
 
