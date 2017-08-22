@@ -33,7 +33,7 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 5.5.0/5.5.1 at the time of writing
+  * 5.5.0/5.5.1/5.5.2 at the time of writing
 * Current release of the previous minor version of the current major version
   * 5.4.3 at the time of writing
 * Last release of the previous major version (not all feature will be backported)
@@ -68,11 +68,12 @@ Critical security fixes will be backported to all active releases, including all
 |---|---|---|---|
 2.2.x.y	| no | no | no |
 2.3.x.y	| no | no | no |
-2.4.0-2.4.4	| yes | no | yes|
-2.4.5	| yes | yes | yes |
+2.4.0-2.4.5	| yes | no | yes|
+2.4.6	| yes | yes | yes |
 5.0.x	| yes | no | yes |
 5.1.x	| yes | no | yes |
 5.2.x	| yes | no | yes |
 5.3.0-5.3.2	| yes | no | yes|
 5.3.3	| yes | yes | yes |
 5.4.x	| yes | yes | yes |
+5.5.x	| yes | yes | yes |
