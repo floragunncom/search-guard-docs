@@ -73,7 +73,7 @@ Critical security fixes will be backported to all active releases, including all
 5.0.x	| yes | no | yes |
 5.1.x	| yes | no | yes |
 5.2.x	| yes | no | yes |
-5.3.0-5.3.2	| yes | no | yes|
-5.3.3	| yes | yes | yes |
-5.4.x	| yes | yes | yes |
+5.3.x	| yes | no | yes|
+5.4.0-5.4.2	| yes | no | yes |
+5.4.3	| yes | yes | yes |
 5.5.x	| yes | yes | yes |
