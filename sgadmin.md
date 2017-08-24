@@ -250,4 +250,6 @@ The following switched control the Search Guard index settings.
 | -era | Enable replica auto-expand.|
 | -dra | Disable replica auto-expand.|
 
+The first time you run sgadmin.sh, the ```-us```, ```-era```, ```dra```, and ```-rl``` (reload configuration), flags can cause the initial setup to fail, as the searchguard index does not yet exist.
+
 See chapter [index management](sgindex.md) for more details on how the Search Guard index is structured and how to manage it.
