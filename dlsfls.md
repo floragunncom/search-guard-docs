@@ -20,10 +20,6 @@ Download the DLS/FLS module from Maven Central:
 
 and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2`
-
-or
-
 * `<ES installation directory>/plugins/search-guard-5`
 
 if you are using Search Guard 5.
@@ -176,3 +172,6 @@ As with document-level security, if a user is member of multiple roles it is imp
 
 In case of FLS, the FLS field definitions of the roles are combined with `AND`. If you use FLS `include` (whitelisting) and `exclude` (blacklisting) definitions for different roles, you need to make sure that for each user and its roles the combination of the FLS field is either include only, or exclude only.
 
+## DLS/FLS Execution Order
+
+If you use both DLS and FLS, all fields that you are basing the DLS query on must be visible, i.e. not filtered by FLS. Otherwise, your DLS query will not work properly. 
