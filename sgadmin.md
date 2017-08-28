@@ -52,9 +52,9 @@ Replace `jdk1.8.0_65` with your installed JDK or JRE version.
 
 You can also download the sgadmin standalone version. It comes with all dependencies included, so you can use it on any machine you want, provided Java is installed.
 
-* [Download for Search Guard 5 and Elasticsearch 5.5.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.5.0-14/search-guard-5-5.5.0-14-sgadmin-standalone.zip)
-* [Download for Search Guard 5 and Elasticsearch 5.4.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.4.3-14/search-guard-5-5.4.3-14-sgadmin-standalone.zip)
-* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.3-14/search-guard-5-5.3.4-14-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.5.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.5.2-15/search-guard-5-5.5.2-15-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.4.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.4.3-15/search-guard-5-5.4.3-15-sgadmin-standalone.zip)
+* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.3-15/search-guard-5-5.3.3-15-sgadmin-standalone.tar.gz)
 * [Download for Search Guard 5 and Elasticsearch 5.2.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.2.2-12/search-guard-5-5.2.2-12-sgadmin-standalone.zip)
 * [Download for Search Guard 5 and Elasticsearch 5.1.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.1.2-12/search-guard-5-5.1.2-12-sgadmin-standalone.zip)
 * [Download for Search Guard 5 and Elasticsearch 5.0.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.0.2-12/search-guard-5-5.0.2-12-sgadmin-standalone.zip)

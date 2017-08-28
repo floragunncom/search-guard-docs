@@ -35,7 +35,7 @@ proxy_auth_domain:
 | Name | Description |
 |---|---|
 | user_header | String, The HTTP header field containing the authenticated username. Default: `x-proxy-user` |
-| roles_header | String, The HTTP header field containing the comma separated list of authenticated role names. Default: `x-proxy-roles` |
+| roles_header | String, The HTTP header field containing the comma separated list of authenticated role names. Roles found in this header field will be used as backend roles and can be used to [map the user to Search Guard roles](configuration_roles_mapping.md). Default: `x-proxy-roles` |
 
 ## Security considerations
 

@@ -89,7 +89,7 @@ sg_own_index:
 
 ## Using action groups to assign permissions
 
-Search Guard comes with the ability to group permissions and give them a telling name. These groups are called [action groups](configuration_actiongroups.md) and are the **preferred way of assigning permissions to roles**. Search Guard ships with a predefined set of action groups that will cover most use cases. See chapter [action groups](configuration_actiongroups.md) for an overview. Action groups are written in upper case by convention.
+Search Guard comes with the ability to group permissions and give them a telling name. These groups are called [action groups](configuration_action_groups.md) and are the **preferred way of assigning permissions to roles**. Search Guard ships with a predefined set of action groups that will cover most use cases. See chapter [action groups](configuration_action_groups.md) for an overview. Action groups are written in upper case by convention.
 
 Example:
 
@@ -137,8 +137,6 @@ indices:admin/*
 ```
 
 Elasticsearch does not publish an updated list of all available permissions anymore. The last known published list is from [Shield 2.1](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list). 
-
-If you're having troubles with permission settings, please refer to the [configuration troubleshooting guide](configuration_troubleshooting.md).
 
 ## Pre-defined roles
 

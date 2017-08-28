@@ -2,7 +2,7 @@
 
 Search Guard comes with pluggable authentication and authorisation modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorisation modules like:
 
-* [Search Guard Internal user database](internalusers.md)
+* [Search Guard Internal user database](configuration_internalusers.md)
 * [LDAP and Active Directory](ldap.md)
 * [Kerberos](kerberos.md)
 * [JSON Web token](jwt.md)
@@ -62,7 +62,7 @@ Allowed values for `type` are:
 * jwt
   * JSON web token authentication. Additional, [JWT-specific configuration](jwt.md) is needed.
 * proxy
-  * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Running Search Guard behind a proxy](proxyies.md) and [Proxy authentication](proxy_auth.md) for further details.
+  * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Running Search Guard behind a proxy](proxies.md) and [Proxy authentication](proxy_auth.md) for further details.
 * clientcert
   * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes.
 
