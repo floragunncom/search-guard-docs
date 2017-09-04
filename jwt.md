@@ -152,6 +152,27 @@ ES384: ECDSA using P-384 and SHA-384
 ES512: ECDSA using P-521 and SHA-512
 ```
 
+## Using JWT with RS256
+
+While HS256 (HMAC with SHA-256) is based on a shared secret, RS256 (RSA Signature with SHA-256) uses a public/private key pair. Since you only need to configure the public key in the JWT authenticator to validate the token, it's considered more secure than using HS256.
+
+In order to use RS256, you only need to configure the (non-base-64 encoded) public RSA key as `signing_key` in the JWT configuration like:
+
+```
+jwt_auth_domain:
+  ...
+    config:
+      signing_key: |-
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQK...
+        -----END PUBLIC KEY-----
+      ...
+```
+
+You can also break the key into multiple lines if required.
+
+Search Guard will detect the correct algorithm automatically.
+
 ## Validated registered claims
 
 The following registered claims are validated:
