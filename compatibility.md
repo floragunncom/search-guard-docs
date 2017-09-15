@@ -27,8 +27,8 @@ The following plugins and tools have been tested for compatibility with Search G
 * Kopf / [Cerebro](https://github.com/lmenezes/cerebro)
 * [Grafana](https://grafana.com/)
 * ES-Hadoop / Spark
+* [Graylog](http://docs.graylog.org/en/2.3/pages/configuration/elasticsearch.html)
 
 #### Incompatible plugins and tools
 
-* [Graylog](https://www.graylog.org/)
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc)
