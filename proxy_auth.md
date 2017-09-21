@@ -41,4 +41,4 @@ proxy_auth_domain:
 
 If you are using proxy authentication, Search Guard assumes that the request stems from a trusted proxy/SSO server and also assumes that the entries in the header fields `user_header` and `roles_header` are correct and verified.
 
-HTTP header fields can be easily spoofed, so an attacker could set these fields to arbitrary values. Make sure to set the `trustedProxies` and `internalProxies` in the `xff` section of the configuration correctly to only accept requests from trusted IPs. See chapter [Running Search Guard behing a proxy](proxies.md) on how to configure trusted proxy IPs.
+HTTP header fields can be easily spoofed, so an attacker could set these fields to arbitrary values. Make sure to set the `trustedProxies` and `internalProxies` in the `xff` section of the configuration correctly to only accept requests from trusted IPs. See chapter [Running Search Guard behind a proxy](proxies.md) on how to configure trusted proxy IPs.
