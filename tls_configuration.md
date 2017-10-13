@@ -109,7 +109,7 @@ While these settings require a dedicated certificate for each node, and also cor
 | Name | Description |
 |---|---|
 | searchguard.ssl.transport.enforce\_hostname\_verification | Whether or not to verify hostnames on the transport layer. (Optional, default: true) |
-| searchguard.ssl.transport.enforce\_hostname\_verification | Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true) |
+| searchguard.ssl.transport.resolve\_hostname | Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true) |
 
 ## Advanced: Client authentication
 
