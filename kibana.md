@@ -59,6 +59,24 @@ elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
 ```
 
+### Whitelisting HTTP headers
+
+In order for Kibana to pass HTTP headers to Elasticsearch/Search Guard, they need to be whitelisted in `kibana.yml`.
+
+If you only use HTTP Basic Authentication, then no action is necessary, since the require `Authorization` header is the default here.
+
+If you use any authentication method that relies on HTTP header fields  other than `Authorization` (for example, proxy based authentication), you need to explicitely add them, for example:
+
+```
+elasticsearch.requestHeadersWhitelist: [ "x-forwarded-for", "x-forwarded-by", "x-proxy-user", "x-proxy-roles" ]
+```
+If you want to use the [Kibana Multi Tenancy](multitenancy.md) module, both the sg_tenant header and the Authorization header need to be configured:
+
+```
+elasticsearch.requestHeadersWhitelist: [ "Authorization", "sg_tenant"]
+
+```
+
 ### Setting up SSL/TLS
 
 If you use TLS on the Elasticsearch REST layer, you need to configure Kibana accordingly. This is done in the kibana.yml configuration file. Simply set the protocol on the entry `elasticsearch.url` to `https`:
@@ -98,28 +116,6 @@ elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
 ```
 
 In this case, you can leave the `elasticsearch.ssl.verify` set to `true`.
-
-#### Kibana 5: Configuring the Dev Tools
-
-For Kibana 5, SSL has to be configured separately for the so-called "Dev Tools" (a.k.a Console, a.k.a. Sense). You can follow the setup and installation guide of [Sense](https://www.elastic.co/guide/en/sense/current/installing.html) and replace every occurence of "sense" in configuration keys with "console". For example, to disable the certificate validity check, you can use:
-
-```
-console.proxyConfig:
-  - match:
-      protocol: "https"
-    ssl:
-      verify: false
-```
-
-Instead, you may also pass the Root CA in pem format to establish a chain of trust:
-
-```
-console.proxyConfig:
-  - match:
-      protocol: "https"
-    ssl:
-      ca: "/path/to/your/root-ca.pem"
-```
 
 ### Upgrading the Search Guard Kibana Plugin
 

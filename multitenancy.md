@@ -144,15 +144,15 @@ Enable the multi tenancy feature in `kibana.yml` by adding:
 searchguard.multitenancy.enabled: true
 ```
 
-In addition, Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named sg_tenant. Add this header to the white list:
+In addition, Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named `sg_tenant`. Add this header and also the standard `Authorization` header to the white list. If the `sg_tenant` header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
 
 ```
-elasticsearch.requestHeadersWhitelist: ["sg_tenant", ..., ...]
+elasticsearch.requestHeadersWhitelist: ["sg_tenant", "Authorization", ...]
 ```
 
-If this header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
+(If you use Search Guard authentication modules other than Basic Authentication, for example Proxy Authentication, the required HTTP headers may vary.)
 
-Check that both the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
+Check thatthe Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
 
 Kibana server user:
 
@@ -181,7 +181,7 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 | searchguard.multitenancy.tenants.enable_global  |  boolean, enable or disable the global tenant. Default: true.|
 | searchguard.multitenancy.tenants.enable_private  |  boolean, enable or disable the private tenant. Default: true.|
 
-**Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, she will not be able to login.**
+**Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, login will not be possible.**
 
 ### Kibana: Setting preferred / default tenants
 
