@@ -30,7 +30,7 @@ After that, restart all nodes to activate the module.
 
 The Search Guard index can only be accessed with an admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
 
-In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRED`:
+In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```
 searchguard.ssl.http.clientauth_mode: OPTIONAL
