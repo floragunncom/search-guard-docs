@@ -118,7 +118,7 @@ Instead of using Keystore and Truststore files, sgadmin also works with certific
 | Name | Description |
 |---|---|
 | -cert | The location of the pem file containing the admin certificate and all intermediate certificates, if any. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
-| -key | The location of the pem file containing the private key of the admin certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
+| -key | The location of the pem file containing the private key of the admin certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin. The key must be in PKCS#8 format.|
 | -keypass | The password of the private key of the admin certificate, if any.|
 | -cacert | The location of the pem file containing the root certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
 
