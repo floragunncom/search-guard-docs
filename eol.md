@@ -59,21 +59,24 @@ Critical security fixes will be backported to all active releases, including all
 5.2.x-y	| 2018-07-31 |
 5.3.x-y	| 2019-09-28 |
 5.4.x-y	| 2019-11-04 |
+5.5.x-y	| 2019-01-06 |
+5.6.x-y	| 2019-03-11 |
 
 ## Maintenance and support overview
 
-### As of 01.10.2017
+### As of 19.10.2017
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates
 |---|---|---|---|
 2.2.x.y	| no | no | no |
 2.3.x.y	| no | no | no |
-2.4.0-2.4.5	| yes | no | yes|
-2.4.6	| yes | yes | yes |
-5.0.x	| yes | no | yes |
-5.1.x	| yes | no | yes |
-5.2.x	| yes | no | yes |
-5.3.x	| yes | no | yes|
-5.4.0-5.4.2	| yes | no | yes |
-5.4.3	| yes | yes | yes |
-5.5.x	| yes | yes | yes |
+2.4.0.y-2.4.5.y	| yes | no | yes|
+2.4.6.y	| yes | partly  | yes |
+5.0.x.y	| yes | no | yes |
+5.1.x.y	| yes | no | yes |
+5.2.x.y	| yes | no | yes |
+5.3.x.y	| yes | no | yes|
+5.4.x.y	| yes | no | yes |
+5.5.0.y-5.5.2.y	| yes | no | yes |
+5.5.3.y	| yes | yes | yes |
+5.6.x.y | yes | yes | yes |
