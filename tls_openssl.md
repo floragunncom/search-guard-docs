@@ -6,7 +6,7 @@ Copryight 2017 floragunn UG (haftungsbeschränkt)
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
 
-If you run into Out Of Memory problems with ES 5.3.x, 5.4.x or 5.5.0, you probably hit an issue in Elasticsearch. This was fixed in Elasticsearch 5.5.1.
+If you run into Out Of Memory problems with ES 5, you probably hit an issue in Elasticsearch. This was fixed in Elasticsearch 5.5.1 and onwards.
 
 For more information, see here:
 
