@@ -111,6 +111,14 @@ Put it into the elasticsearch `plugins/search-guard-ssl/` or `plugins/search-gua
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 
+## LibreSSL
+
+May work well but not officially supported. We have a few static builds here https://dl.bintray.com/floragunncom/netty-tcnative/ but only consider to use them if you run in trouble with OpenSSL.
+
+## BoringSSL
+
+May work well but not officially supported. Binaries are provided [here](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22netty-tcnative-boringssl-static%22) by the netty project. 
+
 ## Troubleshooting
 
 Check that you have enabled OpenSSL in `elasticsearch.yml` (which is the default)
