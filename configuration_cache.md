@@ -10,4 +10,4 @@ searchguard.cache.ttl_minutes: <integer, ttl in minutes>`
 
 Setting the value to `0` will completely disable the cache.
 
-**This fearture is available since SG 15 and for ES 5.4.3 or higher**
+**This feature is available since SG 15 and for ES 5.4.3 or higher**
