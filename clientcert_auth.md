@@ -12,7 +12,7 @@ Search Guard already ships with client certificate based authentication.  No add
 
 ## Configuration
 
-In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRED`:
+In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```
 searchguard.ssl.http.clientauth_mode: OPTIONAL
