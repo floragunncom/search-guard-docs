@@ -167,7 +167,7 @@ This will execute ``sgadmin`` and populate the Search Guard configuration index 
  
 ## Installing enterprise modules
 
-If you want to use any of the enterprise modules, simply download the respective module jar file from Maven. Whend downloading, **choose "jar  with dependencies"** and place it in the folder 
+If you want to use any of the enterprise modules, simply download the respective module jar file from Maven. When downloading, **choose "jar  with dependencies"** and place it in the folder 
 
 * `<ES installation directory>/plugins/search-guard-5`
 
