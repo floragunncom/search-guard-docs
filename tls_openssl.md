@@ -1,5 +1,5 @@
 <!---
-Copryight 2017 floragunn UG (haftungsbeschränkt)
+Copryight 2015-2017 floragunn GmbH
 -->
 
 # OpenSSL setup
@@ -19,7 +19,7 @@ For more information, see here:
 
 **(Open SSL and Apache Portable Runtime (apr) needs to be installed)**
 
-* If you are on Alpine Linux please refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ). We recommend to use our statically linked version below because Alpine comes normally with LibreSSL instead of OpenSSL installed. LibreSSL may work but is not officially supported and untested.
+* If you are on Alpine Linux please refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ). We recommend to use our statically linked version below because Alpine comes normally with LibreSSL instead of OpenSSL installed. LibreSSL may work but is not officially supported and untested. Also make sure you have installed 'libuuid' on Alpine accoring to [this post](https://groups.google.com/forum/#!msg/search-guard/dLr4SYeDMOE/Eai_oWmBBwAJ)
 
 * Open SSL on Windows may work but is not officially supported and untested. Refer to [netty-tcnative wiki](http://netty.io/wiki/forked-tomcat-native.html) for more infos.
 
