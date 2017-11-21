@@ -2,7 +2,9 @@
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Search Guard Documentation
+**This is the documentation for Search Guard 5. If you're looking for the Search Guard 6 docs, you will find them [here](https://github.com/floragunncom/search-guard-docs/tree/6.x)**
+
+# Search Guard 5 Documentation
 
 This is the official documentation for Search Guard 5 and Search Guard 2. If you find any errors, or want to contribute, feel free to fork this repository and issue pull requests.
 
