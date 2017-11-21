@@ -32,7 +32,7 @@ For everything to work, the logged in user should have:
 If you log in with a user that has access to the GUI, you will see a new navigation entry called "Search Guard" in the left navigation pane.
 
 <p align="center">
-<img src="images/kibana_gui_nav.png" style="width: 20%;border: 1px solid"/>
+<img src="images/kibana_gui_nav.png" style="width: 12%;border: 1px solid"/>
 </p>
 
 If you click on it you will be taken to the main navigation screen.

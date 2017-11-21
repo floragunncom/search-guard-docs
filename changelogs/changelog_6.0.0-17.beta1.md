@@ -76,7 +76,7 @@ License system, license checks
 
 ## Kibana Configuration GUI
 
-* Completely new [Kibana based configuration GUI](kibana_config_gui.md)
+* Completely new [Kibana based configuration GUI](../kibana_config_gui.md)
  * Roles, Role Mappings, Action Groups and Internal Users
 
 * Can be used in conjunction or as an alternative to `sgadmin`
@@ -98,7 +98,7 @@ License system, license checks
 
 ## BREAKING: Audit logging
 
-* Completely revised the [Audit Log Module](auditlogging.md)
+* Completely revised the [Audit Log Module](../auditlogging.md)
  * Since the structure of the events has changed, the new default index name is `auditlog6`
 
 * Events can be tracked on REST-layer, transport-layer or both
