@@ -1,45 +1,26 @@
 <!---
-Copryight 2016 floragunn GmbH
+Copryight 2017 floragunn GmbH
 -->
 
 # Audit Logging
 
-Audit logging enables you to track access to your Elasticsearch cluster. Search Guard tracks the following types of events, on REST and transport levels:
+Audit logging enables you to track access to your Elasticsearch cluster and stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
 
-* FAILED_LOGIN—the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
-* MISSING_PRIVILEGES—an attempt was made to access Elasticsearch, but the user does not have the required permissions.
-* BAD_HEADERS—an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
-* SSL_EXCEPTION—an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
-* SG\_INDEX\_ATTEMPT—an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
-* AUTHENTICATED—represents a successful request to Elasticsearch. 
+Search Guard tracks the following types of events, on REST and transport levels:
+
+* FAILED_LOGIN — the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
+* MISSING_PRIVILEGES — an attempt was made to access Elasticsearch, but the user does not have the required permissions.
+* BAD_HEADERS — an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
+* SSL_EXCEPTION — an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
+* SG\_INDEX\_ATTEMPT — an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
+* AUTHENTICATED — A user has been authenticated successfully
+* GRANTED_PRIVILEGES - represents a successful request to Elasticsearch.
 
 All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging.  See the section "Finetuning the thread pool" below.
   
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Thus, changes to the audit log settings require a restart of all participating nodes in the cluster.
 
-## Installation
-
-Download the Audit Log enterprise module from Maven Central:
-
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
-
-and place it in the folder
-
-* `<ES installation directory>/plugins/search-guard-2`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
-
-After that, restart all nodes to activate the module.
-  
-## Configuring audit logging
-
-### Configuring the categories to be logged
+## Configuring the categories to be logged
 
 Per default, the audit log module logs all events in all categories. If you want to log only certain events, you can disable categories individually in the `elasticsearch.yml` configuration file:
 
@@ -55,56 +36,70 @@ searchguard.audit.config.disabled_categories: AUTHENTICATED, SG_INDEX_ATTEMPT
 
 In this case, events in the categories `AUTHENTICATED` and `SG_INDEX_ATTEMPT` will not be logged.
 
-### Configuring the log level
+## Configuring the log level
 
 By default, Search Guard logs a reasonable amount of information for each audit log event, suitable for identifying attempted security breaches. This includes the audit category, user information, source IP, date, reason etc.
 
-Search Guard also provides an extended log format, which includes the requested index (including composite index requests), and the query that was submitted. This extended logging can be enabled and disabled by setting:
+Search Guard also provides an extended log format, which includes the requested index (including composite index requests), and the query that was submitted. 
+
+This extended logging can be enabled and disabled by setting:
 
 ```
-searchguard.audit.enable_request_details: <boolean>
+# Enable/disable request details logging (default: false)
+searchguard.audit.enable_request_details: false
 ```
 
-Since this extended logging comes with an performance overhead, the default setting is `false`.
+## Configuring on which layers audit events are generated
 
-#### Extended logging caveats
+By default, Search Guard logs events on the REST layer only. Since nearly all REST requests are transformed to transport requests internally by Elasticsearch, logging on both layers would lead to duplicate events.
 
-The extended logging can produce a considerable amount of log information. If you plan to use extended logging in production, please keep the following things in mind:
+However, if you also use the transport layer to access your Elasticsearch cluster, for example by a TransportClient, you might want to enable transport audit logging as well.
 
-**Exclude the AUTHENTICATED category**
-
-If the AUTHENTICATED category is enabled, Search Guard will log all requests, including valid, authenticated requests. This can lead to a huge amount of messages and **should be avoided in combination with extended logging**.
-
-**Composite requests and field limits**
-
-If a request contains subrequests, Search Guard adds audit information for each subrequest to the audit message separately. This includes the index name, the document type or the source. Each subrequest is identified by a consecutive number, appended to the field name of the logged data.
-
-For example, if a request contains three subrequests, the audit message will contain the affected indices for each subrequest, like:
+You can configure on which layer Search Guard will produce audit events by the following keys:
 
 ```
-audit_trace_indices_sub_1: ...
-audit_trace_indices_sub_2: ...
-audit_trace_indices_sub_3: ...
+# Enable/disable rest request logging (default: true)
+searchguard.audit.enable_rest: true
+# Enable/disable transport request logging (default: false)
+searchguard.audit.enable_transport: false
+```
+## Configuring bulk request handling
+
+Bulk requests can contain an arbitrary number of sub requests. By default, Search Guard will not log these sub requests separately. You can enable this feature by adding:  
+
+```
+# Enable/disable bulk request logging (default: false)
+# If enabled all subrequests in bulk requests will be logged too
+#searchguard.audit.resolve_bulk_requests: false
 ```
 
-If your composite request contains a huge number of subrequests, the produced audit messages will contain a huge number of fields as well. You will likely hit the field limit of Elasticsearch, which defaults to 1000 per index (see the corresponding issue on [GitHub](https://github.com/elastic/elasticsearch/pull/17357)).
+This also means that a bulk request containing 2000 sub requests will generate 2000 separate audit events, so only enable this if the usage of bulk requests is limited.
 
-If necessary, you can set a higher value for the field limit, even after the index has been created:
+## Configuring the audit log index name
+
+If the audit log events are stored in an Elasticsearch cluster (see Storage Types), Search Guard uses the default index name `auditlog6`. You can change the index name like:
 
 ```
-PUT auditlog/_settings
-{
-  "index.mapping.total_fields.limit": 10000
-} 
+searchguard.audit.config.index: auditlog6 
+```
+You can also use a date pattern in the index name, so you can setup a daily rotating index for example:
+
+```
+searchguard.audit.config.index: "'auditlog6-'YYYY.MM.dd"
 ```
 
-However, before increasing the field limit, please think about if it is really necessary to log these kinds of messages at all.
+For a reference on the date/time pattern format, please refer to the [Joda DateTimeFormat docs](http://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html).
 
-**Use an external storage type**
+## Excluding requests
 
-Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy.  
+You can exclude certain requests from being logged completely, by either configuring actions (for transport requests) and/or REST request paths (for REST requests). Events for these actions/request paths will be discarded.
 
-### Configuring excluded users (requires Audit Log v5 or above)
+```
+# Disable some requests (wildcard or regex of actions or rest request paths)
+searchguard.audit.ignore_requests: ["indices:data/read/*","*_bulk"]
+```
+
+## Excluding users
 
 By default, Search Guard logs events from all users. In some cases you might want to exclude events created by certain users from being logged. For example, you might want to exclude the Kibana server user or the logstash user. You can define users to be excluded by setting the following configuration:
 
@@ -113,7 +108,7 @@ searchguard.audit.ignore_users:
   - kibanaserver
 ```
 
-### Configuring the storage type
+## Configuring the storage type
 
 Search guard comes with three audit log storage types. This specifies where you want to store the tracked events. You can choose from:
 
@@ -132,7 +127,7 @@ Note that it is not possible to specify more than one storage type at the moment
 
 You can also use your own, custom implementation of storage in case you have special requirements that are not covered by the built-in types. See the section "Custom storage types" below.
 
-## Storage type 'debug'
+### Storage type 'debug'
 
 There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
 
@@ -142,28 +137,17 @@ searchguard.audit.type: debug
 
 This will output tracked events to stdout, and is mainly useful when debugging or testing.
 
-## Storage type 'internal_elasticsearch'
+### Storage type 'internal_elasticsearch'
 
-In addition to specifying the type as `internal_elasticsearch`, you can set the index name and the document type:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
 
 ```
 searchguard.audit.type: internal_elasticsearch
-searchguard.audit.config.index: <indexname>
-searchguard.audit.config.type: <typename>
 ```
 
-If not specified, Search Guard uses the default value `auditlog` for both index name and document type.
+In addition, you can also specify the index name for the audit events as descibed above.
 
-Since v5, you can use a date/time pattern in the index name as well, for example to set up a daily rolling index. For a reference on the date/time pattern format, please refer to the [Joda DateTimeFormat docs](http://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html).
-
-Example:
-
-```
-searchguard.audit.config.index: "'auditlog-'YYYY.MM.dd"
-```
- 
-
-## Storage type 'external_elasticsearch'
+### Storage type 'external_elasticsearch'
 
 If you want to store the tracked events in a different Elasticsearch cluster than the cluster producing the events, you use `external_elasticsearch` as audit type, configure the Elasticsearch endpoints with hostname/IP and port and optionally the index name and document type:
 
@@ -179,37 +163,32 @@ Since v5, you can use date/time pattern in the index name as well, as described 
 SearchGuard uses the Elasticsearch REST API to send the tracked events. So, for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
 
 ```
-searchguard.audit.config.http_endpoints: 192.168.178.1:9200,192.168.178.2:9200
+searchguard.audit.config.http_endpoints: [192.168.178.1:9200,192.168.178.2:9200]
 ```
 
-### Storing audit logs in a Search Guard secured cluster
+#### Storing audit logs in a Search Guard secured cluster
 
 If you use `external_elasticsearch` as audit type, and the cluster you want to store the audit logs in is also secured by Search Guard, you need to supply some additional configuration parameters.
 
 The parameters depend on what authentication type you configured on the REST layer.
 
-### TLS settings
+#### TLS settings
 
-Use the following settings to control SSL/TLS:
+| Name | Description |
+|---|---|
+| searchguard.audit.config.enable_ssl | Boolean, whether or not to use SSL/TLS. If you enabled SSL/TLS on the REST-layer of the receiving cluster, set this to true. Default is false.|
+| searchguard.audit.config.verify_hostnames |  Boolean, whether or not to verify the hostname of the SSL/TLS certificate of the receiving cluster. Default is true.|
+| searchguard.audit.config.pemtrustedcas_filepath | The trusted Root CA of the external Elasticsearch cluster, **relative to the `config/` directory**. Used to verify the TLS certificate of this cluster|
+| searchguard.audit.config.pemtrustedcas_content | Same as `searchguard.audit.config.pemtrustedcas_filepath`, but you can configure the base 64 encoded certificate content directly.|
+| searchguard.audit.config.enable\_ssl\_client\_auth | Boolean,  Whether or not to enable SSL/TLS client authentication. If you set this to true, the audit log module will send the node's certificate along with the request. The receiving cluster can use this certificate to verify the identity of the caller.|
+| searchguard.audit.config.pemcert_filepath | The path to the TLS certificate to send to the external Elasticsearch cluster, **relative to the `config/` directory**.|
+| searchguard.audit.config.pemcert_content | Same as `searchguard.audit.config.pemcert_filepath`, but you can configure the base 64 encoded certificate content directly.|
+| searchguard.audit.config.pemkey_filepath | The path to the private key of the TLS certificate to send to the external Elasticsearch cluster, **relative to the `config/` directory**.|
+| searchguard.audit.config.pemkey_content | Same as `searchguard.audit.config.pemkey_filepath`, but you can configure the base 64 encoded certificate content directly.|
+| searchguard.audit.config.pemkey_password | The password of the private key|
 
-```
-searchguard.audit.config.enable_ssl: <true|false>
-```
-Whether or not to use SSL/TLS. If you enabled SSL/TLS on the REST-layer of the receiving cluster, set this to true. The default is false.
 
-```
-searchguard.audit.config.verify_hostnames: <true|false>
-```
-Whether or not to verify the hostname of the SSL/TLS certificate of the receiving cluster. The default is true.
-
-```
-searchguard.audit.config.enable_ssl_client_auth: <true|false>
-```
-Whether or not to enable SSL/TLS client authentication. If you set this to true, the audit log module will send the nodes certificate from the keystore along with the request. The receiving cluster can use this certificate to verify the identity of the caller.
-
-Note: The audit log module will use the key and truststore settings configured in the HTTP/REST layer SSL section of elasticsearch.yml. Please refer to the [Search Guard SSL](https://github.com/floragunncom/search-guard-ssl-docs/blob/master/configuration.md) configuration chapter for more information.
-
-### Basic auth settings
+#### Basic auth settings
 
 If you enabled HTTP Basic auth on the receiving cluster, use these settings to specify username and password the the audit log module should use:
 
@@ -218,7 +197,7 @@ searchguard.audit.config.username: <username>
 searchguard.audit.config.password: <password>
 ```
 
-## Storage type 'webhook'
+### Storage type 'webhook'
 
 This storage type ships the audit log events to an arbitrary HTTP endpoint. Enable this storage type by adding the following to `elasticsearch.yml:`
 
@@ -226,24 +205,17 @@ This storage type ships the audit log events to an arbitrary HTTP endpoint. Enab
 searchguard.audit.type: webhook
 ```
 
-In addition, you can configure the following keys:
+Ypu can use the following keys to configure the storage type `webhook`:
 
-```
-searchguard.audit.config.webhook.url: <string>
-```
-The URL that the log events are shipped to. Can be an HTTP or HTTPS URL.
+| Name | Description |
+|---|---|
+| searchguard.audit.config.webhook.url | The URL that the log events are shipped to. Can be an HTTP or HTTPS URL.|
+| searchguard.audit.config.webhook.ssl.verify | Boolean, if true, the TLS certificate provided by the endpoint (if any) will be verified. If set to false, no verification is performed. You can disable this check if you use self-signed certificates. |
+| searchguard.audit.config.webhook.ssl.pemtrustedcas_filepath | The path to the trusted certificate against which the webhook's TLS certificate is validated. |
+| searchguard.audit.config.webhook.ssl.pemtrustedcas_content | Same as `searchguard.audit.config.webhook.ssl.pemtrustedcas_content`, but you can configure the base 64 encoded certificate content directly. |
+| searchguard.audit.config.webhook.format | The format in which the audit log message is logged, can be one of URL\_PARAMETER\_GET, URL\_PARAMETER\_POST, TEXT, JSON, SLACK |
 
-```
-webhook.ssl.verify: <boolean>
-```
-
-If true, the TLS certificate provided by the endpoint (if any) will be verified. If set to false, no verification is performed. You can disable this check if you use self-signed certificates, for example.
-
-```
-webhook.format: <URL_PARAMETER_GET|URL_PARAMETER_POST|TEXT|JSON|SLACK>
-```
-
-The format in which the audit log message is logged:
+Formats:
 
 **URL\_PARAMETER\_GET**
 
@@ -265,7 +237,23 @@ The audit log message is submitted to the configured webhook URL as an HTTP POST
 
 The audit log message is submitted to the configured webhook URL as an HTTP POST. The body of the HTTP POST request contains the audit log message in JSON format suitable for consumption by Slack. The default implementation returns `"text": "<AuditMessage#toText>"`
 
-### Customizing the audit log event format
+## Performance considerations
+
+Depending on your configuration, audit logging can have an impact on the performance of your cluster.
+
+### AUTHENTICATED and GRANTED_PRIVILEGES categories
+
+If the AUTHENTICATED and/or GRANTED_PRIVILEGES category is enabled, Search Guard will log all requests, including valid, authenticated requests. Depending on the load of your cluster, this can lead to a huge amount of messages. If you're only interested in security relevant events, disable these categories.
+
+### Bulk request handling
+
+If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in a bulk request are logged separately. This makes sense, since some of these sub requests may be permitted, others not, leading to events in the MISSING_PRIVILEGES category. Since bulk requests can carry an arbitrary number of sub requests, this may lead to a huge number of audit events being logged.  
+
+### External storage types
+
+Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. 
+
+## Expert: Customizing the audit log event format
 
 If you need to provide the audit log event in a special format, suitable for consumption by your SIEM system, for example, you can subclass the `com.floragunn.searchguard.auditlog.impl.WebhookAuditLog` class and configure it as custom storage type (see below).
 
@@ -295,7 +283,7 @@ protected String formatUrlParameters(final AuditMessage msg) {
 
 This method is called when using URL\_PARAMETER\_GET or URL\_PARAMETER\_POST as webhook format.
 
-## Custom storage types
+## Expert: Custom storage types
 
 If you have special requirements regarding the storage, you can always implement your own storage type and let the audit log module use it instead of the built in types.
 
@@ -324,12 +312,20 @@ searchguard.audit.type: com.example.MyCustomAuditLogStorage
 Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-2` or `plugins/search-guard-5` folder.
 
 
-## Advanced settings: Finetuning the thread pool
+## Expert: Finetuning the thread pool
 
 All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:
 
 ```
+# Tune threadpool size, default is 10 and 0 means disabled
 searchguard.audit.threadpool.size: <integer>
 ```
 
 The default setting is `10`. Setting this value to `0` disables the thread pool completey, and the events are logged synchronously. 
+
+The maximum queue length per thread can also be configured:
+
+```
+# Tune threadpool max size queue length, default is 100000
+searchguard.audit.threadpool.max_queue_len: 100000
+```

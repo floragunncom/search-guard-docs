@@ -1,12 +1,31 @@
 # Configuring TLS
 
-TLS is configured in the `config/elasticsearch.yml` file of your ES installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while you cannot switch it off for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
+TLS is configured in the `config/elasticsearch.yml` file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
+
+## Using X.509 PEM certificates and PKCS #8 keys
+
+Use the following keys to configure the location of your PEM certificates and private keys:
+
+### Transport layer TLS
+
+| Name | Description |
+|---|---|
+| searchguard.ssl.transport.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
+| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
+
+### REST layer TLS
+
+| Name | Description |
+|---|---|
+| searchguard.ssl.http.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
+| searchguard.ssl.http.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
 
 ## Using Keystore and Truststore files
-
-The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
-
-*Note: It's common practice to put the certificates and trusted Root CAs in separate keystore and a truststore files. As an alternative, you can also store all certificates in one file, and refer to the relevant certificate by using an alias.* 
+As an alternative to certificates and private keys in PEM format, you can also use keystore and truststore files in JKS or PKCS12 format. The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
 
 ### Transport layer TLS
 
@@ -35,31 +54,11 @@ The following settings configure the location and password of your keystore and 
 | searchguard.ssl.http.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.http.truststore_password | Truststore password (default: changeit) |
 
-## Using X.509 PEM certificates and PKCS #8 keys
 
-As an alternative to using keystore and trustore files, you can also use X.509 PEM certificates and PKCS #8 keys. This, for example, makes it easy to configure and use Let's Encrypt certificates. Instead of using the keystore and truststore configuration keys described above, use the following keys to configure PEM certificates:
-
-### Transport layer TLS
-
-| Name | Description |
-|---|---|
-| searchguard.ssl.transport.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
-| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
-
-### REST layer TLS
-
-| Name | Description |
-|---|---|
-| searchguard.ssl.http.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.http.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
-| searchguard.ssl.http.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
 
 ## Configuring Node certificates
 
-Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. While there are several possibilites, the simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`. Search Guard supports wildcards and regular expressions:
+Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. The simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`. Search Guard supports wildcards and regular expressions:
 
 ```
 searchguard.nodes_dn:
@@ -69,7 +68,7 @@ searchguard.nodes_dn:
   - '/CN=.*regex/'
 ```
 
-See [TLS for production environments](tls_certificates_production.md) for more details and options regarding node certificates.
+If your node certificates have an OID identifier in the SAN section, you can omit this configuration completely. See [TLS for production environments](tls_certificates_production.md) for more details regarding this option.
 
 ## Configuring Admin certificates
 
@@ -85,7 +84,7 @@ For security reasons, you cannot use wildcards or regular expressions here.
 
 ## Using OpenSSL
 
-Search Guard supports OpenSSL. We recommend to use OpenSSL in production for enhanced performance and a wider range of more modern cipher suites. In order to use OpenSSL, you need to install OpenSSL, the Apache Portable Runtime and a Netty version with OpenSSL support matching your platform on all nodes. This is described in the [OpenSSL](tls_openssl.md) chapter.
+Search Guard supports OpenSSL. We recommend to use OpenSSL in production for enhanced performance and a wider range of modern cipher suites. In order to use OpenSSL, you need to install OpenSSL, the Apache Portable Runtime and a Netty version with OpenSSL support matching your platform on all nodes. This is described in the [OpenSSL](tls_openssl.md) chapter.
 
 If OpenSSL is enabled, but for one reason or another the installation does not work, Search Guard will fall back to the Java JCE as security engine.
 
@@ -98,25 +97,24 @@ See the [OpenSSL](tls_openssl.md) chapter for more information on how to install
 
 ## Advanced: Hostname verification and DNS lookup
 
-In addition to verifying the TLS certificates against the Root CA and/or intermediate CA(s) in the truststore, Search Guard can apply additional checks on the transport layer to further secure your cluster.
+In addition to verifying the TLS certificates against the Root CA and/or intermediate CA(s), Search Guard can apply additional checks on the transport layer to further secure your cluster.
 
-With **hostname verification** enabled, Search Guard verifies that the hostname of the communication partner matches the hostname in the certificate. For example, if the hostname of your node is node-0.example.com then the hostname in the TLS certificate has to be set to node-0.example.com as well. Otherwise, an error is thrown.
+With **hostname verification** enabled, Search Guard verifies that the hostname of the communication partner matches the hostname in the certificate. For example, if the hostname of your node is `node-0.example.com` then the hostname in the TLS certificate has to be set to `node-0.example.com` as well. Otherwise, an error is thrown. The hostname is taken from the `subject` or the `SAN` entries of your certificate.
 
 In addition, when **resolve hostnames** is enabled, Search Guard resolves the (verified) hostname against your DNS. If the hostname does not resolve, an error is thrown.
-
-While these settings require a dedicated certificate for each node, and also correct DNS entries, we recommend to enable it for advanced security.
 
 | Name | Description |
 |---|---|
 | searchguard.ssl.transport.enforce\_hostname\_verification | Whether or not to verify hostnames on the transport layer. (Optional, default: true) |
-| searchguard.ssl.transport.resolve\_hostname | Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true) |
+| searchguard.ssl.transport.resolve\_hostname | Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true, only works if hostname verification is enabled.) |
 
 ## Advanced: Client authentication
 
-With TLS client authentication enabled, REST clients can send a TLS certificate in the HTTP request to provide identity information to Search Guard. There are two main usage scenarios for TLS client authentication:
+With TLS client authentication enabled, REST clients can send a TLS certificate with the HTTP request to provide identity information to Search Guard. There are three main usage scenarios for TLS client authentication:
 
 * Providing an admin certificate when using the REST management API.
 * Configuring roles and permissions based on a client certificate.
+* Providing identity information for tools like Kibana, logstash or Beats
 
 TLS client authentication has three modes:
 

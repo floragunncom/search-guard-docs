@@ -6,10 +6,6 @@ Copryight 2017 floragunn GmbH
 
 Search Guard can use a client TLS certificate in the HTTP request to authenticate users and assign roles and permissions.
 
-## Installation
-
-Search Guard already ships with client certificate based authentication.  No additional installation steps are required.
-
 ## Configuration
 
 In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:

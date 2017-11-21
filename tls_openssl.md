@@ -6,13 +6,6 @@ Copryight 2015-2017 floragunn GmbH
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
 
-If you run into Out Of Memory problems with ES 5, you probably hit an issue in Elasticsearch. This was fixed in Elasticsearch 5.5.1 and onwards.
-
-For more information, see here:
-
-* [Search Guard Issue Tracker](https://github.com/floragunncom/search-guard/issues/343) 
-* [Elasticsearch Fix for 5.5.1](https://github.com/elastic/elasticsearch/pull/25759).
-
 # Enabling OpenSSL
 
 ## Dynamically linked
@@ -36,48 +29,17 @@ For more information, see here:
   * Windows: `_windows-x86_64.jar_`
   * Alpine: Compile it yourself (or use statically linked version below)
 
-* **Search Guard 5.4.1 and higher (Open SSL 1.0.2):**  
+* **Search Guard 6.0.0 and higher (Open SSL 1.0.2):**  
   * Version: 2.0.5.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
   * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.5.Final-non-fedora-linux-x86_64.jar)
   * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.5.Final-fedora-linux-x86_64.jar)
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
 
-* **Search Guard 5.4.1 and higher (Open SSL 1.0.1):**
+* **Search Guard 6.0.0 and higher (Open SSL 1.0.1):**
   * Version: 2.0.5.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.5.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.5.Final)
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
-* **Search Guard 5.4.0 (Open SSL 1.0.2):** (2.0.0.Final has known bugs and memory leaks!!)  
-  * Version: 2.0.0.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
-  * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-non-fedora-linux-x86_64.jar)
-  * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-fedora-linux-x86_64.jar)
-  * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
-
-* **Search Guard 5.4.0 (Open SSL 1.0.1):** (2.0.0.Final has known bugs and memory leaks!!)  
-  * Version: 2.0.0.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
-  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.0.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.0.Final)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
-  * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
-* **Search Guard 5.2/5.3:**
-  * Version: 1.1.33.Fork25
-  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork25)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
-  * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
-* **Search Guard 5.0/5.1:**
-  * Version: 1.1.33.Fork23
-  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
- or `_windows-x86_64.jar_`
-* **Search Guard 2:**
-  * Version: 1.1.33.Fork17
-  * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/](http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/)
-  * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_`
- or `_windows-x86_64.jar_`
-  * Put it into the elasticsearch `plugins/searchguard-ssl/` folder on every node
-
-
-
-
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 
@@ -85,28 +47,10 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 
-* **Search Guard 5.4.1 and higher:**
+* **Search Guard 6.0.0 and higher:**
   * [Alpine (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-alpine-linux-x86_64.jar)
   * [Debian/Ubuntu (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-non-fedora-linux-x86_64.jar)
   * [CentOS/RHEL/Fedora (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-fedora-linux-x86_64.jar)
-* **Search Guard 5.4.0:** (2.0.0.Final has known bugs and memory leaks!!)
-  * [Alpine (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-fedora-linux-x86_64.jar)
-* **Search Guard 5.2/5.3:**
-  * [Alpine (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork25 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork25-fedora-linux-x86_64.jar)
-* **Search Guard 5.0/5.1:**
-  * [Alpine (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork23 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork23-fedora-linux-x86_64.jar)
-* **Search Guard 2:**
-  * [Alpine (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (1.1.33.Fork17 compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-1.1.33.Fork17-fedora-linux-x86_64.jar)
-
-
 Put it into the elasticsearch `plugins/search-guard-ssl/` or `plugins/search-guard-5/` folder on every node
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again

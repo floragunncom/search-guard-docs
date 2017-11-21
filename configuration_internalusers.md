@@ -2,7 +2,9 @@
 Copryight 2017 floragunn GmbH
 -->
 
-# Configuring internal users and roles
+# Configuring the Internal Users Database
+
+Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Internal Users Database.
 
 Search Guard ships with an internal user database. You can use this user database if you do not have any external authentication system like LDAP or Active Directory in place. Users, their hashed passwords and roles are stored in the internal Search Guard configuration index on your cluster.
 

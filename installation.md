@@ -4,15 +4,30 @@ Copryight 2017 floragunn GmbH
 
 # Installation
 
+This chapter describes the necessary steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, you can also follow the [Quickstart Guide.](quickstart.md). 
+
+## Enterprise and Community Edition
+
+Search Guard ships with all Enterprise features already installed and enabled. These features require a license if you want to run them in production. If you just want to use the free Community Edition of Search Guard, you can [disable the enterprise features manually.](license_community.md)
+
 ## General
 
-The basic installation procedure is to:
+The installation procedure is to:
 
 1. Stop Elasticsearch
-2. Install Search Guard
-3. Execute the demo configuration script
-5. Restart Elasticsearch.
-6. Initialise the Search Guard index by running sgadmin
+2. Install the Search Guard plugin
+3. [Generate or obtain TLS certificates](tls_generate_demo_certificates.md)
+3. Add at least the [TLS configuration](tls_configuration.md) to `elasticsearch.yml`
+4. Restart Elasticsearch and check that the nodes come up
+5. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](sgadmin.md)
+
+While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
+
+## First time installation: Full cluster restart
+
+A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other.
+
+Installing Search Guard for the first time via a rolling restart is possible in theory, but will lead to several strange effects so it is highly recommended to **perform a full cluster restart when installing Search Guard for the first time**.
 
 ## Ensure that you Java Virtual Machine is supported
 
@@ -21,66 +36,42 @@ The basic installation procedure is to:
 
 ## Installing Search Guard
 
-Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the exact version number that matches your Elasticsearch installation. A plugin built for ES 5.4.3 will not run on ES 5.5.0 and vice versa.
+Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
 Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:<version>
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:<version>
 ```
+
 For example:
 
 ```
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.5.0-14
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:6.0.0-17
 ```
 
-Run `bin/elasticsearch-plugin` as the user that owns all of the Elasticsearch files.
+**Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch 6.0.0 will not run on Elasticsearch 6.0.1 and vice versa.
 
-In order to find the most recent Search Guard version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki). 
+An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
 
-After the installation you see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
-
-**If you're running Elasticsearch 2.x:**
-
-For Search Guard 2, you need to install Search Guard SSL first and after that Search Guard. Change to the directory of your Elasticsearch installation and type:
-
-```
-bin/plugin install -b com.floragunn/search-guard-ssl/2.4.5.21
-bin/plugin install -b com.floragunn/search-guard-2/2.4.5.14
-```
-
-After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
+After the installation you see a folder called `search-guard-6` in the plugin directory of your Elasticsearch installation.
 
 ### Offline installation
 
 If you are behind a firewall and need to perform an offline installation, follow these steps:
 
-* Download the [Search Guard 5 version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
-  * [All versions of Search Guard 5](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-5%22) 
+* Download the [Search Guard 6 version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
+  * [All versions of Search Guard 6](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-6%22) 
   * Download the **zip file** of the Search Guard plugin
 * Change to the directory of your Elasticsearch installation and type:
 
 ```
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-<version>.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-6-<version>.zip
 ```
-**If you're running Elasticsearch 2.x:**
-
-* Download the Search Guard SSL and Search Guard plugins [version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
-  * [All versions of Search Guard 2 SSL](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22) 
-  * [All versions of Search Guard 2](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-2%22) 
-
-  * Download the **zip files** of Search Guard plugins
-* Change to the directory of your Elasticsearch installation and type:
-
-```
-bin/plugin install -b file:///location/of/search-guard-ssl-<version>.zip
-bin/plugin install -b file:///location/of/search-guard-2-<version>.zip
-```
-
-## Additional permissions dialogue
+### Additional permissions dialogue
 
 
-Since ES 2.2, you will see the following warning message when installating Search Guard and/or Search Guard SSL. Confirm it by pressing 'y':
+You will see the following warning message when installating Search Guard. Confirm it by pressing 'y':
 
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -91,71 +82,93 @@ Since ES 2.2, you will see the following warning message when installating Searc
 * java.lang.RuntimePermission loadLibrary.*
 * java.lang.reflect.ReflectPermission suppressAccessChecks
 * java.security.SecurityPermission getProperty.ssl.KeyManagerFactory.algorithm
+...
 See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
 for descriptions of what these permissions allow and the associated risks.
 ```
 
-## Quickstart: Configuring and Initializing Search Guard
+## Configuring Search Guard
 
 Search Guard requires the following minumum pre-requisited to run:
 
-* TLS certificates for securing transport- and REST-traffic
+* TLS certificates for securing transport- and (optional) REST-traffic
 * TLS configuration settings in `elasticsearch.yml`
 * Initialization of the Search Guard index
 
-Search Guard ships with scripts to aid you with the initial setup. Before moving your installation to production, please read the [moving Search Guard to production](configuration_production.md) chapter.
+Search Guard ships with scripts to aid you with the initial setup, as described in the [Quickstart](quickstart.md) chapter.
 
-### Configuring Search Guard
+Before moving your installation to production, please read the [moving Search Guard to production](configuration_production.md) chapter.
 
-* Stop Elasticsearch 
+### Generating certificates
 
-* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-5/tools``
+If you already have a PKI infrastructure in place, you usually obtain the required certificates by issuing certificate signing requests to your PKI.
 
-* Execute ``./install_demo_configuration.sh``, ``chmod`` the script first if necessary.
+If this is not the case, you can generate certificates by
 
-This will generate the truststore and two keystore files. You can find them in the ``config`` directory of your Elasticsearch installation:
+* Using tools like OpenSSL and/or keytool
+* Using our offline certificate generator tool (to be announced)
+* Using our [online certificate generator service](https://floragunn.com/tls-certificate-generator/)
+* Using our [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) 
+* Using our [demo installation script](quickstart.md)
 
-* ``truststore.jks``—the root CA and intermediate/signing CA.
-* ``keystore.jks``—the node certificate. 
-* ``kirk.jks``—the admin certificate required for running ``sgadmin``
+The various ways to generate TLS certificates are described in the chapter [Generating demo TLS certificates](tls_generate_demo_certificates.md). For a typical installation you will want to generate
 
-The config directory should now look like:
+* One certificate for each node
+* One admin certificate
+
+It's possible to use the same certificate on each node, however this is less secure since you cannot use the hostname verification and DNS lookup feature of Search Guard to check the validity of the TLS certificates.
+
+### Configuring TLS and admin certificates
+
+The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates are relatice to the Elasticsearch `config` directory:
 
 ```
-elasticsearch-5.5.0
-│
-└─── config
-    │   elasticsearch.yml
-    │   log4j2.properties
-    │   keystore.jks
-    │   kirk.jks
-    │   truststore.jks
-    ├─── scripts
-    │    │   ...
-    │ ...
- 
+searchguard.ssl.transport.pemcert_filepath: <path_to_node_certificate>
+searchguard.ssl.transport.pemkey_filepath: <path_to_node_certificate_key>
+searchguard.ssl.transport.pemkey_password: <key_password (optional)>
+searchguard.ssl.transport.pemtrustedcas_filepath: <path_to_root_ca>
+searchguard.ssl.transport.enforce_hostname_verification: <true | false>
+
+searchguard.authcz.admin_dn:
+  - CN=kirk,OU=client,O=client,L=test, C=de
 ```
 
-The script will also add the TLS configuration to the `config/elasticsearch.yml` file automatically.
+The `searchguard.ssl.transport.pem*` keys define the paths to the node certificate, relative to the Elasticsearch `config` directory.
 
-### Initializing Search Guard
+The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
 
-In order to upload the demo configuration with users, roles and permissions:
+If you want to use TLS also on the REST layer (HTTPS), add the following lines to `elasticsearch.yml`
 
-* Start Elasticsearch
+```
+searchguard.ssl.http.enabled: true
+searchguard.ssl.http.pemcert_filepath: <path_to_http_certificate>
+searchguard.ssl.http.pemkey_filepath: <path_to_http_certificate_key>
+searchguard.ssl.http.pemkey_password: <key_password (optional)>
+searchguard.ssl.http.pemtrustedcas_filepath: <path_to_http_root_ca>
+```
 
-* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-5/tools``
+You can use the same certificates on the transport and on the REST layer. For production systems, we recommend to use individual certificates. 
 
-* Execute ``./sgadmin_demo.sh``, ``chmod`` the script if necessary first
+### Enable the REST management API
 
-This will execute ``sgadmin`` and populate the Search Guard configuration index with the files contained in the ``plugins/search-guard-<version>/sgconfig`` directory. If you want to play around with different configuration settings, you can change the files in the ``sgconfig`` directory directly. After that, just execute ``./sgadmin_demo.sh`` again for the changes to take effect.
+In order to use the REST management API, configure the Search Guard roles that should have access to the API. The following entry grants full access to the API for the role `sg_all_access`:
 
-### Testing the installation
+```
+searchguard.restapi.roles_enabled: ["sg_all_access"]
+```
 
-**Using curl**
+If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](managementapi.md).
 
-* Execute ``curl --insecure -u admin:admin 'https://localhost:9200/_searchguard/authinfo?pretty'``
-* This will print out information about the user ``admin`` in JSON format on the console.
+
+## Initializing Search Guard
+
+All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
+
+You intialize Search Guard by using the [sgadmin command line tool](sgadmin.md) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication and authorisation modules](configuration_auth.md) to use.
+
+Once initialized, you can also use the Search Guard configuration GUI to edit roles and permissions.
+
+## Testing the installation
 
 **Using a browser**
 
@@ -164,67 +177,7 @@ This will execute ``sgadmin`` and populate the Search Guard configuration index 
 * In the HTTP Basic Authentication dialogue, use ``admin`` as username and ``admin`` as password.
 * This will print out information about the user ``admin`` in JSON format.
 
- 
-## Installing enterprise modules
+**Using curl**
 
-If you want to use any of the enterprise modules, simply download the respective module jar file from Maven. When downloading, **choose "jar  with dependencies"** and place it in the folder 
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-2`
-
-
-After that, restart your nodes for the changes to take effect.
-
-#### LDAP- and Active Directory Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22)
-
-[https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap)
-
-[LDAP and Active Directory documentation](ldap.md)
-
-#### Kerberos/SPNEGO Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22)
-
-[https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos)
-
-[Kerberos/SPNEGO documentation](kerberos.md)
-
-#### JWT Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
-
-[https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt)
-
-[JSON Web token documentation](jwt.md)
-
-#### Document- and field level security:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22)
-
-[https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls)
-
-[Document and field level security documentation](dlsfls.md)
-
-#### Audit logging:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22)
-
-[https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog)
-
-[Audit Logging documentation](auditlogging.md)
-
-#### REST management API:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22)
-
-[https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api)
-
-[REST management API documentation](managementapi.md)
-
-#### Kibana multi tenancy module:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-kibana-multitenancy%22)
-
-[https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy)
-
-[Kibana Multitenancy documentation](multitenancy.md)
-
-Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
+* Execute ``curl --insecure -u admin:admin 'https://localhost:9200/_searchguard/authinfo?pretty'``
+* This will print out information about the user ``admin`` in JSON format on the console.

@@ -17,12 +17,10 @@ Regardless of what authentication method you use, the basic flow is as follows:
 * Search Guard **authorizes** the user by retrieving a list of the user's roles from the configured authorization backend
   * Roles retrieved from authorization backends are called **backend roles**. 
   * For example, roles can be fetched from LDAP/AD, from a JSON web token or from the Search Guard internal user database.
-* Search Guard **maps** the user and backend roles to **internal Search Guard roles**.
-  * You can map as many users or roles to a Search Guard role as you like
-  
-* Search Guard determines the **permissions** associated with the internal Search Guard role and decides whether the action the user wants to perform is allowed or not.
+* Search Guard **maps** the user and backend roles to **Search Guard roles**.
+* Search Guard determines the **permissions** associated with the Search Guard role and decides whether the action the user wants to perform is allowed or not.
 
-* If your are using document- and field-level-security, you can also apply more fine grained permissions based on document types and individual fields.  
+* If your are using Document- and Field-Level-Security, you can also apply more fine grained permissions based on documents and individual fields.  
 
 # Authentication flow
 
@@ -41,7 +39,7 @@ If you use TLS certificates for identifying clients, the credentials are the DN 
 
 A credential provider can either be **challenging** or **non-challenging**. A challenging provider actively asks the user for his or her credentials if they are not already present in the request. A common way is to display an HTTP basic auth dialogue. 
 
-On the other hand, a non-challenging authenticator always assumes that the credentials are present in the request, and will not ask the user for it in case they are missing.
+A non-challenging authenticator always assumes that the credentials are present in the request, and will not ask the user for it in case they are missing.
 
 ## Authentication (authc)
 
@@ -102,9 +100,7 @@ SUGGEST:
 
 Action groups can be used in the role configuration instead of or in combination with fine-grained permissions like `indices:data/read/search*`.
 
-Search Guard ships with a predefined set of useful action groups like `READ`, `WRITE`, `SEARCH` etc. Since the required permissions to execute a particular action can vary from Elasticsearch version to Elasticsearch version. 
-
-We always keep the action groups up to date, so the preferred way of configuring your roles is to use the pre-defined action groups.
+Search Guard ships with a predefined set of useful action groups like `READ`, `WRITE`, `SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the pre-defined action groups**.
 
 ## Configuration settings: The Search Guard index
 

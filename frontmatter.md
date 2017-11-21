@@ -7,11 +7,11 @@ Copryight 2016 floragunn GmbH
 
 <br />
 <p align="center" style="font-size:36px;">
-Official documentation for Search Guard 2 and Search Guard 5
+Official documentation for Search Guard 6
 </p>
 <br />
 <p align="center" style="font-size:24px;">
-Version: 5.x-14
+Version: 6.0.0-17.beta1
 </p>
 <br />
 <p align="center" style="font-size:16px;">

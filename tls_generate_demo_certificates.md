@@ -28,15 +28,17 @@ Search Guard ships with a demo installation script. The installation script will
 
 To generate the certificates:
 
-* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-5/tools``
+* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-6/tools``
 
-* Execute ``./install_demo_configuration.sh``, ``chmod`` the script first if necessary.
+* Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary)
 
-This will generate the truststore and two keystore files. You can find them in the ``config`` directory of your Elasticsearch installation:
-
-* ``truststore.jks``—the root CA
-* ``keystore.jks``— the node certificate 
-* ``kirk.jks``—the admin certificate required for running ``sgadmin``
+This will generate the following certificates in the `<Elasticsearch directory>/config` directory:
+ 
+* ``root-ca.pem``— the root CA used for signing all other certificates
+* ``esnode.pem``— the node certificate used on the transport- and REST-layer. 
+* ``esnode-key.pem``— the private key for the node certificate
+* ``kirk.pem``— the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API
+* ``kirk-key.pem``— the private key for the admin certificate
 
 The script will also add the TLS configuration to the `config/elasticsearch.yml` file automatically.
 
@@ -48,7 +50,7 @@ DNS Name: localhost
 IP Address: 127.0.0.1
 ```
 
-Both key- and truststore have the password `changeit`.
+The private keys for both node and the admin certificate do not have a password.
 
 ## Using the TLS certificate generator service
 
@@ -95,37 +97,41 @@ Which should print a list of available `keytool` commands. If this is not the ca
 
 First download the Search Guard SSL source code onto your machine. You can either clone the repository, or download it as zip file. The repository is located here:
 
-[Search Guard SSL 5.x](https://github.com/floragunncom/search-guard-ssl/tree/5.5.0)
+[Search Guard SSL 6.x](https://github.com/floragunncom/search-guard-ssl/tree/es-6.0.0)
 
 The script to execute is `./example.sh`, located in the folder `example-pki-scripts.` You might need to `chmod` the file before executing it. 
 
-All required artifacts are now generated. If execution was successful, you'll find the generated files and folders inside the `example-pki-scripts` folder. If for any reason you need to re-execute the script, execute `./clean.sh` in the same directory first. This will remove all generated files automatically.
+If execution was successful, you'll find the generated files and folders inside the `example-pki-scripts` folder. If for any reason you need to re-execute the script, execute `./clean.sh` in the same directory first. This will remove all generated files automatically.
 
 ### Generated artifacts
 
-The main artifacts are:
+The script generates certificates in PEM, P12 and JKS format. You can use either for running Search Guard. The recommended format is PEM.
+
+The following main certicates are generated:
+
+* Node certificates:
+ * node-0-signed.pem / node-0.key.pem
+ * node-1-signed.pem / node-1.key.pem
+ * node-2-signed.pem / node-2.key.pem
+* Admin certificate:
+ * kirk.crtfull.pem / kirk.key.pem
+* Client certificate:
+ * spock.crtfull.pem / spock.key.pem 
+
+In order to configure the kirk certificate as admin certificate, add the following entry to elasticsearch.yml:
 
 ```
-truststore.jks
+searchguard.authcz.admin_dn:
+  - CN=kirk,OU=client,O=client,L=Test,C=DE
 ```
-The truststore containing the root CA used to sign all other certificates.
 
-```
-node-0-keystore.jks, node-1-keystore.jks, node-2-keystore.jks
-```
-Keystores containing node certificates and the intermediate certificates. These keystores can be used on all Elasticsearch nodes.
+The script also generates certificates for Kibana, logstash and Beats. These can be used to secure the connection between said tools and Elasticsearch. This is optional but more secure.
 
-```
-kirk-keystore.jks
-```
-Keystore containing a client certificate. In the sample configuration files, this certificate is configured to be an admin certificate and can be used with `sgadmin`.
+**The password for all private keys and keystore files is `changeit`.**
 
-```
-spock-keystore.jks
-```
-Keystore containing a regular, non-admin client certificate.
+The Root CA and Signing CA used to sign the certificates can be found in the folder `example-pki-scripts/ca`
 
-**The password for all generated stores is `changeit`.**
+
 
 ### Customizing the certificates
 

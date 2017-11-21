@@ -4,39 +4,66 @@ Copryight 2016 floragunn GmbH
 
 # REST management API
 
-This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api.
+This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api. It is required if you plan to use the Kibana config GUI.
 
-## Installation
+## Access control
 
-Download the REST management API enterprise module from Maven Central:
+Since the REST management API makes it possible to change users, roles and permissions, access to this functionality is restricted by Search Guard. Access is granted either by a user's role or by providing an admin certificate.
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22) 
+## Role-based access control
 
-and place it in the folder
+All roles that should have access to the API must be configured in `elasticsearch.yml` with the following key:
 
-* `<ES installation directory>/plugins/search-guard-2`
+```
+searchguard.restapi.roles_enabled: ["sg_all_access", ...]
+```
 
-or
+This will grant full access permission to the REST API for all users that have the Search Guard role `sg_all_access`.
 
-* `<ES installation directory>/plugins/search-guard-5`
+You can further limit access to certain API endpoints and methods on a per role basis. For example, you can give a user permission to retrieve role information, but not to change or delete it.
 
-if you are using Search Guard 5.
+The structure of the respective configuration is:
+```
+searchguard.restapi.endpoints_disabled.<role>.<endpoint>: ["<method>",...]
+```
 
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+For example:
 
-After that, restart all nodes to activate the module.
+```
+searchguard.restapi.endpoints_disabled.sg_all_access.ROLES: ["PUT", "POST", "DELETE"]
+```
 
-## Prerequisites
+Possible values for endpoint are:
 
-The Search Guard index can only be accessed with an admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
+```
+ACTIONGROUPS
+ROLES
+ROLESMAPPING
+INTERNALUSERS
+SGCONFIG
+CACHE
+LICENSE
+SYSTEMINFO
+```
+
+Possible values for then method are:
+
+```
+GET
+PUT
+POST
+DELETE
+```
+
+## Admin certicate access control
+
+Access can also be granted by using an admin certificate. This is the same certificate that you use when executing [sgadmin](sgadmin.md).
 
 In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```
 searchguard.ssl.http.clientauth_mode: OPTIONAL
 ```
-
-If you plan to use the REST API via a browser, you will need to install the admin certificate in your browser. This varies from browser to browser, so please refer to the documentation of your browser-of-choice to learn how to do that. 
 
 For curl, you need to specify the admin certificate with it's complete certificate chain, and also the key:
 
@@ -49,6 +76,20 @@ If you use the example PKI scripts provided by Search Guard SSL, the `kirk.key.p
 ```
 cd search-guard-sll
 cat example-pki-scripts/kirk.crt.pem example-pki-scripts/ca/chain-ca.pem > chain.pem
+```
+
+## Reserved resources
+
+You can mark any user, role, action group or roles mapping as `readonly` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
+
+You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are left untouched. For example, it makes sense to mark the Kibana server user as `readonly`.
+
+To mark a resource `readonly`, add the following flag:
+
+```
+sg_kibana_user:
+  readonly: true
+  ...
 ```
 
 ## General usage and return values
@@ -66,7 +107,7 @@ The `configuration type` can be one of:
 * roles
 * actiongroups
 
-The resource name specifies the entry in the `configuration type` you want to operat on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.
+The resource name specifies the entry in the `configuration type` you want to operate on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.
 
 The API returns the following HTTP status codes:
 
@@ -87,57 +128,31 @@ The response body has the format:
 }
 ```
 
-The last three entries are returned if you `PUT` a new resource but the content is malformed. `invalid_keys` is used when the content contains invalid keys. `missing_mandatory_keys` is used when a mandatory key is missing. And`specify_one_of` is used when the content is missing a key.
+The last three entries are returned if you `PUT` a new resource but the content is malformed. `invalid_keys` is used when the content contains invalid keys. `missing_mandatory_keys` is used when a mandatory key is missing. And `specify_one_of` is used when the content is missing a key.
 
 
-## Get Configuration API
-
-### Endpoint
-```
-/_searchguard/api/configuration/{configname}
-```
-Where `configname` can be one of
-
-* config
-* internalusers
-* rolesmapping
-* roles
-* actiongroups
-
-### GET
-
-```
-GET /_searchguard/api/configuration/{configname}
-```
-A successful call returns a JSON structure containing the complete settings for the requested configuration, for example: 
-
-```
-  "sg_role_starfleet" : {
-    "backendroles" : [ "starfleet", "captains", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
-    "hosts" : [ "*.starfleetintranet.com" ],
-    "users" : [ "worf" ]
-  }
-```
-
-## User API
+## Internal Users API
 
 Used to receive, create, update and delete users. Users are added to the internal user database. It only makes sense to use this if you use `internal` as the `authentication_backend`.
 
 ### Endpoint
 
 ```
-/_searchguard/api/user/{username}
+/_searchguard/api/internalusers/{username}
 ```
 Where `username` is the name of the user.
 
 ### GET
+
+#### Get a single user
+
 ```
-GET /_searchguard/api/user/{username}
+GET /_searchguard/api/internalusers/{username}
 ```
 Returns the settings for the respective user in JSON format, for example:
 
 ```
-GET /_searchguard/api/user/kirk
+GET /_searchguard/api/internalusers/kirk
 ```
 ```
 {
@@ -147,16 +162,25 @@ GET /_searchguard/api/user/kirk
   }
 }
 ```
+
+#### Get all users
+
+```
+GET /_searchguard/api/internalusers/
+```
+
+Returns all users in JSON format.
+
 ### Delete
 
 ```
-DELETE /_searchguard/api/user/{username}
+DELETE /_searchguard/api/internalusers/{username}
 ```
 
 Deletes the user specified by `username`. If successful, the call returns with status code 200 and a JSON success message.
 
 ```
-DELETE /_searchguard/api/user/kirk
+DELETE /_searchguard/api/internalusers/kirk
 ```
 ```
 {
@@ -168,7 +192,7 @@ DELETE /_searchguard/api/user/kirk
 ### PUT
 
 ```
-PUT /_searchguard/api/user/{username}
+PUT /_searchguard/api/internalusers/{username}
 ```
 
 Replaces or creates the user specified by `username`.
@@ -181,6 +205,7 @@ PUT /_searchguard/api/user/kirk
   "roles": ["captains", "starfleet"]
 }
 ```
+
 You need to specify either `hash` or `password`. `hash` is the hashed user password. You can either use an already hashed password (“hash” field) or provide it in clear text (“password”). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,`hash` takes precedence.
 
 `roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
@@ -205,6 +230,8 @@ Where `rolename` is the name of the role.
 
 ### GET
 
+#### Get a single role mapping
+
 ```
 GET /_searchguard/api/rolesmapping/{rolename}
 ```
@@ -223,6 +250,14 @@ GET /_searchguard/api/rolesmapping/sg_role_starfleet
   }
 }
 ```
+
+#### Get all role mappings
+
+```
+GET /_searchguard/api/rolesmapping/{rolename}
+```
+
+Returns all role mappings in JSON format.
 
 ### DELETE
 ```
@@ -280,6 +315,8 @@ Where `rolename` is the name of the role.
 
 ### GET
 
+#### Get a single role
+
 ```
 GET /_searchguard/api/roles/{rolename}
 ```
@@ -306,6 +343,14 @@ GET /_searchguard/api/roles/sg_role_starfleet
   }
 }
 ```
+
+#### Get all roles
+
+```
+GET /_searchguard/api/roles/{rolename}
+```
+
+Returns all roles in JSON format.
 
 ### DELETE
 ```
@@ -381,34 +426,47 @@ Used to receive, create, update and delete action groups.
 ### Endpoint
 
 ```
-/_searchguard/api/actiongroup/{actiongroup}
+/_searchguard/api/actiongroups/{actiongroup}
 ```
 Where `actiongroup` is the name of the role.
 
 ### GET
+
+#### Get a single action group
+
 ```
-GET /_searchguard/api/actiongroup/{actiongroup}
+GET /_searchguard/api/actiongroups/{actiongroup}
 ```
 Returns the settings for the respective action group in JSON format, for example:
 
 ```
-GET /_searchguard/api/actiongroup/SEARCH
+GET /_searchguard/api/actiongroups/SEARCH
 ```
 ```
 {
   "SEARCH" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
 ```
+
+#### Get all action groups
+
+```
+GET /_searchguard/api/actiongroups/
+```
+
+
+Returns all action groups in JSON format.
+
 ### Delete
 
 ```
-DELETE /_searchguard/api/actiongroup/{actiongroup}
+DELETE /_searchguard/api/actiongroups/{actiongroup}
 ```
 
 Deletes the action group specified by `actiongroup `. If successful, the call returns with status code 200 and a JSON success message.
 
 ```
-DELETE /_searchguard/api/actiongroup/SEARCH
+DELETE /_searchguard/api/actiongroups/SEARCH
 ```
 ```
 {
@@ -420,13 +478,13 @@ DELETE /_searchguard/api/actiongroup/SEARCH
 ### PUT
 
 ```
-PUT /_searchguard/api/actiongroup/{actiongroup}
+PUT /_searchguard/api/actiongroups/{actiongroup}
 ```
 
 Replaces or creates the action group specified by `actiongroup `.
 
 ```
-PUT /_searchguard/api/actiongroup/SEARCH
+PUT /_searchguard/api/actiongroups/SEARCH
 {
   "permissions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
@@ -437,6 +495,56 @@ The field permissions is mandatory and contains permissions or references to oth
 {
   "status":"CREATED",
   "message":"action group SEARCH created"
+}
+```
+
+## Authentication and Authorization API
+
+Used to retrieve the configured authentication and authorization modules.
+
+### Endpoint
+
+```
+/_searchguard/api/sgconfig
+```
+
+### GET
+
+```
+GET /_searchguard/api/sgconfig
+```
+
+Returns the configured authentication and authorization modules in JSON format.
+
+## License API
+
+Used to retrieve and update the Search Guard license.
+
+### Endpoint
+
+```
+/_searchguard/api/license/
+```
+
+### GET
+
+```
+GET /_searchguard/api/license/
+```
+Returns the currently installed license in JSON format. 
+
+### PUT
+
+```
+PUT /_searchguard/api/license/
+```
+
+Validates and replaces the currently active Search Guard license. Invalid (e.g. expired) licensens are rejected.
+
+```
+PUT /_searchguard/api/license/
+{ 
+  "sg_license": <licensestring>
 }
 ```
 
@@ -463,4 +571,35 @@ Flushes the Search Guard cache.
   "status":"OK",
   "message":"Cache flushed successfully."
 }
+```
+
+## DEPRECATED: Get Configuration API
+
+This endpoint is deprecated and will be removed in future Search Guard versions. Instead, use the GET endpoint without a resource name on each API endpoint separately.
+
+### Endpoint
+```
+/_searchguard/api/configuration/{configname}
+```
+Where `configname` can be one of
+
+* config
+* internalusers
+* rolesmapping
+* roles
+* actiongroups
+
+### GET
+
+```
+GET /_searchguard/api/configuration/{configname}
+```
+A successful call returns a JSON structure containing the complete settings for the requested configuration, for example: 
+
+```
+  "sg_role_starfleet" : {
+    "backendroles" : [ "starfleet", "captains", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
+    "hosts" : [ "*.starfleetintranet.com" ],
+    "users" : [ "worf" ]
+  }
 ```

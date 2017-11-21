@@ -1,5 +1,7 @@
 # Map users, backend roles and hosts to Search Guard roles
 
+Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Roles Mapping.
+
 Depending on your configuration, you can use the following data to assign a request to one or more Search Guard roles:
 
 * username

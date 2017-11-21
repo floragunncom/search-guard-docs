@@ -1,28 +1,8 @@
 <!---
-Copryight 2016 floragunn GmbH
+Copryight 2016-2017 floragunn GmbH
 -->
 
 # JSON web tokens
-
-## Installation
-
-Download the JWT module from Maven Central:
-
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22)
-
-and place it in the folder
-
-* `<ES installation directory>/plugins/search-guard-2`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
-
-After that, restart all nodes to activate the module.
 
 ## Token based authentication
 

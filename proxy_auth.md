@@ -10,10 +10,6 @@ Most of these solutions work as a proxy in front of the actual application that 
 
 Search Guard can extract these HTTP header fields from the request, and use these values to determine the permissions a user has.
 
-## Installation
-
-Search Guard already ships with proxy based authentication.  No additional installation steps are required.
-
 ## Configuration
 
 The names of the respective HTTP header fields can be configured in `sg_config.yml` within the `proxy` HTTP authenticator section:

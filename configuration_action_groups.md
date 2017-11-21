@@ -1,5 +1,7 @@
 # Using and defining action groups
 
+Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Action Groups.
+
 An action group is simply a collection of permissions with a telling name. Action groups are defined in the file `sg_action_groups.yml` and can be referred to in `sg_roles.yml`. Action groups can be nested. 
 
 The file structure is very simple:

@@ -7,16 +7,15 @@ Copryight 2017 floragunn GmbH
 There are two types of upgrades to distinguish:
 
 * Upgrading Search Guard for your current Elasticsearch version
-  * for example, upgrading from 5.3.1-11 to 5.3.1-12
+  * for example, upgrading from 6.0.0-17 to 6.0.0-18
 * Upgrading Search Guard and Elasticsearch
-  * for example, upgrading from 5.3.1-11 to 5.3.2-12 
+  * for example, upgrading from 6.0.0-17 to 6.0.1-18
 
-In the first case you only need to re-install Search Guard and eventually some of the enterprise modules. This can be done with a rolling restart of your Elasticsearch nodes, without downtime.
+In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your Elasticsearch nodes, without any downtime.
 
-In the latter case, you need to first upgrade your Elasticsearch installation, and after that install the correct Search Guard version, including the enterprise modules. If you need to perform a full cluster restart or not depends on the Elasticsearch version you are upgrading from and to. Please consult the official Elasticsearch documentation:
+In the latter case, you need to first upgrade your Elasticsearch installation, and after that install the correct Search Guard version. If you need to perform a full cluster restart or not depends on the Elasticsearch version you are upgrading from and to. Please consult the official Elasticsearch documentation:
 
 [https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html)
-
 
 Before starting the upgrade, check if there are any breaking changes either in Elasticsearch or Search Guard:
 
@@ -34,7 +33,7 @@ The permission schema can change from Elasticsearch version to Elasticsearch ver
 
 This means that if you upgrade from any version prior to 5.3.0, you need to give users with single index- and delete-permissions also permissions for bulk operations.
 
-If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. 
+If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](configuration_action_groups.md)  instead of assigning single permissions to roles directly.
 
 This applies for all Elasticsearch upgrades.
 
@@ -46,18 +45,10 @@ Given there are no breaking changes between the versions, you can directly upgra
 
 * Stop your Elasticsearch node
 * Remove the old version of Search Guard
-* For Search Guard 5
-  * `bin/elasticsearch-plugin remove search-guard-5`
-* For Search Guard 2
-  * `bin/plugin remove search-guard-2`
-  * `bin/plugin remove search-guard-ssl`
+  * `bin/elasticsearch-plugin remove search-guard-6`
 * Install the new version of Search Guard
   * See the chapter [Installing Search Guard](installation.md)
  for instructions
-
-If you have any commercial modules installed, such as LDAP, Kerberos or Audit logging, you need to re-install those as well. Always use the latest available versions of the modules for your Elasticsearch versions.
-
-Just download the module you want to install, and place it in the plugins/search-guard-5 or plugins/search-guard-2 folder. You can read more about it in the chapter [Installing Search Guard](installation.md) ("Installing enterprise modules").
 
 After that, restart your node and check that Elasticsearch and Search Guard are starting without errors.
 
@@ -65,12 +56,15 @@ Then, repeat this process for all other nodes in the cluster.
 
 # Upgrading Elasticsearch and Search Guard
 
-First, check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
+First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
 
 [Upgrading Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html)
 
-Usually, a major upgrade, for example from ES 2.x to 5.x requires a full cluster restart, while a minor upgrade, for example fom ES 5.2.2 to ES 5.3.0 does not. 
+For upgrading from Elasticsearch 5.x to 6.x, you need to upgrade your installation to Elasticsearch 5.6.x first. This is a requirement by Elasticsearch, not Search Guard. In most cases, this can be done via a rolling restart.
 
+After that, upgrade to Elasticsearch 6 and Search Guard 6.
+
+(TODO: details - full cluster restart if no SG was deployed before)
 
 ## Minor Upgrades - Rolling restart
 
@@ -149,58 +143,3 @@ In case you do not have acces to your original Search Guard configuration files 
 This will retrieve and save all Search Guard configuration files to your working directory. You can later use these files to initialize Search Guard after the upgrade. 
 
 For a major upgrade, the permission schema has very likely changed. so compare especially the `sg_roles.yml` and `sg_action_groups.yml` files with the versions that ship with the Search Guard plugin.
-
-### Upgrading from Search Guard 2.x to Search Guard 5.x
-
-The structure of the Search Guard index is not compatible between version 2.x and 5.x. This means that after you upgrade and restart your the cluster, you need to re-execute sgadmin again. 
-
-**Caveat: The offical upgrade documentation of Elasticsearch recommends to disable shard allocation. It is crucial that you re-enable shard allocation again before initializing Search Guard via sgadmin! We provide a special flag in sgadmin to do so, even if Search Guard is not fully intialized.**
-
-Follow the steps mentioned in the [Full cluster restart upgrade guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html)
-
-### Steps
-
-1. Disable shard allocation
-2. Perform a synced flush
-3. Shutdown and upgrade all nodes
-4. Upgrade any plugins: Upgrade the Search Guard plugin and the enterprise modules (if any) as outlined above
-5. Start the cluster
-6. Wait for yellow: At this point you will see error messages from Search Guard, stating that the index (from the 2.x version) is not readable by the installed Search Guard version (5.x). This is expected.
-7. Reenable allocation: Since Search Guard is not initialized yet, due to the non-compatible indices, **you need to reenable shard allocation by using `sgadmin`, not `curl`! See below.**
-8. Monitor progress with the `_cat/health` and `_cat/recovery` APIs  
-8. Execute `sgadmin` as usual to initialize the Search Guard index.
-
-### Using sgadmin to reenable shard allocation
-
-To reenable shard allocation with sgadmin, use the -esa (--enable-shard-allocation) switch, for example:
-
-```
-./sgadmin.sh \ 
-  -ks kirk.jks -kspass changeit \  
-  -ts truststore.jks -tspass changeit \ 
-  -icl -nhnv -esa
-```
-
-The output of this command should read:
-
-```
-Search Guard Admin v5
-Will connect to myhost:9300 ... done
-Persistent and transient shard allocation enabled
-```
-
-### Alternative: Use "persistent = new_primaries" strategy
-
-An alternative way of upgrading is to change the `cluster.routing.allocation.enable` setting in step 1 from `none` no `new_primaries`. This differs from the official upgrade guide of Elasticsearch, but makes it possible to avoid having to reenable shard allocation with `sgadmin`. You can use the curl to reenable shard allocation as mentioned in the [Full cluster restart upgrade guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html).
-
-#### Steps
-
-1. Disable shard allocation, but **use `new_primaries` instead of `none`.**
-2. Perform a synced flush
-3. Shutdown and upgrade all nodes
-4. Upgrade any plugins: Upgrade the Search Guard plugin and the enterprise modules (if any) as outlined above
-5. Start the cluster
-6. Wait for yellow: At this point you will see error messages from Search Guard, stating that the index (from the 2.x version) is not readable by the installed Search Guard version (5.x). This is expected.
-7. Run sgadmin.sh to update the SG configuration, test access to the cluster
-8. Reenable shard allocation
-9. Monitor progress with the `_cat/health` and `_cat/recovery` APIs  

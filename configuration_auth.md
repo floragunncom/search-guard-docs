@@ -8,8 +8,6 @@ Search Guard comes with pluggable authentication and authorisation modules. Depe
 * [JSON Web token](jwt.md)
 * [Proxy Authentication](proxy_auth.md)
 
-
-
 The main configuration file for authentication and authorization modules  is `sg_config.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user roles are fetched from backend systems (optional).
 
 It has two main parts:
@@ -29,7 +27,8 @@ The `authc` section has the following format:
 
 ```
 <name>:
-  enabled: <true|false>
+  http_enabled: <true|false>
+  transport_enabled: <true|false> 
   order: <integer>
     http_authenticator:
       ...
@@ -39,7 +38,9 @@ The `authc` section has the following format:
 
 An entry in the `authc` section is called an `authentication domain`. It specifies where to get the user credentials from, and against which backend they should be authenticated.
 
-You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), an `enabled` flag and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided.
+You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins". 
+
+You can enable or disable an authentication domain for HTTP/REST and transport independantly. This is for example useful if you want to use differen autehentication methods for `TransportClients`.
 
 The `http_authenticator` specifies which authentication method you want to use on the HTTP layer.
 
@@ -91,7 +92,8 @@ After the user has been authenticated, Search Guard can optionally collect addit
 ```
 authz:
   <name>:
-    enabled: <true|false>
+    http_enabled: <true|false>
+    transport_enabled: <true|false> 
     authorization_backend:
       type: <type>
       config:

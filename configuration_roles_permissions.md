@@ -1,5 +1,7 @@
 # Roles and permissions
 
+Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring Roles and Permissions.
+
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions with it, is as follows:
 
 ```

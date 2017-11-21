@@ -1,32 +1,12 @@
 <!---
-Copryight 2016 floragunn GmbH
+Copryight 2016-2017 floragunn GmbH
 -->
 
 # Kerberos
 
-## Installation
-
-Download the Kerberos module from Maven Central:
-
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22) 
-
-and place it in the folder
-
-* `<ES installation directory>/plugins/search-guard-2`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
-
-After that, restart all nodes to activate the module.
+## Static configuration in elasticsearch.yml
 
 Due to the nature of Kerberos, you need to define some (static) settings in `elasticsearch.yml`, and some in `sgconfig.yml`.
-
-## Static configuration in elasticsearch.yml
 
 In `elasticsearch.yml`, you need to define:
 

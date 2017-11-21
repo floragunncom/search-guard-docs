@@ -12,22 +12,6 @@ As with regular permissions, settings for document and field-level security can 
 
 **Note: Do not use filtered aliases for security relevant document filtering. Instead, use Document Level Security.**
 
-## Installation
-
-Download the DLS/FLS module from Maven Central:
-
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22) 
-
-and place it in the folder
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
-
-After that, restart all nodes for to activate the module.
-
 ## Document-level security
 
 Document-level security restricts the user's access to a certain set of documents within an index. These "certain documents" are defined by a **standard Elasticsearch query**. Only documents matching this query will be visible for the role that the DLS is defined for.
@@ -69,9 +53,13 @@ The specified query expects the same format as if it was defined in the search r
 
 This means that you can make the DSL query as complex as you want, but since it has to be executed for each query, this, of course, comes with a small performance penalty.
 
-### Username substitution
+### Dynamic queries: Variable substitution
 
-In addition to the regular query DSL of Elasticsearch, Search Guard also supports username substitution. You can use the variable `${user.name}` in the DLS query, and Search Guard will replace it with the username of the currently logged in user.
+Search Guard supports variables in the DLS query. With this feature, you can write dynamic queries based on the current users's attributes. This makes the Search Guard DLS a powerful feature to implement user-based filtering of result sets.
+
+#### Username substitution
+
+You can use the variable `${user.name}` in the DLS query, and Search Guard will replace it with the username of the currently logged in user.
 
 Let's imagine that each employee document has a field called `manager`, which contains the username of the employee's manager. Each logged in user should only have access to employees he manages. You can do so by defining:
 
@@ -85,6 +73,35 @@ management:
 ```
 
 Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
+
+#### User attribute substitution
+
+Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
+
+For JWT, these are the claims from your JWT token, for LDAP these are additional attributes from your directory. The keys of these attributes depend on the authenticator. For JWT, they start with `attr.jwt.*`, for LDAP with `attr.ldap.*`. If you're unsure, you can always access the `/_searchguard/authinfo` endpoint to check.
+
+Example:
+
+If the JWT contains a claim `department`:
+
+```
+{
+  "name": "John Doe",
+  "roles": "admin, devops",
+  "department": "operations"
+}
+```
+
+You can use it like:
+
+```
+management:
+  indices:
+    'humanresources':
+      'employees':
+        - '*'
+      _dls_: '{"term" : {"department" : "${attr.jwt. department}"}}'
+```
 
 ### Multiple roles and document-level security
 

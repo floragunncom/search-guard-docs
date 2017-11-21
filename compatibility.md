@@ -20,7 +20,7 @@ The following plugins and tools have been tested for compatibility with Search G
 * [X-Pack Monitoring](https://www.elastic.co/guide/en/x-pack/current/xpack-monitoring.html)
 * [X-Pack Alerting](https://www.elastic.co/guide/en/x-pack/current/xpack-alerting.html)
 * [X-Pack Machine Learning](https://www.elastic.co/guide/en/x-pack/current/xpack-ml.html)
-* [Elastalert](https://github.com/Yelp/elastalert)
+* [ElastAlert](https://github.com/Yelp/elastalert)
 * [Curator](https://github.com/elastic/curator)
 * [Kibi](https://siren.solutions/kibi/)
 * [syslog-ng](https://syslog-ng.org/) 
