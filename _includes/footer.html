@@ -1,0 +1,62 @@
+		<!-- Footer -->
+		<footer class="js-footer-is-fixed">
+			<!-- Footer Default -->
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="footer-menu helper">								
+								Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in other countries.
+								<br/><br/>
+								Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries. 
+								<br/><br/>
+								Apache, Apache Lucene, Apache Hadoop, Hadoop, HDFS and the yellow elephant logo are trademarks of the Apache Software Foundation in the United States and/or other countries.
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="footer-wrapper">
+								<!-- Scroll top -->
+								<span class="scroll-top js-scroll-top">
+									<i class="fa fa-angle-up"></i>
+								</span>
+								<!-- End of Scroll top -->
+								<!-- Version -->
+								<div class="docs-version js-docs-version">
+									<span class="docs-current-version js-docs-current-version">{{site.version}}</span>
+									<ul class="js-docs-version-list">
+										{% for version in site.versions %}
+										<li>
+											<a href="/{{site.docroots[version]}}/index">{{version}}</a>
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+								<!-- End of Version -->
+								<!-- Footer Menu -->
+								<ul class="footer-menu helper right">
+									<li>
+										<a href="https://floragunn.com/tls-certificate-generator/" target="_blank"> Certificate Generator </a>
+									</li>
+									<li>
+										<a href="https://floragunn.com/searchguard-license-support/" target="_blank"> Licensing </a>
+									</li>
+									<li>
+										<a href="https://floragunn.com/searchguard_blog/" target="_blank"> Blog </a>
+									</li>
+									<li>
+										<a href="https://floragunn.com/search-guard-partners/" target="_blank"> Partners</a>
+									</li>
+								</ul>
+								<!-- End of Footer Menu -->
+								<!-- Copyright -->
+								<p class="copyright helper right">
+									<a href="https://floragunn.com" target="_blank">© 2017 floragunn GmbH - All Rights Reserved </p>
+								<!-- End of Copyright -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of Footer Default -->
+		</footer>
+		<!-- End of Footer -->

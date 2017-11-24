@@ -1,1 +1,60 @@
-theme: jekyll-theme-dinky
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    disable: true
+
+plugins:
+  - jekyll-relative-links
+
+versions:
+  - v6
+  - v5
+  - v2
+
+docroots: 
+  v6: latest
+  v5: v5
+  v2: v2
+
+version: v6
+islatest: true
+
+index: true
+
+labels:
+  navigation:
+    quickstart: Quickstart
+    installation: Installation
+    tls: TLS Setup
+    configuration: "Configuration"
+    authauth: Authentication and Authorization
+    rolespermissions: "Users, Roles and Permissions"
+    eeadvanced: Advanced Security Features
+    esstack: Integrating with the Elastic stack
+    xpack: Integrating with X-Pack
+    xpackalt: Integrating with X-Pack Alternatives
+    troubleshooting: Troubleshooting
+    changelogs: Changelogs
+    v6: Search Guard 6
+    v5: Search Guard 5
+    v2: Search Guard 2
+
+relative_links:
+  enabled:     true
+  collections: true
+
+baseurl: /latest
+
+collections:
+  docs:
+    output: true
+    permalink: :title
+  troubleshooting:
+    output: true
+    permalink: :title
+  changelogs:
+    output: true
+    permalink: :title
