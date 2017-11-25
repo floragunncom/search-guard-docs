@@ -34,7 +34,6 @@ Regardless of what authentication method you use, the basic flow is as follows:
 <img src="authentication_flow.png" style="width: 50%" class="md_image"/>
 </p>
 
-
 ## Credentials
 
 In order to **identify** the user who wants to interact with the cluster, Search Guard first needs the user's **credentials**. 

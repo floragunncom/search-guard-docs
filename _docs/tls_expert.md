@@ -1,7 +1,7 @@
 ---
 title: Expert Features
 html_title: TLS Expert Features
-slug: openssl
+slug: tls-expert
 category: tls
 order: 600
 layout: docs

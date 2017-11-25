@@ -25,9 +25,8 @@ Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, r
 
 floragunn GmbH is not affiliated with Elasticsearch BV.
 
-<p align="center" style="font-size:18px;">
 Copyright 2016-2017 floragunn GmbH
-</p>
+
 
 
 

@@ -10,9 +10,6 @@ description: Use the Search Guard REST management API to change your configurati
 <!---
 Copryight 2017 floragunn GmbH
 -->
-<!---
-Copryight 2016 floragunn GmbH
--->
 
 # REST management API
 
