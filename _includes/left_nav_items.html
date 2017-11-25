@@ -1,0 +1,11 @@
+{% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
+<li>
+		<a href="#" {% if include.category == page.category %} class="selected" {% endif %}>{{site.labels.navigation[include.category]}}</a>
+		<ul style="list-style-type: none;">
+			{% for item in items %}
+			<li>
+				<a {% if item.title == page.title %} class="selected" {% endif %} href="{{site.baseurl}}{{ item.url }}">{{ item.title }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+</li>

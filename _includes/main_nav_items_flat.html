@@ -1,0 +1,6 @@
+{% assign items = site[include.collectionname] | sort: 'order' %}
+<li>
+	{% for item in items %}
+	<a href="{{site.baseurl}}{{ item.url }}">{{ item.title }}</a>
+	{% endfor %}											
+</li>

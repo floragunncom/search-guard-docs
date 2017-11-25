@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- Preloader: uncomment this if you want to show a smooth preloader while the page is loading. Don't forget to add the 'js-preload-me' class on the <body> tag. -->
+	<!-- <div class="preloader js-preloader"><div class="preloader-animation"></div></div>
+ -->
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar js-sidebar-fixed">
+
+								{% include left_nav_changelogs.html %}
+
+								{% include left_nav_search.html %}
+
+
+							</div>
+						</div>
+						<div class="col-md-9">
+							{{ content }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}</body>
+
+</html>

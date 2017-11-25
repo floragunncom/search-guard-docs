@@ -1,0 +1,4 @@
+{% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
+<li>
+	<a href="{{site.baseurl}}{{items[0].url}}">{{site.labels.navigation[include.category]}}</a>											
+</li>

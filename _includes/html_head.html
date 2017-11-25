@@ -1,0 +1,37 @@
+<head>
+	<!-- Page title -->
+	<title>
+		{%if page.html_title != null %}
+			{{page.html_title}} | Search Guard | Security for Elasticsearch
+		{% else %}
+			{{page.title}} | Search Guard | Security for Elasticsearch
+		{% endif %}
+	</title>
+	<!-- Page description -->
+	<meta name="description" content="{{page.description}}">
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon  -->
+
+	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo57.png" />        
+	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo114.png" sizes="114x114" />        
+	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo72.png" sizes="72x72" />                
+	<link rel="icon" href="https://floragunn.com/wp-content/uploads/searchguardLogoSquare30.png" sizes="32x32" />
+	<link rel="icon" href="https://floragunn.com/wp-content/uploads/searchguardLogoSquare30.png" sizes="192x192" />
+
+	<link rel="canonical" href="http://docs.search-guard.com{{site.baseurl}}{{page.url}}">
+	
+	{%if site.index == true%}
+		<meta name="robots" content="index, follow">
+	{% else %}
+		<meta name="robots" content="noindex, nofollow">
+	{% endif %}
+	
+
+	<!-- Include StyleSheets -->
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<script src="js/modernizr.js"></script>
+</head>
