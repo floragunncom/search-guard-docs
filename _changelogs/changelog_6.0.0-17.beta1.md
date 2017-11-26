@@ -4,6 +4,7 @@ slug: changelog-6-0-0-17-beta1
 category: changelogs
 order: 1000
 layout: changelogs
+description: Changelog for Search Guard 6.0.0-17.beta1 
 ---
 <!---
 Copryight 2017 floragunn GmbH

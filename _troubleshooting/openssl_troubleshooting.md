@@ -4,6 +4,7 @@ slug: troubleshooting-openssl
 category: troubleshooting
 order: 150
 layout: troubleshooting
+description: How to troubleshoot Search Guard OpenSSL issues. 
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->

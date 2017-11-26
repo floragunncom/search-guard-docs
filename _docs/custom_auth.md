@@ -1,5 +1,5 @@
 ---
-title: Custom authentication modules
+title: Custom implementations
 slug: custom-authentication-modules
 category: authauth
 order: 800

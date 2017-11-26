@@ -4,6 +4,7 @@ slug: eol-policy
 category: changelogs
 order: 1001
 layout: changelogs
+description: Search Guard End Of Life policy.
 ---
 
 # Search Guard end of life policy

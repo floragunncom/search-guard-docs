@@ -1,5 +1,6 @@
 ---
 title: Client certificate authentication
+html_title: TLS authentication
 slug: client-certificate-authentication
 category: authauth
 order: 700

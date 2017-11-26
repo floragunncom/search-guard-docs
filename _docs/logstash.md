@@ -1,5 +1,6 @@
 ---
 title: Using Search Guard with logstash
+html_title: Logstash
 slug: logstash-search-guard
 category: esstack
 order: 500

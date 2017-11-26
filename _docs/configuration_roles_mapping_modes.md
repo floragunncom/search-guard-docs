@@ -4,6 +4,7 @@ slug: mapping-modes
 category: rolespermissions
 order: 600
 layout: docs
+description: Different ways to use the Search Guard role mapping feature to map users, backend roles and hosts to Search Guard roles.
 ---
 <!---
 Copryight 2017 floragunn GmbH

@@ -4,6 +4,7 @@ slug: troubleshooting-sgadmin
 category: troubleshooting
 order: 200
 layout: troubleshooting
+description: How to troubleshoot problems and issues with the Search Guard sgadmin command line tool.
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->
