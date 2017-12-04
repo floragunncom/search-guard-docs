@@ -130,7 +130,7 @@ sgadmin comes with command line options. Execute `./sgadmin.sh` without any opti
 
 | Name  | Description  |
 |---|---|
-| -f | fail fast if something goes wrong, no retry |
+| -ff | fail fast if something goes wrong, no retry |
 
 ### Elasticsearch settings
 
