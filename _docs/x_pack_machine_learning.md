@@ -13,7 +13,7 @@ Copryight 2017 floragunn GmbH
 
 Search Guard is compatible with the X-Pack Machine Learning component. 
 
-This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](kibana.md) plugin.
+This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](kibana_installation.md) plugin.
 
 ## Elasticsearch: Install X-Pack and enable Machine Learning
 

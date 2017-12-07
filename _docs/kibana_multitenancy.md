@@ -266,7 +266,7 @@ The structure of the index name for the Global tenants is:
 <kibana index name>
 ```
 
-Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana.md) for further information.
+Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana_installation.md) for further information.
 
 **If you use snapshot / restore, you need to include all tenant indices, otherwise you will loose data!**
 

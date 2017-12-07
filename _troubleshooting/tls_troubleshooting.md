@@ -1,6 +1,6 @@
 ---
 title: TLS troubleshooting
-slug: troubleshooting-tl
+slug: troubleshooting-tls
 category: troubleshooting
 order: 100
 layout: troubleshooting
