@@ -1,8 +1,8 @@
 ---
-title: Using Search Guard with logstash
+title: Logstash
 slug: logstash-search-guard
 category: esstack
-order: 500
+order: 200
 layout: docs
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---

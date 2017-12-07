@@ -116,11 +116,3 @@ xpack.monitoring.enabled: true
 ### Exporter types
 
 At the moment, only `http` is supported. 
-
-### X-Pack welcome screen
-
-With the Kibana plugin v3 and below, you will see an error message and the "X-Pack welcome screen" on the login page:
-
-[Disable X-Pack Welcome screen](https://github.com/floragunncom/search-guard/issues/345)
-
-This will be fixed in the next version of the Kibana plugin.
