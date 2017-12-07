@@ -83,7 +83,7 @@ If your node certificates have an OID identifier in the SAN section, you can omi
 
 ## Configuring Admin certificates
 
-Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](sgadmin.md) command line tool, or to use the [REST management API](managementapi.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
+Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](sgadmin.md) command line tool, or to use the [REST management API](restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
 
 ```yaml
 searchguard.authcz.admin_dn:

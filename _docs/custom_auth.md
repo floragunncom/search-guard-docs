@@ -99,4 +99,4 @@ You can add additional properties to the user by either:
 * Calling `AuthCredentials#addAttribute` in the HTTPAuthenticator
 * Calling `User#getCustomAttributesMap` and modify the returned map directly
 
-Attributes can be used to further describe the user, and, more importantly, they can be used as variables in the [Document Level Security](dlsfls.md) query. This makes it possible to write dynamic DLS queries based on a user's attributes.
+Attributes can be used to further describe the user, and, more importantly, they can be used as variables in the [Document Level Security](dlsfls_dls.md) query. This makes it possible to write dynamic DLS queries based on a user's attributes.

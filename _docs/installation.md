@@ -166,7 +166,7 @@ In order to use the REST management API, configure the Search Guard roles that s
 searchguard.restapi.roles_enabled: ["sg_all_access"]
 ```
 
-If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](managementapi.md).
+If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](restapi_api_access.md).
 
 
 ## Initializing Search Guard

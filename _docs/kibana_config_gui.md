@@ -15,9 +15,9 @@ Copryight 2017 floragunn GmbH
 
 The Search Guard configuration GUI provides an intuitive way to manage users, roles and permissions, the Search Guard system status and the Search Guard license.
 
-The configuration GUI is part of the [Search Guard Kibana plugin](kibana.md) and installed by default.
+The configuration GUI is part of the [Search Guard Kibana plugin](kibana_installation.md) and installed by default.
 
-It uses the Search Guard [REST management API](managementapi.md) under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.
+It uses the Search Guard [REST management API](restapi_api_access.md) under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.
 
 ## Access control
 
@@ -27,7 +27,7 @@ The plugin automatically detects if a user has access to the REST API or not. Al
 searchguard.restapi.roles_enabled: ["sg_all_access", ...]
 ```
 
-If you have [restricted certain endpoints](managementapi.md) for the currently logged in user, the plugin will automatically disable these features.
+If you have [restricted certain endpoints](restapi_api_access.md) for the currently logged in user, the plugin will automatically disable these features.
 
 For everything to work, the logged in user should have:
 

@@ -138,7 +138,7 @@ After Kibana is started, it will begin optimizing and caching browser bundles. T
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
 * Search Guard - the [Search Guard configuration GUI](kibana_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multitenancy](multitenancy.md)
+* Tenants - to select a tenant for [Kibana Multitenancy](kibana_multitenancy.md)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -165,8 +165,8 @@ After that, configure roles and access permissions by either modifying the confi
 
 If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](configuration_auth.md) in `sg_config.yml`.
 
-For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](dlsfls.md).
+For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](dlsfls_dls.md).
 
 If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](auditlogging.md) to generate and store audit trails.
 
-And if you need to support multiple tenants in Kibana, use [Kibana Multitenancy](multitenancy.md) to separate Visualizations and Dashboards by tenant.
+And if you need to support multiple tenants in Kibana, use [Kibana Multitenancy](kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.

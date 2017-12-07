@@ -1,5 +1,5 @@
 ---
-title: Kibana authentication
+title: Kibana Authentication
 slug: kibana-authentication
 category: kibana
 order: 200

@@ -145,4 +145,4 @@ In addition, the users need to have READ permissions to all indices they should 
 
 * [Set up Kibana authentication](kibana_authentication.md)
 * [Use the config GUI for administering Search Guard](kibana_config_gui.md)
-* [Set up Kibana Multitenancy](multitenancy.md)
+* [Set up Kibana Multitenancy](kibana_multitenancy.md)
