@@ -65,6 +65,10 @@ table th {
   display: table-cell;
 }
 
+.menu .sf-with-ul {
+    font-weight: 500;
+}
+
 .md_image {
  border:1px solid;
  padding: 20px;

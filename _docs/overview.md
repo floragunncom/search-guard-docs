@@ -1,6 +1,6 @@
 ---
 title: Main concepts
-slug: search-guard-main-concepts
+slug: main-concepts
 category: quickstart
 order: 100
 layout: docs
@@ -109,9 +109,9 @@ Action groups can be used in the role configuration instead of or in combination
 
 Search Guard ships with a predefined set of useful action groups like `READ`, `WRITE`, `SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the pre-defined action groups**.
 
-## Configuration settings: The Search Guard index
+## The Search Guard index
 
-All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, [in elasticsearch.yml](https://github.com/werowe/search-guard-docs/blob/master/tls_overview.md).
+All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, in elasticsearch.yml.
 
 Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. 
 

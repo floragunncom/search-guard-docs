@@ -34,7 +34,7 @@
 
 	<link rel="canonical" href="http://docs.search-guard.com{{site.baseurl}}{{page.url}}">
 	
-	{%if site.index == true%}
+	{%if site.index == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
 	{% else %}
 		<meta name="robots" content="noindex, nofollow">

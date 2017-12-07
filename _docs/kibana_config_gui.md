@@ -1,7 +1,7 @@
 ---
 title: Search Guard configuration GUI
 html_title: Configuration GUI
-slug: kibana-configuration-search-guard
+slug: kibana-configuration
 category: configuration
 order: 400
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Kibana Multitenancy
-slug: kibana-multi-tenancy-search-guard
-category: esstack
+slug: kibana-multi-tenancy
+category: kibana
 order: 300
 layout: docs
 description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.

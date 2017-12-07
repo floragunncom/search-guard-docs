@@ -1,7 +1,7 @@
 ---
 title: Client certificate authentication
 html_title: TLS authentication
-slug: client-certificate-authentication
+slug: client-certificate-auth
 category: authauth
 order: 700
 layout: docs

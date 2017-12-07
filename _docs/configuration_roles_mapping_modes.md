@@ -1,6 +1,6 @@
 ---
-title: Expert - Mapping Modes
-slug: mapping-modes
+title: Role Mapping Modes
+slug: role-mapping-modes
 category: rolespermissions
 order: 600
 layout: docs

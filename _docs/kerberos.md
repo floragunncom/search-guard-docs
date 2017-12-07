@@ -1,5 +1,5 @@
 ---
-title: Kerberos
+title: Kerberos / SPNEGO
 slug: kerberos-spnego
 category: authauth
 order: 400

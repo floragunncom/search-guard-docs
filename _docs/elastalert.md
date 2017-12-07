@@ -1,7 +1,7 @@
 ---
 title: ElastAlert
 slug: search-guard-elastalert
-category: xpackalt
+category: integration_other
 order: 100
 layout: docs
 description: How to configure and use Search Guard and ElastAlert for Elasticsearch as an alternative to X-Pack.

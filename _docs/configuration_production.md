@@ -1,6 +1,6 @@
 ---
 title: Moving to production
-slug: configuration-moving-production
+slug: configuration-production
 category: configuration
 order: 400
 layout: docs

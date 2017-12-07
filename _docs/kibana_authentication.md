@@ -1,7 +1,7 @@
 ---
 title: Kibana authentication
-slug: kibana-authentication-search-guard
-category: esstack
+slug: kibana-authentication
+category: kibana
 order: 200
 layout: docs
 description: Use the Search Guard Kibana plugin to add authentication and session management to Kibana.

@@ -12,7 +12,7 @@ Copryight 2017 floragunn GmbH
 
 # HTTP-header/Proxy based authentication
 
-You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Searcg Guard authentication backend.
+You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Search Guard authentication backend.
 
 Most of these solutions work as a proxy in front of the actual application that needs an authenticated user (Search Guard in this case). Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in special HTTP header fields. The names of these fields are dependant on the SSO solution you have in place.
 

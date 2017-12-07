@@ -1,6 +1,6 @@
 ---
 title: JSON web tokens
-slug: json-web-token
+slug: json-web-tokens
 category: authauth
 order: 500
 layout: docs
@@ -84,6 +84,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI
 ```
 
 ## Configuring JWT support in Search Guard
+
+*Note: If JWT is the only authentication method you use, you should disable the [Search Guard User Cache](configuration_cache.md).*
 
 In order to use JWT, set up an security domain and choose `jwt` as HTTP authentication type. Since the tokens already contain all required information to verify the request, `challenge` must be set to `false`.
 

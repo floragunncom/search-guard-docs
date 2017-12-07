@@ -1,5 +1,5 @@
 ---
-title: Roles and permissions
+title: Defining Roles and permissions
 slug: roles-permissions
 category: rolespermissions
 order: 400
@@ -9,7 +9,7 @@ description: How to define role based access to Elasticsearch on index- and docu
 <!---
 Copryight 2017 floragunn GmbH
 -->
-# Roles and permissions
+# Defining Roles and permissions
 
 Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring Roles and Permissions.
 
@@ -37,6 +37,8 @@ Search Guard roles and their associated permissions are defined in the file `sg_
       <tenantname>: <RW|RO>        
 ```
 
+
+
 The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](dlsfls.md). Please refer to this chapter for details.
 
 The key `tenants` is used to configure [Kibana multi-tenancy](multitenancy.md). Please refer to this chapter for details.
@@ -61,7 +63,7 @@ sg_finance:
 
 The `indices` entry is used to allow/disallow actions that affect a single index. You can define permissions for each document type in your index separately.
 
-### Wildcards and regular expressions
+### Dynamic index names: Wildcards and regular expressions
 
 The index name supports (filtered) index aliases. Both the index name and the document type entries support wildcards and regular expressions.
 
@@ -69,8 +71,8 @@ The index name supports (filtered) index aliases. Both the index name and the do
   * `*my*index` will match `my_first_index` as well as `myindex` but not `myindex1`. 
 * A question mark (`?`) will match any single character (but NOT empty character)
   * `?kibana` will match `.kibana` but not `kibana` 
-* Regular expressions have to be enclose in `/`: `'/<java regex>/'`
-  * '/\S*/' will match any non whitespace characters
+* Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
+  * `'/\S*/'` will match any non whitespace characters
 
 **Note: The index name cannot contain dots. Instead, use the `?` wildcard, as in `?kibana`.** 
 
@@ -86,16 +88,83 @@ sg_kibana:
         - INDICES_ALL
 ```
 
-### User name substitution
+### Dynamic index names: User name substitution
 
 For `<indexname or alias>` also the placeholder `${user.name}` is allowed to support indices or aliases which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the username of the authenticated user for this request. Example:
 
 ```yaml
 sg_own_index:
   cluster:
-    - CLUSTER_COMPOSITE_OPS
+    ...
   indices:
     '${user_name}':
+      '*':
+        - INDICES_ALL
+```
+
+### Dynamic index names: User attributes
+
+Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
+
+For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. 
+
+You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. 
+
+If you're unsure, what attributes are accessible for the current user you can always check the `/_searchguard/authinfo` endpoint. This endpoint will list all attribute names for the currently logged in user.
+
+### JWT Example:
+
+If the JWT contains a claim `department`:
+
+```json
+{
+  "sub": "jdoe"
+  "name": "John Doe",
+  "roles": "admin, devops",
+  "department": "operations"
+}
+```
+
+You can use this `department` claim to control index access like:
+
+```yaml
+sg_own_index:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS
+  indices:
+    '${attr.jwt.department}':
+      '*':
+        - INDICES_ALL
+```
+
+In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations` for the user `jdoe`.
+
+### Active Directory / LDAP Example
+
+If the Active Directory / LDAP entry of the current user contains an attribute `department`, you can use it in the same way as as a JWT claim, but with the `ldap.` prefix:
+
+```yaml
+sg_department_index:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS
+  indices:
+    '${attr.ldap.department}':
+      '*':
+        - INDICES_ALL
+```
+
+In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations`.
+
+### Multiple Variables
+
+You can use as many variables, wildcards and regular expressions as needed, for example:
+
+```yaml
+sg_department_index:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS
+  indices:
+    'logfiles-${attr.ldap.department}-${user_name}-*':
       '*':
         - INDICES_ALL
 ```

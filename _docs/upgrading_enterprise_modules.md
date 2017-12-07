@@ -1,6 +1,6 @@
 ---
 title: Enterprise Modules
-slug: upgrading-removing-enterprise-modules
+slug: enterprise-modules
 category: installation
 order: 500
 layout: docs
