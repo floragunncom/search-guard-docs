@@ -227,7 +227,7 @@ Elasticsearch does not publish an updated list of all available permissions anym
 | sg\_all\_access | All cluster permissions and all index permissions on all indices |
 | sg\_readall | Read permissions on all indices, but no write permissions |
 | sg\_readonly\_and\_monitor | Read and monitor permissions on all indices, but no write permissions |
-| sg\_kibana\_server | Role for the internal Kibana server user, please refer to the [Kibana setup](kibana.md) chapter for explanation |
+| sg\_kibana\_server | Role for the internal Kibana server user, please refer to the [Kibana setup](kibana_installation.md) chapter for explanation |
 | sg\_kibana | Role for regular Kibana users, full access to the `.kibana` index and read permissions on all other indices. |
 | sg\_logstash | Role for logstash and beats users, grants full access to all logstash and beats indices. |
 | sg\_manage\_snapshots | Grants full permissions on snapshots and repositories. |
