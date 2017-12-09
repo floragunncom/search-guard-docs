@@ -294,6 +294,8 @@ Where `rolename` is the name of the role.
 
 ### GET
 
+#### Get a single role
+
 ```
 GET /_searchguard/api/roles/{rolename}
 ```
@@ -303,24 +305,32 @@ Retrieve a role and its permissions, specified by rolename, in JSON format.
 ```
 GET /_searchguard/api/roles/sg_role_starfleet
 ```
-
 ```json
 {
   "sg_role_starfleet" : {
     "indices" : {
       "pub*" : {
         "*" : [ "READ" ]
-      },
-      "sf" : {
-        "alumni" : [ "READ" ],
-        "students" : [ "READ" ],
-        "ships" : [ "READ" ],
-        "public" : [ "indices:*" ]
+        "_dls_": "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"  }}}}",
+        "_fls_": [
+          "Designation",
+          "FirstName",
+          "LastName",
+          "Salary"
+        ]
       }
     }
   }
 }
 ```
+
+#### Get all roles
+
+```
+GET /_searchguard/api/roles/{rolename}
+```
+
+Returns all roles in JSON format.
 
 ### DELETE
 ```
@@ -331,7 +341,6 @@ Deletes the role specified by `rolename`. If successful, the call returns with s
 ```
 DELETE /_searchguard/api/roles/sg_role_starfleet
 ```
-
 ```json
 {
   "status":"OK",
@@ -351,13 +360,9 @@ PUT /_searchguard/api/rolesmapping/sg_role_starfleet
   "cluster" : [ "*" ],
   "indices" : {
     "pub*" : {
-      "*" : [ "READ" ]
-    },
-    "sf" : {
-      "alumni" : [ "READ" ],
-      "students" : [ "READ" ],
-      "ships" : [ "READ" ],
-      "public" : [ "indices:*" ]
+      "*" : [ "READ" ],
+      _dls_: "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"}}}}"
+      _fls_: ["field1", "field2"]
     }
   }  
 }
@@ -371,15 +376,17 @@ The JSON format resembles the format used in `sg_roles.yml`:
   "indices" : {
     "<indexname>" : {
       "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
-      "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ]
+      "_dls_": "<DLS query>"
+      "_fls_": ["field", "field"]
     },
     "<indexname>" : {
-      "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
       "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
     }
   }
 }
 ```
+
+**If you're using DLS in the role definition, make sure to escape the quotes correctly!**
 
 If the call is succesful, a JSON structure is returned, indicating whether the role was created or updated.
 
