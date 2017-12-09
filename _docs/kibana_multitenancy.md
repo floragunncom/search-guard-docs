@@ -208,39 +208,6 @@ kibana_select_tenants.png" style="width: 100%" class="md_image"/>
 
 All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user.  So you do not need to change it every time you log in.
 
-## Troubleshooting
-
-### Kibana: Header not whitelisted
-
-During Kibana startup, Search Guard checks whether the `sg_tenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Kibana.
-
-### Elasticsearch: Multi tenancy not enabled
-
-If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_mt_disabled.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the enterprise module is installed, and also check that `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
-
-### Kibana and Elasticsearch: Configuration mismatch
-
-If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
-
-### Kibana: Cookie mismatch
-
-In case the Search Guard cookies are not readable anymore, e.g. if you changed the encryption key, simply delete them. The plugin uses three cookies:
-
-* searchguard_authentication: Stores the users login credentials.
-* searchguard_tenant: Stores the currently selected tenant.
-* searchguard_preferences: Stores the user's preferred tenants.
 
 ## Under the hood: Index rewriting, Snapshot & Restore
 
