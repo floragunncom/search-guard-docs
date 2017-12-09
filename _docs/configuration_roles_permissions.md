@@ -218,8 +218,6 @@ Single permissions also support wildcards. The following permission grants all a
 indices:admin/*
 ```
 
-Elasticsearch does not publish an updated list of all available permissions anymore. The last known published list is from [Shield 2.1](https://www.elastic.co/guide/en/shield/2.1/reference.html#ref-actions-list). 
-
 ## Pre-defined roles
 
 | Role name | Description |
@@ -228,12 +226,13 @@ Elasticsearch does not publish an updated list of all available permissions anym
 | sg\_readall | Read permissions on all indices, but no write permissions |
 | sg\_readonly\_and\_monitor | Read and monitor permissions on all indices, but no write permissions |
 | sg\_kibana\_server | Role for the internal Kibana server user, please refer to the [Kibana setup](kibana_installation.md) chapter for explanation |
-| sg\_kibana | Role for regular Kibana users, full access to the `.kibana` index and read permissions on all other indices. |
+| sg\_kibana\_user | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
 | sg\_logstash | Role for logstash and beats users, grants full access to all logstash and beats indices. |
-| sg\_manage\_snapshots | Grants full permissions on snapshots and repositories. |
+| sg\_manage\_snapshots | Grants full permissions on snapshot, restore and repositories operations |
 | sg\_own\_index | Grants full permissions on an index named after the authenticated user's username. |
-| sg\_monitor | Role for X-Pack Monitoring. Users who wish to use X-Pack Monitoring need this role in addition to the sg\_kibana role |
-| sg\_alerting | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
+| sg\_xp\_monitoring | Role for X-Pack Monitoring. Users who wish to use X-Pack Monitoring need this role in addition to the sg\_kibana\_user role |
+| sg\_xp\_alerting | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
+| sg\_xp\_machine\_learning | Role for X-Pack Machine Learning. Users who wish to use X-Pack Machine Learning need this role in addition to the sg\_kibana role |
 
 **Note:** By default, all users are mapped to the roles `sg_public` and `sg_own_index`. You can remove this mapping by deleting the following lines from `sg_roles_mapping.yml`:
 

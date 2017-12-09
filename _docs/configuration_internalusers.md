@@ -84,3 +84,4 @@ Search Guard ships with the following pre-defined users:
 | kibanaro | kibanaro | Regular Kibana user, has `READ` access to all indices and   all permissions on the `.kibana` index. |
 | logstash | logstash | Logstash and Beats user, has `CRUD` and `CREATE_INDEX`  permissions on all logstash and beats indices |
 | readall | readall | Has read access to all indices |
+| snapshotrestore | snapshotrestore | Has permissions to perform snapshot and restore operations |
