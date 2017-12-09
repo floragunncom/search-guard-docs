@@ -151,8 +151,10 @@ If this is not set, the ciphers and TLS versions are negotiated between the brow
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.http.enabled_ciphers | Array, enabled SSL cipher suites for http protocol. Only Java format is supported. |
-| searchguard.ssl.http.enabled_protocols | Array, enabled SSL protocols for http protocol. Only Java format is supported. |
+| searchguard.ssl.http.enabled_ciphers | Array, enabled TLS cipher suites for the REST layer. Only Java format is supported. |
+| searchguard.ssl.http.enabled_protocols | Array, enabled TLS protocols for the REST layer. Only Java format is supported. |
+| searchguard.ssl.transport.enabled_ciphers | Array, enabled TLS cipher suites for the transport layer. Only Java format is supported. |
+| searchguard.ssl.transport.enabled_protocols | Array, enabled TLS protocols for the transport layer. Only Java format is supported. |
 
 Example:
 
