@@ -51,6 +51,6 @@ function formatHit(item) {
     var headline = item._highlightResult.text ? item._highlightResult.text.value : item.text;
     var text = item._snippetResult.text_all.value;
     return "<div class='sr_headline'><h2>" + headline + "</h2></div>" +
-        "<div class='sr_hierarchy'><a alt='" + headline + "' href='{{site.baseurl}}" + item.url + item.css_selector + "'><h5>" + unique_hierarchy + "</h5></a></div>" +
+        "<div class='sr_hierarchy'><a alt='" + headline + "' href='/latest" + item.url + item.css_selector + "'><h5>" + unique_hierarchy + "</h5></a></div>" +
         "<div class='sr_text'>" + text + "</div>";
 }

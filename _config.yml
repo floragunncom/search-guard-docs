@@ -130,7 +130,7 @@ algolia:
     separatorsToIndex: "."
     removeWordsIfNoResults: lastWords
     queryType: prefixLast
-    snippetEllipsisText: "...",
+    snippetEllipsisText: "..."
     alternativesAsExact: 
       - ignorePlurals
       - singleWordSynonym
