@@ -7,6 +7,7 @@
 	<!--[if lt IE 8]>
 	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
+	<!-- End of Preloader -->
 	<div class="page js-page ">
 
 		{% include main_navigation.html %}
@@ -16,16 +17,27 @@
 				<div class="layout with-left-sidebar js-layout">
 					<div class="row">
 						<div class="col-md-3 hidden-sm hidden-xs">
-							<div class="sidebar js-sidebar-fixed">
-
-								{% include left_nav_search.html %}
+							<div class="sidebar js-sidebar">
 								
-								{% include left_nav_changelogs.html %}
+								<h4>Category</h4>
+								<div id="refinement-list-category" class="refinement-list">
+								</div>
 
+								<h4>Topic</h4>
+								<div id="refinement-list-h1" class="refinement-list">
+								</div>
 							</div>
 						</div>
 						<div class="col-md-9">
-							{{ content }}
+							{% include version.html %}
+
+							<div id="search-box">
+							  <!-- SearchBox widget will appear here -->
+							</div>
+
+							<div id="hits">
+  								<!-- Hits widget will appear here -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -36,6 +48,11 @@
 
 	</div>
 		
-	{% include scripts.html %}</body>
+	{% include scripts.html %}
+
+</body>
+	
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.js"></script>
+<script src="js/search.js"></script>
 
 </html>

@@ -8,6 +8,7 @@ kramdown:
 
 plugins:
   - jekyll-relative-links
+  - algoliasearch-jekyll
 
 versions:
   - v6
@@ -44,6 +45,11 @@ labels:
     v6: Search Guard 6
     v5: Search Guard 5
     v2: Search Guard 2
+  collections:
+    docs: Documentation
+    troubleshooting: Troubleshooting
+    changelogs: Changelogs
+
 
 relative_links:
   enabled:     true
@@ -61,3 +67,70 @@ collections:
   changelogs:
     output: true
     permalink: :title
+
+algolia:
+  application_id: '2ESDTH812Y'
+  index_name:     'latest'
+  record_css_selector: 'h1, h2, h3, h4, h5'
+  allowed_extensions:
+    - html
+  settings:
+    minWordSizefor1Typo: 4
+    minWordSizefor2Typos: 8
+    hitsPerPage: 20
+    maxValuesPerFacet: 100
+    version: 2
+    attributesToIndex:
+      - tags
+      - h1
+      - h2
+      - h3
+      - h4
+      - h5
+      - h6
+      - text_all
+    attributesToRetrieve: 
+      - collection_name
+      - text_all
+      - unique_hierarchy
+      - css_selector
+      - url
+      - tags
+    ignorePlurals: true
+    removeStopWords: true
+    distinct: true
+    attributesForFaceting:
+      - category_name
+      - h1
+    attributesToSnippet: 
+      - "text_all:150"
+    attributesToHighlight:
+      - text
+      - text_all
+    paginationLimitedTo: 1000
+    attributeForDistinct: unique_hierarchy
+    exactOnSingleWordQuery: attribute
+    disableTypoToleranceOnAttributes:
+      - h1
+      - h2
+      - h3
+    ranking: 
+      - typo
+      - geo
+      - words
+      - filters
+      - proximity
+      - attribute
+      - exact
+      - custom
+    customRanking:
+      - desc(posted_at)
+      - desc(weight.tag_name)
+      - asc(weight.position)
+    separatorsToIndex: "."
+    removeWordsIfNoResults: lastWords
+    queryType: prefixLast
+    snippetEllipsisText: "...",
+    alternativesAsExact: 
+      - ignorePlurals
+      - singleWordSynonym
