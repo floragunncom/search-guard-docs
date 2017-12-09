@@ -37,7 +37,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 
 The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](dlsfls.md). Please refer to this chapter for details.
 
-The key `tenants` is used to configure [Kibana multi-tenancy](multitenancy.md). Please refer to this chapter for details.
+The key `tenants` is used to configure [Kibana multi-tenancy](kibana_multitenancy.md). Please refer to this chapter for details.
 
 ## Cluster-level permissions
 

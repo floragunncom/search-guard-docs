@@ -22,7 +22,7 @@ Note that with SG v14 our EOL policy takes effect.
 * Accept red cluster flag in sgadmin (>= 2.4.5)
   * [sgadmin documentation](http://floragunncom.github.io/search-guard-docs/sgadmin.html)
 * X-Pack Monitoring and Alerting support (>= 5.3.0)
-  * [X-Pack Monitoring](http://floragunncom.github.io/search-guard-docs/monitoring.html)
+  * [X-Pack Monitoring](../_docs/x_pack_monitoring.md)
 * Support for PEM certificates in sgadmin (>= 2.4.5)
   * [https://github.com/floragunncom/search-guard/issues/346](https://github.com/floragunncom/search-guard/issues/346)
 * noopenssl switch for sgadmin (>=2.4.5)

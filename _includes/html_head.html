@@ -1,4 +1,5 @@
 <head>
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52993790-7"></script>
 	<script>
@@ -33,7 +34,7 @@
 
 	<link rel="canonical" href="http://docs.search-guard.com{{site.baseurl}}{{page.url}}">
 	
-	{%if site.index == true%}
+	{%if site.index == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
 	{% else %}
 		<meta name="robots" content="noindex, nofollow">
@@ -41,7 +42,8 @@
 	
 
 	<!-- Include StyleSheets -->
-	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" href="css/style.min.css">	
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch-theme-algolia.min.css">
 	<link rel="stylesheet" href="css/custom.css">
-	<script src="js/modernizr.js"></script>
 </head>

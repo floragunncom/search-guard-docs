@@ -21,9 +21,9 @@ For more information, see here:
 * [Search Guard Issue Tracker](https://github.com/floragunncom/search-guard/issues/343) 
 * [Elasticsearch Fix for 5.5.1](https://github.com/elastic/elasticsearch/pull/25759).
 
-# Enabling OpenSSL
+## Enabling OpenSSL
 
-## Dynamically linked
+### Dynamically linked
 
 **(Open SSL and Apache Portable Runtime (apr) needs to be installed)**
 
@@ -83,13 +83,9 @@ For more information, see here:
  or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/searchguard-ssl/` folder on every node
 
-
-
-
-
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 
-## Statically linked (Linux only)
+### Statically linked (Linux only)
 
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 

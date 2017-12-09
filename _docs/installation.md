@@ -234,6 +234,6 @@ After that, restart your nodes for the changes to take effect.
 
 [https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy){:target="_blank"}
 
-[Kibana Multitenancy documentation](multitenancy.md)
+[Kibana Multitenancy documentation](kibana_multitenancy.md)
 
 Most of these modules require additional configuration settings. Please see the respective sections of this document for further information.
