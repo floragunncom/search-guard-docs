@@ -1,5 +1,6 @@
 ---
 title: Defining Roles and permissions
+html_title: Roles and permissions
 slug: roles-permissions
 category: rolespermissions
 order: 400
@@ -37,11 +38,11 @@ Search Guard roles and their associated permissions are defined in the file `sg_
       <tenantname>: <RW|RO>        
 ```
 
-
-
 The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](dlsfls_dls.md). Please refer to this chapter for details.
 
 The key `tenants` is used to configure [Kibana multi-tenancy](kibana_multitenancy.md). Please refer to this chapter for details.
+
+**Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.**
 
 ## Cluster-level permissions
 
@@ -62,6 +63,9 @@ sg_finance:
 ## Index-level permissions
 
 The `indices` entry is used to allow/disallow actions that affect a single index. You can define permissions for each document type in your index separately.
+
+**Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.**
+
 
 ### Dynamic index names: Wildcards and regular expressions
 

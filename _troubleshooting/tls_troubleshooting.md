@@ -4,6 +4,7 @@ slug: troubleshooting-tls
 category: troubleshooting
 order: 100
 layout: troubleshooting
+description: Step by step instructions to solve issues related to TLS and certificates.
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->

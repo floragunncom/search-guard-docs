@@ -13,6 +13,8 @@ Copryight 2017 floragunn GmbH
 
 TLS is configured in the `config/elasticsearch.yml` file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
 
+**You can find an example configuration template with all options on [GitHub](https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}**
+
 ## Using X.509 PEM certificates and PKCS #8 keys
 
 Use the following keys to configure the location of your PEM certificates and private keys:

@@ -1,5 +1,6 @@
 ---
-title: Removing Search Guard
+title: Disabling or Removing Search Guard
+html_title: Disabling Search Guard
 slug: disabling-removing-search-guard
 category: installation
 order: 600

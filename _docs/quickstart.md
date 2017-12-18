@@ -61,14 +61,25 @@ To execute the demo installation:
 * ``cd`` into `<Elasticsearch directory>/plugins/search-guard-6/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
-The demo installer will ask if you would like to install the demo certificates and if the Search Guard configuaration should be automatically initialized. Answer both questions with `y`:
+The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
 
 ```bash
 Search Guard 6 Demo Installer
  ** Warning: Do not use on production or publicly reachable systems **
 Install demo certificates? [y/N] y
 Initialize Search Guard? [y/N] y
+Enable cluster mode? [y/N] n
 ```
+
+* Install demo certificates
+  * Whether to install the self-signed demo TLS certificates or not
+* Initialize Search Guard
+  * Whether to auto-initialize Search Guard with the demo configuration
+  * If answered with `y`, Search Guard will initialize the configuration index with the files from the `<Elasticsearch directory>/plugins/search-guard-6/sgconfig` directory if the index does not exist 
+* Enable cluster mode
+  * If answered with `y`, the `network.host` parameter will be set to `0.0.0.0` to bind to all interfaces
+  * Depending on your system you may need to adjust the `vm.max_map_count` for Elasticsearch to start
+  * see [https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) 
 
 ## Testing the Elasticsearch installation
 

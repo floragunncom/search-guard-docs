@@ -12,9 +12,21 @@ Copryight 2017 floragunn GmbH
 
 # Audit Logging
 
-Audit logging enables you to track access to your Elasticsearch cluster and stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
+Audit logging enables you to track access to your Elasticsearch cluster, log security related events and provide evidence in case of an attack. Audit logging helps you to stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
 
-Search Guard tracks the following types of events, on REST and transport levels:
+You can configure the categories to be logged, the detail level of the logged messages and how the events should be persisted.
+
+Audit logging is disabled by default. To enable it, you need to configure at least `searchguard.audit.type` in `elasticsearch.yml`. This defines the endpoint where the audit events are stored. To log the events in Elasticsearch and use the Audit Log default settings, simply add the following line in `elasticsearch.yml`:
+
+```
+searchguard.audit.type: internal_elasticsearch
+```
+
+## Audit Categories
+
+Search Guard tracks the following types of events, on REST and Transport layer:
+
+**TODO: Make table and add on which layer they are used:**
 
 * FAILED_LOGIN — the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
 * MISSING_PRIVILEGES — an attempt was made to access Elasticsearch, but the user does not have the required permissions.
@@ -24,56 +36,91 @@ Search Guard tracks the following types of events, on REST and transport levels:
 * AUTHENTICATED — A user has been authenticated successfully
 * GRANTED_PRIVILEGES - represents a successful request to Elasticsearch.
 
-All events are logged asynchronously, so the audit log has only minimal impact on the performance of your cluster. You can tune the number of threads that Search Guard uses for audit logging.  See the section "Finetuning the thread pool" below.
-  
-For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Thus, changes to the audit log settings require a restart of all participating nodes in the cluster.
+For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
-## Configuring the categories to be logged
+## Configuring the log level
 
-Per default, the audit log module logs all events in all categories. If you want to log only certain events, you can disable categories individually in the `elasticsearch.yml` configuration file:
+### Excluding categories
+
+Each request can generate audit events in multiple categories, on REST and on Transport layer. By default the Audit Log module logs all events in all categories, but excludes `AUTHENTICATED` and `GRANTED_PRIVILEGES`, which represent successful requests.
+
+You can configure which categories should be excluded for the REST and the Transport layer by setting:
 
 ```yaml
-searchguard.audit.config.disabled_categories: [disabled categories]
+searchguard.audit.config.disabled_rest_categories: [disabled categories]
+searchguard.audit.config.disabled_transport_categories: [disabled categories]
 ```
 
 For example:
 
 ```yaml
-searchguard.audit.config.disabled_categories: AUTHENTICATED, SG_INDEX_ATTEMPT
+searchguard.audit.config.disabled_rest_categories: AUTHENTICATED, SG_INDEX_ATTEMPT
+searchguard.audit.config.disabled_transport_categories: GRANTED_PRIVILEGES
 ```
 
-In this case, events in the categories `AUTHENTICATED` and `SG_INDEX_ATTEMPT` will not be logged.
+In this case, events in the categories `AUTHENTICATED` and `SG_INDEX_ATTEMPT` will not be logged on REST layer, and `GRANTED_PRIVILEGES` events will not be logged on Transport layer.
 
-## Configuring the log level
-
-By default, Search Guard logs a reasonable amount of information for each audit log event, suitable for identifying attempted security breaches. This includes the audit category, user information, source IP, date, reason etc.
-
-Search Guard also provides an extended log format, which includes the requested index (including composite index requests), and the query that was submitted. 
-
-This extended logging can be enabled and disabled by setting:
+If you want to log events in all categories, use `NONE`:
 
 ```yaml
-# Enable/disable request details logging (default: false)
-searchguard.audit.enable_request_details: false
+searchguard.audit.config.disabled_rest_categories: NONE
+searchguard.audit.config.disabled_transport_categories: NONE
 ```
 
-## Configuring on which layers audit events are generated
+### Disabling REST or Transport events completely
 
-By default, Search Guard logs events on the REST layer only. Since nearly all REST requests are transformed to transport requests internally by Elasticsearch, logging on both layers would lead to duplicate events.
-
-However, if you also use the transport layer to access your Elasticsearch cluster, for example by a TransportClient, you might want to enable transport audit logging as well.
-
-You can configure on which layer Search Guard will produce audit events by the following keys:
+By default Search Guard logs events on both the REST and the Transport layer. If you don't want to log events on a certain layer, instead of excluding all categories for that layer you can also switch it off completely:
 
 ```yaml
 # Enable/disable rest request logging (default: true)
 searchguard.audit.enable_rest: true
-# Enable/disable transport request logging (default: false)
+# Enable/disable transport request logging (default: true)
 searchguard.audit.enable_transport: false
 ```
-## Configuring bulk request handling
 
-Bulk requests can contain an arbitrary number of sub requests. By default, Search Guard will not log these sub requests separately. You can enable this feature by adding:  
+### Logging the request body
+
+By default Search Guard includes the body of the request (if available) for both REST and transport layer. 
+
+For the REST layer, this is the body of the HTTP request and contains e.g. the query that the user has submitted:
+
+**TODO: Example**
+
+For the Transport layer, this is the source field of the transport request:
+
+**TODO: Example**
+
+If you do not want or need the request body, you can disable it like:
+
+```yaml
+# Enable/disable request body logging (default: true)
+searchguard.audit.log_request_body: false
+```
+
+### Resolving and logging index names
+
+By default Search Guard will resolve and log all indices affected by the request. Since an index name can be an alias, contain wildcards or date patterns, Search Guard will log both the index name the user has submitted originally, and the concrete index names to which it resolves.
+
+For example, if you use an alias, the respective fields in the audit event may look like:
+
+**TODO: Example**
+
+Likewise, if the index name contains a wildcard, the fields may look like:
+
+**TODO: Example**
+
+You can disable this feature by setting:
+
+```yaml
+# Enable/disable resolving index names (default: true)
+searchguard.audit.resolve_indices: false
+```
+
+### Configuring bulk request handling
+
+Bulk requests can contain an arbitrary number of sub requests. By default, Search Guard will not log these sub requests as separate events. Only the original request will be logged and carries the subrequests in the request body in JSON format.
+
+Search Guard can be configured to log each subrequest as separate event like:
 
 ```yaml
 # Enable/disable bulk request logging (default: false)
@@ -81,17 +128,48 @@ Bulk requests can contain an arbitrary number of sub requests. By default, Searc
 searchguard.audit.resolve_bulk_requests: true
 ```
 
-This also means that a bulk request containing 2000 sub requests will generate 2000 separate audit events, so only enable this if the usage of bulk requests is limited.
+This also means that a bulk request containing 2000 sub requests will generate 2000 separate audit events. Only enable this feature if your usage of bulk requests is limited.
+
+### Excluding requests
+
+You can exclude certain requests from being logged completely, by either configuring actions (for Transport requests) and/or REST request paths (for REST requests). Events for these actions/request paths will be discarded.
+
+```yaml
+# Disable some requests (wildcard or regex of actions or rest request paths)
+searchguard.audit.ignore_requests: ["indices:data/read/*","*_bulk"]
+```
+
+### Excluding users
+
+By default, Search Guard logs events from all users, but excludes the internal Kibana server user `kibanaserver`. You can define users to be excluded from Audit Logging by setting the following configuration:
+
+```yaml
+searchguard.audit.ignore_users:
+  - kibanaserver
+  - admin
+```
+
+If requests from all users should be logged, use `NONE`:
+
+```yaml
+searchguard.audit.ignore_users: NONE
+```
 
 ## Configuring the audit log index name
 
-If the audit log events are stored in an Elasticsearch cluster (see Storage Types), you can configure the name of the index in `elasticsearch.yml` like:
+By default Search Guard stores audit events in a daily rolling index named:
 
-```yaml
-searchguard.audit.config.index: auditlog6 
+```
+auditlog6-YYYY.MM.dd
 ```
 
-You can also use a date pattern in the index name, and by default Search Guard uses a daily rolling index for storing the log events:
+You can configure the name of the index in `elasticsearch.yml` like:
+
+```yaml
+searchguard.audit.config.index: myauditlogindex 
+```
+
+You can use a date pattern in the index name, for example to configure daily, weeky or monthly rolling indices like:
 
 ```yaml
 searchguard.audit.config.index: "'auditlog6-'YYYY.MM.dd"
@@ -99,41 +177,24 @@ searchguard.audit.config.index: "'auditlog6-'YYYY.MM.dd"
 
 For a reference on the date/time pattern format, please refer to the [Joda DateTimeFormat docs](http://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html).
 
-## Excluding requests
-
-You can exclude certain requests from being logged completely, by either configuring actions (for transport requests) and/or REST request paths (for REST requests). Events for these actions/request paths will be discarded.
-
-```yaml
-# Disable some requests (wildcard or regex of actions or rest request paths)
-searchguard.audit.ignore_requests: ["indices:data/read/*","*_bulk"]
-```
-
-## Excluding users
-
-By default, Search Guard logs events from all users. In some cases you might want to exclude events created by certain users from being logged. For example, you might want to exclude the Kibana server user or the logstash user. You can define users to be excluded by setting the following configuration:
-
-```yaml
-searchguard.audit.ignore_users:
-  - kibanaserver
-```
 
 ## Performance considerations
 
 ### AUTHENTICATED and GRANTED_PRIVILEGES categories
 
-If the AUTHENTICATED and/or GRANTED_PRIVILEGES category is enabled, Search Guard will log all requests, including valid, authenticated requests. Depending on the load of your cluster, this can lead to a huge amount of messages. If you're only interested in security relevant events, disable these categories.
+If the AUTHENTICATED and/or GRANTED_PRIVILEGES category is enabled, Search Guard will log all requests, including valid, authenticated requests. Depending on the load on your cluster, this can lead to a huge amount of messages. If you're only interested in security relevant events, do not enable these categories.
 
 ### Bulk request handling
 
-If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in a bulk request are logged separately. This makes sense, since some of these sub requests may be permitted, others not, leading to events in the MISSING_PRIVILEGES category. Since bulk requests can carry an arbitrary number of sub requests, this may lead to a huge number of audit events being logged.  
+If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in a bulk request are logged separately. This makes sense, since some of these sub requests may be permitted, others not, leading to events in the MISSING_PRIVILEGES category. Since bulk requests can carry an arbitrary number of sub requests, this may lead to a huge number of additional audit events being logged.  
 
 ### External storage types
 
-Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. 
+Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
 
 ## Expert: Finetuning the thread pool
 
-All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:
+All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:
 
 ```yaml
 # Tune threadpool size, default is 10 and 0 means disabled
@@ -142,7 +203,7 @@ searchguard.audit.threadpool.size: <integer>
 
 The default setting is `10`. Setting this value to `0` disables the thread pool completey, and the events are logged synchronously. 
 
-The maximum queue length per thread can also be configured:
+The maximum queue length per thread can be configured by setting:
 
 ```yaml
 # Tune threadpool max size queue length, default is 100000

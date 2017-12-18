@@ -1,5 +1,6 @@
 ---
 title: Search Guard end of life policy
+html_title: End of life
 slug: eol-policy
 category: changelogs
 order: 1001
