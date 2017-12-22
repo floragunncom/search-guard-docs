@@ -1,5 +1,5 @@
 ---
-title: TLS troubleshooting
+title: Kibana Troubleshooting
 slug: troubleshooting-kibana
 category: troubleshooting
 order: 500

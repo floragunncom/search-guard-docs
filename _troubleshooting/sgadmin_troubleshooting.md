@@ -1,5 +1,5 @@
 ---
-title: sgadmin troubleshooting
+title: sgadmin Troubleshooting
 slug: troubleshooting-sgadmin
 category: troubleshooting
 order: 200
@@ -9,7 +9,7 @@ description: How to troubleshoot problems and issues with the Search Guard sgadm
 
 <!--- Copryight 2017 floragunn GmbH -->
 
-# Troubleshooting sgadmin
+# sgadmin Troubleshooting
 
 ### Cluster not reachable
 

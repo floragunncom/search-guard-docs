@@ -26,19 +26,21 @@ searchguard.audit.type: internal_elasticsearch
 
 Search Guard tracks the following types of events, on REST and Transport layer:
 
-**TODO: Make table and add on which layer they are used:**
-
-* FAILED_LOGIN — the provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect. 
-* MISSING_PRIVILEGES — an attempt was made to access Elasticsearch, but the user does not have the required permissions.
-* BAD_HEADERS — an attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.
-* SSL_EXCEPTION — an attempt was made to access Elasticsearch without a valid SSL/TLS certificate.
-* SG\_INDEX\_ATTEMPT — an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate. 
-* AUTHENTICATED — A user has been authenticated successfully
-* GRANTED_PRIVILEGES - represents a successful request to Elasticsearch.
+| Category | Logged on REST | Logged on Transport | Description |
+|---|---|---|---|
+| FAILED_LOGIN | yes | yes | The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect.|
+| AUTHENTICATED | yes | yes | A user has been authenticated successfully. |
+| MISSING_PRIVILEGES | no | yes | The user does not have the required permissions to execute the submitted request.|
+| GRANTED_PRIVILEGES | no | yes | Represents a successful request to Elasticsearch. |
+| SSL_EXCEPTION | yes | yes | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.|
+| SG\_INDEX\_ATTEMPT | yes | yes | an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate.|
+| BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.|
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
 ## Configuring the log level
+
+Search Guard already ships with sensible defaults for the audit log module. These defaults are suitable for almost all cases. However, you can configure and tweak nearly all settings manually to adap the amount and type of information to your specific use case.  
 
 ### Excluding categories
 
@@ -84,11 +86,15 @@ By default Search Guard includes the body of the request (if available) for both
 
 For the REST layer, this is the body of the HTTP request and contains e.g. the query that the user has submitted:
 
-**TODO: Example**
+```json
+"audit_request_body": "{\"query\":{\"term\":{\"Designation\":\"Manager\"}}}"
+```
 
 For the Transport layer, this is the source field of the transport request:
 
-**TODO: Example**
+```json
+"audit_request_body": "{\"query\":{\"term\":{\"Designation\":{\"value\":\"Manager\",\"boost\":1.0}}}}"
+```
 
 If you do not want or need the request body, you can disable it like:
 
@@ -101,13 +107,16 @@ searchguard.audit.log_request_body: false
 
 By default Search Guard will resolve and log all indices affected by the request. Since an index name can be an alias, contain wildcards or date patterns, Search Guard will log both the index name the user has submitted originally, and the concrete index names to which it resolves.
 
-For example, if you use an alias, the respective fields in the audit event may look like:
+For example, if you use an alias or a wildcard, the respective fields in the audit event may look like:
 
-**TODO: Example**
-
-Likewise, if the index name contains a wildcard, the fields may look like:
-
-**TODO: Example**
+```json
+audit_trace_indices: [
+  "human*"
+],
+audit_trace_resolved_indices: [
+  "humanresources"
+]
+```
 
 You can disable this feature by setting:
 
@@ -115,6 +124,8 @@ You can disable this feature by setting:
 # Enable/disable resolving index names (default: true)
 searchguard.audit.resolve_indices: false
 ```
+
+**Note: Disabling this feature only takes effect if `searchguard.audit.log_request_body ` is also set to `false`**
 
 ### Configuring bulk request handling
 
@@ -136,7 +147,7 @@ You can exclude certain requests from being logged completely, by either configu
 
 ```yaml
 # Disable some requests (wildcard or regex of actions or rest request paths)
-searchguard.audit.ignore_requests: ["indices:data/read/*","*_bulk"]
+searchguard.audit.ignore_requests: ["indices:data/read/*", "SearchRequest"]
 ```
 
 ### Excluding users
@@ -160,7 +171,7 @@ searchguard.audit.ignore_users: NONE
 By default Search Guard stores audit events in a daily rolling index named:
 
 ```
-auditlog6-YYYY.MM.dd
+sg6-auditlog-YYYY.MM.dd
 ```
 
 You can configure the name of the index in `elasticsearch.yml` like:
@@ -172,7 +183,7 @@ searchguard.audit.config.index: myauditlogindex
 You can use a date pattern in the index name, for example to configure daily, weeky or monthly rolling indices like:
 
 ```yaml
-searchguard.audit.config.index: "'auditlog6-'YYYY.MM.dd"
+searchguard.audit.config.index: "'sg6-auditlog-'YYYY.MM.dd"
 ```
 
 For a reference on the date/time pattern format, please refer to the [Joda DateTimeFormat docs](http://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html).

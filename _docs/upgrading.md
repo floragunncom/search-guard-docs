@@ -12,6 +12,8 @@ Copryight 2017 floragunn GmbH
 
 # Upgrading Search Guard
 
+**If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md)**.
+
 There are two types of upgrades to distinguish:
 
 * Upgrading Search Guard for your current Elasticsearch version
@@ -39,8 +41,6 @@ The permission schema can change from Elasticsearch version to Elasticsearch ver
 
 [Make index and delete operation execute as single bulk item](https://github.com/elastic/elasticsearch/pull/22812){:target="_blank"}
 
-This means that if you upgrade from any version prior to 5.3.0, you need to give users with single index- and delete-permissions also permissions for bulk operations.
-
 If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](configuration_action_groups.md)  instead of assigning single permissions to roles directly.
 
 This applies for all Elasticsearch upgrades.
@@ -49,7 +49,7 @@ This applies for all Elasticsearch upgrades.
 
 Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the Search Guard changelog, you don't need to adapt any configuration files. 
 
-Given there are no breaking changes between the versions, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:
+Given there are no breaking changes, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:
 
 * Stop your Elasticsearch node
 * Remove the old version of Search Guard
@@ -64,15 +64,11 @@ Then, repeat this process for all other nodes in the cluster.
 
 ## Upgrading Elasticsearch and Search Guard
 
+**If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md)**.
+
 First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
 
 [Upgrading Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html){:target="_blank"}
-
-For upgrading from Elasticsearch 5.x to 6.x, you need to upgrade your installation to Elasticsearch 5.6.x first. This is a requirement by Elasticsearch, not Search Guard. In most cases, this can be done via a rolling restart.
-
-After that, upgrade to Elasticsearch 6 and Search Guard 6.
-
-(TODO: details - full cluster restart if no SG was deployed before)
 
 ### Minor Upgrades - Rolling restart
 
@@ -82,8 +78,7 @@ Follow the official Elasticsearch guideline for rolling upgrades for your Elasti
 
 Depending on your configured authentication and authorisation modules, you need to provide additional credentials in the `curl` calls mentioned in the rolling upgrade guide.
 
-*Note: "Disable shard allocation" and "Reenable shard allocation" are only necessary when upgrading a data node.
-If you upgrade a dedicated master node (which is not a data node), a tribe node or client node you can omit these two steps.*
+*Note: "Disable shard allocation" and "Reenable shard allocation" are only necessary when upgrading a data node. If you upgrade a dedicated master node, a tribe node or client node you can omit these two steps.*
 
 You can either use a user that has full cluster management permissions, or use an admin certificate, which has full access as well.
 

@@ -1,5 +1,5 @@
 ---
-title: TLS troubleshooting
+title: TLS Troubleshooting
 slug: troubleshooting-tls
 category: troubleshooting
 order: 100
