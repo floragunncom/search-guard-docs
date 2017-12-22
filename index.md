@@ -23,8 +23,6 @@ Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in oth
 
 Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
 
-floragunn GmbH is not affiliated with Elasticsearch BV.
-
 Copyright 2016-2017 floragunn GmbH
 
 
