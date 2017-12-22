@@ -90,9 +90,9 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 
 * **Search Guard 5.4.1 and higher:**
-  * [Alpine (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-alpine-linux-x86_64.jar)
-  * [Debian/Ubuntu (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-non-fedora-linux-x86_64.jar)
-  * [CentOS/RHEL/Fedora (2.0.5.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.5.Final-fedora-linux-x86_64.jar)
+  * [Alpine (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-alpine-linux-x86_64.jar)
+  * [Debian/Ubuntu (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-non-fedora-linux-x86_64.jar)
+  * [CentOS/RHEL/Fedora (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-fedora-linux-x86_64.jar)
 * **Search Guard 5.4.0:** (2.0.0.Final has known bugs and memory leaks!!)
   * [Alpine (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-alpine-linux-x86_64.jar)
   * [Debian/Ubuntu (2.0.0.Final compiled with OpenSSL 1.0.2l)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2l-static-2.0.0.Final-non-fedora-linux-x86_64.jar)
@@ -117,7 +117,7 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 
 ## LibreSSL
 
-May work well but not officially supported. We have a few static builds here https://dl.bintray.com/floragunncom/netty-tcnative/ but only consider to use them if you run in trouble with OpenSSL.
+May work well but not officially supported. We have a few static builds [here](https://dl.bintray.com/floragunncom/netty-tcnative/) but only consider to use them if you run in trouble with OpenSSL.
 
 ## BoringSSL
 
