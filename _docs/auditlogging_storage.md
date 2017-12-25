@@ -1,5 +1,6 @@
 ---
-title: Audit Logging Storage Types
+title: Storage Types
+html_title: Audit Logging Storage Types
 slug: audit-logging-storage
 category: auditlog
 order: 200

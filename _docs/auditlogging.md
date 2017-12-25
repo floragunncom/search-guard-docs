@@ -33,7 +33,7 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | MISSING_PRIVILEGES | no | yes | The user does not have the required permissions to execute the submitted request.|
 | GRANTED_PRIVILEGES | no | yes | Represents a successful request to Elasticsearch. |
 | SSL_EXCEPTION | yes | yes | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.|
-| SG\_INDEX\_ATTEMPT | yes | yes | an attempt was made to access the Search Guard internal user and privileges index without a valid admin TLS certificate.|
+| SG\_INDEX\_ATTEMPT | no | yes | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate.|
 | BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.|
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
