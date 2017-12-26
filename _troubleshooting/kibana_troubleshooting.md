@@ -4,17 +4,71 @@ slug: troubleshooting-kibana
 category: troubleshooting
 order: 500
 layout: troubleshooting
+description: Step-by-step instructions on how to troubleshoot Kibana issues.
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->
 
 # Kibana troubleshooting
 
+## No living connections
+
+### Check connection settings
+
+If Kibana cannot connect to Elasticsearch, check the `elasticsearch.url` in  `kibana.yml`:
+
+```
+elasticsearch.url: "https://example.com:9200"
+```
+
+Make sure that the hostname and the port are correct.
+
+### Check HTTPS settings
+
+Check if you configured Search Guard to use HTTPS instead of HTTP in `elasticsearch.yaml`:
+
+```
+searchguard.ssl.http.enabled: true
+```
+
+If this is the case, you need to use `https://` instead of `http://` in the 
+`elasticsearch.url`:
+
+```
+elasticsearch.url: "https://example.com:9200"
+```
+
+### Unable to get local issuer certificate
+
+If you use self signed certificate you may see the following error in the Kibana log file:
+
+```
+HEAD https://example.com:9200/ => unable to get local issuer certificate
+```
+
+This means that Kibana does not trust the self-signed root CA certificate. You can either disable the certificate cerification or install the root CA in Kibana.
+
+#### Disabling certificate verification
+
+In `kibana.yml`, disable the certificate verification like:
+
+```
+elasticsearch.ssl.verificationMode: none
+```
+ 
+#### Installing the root CA (recommended)
+
+In `kibana.yml`, configure the path to your root CA in PEM format like:
+
+```
+elasticsearch.ssl.certificateAuthorities: [ "/path/to/your/CA.pem" ]
+```
+
 ## Constant redirection to login page
 
 When you try to log in using the Search Guard login dialogue, after pressing the login button you are redirected to the login page again even though you provided the correct credentials. No error message is displayed.
 
-Resolution:
+### Check HTTP/HTTPS settings for cookies
 
 Search Guard stores the credentials of authenticated users in an encrypted cookie. If you are accessing Kibana with HTTP instead of HTTPS, check the following setting in `kibana.yml`:
 
@@ -22,7 +76,7 @@ Search Guard stores the credentials of authenticated users in an encrypted cooki
 searchguard.cookie.secure: <true|false>
 ```
 
-If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receieves a cookie via unsecure HTTP, the cookie is discarded. Which means the authenticated credentials are not stored any our ar redirected to the login page again.
+If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receieves a cookie via unsecure HTTP, the cookie is discarded. This means the authenticated credentials are not stored and you are redirected to the login page again.
 
 Either access Kibana with HTTPS instead of HTTP, or set:
 
@@ -32,7 +86,7 @@ searchguard.cookie.secure: false
 
 ## Cookies not readable
 
-In case the Search Guard cookies are not readable anymore, e.g. if you changed the encryption key, simply delete them. The plugin uses three cookies:
+In case the Search Guard cookies are not readable anymore, e.g. if you changed the encryption key, simply delete them. The plugin uses these cookies:
 
 * searchguard_authentication: Stores the users login credentials.
 * searchguard_tenant: Stores the currently selected tenant.
@@ -121,34 +175,23 @@ For proxy authentication you need to configure all headers that your proxy uses,
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-forwarded-by", "x-proxy-user", "x-proxy-roles", "sgtenant" ]
 ```
 
-## Multitenancy not working
+## Timelion displays Security Exceptions
 
-### Headers not whitelisted
+If you do not specify any index in the timelion query, it will simply use a wildcard ('*') for the index name. If the currently logged in user does not have READ permission on all indices, a security exception is displayed.
 
-During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
+### Enable the "do not fail on forbidden" mode
 
-```yaml
-elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
+If you are using the Enterprise Edition of Search Guard, enable the `do not fail on forbidden` mode in `sg_config.yml` like:
+
+```
+searchguard:
+  dynamic:
+    kibana:
+      do_not_fail_on_forbidden: true
+      ...
 ```
 
-### Elasticsearch: Multi tenancy not enabled
+With this mode enabled Search Guard filters all indices from a query a user does not have access to and not security exception is raised.
 
-If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_mt_disabled.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the enterprise module is installed, and also check that `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
-
-### Kibana and Elasticsearch: Configuration mismatch
-
-If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
-
+**Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
 

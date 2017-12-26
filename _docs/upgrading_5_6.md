@@ -32,26 +32,21 @@ In order to to perform a rolling restart and upgrade from 5.x to 6.x, you need t
 
 If you run older versions of Elasticsearch and/or Search Guard, please upgrade first.
 
-## Upgrading Search Guard
+## Check your configuration settings
 
-After upgrading a node from ES 5.x to 6.x, simply [install](installation.md) the [correct version of Search Guard](https://github.com/floragunncom/search-guard/wiki){:target="_blank"} on this node. 
+### If you don't use any Search Guard enterprise features
 
-Search Guard 6 is compatible with Search Guard 5 in almost all cases. This means that you do not need to change any configuration settings and can re-use your settings from 5.x. The Search Guard internal configuration index is migrated to the new 6.x format automatically for you.
-
-### Community Edition vs. Enterprise Edition
-
-Search Guard 6 ships with all enterprise features included. If you used only the free Community Edition of Search Guard 5, you need to disable the enterprise features in Search Guard 6 explicitely in `elasticsearch.yml`:
+Search Guard 6 ships with all enterprise features included. If you used only the free Community Edition of Search Guard 5 before, you need to disable the enterprise features in Search Guard 6 explicitely in `elasticsearch.yml`:
 
 ```
 searchguard.enterprise_modules_enabled: false
 ```
-
 * [Enteprise Edition](license_enterprise.md)
 * [Community Edition](license_community.md)
 
 ### If you use demo certificates
 
-If you used the Search Guard demo installer and the generated certificates for your TLS setup (which of course you should never do on production), you need to explicitely allow the usage of these unsafe demo certificates by adding the following line to `elasticsearch.yml`:
+If you used the Search Guard demo installer and the generated certificates for your TLS setup (which of course you should not do on production), you need to explicitely allow the usage of these unsafe demo certificates by adding the following line to `elasticsearch.yml`:
 
 ```
 searchguard.allow_unsafe_democertificates: true
@@ -59,7 +54,7 @@ searchguard.allow_unsafe_democertificates: true
 
 ### If you use audit logging
 
-The audit log module has been completely revised and now comes with a much wider range of configuration options. These are especially useful for staying compliant with HIPAA, GDPR, ISO, PCI or SOX. 
+The audit log module has been revised and now comes with a much wider range of configuration options. These are especially useful for staying compliant with HIPAA, GDPR, ISO, PCI or SOX. 
 
 The following configuration keys have been removed:
 
@@ -94,6 +89,55 @@ searchguard.audit.config.disabled_transport_categories: NONE
 
 The default name of the audit log index has been changed, and also the format of the logged messages differs slightly. Please refer to the [Audit Logging](auditlogging.md) chapter for more information.
 
+## Upgrading Search Guard
+
+After upgrading a node from ES 5.x to 6.x, simply [install](installation.md) the [correct version of Search Guard](https://github.com/floragunncom/search-guard/wiki){:target="_blank"} on this node. 
+
+Search Guard 6 is able to read the Search Guard configuration index created with Search Guard 5.x. You do not need to change any settings during the upgrade process. 
+
+**After all nodes have been upgraded to 6.x, it is recommended to delete and recreate the Search Guard index.**
+
+### Back up your current Search Guard configuration
+
+You can retrieve the current configuration of your running cluster by using `sgadmin` with the `-r` (`--retrieve`) switch:
+
+```bash
+./sgadmin.sh \ 
+  -ks kirk.jks -kspass changeit \  
+  -ts truststore.jks -tspass changeit \ 
+  -icl -nhnv -r -cd ../myconfigbackup/
+``` 
+
+This will retrieve and save all Search Guard configuration files to your working directory. You can later use these files to initialize Search Guard 6 after the upgrade. 
+
+### Deleting the Search Guard index
+
+Use sgadmin.sh to delete the current Search Guard index:
+
+```bash
+./sgadmin.sh \ 
+  -ks kirk.jks -kspass changeit \  
+  -ts truststore.jks -tspass changeit \ 
+  -icl -nhnv -r -dci
+```
+
+### Re-create the Search Guard index
+
+Re-create the Search Guard index with the backup of your configuration:
+
+```bash
+./sgadmin.sh \ 
+  -ks kirk.jks -kspass changeit \  
+  -ts truststore.jks -tspass changeit \ 
+  -icl -nhnv -cd ../myconfigbackup/
+``` 
+
+## Upgrading Kibana
+
+Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](kibana_installation.md) the correct version of the Search Guard plugin to Kibana. There are no configuration changes in `kibana.yml`.
+
+**Note that beginning with Search Guard 6, the Kibana plugin is released on [Maven](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} , not GitHub.**
+
 ### If you use Kibana Multi Tenancy
 
 The Elasticsearch [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/6.x/xpack-upgrade-assistant.html) will migrate the .kibana index from 5.x to 6.x. 
@@ -110,9 +154,9 @@ Running a cluster in mixed mode should only be done while upgrading from 5 to 6.
 
 While running in mixed mode, the following limitations apply:
 
-### No configuration changes
+### Omit Search Guard configuration changes
 
-Search Guard 6 uses a new layout for the Search Guard configuration index, and is also able to read and migrate indices created with Search Guard 5. 
+Search Guard 6 uses a new layout for the Search Guard configuration index, and is also able to read and configuration indices created with Search Guard 5. 
 
 **While running in mixed mode, do not perform changes to the Search Guard configuration index.**
 
@@ -121,6 +165,10 @@ This applies to sgadmin and the REST management API. Configuration changes are p
 ### Monitoring
 
 While running in mixed mode, X-Pack monitoring might return incorrect values or throw Exceptions which you can safely ignore.
+
+### Kibana
+
+If you upgrade Kibana before the Elasticsearch / Search Guard upgrade is completed, a license warning may be displayed on the login screen and on the Search Guard configuration GUI screens.
 
 
 

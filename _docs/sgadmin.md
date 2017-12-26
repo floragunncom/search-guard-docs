@@ -62,7 +62,12 @@ Replace `jdk1.8.0_65` with your installed JDK or JRE version.
 
 You can also download the sgadmin standalone version. It comes with all dependencies included, so you can use it on any machine you want, provided Java is installed.
 
-* [Download for Search Guard 6 Beta 1 and Elasticsearch 6.6.0](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-6/6.0.0-17.beta1/search-guard-6-6.0.0-17.beta1-sgadmin-standalone.zip)
+You can find all versions on [Maven Central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-6%22){:target="_blank"}.
+
+Choose the Search Guard version you are running and download and unpack either:
+
+* sgadmin-standalone.tar.gz or 
+* sgadmin-standalone.zip  
 
 ### Print all command line options
 

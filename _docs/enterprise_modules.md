@@ -47,7 +47,7 @@ After that, delete the older version of the module and restart your nodes for th
 
 [https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls){:target="_blank"}
 
-[Document and field level security documentation](dlsfls.md)
+[Document and field level security documentation](dlsfls_dls.md)
 
 #### Audit logging:
 [All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22){:target="_blank"}

@@ -72,16 +72,3 @@ basic_internal_auth_domain:
   authentication_backend:
     type: internal
 ```
-
-## Pre-defined users
-
-Search Guard ships with the following pre-defined users:
-
-| Username | Password | Description |
-|---|---|---|
-| admin | admin | Full access to the cluster and all indices, but no access to the Search Guard configuration. Use an admin certificate for that. |
-| kibanaserver | kibanaserver | Internal Kibana server user, for configuring `elasticsearch.username` and `elasticsearch.password` in `kibana.yml`. Has all permissions on the `.kibana` index. |
-| kibanaro | kibanaro | Regular Kibana user, has `READ` access to all indices and   all permissions on the `.kibana` index. |
-| logstash | logstash | Logstash and Beats user, has `CRUD` and `CREATE_INDEX`  permissions on all logstash and beats indices |
-| readall | readall | Has read access to all indices |
-| snapshotrestore | snapshotrestore | Has permissions to perform snapshot and restore operations |

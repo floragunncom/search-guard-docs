@@ -69,7 +69,7 @@ For managing Search Guard:
 If you click on any of the resources menu items, you will see a screen which lists all resources with additional infos. For example, the "Search Guard Roles" listing will display the cluster permissions, any indices with configured permissions and the tenants for each role.
 
 <p align="center">
-<img src="images/kibana_gui_list.png" style="width: 100%;border: 1px solid"/>
+<img src="kibana_gui_list.png" style="width: 100%;border: 1px solid"/>
 </p>
 
 You can filter the list of resources and add a new resource by using the controls on the top of the table:

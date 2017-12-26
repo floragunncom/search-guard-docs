@@ -27,7 +27,7 @@ searchguard.ssl.http.enabled: true
 
 ## Installing the Search Guard Plugin
 
-Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your  exact Kibana version from Maven:
+Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
 
 * Stop Kibana
 * cd into your Kibana installaton directory.
@@ -140,6 +140,24 @@ If you use the Search Guard demo configuration, assign all users that should hav
 The definition of this `sg_kibana_user` role can be found in the sample [sg_roles.yml](https://github.com/floragunncom/search-guard/blob/master/sgconfig/sg_roles.yml){:target="_blank"} that ships with Search Guard.
 
 In addition, the users need to have READ permissions to all indices they should be allowed to use with Kibana. Typically you will want to set up different roles for different users, and give them the `sg_kibana_user` role in additions.
+
+## Configuring Elasticsearch: Enable "do not fail on forbidden"
+
+In some cases, Kibana will use a wildcard as index name if no index name is given. For example, if you access timelion. If the user does not have `READ` permissions on all indices, a security exception will be generated.
+
+Search Guard can be run `do not fail on forbidden` mode. With this mode enabled Search Guard filters all indices from a query a user does not have access to. Thus not security exception is raised.
+
+If you are using the Enterprise Edition of Search Guard, enable the `do not fail on forbidden` mode in `sg_config.yml` like:
+
+```
+searchguard:
+  dynamic:
+    kibana:
+      do_not_fail_on_forbidden: true
+      ...
+```
+
+**Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
 
 ## Where to go next
 

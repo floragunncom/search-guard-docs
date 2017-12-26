@@ -177,6 +177,24 @@ You intialize Search Guard by using the [sgadmin command line tool](sgadmin.md) 
 
 Once initialized, you can also use the Search Guard configuration GUI to edit roles and permissions.
 
+## Search Guard Health Check
+
+To check if Search Guard is installed, up and running, access the healthcheck endpoint like:
+
+```
+https://<hostname>:9200/_searchguard/health
+```
+
+It returns a JSON snippet like:
+
+```
+{
+  message: null,
+  mode: "strict",
+  status: "UP"
+}
+```
+
 ## Testing the installation
 
 **Using a browser**
