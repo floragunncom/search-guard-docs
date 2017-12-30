@@ -17,7 +17,7 @@ Copryight 2016-2017 floragunn GmbH
 
 <h1 align="center">Search Guard 6 Documentation</h1>
 
-Version: 6.x-20
+Version: {{site.searchguard.currentversion}}
 
 Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in other countries
 
