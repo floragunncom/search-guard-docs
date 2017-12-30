@@ -38,7 +38,7 @@ A first time installation of Search Guard on a cluster always requires a full cl
 
 Installing Search Guard for the first time via a rolling restart is possible in theory, but will lead to several strange effects so it is highly recommended to **perform a full cluster restart when installing Search Guard for the first time**.
 
-## Ensure that you Java Virtual Machine is supported
+## Ensure that your Java Virtual Machine is supported
 
 * We support only OpenJDK 7/8 or Oracle JVM 7/8.
 * There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM
