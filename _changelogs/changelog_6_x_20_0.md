@@ -1,20 +1,23 @@
 ---
-title: Search Guard 6.1.0-20
-slug: changelog-6.1.0-20
+title: Search Guard 6.x-20.0
+slug: changelog-6-x-20-0
 category: changelogs
-order: 990
+order: 900
 layout: changelogs
-description: Changelog for Search Guard 6.1.0-20
+description: Changelog for Search Guard 6.x-20.0
 ---
+
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
-# Search Guard 6.1.0-20
+# Search Guard 6.x-20.0
 
 Release Date: 22.12.2017
 
-## Fixes from 6.0.0-17.beta1 to 6.1.0-20
+[Upgrade Guide from 5.x to 6.x](../_docs/upgrading_5_6.md)
+
+## Fixes from 6.0.0-17.beta1 to 6.x-20.0
 
 * Kibana: [Login not redirecting when global tenant is disabled](https://github.com/floragunncom/search-guard/issues/411){:target="_blank"}
 * Kibana: [Unknown handler async in SG6-beta1 plugin when disabling basicauth](https://github.com/floragunncom/search-guard-kibana-plugin/issues/49){:target="_blank"}
@@ -131,6 +134,4 @@ License system, license checks
 
 ## Known Issues
 
-* The Kibana Config GUI might log a JSON error on the console from time to time
-* Multi Tenancy upgrade from Kibana 5 to Kibana 6 may break
 * Warning message on install about missing sha512 checksum
