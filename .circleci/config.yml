@@ -10,5 +10,6 @@ jobs:
       - run:
           name: Build Docs
           command: |
+            bundle install
             bundle exec jekyll build
             cd _site
