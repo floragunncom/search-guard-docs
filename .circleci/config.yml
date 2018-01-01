@@ -12,4 +12,4 @@ jobs:
           command: |
             bundle install
             bundle exec jekyll build
-            ./release.sh
+            ./_release.sh
