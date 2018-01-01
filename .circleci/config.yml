@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/search-guard-docs-6
+    steps:
+      - run: sudo apt-get -yq update
+      - run: sudo apt-get -yq install openssl libapr1
+      - checkout
+      - run:
+          name: Build Docs
+          command: |
+            bundle exec jekyll build
