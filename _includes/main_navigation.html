@@ -27,7 +27,6 @@
 										{% include main_nav_items.html collectionname="docs" category="restapi" %}
 										{% include main_nav_items.html collectionname="docs" category="esstack" url="/kibana-plugin-installation" %}
 										{% include main_nav_items.html collectionname="docs" category="integration_other" %}
-
 									</ul>
 								</li>
 								<li>
@@ -45,7 +44,7 @@
 								<li>
 									<a href="index.html">Versions</a>									
 									<ul>
-										{% for version in site.versions %}
+										{% for version in site.searchguard.allversions %}
 										<li>
 											<a href="/{{site.docroots[version]}}/index">{{site.labels.navigation[version]}}</a>
 										</li>

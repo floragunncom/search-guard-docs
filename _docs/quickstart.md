@@ -36,10 +36,10 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:<version>
 For example:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:6.0.0-17
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:{{site.searchguard.fullcurrentversion}}
 ```
 
-**Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch 6.0.0 will not run on Elasticsearch 6.0.1 and vice versa.
+**Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
 
 An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
 

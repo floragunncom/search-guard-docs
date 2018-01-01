@@ -11,24 +11,35 @@ description: How to configure and use logstash with a Search Guard secured clust
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Using Search Guard with logstash
+# Using logstash with Search Guard
 
-Configuring logstash is similar to configuring Kibana, so we recommend that you read the Kibana chapter. Most principles, especially the Kibana server user / logstash user, are nearly identical.
+Logstash connects to Elasticserch on the REST layer, just like a browser or curl. In order to use logstash with a Search Guard secured cluster:
 
-The sample configuration files that ship with Search Guard already contains a `logstash` user with the necessary permissions.  So you can use the sample config files to quickly set up a Search Guard secured logstash installation for testing purposes.
+* set up a logstash user with permissions to read and write to the logstash and beats indices
+* configure logstash to use HTTPS instead of HTTP (optional, only applicable if you enabled HTTPS on the REST layer).
 
-## Principles
+## Logstash user
 
-From an Elasticsearch / Search Guard point of view, logstash is a HTTP client just like curl or a browser. Logstash connects to Elasticsearch via the REST API, creates indices and reads and writes documents to and from these indices. In order to use Search Guard in conjunction with logstash, you need to perform the following steps:
+The sample configuration files that ship with Search Guard already contain a `logstash` user with all required permissions. This user is configured in the internal user database and can be used as-is.
 
-* Configure logstash to use HTTPS instead of HTTP.
-* Configure the logstash user's username and password.
- * When talking to Elasticsearch, logstash uses this username and password.
- * You can use the sample config files shipped with Search Guard for a quick start. 
+The corresponding Search Guard role in `sg_roles.yml` is `sg_logstash`. If you don't use the internal user database, map your logstash user to this role in `sg_roles_mapping.yml`.
+
+
+The logtsash user is configured in the `elasticsearch` output section of `logstash.conf`:
+
+```json
+output {
+    elasticsearch {
+       user => logstash
+       password => logstash
+       ...
+    }
+}
+```
 
 ## Setting up TLS/SSL
 
-If you use TLS on the REST layer you need to configure logstash to use HTTPS instead of HTTP when talking to Elasticsearch. This can be configured in the `elasticsearch` output section of `logstash.conf`:
+If you use TLS on the REST layer you need to configure logstash to use HTTPS instead of HTTP when talking to Elasticsearch. This is done in the `elasticsearch` output section of `logstash.conf`:
 
 ```json
 output {
@@ -48,25 +59,8 @@ Logstash requires you to set the trusted root CAs via the `truststore` or `cacer
 
 If you want logstash to verify the hostname of the certificate it receives from Elasticsearch, set the `ssl_certificate_verification` property to true. 
 
-## Configuring the logstash user
+## logstash configuration example
 
-Similar to Kibana, logstash needs to authenticate itself to Elasticsearch. You need to configure the username and password logstash should use for this. This is configured in the `elasticsearch` output section of the `logstash.conf`:
-
-```json
-output {
-    elasticsearch {
-       user => logstash
-       password => logstash
-       ...
-    }
-}
-```
-
-If you use the internal Search Guard user database make sure the user exists in the `sg_internal_users.yml` file. If you use another authenticaton backend, such as LDAP, you need to configure the user and password there.
-
-## Complete logstash configuration
-
-The complete configuration file now should look similar to this:
 
 ```json
 output {
@@ -81,9 +75,9 @@ output {
 }
 ```
 
-## Setting up permissions for the logstash user
+## Permissions for the logstash user
 
-The default permissions, which are also used in the sample configuration files, are as follows:
+The required permissions for the logstash user are as follows:
 
 ```yaml
 sg_logstash:

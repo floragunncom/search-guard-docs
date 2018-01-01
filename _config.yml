@@ -10,27 +10,24 @@ plugins:
   - jekyll-relative-links
   - algoliasearch-jekyll
 
-versions:
-  - v6
-  - v5
-  - v2
-
-docroots: 
-  v6: latest
-  v5: v5
-  v2: v2
-
-version: v6
-islatest: true
-
 elasticsearch:
   currentversion: 6.1.1
   previousversion: 6.1.0
 
 searchguard:
   currentversion: 6.x-20
+  islatestversion: true
   fullcurrentversion: 6.1.1-20.1
-  
+  allversions:
+    - 6x-20
+    - v5
+    - v2
+
+docroots: 
+  6x-20: latest
+  v5: v5
+  v2: v2
+    
 index: true
 
 labels:
@@ -50,7 +47,7 @@ labels:
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
-    v6: Search Guard 6
+    6x-20: Search Guard 6.x-20
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
