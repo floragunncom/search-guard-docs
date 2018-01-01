@@ -38,6 +38,8 @@ Search Guard roles and their associated permissions are defined in the file `sg_
       <tenantname>: <RW|RO>        
 ```
 
+**The Search Guard role name must not contain dots.**
+
 The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](dlsfls_dls.md). Please refer to this chapter for details.
 
 The key `tenants` is used to configure [Kibana multi-tenancy](kibana_multitenancy.md). Please refer to this chapter for details.

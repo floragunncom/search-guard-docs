@@ -25,6 +25,8 @@ The file structure is very simple:
     - ...
 ```
 
+**The action group name must not contain dots.**
+
 Using action groups is the preferred way of assigning permissions to a role.
 
 ## Pre-defined action groups

@@ -54,6 +54,8 @@ Syntax:
     - ...
 ```
 
+**The Search Guard role name must not contain dots.**
+
 Example:
 
 ```yaml
