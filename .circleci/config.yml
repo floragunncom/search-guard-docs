@@ -6,6 +6,7 @@ jobs:
     steps:
       - run: sudo apt-get -yq update
       - run: sudo apt-get -yq install openssl libapr1
+      - run: sudo apt-get install ncftp
       - checkout
       - run:
           name: Build Docs
