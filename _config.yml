@@ -2,3 +2,4 @@ theme: jekyll-theme-dinky
 
 plugins:
   - jekyll-redirect-from
+  - jekyll-seo-tag
