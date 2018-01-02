@@ -8,9 +8,18 @@ jobs:
       - run: sudo apt-get -yq install openssl libapr1
       - run: sudo apt-get install ncftp
       - checkout
+      - export GIT_COMMIT_DESC=git log --format=oneline -n 1
       - run:
           name: Build Docs
           command: |
             bundle install
             bundle exec jekyll build
             ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
+            if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
+              echo "Rebuilding Search Index"
+              jekyll algolia push
+            else
+              echo "Skipping Search Index"
+            fi
+          environment:
+            GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
