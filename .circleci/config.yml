@@ -13,4 +13,4 @@ jobs:
           command: |
             bundle install
             bundle exec jekyll build
-            ncftpput -R -v -u $ftp_username -p $ftp_password search-guard.com  /latest ./_site/*
+            ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
