@@ -23,7 +23,7 @@ The basic installation procedure is to:
 5. Restart Elasticsearch.
 6. Initialise the Search Guard index by running sgadmin
 
-## Ensure that you Java Virtual Machine is supported
+## Ensure that your Java Virtual Machine is supported
 
 * We support only OpenJDK 7/8 or Oracle JVM 7/8.
 * There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM
