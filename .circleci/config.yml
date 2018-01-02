@@ -11,8 +11,6 @@ jobs:
       - run:
           name: Build Docs
           command: |
-            bundle install            
-            ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
             echo "Commit comment: $GIT_COMMIT_DESC"
             if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
               echo "Rebuilding Search Index"
