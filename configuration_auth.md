@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/authentication-authorization
+---
+
 # Configuring authentication and authorisation
 
 Search Guard comes with pluggable authentication and authorisation modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorisation modules like:

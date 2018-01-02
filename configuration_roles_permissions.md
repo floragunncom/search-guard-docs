@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/roles-permissions
+---
+
 # Roles and permissions
 
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions with it, is as follows:

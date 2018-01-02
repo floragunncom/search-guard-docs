@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/search-guard-xpack-alerting
+---
+
 # Using Search Guard with X-Pack Alerting
 
 Search Guard is compatible with the X-Pack Alerting component. 

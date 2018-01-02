@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/search-guard-xpack-machine-learning
+---
+
 # Using Search Guard with X-Pack Machine Learning
 
 Search Guard is compatible with the X-Pack Machine Learning component. 

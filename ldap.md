@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/active-directory-ldap
+---
+
 <!---
 Copryight 2016 floragunn GmbH
 -->

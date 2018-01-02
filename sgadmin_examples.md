@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/sgadmin-examples
+---
+
 # sgadmin Examples
 
 #### Apply default configuration with Keystore and Truststore files

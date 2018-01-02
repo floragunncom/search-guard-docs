@@ -1,3 +1,9 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/troubleshooting-openssl
+---
+
+
 ## Troubleshooting
 
 Start Elasticsearch as normal, and watch the logfile. The nodes should start up without error. You can safely ignore the following infos and warnings in the logfile:

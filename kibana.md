@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/kibana-plugin-installation
+---
+
 <!---
 Copryight 2016 floragunn GmbH
 -->

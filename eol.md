@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/eol-policy
+---
+
 # Search Guard end of life policy
 
 ## Summary

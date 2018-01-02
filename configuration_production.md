@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/configuration-production
+---
+
 # Moving the configuration to production
 
 Once you have set up Search Guard on a testing or staging environment, you might want to replicate the exact Search Guard configuration on your production cluster.

@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/action-groups
+---
+
 # Using and defining action groups
 
 An action group is simply a collection of permissions with a telling name. Action groups are defined in the file `sg_action_groups.yml` and can be referred to in `sg_roles.yml`. Action groups can be nested. 

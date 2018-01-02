@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/search-guard-xpack-monitoring
+---
+
 # Using Search Guard with X-Pack Monitoring
 
 Search Guard is compatible with the free X-Pack monitoring component. At the moment, you can only use exporters of type `http`. Support for `local` exporters will be added soon.

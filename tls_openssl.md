@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/openssl
+---
+
 <!---
 Copryight 2015-2017 floragunn GmbH
 -->

@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/search-guard-elastalert
+---
+
 # Using Search Guard with ElastAlert
 
 As an alternative to X-Pack Alerting, we recommend ElastAlert.

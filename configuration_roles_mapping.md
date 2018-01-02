@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/mapping-users-roles
+---
+
 # Map users, backend roles and hosts to Search Guard roles
 
 Depending on your configuration, you can use the following data to assign a request to one or more Search Guard roles:

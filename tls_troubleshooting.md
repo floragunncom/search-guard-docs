@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/troubleshooting-tls
+---
+
 # TLS troubleshooting
 
 ## Setting the log level to debug

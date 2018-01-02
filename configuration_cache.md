@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/cache-settings
+---
+
 # User cache settings
 
 Search Guard uses a cache to store the roles of authenticated users. The default time to live (TTL) is one hour. This will for example speed up LDAP based authorisation, since the roles are fetched only once per hour.

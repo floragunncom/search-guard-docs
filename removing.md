@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/disabling-removing-search-guard
+---
+
 # Disabling or Removing Search Guard
 
 In order to disable Search Guard without removing it, add the following line to `elasticsearch.yml`:

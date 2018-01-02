@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/generating-tls-certificates
+---
+
 <!---
 Copryight 2017 floragunn UG (haftungsbeschränkt)
 -->

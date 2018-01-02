@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/search-guard-installation
+---
+
 <!---
 Copryight 2017 floragunn GmbH
 -->

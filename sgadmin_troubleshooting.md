@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/troubleshooting-sgadmin
+---
+
 # Troubleshooting sgadmin
 
 ### Cluster not reachable

@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/configuring-tls
+---
+
 # Configuring TLS
 
 TLS is configured in the `config/elasticsearch.yml` file of your ES installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while you cannot switch it off for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.

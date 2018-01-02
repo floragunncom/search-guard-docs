@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/kibana-multi-tenancy
+---
+
 # Kibana Multitenancy
 
 **Note: Kibana multitenancy is available for Elasticsearch/Kibana 5.0.2 and above!**

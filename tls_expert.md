@@ -1,3 +1,8 @@
+---
+redirect_to:
+  - http://docs.search-guard.com/latest/tls-expert
+---
+
 # Expert features
 
 ## Custom inter-node traffic evaluator
