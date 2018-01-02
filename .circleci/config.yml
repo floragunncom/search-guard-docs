@@ -11,7 +11,10 @@ jobs:
       - run:
           name: Build Docs
           command: |
-            echo "Commit comment: $GIT_COMMIT_DESC"
+            bundle install
+            bundle exec jekyll build
+            ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
+            echo "Last commit message: $GIT_COMMIT_DESC"
             if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
               echo "Rebuilding Search Index"
               jekyll algolia push
@@ -19,4 +22,4 @@ jobs:
               echo "Skipping Search Index"
             fi
           environment:
-            GIT_COMMIT_DESC: git log --format=oneline -n 1
+            GIT_COMMIT_DESC: $(git log --format=oneline -n 1 $CIRCLE_SHA1)
