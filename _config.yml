@@ -44,6 +44,7 @@ labels:
     restapi: REST API
     esstack: Integrating with the Elastic stack
     xpack: Integrating with X-Pack
+    x_pack_alternatives: X-Pack Alternatives
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
