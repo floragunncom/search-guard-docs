@@ -17,7 +17,7 @@ Search Guard ships with all enterise modules already installed. If you upgrade f
 
 If you want to upgrade an enterprise module manually, download the respective module jar file from Maven. When downloading, **choose "jar  with dependencies"** and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-6`
+* `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}`
 
 After that, delete the older version of the module and restart your nodes for the changes to take effect.
 
@@ -76,12 +76,12 @@ If you want to deploy only the features you actually plan to use, you can remove
 
 The jar files can be found in the folder
 
-* `<ES installation directory>/plugins/search-guard-6`
+* `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}`
 
 The enterprise modules start with `dlic-search-guard*`, for example
 
 ```
-dlic-search-guard-authbackend-ldap-6.0.0-7.jar 
+dlic-search-guard-authbackend-ldap-{{site.elasticsearch.currentversion}}-8.jar 
 ```
 
-To disable a module, remove the respective jar file from the `search-guard-6` directory and restart the node.
+To disable a module, remove the respective jar file from the `search-guard-{{site.searchguard.esmajorversion}}` directory and restart the node.

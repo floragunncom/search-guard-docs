@@ -13,7 +13,7 @@ Copryight 2017 floragunn GmbH
 
 # Installation
 
-This chapter describes the necessary steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, you can also follow the [Quickstart Guide.](quickstart.md). 
+This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the [Quickstart Guide.](quickstart.md). 
 
 ## Enterprise and Community Edition
 
@@ -50,32 +50,32 @@ Search Guard can be installed like any other Elasticsearch plugin by using the `
 Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:<version>
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:<version>
 ```
 
 For example:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:{{site.searchguard.fullcurrentversion}}
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:{{site.searchguard.fullcurrentversion}}
 ```
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
 
 An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
 
-After the installation you see a folder called `search-guard-6` in the plugin directory of your Elasticsearch installation.
+After the installation you see a folder called `search-guard-{{site.searchguard.esmajorversion}}` in the plugin directory of your Elasticsearch installation.
 
 ### Offline installation
 
 If you are behind a firewall and need to perform an offline installation, follow these steps:
 
-* Download the [Search Guard 6 version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
-  * [All versions of Search Guard 6](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-6%22) 
+* Download the [Search Guard {{site.searchguard.esmajorversion}} version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki) from Maven Central:
+  * [All versions of Search Guard {{site.searchguard.esmajorversion}}](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-6%22) 
   * Download the **zip file** of the Search Guard plugin
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-6-<version>.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
 ```
 ### Additional permissions dialogue
 

@@ -11,7 +11,7 @@ Copryight 2017 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Monitoring
 
-Search Guard is compatible with the free X-Pack monitoring component. At the moment, you can only use exporters of type `http`. Support for `local` exporters will be added soon.
+Search Guard is compatible with the free X-Pack monitoring component. At the moment, you can only use exporters of type `http`. 
 
 This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](kibana_installation.md) plugin.
 
@@ -29,53 +29,20 @@ xpack.monitoring.enabled: true
 
 ## Elasticsearch: Add the monitoring user
 
-For the `http` monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you're using Elasticsearch 5.5.0 with Search Guard v14 and above, you can simply map a new or existing user to the `sg_monitor` role. For Search Guard v12 and below, add the following role definition to sg_roles.yml, and map a user to it.
-
-In addition to the `sg_monitor` role, the user should also be assigned to the `sg_kibana` role.
+For the `http` monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you are using the demo configuration files, assign the roles `sg_xp_monitoring` and the `sg_kibana` role to this user.
 
 ```yaml
-sg_monitor:
-  cluster:
-    - cluster:admin/xpack/monitoring/*
-    - cluster:admin/ingest/pipeline/put       
-    - cluster:admin/ingest/pipeline/get
-    - indices:admin/template/get
-    - indices:admin/template/put
-    - CLUSTER_MONITOR
-    - CLUSTER_COMPOSITE_OPS
+sg_xp_monitoring:
+  readonly: true
   indices:
     '?monitor*':
       '*':
         - INDICES_ALL
-    '?marvel*':
-      '*':
-        - INDICES_ALL
-    '?kibana*':
-      '*':
-        - READ
-    '*':
-      '*':
-        - indices:data/read/field_caps
-```
-
-## Elasticsearch: Add additional permissions to the Kibana server user
-
-Add the `cluster:admin/xpack/monitoring/bulk*` permission to the Kibana server user:
-
-```yaml
-sg_kibana_server:
-  cluster:
-      ...
-      - cluster:admin/xpack/monitoring/bulk*
-  indices:
-    '?kibana':
-      '*':
-        ...
 ```
 
 ## Elasticsearch: Configure a monitoring exporter
 
-At the moment Search Guard supports exporters of type `http` only. Configure your `http` exporter, and configure the user you have mapped to the `sg_monitor` role you created in the last step:
+At the moment Search Guard supports exporters of type `http` only. Configure your `http` exporter, and configure the user you have mapped to the `sg_xp_monitoring` and the `sg_kibana` role in the last step:
 
 ```yaml
 xpack.monitoring.exporters:

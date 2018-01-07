@@ -21,12 +21,8 @@ You can configure the name of the Search Guard index. This is only necessary in 
 
 ## Replica shards
 
-If the Search Guard index is created for the first time, the number of replica shards is determined automatically and is set to the number of nodes - 1. This means that a primary or replica shard of the Search Guard index is available on all nodes.
+Search Guard manages the number of replica shards of the Search Guard index automatically. If the Search Guard index is created for the first time, the number of replica shards is set to the number of nodes - 1. If you add or remove nodes, the number of shards will be increased or decreased automatically. This means that a primary or replica shard of the Search Guard index is available on all nodes.
 
-If you add or remove nodes, you can use the `-us` switch to set the number of replica shards manually. Usually, you want to set this to the number of data nodes - 1. This switch does not change any configuration settings.
-
-If you want Search Guard to manage the number of replica shards automatically, you can enable and disable the replica auto-expand feature by using the `-era` and `-dra` switches. If this is enabled, Search Guard will monitor the cluster topology, and set the number of replica shards automatically whenever a node joins or leaves the cluster.
-
-You read more about Search Guard and replica shards [in this blog post](https://floragunn.com/search-guard-index-replica-shards/).
+If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the `-dra` switch of sgadmin. To set the number of replica shards, use sgadmin with the `-us` switch. To re-enable replica auto-expansion, use the `-dra` switch. See also section "Index and replica settings" in the [sgadmin chapter](sgadmin.md).
 
 Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search Guard index.

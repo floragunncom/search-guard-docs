@@ -24,7 +24,7 @@ In order to write your own implementations, you need to implement interfaces pro
 ```xml
 <dependency>
     <groupId>com.floragunn</groupId>
-    <artifactId>search-guard-6</artifactId>
+    <artifactId>search-guard-{{site.searchguard.esmajorversion}}</artifactId>
     <version>${searchguard.version}</version>
     <scope>provided</scope>
 </dependency>
@@ -37,7 +37,7 @@ In order to write your own implementations, you need to implement interfaces pro
 </dependency>
 ```
 
-Where the `${searchguard.version}` and `${elasticsearch.version}` are the Search Guard / Elasticsearch versions you want to compile against, e.g. 6.0.0.
+Where the `${searchguard.version}` and `${elasticsearch.version}` are the Search Guard / Elasticsearch versions you want to compile against, e.g. {{site.elasticsearch.currentversion}}.
 
 ## Implementing a custom HTTPAuthenticator
 

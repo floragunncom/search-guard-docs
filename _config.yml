@@ -15,9 +15,12 @@ elasticsearch:
   previousversion: 6.1.0
 
 searchguard:
-  currentversion: 6.x-20
-  islatestversion: true
-  fullcurrentversion: 6.1.1-20.1
+  esmajorversion: 6
+  majorversion: 6.x-20
+  fullversion: 6.1.1-20.1
+  nextminorversion: 6.1.1-20.2
+  nextmajorversion: 6.1.2-21.0
+  islatestversion: true  
   allversions:
     - 6x-20
     - v5

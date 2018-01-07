@@ -16,7 +16,7 @@ description: How to troubleshoot problems and issues with the Search Guard sgadm
 If the cluster is not reachable at all by `sgadmin`, you will see the following error message:
 
 ```
-Search Guard Admin v5
+Search Guard Admin v6
 Will connect to localhost:9300
 ERR: Seems there is no elasticsearch running on localhost:9300 - Will exit
 ```

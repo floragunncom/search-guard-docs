@@ -17,9 +17,9 @@ Copryight 2017 floragunn GmbH
 There are two types of upgrades to distinguish:
 
 * Upgrading Search Guard for your current Elasticsearch version
-  * for example, upgrading from 6.0.0-17 to 6.0.0-18
+  * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextminorversion}}
 * Upgrading Search Guard and Elasticsearch
-  * for example, upgrading from 6.0.0-17 to 6.0.1-18
+  * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextmajorversion}}
 
 In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your Elasticsearch nodes, without any downtime.
 
@@ -37,11 +37,7 @@ If you have a multicluster setup with tribe nodes, upgrade the tribe nodes after
 
 ## Check permission schema
 
-The permission schema can change from Elasticsearch version to Elasticsearch version. For example, Elasticsearch has changed the way index- and delete-operations are handled from 5.3.0 onwards:
-
-[Make index and delete operation execute as single bulk item](https://github.com/elastic/elasticsearch/pull/22812){:target="_blank"}
-
-If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](configuration_action_groups.md)  instead of assigning single permissions to roles directly.
+The permission schema can change from Elasticsearch version to Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](configuration_action_groups.md)  instead of assigning single permissions to roles directly.
 
 This applies for all Elasticsearch upgrades.
 
@@ -53,7 +49,7 @@ Given there are no breaking changes, you can directly upgrade to the latest Sear
 
 * Stop your Elasticsearch node
 * Remove the old version of Search Guard
-  * `bin/elasticsearch-plugin remove search-guard-6`
+  * `bin/elasticsearch-plugin remove search-guard-{{site.searchguard.esmajorversion}}`
 * Install the new version of Search Guard
   * See the chapter [Installing Search Guard](installation.md)
  for instructions

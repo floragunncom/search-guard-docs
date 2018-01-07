@@ -30,19 +30,17 @@ xpack.ml.enabled: true
 
 ## Elasticsearch: Add the machine learning user
 
-Add the following role definition to `sg_roles.yml`, and map a user to it.
-
-In addition to the `sg_machine_learning` role, the user should also be assigned to the `sg_kibana` role.
+For using X-Pack Machine learning, the respective user must have the `sg_xp_machine_learning` and `sg_kibana` role assigned.
 
 ```yaml
-sg_machine_learning:
+sg_xp_machine_learning:
+  readonly: true
   cluster:
-    - CLUSTER_MONITOR
-    - CLUSTER_COMPOSITE_OPS
-    - cluster:admin/xpack/ml*
     - cluster:admin/persistent*
     - cluster:internal/xpack/ml*
     - indices:data/read/scroll*
+    - cluster:admin/xpack/ml*
+    - cluster:monitor/xpack/ml*
   indices:
     '*':
       '*':

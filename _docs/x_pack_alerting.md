@@ -29,22 +29,15 @@ xpack.watcher.enabled: true
 
 ## Elasticsearch: Add the alerting user
 
-If you're using Elasticsearch 5.5.0 with Search Guard v14 and above, you can simply map a new or existing user to the `sg_alerting` role. For Search Guard v12 and below, add the following role definition to `sg_roles.yml`, and map a user to it.
-
-In addition to the `sg_alerting` role, the user should also be assigned to the `sg_kibana` role.
+For using X-Pack Alerting, the respective user must have the `sg_xp_alerting` and `sg_kibana` role assigned.
 
 ```yaml
-sg_alerting:
+sg_xp_alerting:
   cluster:
     - indices:data/read/scroll
-    - cluster:admin/xpack/watcher/watch/put
     - cluster:admin/xpack/watcher*
-    - CLUSTER_MONITOR
-    - CLUSTER_COMPOSITE_OPS
+    - cluster:monitor/xpack/watcher*
   indices:
-    '?kibana*':
-      '*':
-        - READ
     '?watches*':
       '*':
         - INDICES_ALL
@@ -57,6 +50,7 @@ sg_alerting:
     '*':
       '*':
         - READ
+        - indices:admin/aliases/get
 ```
 
 ## Kibana: Install X-Pack

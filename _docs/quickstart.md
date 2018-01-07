@@ -30,13 +30,13 @@ Search Guard can be installed like any other Elasticsearch plugin by using the `
 Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:<version>
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:<version>
 ```
 
 For example:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-6:{{site.searchguard.fullcurrentversion}}
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:{{site.searchguard.fullversion}}
 ```
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
@@ -58,13 +58,13 @@ Note that the script only works with vanilla Elasticsearch installations. If you
 
 To execute the demo installation:
 
-* ``cd`` into `<Elasticsearch directory>/plugins/search-guard-6/tools`
+* ``cd`` into `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
 The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
 
 ```bash
-Search Guard 6 Demo Installer
+Search Guard {{site.searchguard.esmajorversion}} Demo Installer
  ** Warning: Do not use on production or publicly reachable systems **
 Install demo certificates? [y/N] y
 Initialize Search Guard? [y/N] y
@@ -75,7 +75,7 @@ Enable cluster mode? [y/N] n
   * Whether to install the self-signed demo TLS certificates or not
 * Initialize Search Guard
   * Whether to auto-initialize Search Guard with the demo configuration
-  * If answered with `y`, Search Guard will initialize the configuration index with the files from the `<Elasticsearch directory>/plugins/search-guard-6/sgconfig` directory if the index does not exist 
+  * If answered with `y`, Search Guard will initialize the configuration index with the files from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory if the index does not exist 
 * Enable cluster mode
   * If answered with `y`, the `network.host` parameter will be set to `0.0.0.0` to bind to all interfaces
   * Depending on your system you may need to adjust the `vm.max_map_count` for Elasticsearch to start
@@ -101,10 +101,10 @@ For using the Kibana Configuration GUI you need to install the Search Guard Kiba
 
 If you want to use the sgadmin tool:
 
-* Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-6/sgconfig`
-* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-6/tool/sgadmin_demo.sh`
+* Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
+* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tool/sgadmin_demo.sh`
 
-This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-6/sgconfig` and upload the contents to the Search Guard index. 
+This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
 
 The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the [Using sgadmin](sgadmin.md) chapter.
 

@@ -141,7 +141,7 @@ The following attributes are logged for all event categores, independent of the 
 
 ## Transport BAD_HEADERS attributes
 
- Name | Description |
+| Name | Description |
 |---|---|
 | audit\_trace\_task\_id | The ID of this request |
 | audit\_trace\_task\_parent\_id | The parent ID of this request, if any. Optional. |

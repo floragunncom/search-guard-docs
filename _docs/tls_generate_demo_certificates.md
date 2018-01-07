@@ -36,7 +36,7 @@ Search Guard ships with a demo installation script. The installation script will
 
 To generate the certificates:
 
-* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-6/tools``
+* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools``
 
 * Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary)
 

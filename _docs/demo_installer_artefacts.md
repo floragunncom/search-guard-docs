@@ -67,7 +67,7 @@ searchguard.authcz.admin_dn:
 
 ### Allow demo certificates and auto-initialization
 
-By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the `<Elasticsearch directory>/plugins/search-guard-6/sgconfig` directory. 
+By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory. 
 
 ```yaml
 searchguard.allow_unsafe_democertificates: true
@@ -95,7 +95,7 @@ This line tells Search Guard to enable audit logging and to store the generated 
 searchguard.audit.type: internal_elasticsearch
 ```
 
-The default index name for storing the audit trail is `auditlog6`. A complete description how to configure and use Audit Logging can be found [here](auditlogging.md).
+The default index name for storing the audit trail is `sg6-auditlog-YYYY.MM.dd` which means a daily rolling index is used. A complete description how to configure and use Audit Logging can be found [here](auditlogging.md).
 
 
 ### REST API access control

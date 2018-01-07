@@ -207,7 +207,7 @@ In order for Search Guard to pick up your custom implementation, specify its ful
 searchguard.audit.type: com.example.MyCustomAuditLogStorage
 ```
 
-Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-2` or `plugins/search-guard-5` folder.
+Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-{{site.searchguard.esmajorversion}}` folder.
 
 
 ## Expert: Finetuning the thread pool

@@ -14,8 +14,7 @@ class AlgoliaSearchRecordExtractor
     
     # Just return `nil` instead of `item` if you want to discard this record
     return nil unless @file.respond_to?(:collection)
-    return nil if item[:category] == "changelogs"
-
+    
     collection_name = @file.collection.label
 
     # In Jekyll v3, posts are actually a collection

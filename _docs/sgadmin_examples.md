@@ -74,12 +74,12 @@ Copryight 2017 floragunn GmbH
 #### Reload the current configuration, thus flushing the Search Guard user caches
 
 ```
-plugins/search-guard-2/tools/sgadmin.sh \
-   -ks plugins/search-guard-2/sgconfig/keystore.jks \
+./sgadmin.sh \
+   -ks /path/to/keystore.jks \
    -kspass changeit
-   -ts plugins/search-guard-2/sgconfig/truststore.jks  \
+   -ts /path/to/truststore.jks \
    -tspass changeit
-   -r  
+   -rl
 ```
 
 #### Setting the number of replica shards to 5
@@ -94,10 +94,10 @@ plugins/search-guard-2/tools/sgadmin.sh \
 
 #### Enabling replica auto expansion
 ```
-plugins/search-guard-2/tools/sgadmin.sh \
-   -ks plugins/search-guard-2/sgconfig/keystore.jks \
+./sgadmin.sh \
+   -ks /path/to/keystore.jks \
    -kspass changeit
-   -ts plugins/search-guard-2/sgconfig/truststore.jks \
+   -ts /path/to/truststore.jks \
    -tspass changeit
    -era
 ```

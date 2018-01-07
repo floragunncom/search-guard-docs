@@ -16,10 +16,10 @@ Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for c
 
 Search Guard ships with an internal user database. You can use this user database if you do not have any external authentication system like LDAP or Active Directory in place. Users, their hashed passwords and roles are stored in the internal Search Guard configuration index on your cluster.
 
-Internal users are configured in `sg_internal_users.yml`. You can find a template in `<ES installation directory>/plugins/search-guard-5/sgconfig/sg_internal_users.yml`
+Internal users are configured in `sg_internal_users.yml`. You can find a template in `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig/sg_internal_users.yml`
 
 Syntax:
-
+ 
 ```yaml
 <username>:
   hash: <hashed password>
@@ -56,7 +56,7 @@ analyst:
 
 The password hash is a salted BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
 
-``plugins/search-guard-5/tools/hasher.sh -p mycleartextpassword``
+``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hasher.sh -p mycleartextpassword``
 
 ## Configuration
 
