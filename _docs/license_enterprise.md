@@ -16,11 +16,13 @@ Search Guard ships the Enterprise Edition by default. All Enterprise modules and
 
 ## Trial License
 
-When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all enterprise features.
+When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us] (https://floragunn.com/contact/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
 
 ## Enterprise License
 
-For running Search Guard on production systems you need to [obtain a license](https://floragunn.com/searchguard-license-support/){:target="_blank"}. Search Guard is licensed per cluster, and the license covers all non-production systems like development, staging and QA as well.
+For running Search Guard Enterprise on production systems you need to [obtain a license](https://floragunn.com/searchguard-license-support/){:target="_blank"}. Search Guard is licensed per cluster, and the license covers all non-production systems like development, staging and QA as well.
+
+For a feature comparison between the Enterprise and Community Edition please refer to [our website](https://floragunn.com/searchguard-license-support/){:target="_blank"}.
 
 ## Academic and Scientific License
 
@@ -43,11 +45,11 @@ If you're a system integrator or want to ship Search Guard as part of your own p
 
 ### Displaying your current license
 
-You have several ways to check the contents of your current license.
+You have several ways to check the validity of your current license.
 
 #### Logfile
 
-On startup, Search Guard will print license information to the Elasticsearch logfile.
+On startup, Search Guard will print license information to the Elasticsearch logfile on `INFO` level. If your license is about to expire, a message on `WARN` level is printed. Running Search Guard with an expired license will result in `ERROR` message in the logfile.
 
 #### HTTP license endpoint
 

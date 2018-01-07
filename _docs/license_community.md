@@ -20,3 +20,41 @@ searchguard.enterprise_modules_enabled: false
 ```
 
 Setting this flag will disable any Enterprise module or custom authentication domain and will run only the Community features of Search Guard.
+
+## Checking your version
+
+### HTTP License endpoint
+
+If you are unsure whether you are running the free Community Edition or not, you can visit the HTTP license endpoint of Search Guard like:
+
+```
+https://<Elasticsearch Host>:<HTTP Port>/_searchguard/license
+```
+
+For example:
+
+```
+https://example.com:9200/_searchguard/license
+```
+
+This will return license information in JSON format. If you are running the Community Edition, the following information is displayed:
+
+```JSON
+...
+sg_license: {
+  msgs: [
+    "No license required because enterprise modules are not enabled."
+  ],
+  license_required: false
+}
+...
+```
+
+
+### Logfile
+
+On startup, Search Guard will print license information to the Elasticsearch logfile on `INFO` level. If you are running the Community Edition you will find the following entry:
+
+```
+Search Guard License Info: No license needed because enterprise modules are not enabled
+```
