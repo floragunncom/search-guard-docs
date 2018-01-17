@@ -16,7 +16,7 @@ Search Guard ships the Enterprise Edition by default. All Enterprise modules and
 
 ## Trial License
 
-When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us] (https://floragunn.com/contact/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
+When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us](https://floragunn.com/contact/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
 
 ## Enterprise License
 

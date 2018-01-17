@@ -29,7 +29,7 @@ xpack.watcher.enabled: true
 
 ## Elasticsearch: Add the alerting user
 
-For using X-Pack Alerting, the respective user must have the `sg_xp_alerting` and `sg_kibana` role assigned.
+For using X-Pack Alerting, the respective user must have the `sg_xp_alerting` and `sg_kibana_user` role assigned.
 
 ```yaml
 sg_xp_alerting:

@@ -30,7 +30,7 @@ xpack.ml.enabled: true
 
 ## Elasticsearch: Add the machine learning user
 
-For using X-Pack Machine learning, the respective user must have the `sg_xp_machine_learning` and `sg_kibana` role assigned.
+For using X-Pack Machine learning, the respective user must have the `sg_xp_machine_learning` and `sg_kibana_user` role assigned.
 
 ```yaml
 sg_xp_machine_learning:
