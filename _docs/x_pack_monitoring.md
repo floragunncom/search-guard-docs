@@ -42,7 +42,7 @@ sg_xp_monitoring:
 
 ## Elasticsearch: Configure a monitoring exporter
 
-At the moment Search Guard supports exporters of type `http` only. Configure your `http` exporter, and configure the user you have mapped to the `sg_xp_monitoring` and the `sg_kibana` role in the last step:
+At the moment Search Guard supports exporters of type `http` only. Configure your `http` exporter, and configure the user you have mapped to the `sg_xp_monitoring` and the `sg_kibana_user` role in the last step:
 
 ```yaml
 xpack.monitoring.exporters:
