@@ -1,9 +1,9 @@
 ---
-title: Installing Search Guard with Kibana
+title: Installing the Kibana plugin
 html_title: Kibana Plugin
 slug: kibana-plugin-installation
 category: kibana
-order: 300
+order: 100
 layout: docs
 description: How to install the Search Guard Kibana plugin which adds authentication, multi tenany and the configuration GUI.
 ---
@@ -11,7 +11,7 @@ description: How to install the Search Guard Kibana plugin which adds authentica
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Installing Search Guard with Kibana
+# Installing the Search Guard Kibana plugin
 
 Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
