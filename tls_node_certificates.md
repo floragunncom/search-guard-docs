@@ -1,1 +1,6 @@
-Page moved to [https://github.com/floragunncom/search-guard-docs/blob/master/tls_configuration.md](https://github.com/floragunncom/search-guard-docs/blob/master/tls_configuration.md)
+# This page has moved
+
+The online version version of the documentation can be found here:
+
+[Search Guard Documentation](http://docs.search-guard.com/latest/tls-in-production)
+
