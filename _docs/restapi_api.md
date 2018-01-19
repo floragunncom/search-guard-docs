@@ -59,7 +59,10 @@ Used to receive, create, update and delete users. Users are added to the interna
 ```
 /_searchguard/api/internalusers/{username}
 ```
+
 Where `username` is the name of the user.
+
+**Note: The `user` endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7**
 
 ### GET
 
@@ -344,6 +347,8 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 ## Action groups API
 
 Used to receive, create, update and delete action groups.
+
+**Note: The `actiongroup` (singular) endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7**
 
 ### Endpoint
 
