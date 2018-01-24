@@ -16,7 +16,7 @@ Copryight 2017 floragunn GmbH
 **This is a technology preview. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
 
 <div class="header-back-buttons helper center" style="margin-top: 40px">
-<a href="downloads.search-guard.com/compliance-preview-1" target="_blank" class="button stroke rounded large blue">Download Preview</a>
+<a href="http://downloads.search-guard.com/compliance-preview-1" target="_blank" class="button stroke rounded large blue">Download Preview</a>
 <a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
 </div>
 
