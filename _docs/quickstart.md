@@ -102,7 +102,7 @@ For using the Kibana Configuration GUI you need to install the Search Guard Kiba
 If you want to use the sgadmin tool:
 
 * Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
-* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tool/sgadmin_demo.sh`
+* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/sgadmin_demo.sh`
 
 This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
 
