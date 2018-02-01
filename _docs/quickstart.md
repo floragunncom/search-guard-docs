@@ -133,7 +133,7 @@ elasticsearch.password: "kibanaserver"
 elasticsearch.ssl.verificationMode: none
 
 # Whitelist the Search Guard Multi Tenancy Header
-elasticsearch.requestHeadersWhitelist: [ “Authorization”, “sgtenant” ]
+elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 ```
 
 ## Start Kibana
