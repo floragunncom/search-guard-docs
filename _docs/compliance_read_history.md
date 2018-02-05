@@ -149,4 +149,4 @@ Field names can contain simple wildcards like `*` and `?`. If this is not strict
 
 ### Use a high-volume storage type
 
-The read history can emit a lot of events in a short time. Consider using a storage type or cache that can handle a high volume of events, like Kafka, Redis or AWS Kineses.
+The read history can emit a lot of events in a short time. Consider using a storage type or cache that can handle a high volume of events, like Kafka, Redis or AWS Kinesis.
