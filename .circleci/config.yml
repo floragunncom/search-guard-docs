@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/search-guard-docs
+    steps:
+      - run: sudo apt-get -yq update
+      - run: sudo apt-get -yq install openssl libapr1
+      - run: sudo apt-get install ncftp
+      - checkout
+      - run:
+          name: Build Docs
+          command: |
+            bundle install
+            bundle exec jekyll build
+            ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /6.x-21 ./_site/*
+            export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
+            echo "Last commit message: $GIT_COMMIT_DESC"
+            if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
+              echo "Rebuilding Search Index"
+              jekyll algolia push
+            else
+              echo "Skipping Search Index"
+            fi
