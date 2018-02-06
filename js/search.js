@@ -1,7 +1,7 @@
 const search = instantsearch({
     appId: '2ESDTH812Y',
     apiKey: '0047035979f052146a69e1d0300cd332',
-    indexName: 'latest',
+    indexName: 'v5',
     urlSync: true,
     searchParameters: {
         facetingAfterDistinct: true,
