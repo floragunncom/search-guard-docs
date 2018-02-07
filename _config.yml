@@ -8,32 +8,24 @@ kramdown:
 
 plugins:
   - jekyll-relative-links
-  - algoliasearch-jekyll
+  - algoliasearch-jekyll  
 
-elasticsearch:
-  currentversion: 6.1.3
-  previousversion: 6.1.2
-
-searchguard:
-  esmajorversion: 6
-  majorversion: 6.x-21
-  fullversion: 6.1.3-21.0
-  nextminorversion: 6.1.3-21.2
-  nextmajorversion: 6.1.3-22.0
-  islatestversion: true  
-  allversions:
-    - 6x-21
-    - 6x-20
-    - v5
-    - v2
+versions:
+  - 6.x-21
+  - 6.x-20
+  - v5
+  - v2
 
 docroots: 
-  6x-21: latest
-  6x-20: 6.x-20
+  6.x-21: latest
+  6.x-20: 6.x-20
   v5: v5
   v2: v2
-    
-index: true
+
+version: v5
+islatest: false
+
+index: false
 
 labels:
   navigation:
@@ -46,16 +38,14 @@ labels:
     eeadvanced: Advanced Security Features
     dlsfls: Document- and Field-Level Security
     auditlog: Audit Logging
-    compliance: Compliance
     restapi: REST API
     esstack: Integrating with the Elastic stack
     xpack: Integrating with X-Pack
-    x_pack_alternatives: X-Pack Alternatives
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
-    6x-21: Search Guard 6.x-21
-    6x-20: Search Guard 6.x-20
+    6.x-21: Search Guard 6.x-21
+    6.x-20: Search Guard 6.x-20
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
@@ -63,12 +53,11 @@ labels:
     troubleshooting: Troubleshooting
     changelogs: Changelogs
 
-
 relative_links:
   enabled:     true
   collections: true
 
-baseurl: /6.x-21
+baseurl: /v5
 
 collections:
   docs:
@@ -83,7 +72,7 @@ collections:
 
 algolia:
   application_id: '2ESDTH812Y'
-  index_name:     '6x-21'
+  index_name:     'v5'
   record_css_selector: 'h1, h2, h3, h4, h5'
   allowed_extensions:
     - html
@@ -146,4 +135,4 @@ algolia:
     snippetEllipsisText: "..."
     alternativesAsExact: 
       - ignorePlurals
-      - singleWordSynonym
+      - singleWordSynonym    
