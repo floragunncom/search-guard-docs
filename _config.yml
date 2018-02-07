@@ -29,7 +29,7 @@ searchguard:
 
 docroots: 
   6x-21: latest
-  6x-20: 6.x-20
+  6x-20: 6x-20
   v5: v5
   v2: v2
     
