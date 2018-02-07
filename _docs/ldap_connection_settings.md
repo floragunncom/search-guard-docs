@@ -68,7 +68,7 @@ config:
 | Name | Description |
 |---|---|
 | connect_timeout | The connection timeout in milliseconds, -1 means indefinite. Default: 5s |
-| response_timeout | The response timeout in milliseconds, -1 means indefinite. Default: 5s |
+| response_timeout | The response timeout in milliseconds, -1 means indefinite. Default: -1 |
 
 
 ### Hostname and Port
