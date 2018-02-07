@@ -26,6 +26,10 @@ Syntax:
   roles:
     - <rolename>
     - <rolename>
+  attributes:
+    attribute1: value1
+    attribute2: value2
+    ...
 ```
 
 Example:
@@ -36,13 +40,18 @@ admin:
   roles:
     - readall
     - writeall
+  attributes:
+    department: operations
 
 analyst:
   hash: $2a$12$ae4ycwzwvLtZxwZ82RmiEunBbIPiAmGZduBAjKN0TXdwQFtCwARz2
   roles:
     - readall
-
+  attributes:
+    department: business_intelligence
 ```
+
+The attributes of an internal user can be used as [variables in index names](configuration_roles_permissions.md) and [document-level security queries](dlsfls_dls.md).
 
 **Note that the username cannot contain dots. If you need usernames with dots, use the `username` attribute:**
 

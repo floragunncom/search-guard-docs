@@ -55,6 +55,21 @@ authz:
 
 The connection settings are identical for authentication and authorisation and are added to the `config` section of the respective domains.  
 
+### Connection timeout
+
+Configure the connection timeout and response timeout for all LDAP connections.
+
+```yaml
+config:
+  connect_timeout: 2000
+  response_timeout: 2000
+```
+| Name | Description |
+|---|---|
+| connect_timeout | The connection timeout in milliseconds, -1 means indefinite. Default: 5s |
+| response_timeout | The response timeout in milliseconds, -1 means indefinite. Default: 5s |
+
+
 ### Hostname and Port
 
 Configure the hostname and port of your Active Directory server(s) like:

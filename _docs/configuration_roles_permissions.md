@@ -112,9 +112,9 @@ sg_own_index:
 
 Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
 
-For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. 
+For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. For internal users, these are the key/values configured in the `attributes` section of the user.
 
-You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. 
+You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. For internal users, they start with `attr.internal.*`
 
 If you're unsure, what attributes are accessible for the current user you can always check the `/_searchguard/authinfo` endpoint. This endpoint will list all attribute names for the currently logged in user.
 
@@ -160,6 +160,33 @@ sg_department_index:
 ```
 
 In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations`.
+
+### Internal users Example
+
+If the attributes entry of the current user contains an attribute `department`, you can use it in the same way as as a JWT claim, but with the `internal.` prefix:
+
+```yaml
+admin:
+  hash: $2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO
+  roles:
+    - readall
+    - writeall
+  attributes:
+    department: operations
+```
+
+```yaml
+sg_department_index:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS
+  indices:
+    '${attr.internal.department}':
+      '*':
+        - INDICES_ALL
+```
+
+In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations`.
+
 
 ### Multiple Variables
 

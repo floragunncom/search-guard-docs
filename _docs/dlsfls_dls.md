@@ -71,11 +71,11 @@ management:
 
 Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
 
-## LDAP and JWT user attributes
+## Custom user attributes
 
 Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
 
-For JWT, these are the claims from your JWT token. For Active Directory and LDAP these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. 
+For JWT, these are the claims from your JWT token. For Active Directory and LDAP these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. For internal users they start with `attr.internal.*`. 
 
 If you're unsure, what attributes are accessible you can always access the `/_searchguard/authinfo` endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
@@ -117,6 +117,31 @@ management:
       'employees':
         - '*'
       _dls_: '{"term" : {"department" : "${attr.ldap.department}"}}'
+```
+
+### Internal users example
+
+If the internal user contains an attribute `department`:
+
+```yaml
+admin:
+  hash: $2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO
+  roles:
+    - readall
+    - writeall
+  attributes:
+    department: operations
+```
+
+You can use it like:
+
+```yaml
+management:
+  indices:
+    'humanresources':
+      'employees':
+        - '*'
+      _dls_: '{"term" : {"department" : "${attr.internal.department}"}}'
 ```
 
 ## Multiple roles and document-level security
