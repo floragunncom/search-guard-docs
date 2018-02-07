@@ -129,6 +129,15 @@ Use the following options to control the key and truststore settings:
 | -tst | The trust store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.|
 | -tsalias | The alias for the root certificate, if any.|
 
+## Prompting for passwords
+
+Instead of providing passwords on the command line sgadmin can ask for them with  interactively with the `-prompt` option. This makes sure that passwords are not stored in the bash history.
+
+| Name  | Description  |
+|---|---|
+| -prompt | If not provided, ask for passwords interactively |
+
+
 ## Command line options
 
 sgadmin comes with command line options. Execute `./sgadmin.sh` without any options to list them.
