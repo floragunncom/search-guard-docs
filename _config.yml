@@ -16,10 +16,10 @@ elasticsearch:
 
 searchguard:
   esmajorversion: 6
-  majorversion: 6.x-20
-  fullversion: 6.1.3-20.1
-  nextminorversion: 6.1.3-20.2
-  nextmajorversion: 6.1.3-21.0
+  majorversion: 6.x-21
+  fullversion: 6.1.3-21.0
+  nextminorversion: 6.1.3-21.1
+  nextmajorversion: 6.1.3-22.0
   islatestversion: false  
   allversions:
     - 6x-21
