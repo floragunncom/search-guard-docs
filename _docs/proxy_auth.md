@@ -4,6 +4,7 @@ slug: proxy-authentication
 category: authauth
 order: 600
 layout: docs
+edition: community
 description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
 ---
 <!---

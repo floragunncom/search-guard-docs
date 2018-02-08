@@ -4,6 +4,7 @@ slug: sgadmin-examples
 category: configuration
 order: 200
 layout: docs
+edition: community
 description: Example sgadmin calls that you can use as template and blueprint.
 ---
 <!---

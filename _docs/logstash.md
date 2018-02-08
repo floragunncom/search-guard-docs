@@ -5,6 +5,7 @@ slug: logstash
 category: esstack
 order: 200
 layout: docs
+edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---
 <!---

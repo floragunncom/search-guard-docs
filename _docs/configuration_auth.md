@@ -5,6 +5,7 @@ slug: authentication-authorization
 category: authauth
 order: 100
 layout: docs
+edition: community
 description: How to configure, mix and chain authentication and authorization domains for Search Guard. 
 ---
 <!---

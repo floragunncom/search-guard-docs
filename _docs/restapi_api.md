@@ -5,6 +5,7 @@ slug: rest-api
 category: restapi
 order: 300
 layout: docs
+edition: enterprise
 description: Use the Search Guard REST management API to change your configuration with simple HTTP REST calls.
 ---
 <!---

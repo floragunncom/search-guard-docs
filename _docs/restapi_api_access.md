@@ -4,6 +4,7 @@ slug: rest-api-access-control
 category: restapi
 order: 300
 layout: docs
+edition: enterprise
 description: Configure role-based access control to different endpoints and methods of the REST API.
 ---
 <!---

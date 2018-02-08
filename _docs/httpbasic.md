@@ -4,6 +4,7 @@ slug: http-basic-authorization
 category: authauth
 order: 200
 layout: docs
+edition: community
 description: How to set up HTTP Basic Authentication on the REST layer of Elasticsearch with Search Guard.
 ---
 <!---

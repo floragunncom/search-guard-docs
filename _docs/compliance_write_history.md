@@ -5,6 +5,7 @@ slug: compliance-write-history
 category: compliance
 order: 200
 layout: docs
+edition: compliance
 description: Use the Write History Audit Logging to monitor changes to sensitive data and stay compliant with GDRP, HIPAA, PCI and SOX.
 ---
 <!---
@@ -83,7 +84,7 @@ searchguard.compliance.history.write.watched_indices:
 
 In the example above, any write or delete operation by any user to the `finance` index will generate an audit event. Wildcards ares supported for index names.
 
-## Exclusing users
+## Excluding users
 
 You can exclude users from the write history by listing them in `elasticsearch.yml`: 
 

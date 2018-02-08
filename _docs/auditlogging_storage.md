@@ -5,6 +5,7 @@ slug: audit-logging-storage
 category: auditlog
 order: 200
 layout: docs
+edition: enterprise
 description: How to store audit events in Elasticsearch, external SIEM or monitoring systems, or a custom storage.
 ---
 <!---

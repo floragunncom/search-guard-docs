@@ -4,6 +4,7 @@ slug: tls-in-production
 category: tls
 order: 300
 layout: docs
+edition: community
 description: We explaing the different certificate types of Search Guard and how to generate them for a production system.
 ---
 <!---

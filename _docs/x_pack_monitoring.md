@@ -4,6 +4,7 @@ slug: search-guard-xpack-monitoring
 category: xpack
 order: 100
 layout: docs
+edition: community
 description: How to configure Search Guard and X-Pack Monitoring for Elasticsearch
 ---
 <!---
