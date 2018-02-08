@@ -5,6 +5,7 @@ slug: field-level-security
 category: dlsfls
 order: 100
 layout: docs
+edition: enterprise
 description: Include or exclude individual fields from your documents by using the Field-level security module of Search Guard.
 ---
 <!---

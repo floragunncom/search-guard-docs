@@ -5,6 +5,7 @@ slug: rest-api
 category: restapi
 order: 300
 layout: docs
+edition: enterprise
 description: Use the Search Guard REST management API to change your configuration with simple HTTP REST calls.
 ---
 <!---
@@ -228,7 +229,7 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 }
 ```
 
-## Roles API
+## Roles and Tenants API
 
 Used to receive, create, update and delete roles and their respective permissions.
 
@@ -310,7 +311,11 @@ PUT /_searchguard/api/rolesmapping/sg_role_starfleet
       "*" : [ "READ" ],
       _dls_: "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"}}}}"
       _fls_: ["field1", "field2"]
-    }
+    },
+    "tenants": {
+      tenant1: RW,
+      tenant2: RO
+    }    
   }  
 }
 ```
@@ -328,7 +333,12 @@ The JSON format resembles the format used in `sg_roles.yml`:
     },
     "<indexname>" : {
       "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
-    }
+    },
+    "tenants": {
+      <tenantname> : <RW | RO>,
+      <tenantname> : <RW | RO>,
+      ...
+    }    
   }
 }
 ```

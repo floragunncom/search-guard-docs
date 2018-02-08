@@ -4,6 +4,7 @@ slug: internal-users-database
 category: rolespermissions
 order: 100
 layout: docs
+edition: community
 description: How to store and manage Search Guard users directly in Elasticsearch by using the Internal Users Database.
 ---
 <!---

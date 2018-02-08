@@ -4,6 +4,7 @@ slug: search-guard-community-edition
 category: installation
 order: 300
 layout: docs
+edition: community
 description: The Search Guard Community Edition provides TLS encryption and index-level permissions on REST and transport for free.
 ---
 <!---

@@ -4,6 +4,7 @@ slug: generating-tls-certificates
 category: tls
 order: 100
 layout: docs
+edition: community
 description: Various options for generating TLS certificates that you can use with Search Guard.
 ---
 <!---

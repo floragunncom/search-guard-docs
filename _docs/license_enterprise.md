@@ -4,6 +4,7 @@ slug: search-guard-enterprise-edition
 category: installation
 order: 200
 layout: docs
+edition: enterprise
 description: License conditions of Search Guard Enterprise Edition, the enterprise security suite for Elasticsearch.
 ---
 <!---

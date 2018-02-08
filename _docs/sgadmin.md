@@ -4,6 +4,7 @@ slug: sgadmin
 category: configuration
 order: 100
 layout: docs
+edition: community
 description: Use the powerful sgadmin command line tool to manage and configure  everything in Search Guard.
 ---
 <!---

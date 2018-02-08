@@ -5,6 +5,7 @@ slug: kibana-plugin-installation
 category: kibana
 order: 100
 layout: docs
+edition: community
 description: How to install the Search Guard Kibana plugin which adds authentication, multi tenany and the configuration GUI.
 ---
 <!---

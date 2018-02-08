@@ -5,6 +5,7 @@ slug: roles-permissions
 category: rolespermissions
 order: 400
 layout: docs
+edition: community
 description: How to define role based access to Elasticsearch on index- and document-type level with Search Guard.
 ---
 <!---

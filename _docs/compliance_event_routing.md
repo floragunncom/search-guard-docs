@@ -5,6 +5,7 @@ slug: compliance-event-routing
 category: compliance
 order: 1000
 layout: docs
+edition: compliance
 description: How to configure event routing to ship the compliance events to their correct storage destination
 ---
 <!---

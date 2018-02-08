@@ -5,6 +5,7 @@ slug: document-level-security
 category: dlsfls
 order: 100
 layout: docs
+edition: enterprise
 description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your Elasticsearch cluster.
 ---
 <!---

@@ -5,6 +5,7 @@ slug: tls-expert
 category: tls
 order: 600
 layout: docs
+edition: community
 description: How to write your own inter-node traffic evaluator and TLS principal extractor for Search Guard.
 ---
 <!---

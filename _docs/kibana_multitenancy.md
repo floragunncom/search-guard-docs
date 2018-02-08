@@ -4,6 +4,7 @@ slug: kibana-multi-tenancy
 category: kibana
 order: 300
 layout: docs
+edition: enterprise
 description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
 ---
 

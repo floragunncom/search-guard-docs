@@ -5,6 +5,7 @@ slug: active-directory-ldap-authorisation
 category: ldap
 order: 300
 layout: docs
+edition: enterprise
 description: Use Search Guard's Active Directory and LDAP feature to fetch the backend roles of a user from an Active Directory server.
 ---
 <!---

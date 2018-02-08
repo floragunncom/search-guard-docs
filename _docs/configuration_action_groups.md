@@ -4,6 +4,7 @@ slug: action-groups
 category: rolespermissions
 order: 200
 layout: docs
+edition: community
 description: How to define and use Search Guard action groups for easy configuration of index-level permissions
 ---
 

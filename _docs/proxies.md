@@ -5,6 +5,7 @@ slug: search-guard-proxy
 category: configuration
 order: 900
 layout: docs
+edition: community
 description: How to setup, configure and run Search Guard behind one or more proxies.
 ---
 <!---

@@ -5,6 +5,7 @@ slug: active-directory-ldap-authentication
 category: ldap
 order: 200
 layout: docs
+edition: enterprise
 description: Use Search Guard's Active Directory and LDAP feature to authenticate users.
 ---
 <!---

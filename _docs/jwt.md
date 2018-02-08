@@ -4,6 +4,7 @@ slug: json-web-tokens
 category: authauth
 order: 500
 layout: docs
+edition: enterprise
 description: How to configure JSON web token (JWT) with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
 ---
 <!---

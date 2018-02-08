@@ -5,6 +5,7 @@ slug: compliance-read-history
 category: compliance
 order: 100
 layout: docs
+edition: compliance
 description: Use the Read History Audit Logging to monitor read access to sensitive data and stay compliant with GDRP, HIPAA, PCI and SOX.
 ---
 <!---
@@ -52,7 +53,7 @@ searchguard.compliance.history.read.watched_fields:
 
 In the example above, any access by any user to either the `Designation`, `FirstName` or `LastName` field will generate an audit event. Wildcards ares supported for both index names and fields.
 
-## Exclusing users
+## Excluding users
 
 You can exclude users from the read history by listing them in `elasticsearch.yml`: 
 

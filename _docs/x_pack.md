@@ -6,6 +6,7 @@ subcategory: xpack
 index: false
 order: 300
 layout: docs
+edition: community
 description: How to configure Search Guard and X-Pack
 ---
 <!---

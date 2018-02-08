@@ -5,6 +5,7 @@ slug: disabling-removing-search-guard
 category: installation
 order: 600
 layout: docs
+edition: community
 description: How to handle disable Search Guard temporarily without removing the complete installation.
 ---
 <!---

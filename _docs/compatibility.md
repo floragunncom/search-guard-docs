@@ -41,6 +41,7 @@ The following plugins and tools have been tested for compatibility with Search G
 * ES-Hadoop / Spark
 * [Graylog](http://docs.graylog.org/en/2.3/pages/configuration/elasticsearch.html){:target="_blank"}
 
+
 ### Incompatible plugins and tools
 
 * [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc){:target="_blank"}
