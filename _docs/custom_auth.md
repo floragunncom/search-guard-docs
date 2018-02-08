@@ -4,6 +4,7 @@ slug: custom-authentication-modules
 category: authauth
 order: 800
 layout: docs
+edition: enterprise
 description: How to write your own authentication and authorization modules for Search Guard.
 ---
 <!---

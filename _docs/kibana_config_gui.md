@@ -5,6 +5,7 @@ slug: configuration-gui
 category: configuration
 order: 400
 layout: docs
+edition: enterprise
 description: Use the Kibana configuration GUI to quickly and easily setup and configure Search Guard.
 ---
 <!---

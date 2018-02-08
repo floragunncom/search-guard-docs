@@ -5,6 +5,7 @@ slug: client-certificate-auth
 category: authauth
 order: 700
 layout: docs
+edition: community
 description: How to use client side TLS certificates to protect Elasticsearch against unauthorized access.
 ---
 <!---

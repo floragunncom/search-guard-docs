@@ -4,6 +4,7 @@ slug: demo-installer
 category: quickstart
 order: 200
 layout: docs
+edition: community
 description: Search Guard ships with a demo installer for quickly setting up a working configuration. Use it for PoCs or checking out our features. 
 ---
 

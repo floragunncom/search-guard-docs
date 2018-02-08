@@ -5,6 +5,7 @@ slug: cross-cluster-tribe
 category: esstack
 order: 800
 layout: docs
+edition: community
 description: Search Guard fully supports the Cross Cluster Search feature of Elasticsearch. Implement access control on distributed clusters.
 ---
 <!---

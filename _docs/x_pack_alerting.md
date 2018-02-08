@@ -4,6 +4,7 @@ slug: search-guard-xpack-alerting
 category: xpack
 order: 200
 layout: docs
+edition: community
 description: How to configure Search Guard and X-Pack Alerting for Elasticsearch
 ---
 <!---

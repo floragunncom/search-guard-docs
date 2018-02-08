@@ -4,6 +4,7 @@ slug: openssl
 category: tls
 order: 400
 layout: docs
+edition: community
 description: Search Guard supports native OpenSSL for superior performance and most modern cipher suites for production systems.
 ---
 <!---

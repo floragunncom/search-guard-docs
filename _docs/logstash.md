@@ -5,6 +5,7 @@ slug: logstash
 category: esstack
 order: 200
 layout: docs
+edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---
 <!---
@@ -93,6 +94,41 @@ sg_logstash:
         - CRUD
         - CREATE_INDEX
     '*beat*':
+      '*':
+        - CRUD
+        - CREATE_INDEX
+```
+
+### Using custom logstash index names
+
+If you are writing to a different index than the default logstash index, you need to give the logstash user access to this index.
+
+For example, if you configured the index to be `mylogstashindex`: 
+
+```json
+output {
+    elasticsearch {
+       user => logstash
+       password => logstash
+       ...
+       index => "mylogstashindex"
+    }
+}
+```
+
+The logstash user must have permissions to manage this index:
+
+```yaml
+sg_logstash:
+  readonly: true
+  cluster:
+    - CLUSTER_MONITOR
+    - CLUSTER_COMPOSITE_OPS
+    - indices:admin/template/get
+    - indices:admin/template/put
+  indices:
+    ...
+    'mylogstashindex':
       '*':
         - CRUD
         - CREATE_INDEX

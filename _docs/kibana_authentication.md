@@ -4,6 +4,7 @@ slug: kibana-authentication
 category: kibana
 order: 200
 layout: docs
+edition: community
 description: Use the Search Guard Kibana plugin to add authentication and session management to Kibana.
 ---
 <!---

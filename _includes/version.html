@@ -1,7 +1,20 @@
-<p class="version"><b>Version: {{site.searchguard.majorversion}}
-{%if site.searchguard.islatestversion == false%}
-/ This is an older version of Search Guard. Switch to <a href="/latest">Latest version</a>		
-{% endif %}
-</b>
-</p>
-
+<div class="row vcenter" style="margin-bottom: 10px;">
+	<div class="col-xs-9">
+		<span class="version">Version: {{site.searchguard.majorversion}}
+		{%if site.islatest == false%}
+		<br /> This is an older version of Search Guard. Switch to <a href="/latest">Latest version</a>		
+		{% endif %}
+		</span>
+	</div>
+	<div class="col-xs-3">
+		{%if page.edition == "community"%}
+			<span href="#" class="button stroke rounded small green pull-right" style="vertical-align:middle; margin: 0px">Community</span>		
+		{% endif %}
+		{%if page.edition == "enterprise"%}
+			<span href="#" class="button stroke rounded small blue pull-right" style="vertical-align:middle; margin: 0px">Enterprise</span>		
+		{% endif %}
+		{%if page.edition == "compliance"%}
+			<span href="#" class="button stroke rounded small blue-light pull-right" style="vertical-align:middle; margin: 0px">Compliance</span>		
+		{% endif %}
+	</div>
+</div>

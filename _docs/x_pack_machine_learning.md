@@ -4,6 +4,7 @@ slug: search-guard-xpack-machine-learning
 category: xpack
 order: 300
 layout: docs
+edition: community
 description: How to configure Search Guard and X-Pack Machine Learning for Elasticsearch
 ---
 <!---

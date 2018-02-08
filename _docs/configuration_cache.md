@@ -4,6 +4,7 @@ slug: cache-settings
 category: configuration
 order: 1000
 layout: docs
+edition: community
 description: Configure the Search Guard internal caches and adapt them to your needs.
 ---
 <!---

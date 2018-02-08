@@ -4,6 +4,7 @@ slug: configuring-tls
 category: tls
 order: 200
 layout: docs
+edition: community
 description: Search Guard TLS configuration settings for the REST and the transport layer. Extended security options for hostname verification and DNS lookups. 
 ---
 <!---

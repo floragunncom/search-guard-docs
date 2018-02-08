@@ -5,6 +5,7 @@ slug: audit-logging-reference
 category: auditlog
 order: 300
 layout: docs
+edition: enterprise
 description: Reference for all fields that are used in audit log events.
 ---
 <!---

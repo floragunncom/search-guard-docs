@@ -5,6 +5,7 @@ slug: search-guard-index
 category: configuration
 order: 1100
 layout: docs
+edition: community
 description: How to manage the primary and replica shards of the Search Guard configuration index.
 ---
 <!---
