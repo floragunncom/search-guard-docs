@@ -26,7 +26,7 @@ Search Guard releases that **have reached end of life** are called **inactive re
 
 The Search Guard versioning scheme is: 
 
-* e1.e2.e3-sgv (for 5.x)
+* e1.e2.e3-sgv (for 5.x/6.x)
 * e1.e2.e3.sgv (for 2.x)
 * 
 where 
@@ -41,11 +41,11 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 5.6.0/5.6.1/5.6.2/5.6.3 at the time of writing
+  * 6.1.0, 6.1.1, 6.1.2, 6.1.3 at the time of writing
 * Current release of the previous minor version of the current major version
-  * 5.5.3 at the time of writing
+  * n/a at the time of writing
 * Last release of the previous major version (not all feature will be backported)
-  * 2.4.6 at the time of writing
+  * 5.6.7 at the time of writing
 
 ## Inactive releases
 
@@ -69,22 +69,25 @@ Critical security fixes will be backported to all active releases, including all
 5.4.x-y	| 2019-11-04 |
 5.5.x-y	| 2019-01-06 |
 5.6.x-y	| 2019-03-11 |
+6.1.x-y | 2019-06-13 |
 
 ## Maintenance and support overview
 
-### As of 19.10.2017
+### As of 01.03.2018
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates
 |---|---|---|---|
 2.2.x.y	| no | no | no |
 2.3.x.y	| no | no | no |
-2.4.0.y-2.4.5.y	| yes | no | yes|
-2.4.6.y	| yes | partly  | yes |
-5.0.x.y	| yes | no | yes |
-5.1.x.y	| yes | no | yes |
-5.2.x.y	| yes | no | yes |
-5.3.x.y	| yes | no | yes|
-5.4.x.y	| yes | no | yes |
-5.5.0.y-5.5.2.y	| yes | no | yes |
-5.5.3.y	| yes | yes | yes |
-5.6.x.y | yes | yes | yes |
+2.4.x.y	| no | no | no |
+5.0.x-y	| no | no | no |
+5.1.x-y	| no | no | no |
+5.2.x-y	| no | no | no |
+5.3.x-y	| no | no | no |
+5.4.x-y	| no | no | no |
+5.5.x-y	| no | no | no |
+5.5.3-y	| no | no | no |
+5.6.x-y | no | no | no |
+5.6.7-y | yes | partially | yes |
+6.0.x-y | n/a | n/a | n/a |
+6.1.x-y | yes | yes | yes |
