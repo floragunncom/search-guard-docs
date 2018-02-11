@@ -36,7 +36,7 @@ Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cgav
 
 ## Configuring the Kibana server user
 
-For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the Kibana server users.
+For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the *Kibana server user*.
 
 This user needs certain privileges for the Kibana index. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
 
@@ -71,7 +71,7 @@ You can disable certificate validation in `kibana.yml` by setting:
 elasticsearch.ssl.verificationMode: none
 ```
 
-You can also provide the root CA in PEM format by setting:
+Or you can provide the root CA in PEM format by setting:
 
 ```yaml
 elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
@@ -81,7 +81,7 @@ In this case, you can leave the `elasticsearch.ssl.verify` set to `true`.
 
 ## Start Kibana
 
-After you restart Kibana, it will start optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installes and optimized, Kibana will continue to start.
+After you restart Kibana, it will start optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Kibana will continue to start.
 
 ## Upgrading the Search Guard Kibana Plugin
 
@@ -159,6 +159,30 @@ searchguard:
 ```
 
 **Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
+
+# Client certificates: elasticsearch.ssl.certificate
+
+In kibana.yml, you can configure Kibana to use a TLS certificate by setting the following options:
+
+```
+# Optional settings that provide the paths to the PEM-format SSL certificate and key files.
+# These files validate that your Elasticsearch backend uses the same key files.
+elasticsearch.ssl.certificate: /path/to/your/client.crt
+elasticsearch.ssl.key: /path/to/your/client.key
+```
+
+When these options are defined, Kibana will include the configured certificate in every request to Elasticsearch. This happens in the backend and is not related to your browser’s configuration.
+
+If the certificate is an admin certificate, this means that all actions from all users will be allowed, regardless of other authorization settings. While this may be useful in cases where you need complete admin access, it isn’t always clear what these configuration settings actually do and what their implications are.
+
+Hence, in order to avoid elevating the user permissions by mistake, Search Guard will check if a certificate has been defined and, by default, switch its status to red.
+
+You can override this behaviour explicitely by using the following option in your kibana.yml:
+
+```
+# Allow using a client certificate defined in elasticsearch.ssl.certificate
+searchguard.allow_client_certificates: true
+```
 
 ## Where to go next
 
