@@ -18,8 +18,18 @@
 			{{page.title}} | Search Guard | Security for Elasticsearch
 		{% endif %}
 	</title>
+	<!-- OG and Twitter -->
+	<meta property="og:title" content="{%if page.html_title != null %}{{page.html_title}} | Search Guard | Security for Elasticsearch{% else %}{{page.title}} | Search Guard | Security for Elasticsearch{% endif %}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
+	<meta property="og:description" content="{{page.description}}" />
+	<meta property="og:locale" content="en_US" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:creator" content="@searchguard" />
+	
 	<!-- Page description -->
 	<meta name="description" content="{{page.description}}">
+
 	<!-- Meta -->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
