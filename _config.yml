@@ -20,7 +20,7 @@ searchguard:
   fullversion: 6.1.3-21.0
   nextminorversion: 6.1.3-21.1
   nextmajorversion: 6.1.3-22.0
-  islatestversion: false  
+  islatestversion: true  
   allversions:
     - 6x-21
     - 6x-20
