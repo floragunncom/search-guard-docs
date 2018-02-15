@@ -27,7 +27,7 @@ searchguard.ssl.http.enabled: true
 
 ## Installing the Search Guard Plugin
 
-Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your  exact Kibana version from Maven:
+Download the [Search Guard Kibana plugin](https://github.com/floragunncom/search-guard-kibana-plugin/releases){:target="_blank"} matching your  exact Kibana version from GitHub:
 
 * Stop Kibana
 * cd into your Kibana installaton directory.
