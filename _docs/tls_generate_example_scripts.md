@@ -1,88 +1,23 @@
 ---
-title: Generating Certificates
-slug: generating-tls-certificates
-category: tls
-order: 100
+title: Sample PKI scripts
+slug: tls-certificates-sample-scripts
+category: generating-certificates
+order: 400
 layout: docs
 edition: community
-description: Various options for generating TLS certificates that you can use with Search Guard.
+description: How to generate TLS certificates by customizing and using the example PKI scripts from the Search Guard SSL project.
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
-# Generating TLS demo certificates
-
-Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
-
-By using TLS:
-
-* You can be sure that nobody is spying on the traffic.
-* You can be sure that nobody tampered with the traffic.
-* Only trusted nodes can join your cluster.
-
-Search Guard also supports OpenSSL for improved performance and modern cipher suites.
-
-The first step after installing Search Guard is to generate the necessary TLS certificates and to configure them on each node in the `elasticsearch.yml` configuration file.
-
-Note that each change to this file requires a node restart.
-
-If you have your own PKI infrastructure and are already familiar with TLS certificates, you can jump directly to [TLS certificates for production environments](tls_certificates_production.md).
-
-If you just want to try out Search Guard, and deal with the TLS details later, we provide several options:
-
-## Using the Search Guard demo installer
-
-Search Guard ships with a demo installation script. The installation script will generate all required TLS certificates for running Search Guard.
-
-To generate the certificates:
-
-* ``cd`` into ``<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools``
-
-* Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary)
-
-This will generate the following certificates in the `<Elasticsearch directory>/config` directory:
- 
-* ``root-ca.pem``— the root CA used for signing all other certificates
-* ``esnode.pem``— the node certificate used on the transport- and REST-layer. 
-* ``esnode-key.pem``— the private key for the node certificate
-* ``kirk.pem``— the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API
-* ``kirk-key.pem``— the private key for the admin certificate
-
-The script will also add the TLS configuration to the `config/elasticsearch.yml` file automatically.
-
-The node certificates are generated with the following SAN entries:
-
-```
-DNS Name: node-0.example.com
-DNS Name: localhost 
-IP Address: 127.0.0.1
-```
-
-The private keys for both node and the admin certificate do not have a password.
-
-## Using the TLS certificate generator service
-
-If you want to use your own hostnames instead of `node-0.example.com`, you can use our TLS certificate generator web service: 
-
-You need to provide your email address and organisation name, and can specify up to 10 hostnames. The certificates, key and truststore files are generated in the background. We will send you a download link once the certificates have been generated.
-
-Your email is necessary to send you the download link, while the organisation name will become part of the generated root CA. Please use only letters, digits, hyphens and dots for the hostname.
-
-The download will contain the node certificates, admin- and client certificates and the Root CA in JKS, P12 and PEM format. Please refer to the included `README.txt` for a detailed description of the generated artefacts and their respectice passwords. 
-
-You can find the TLS generator service here:
-
-[TLS certificate generator](https://floragunn.com/tls-certificate-generator/)
-
-
-## Using the example PKI scripts
+# Using the example PKI scripts
 
 If you want to generate the certificates on your own machine, you can use the Search Guard example PKI scripts as a starting point. The scripts are shipped with Search Guard SSL and run on Linux or OS X.
 
-You can use the scripts as-is, or you can edit the configuration files to tailor the certificates to your own needs. 
+You can use the scripts as-is, or you can edit the configuration files to tailor the certificates to your needs. 
 
-### Prerequisites
+## Prerequisites
 
 The scripts use OpenSSL and the Java `keytool` for generating all required artifacts.
 
@@ -102,7 +37,7 @@ keytool
  
 Which should print a list of available `keytool` commands. If this is not the case, check your JDK installation and make sure the `keytool` is on your `PATH`.
 
-### Generating the certificates
+## Generating the certificates
 
 First download the Search Guard SSL source code onto your machine. You can either clone the repository, or download it as zip file. The repository is located here:
 
@@ -112,7 +47,7 @@ The script to execute is `./example.sh`, located in the folder `example-pki-scri
 
 If execution was successful, you'll find the generated files and folders inside the `example-pki-scripts` folder. If for any reason you need to re-execute the script, execute `./clean.sh` in the same directory first. This will remove all generated files automatically.
 
-### Generated artifacts
+## Generated artifacts
 
 The script generates certificates in PEM, P12 and JKS format. You can use either for running Search Guard. The recommended format is PEM.
 
@@ -140,9 +75,7 @@ The script also generates certificates for Kibana, logstash and Beats. These can
 
 The Root CA and Signing CA used to sign the certificates can be found in the folder `example-pki-scripts/ca`
 
-
-
-### Customizing the certificates
+## Customizing the certificates
 
 If you need to customize the certificates generated by the example PKI scripts, the following files are relevant:
 
