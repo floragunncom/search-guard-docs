@@ -50,13 +50,13 @@ Search Guard supports OpenSSL. Using OpenSSL will result in better performance a
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
 
-* **Search Guard 6.1.x and higher (Open SSL 1.0.2):**  
+* **Search Guard 6.2.x and higher (Open SSL 1.0.2):**  
   * Version: 2.0.7.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
   * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.7.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
   * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.7.Final-fedora-linux-x86_64.jar){:target="_blank"}
   * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
 
-* **Search Guard 6.1.x and higher (Open SSL 1.0.1):**
+* **Search Guard 6.2.x and higher (Open SSL 1.0.1):**
   * Version: 2.0.7.Final (compiled against Open SSL 1.0.1 which lacks hostname validation)
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.7.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.7.Final){:target="_blank"}
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
