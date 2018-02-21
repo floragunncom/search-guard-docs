@@ -56,11 +56,18 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 
-* **Search Guard 6.0.0 and higher:**
+* **Search Guard 6.1.x and higher:**
   * [Alpine (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-alpine-linux-x86_64.jar){:target="_blank"}
   * [Debian/Ubuntu (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
   * [CentOS/RHEL/Fedora (2.0.5.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.5.Final-fedora-linux-x86_64.jar){:target="_blank"}
 Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
+
+* **Search Guard 6.2.x and higher:**
+  * [Alpine (2.0.7.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.7.Final-alpine-linux-x86_64.jar){:target="_blank"}
+  * [Debian/Ubuntu (2.0.7.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.7.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
+  * [CentOS/RHEL/Fedora (2.0.7.Final compiled with OpenSSL 1.0.2n)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2n-static-2.0.7.Final-fedora-linux-x86_64.jar){:target="_blank"}
+Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
+
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 
