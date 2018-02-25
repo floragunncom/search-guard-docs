@@ -25,7 +25,7 @@ The installation procedure is to:
 
 1. Stop Elasticsearch
 2. Install the Search Guard plugin
-3. [Generate or obtain TLS certificates](tls_generate_demo_certificates.md)
+3. [Generate or obtain TLS certificates](tls_generate_certificates.md)
 3. Add at least the [TLS configuration](tls_configuration.md) to `elasticsearch.yml`
 4. Restart Elasticsearch and check that the nodes come up
 5. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](sgadmin.md)
@@ -112,15 +112,16 @@ Before moving your installation to production, please read the [moving Search Gu
 
 If you already have a PKI infrastructure in place, you usually obtain the required certificates by issuing certificate signing requests to your PKI.
 
-If this is not the case, you can generate certificates by
+If this is not the case, you have the following options to generate certificates:
 
-* Using tools like OpenSSL and/or keytool
-* Using our offline certificate generator tool (to be announced)
-* Using our [online certificate generator service](https://floragunn.com/tls-certificate-generator/)
-* Using our [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts) 
-* Using our [demo installation script](quickstart.md)
+* Use the [Search Guard demo installation](tls_generate_installation_script.md) script (not safe for production)
+* Use the [Online TLS generator service](tls_generate_online.md) (not safe for production)
+* Use the [Offline TLS Tool](tls_generate_tlstool.md) (safe for production)
+* Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
+* Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
+* Using tools like OpenSSL and/or keytool (safe for production)
 
-The various ways to generate TLS certificates are described in the chapter [Generating demo TLS certificates](tls_generate_demo_certificates.md). For a typical installation you will want to generate
+For a typical installation you will want to generate
 
 * One certificate for each node
 * One admin certificate
