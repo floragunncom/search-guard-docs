@@ -25,9 +25,7 @@ This will already print out a lot if helpful information in your log file. If th
 
 ## Validate your elasticsearch.yml
 
-The Elasticsearch configuration is in yaml format, and so is the Search Guard configuration. Yaml relies on correct indentation levels, and it is easy to overlook an incorrectly indented entry.
-
-A quick way of checking the validity of any yml file is to use the Yaml Lint web service:
+The Elasticsearch configuration is in yaml format, and so is the Search Guard configuration. A quick way of checking the validity of any yml file is to use the Yaml Lint web service:
 
 [http://www.yamllint.com/](http://www.yamllint.com/)
 
@@ -50,6 +48,24 @@ If you rather like to work with a GUI, we recommend [KeyStore Explorer](http://k
 > KeyStore Explorer is an open source GUI replacement for the Java command-line utilities keytool and jarsigner. KeyStore Explorer presents their functionality, and more, via an intuitive graphical user interface. 
 
 You can use it to examine the contents of locally stored files, but you can also retrieve and inspect certificates from a server (or Elasticsearch cluster) directly.
+
+## Viewing the contents of PEM certificates
+
+The content of PEM certificates can either be displayed by using OpenSSL or by the [diagnose function of the Search Guard TLS tool](../_docs/tls_generate_tlstool.md#validating-certificates){:target="_blank"}.
+
+OpenSSL:
+
+```
+openssl x509 -in node1.pem -text -noout
+```
+
+TLS diagnose tool:
+
+```
+./sgtlsdiag.sh -ca root-ca.pem -crt node1.pem
+```
+
+The [TLS diagnose tool](../_docs/tls_generate_tlstool.md#validating-certificates){:target="_blank"} will also check the validity of the certificate chain.
 
 ## Checking the main attributes of a certificate
 
