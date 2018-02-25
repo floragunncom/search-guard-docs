@@ -33,7 +33,7 @@ docroots:
   v5: v5
   v2: v2
     
-index: true
+index: false
 
 labels:
   navigation:
