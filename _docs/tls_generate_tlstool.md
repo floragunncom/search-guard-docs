@@ -21,7 +21,7 @@ We provide an [offline TLS tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3
 
 Just download the `zip` or `tar.gz` file and unpack it in a directory of your choice.
 
-The TLS Tool is platform indepentant and can be used for 
+The TLS Tool is platform independent and can be used for 
 
 * Generating Root and Intermediate CAs
 * Generating Node, Client and Admin certificates
@@ -32,7 +32,7 @@ Besides the actual certificates the tool also generated configuration snippets w
 
 ## General usage
 
-The TLS tool will read the node- and certificate configuration settings from a yaml file, and outputs the generated file in a configurable directory.
+The TLS tool will read the node- and certificate configuration settings from a yaml file, and outputs the generated files in a configurable directory.
 
 You can choose to create the Root CA and (optional) intermediate CAs with your node certificates in one go. Or you can create the Root and intermediate CA first, and generate node certificates as you need them.
 
@@ -49,7 +49,7 @@ After unpacking the archive, you will find the Linux/OSX or Windows script in:
 |---|---|
 | -c,--config | Relative or absolute path to the configuration file. Required. |
 | -t,--target | Relative or absolute path to the output directory. Optional, default: out|
-| -v,--verbose  | Enable detailled output, default: false|
+| -v,--verbose  | Enable detailed output, default: false|
 | -f,--force  | Force certificate generation despite of validation errors. default: false|
 | -o,--overwrite  | Overwrite existing node-, client and admin certificates if they are already present. default: false |
 | -ca,--create-ca  | Create new Root and Intermediate CAs |
@@ -132,7 +132,7 @@ The pkPassword can be one of:
 
 ## Intermediate CA
 
-In addition to the root CA you optionally also specify an intermediate CA. If an intermediate CA is configued, then the node, admin and client certificates will be signed by the intermediate CA. If you do want to use an intermediate CA, remove the following section from the configuration. The certificates are then signed by the root CA directly.
+In addition to the root CA you optionally also specify an intermediate CA. If an intermediate CA is configured, then the node, admin and client certificates will be signed by the intermediate CA. If you do want to use an intermediate CA, remove the following section from the configuration. The certificates are then signed by the root CA directly.
 
 ```
 ca:
@@ -198,7 +198,7 @@ Options:
 | nodesDn | Value of the `searchguard.nodes_dn` in the configuration snippet. Optional. If omitted, all DNs of all node certificates are listed. If you want to define your node certificates by using wildcards or regular expressions, set the values here. Default: list all DNs explicitely |
 | nodeOid | If you want to use OIDs to mark legitimate node certificates instead of listing them in `searchguard.nodes_dn`, set the OID here. It will be included in the SAN section of all node certificates. Default: Don't add the OID to the SAN section. |
 | httpsEnabled | Whether to enable TLS on the REST layer or not. Default: true |
-| reuseTransportCertificatesForHttp | If set to true, individual certificates for REST and Transport are generated. If set to false, the node certificates are also used on the REST layer. Default: false |
+| reuseTransportCertificatesForHttp | If set to false, individual certificates for REST and Transport are generated. If set to true, the node certificates are also used on the REST layer. Default: false |
 | verifyHostnames | Set this to true to [enable hostname verification](tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
 | resolveHostnames | Set this to true to [resolve hostnames against DNS](tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
 
