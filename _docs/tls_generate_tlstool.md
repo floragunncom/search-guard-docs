@@ -5,7 +5,7 @@ category: generating-certificates
 order: 300
 layout: docs
 edition: beta
-description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elastucsearch cluster.
+description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elasticsearch cluster.
 ---
 <!---
 Copryight 2017 floragunn GmbH
