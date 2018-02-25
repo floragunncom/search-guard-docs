@@ -78,19 +78,14 @@ Returns the settings for the respective user in JSON format, for example:
 GET /_searchguard/api/internalusers/kirk
 ```
 
-<div class="code-highlight" data-label="">
-<span class="js-copy-to-clipboard copy-code">copy</span>
-<pre class="language-markup">
-<code class="js-code language-json">
+```json
 {
   "kirk" : {
     "hash" : "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
     "roles" : [ "captains", "starfleet" ]
   }
 }
-</code>
-</pre>
-</div>
+```
 
 #### Get all users
 
