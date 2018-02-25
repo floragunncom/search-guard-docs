@@ -25,8 +25,8 @@ The TLS Tool is platform indepentant and can be used for
 
 * Generating Root and Intermediate CAs
 * Generating Node, Client and Admin certificates
-* Generating CSRs (**upcoming**)
-* Validating certificates (**upcoming**)
+* Generating CSRs 
+* Validating certificates
 
 Besides the actual certificates the tool also generated configuration snippets which you can directly copy and paste into your `elasticsearch.yml`.
 
@@ -337,3 +337,78 @@ If you just want to create CSRs to submit them to your local CA, you can omit th
 /sgtlstool.sh -c ../config/example.yml -csr
 ```
 
+
+## Validating certificates
+
+The TLS diagnose tool can be used to verify your certificates and your certificate chains:
+
+```
+<installation directory>/tools/sgtlsdiag.sh
+<installation directory>/tools/sgtlsdiag.bat
+```
+
+### Command line options
+
+| Name | Description |
+|---|---|
+| -ca,--trusted-ca | Path to a PEM file containing the certificate of a trusted CA|
+| -crt,--certificates | Path to PEM files containing certificates to be checked |
+| -es,--es-config | Path to the ElasticSearch config file containing the SearchGuard TLS configuration |
+| -v,--verbose | Enable detailed output|
+
+### Example: Checking PEM certificates directly
+
+```
+<installation directory>/tools/sgtlsdiag.sh -ca out/root-ca.pem -crt out/node1.pem
+```
+
+The diagnose tool will output the contents of the provided certificates and checks that the trust chain is valid. Example:
+
+```
+------------------------------------------------------------------------
+Certificate 1
+------------------------------------------------------------------------
+            SHA1 FPR: 6A2049B9C7F8E48A79B81D60378F4C98EFD34B75
+             MD5 FPR: 72C7F44B875FA777C6A4F047060304C6
+Subject DN [RFC2253]: CN=node1.example.com,OU=Ops,O=Example Com\, Inc.,DC=example,DC=com
+       Serial Number: 1519568340695
+ Issuer DN [RFC2253]: CN=signing.ca.example.com,OU=CA,O=Example Com\, Inc.,DC=example,DC=com
+          Not Before: Sun Feb 25 15:19:02 CET 2018
+           Not After: Wed Feb 23 15:19:02 CET 2028
+           Key Usage: digitalSignature nonRepudiation keyEncipherment
+ Signature Algorithm: SHA256WITHRSA
+             Version: 3
+  Extended Key Usage: id_kp_serverAuth id_kp_clientAuth
+  Basic Constraints: -1
+                SAN: 
+                  dNSName: node1.example.com
+                  iPAddress: 10.0.2.1
+
+------------------------------------------------------------------------
+Certificate 2
+------------------------------------------------------------------------
+            SHA1 FPR: BBCF41A85E85385B8301FA641E9BF002086AAED5
+             MD5 FPR: 3E1C2881A05FF08B4582F3AC2D2443B9
+Subject DN [RFC2253]: CN=signing.ca.example.com,OU=CA,O=Example Com\, Inc.,DC=example,DC=com
+       Serial Number: 2
+ Issuer DN [RFC2253]: CN=root.ca.example.com,OU=CA,O=Example Com\, Inc.,DC=example,DC=com
+          Not Before: Sun Feb 25 15:19:02 CET 2018
+           Not After: Wed Feb 23 15:19:02 CET 2028
+           Key Usage: digitalSignature keyCertSign cRLSign
+ Signature Algorithm: SHA256WITHRSA
+             Version: 3
+  Extended Key Usage: null
+  Basic Constraints: 0
+                SAN: (none)
+------------------------------------------------------------------------
+Trust anchor:
+DC=com,DC=example,O=Example Com\, Inc.,OU=CA,CN=root.ca.example.com
+```
+
+### Example: Checking TLS settings in elasticsearch.yml
+
+By using the `-es` switch you can also check the TLS configuration in your elasticsearch.yml directly:
+
+```
+<installation directory>/tools/sgtlsdiag.sh -es /etc/elasticsearch/elasticsearch.yml
+```
