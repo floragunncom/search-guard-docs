@@ -11,11 +11,7 @@ description: Changelog for Search Guard 6.x-21
 Copryight 2017 floragunn GmbH
 -->
 
-<<<<<<< HEAD
-# Search Guard 6.x-20.0
-=======
 # Search Guard 6.x-21.0
->>>>>>> 6.x
 
 Release Date: 07.02.2018
 
