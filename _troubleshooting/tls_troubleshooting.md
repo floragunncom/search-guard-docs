@@ -157,6 +157,31 @@ searchguard.nodes_dn:
   - 'CN=node-0.example.com,OU=SSL,O=My\, Test,L=Test,C=DE'
 ```
 
+### Checking the IP Addresses of the certificate
+
+Sometimes the IP address contained in your certificate is not the one communicating with the cluster.
+This can happen if your node has multiple interfaces, or is running dual stack (IPv6 + IPv4).
+
+When this happens, you would see the following in the node's elasticsearch log:
+
+```
+SSL Problem Received fatal alert: certificate_unknown javax.net.ssl.SSLException: Received fatal alert: certificate_unknown
+```
+
+And the following message in your cluster's master log when the new node tries to join the cluster:
+
+```
+Caused by: java.security.cert.CertificateException: No subject alternative names matching IP address 10.0.0.42 found
+```
+
+Check the IP address in the certificate:
+
+```
+IPAddress: 2001:db8:0:1:1.2.3.4
+```
+
+In this example, the node tries to join the cluster with the IPv4 `10.0.0.42`, but it's the IPv6 address `2001:db8:0:1:1.2.3.4` that is contained in the certificate.
+
 ### Validating the certificate chain
 
 TLS certificates are organized in a certificate chain:
