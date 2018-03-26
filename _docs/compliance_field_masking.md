@@ -14,7 +14,14 @@ Copryight 2018 floragunn GmbH
 
 # Field masking
 
-**This is a technology preview. The configuration settings listed here may change in subsequent releases. Do not use in production yet**
+**This is beta software. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
+
+<div class="header-back-buttons helper center" style="margin-top: 40px">
+<a href="http://downloads.search-guard.com/compliance-beta" target="_blank" class="button stroke rounded large blue">Download Beta</a>
+<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
+</div>
+
+<br />
 
 Instead of removing sensitive fields from a document with [field-level security](dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only and replaces the actual field value with a cryptographic hash. 
 
