@@ -1,0 +1,13 @@
+searchguard:
+  majorversion: 6.x-22
+  fullversion: 6.2.3-22.0
+  nextminorversion: 6.2.3-22.1
+  nextmajorversion: 6.2.3-23.0
+  islatestversion: true  
+    
+index: true
+
+baseurl: /latest
+
+algolia:
+  index_name: 'latest'
