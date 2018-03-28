@@ -5,7 +5,7 @@ category: authauth
 order: 500
 layout: docs
 edition: enterprise
-description: How to configure JSON web token (JWT) with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
+description: How to configure JSON web token (JWT) with Search Guard to implement Single-Sign-On access to your Elasticsearch cluster.
 ---
 <!---
 Copryight 2017 floragunn GmbH
@@ -17,19 +17,19 @@ Copryight 2017 floragunn GmbH
 
 JSON Web Tokens (JWT) are JSON-based access tokens that assert one or more claims. They are commonly used to implement Single-Sign-On solutions and fall in the category of token based authentication system:
 
-* A user logs in to an application by providing credentials, e.g. username and password.
-* The application validates the credentials.
-* The application creates an access token and signs it.
-* The application returns the token to the user.
+* A user logs in to an authentication server by providing credentials, e.g. username and password.
+* The authentication server validates the credentials.
+* The authentication server creates an access token and signs it.
+* The authentication server returns the token to the user.
 * The user stores the access token.
-* The user sends the access token along with every request.
-* The server verifies the user by verifying the sent token.
+* The user sends the access token along with every request to the service it wants to use.
+* The service verifies the token and grants or denies access.
 
-You can read more about token based authentication [in this blog post.](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication).
+You can read more about token based authentication [in this blog post.](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication){:target="_blank"}.
 
 ## JSON web tokens
 
-A JSON web token is self-contained in the sense that it carries all necessary information within itself. The tokens are basically Base64-encoded and signed JSON objects. So the can be passed around easily.
+A JSON web token is self-contained in the sense that it carries all necessary information to verify a user within itself. The tokens are base64-encoded,  signed JSON objects. They are URL safe and can be passed around easily.
 
 A JSON web token consists of three parts:
 
@@ -52,11 +52,11 @@ In this case, the header states that the message was signed using HMAC-SHA256.
 
 ### Payload
 
-The payload of a JSON web token contains the so-called [JWT Claims](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName). A claim can be any piece of information that the application that created the token has verified.
+The payload of a JSON web token contains the so-called [JWT Claims](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName){:target="_blank"}. A claim can be any piece of information about the user that the application that created the token has verified.
 
-The specification defines a set of standard claims with reserved names ("registered claims"). These include, for example, the token issue, the expiration date, or the creation date.
+The specification defines a set of standard claims with reserved names ("registered claims"). These include, for example, the token issuer, the expiration date, or the creation date.
 
-Public claims can be created freely by the token issuer of the token.  They can contain arbitrary information, such as the user name and the roles of the user.
+Public claims on the other hand can be created freely by the token issuer.  They can contain arbitrary information, such as the user name and the roles of the user.
 
 Example:
 
@@ -68,10 +68,10 @@ Example:
   "roles": "admin, devops"
 }
 ```
+
 ### Signature
 
-The issuer of the token calculates the signature of the token by using a cryptographic hash function and a secret key over the base-64 encoded header and payload. These three parts are then concatenated via a `.` dot. We now have a complete JSON web token:
-
+The issuer of the token calculates the signature of the token by applying a cryptographic hash function on the base-64 encoded header and payload. These three parts are then concatenated via a `.` dot. We now have a complete JSON web token:
 
 ```
 encoded = base64UrlEncode(header) + "." + base64UrlEncode(payload)
@@ -88,7 +88,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI
 
 *Note: If JWT is the only authentication method you use, you should disable the [Search Guard User Cache](configuration_cache.md).*
 
-In order to use JWT, set up an security domain and choose `jwt` as HTTP authentication type. Since the tokens already contain all required information to verify the request, `challenge` must be set to `false`.
+In order to use JWT, set up an authentication domain and choose `jwt` as HTTP authentication type. Since the tokens already contain all required information to verify the request, `challenge` must be set to `false` and `authentication_backend` to `noop`.
 
 Example:
 
@@ -113,20 +113,93 @@ Configuration parameter:
 
 | Name | Description |
 |---|---|
-| signing_key | The base64-encoded secret key that the issuer of the token used to sign the message. This is a shared secret between the token issuer and Search Guard. |
-| jwt\_header | The HTTP header in which the token is stored. This is typically the `Authentication` header with the `Bearer` schema: `Authorization: Bearer <token>`. Default is `Authentication`.|
+| signing_key | The signing key to use when verifying the token. If you use a symmetric key algorithm, it is the base64 encoded shared secret. If you use an asymmetric algorithm it contains the public key. |
+| jwt\_header | The HTTP header in which the token is transmitted. This is typically the `Authorization` header with the `Bearer` schema: `Authorization: Bearer <token>`. Default is `Authorization`.|
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. |
-| subject_key | The key in the JSON payload that stores the users name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is taken.|
-| roles_key | The key in the JSON payload that stores the users roles. The value of this key must be a comma-separated list of roles. |
+| subject_key | The key in the JSON payload that stores the username. If not set, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2){:target="_blank"} registered claim is used.|
+| roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
 
 Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
 
+## Symmetric key algorithms: HMAC 
+
+*Hash-Based Message Authentication Codes* (HMACs) are a group of algorithms that provide a way of signing messages by means of a shared key. The key is shared between the authentication server and Search Guard. It must be configured as **base64-encoded** value of the `signing_key` configuration key:
+
+```yaml
+jwt_auth_domain:
+  ...
+    config:
+      signing_key: "a3M5MjEwamRqOTAxOTJqZDE="
+      ...
+```
+
+Please refer to the documentation of your authentication server on how to obtain it.
+
+While HMACs are simple to use they do not provide guarantees with regards to the creator of the JWT: Everyone that is in possession of the shared key can generate valid JWTs. In case the private key is lost, all participating systems need to exchange it.
+
+## Asymmetric key algorithms: RSA and ECDSA 
+
+RSA and ECDSA are asymmetric encryption and digital signature algorithms and use  a public/private key pair to sign and verify tokens. This means that they use a *private key* for signing the token, while Search Guard only needs to know the *public key* to verify it. 
+
+Since you cannot issue new tokens with the public key and because you can make valid assumptions about the creator of the token, RSA and ECDSA are considered more secure than using HMAC.
+
+In order to use RS256, you only need to configure the (non-base-64 encoded) public RSA key as `signing_key` in the JWT configuration like:
+
+```yaml
+jwt_auth_domain:
+  ...
+    config:
+      signing_key: |-
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQK...
+        -----END PUBLIC KEY-----
+      ...
+```
+
+Search Guard will detect the used algorithm (RSA/ECDSA) automatically, and you can also break the key into multiple lines if required.
+
+## Using JWT in HTTP requests: Bearer authentication
+
+The most common way of transmitting a JWT in an HTTP request is to add it as HTTP header field with the Bearer authentication schema.
+
+*Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens. The name “Bearer authentication” can be understood as “give access to the bearer of this token.”*
+
+*The bearer token is a cryptic string, usually generated by the server in response to a login request. The client must send this token in the Authorization header when making requests to protected resources*
+(Source: [https://swagger.io/docs/specification/authentication/bearer-authentication/](https://swagger.io/docs/specification/authentication/bearer-authentication/){:target="_blank"})
+
+```
+Authorization: Bearer <JWT>
+```
+
+The default name of the header is `Authorization`. If required by your authentication server or proxy, you can also use a different HTTP header name by  using the `jwt_header` configuration key.
+
+As with HTTP Basic authentication, you should use HTTPS instead of HTTP when transmitting JWTs in HTTP requests.
+
+## Using JWT in HTTP requests: URL parameter
+
+While the most common way to transmit JWTs in HTTP requests is to use a header field, Search Guard also supports JWTs transmitted as GET parameter. To do so, configure the name of the GET parameter by using the following key:
+
+```yaml
+    config:
+      signing_key: ...
+      jwt_url_parameter: "parameter_name"
+      subject_key: ...
+      roles_key: ...
+```
+
+As with HTTP Basic authentication, you should use HTTPS instead of HTTP when transmitting JWTs in HTTP requests.
+
+## Validated registered claims
+
+The following registered claims are validated automatically:
+
+* "iat" (Issued At) Claim
+* "nbf" (Not Before) Claim
+* "exp" (Expiration Time) Claim
+
 ## Supported formats and algorithms
 
-The following JWT types are supported:
-
-* Creating and parsing plaintext compact JWTs
-* Creating, parsing and verifying digitally signed compact JWTs (aka JWSs) with all standard JWS algorithms:
+Search Guard supports digitally signed compact JWTs with all standard algorithms:
 
 ```
 HS256: HMAC using SHA-256
@@ -142,37 +215,3 @@ ES256: ECDSA using P-256 and SHA-256
 ES384: ECDSA using P-384 and SHA-384
 ES512: ECDSA using P-521 and SHA-512
 ```
-
-## Using JWT with RS256
-
-While HS256 (HMAC with SHA-256) is based on a shared secret, RS256 (RSA Signature with SHA-256) uses a public/private key pair. Since you only need to configure the public key in the JWT authenticator to validate the token, it's considered more secure than using HS256.
-
-In order to use RS256, you only need to configure the (non-base-64 encoded) public RSA key as `signing_key` in the JWT configuration like:
-
-```yaml
-jwt_auth_domain:
-  ...
-    config:
-      signing_key: |-
-        -----BEGIN PUBLIC KEY-----
-        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQK...
-        -----END PUBLIC KEY-----
-      ...
-```
-
-You can also break the key into multiple lines if required.
-
-Search Guard will detect the correct algorithm automatically.
-
-## Validated registered claims
-
-The following registered claims are validated:
-
-* "iat" (Issued At) Claim
-* "nbf" (Not Before) Claim
-* "exp" (Expiration Time) Claim
-
-## Misc
-
-* "sub" (Subject) Claim
-  * If no `subject_key` is defined, the value of the [`sub`](https://tools.ietf.org/html/rfc7519#section-4.1.2) claim is used as username.

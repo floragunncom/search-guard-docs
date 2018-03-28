@@ -179,7 +179,7 @@ If the certificate is an admin certificate, this means that all actions from all
 
 Hence, in order to avoid elevating the user permissions by mistake, Search Guard will check if a certificate has been defined and, by default, switch its status to red.
 
-You can override this behaviour explicitely by using the following option in your kibana.yml:
+You can override this behaviour explicitly by using the following option in your kibana.yml:
 
 ```
 # Allow using a client certificate defined in elasticsearch.ssl.certificate

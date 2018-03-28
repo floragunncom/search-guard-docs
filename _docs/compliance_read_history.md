@@ -14,14 +14,15 @@ Copryight 2017 floragunn GmbH
 
 # Read History Audit Logging
 
-**This is a technology preview. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
+**This is beta software. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
 
 <div class="header-back-buttons helper center" style="margin-top: 40px">
-<a href="http://downloads.search-guard.com/compliance-preview-1" target="_blank" class="button stroke rounded large blue">Download Preview</a>
+<a href="https://downloads.search-guard.com/compliance-beta-1" target="_blank" class="button stroke rounded large blue">Download Beta</a>
 <a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
 </div>
 
 <br />
+
 Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard emits read events if one or more of the configured watched fields was part of the search result. If the watched fields are filtered from the result, for example by source filtering or applying [field-level security](dlsfls_fls.md), no events are emitted. 
