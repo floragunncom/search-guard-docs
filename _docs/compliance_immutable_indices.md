@@ -1,0 +1,50 @@
+---
+title: Immutable indices
+html_title: Immutable indices
+slug: immutable-indices
+category: compliance
+order: 400
+layout: docs
+edition: compliance
+description: Use the Search Guard Compliance edition to create immutable indices. Documents created in an immutable index cannot be changed after they have been created.
+---
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+# Immutable indices
+
+**This is beta software. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
+
+<div class="header-back-buttons helper center" style="margin-top: 40px">
+<a href="https://downloads.search-guard.com/compliance-beta-1" target="_blank" class="button stroke rounded large blue">Download Beta</a>
+<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
+</div>
+
+<br />
+
+You can mark any index in Elasticsearch as immutable. Documents in immutable indices follow the write-once, read-many paradigm. This means that you can create documents, but once created, they cannot be changed anymore, thus making them immutable.
+
+To mark an index immutable, list the index name in elasticsearch.yml like:
+
+```
+searchguard.compliance.immutable_indices: 
+  - indexA
+  - indexB
+  - ...
+```
+
+## Forbidden operations
+
+Marking an index immutable prevents the following actions from being executed:
+
+* Changing or deleting any existing document
+  * this also includes bulk operations
+* Deleting the index
+* Opening anc closing the index
+* Performing a reindex
+* Snapshot / restore
+
+## Using an admin certificate
+
+A configured TLS admin certificate can be used to bypass the immutable index checks.
