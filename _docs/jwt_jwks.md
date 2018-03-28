@@ -1,5 +1,5 @@
 ---
-title: Integrating with OpenID providers
+title: OpenID Integration
 slug: openid-json-web-keys
 category: authauth
 order: 600
