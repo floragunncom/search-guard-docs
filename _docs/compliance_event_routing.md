@@ -14,7 +14,14 @@ Copryight 2017 floragunn GmbH
 
 # Event routing and multiple endpoints
 
-**This is a technology preview. The configuration settings listed here may change in subsequent releases. Do not use in production yet**
+**This is beta software. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
+
+<div class="header-back-buttons helper center" style="margin-top: 40px">
+<a href="https://downloads.search-guard.com/compliance-beta-1" target="_blank" class="button stroke rounded large blue">Download Beta</a>
+<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
+</div>
+
+<br />
 
 The Search Guard Compliance Edition extends the storage capabilities of the Audit Log module and makes it possible to configure multiple endpoints per event category.
 
