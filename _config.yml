@@ -11,8 +11,8 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 6.2.2
-  previousversion: 6.2.1
+  currentversion: 6.2.3
+  previousversion: 6.2.2
 
 searchguard:
   esmajorversion: 6
@@ -22,14 +22,16 @@ searchguard:
   nextmajorversion: 6.2.2-21.0
   islatestversion: false
   allversions:
+    - 6x-22
     - 6x-21
     - 6x-20
     - v5
     - v2
 
 docroots: 
-  6x-21: latest
-  6x-20: 6x-20
+  6x-22: latest
+  6x-21: 6.x-21
+  6x-20: 6.x-20
   v5: v5
   v2: v2
     
@@ -54,6 +56,7 @@ labels:
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    6x-22: Search Guard 6.x-22
     6x-21: Search Guard 6.x-21
     6x-20: Search Guard 6.x-20
     v5: Search Guard 5
