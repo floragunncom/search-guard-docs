@@ -1,7 +1,7 @@
 ---
-title: Field masking
-html_title: Field masking
-slug: field-masking
+title: Field anonymization
+html_title: Field anonymization
+slug: field-anonymization
 category: compliance
 order: 300
 layout: docs
@@ -12,7 +12,7 @@ description: Use the Search Guard Compliance edition to mask and anonymize sensi
 Copryight 2018 floragunn GmbH
 -->
 
-# Field masking
+# Field anonymization
 
 **This is beta software. The configuration settings listed here may change in subsequent releases. Do not use in production yet!**
 
