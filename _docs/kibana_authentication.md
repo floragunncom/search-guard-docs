@@ -1,5 +1,6 @@
 ---
-title: Kibana Authentication
+title: Authentication
+html_title: Kibana Authentication
 slug: kibana-authentication
 category: kibana
 order: 200
@@ -11,7 +12,7 @@ description: Use the Search Guard Kibana plugin to add authentication and sessio
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Kibana authentication
+# Authentication
 
 ## How it works
 
@@ -32,7 +33,7 @@ In this mode, the Search Guard plugin will forward any white-listed HTTP headers
 
 ## Basic authentication configuration
 
-Use the following settings in `kibana.yml` to configure the authentication:
+Use the following settings in `kibana.yml` to configure HTTP Basic authentication:
 
 | Name | Description |
 |---|---|
@@ -44,26 +45,13 @@ Use the following settings in `kibana.yml` to configure the authentication:
 | searchguard.session.ttl | Integer, lifetime of the session in milliseconds. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour |
 | searchguard.session.keepalive | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true |
 
+### Preventing users from logging in
 
-### Customising the login page
+You can prevent users from logging in to Kibana by listing them in `kibana.yml`. This is useful if you don't want system users like the Kibana server user or the logstash user to log in. In `kibana.yml`, set:
 
-You can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
-
-<p align="center">
-<img src="
-kibana_customize_login.jpg" style="width: 40%" class="md_image"/>
-</p>
-
-Use the following setting in kibana.yml to customize one or more elements:
-
-| Name | Description |
-|---|---|
-| searchguard.basicauth.login.showbrandimage | boolean, show or hide the brand image, Default: true|
-| searchguard.basicauth.login.brandimage | String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
-| searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
-| searchguard.basicauth.login.title | String, title of the login page. |
-| searchguard.basicauth.login.subtitle | String, subtitle of the login page. |
-| searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
+```
+searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
+```
 
 ## SSO configuration: Whitelisting HTTP headers
 

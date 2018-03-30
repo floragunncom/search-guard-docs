@@ -1,5 +1,6 @@
 ---
-title: Kibana Multitenancy
+title: Multitenancy
+html_title: Kibana Multitenancy
 slug: kibana-multi-tenancy
 category: kibana
 order: 300
@@ -8,7 +9,7 @@ edition: enterprise
 description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
 ---
 
-# Kibana Multitenancy
+# Multitenancy
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
