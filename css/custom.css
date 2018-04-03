@@ -55,3 +55,7 @@ pre{padding:1em;margin:.5em 0;overflow:auto;}
 :not(pre) > code,
 pre{background:#f5f2f0;}
 :not(pre) > code{padding:.1em;border-radius:.3em;}
+
+.code-highlight :not(pre)>code[class*=language-], .code-highlight pre[class*=language-] {
+	background-color: #f5f2f0
+}

@@ -1,5 +1,6 @@
 ---
-title: Kibana Authentication
+title: Authentication
+html_title: Kibana Authentication
 slug: kibana-authentication
 category: kibana
 order: 200
@@ -11,7 +12,7 @@ description: Use the Search Guard Kibana plugin to add authentication and sessio
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Kibana authentication
+# Authentication
 
 ## How it works
 
@@ -32,7 +33,7 @@ In this mode, the Search Guard plugin will forward any white-listed HTTP headers
 
 ## Basic authentication configuration
 
-Use the following settings in `kibana.yml` to configure the authentication:
+Use the following settings in `kibana.yml` to configure HTTP Basic authentication:
 
 | Name | Description |
 |---|---|
@@ -44,26 +45,47 @@ Use the following settings in `kibana.yml` to configure the authentication:
 | searchguard.session.ttl | Integer, lifetime of the session in milliseconds. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour |
 | searchguard.session.keepalive | boolean, if set to true the session lifetime is extended by `searchguard.session.ttl` upon each request. Default: true |
 
+### Preventing users from logging in
 
-### Customising the login page
+You can prevent users from logging in to Kibana by listing them in `kibana.yml`. This is useful if you don't want system users like the Kibana server user or the logstash user to log in. In `kibana.yml`, set:
 
-You can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
+```
+searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
+```
 
-<p align="center">
-<img src="
-kibana_customize_login.jpg" style="width: 40%" class="md_image"/>
-</p>
+### Using the Kibana API
 
-Use the following setting in kibana.yml to customize one or more elements:
+Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with Search Guard users, simply add an HTTP Basic authentication header in the request. For example:
 
-| Name | Description |
-|---|---|
-| searchguard.basicauth.login.showbrandimage | boolean, show or hide the brand image, Default: true|
-| searchguard.basicauth.login.brandimage | String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
-| searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
-| searchguard.basicauth.login.title | String, title of the login page. |
-| searchguard.basicauth.login.subtitle | String, subtitle of the login page. |
-| searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   <b>-u hr_employee:hr_employee \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
+
+
+If you are using [Search Guard Multitenancy](kibana_multitenancy.md), you can also specify the tenant by adding the `sg_tenant` HTTP header:
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   -u hr_employee:hr_employee \
+   <b>-H "sg_tenant: management" \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
 
 ## SSO configuration: Whitelisting HTTP headers
 
