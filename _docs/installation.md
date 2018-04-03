@@ -169,6 +169,7 @@ searchguard.restapi.roles_enabled: ["sg_all_access"]
 
 If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](restapi_api_access.md).
 
+The REST management API is an Enterprise feature.
 
 ## Initializing Search Guard
 

@@ -4,7 +4,7 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52993790-7"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
+	  function() {};unction gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
 	  gtag('config', 'UA-52993790-7');
@@ -21,7 +21,7 @@
 	<!-- OG and Twitter -->
 	<meta property="og:title" content="{%if page.html_title != null %}{{page.html_title}} | Search Guard | Security for Elasticsearch{% else %}{{page.title}} | Search Guard | Security for Elasticsearch{% endif %}" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="http://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
+	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
 	<meta property="og:description" content="{{page.description}}" />
 	<meta property="og:locale" content="en_US" />
 	<meta name="twitter:card" content="summary" />
@@ -36,13 +36,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Favicon  -->
 
-	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo57.png" />        
-	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo114.png" sizes="114x114" />        
-	<link rel="apple-touch-icon" href="https://floragunn.com/wp-content/uploads/2017/03/searchguardLogo72.png" sizes="72x72" />                
-	<link rel="icon" href="https://floragunn.com/wp-content/uploads/searchguardLogoSquare30.png" sizes="32x32" />
-	<link rel="icon" href="https://floragunn.com/wp-content/uploads/searchguardLogoSquare30.png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-57px.png" />        
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-114px.png" sizes="114x114" />        
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-172px.png" sizes="72x72" />                
+	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-32px.png" sizes="32x32" />
+	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-144px.png" sizes="144x144" />
 
-	<link rel="canonical" href="http://docs.search-guard.com{{site.baseurl}}{{page.url}}">
+	<link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}{{page.url}}">
 	
 	{%if site.searchguard.islatestversion == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
