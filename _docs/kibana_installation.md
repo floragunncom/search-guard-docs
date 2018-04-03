@@ -34,6 +34,8 @@ Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cgav
 * cd into your Kibana installaton directory.
 * Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`. 
 
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped.  
+
 ## Configuring the Kibana server user
 
 For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Kibana uses a special user, called the *Kibana server user*.

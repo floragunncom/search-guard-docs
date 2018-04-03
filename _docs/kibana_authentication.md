@@ -53,6 +53,40 @@ You can prevent users from logging in to Kibana by listing them in `kibana.yml`.
 searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
 ```
 
+### Using the Kibana API
+
+Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with Search Guard users, simply add an HTTP Basic authentication header in the request. For example:
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   <b>-u hr_employee:hr_employee \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
+
+
+If you are using [Search Guard Multitenancy](kibana_multitenancy.md), you can also specify the tenant by adding the `sg_tenant` HTTP header:
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   -u hr_employee:hr_employee \
+   <b>-H "sg_tenant: management" \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
+
 ## SSO configuration: Whitelisting HTTP headers
 
 In order for Kibana to pass HTTP headers to Elasticsearch/Search Guard, they need to be whitelisted in `kibana.yml`.
