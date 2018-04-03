@@ -34,7 +34,7 @@ The respective query to filter these documents in regular query DSL would look l
 }
 ```
 
-You can use this exact query to define the DLS in `sg_roles.yml`:
+You can use this query to define the DLS in `sg_roles.yml`. Note that the `query` key must be omitted:
 
 ```yaml
 hr_employee:
@@ -42,7 +42,7 @@ hr_employee:
     'humanresources':
       'employees':
         - '*'
-      _dls_: '{"query": { "bool": { "must_not": { "match": { "department": "Management" }}}}}'
+      _dls_: '{ "bool": { "must_not": { "match": { "department": "Management" }}}}'
 ```
 
 If a user has the role `hr_employee`, Search Guard now filters all documents where the `department` field is set to "Management" from any search result before passing it back to the user.

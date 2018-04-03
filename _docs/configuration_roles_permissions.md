@@ -113,9 +113,9 @@ sg_own_index:
 
 Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
 
-For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. For internal users, these are the key/values configured in the `attributes` section of the user.
+For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. For internal users, these are the keys/values configured in the `attributes` section of the user.
 
-You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. For internal users, they start with `attr.internal.*`
+You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr_jwt_*`, for LDAP they start with `attr_ldap_*`. For internal users, they start with `attr_internal_*`
 
 If you're unsure, what attributes are accessible for the current user you can always check the `/_searchguard/authinfo` endpoint. This endpoint will list all attribute names for the currently logged in user.
 
@@ -139,7 +139,7 @@ sg_own_index:
   cluster:
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '${attr.jwt.department}':
+    '${attr_jwt_department}':
       '*':
         - INDICES_ALL
 ```
@@ -155,7 +155,7 @@ sg_department_index:
   cluster:
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '${attr.ldap.department}':
+    '${attr_ldap_department}':
       '*':
         - INDICES_ALL
 ```
@@ -181,13 +181,12 @@ sg_department_index:
   cluster:
     - CLUSTER_COMPOSITE_OPS
   indices:
-    '${attr.internal.department}':
+    '${attr_internal_department}':
       '*':
         - INDICES_ALL
 ```
 
 In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations`.
-
 
 ### Multiple Variables
 
@@ -198,7 +197,7 @@ sg_department_index:
   cluster:
     - CLUSTER_COMPOSITE_OPS
   indices:
-    'logfiles-${attr.ldap.department}-${user_name}-*':
+    'logfiles-${attr_ldap_department}-${user_name}-*':
       '*':
         - INDICES_ALL
 ```

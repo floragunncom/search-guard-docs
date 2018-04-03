@@ -22,6 +22,6 @@ In most cases, you want to configure both authentication and authorization, howe
 
 ## Where to go next
 
-* Configure the [connection settings](ldap_connection.md) for your Active Directory or LDAP server
+* Configure the [connection settings](ldap_connection_settings.md) for your Active Directory or LDAP server
 * Use Active Directory and LDAP for [user authentication](ldap_authentication.md).
 * Use Active Directory and LDAP for [user authorisation](ldap_authorisation.md).

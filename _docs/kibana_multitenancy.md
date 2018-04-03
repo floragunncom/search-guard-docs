@@ -1,5 +1,6 @@
 ---
-title: Kibana Multitenancy
+title: Multitenancy
+html_title: Kibana Multitenancy
 slug: kibana-multi-tenancy
 category: kibana
 order: 300
@@ -8,7 +9,7 @@ edition: enterprise
 description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
 ---
 
-# Kibana Multitenancy
+# Multitenancy
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
@@ -32,9 +33,7 @@ In case the user does not have permissions to access the underlying index of a v
 
 The Kibana multitenancy module brings true separation of stored objects based on the configured **tenants** of a user's **role**.
 
-## Tenants
-
-### Definition
+## Tenants: Definition
 
 A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
@@ -80,7 +79,7 @@ The following configuration keys are available:
 | searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
 | searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Default: false.  |
 
-#### Adding tenants
+### Adding tenants
 
 If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.
 
@@ -174,6 +173,25 @@ http://localhost:5601/app/kibana?sg_tenant=mytenant#/visualize/edit/919f5810-55f
 ```
 
 Make sure to add the the query parameter before the hash sign.
+
+### Using the Kibana API
+
+Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with tenants, specify the tenant by adding the `sg_tenant` HTTP header:
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   -u hr_employee:hr_employee \
+   <b>-H "sg_tenant: management" \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
+
 
 ### Filter bar for tenants
 

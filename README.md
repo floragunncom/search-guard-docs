@@ -8,7 +8,7 @@ This is the official documentation for Search Guard 6.x-20. If you find any erro
 
 The online version version can be found here:
 
-[Search Guard 6.x-20 Documentation](http://docs.search-guard.com/6.x-20/)
+[Search Guard 6.x-20 Documentation](https://docs.search-guard.com/6.x-20/)
 
 
 Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in other countries

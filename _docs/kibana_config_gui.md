@@ -20,6 +20,8 @@ The configuration GUI is part of the [Search Guard Kibana plugin](kibana_install
 
 It uses the Search Guard [REST management API](restapi_api_access.md) under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.
 
+**The configuration GUI is an Enterprise feature and not available in the Community Edition**
+
 ## Access control
 
 The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `elasticsearch.yml` with the following key:
