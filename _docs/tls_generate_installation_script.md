@@ -58,7 +58,6 @@ The demo installer will place the following files in the `config` directory of y
 	</ul>
 </div>
 
-The password for all certificates is `changeit`.
 
 ## Allow demo certificate usage
 
