@@ -1,5 +1,5 @@
 ---
-title: Online Generator
+title: Online TLS Generator
 slug: online-tls-generator
 category: generating-certificates
 order: 200

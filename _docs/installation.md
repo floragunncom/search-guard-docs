@@ -114,7 +114,8 @@ If you already have a PKI infrastructure in place, you usually obtain the requir
 
 If this is not the case, you have the following options to generate certificates:
 
-* Use the [Search Guard demo installation](tls_generate_installation_script.md) script (not safe for production)
+* Use the [Search Guard demo installation script](tls_generate_installation_script.md)  (not safe for production)
+* Download the [Search Guard demo certificates](tls_download_certificates.md) (not safe for production)
 * Use the [Online TLS generator service](tls_generate_online.md) (not safe for production)
 * Use the [Offline TLS Tool](tls_generate_tlstool.md) (safe for production)
 * Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
