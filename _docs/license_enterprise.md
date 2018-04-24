@@ -13,17 +13,17 @@ Copryight 2017 floragunn GmbH
 
 # Search Guard Enterprise Edition
 
-Search Guard ships the Enterprise Edition by default. All Enterprise modules and features are included and enabled by default. In order to use this edition on productive systems you need to [obtain a license](https://floragunn.com/searchguard-license-support/){:target="_blank"}. 
+Search Guard ships the Enterprise Edition by default. All Enterprise modules and features are included and enabled by default. In order to use this edition on productive systems you need to [obtain a license](https://search-guard.com/licensing/){:target="_blank"}. 
 
 ## Trial License
 
-When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us](https://floragunn.com/contact/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
+When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us](https://search-guard.com/contacts/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
 
 ## Enterprise License
 
-For running Search Guard Enterprise on production systems you need to [obtain a license](https://floragunn.com/searchguard-license-support/){:target="_blank"}. Search Guard is licensed per cluster, and the license covers all non-production systems like development, staging and QA as well.
+For running Search Guard Enterprise on production systems you need to [obtain a license](https://search-guard.com/licensing/){:target="_blank"}. Search Guard is licensed per cluster, and the license covers all non-production systems like development, staging and QA as well.
 
-For a feature comparison between the Enterprise and Community Edition please refer to [our website](https://floragunn.com/searchguard-license-support/){:target="_blank"}.
+For a feature comparison between the Enterprise and Community Edition please refer to [our website](https://search-guard.com/licensing/){:target="_blank"}.
 
 ## Academic and Scientific License
 
@@ -36,11 +36,11 @@ Free enterprise licenses are available for:
 * Unlimited amount of clusters
 * Unlimited amount of time
 
-Please see the [License and Support page](https://floragunn.com/searchguard-license-support/){:target="_blank"} to see if your institution is eligible for this programme. 
+Please see the [License and Support page](https://search-guard.com/licensing/){:target="_blank"} to see if your institution is eligible for this programme. 
 
 ## OEM license
 
-If you're a system integrator or want to ship Search Guard as part of your own product, please [see our partners page](https://floragunn.com/search-guard-partners/){:target="_blank"} for further information.
+If you're a system integrator or want to ship Search Guard as part of your own product, please [see our partners page](https://search-guard.com/partners/){:target="_blank"} for further information.
 
 ## License Handling
 
