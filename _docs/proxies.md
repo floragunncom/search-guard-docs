@@ -31,8 +31,7 @@ searchguard:
       xff:
         enabled: true
         remoteIpHeader: 'x-forwarded-for'
-        trustedProxies: '192\.168\.0\.10|192\.168\.0\.11'
-        internalProxies: '192\.168\.0\.11'
+        internalProxies: '192\.168\.0\.11|192\.168\.0\.12'
 ```
 
 You can configure the following settings:
@@ -40,7 +39,6 @@ You can configure the following settings:
 | Name | Description |
 |---|---|
 | searchguard.dynamic.http.xff.enabled | Boolean, Enable or disable proxy support. Default: true |
-| searchguard.dynamic.http.xff.trustedProxies | Regular expression, list of proxy IPs that are deemed trusted. If a proxied request comes from an IP that does not match this regular expression, it is denied. |
-| searchguard.dynamic.http.xff. internalProxies | Regular expression, defines the last proxy in the chain before the request is routed to the Elasticsearch cluster. If you have just one proxy, this is effectively the same as the `trustedProxies` setting. If the last proxy does not match the configured regular expression, an error is thrown and the request is denied. |
-| searchguard.dynamic.http.xff. remoteIpHeader | String, name of the HTTP header field where the chain of hostnames are stored. Default: `x-forwarded-for` |
+| searchguard.dynamic.http.xff.internalProxies | A regular expression containing all trusted proxies. Search Guard compares the remote address of the HTTP request with the list of internal proxies. If the remote address is not in the list of trusted proxies, it is treated like a client request. [Proxy authentication](proxy_auth.md) will not work in this case.   |
+| searchguard.dynamic.http.xff.remoteIpHeader | String, name of the HTTP header field where the chain of hostnames are stored. Default: `x-forwarded-for` |
 
