@@ -20,7 +20,7 @@ As a rule of thumb, if a plugin is compatible with Shield, it is also compatible
 
 If the plugin talks to Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS and HTTP Basic Authentication.
 
-If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://floragunn.com/searchguard-elasicsearch-transport-clients/){:target="_blank"}.
+If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://search-guard.com/searchguard-elasicsearch-transport-clients/){:target="_blank"}.
 
 ### Compatible plugins and tools
 

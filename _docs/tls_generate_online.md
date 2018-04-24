@@ -13,9 +13,9 @@ Copryight 2017 floragunn GmbH
 
 # Online TLS certificate generator
 
-We provide an [online TLS service](https://floragunn.com/tls-certificate-generator/){:target="_blank"} which you can use to generate all required certificates for running Search Guard: 
+We provide an [online TLS service](https://search-guard.com/tls-certificate-generator/){:target="_blank"} which you can use to generate all required certificates for running Search Guard: 
 
-[https://floragunn.com/tls-certificate-generator/](https://floragunn.com/tls-certificate-generator/){:target="_blank"}
+[https://search-guard.com/tls-certificate-generator/](https://search-guard.com/tls-certificate-generator/){:target="_blank"}
 
 You need to provide your email address and organisation name, and can specify up to 10 hostnames. The certificates, key and truststore files are generated in the background and we will send you a download link once the certificates have been created.
 
