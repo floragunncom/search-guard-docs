@@ -1,23 +1,22 @@
 ---
-title: Demo Installer (Linux/Mac)
-slug: demo-installer
+title: Manual Installation (Windows)
+slug: installation-windows
 category: quickstart
-order: 200
+order: 500
 layout: docs
 edition: community
-description: Search Guard ships with a demo installer for quickly setting up a working configuration. Use it for PoCs or checking out our features. 
+description: How to download and install Search Guard and all required TLS certificates on a Windows machine. 
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->
 
-# Demo Installer 
+# Manual installation (Windows) 
 
-To quickly set up a Search Guard secured Elasticsearch cluster:
+To quickly set up a Search Guard secured Elasticsearch cluster on Windows:
 
 1. Install the Search Guard Plugin to Elasticsearch
-2. Execute the Search Guard demo installation script
-
-The demo installation script will setup and configure Search Guard on an existing Elasticsearch cluster. It also installs demo users and roles for Elasticsearch, Kibana and Logstash. It uses self-signed TLS certificates and unsafe configuration options, so **do not use in production!**
+2. Download and unzip the demo certificates to the config directory of Elasticsearch
+3. Add the Search Guard minimal configuration to elasticsearch.yml
 
 To use the (optional) Search Guard Kibana plugin which adds security and configuration features to Kibana:
 
@@ -46,41 +45,42 @@ An overview of all available Search Guard versions can be found on the [Search G
 
 For offline installation and more details, see the [Search Guard installation chapter](installation.md)
 
-## Execute the demo installation script
+## Download and install the Search Guard demo certificates
 
-Search Guard ships with a demo installation script. The script will:
+Download the [certificates zip file](https://downloads.search-guard.com/downloads/certificates/certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
 
-* Add demo TLS certificates in PEM format to the `config` directory of Elasticsearch
-* Add the required TLS configuration to the `elasticsearch.yml` file.
-* Add the auto-initialize option to `elasticsearch.yml`. This option will initialize the Search Guard configuration index automatically if it does not exist.
-* Generate a `sgadmin_demo.sh` script that you can use for applying configuration changes on the command line
-
-Note that the script only works with vanilla Elasticsearch installations. If you already made changes to ``elasticsearch.yml``, especially the cluster name and the host entries, you might need to adapt the generated configuration.
-
-To execute the demo installation:
-
-* ``cd`` into `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
-* Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary.)
-
-The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
-
-```bash
-Search Guard {{site.searchguard.esmajorversion}} Demo Installer
- ** Warning: Do not use on production or publicly reachable systems **
-Install demo certificates? [y/N] y
-Initialize Search Guard? [y/N] y
-Enable cluster mode? [y/N] n
+```
+<ES installation directory>/config
 ```
 
-* Install demo certificates
-  * Whether to install the self-signed demo TLS certificates or not
-* Initialize Search Guard
-  * Whether to auto-initialize Search Guard with the demo configuration
-  * If answered with `y`, Search Guard will initialize the configuration index with the files from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory if the index does not exist 
-* Enable cluster mode
-  * If answered with `y`, the `network.host` parameter will be set to `0.0.0.0` to bind to all interfaces
-  * Depending on your system you may need to adjust the `vm.max_map_count` for Elasticsearch to start
-  * see [https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) 
+## Add the minimal Search Guard configuration
+
+Add the following minimal Search Guard configuration to `elasticsearch.yml`:
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-yml">
+<code class=" js-code language-markup">
+searchguard.ssl.transport.pemcert_filepath: esnode.pem
+searchguard.ssl.transport.pemkey_filepath: esnode-key.pem
+searchguard.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+searchguard.ssl.transport.enforce_hostname_verification: false
+searchguard.ssl.http.enabled: true
+searchguard.ssl.http.pemcert_filepath: esnode.pem
+searchguard.ssl.http.pemkey_filepath: esnode-key.pem
+searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
+searchguard.allow_unsafe_democertificates: true
+searchguard.allow_default_init_sgindex: true
+searchguard.authcz.admin_dn:
+  - CN=kirk,OU=client,O=client,L=test,C=de
+searchguard.enable_snapshot_restore_privilege: true
+searchguard.check_snapshot_restore_write_privileges: true
+searchguard.restapi.roles_enabled: ["sg_all_access"]
+</code>
+</pre>
+</div>
+
+Restart your node(s) for the changes to take effect.
 
 ## Testing the Elasticsearch installation
 
@@ -91,7 +91,7 @@ Enable cluster mode? [y/N] n
 
 ## Applying configuration changes
 
-The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch itself, the so-called Search Guard Index. 
+The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch, the *Search Guard Index*. 
 
 Changes to the Search Guard configuration must be applied to this index by either
 
@@ -103,7 +103,19 @@ For using the Kibana Configuration GUI you need to install the Search Guard Kiba
 If you want to use the sgadmin tool:
 
 * Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
-* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/sgadmin_demo.sh`
+* Execute sgadmin to upload the changed configuration to Search Guard
+
+To execute sgadmin, first cd into 
+
+```
+<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools
+```
+
+And execute:
+
+```
+sgadmin.bat -cd ..\sgconfig -key ..\..\..\config\kirk-key.pem -cert ..\..\..\config\kirk.pem -cacert ..\..\..\config\root-ca.pem -nhnv -icl
+```
 
 This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
 
