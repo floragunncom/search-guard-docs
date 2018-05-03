@@ -70,7 +70,75 @@ proxy_auth_domain:
 | user_header | String, The HTTP header field containing the authenticated username. Default: `x-proxy-user` |
 | roles_header | String, The HTTP header field containing the comma separated list of authenticated role names. Roles found in this header field will be used as backend roles and can be used to [map the user to Search Guard roles](configuration_roles_mapping.md). Default: `x-proxy-roles` |
 
-### Kibana proxy authentication
+
+## Example
+
+In the following example we run an nginx proxy in front of a 3-node Elasticsearch cluster. For the sake of simplicity we use hardcoded values for `x-proxy-user` and `x-proxy-roles`. In a real world example you would set these headers dynamically.
+
+```
+events {
+  worker_connections  1024;
+}
+
+http {
+
+  upstream elasticsearch {
+    server sgssl-0.example.com:9200;
+    server sgssl-1.example.com:9200;
+    server sgssl-2.example.com:9200;
+    keepalive 15;
+  }
+
+  server {
+    listen       8090;
+    server_name  nginx.example.com;
+
+    location / {
+      proxy_pass https://elasticsearch;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header x-proxy-user admin;
+      proxy_set_header x-proxy-roles admin;
+    }
+  }
+
+}
+```
+
+The corresponding minimal sg_config.yml looks like:
+
+```
+searchguard:
+  dynamic:
+    http:
+      xff:
+        enabled: true
+        internalProxies: '172.16.0.203' # nginx proxy
+    authc:
+      proxy_auth_domain:
+        http_enabled: true
+        transport_enabled: true
+        order: 0
+        http_authenticator:
+          type: proxy
+          challenge: false
+          config:
+            user_header: "x-proxy-user"
+            roles_header: "x-proxy-roles"
+        authentication_backend:
+          type: noop
+```
+
+The important part is to enable the `X-Forwarded-For (XFF)` resolution and to set the IP(s) of the internal proxies correctly:
+
+```
+enabled: true
+internalProxies: '172.16.0.203' # nginx proxy
+```
+In our case, `nginx.example.com` runs on `172.16.0.203`, so we need to  add this IP to the list of internal proxies.
+
+**Make sure to set the `internalProxies` correctly, so only requests  from trusted IPs are accepted.**
+
+## Kibana proxy authentication
 
 If you plan to use proxy authentication with Kibana, the most common setup is to place an authenticating proxy in front of Kibana, and let Kibana pass the user and role header to Search Guard:
 
@@ -96,9 +164,3 @@ To pass the user and role headers that the authenticating proxy adds from Kibana
 elasticsearch.requestHeadersWhitelist: ["authorization", "sgtenant", "x-proxy-user", "x-proxy-roles"]
 
 ```
-
-### Security considerations
-
-If you are using proxy authentication, Search Guard assumes that the request stems from a trusted proxy/SSO server and also assumes that the entries in the header fields `user_header` and `roles_header` are correct and verified.
-
-HTTP header fields can be easily spoofed, so an attacker could set these fields to arbitrary values. Make sure to set the `internalProxies` in the `xff` section of the configuration correctly to only accept requests from trusted IPs.
