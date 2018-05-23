@@ -28,11 +28,19 @@ searchguard.ssl.http.enabled: true
 
 ## Installing the Search Guard Plugin
 
-Download the [Search Guard Kibana plugin](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
+Copy the URL of the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
 
 * Stop Kibana
-* cd into your Kibana installaton directory.
-* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`. 
+* cd into your Kibana installaton directory
+* Execute: `bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`
+
+### Offline installation
+
+Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
+
+* Stop Kibana
+* cd into your Kibana installation directory
+* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
 
 After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped.  
 
