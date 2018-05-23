@@ -100,7 +100,7 @@ In order to upgrade the Search Guard Kibana Plugin:
 
 ### Adding the Kibana server user
 
-As outlined above, Kibana uses a special user internally to talk to Elasticsearch when performing management calls. The username and password for this user is configured in `kibana.yml`. 
+Kibana uses a special user internally to talk to Elasticsearch when performing management calls. The username and password for this user is configured in `kibana.yml`. 
 
 On the Elasticsearch side, make sure that this user has the required permissions. If you use the Search Guard demo configuration, you can either use the `kibanaserver` user account, or you can map a different user to the role `sg_kibana_server`.
 
