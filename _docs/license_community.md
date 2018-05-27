@@ -14,13 +14,13 @@ Copryight 2017 floragunn GmbH
 
 The Community Edition of Search Guard is free, and you can use it for production and non-production systems. It includes TLS encryption on REST and on transport layer, HTTP Basic Authentication, the Internal User Database authentication backend and Kibana session management.
 
-The Community Edition does not require a license. To use it, simply disable all enterprise features by adding the following line to `elasticsearch.yml` and restart the node:
+The Community Edition does not require a license. To use it, just install the Enterprise Edition and disable all commercial features by adding the following line to `elasticsearch.yml` and restart the node:
 
 ```yaml
 searchguard.enterprise_modules_enabled: false
 ```
 
-Setting this flag will disable any Enterprise module or custom authentication domain and will run only the Community features of Search Guard.
+Setting this flag will disable any commercial module or custom authentication domain and will run only the free Community features of Search Guard.
 
 ## Checking your version
 

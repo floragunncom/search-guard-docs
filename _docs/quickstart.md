@@ -42,7 +42,7 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguar
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
 
-An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
+An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](installation_versionmatrix.md) page.
 
 For offline installation and more details, see the [Search Guard installation chapter](installation.md)
 

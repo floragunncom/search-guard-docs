@@ -15,9 +15,13 @@ Copryight 2017 floragunn GmbH
 
 This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the [Quickstart Guide.](quickstart.md). 
 
-## Enterprise and Community Edition
+## Community, Enterprise and Compliance Edition
 
-Search Guard ships with all Enterprise features already installed and enabled. These features require a license if you want to run them in production. If you just want to use the free Community Edition of Search Guard, you can [disable the enterprise features manually.](license_community.md)
+Search Guard ships with all Enterprise features already installed and enabled by default. Just install the [Enterprise Edition matching the version of your Elasticsearch installation](installation_versionmatrix.md) and you are good to go.
+
+The Compliance Edition requires Elasticsearch 6.2.1 or higher. In order to use the Compliance features in addition to the Enterprise features you need to install the [Search Guard Compliance Edition matching the version of your Elasticsearch installation](installation_versionmatrix.md).
+
+If you just want to use the free Community Edition, install Search Guard Enterprise and then [disable all commercial features](license_community.md). 
 
 ## General
 
@@ -61,7 +65,7 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguar
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
 
-An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
+An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix page](installation_versionmatrix.md) page.
 
 After the installation you see a folder called `search-guard-{{site.searchguard.esmajorversion}}` in the plugin directory of your Elasticsearch installation.
 
