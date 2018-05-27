@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar">
+
+								{% include left_nav_search.html %}
+								
+								{% include left_nav_docs.html %}
+
+							</div>
+						</div>
+						<div class="col-md-9">
+							{% include version.html %}
+							{{ content }}
+							<h2>Community and Enterprise Edition: Latest versions</h2>
+							<table>
+  								<thead>
+							    <tr>
+							      <th>Elasticsearch Version</th>
+							      <th>Search Guard Version</th>
+							      <th>Kibana Plugin Version</th>
+							      <th>Artifact</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+
+								{% for version in site.sgversions.enterprise %}
+							    <tr>
+							      {% assign sgversions = version | split: "|" %}							       
+							      <td>{{ sgversions[0] }}</td>
+							      <td>{{ sgversions[1] }}</td>
+								  <td>{{ sgversions[2] }}</td>
+								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+							    </tr>
+							    {% endfor %}
+							  </tbody>
+							</table>
+
+							<h2>Compliance Edition: Latest versions</h2>
+							<table>
+  								<thead>
+							    <tr>
+							      <th>Elasticsearch Version</th>
+							      <th>Search Guard Version</th>
+							      <th>Kibana Plugin Version</th>
+							      <th>Artifact</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+
+								{% for version in site.sgversions.compliance %}
+							    <tr>
+							      {% assign sgversions = version | split: "|" %}							       
+							      <td>{{ sgversions[0] }}</td>
+							      <td>{{ sgversions[1] }}</td>
+								  <td>{{ sgversions[2] }}</td>
+								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+							    </tr>
+							    {% endfor %}
+							  </tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}</body>
+
+	<script type="application/ld+json">
+	{
+  		"@context": "http://schema.org",
+  		"@type": "WebSite",
+  		"url": "https://docs.search-guard.com{{site.baseurl}}",
+  		"potentialAction": {
+    		"@type": "SearchAction",
+    		"target": "https://docs.search-guard.com/latest/search.html?q={search_term_string}",
+    		"query-input": "required name=search_term_string"
+  		}
+	}
+	</script>
+</html>

@@ -1,29 +1,31 @@
 ---
-title: Enterprise Edition
+title: Enterprise and Compliance Edition
 slug: search-guard-enterprise-edition
 category: installation
 order: 200
 layout: docs
 edition: enterprise
-description: License conditions of Search Guard Enterprise Edition, the enterprise security suite for Elasticsearch.
+description: The Search Guard Enterprise and Compliance license offers enterprise security for Elasticsearch for unlimited nodes at a steady rate. Scale your cluster, not your cost!  
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
-# Search Guard Enterprise Edition
-
-Search Guard ships the Enterprise Edition by default. All Enterprise modules and features are included and enabled by default. In order to use this edition on productive systems you need to [obtain a license](https://search-guard.com/licensing/){:target="_blank"}. 
+# Enterprise and Compliance Edition
 
 ## Trial License
 
-When installing Search Guard for the first time, a trial license is automatically generated. This license is valid for 60 days and includes all Search Guard enterprise features. If the trial license has expired, [contact us](https://search-guard.com/contacts/){:target="_blank"} for obtaining an Enterprise license or to extend your Trial license.
+When installing Search Guard for the first time, a trial license is automatically generated. Depending on the installed version, it unlocks all Enteprise and Compliance features without any limitation.
 
-## Enterprise License
+This trial license is valid for 60 days. If you want to extend it, just [contact us](https://search-guard.com/contacts/) and we're happy to send you an extended license. 
 
-For running Search Guard Enterprise on production systems you need to [obtain a license](https://search-guard.com/licensing/){:target="_blank"}. Search Guard is licensed per cluster, and the license covers all non-production systems like development, staging and QA as well.
+## Enterprise and Compliance License
 
-For a feature comparison between the Enterprise and Community Edition please refer to [our website](https://search-guard.com/licensing/){:target="_blank"}.
+For running Search Guard Enterprise or Compliance on production systems you need to [obtain a license](https://search-guard.com/licensing/){:target="_blank"}. Search Guard is licensed per cluster with an unlimited number of nodes. The license covers all non-production systems like development, staging and QA as well.
+
+For a feature comparison between the Complince, Enterprise and Community Edition please refer to [our website](https://search-guard.com/licensing/){:target="_blank"}.
+
+**In order to use the Compliance Edition you need to run Elasticsearch 6.2.x or higher**
 
 ## Academic and Scientific License
 
@@ -82,9 +84,9 @@ See the [REST management API](restapi_api.md) configuration chapter for further 
 
 If you're using the Search Guard Kibana plugin, you can display your license and system information by clicking on "Search Guard" / "License & System Info".
 
-### Applying an Enterprise License
+### Applying an Enterprise or Compliance License
 
-After obtaining an enterprise license, you can apply it in two ways. 
+After obtaining a license, you can apply it in two ways. 
 
 #### sg_config.yml
 
