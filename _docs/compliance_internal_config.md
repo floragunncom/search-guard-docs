@@ -14,15 +14,6 @@ Copryight 2017 floragunn GmbH
 
 # Search Guard configuration change tracking
 
-**This is a Release Candidate. Do not use in production yet!**
-
-<div class="header-back-buttons helper center" style="margin-top: 40px">
-<a href="https://downloads.search-guard.com/compliance-rc-1" target="_blank" class="button stroke rounded large blue">Download RC</a>
-<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
-</div>
-
-<br />
-
 Search Guard is able to monitor read- and write access to the Search Guard configuration index. This makes it possible to track which user has accessed the configuration information, and get notified about any changes immediately.
 
 ## Enabling and disabling 

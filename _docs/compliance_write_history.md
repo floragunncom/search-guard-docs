@@ -14,15 +14,6 @@ Copryight 2017 floragunn GmbH
 
 # Write History Audit Logging
 
-**This is a Release Candidate. Do not use in production yet!**
-
-<div class="header-back-buttons helper center" style="margin-top: 40px">
-<a href="https://downloads.search-guard.com/compliance-rc-1" target="_blank" class="button stroke rounded large blue">Download RC</a>
-<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
-</div>
-
-<br />
-
 Search Guard can monitor write access to sensitive data in Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard tracks 
@@ -104,8 +95,8 @@ You can control the level of detail by the following configuration settings in e
 
 | Name | Description |
 |---|---|
-| searchguard.compliance.history.metadata_only | boolean, if set to true Search Guard will not log any document content, only meta data. Enable this if you need to know when a document was created, changed or delete, but you are not interested in the actual content. Default is false. |
-| searchguard.compliance.history.write.diffs_only | boolean, if set to true Search Guard will only log diffs. This means that the document content for newly created documents is not stored. Default is false. |
+| searchguard.compliance.history.write.metadata_only | boolean, if set to true Search Guard will not log any document content, only meta data. Enable this if you need to know when a document was created, changed or delete, but you are not interested in the actual content. Default is false. |
+| searchguard.compliance.history.write.log_diffs | boolean, if set to true Search Guard will log diffs for document updates. Default is false. |
 
 ## Field reference
 
@@ -194,6 +185,10 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 ```
 
 ## Performance considerations
+
+### Use diffs only on relevant indices
+
+Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. Performance will improve by leveraging new features in the upcoming Elasticsearch 6.3 release.
 
 ### Keeping the watched indices at a minumum
 

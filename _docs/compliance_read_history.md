@@ -14,15 +14,6 @@ Copryight 2017 floragunn GmbH
 
 # Read History Audit Logging
 
-**This is a Release Candidate. Do not use in production yet!**
-
-<div class="header-back-buttons helper center" style="margin-top: 40px">
-<a href="https://downloads.search-guard.com/compliance-rc-1" target="_blank" class="button stroke rounded large blue">Download RC</a>
-<a href="https://www.surveymonkey.de/r/SearchGuardVanguard" target="_blank" class="button stroke rounded large green">Feedback</a>
-</div>
-
-<br />
-
 Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard emits read events if one or more of the configured watched fields was part of the search result. If the watched fields are filtered from the result, for example by source filtering or applying [field-level security](dlsfls_fls.md), no events are emitted. 
@@ -62,6 +53,15 @@ You can exclude users from the read history by listing them in `elasticsearch.ym
 searchguard.compliance.history.read.ignore_users:
   - admin
 ```
+
+## Logging only metadata
+
+If you do not want to list the accessed fields but only the accessed documents, you can choose to log metadata only:
+
+```yaml
+searchguard.compliance.history.read.metadata_only: <true|false>
+```
+
 
 ## Field reference
 

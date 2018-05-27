@@ -42,7 +42,7 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguar
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
 
-An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](https://github.com/floragunncom/search-guard/wiki) page.
+An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](installation_versionmatrix.md) page.
 
 For offline installation and more details, see the [Search Guard installation chapter](installation.md)
 
@@ -111,7 +111,7 @@ The sgadmin tool is very powerful and offers a lot of features to manage any Sea
 
 ## Install Search Guard on Kibana
 
-The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana. 
+The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana.
 
 * Copy the URL to the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22) matching your exact Kibana version from Maven
 * Stop Kibana

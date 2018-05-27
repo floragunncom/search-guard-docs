@@ -83,10 +83,10 @@ elasticsearch.ssl.verificationMode: none
 Or you can provide the root CA in PEM format by setting:
 
 ```yaml
-elasticsearch.ssl.ca: "/path/to/your/root-ca.pem"
+elasticsearch.ssl.certificateAuthorities: "/path/to/your/root-ca.pem"
 ```
 
-In this case, you can leave the `elasticsearch.ssl.verify` set to `true`.
+In this case, you can leave the `elasticsearch.ssl.verify` set to `certificate` or to `full`. `full` performs hostname verification, while `certificate` does not.
 
 ## Start Kibana
 
