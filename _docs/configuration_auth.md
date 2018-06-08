@@ -23,16 +23,34 @@ Search Guard comes with pluggable authentication and authorisation modules. Depe
 
 The main configuration file for authentication and authorization modules  is `sg_config.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user roles are fetched from backend systems (optional).
 
-It has two main parts:
+It has three main parts:
 
 ```yaml
 searchguard:
   dynamic:
+    http:
+      ...
     authc:
       ...
     authz:
       ...
 ```
+
+## HTTP
+
+The `http` section has the following format:
+
+```yaml
+anonymous_auth_enabled: <true|false>
+xff: # non mandatory section
+  enabled: <true|false>
+  internalProxies: <string> # Regex pattern
+  remoteIpHeader: <string> # Name of the header in which to look. Typically: x-forwarded-for
+  proxiesHeader: <string>
+  trustedProxies: <string> # Regex pattern
+```
+
+Note that if you disable anonymous authentication, SG won't initialize if you have not given at least one enabled `authc`.
 
 ## Authentication
 

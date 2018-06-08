@@ -28,7 +28,7 @@ The configuration for the client certificate authenticator is very minimal:
 
 ```yaml
 clientcert_auth_domain:
-  enabled: false
+  enabled: true
   order: 1
   http_authenticator:
     type: clientcert
@@ -45,12 +45,20 @@ clientcert_auth_domain:
 
 ## Mapping DNs to roles
 
-To map a certificate based user to a role, just use the username as specified by `username_attribute` in `sg_roles_mapping.yml`, for example:
+To map a certificate based user to a role, just use the username as specified by `username_attribute` (`cn` in `clientcert_auth_domain`) in `sg_roles_mapping.yml`, for example:
+
+You issued a certificate for the user `kirk` for which the subject of the certificate is (`openssl x509 -in kirk.crt.pem -text -noout`):
+
+```
+Subject: C=DE, L=Test, O=client, OU=client, CN=kirk
+```
+
+You would then map the role like so:
 
 ```yaml
 sg_role_starfleet:
   users:
-    - 'cn=ldaprole,ou=groups,dc=example,dc=com'
+    - kirk
   backendroles:
     - ...
   hosts:
