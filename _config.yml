@@ -11,16 +11,16 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 6.2.3
-  previousversion: 6.2.2
+  currentversion: 6.2.4
+  previousversion: 6.2.3
 
 searchguard:
   esmajorversion: 6
-  majorversion: 6.x-21
-  fullversion: 6.2.2-21.0
-  nextminorversion: 6.2.2-21.1
-  nextmajorversion: 6.2.2-22.0
-  islatestversion: true  
+  majorversion: 6.x-20
+  fullversion: 6.2.4-20.1
+  nextminorversion: 6.2.4-20.2
+  nextmajorversion: 6.2.4-21.0
+  islatestversion: false
   allversions:
     - 6x-22
     - 6x-21
@@ -35,7 +35,7 @@ docroots:
   v5: v5
   v2: v2
     
-index: true
+index: false
 
 labels:
   navigation:
@@ -70,7 +70,7 @@ relative_links:
   enabled:     true
   collections: true
 
-baseurl: /latest
+baseurl: /6.x-20
 
 collections:
   docs:
@@ -85,7 +85,7 @@ collections:
 
 algolia:
   application_id: '2ESDTH812Y'
-  index_name:     'latest'
+  index_name:     '6x-20'
   record_css_selector: 'h1, h2, h3, h4, h5'
   allowed_extensions:
     - html

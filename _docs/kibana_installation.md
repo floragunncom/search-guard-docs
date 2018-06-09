@@ -41,8 +41,11 @@ Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7
 * Stop Kibana
 * cd into your Kibana installation directory
 * Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
+<<<<<<< HEAD
 
 **For Search Guard 21, at least v10 of the Kibana plugin is required.**
+=======
+>>>>>>> 6.x
 
 After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped.  
 
