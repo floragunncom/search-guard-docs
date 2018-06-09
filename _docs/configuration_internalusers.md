@@ -53,6 +53,8 @@ analyst:
   hash: ...
 ```
 
+As `sg_internal_users.yml` needs to exist and not be empty when configuring sg, if you want no internal users put `{}` in the file.
+
 ## Generating hashed passwords
 
 The password hash is a salted BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
