@@ -13,7 +13,11 @@ jobs:
           command: |
             bundle install
             bundle exec jekyll build --config _config.yml,_versions.yml
+<<<<<<< HEAD
             ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
+=======
+            ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /6.x-20 ./_site/*
+>>>>>>> 6.x
             export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
             echo "Last commit message: $GIT_COMMIT_DESC"
             if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
