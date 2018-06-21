@@ -273,9 +273,10 @@ The following switched control the Search Guard index settings.
 | Name | Description |
 |---|---|
 | -i | Search Guard index name, defaults to searchguard.|
-| -us | Update the replica settings.|
+| -er | Set explicit number of replicas or autoexpand expression for searchguard index|
 | -era | Enable replica auto-expand.|
 | -dra | Disable replica auto-expand.|
+| -us | Update the replica settings.|
 
 The first time you run sgadmin.sh, the ```-us```, ```-era```, ```dra```, and ```-rl``` (reload configuration), flags can cause the initial setup to fail, as the searchguard index does not yet exist.
 

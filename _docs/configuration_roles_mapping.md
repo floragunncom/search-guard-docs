@@ -73,3 +73,15 @@ sg_read_write:
 ```
 
 A request can be assigned to one or more Search Guard roles. If a request is mapped to more than one role, the permissions of these roles are combined.
+
+## Permission handling when assigning multiple roles 
+
+A user can have as many roles as necessary, and all permissions for all roles are assigned to that user. However, if a user has multiple roles that define *different permissions for the same index*, then Search Guard will only use the permissions found in the first role.
+
+If you would like to combine all permissions for that index, enable this feature in `sg_config.yml` like:
+
+```
+searchguard.dynamic.multi_rolespan_enabled: true
+```
+
+This will become the default behavior for Search Guard 7. At the moment the default for this switch is `false`for backwards compatibility.

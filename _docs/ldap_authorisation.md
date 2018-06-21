@@ -88,6 +88,39 @@ If you store the roles as a direct attribute of the user entries in the user sub
 userrolename: roles
 ```
 
+You can configure multiple attribute names separated by comma:
+
+```yaml
+userrolename: roles, otherroles
+```
+
+### Performance: Controlling LDAP user attributes
+
+By default, Search Guard will read all LDAP user attributes and make them available for [index name variable substitution](configuration_roles_permissions.md) or [DLS query variable substitution](dlsfls_dls.md).
+
+If your LDAP entries have a lot of attributes, you may want to control which attributes should be made available as variables. Fewer attributes result in better runtime performance behaviour.
+
+| Name | Description |
+|---|---|
+| custom\_attr\_whitelist  | String array, specifies the LDAP attributes that should be made available for variable substitution. |
+| custom\_attr\_maxval\_len  | Integer, specifies the maximum allowed length of each attribute. All attributes longer than this value will be discarded. A value of `0` will disable custom attributes altogether. Default: 36 |
+
+Example:
+
+```yaml
+authz:
+  ldap:
+    enabled: true
+  authorization_backend:
+    type: ldap
+    config:
+      custom_attr_whitelist:
+        - attribute1
+        - attribute2
+      custom_attr_maxval_len
+      ...
+```
+
 ### Advanced: Exclude certain users from role lookup
 
 If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
