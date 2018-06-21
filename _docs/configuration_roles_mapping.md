@@ -85,3 +85,21 @@ searchguard.dynamic.multi_rolespan_enabled: true
 ```
 
 This will become the default behavior for Search Guard 7. At the moment the default for this switch is `false`for backwards compatibility.
+
+## Advanced: Hostname lookup
+
+Search Guard provides three different approaches to resolve the actual hostname against the configured hosts mapping in `sg_roles_mapping`. This can be configured in `sg_config.yml`:
+
+```yaml
+searchguard
+  dynamic
+    hosts_resolver_mode: <mode>
+```
+
+Where mode is one of:
+
+| Name | Description |
+|---|---|
+| ip-only | Match IP addresses only. Default. |
+| ip-hostname | Match IP addresses and hostnames |
+| ip-hostname-lookup | Match IP addresses and hostnames, and perform a reverse hostname lookup |
