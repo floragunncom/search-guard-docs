@@ -1,10 +1,10 @@
 ---
-title: Search Guard 6.x-21
-slug: changelog-6-x-21
-category: changelogs
+title: Search Guard 6.x-21.0
+slug: changelog-searchguard-6-x-21_0
+category: changelogs-details
 order: 800
 layout: changelogs
-description: Changelog for Search Guard 6.x-21
+description: Changelog for Search Guard 6.x-21.0
 ---
 
 <!---
@@ -41,16 +41,6 @@ Release Date: 07.02.2018
 * sgadmin: warn when cluster consists of nodes with different versions
   * When running a cluster where the nodes have different versions sgadmin now issues a warning
 * sgadmin: warn when admin certificate is also a node certificate (fails if fast fail is given)
-
-### Kibana
-
-* Input fields on the login screen were marked errourness when page loads for the first time
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/issues/55](https://github.com/floragunncom/search-guard-kibana-plugin/issues/55){:target="_blank"}
-* Config GUI not usable if base path is set
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/issues/57](https://github.com/floragunncom/search-guard-kibana-plugin/issues/57){:target="_blank"}
-* Use HTTP Basic Authentication credentials if already present in request
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/issues/58](https://github.com/floragunncom/search-guard-kibana-plugin/issues/58){:target="_blank"}
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/issues/45](https://github.com/floragunncom/search-guard-kibana-plugin/issues/45){:target="_blank"}
 
 ## Features
 
