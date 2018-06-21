@@ -73,3 +73,23 @@ sg_read_write:
 ```
 
 A request can be assigned to one or more Search Guard roles. If a request is mapped to more than one role, the permissions of these roles are combined.
+
+## Advanced: Hostname lookup
+
+Search Guard provides three different approaches to resolve the actual hostname against the configured hosts mapping in `sg_roles_mapping`. This can be configured in `sg_config.yml`:
+
+```yaml
+searchguard
+  dynamic
+    hosts_resolver_mode: <mode>
+```
+
+Where mode is one of:
+
+| Name | Description |
+|---|---|
+| ip-only | Match IP addresses only. Default. |
+| ip-hostname | Match IP addresses and hostnames |
+| ip-hostname-lookup | Match IP addresses and hostnames, and perform a reverse hostname lookup |
+
+
