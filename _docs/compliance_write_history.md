@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 # Write History Audit Logging
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 Search Guard can monitor write access to sensitive data in Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard tracks 

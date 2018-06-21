@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 # Read History Audit Logging
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard emits read events if one or more of the configured watched fields was part of the search result. If the watched fields are filtered from the result, for example by source filtering or applying [field-level security](dlsfls_fls.md), no events are emitted. 
