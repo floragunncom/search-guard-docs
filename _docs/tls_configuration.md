@@ -24,11 +24,11 @@ The following settings configure the location and password of your keystore and 
 | Name | Description |
 |---|---|
 | searchguard.ssl.transport.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
-| searchguard.ssl.transport.keystore\_filepath | Path to the keystore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.keystore\_filepath | Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.keystore\_alias: my\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.transport.keystore_password | Keystore password (default: changeit) |
 | searchguard.ssl.transport.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
-| searchguard.ssl.transport.truststore_filepath | Path to the truststore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.transport.truststore_password | Truststore password (default: changeit) |
 
@@ -38,11 +38,11 @@ The following settings configure the location and password of your keystore and 
 |---|---|
 | searchguard.ssl.http.enabled | Whether to enable TLS on the REST layer or not. If enabled, only HTTPS is allowed. (Optional, default: false) |
 | searchguard.ssl.http.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
-| searchguard.ssl.http.keystore\_filepath | Path to the keystore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.keystore\_filepath | Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.keystore\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.http.keystore_password | Keystore password (default: changeit) |
 | searchguard.ssl.http.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
-| searchguard.ssl.http.truststore_filepath | Path to the truststore file, **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.http.truststore_password | Truststore password (default: changeit) |
 
@@ -54,19 +54,19 @@ As an alternative to using keystore and trustore files, you can also use X.509 P
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.transport.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.transport.pemkey_filepath | Path to the certificates key file (PKCS #8), which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
-| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
+| searchguard.ssl.transport.pemcert_filepath | X.509 node certificate chain in PEM format, which must be under the config/ directory, specified using a relative path (mandatory) |
+| searchguard.ssl.transport.pemtrustedcas_filepath | Trusted certificates in PEM format, which must be under the config/ directory, specified using a relative path (mandatory)|
 
 ### REST layer TLS
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.http.pemkey_filepath | Path to the certificates key file (PKCS #8), **relative to the `config/` directory** (mandatory) |
+| searchguard.ssl.http.pemkey_filepath | Path to the certificates key file (PKCS #8), which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
-| searchguard.ssl.http.pemcert_filepath | X.509 node certificate chain in PEM format, **relative to the `config/` directory** (mandatory) |
-| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates in PEM format, **relative to the `config/` directory** (mandatory)|
+| searchguard.ssl.http.pemcert_filepath | X.509 node certificate chain in PEM format, which must be under the config/ directory, specified using a relative path (mandatory) |
+| searchguard.ssl.http.pemtrustedcas_filepath | Trusted certificates in PEM format, which must be under the config/ directory, specified using a relative path (mandatory)|
 
 ## Configuring Node certificates
 

@@ -254,6 +254,7 @@ The following switched control the Search Guard index settings.
 | Name | Description |
 |---|---|
 | -i | Search Guard index name, defaults to searchguard.|
+| -er | Set explicit number of replicas or autoexpand expression for searchguard index (requires Search Guard 19.1 and above)|
 | -us | Update the replica settings.|
 | -era | Enable replica auto-expand.|
 | -dra | Disable replica auto-expand.|
