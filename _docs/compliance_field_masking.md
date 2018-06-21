@@ -14,6 +14,8 @@ Copryight 2018 floragunn GmbH
 
 # Field anonymization
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 Instead of removing sensitive fields from a document with [field-level security](dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only and replaces the actual field value with a cryptographic hash. 
 
 Field masking works well together with field-level security and can be applied to on a per-role and per-index basis. This gives you the flexibility of allowing certain roles to see sensitive fields in clear text, while anonymizing them for others.

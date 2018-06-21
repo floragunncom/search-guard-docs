@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 # Event routing and multiple endpoints
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 The Search Guard Compliance Edition extends the storage capabilities of the Audit Log module and makes it possible to configure multiple endpoints per event category.
 
 For example, this makes it possible to store compliance related events in a data lake, while shipping security related events to a SIEM system like SIEMonster or ArcSight.

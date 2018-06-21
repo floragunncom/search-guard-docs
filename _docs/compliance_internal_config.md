@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 # Search Guard configuration change tracking
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 Search Guard is able to monitor read- and write access to the Search Guard configuration index. This makes it possible to track which user has accessed the configuration information, and get notified about any changes immediately.
 
 ## Enabling and disabling 
