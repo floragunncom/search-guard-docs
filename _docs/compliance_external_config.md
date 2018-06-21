@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 # Elasticsearch configuration tracking
 
+**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+
 Search Guard is able to monitor the integrity of your Elasticsearch installation and emit events describing your current configuration.
 
 These features help to detect any changes to your Elasticsearch or Search Guard installation and for proofing that you applied critical fixes and upgrades in time.
