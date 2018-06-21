@@ -1,18 +1,21 @@
 ---
-title: Search Guard 6.0.0-17.beta1
-slug: changelog-6-0-0-17-beta1
-category: changelogs
-order: 1000
+title: Search Guard 6.x-20.0
+slug: changelog-searchguard-6-x-20_0
+category: changelogs-details
+order: 900
 layout: changelogs
-description: Changelog for Search Guard 6.0.0-17.beta1 
+description: Changelog for Search Guard 6.x-20.0
 ---
+
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
-# Search Guard 6.0.0-17.beta1
+# Search Guard 6.x-20.0
 
-Release Date: 21.11.2017
+Release Date: 22.12.2017
+
+[Upgrade Guide from 5.x to 6.x](../_docs/upgrading_5_6.md)
 
 ## Search Guard SSL
 
@@ -42,7 +45,7 @@ Release Date: 21.11.2017
 * Made PEM certificates a first class citizen
 * **BREAKING**: Alias checks on index-level
   * You can only create aliases on indices you have permissions for  
-* `whoami` switch for sgadmin
+* `whoami` switch for [sgadmin](../_docs/sgadmin.md)
   * Outputs infos regarding the used certificate, useful for debugging
 License system, license checks
 * Introduced [License Handling](../_docs/license_enterprise.md)
@@ -64,25 +67,6 @@ License system, license checks
   * Any resource, like users, role or permissions, can be marked as read-only
   * read-only permissions are not changeable by the REST API
   * Use to protected resources like the Kibana server user  
-
-## Search Guard Kibana Plugin
-
-* Moved release location from 6.x onwards to [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22){:target="_blank"}
- 
-
-## Kibana Configuration GUI
-
-* Completely new [Kibana based configuration GUI](../_docs/kibana_config_gui.md)
-  * Roles, Role Mappings, Action Groups and Internal Users
-* Can be used in conjunction or as an alternative to `sgadmin`
-* Configure index- and document-type level permissions
-* Configure Document- and Field-Level-Security
-* Configure Multi Tenancy
-* Display configured authentication and authorization modules
-* Display system status, installed modules and license information
-* Auto-detection of available modules
-  * No configuration in `kibana.yml` necessary  
-* Based on the role-based access feature of the REST-API
 
 ## BREAKING: Audit logging
 
@@ -125,6 +109,4 @@ License system, license checks
 
 ## Known Issues
 
-* The Kibana Config GUI might log a JSON error on the console from time to time
-* Multi Tenancy upgrade from Kibana 5 to Kibana 6 may break
 * Warning message on install about missing sha512 checksum
