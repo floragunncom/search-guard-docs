@@ -1,8 +1,7 @@
 ---
-title: Kibana
+title: Overview
 slug: changelogs-kibana
-category: changelogs
-subcategory: changelogs-kibana
+category: changelogs-kibana
 order: 200
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin

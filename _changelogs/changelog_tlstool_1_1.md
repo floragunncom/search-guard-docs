@@ -1,7 +1,7 @@
 ---
 title: TLS Tool 1.1
 slug: changelog-tlstool_1_1
-category: changelogs-details
+category: changelogs-tlstool
 order: 900
 layout: changelogs
 description: Changelog for the Search Guard TLS Tool 1.1
