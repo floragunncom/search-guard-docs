@@ -1,9 +1,8 @@
 version: 2
 jobs:
   build:
+    machine: true
     working_directory: ~/search-guard-docs
-    docker:
-      - image: circleci/openjdk:8-jdk-browsers
     steps:
       - run: sudo apt-get -yq update
       - run: sudo apt-get -yq install openssl libapr1
