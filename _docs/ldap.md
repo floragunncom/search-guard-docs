@@ -263,6 +263,14 @@ If you store the roles as a direct attribute of the user entries in the user sub
 userrolename: roles
 ```
 
+This approach can be combined with querying the role subtree. Search Guard will first fetch the roles from the user's role attribute, and the execute the role search.
+
+If you don't use/have a role subtree, you can disable the role search completely:
+
+```yaml
+rolesearch_enabled: false
+```
+
 ### Advanced: Exclude certain users from role lookup
 
 If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
@@ -303,14 +311,6 @@ This only has an effect if `resolve_nested_roles` is `true`.
 nested_role_filter: <true|false>
   - 'cn=Michael Jackson,ou*people,o=TEST'
   - ...
-```
-
-### Advanced: Disable the role search completely
-
-If your roles are not stored in a role subtree (approach 1 from above), but only as direct attributes of the user's entry in the user subtree (approach 2 from above), you can disable the role search completely for better performance.
-
-```yaml
-rolesearch_enabled: <true|false>
 ```
 
 ### Advanced: Active Directory Global Catalog (DSID-0C0906DC)
