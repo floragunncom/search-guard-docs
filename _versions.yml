@@ -1,5 +1,6 @@
 searchguard:
   majorversion: 6.x-20
+  minorversion: 0
   fullversion: 6.2.2-20.1
   nextminorversion: 6.2.2-20.2
   nextmajorversion: 6.2.2-21.0
