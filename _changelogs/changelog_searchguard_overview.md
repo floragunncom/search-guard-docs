@@ -1,11 +1,10 @@
 ---
-title: Search Guard
+title: Overview
 slug: changelogs-searchguard
-category: changelogs
-subcategory: changelogs-searchguard
-order: 100
+category: changelogs-searchguard
+order: 0
 layout: changelogs
-description: Changelog for the Search Guard and Search Guard SSL
+description: Changelog Overview for the Search Guard and Search Guard SSL
 ---
 
 <!---
@@ -33,9 +32,4 @@ Release Date: 07.02.2018
 ### [Search Guard 6.x-20.1](changelog_searchguard_6_x_20_1.md)
 
 Release Date: 30.12.2017
-
-
-### [Search Guard 6.x-20.0](changelog_6_x_20_0.md)
-
-Release Date: 22.12.2017
 

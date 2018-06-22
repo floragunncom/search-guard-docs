@@ -13,7 +13,7 @@ Copryight 2017 floragunn GmbH
 
 # Installation
 
-This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the [Quickstart Guide.](quickstart.md). 
+This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](quickstart.md)**. 
 
 ## Community, Enterprise and Compliance Edition
 
@@ -23,29 +23,68 @@ The Compliance Edition requires Elasticsearch 6.2.1 or higher. In order to use t
 
 If you just want to use the free Community Edition, install Search Guard Enterprise and then [disable all commercial features](license_community.md). 
 
-## General
+## Prerequisites
 
-The installation procedure is to:
-
-1. Stop Elasticsearch
-2. Install the Search Guard plugin
-3. [Generate or obtain TLS certificates](tls_generate_certificates.md)
-3. Add at least the [TLS configuration](tls_configuration.md) to `elasticsearch.yml`
-4. Restart Elasticsearch and check that the nodes come up
-5. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](sgadmin.md)
-
-While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
-
-## First time installation: Full cluster restart
-
-A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other.
-
-Installing Search Guard for the first time via a rolling restart is possible in theory, but will lead to several strange effects so it is highly recommended to **perform a full cluster restart when installing Search Guard for the first time**.
-
-## Ensure that your Java Virtual Machine is supported
+### Ensure that your Java Virtual Machine is supported
 
 * We support only OpenJDK 7/8 or Oracle JVM 7/8.
 * There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM
+
+### Generate all required TLS certificates
+
+Make sure you have TLS certificates for all nodes and at least one admin certificate. If you already have a PKI infrastructure in place, you usually obtain the required certificates by issuing certificate signing requests to your PKI.
+
+If this is not the case, you have the following options to generate certificates:
+
+* Use the [Search Guard demo installation script](tls_generate_installation_script.md)  (not safe for production)
+* Download the [Search Guard demo certificates](tls_download_certificates.md) (not safe for production)
+* Use the [Online TLS generator service](tls_generate_online.md) (not safe for production)
+* Use the [Offline TLS Tool](tls_generate_tlstool.md) (safe for production)
+* Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
+* Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
+* Using tools like OpenSSL and/or keytool (safe for production)
+
+For a typical installation you will want to generate
+
+* One certificate for each node
+* One admin certificate
+
+It's possible to use the same certificate on each node, however this is less secure since you cannot use the hostname verification and DNS lookup feature of Search Guard to check the validity of the TLS certificates.
+
+## First time installation: Full cluster restart
+
+A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our [upgrade instructions](upgrading.md).
+
+## General
+
+The first time installation procedure on a production cluster is to:
+
+1. Disable shard allocation
+2. Stop all nodes
+3. Install the Search Guard plugin on all nodes
+4. Add at least the [TLS configuration](tls_configuration.md) to `elasticsearch.yml`
+5. Restart Elasticsearch and check that the nodes come up
+6. Re-enable shard allocation by using [sgadmin](sgadmin.md)
+7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](sgadmin.md)
+
+While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
+
+## Disable shard allocation
+
+This step is optional but recommended especially for large clusters with a huge amount of data. This step makes sure that shards will not be shifted around when restarting the cluster, causing a lot of I/O. See also [https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html){:target="_blank"}
+
+**Example using curl**
+
+```bash
+curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \ 
+  -H 'Content-Type: application/json' -d'
+{
+  "persistent": {
+    "cluster.routing.allocation.enable": "none"
+  }
+}
+'
+```
 
 ## Installing Search Guard
 
@@ -100,42 +139,9 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 ```
 
-## Configuring Search Guard
+## Adding the TLS configuration
 
-Search Guard requires the following minumum pre-requisited to run:
-
-* TLS certificates for securing transport- and (optional) REST-traffic
-* TLS configuration settings in `elasticsearch.yml`
-* Initialization of the Search Guard index
-
-Search Guard ships with scripts to aid you with the initial setup, as described in the [Quickstart](quickstart.md) chapter.
-
-Before moving your installation to production, please read the [moving Search Guard to production](configuration_production.md) chapter.
-
-### Generating certificates
-
-If you already have a PKI infrastructure in place, you usually obtain the required certificates by issuing certificate signing requests to your PKI.
-
-If this is not the case, you have the following options to generate certificates:
-
-* Use the [Search Guard demo installation script](tls_generate_installation_script.md)  (not safe for production)
-* Download the [Search Guard demo certificates](tls_download_certificates.md) (not safe for production)
-* Use the [Online TLS generator service](tls_generate_online.md) (not safe for production)
-* Use the [Offline TLS Tool](tls_generate_tlstool.md) (safe for production)
-* Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
-* Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
-* Using tools like OpenSSL and/or keytool (safe for production)
-
-For a typical installation you will want to generate
-
-* One certificate for each node
-* One admin certificate
-
-It's possible to use the same certificate on each node, however this is less secure since you cannot use the hostname verification and DNS lookup feature of Search Guard to check the validity of the TLS certificates.
-
-### Configuring TLS and admin certificates
-
-The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates are relatice to the Elasticsearch `config` directory:
+The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates must be specified relative to the Elasticsearch `config` directory:
 
 ```yaml
 searchguard.ssl.transport.pemcert_filepath: <path_to_node_certificate>
@@ -162,9 +168,9 @@ searchguard.ssl.http.pemkey_password: <key_password (optional)>
 searchguard.ssl.http.pemtrustedcas_filepath: <path_to_http_root_ca>
 ```
 
-You can use the same certificates on the transport and on the REST layer. For production systems, we recommend to use individual certificates. 
+You can use the same certificates on the transport and on the REST layer. For production systems, we recommend to use individual certificates.
 
-### Enable the REST management API
+## Optional: Enable the REST management API
 
 In order to use the REST management API, configure the Search Guard roles that should have access to the API. The following entry grants full access to the API for the role `sg_all_access`:
 
@@ -176,6 +182,17 @@ If you want to further restrict access to certain API endpoints, please refer to
 
 The REST management API is an Enterprise feature.
 
+## Re-enable shard allocation
+
+After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgadmin or curl:
+
+**Example using sgadmin**
+
+```bash
+./sgadmin.sh --enable-shard-allocation
+ -cert ./kirk.pem -key ./kirk-key.pem -cacert ./root-ca.pem 
+```
+
 ## Initializing Search Guard
 
 All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
@@ -186,7 +203,7 @@ Once initialized, you can also use the Search Guard configuration GUI to edit ro
 
 ## Search Guard Health Check
 
-To check if Search Guard is installed, up and running, access the healthcheck endpoint like:
+To check if Search Guard is installed and up and running, access the healthcheck endpoint like:
 
 ```
 https://<hostname>:9200/_searchguard/health
@@ -201,17 +218,3 @@ It returns a JSON snippet like:
   status: "UP"
 }
 ```
-
-## Testing the installation
-
-**Using a browser**
-
-* Open ``https://<hostname>:9200/_searchguard/authinfo``.
-* Accept the self-signed demo TLS certificate.
-* In the HTTP Basic Authentication dialogue, use ``admin`` as username and ``admin`` as password.
-* This will print out information about the user ``admin`` in JSON format.
-
-**Using curl**
-
-* Execute ``curl --insecure -u admin:admin 'https://localhost:9200/_searchguard/authinfo?pretty'``
-* This will print out information about the user ``admin`` in JSON format on the console.
