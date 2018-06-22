@@ -82,10 +82,51 @@ If this is not set, the DN of the role entry is used. You can now use this role 
 
 ### Approach 2: Using a user's attribute as role name
 
-If you store the roles as a direct attribute of the user entries in the user subtree, you only need to configure the attributes name:
+If you store the roles as a direct attribute of the user entries in the user subtree, you only need to configure the attribute name:
 
 ```yaml
 userrolename: roles
+```
+
+You can configure multiple attribute names separated by comma:
+
+```yaml
+userrolename: roles, otherroles
+```
+
+This approach can be combined with querying the role subtree. Search Guard will first fetch the roles from the user's role attribute, and the execute the role search.
+
+If you don't use/have a role subtree, you can disable the role search completely:
+
+```yaml
+rolesearch_enabled: false
+```
+
+### Performance: Controlling LDAP user attributes
+
+By default, Search Guard will read all LDAP user attributes and make them available for [index name variable substitution](configuration_roles_permissions.md) or [DLS query variable substitution](dlsfls_dls.md).
+
+If your LDAP entries have a lot of attributes, you may want to control which attributes should be made available as variables. Fewer attributes result in better runtime performance behaviour.
+
+| Name | Description |
+|---|---|
+| custom\_attr\_whitelist  | String array, specifies the LDAP attributes that should be made available for variable substitution. |
+| custom\_attr\_maxval\_len  | Integer, specifies the maximum allowed length of each attribute. All attributes longer than this value will be discarded. A value of `0` will disable custom attributes altogether. Default: 36 |
+
+Example:
+
+```yaml
+authz:
+  ldap:
+    enabled: true
+  authorization_backend:
+    type: ldap
+    config:
+      custom_attr_whitelist:
+        - attribute1
+        - attribute2
+      custom_attr_maxval_len
+      ...
 ```
 
 ### Advanced: Exclude certain users from role lookup
@@ -130,14 +171,6 @@ nested_role_filter: <true|false>
   - ...
 ```
 
-### Advanced: Disable the role search completely
-
-If your roles are not stored in a role subtree (approach 1 from above), but only as direct attributes of the user's entry in the user subtree (approach 2 from above), you can disable the role search completely for better performance.
-
-```yaml
-rolesearch_enabled: <true|false>
-```
-
 ### Advanced: Active Directory Global Catalog (DSID-0C0906DC)
 
 Depending on your configuration you may need to use port 3268 instead of 389 so that the LDAP module is able to query the global catalog. Changing the port can help to avoid warnings like
@@ -164,6 +197,8 @@ For more details refer to https://technet.microsoft.com/en-us/library/cc978012.a
 | skip_users  | Array of users that should be skipped when retrieving roles. Wildcards and regular expressions are supported.  |
 | nested\_role\_filter  | Array of role DNs that should be filtered before resolving nested roles. Wildcards and regular expressions are supported.  |
 | rolesearch_enabled  | Boolean, enable or disable the role search, default: true.  |
+| custom\_attr\_whitelist  | String array, specifies the LDAP attributes that should be made available for variable substitution. |
+| custom\_attr\_maxval\_len  | Integer, specifies the maximum allowed length of each attribute. All attributes longer than this value will be discarded. A value of `0` will disable custom attributes altogether. Default: 36 |
 
 ### Complete authorization example
 
