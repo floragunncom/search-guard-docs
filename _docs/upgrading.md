@@ -14,6 +14,8 @@ Copryight 2017 floragunn GmbH
 
 **If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md)**.
 
+The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.
+
 There are two types of upgrades to distinguish:
 
 * Upgrading Search Guard for your current Elasticsearch version
@@ -43,7 +45,7 @@ This applies for all Elasticsearch upgrades.
 
 ## Upgrading Search Guard Only
 
-Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the Search Guard changelog, you don't need to adapt any configuration files. 
+Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the [Search Guard changelog](../_changelogs/changelog_searchguard.md), you don't need to adapt any configuration files. 
 
 Given there are no breaking changes, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:
 
@@ -74,8 +76,6 @@ Follow the official Elasticsearch guideline for rolling upgrades for your Elasti
 
 Depending on your configured authentication and authorisation modules, you need to provide additional credentials in the `curl` calls mentioned in the rolling upgrade guide.
 
-*Note: "Disable shard allocation" and "Reenable shard allocation" are only necessary when upgrading a data node. If you upgrade a dedicated master node, a tribe node or client node you can omit these two steps.*
-
 You can either use a user that has full cluster management permissions, or use an admin certificate, which has full access as well.
 
 **Example: Using HTTP Basic authentication**
@@ -84,7 +84,7 @@ You can either use a user that has full cluster management permissions, or use a
 curl -Ss -u admin:admin --insecure -XPUT 'https://localhost:9200/_cluster/settings?pretty' \ 
   -H 'Content-Type: application/json' -d'
 {
-  "transient": {
+  "persistent": {
     "cluster.routing.allocation.enable": "none"
   }
 }
@@ -99,7 +99,7 @@ curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
   --cacert "certificates/chain-ca.pem" \
   -H 'Content-Type: application/json' -d'
 {
-  "transient": {
+  "persistent": {
     "cluster.routing.allocation.enable": "none"
   }
 }
@@ -113,7 +113,7 @@ Steps from the [Rolling upgrades guide](https://www.elastic.co/guide/en/elastics
 1. Disable shard allocation
 2. Stop non-essential indexing and perform a synced flush (Optional)
 3. Stop and upgrade a single node
-4. Upgrade any plugins: Upgrade the Search Guard plugin and the enterprise modules (if any) as outlined above
+4. Upgrade any plugins: Upgrade the Search Guard plugin
 5. Start the upgraded node
 6. Reenable shard allocation
 7. Wait for the node to recover

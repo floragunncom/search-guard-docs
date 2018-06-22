@@ -1,8 +1,8 @@
 ---
 title: TLS Tool 1.5
 slug: changelog-tlstool_1_5
-category: changelogs-details
-order: 900
+category: changelogs-tlstool
+order: 500
 layout: changelogs
 description: Changelog for the Search Guard TLS Tool 1.5
 ---
@@ -18,3 +18,4 @@ Copryight 2010 floragunn GmbH
 ## Fixes
 
 * Sanitize DN before putting it into SG config snippets
+  * [https://github.com/floragunncom/search-guard-tlstool/issues/5](https://github.com/floragunncom/search-guard-tlstool/issues/5)

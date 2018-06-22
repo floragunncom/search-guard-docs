@@ -1,9 +1,8 @@
 ---
-title: TLS Tool
+title: Overview
 slug: changelogs-tlstool
-category: changelogs
-subcategory: changelogs-tlstool
-order: 300
+category: changelogs-tlstool
+order: 0
 layout: changelogs
 description: Changelog for the Search Guard TLS Tool
 ---

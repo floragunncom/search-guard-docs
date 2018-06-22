@@ -1,7 +1,7 @@
 ---
 title: Kibana 6.x-11
 slug: changelog-kibana-6.x-11
-category: changelogs-details
+category: changelogs-kibana
 order: 900
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin 6.x-11
