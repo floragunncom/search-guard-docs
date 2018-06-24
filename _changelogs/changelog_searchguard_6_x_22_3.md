@@ -57,7 +57,8 @@ Release Date: 21.06.2018
 * DLS/FLS performance improvements
   * [https://github.com/floragunncom/search-guard-module-dlsfls/pull/5](https://github.com/floragunncom/search-guard-module-dlsfls/pull/5){:target="_blank"} 
   * Contributed by [salyh](https://github.com/salyh){:target="_blank"}   
-
+* Turn off query node cache for fls requests
+  *  [https://github.com/floragunncom/search-guard/commit/285ac0d100d3fc2b21907fbfa7314d16c5f7bb86](https://github.com/floragunncom/search-guard/commit/285ac0d100d3fc2b21907fbfa7314d16c5f7bb86){:target="_blank"}   
 ### sgadmin
 * Allow disable of auto-expand and setting of replica count in single run
   * [https://github.com/floragunncom/search-guard/issues/500](https://github.com/floragunncom/search-guard/issues/500){:target="_blank"}
@@ -72,3 +73,9 @@ Release Date: 21.06.2018
   * You can now define multiple attributes to fetch LDAP roles from
   * [https://github.com/floragunncom/search-guard-enterprise-modules/pull/2](https://github.com/floragunncom/search-guard-enterprise-modules/pull/2) 
 * Updated ldaptive to 1.2.3 (official version)
+
+## Various
+
+### Search Guard SSL
+
+* **BREAKING**: Search Guard SSL will not be released as a separate plugin anymore, due to low usage and high maintenance efforts. The code will eventually be merged into Search Guard beginning with Search Guard 7.
