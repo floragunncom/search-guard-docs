@@ -79,7 +79,8 @@ Critical security fixes will be backported to all active releases, including all
 ## Maintenance and support overview as of 21.06.2018
 
 ### Search Guard 6
-| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates
+
+| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
 6.3.x-y | yes | yes | yes |
 6.2.4-y | yes | yes | yes |
@@ -87,7 +88,8 @@ Critical security fixes will be backported to all active releases, including all
 6.1.x-y | no | yes | yes |
 
 ### Search Guard 5
-| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates
+
+| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
 5.6.10 | yes | yes | yes |
 5.6.x-y | no | no | yes |
@@ -101,7 +103,7 @@ Critical security fixes will be backported to all active releases, including all
 
 ### Search Guard 2
 
-| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates
+| Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
 2.4.6.y	| no | no | no |
 2.4.0.y-2.4.5.y	| no | no | no |
