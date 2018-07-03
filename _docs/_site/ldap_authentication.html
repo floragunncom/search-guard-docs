@@ -1,0 +1,105 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="active-directory-and-ldap-authentication">Active Directory and LDAP Authentication</h1>
+
+<h2 id="activating-authentication">Activating Authentication</h2>
+
+<p>To use Active Directory / LDAP for authentication first configure a respective authentication domain in the <code class="highlighter-rouge">authc</code> section of <code class="highlighter-rouge">sg_config</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">authc</span><span class="pi">:</span>
+  <span class="na">ldap</span><span class="pi">:</span>
+    <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+    <span class="na">http_authenticator</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">basic</span>
+      <span class="na">challenge</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">authentication_backend</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">ldap</span>
+      <span class="na">config</span><span class="pi">:</span>
+        <span class="s">...</span>
+</code></pre></div></div>
+
+<p>Afterwards add the <a href="ldap_connection_settings.md">connection settings</a> for your Active Directory / LDAP server to the config section of the authentication domain, e.g.:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">config</span><span class="pi">:</span>
+  <span class="na">enable_ssl</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">enable_start_tls</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">enable_ssl_client_auth</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">verify_hostnames</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">hosts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">ldap.example.com:8389</span>
+  <span class="na">bind_dn</span><span class="pi">:</span> <span class="s">cn=admin,dc=example,dc=com</span>
+  <span class="na">password</span><span class="pi">:</span> <span class="s">passw0rd</span>
+</code></pre></div></div>
+
+<h2 id="configuring-authentication">Configuring Authentication</h2>
+
+<p>Authentication works by issuing an <em>LDAP query</em> containing the <em>username</em> against the <em>user subtree</em> of the <em>LDAP tree</em>.</p>
+
+<p>Search Guard first takes the configured LDAP query, and replaces the placeholder <code class="highlighter-rouge">{0}</code> with the username from the user’s credentials.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">usersearch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">(sAMAccountName={0})'</span>
+</code></pre></div></div>
+
+<p>Search Guard then issues this query against the user subtree (“userbase”). Currently the whole subtree beneath the configured <code class="highlighter-rouge">userbase</code> is searched:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">userbase</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ou=people,dc=example,dc=com'</span>
+</code></pre></div></div>
+
+<p>If the query was successful, Search Guard retrieves the username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as the username:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">username_attribute</span><span class="pi">:</span> <span class="s">uid</span>
+</code></pre></div></div>
+
+<p>If this key is not set, or null, then the DN of the LDAP entry is used.</p>
+
+<h3 id="configuration-summary">Configuration summary</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>userbase</td>
+      <td>Specifies the subtree in the directory where user information is stored</td>
+    </tr>
+    <tr>
+      <td>usersearch</td>
+      <td>The actual LDAP query that Search Guard executes when trying to authenticate a user. The variable {0} is substituted with the username.</td>
+    </tr>
+    <tr>
+      <td>username_attribute</td>
+      <td>Search Guard uses this attribute of the directory entry to look for the user name. If set to null, the DN is used (default).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="complete-authentication-example">Complete authentication example</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ldap</span><span class="pi">:</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">basic</span>
+    <span class="na">challenge</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">authentication_backend</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">ldap</span>
+    <span class="na">config</span><span class="pi">:</span>
+      <span class="na">enable_ssl</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">enable_start_tls</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">enable_ssl_client_auth</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">verify_hostnames</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">hosts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ldap.example.com:636</span>
+      <span class="na">bind_dn</span><span class="pi">:</span> <span class="s">cn=admin,dc=example,dc=com</span>
+      <span class="na">password</span><span class="pi">:</span> <span class="s">password</span>
+      <span class="na">userbase</span><span class="pi">:</span> <span class="s1">'</span><span class="s">ou=people,dc=example,dc=com'</span>
+      <span class="na">usersearch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">(sAMAccountName={0})'</span>
+      <span class="na">username_attribute</span><span class="pi">:</span> <span class="s">uid</span>
+</code></pre></div></div>

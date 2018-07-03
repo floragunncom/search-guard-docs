@@ -1,7 +1,7 @@
 ---
 title: Sentinl
 slug: search-guard-sentinl
-category: x_pack_alternatives
+category: x-pack-alternatives
 order: 200
 layout: docs
 description: Replace X-Pack Alerting and Reporting with Sentinl, the alerting and reporting Kibana app by Siren Solutions.

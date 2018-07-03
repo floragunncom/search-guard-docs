@@ -1,0 +1,119 @@
+<!---
+Copryight 2016-2017 floragunn GmbH
+-->
+
+<h1 id="using-logstash-with-search-guard">Using logstash with Search Guard</h1>
+
+<p>Logstash connects to Elasticserch on the REST layer, just like a browser or curl. In order to use logstash with a Search Guard secured cluster:</p>
+
+<ul>
+  <li>set up a logstash user with permissions to read and write to the logstash and beats indices</li>
+  <li>configure logstash to use HTTPS instead of HTTP (optional, only applicable if you enabled HTTPS on the REST layer).</li>
+</ul>
+
+<h2 id="logstash-user">Logstash user</h2>
+
+<p>The sample configuration files that ship with Search Guard already contain a <code class="highlighter-rouge">logstash</code> user with all required permissions. This user is configured in the internal user database and can be used as-is.</p>
+
+<p>The corresponding Search Guard role in <code class="highlighter-rouge">sg_roles.yml</code> is <code class="highlighter-rouge">sg_logstash</code>. If you don’t use the internal user database, map your logstash user to this role in <code class="highlighter-rouge">sg_roles_mapping.yml</code>.</p>
+
+<p>The logtsash user is configured in the <code class="highlighter-rouge">elasticsearch</code> output section of <code class="highlighter-rouge">logstash.conf</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">output</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">elasticsearch</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="err">user</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">password</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="setting-up-tlsssl">Setting up TLS/SSL</h2>
+
+<p>If you use TLS on the REST layer you need to configure logstash to use HTTPS instead of HTTP when talking to Elasticsearch. This is done in the <code class="highlighter-rouge">elasticsearch</code> output section of <code class="highlighter-rouge">logstash.conf</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">output</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">elasticsearch</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="err">...</span><span class="w">
+       </span><span class="err">ssl</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="w">
+       </span><span class="err">ssl_certificate_verification</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="w">
+       </span><span class="err">truststore</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="s2">"/path/to/elasticsearch-2.3.3/config/truststore.jks"</span><span class="w">
+       </span><span class="err">truststore_password</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">changeit</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Setting <code class="highlighter-rouge">ssl</code> to true ensures that logstash uses HTTPS.</p>
+
+<p>Logstash requires you to set the trusted root CAs via the <code class="highlighter-rouge">truststore</code> or <code class="highlighter-rouge">cacert</code> parameter in the configuration. This is the absolute path to either the truststore or the root CA in PEM format that contains the Certificate Authority’s certificate.</p>
+
+<p>If you want logstash to verify the hostname of the certificate it receives from Elasticsearch, set the <code class="highlighter-rouge">ssl_certificate_verification</code> property to true.</p>
+
+<h2 id="logstash-configuration-example">logstash configuration example</h2>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">output</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">elasticsearch</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="err">user</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">password</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">ssl</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="w">
+       </span><span class="err">ssl_certificate_verification</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="w">
+       </span><span class="err">truststore</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="s2">"/path/to/truststore.jks"</span><span class="w">
+       </span><span class="err">truststore_password</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">changeit</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="permissions-for-the-logstash-user">Permissions for the logstash user</h2>
+
+<p>The required permissions for the logstash user are as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sg_logstash</span><span class="pi">:</span>
+  <span class="na">readonly</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">cluster</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">CLUSTER_MONITOR</span>
+    <span class="pi">-</span> <span class="s">CLUSTER_COMPOSITE_OPS</span>
+    <span class="pi">-</span> <span class="s">indices:admin/template/get</span>
+    <span class="pi">-</span> <span class="s">indices:admin/template/put</span>
+  <span class="na">indices</span><span class="pi">:</span>
+    <span class="s1">'</span><span class="s">logstash-*'</span><span class="pi">:</span>
+      <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">CRUD</span>
+        <span class="pi">-</span> <span class="s">CREATE_INDEX</span>
+    <span class="s1">'</span><span class="s">*beat*'</span><span class="pi">:</span>
+      <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">CRUD</span>
+        <span class="pi">-</span> <span class="s">CREATE_INDEX</span>
+</code></pre></div></div>
+
+<h3 id="using-custom-logstash-index-names">Using custom logstash index names</h3>
+
+<p>If you are writing to a different index than the default logstash index, you need to give the logstash user access to this index.</p>
+
+<p>For example, if you configured the index to be <code class="highlighter-rouge">mylogstashindex</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">output</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">elasticsearch</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="err">user</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">password</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="err">logstash</span><span class="w">
+       </span><span class="err">...</span><span class="w">
+       </span><span class="err">index</span><span class="w"> </span><span class="err">=&gt;</span><span class="w"> </span><span class="s2">"mylogstashindex"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The logstash user must have permissions to manage this index:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sg_logstash</span><span class="pi">:</span>
+  <span class="na">readonly</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">cluster</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">CLUSTER_MONITOR</span>
+    <span class="pi">-</span> <span class="s">CLUSTER_COMPOSITE_OPS</span>
+    <span class="pi">-</span> <span class="s">indices:admin/template/get</span>
+    <span class="pi">-</span> <span class="s">indices:admin/template/put</span>
+  <span class="na">indices</span><span class="pi">:</span>
+    <span class="s">...</span>
+    <span class="s">'mylogstashindex'</span><span class="pi">:</span>
+      <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">CRUD</span>
+        <span class="pi">-</span> <span class="s">CREATE_INDEX</span>
+</code></pre></div></div>

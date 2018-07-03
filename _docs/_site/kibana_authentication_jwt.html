@@ -1,0 +1,95 @@
+<!---
+Copryight 2016-2017 floragunn GmbH
+-->
+
+<h1 id="using-kibana-with-jwt">Using Kibana with JWT</h1>
+
+<p>Activate JWT by adding the following to <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<p><strong>For v13 and below:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.basicauth.enabled: false
+searchguard.jwt.enabled: true
+</code></pre></div></div>
+
+<p><strong>For v14 and above:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.auth.type: "jwt"
+</code></pre></div></div>
+
+<h2 id="bearer-authentication">Bearer Authentication</h2>
+
+<p>If you’re using the default <code class="highlighter-rouge">Authorization</code> HTTP header field for providing the JWT, you don’t need to do anything else in Kibana. If you’re using a different HTTP header field, configure it like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.jwt.header: &lt;HTTP header name&gt;
+</code></pre></div></div>
+
+<p>Make sure to also add it to the header whitelist in <code class="highlighter-rouge">kibana.yml</code>, leaving Authorization intact:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">elasticsearch.requestHeadersWhitelist</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">Authorization"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">sgtenant"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">&lt;JWT</span><span class="nv"> </span><span class="s">header</span><span class="nv"> </span><span class="s">name&gt;"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<h2 id="jwt-as-url-parameter">JWT as URL parameter</h2>
+
+<p>Search Guard is capable of processing JWT passed as URL parameter rather than HTTP headers. Due to Kibana limitations Search Guard needs to copy the token from the URL parameter to an HTTP header field before sending it to Elasticsearch. You need to configure the name of the URL parameter, and optionally the name of the HTTP header the token gets copied to. The default is <code class="highlighter-rouge">Authorization</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.jwt.url_parameter: &lt;URL parameter name that carries the JWT&gt;
+searchguard.jwt.header: &lt;HTTP header name the JWT gets copied to&gt;
+</code></pre></div></div>
+
+<h2 id="configuration-example">Configuration example</h2>
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-yaml">
+<code class=" js-code language-markup">
+# Disable HTTP Basic Authentication and enabe JWT
+searchguard.basicauth.enabled: false
+searchguard.jwt.enabled: true
+
+# v14 and above: Enable JWT authentication
+searchguard.auth.type: "jwt"
+
+# If the token is not in the default 'Authorization' HTTP header, 
+# configure it here. This header name is also used when copying 
+# the token from a request parameter to an HTTP header.
+searchguard.jwt.header: 'Authorization'
+
+# If the token is not passed as HTTP header, but as request parameter,
+# configure the parameter name here
+searchguard.jwt.url_param: 'jwtparam'
+
+# Use HTTPS instead of HTTP
+elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+
+# Configure the Kibana internal server user
+elasticsearch.username: "kibanaserver"
+elasticsearch.password: "kibanaserver"
+
+# Disable SSL verification when using self-signed demo certificates
+elasticsearch.ssl.verificationMode: none
+
+# Whitelist basic headers and multi tenancy header
+elasticsearch.requestHeadersWhitelist: ["Authorization", "sgtenant"]
+</code>
+</pre>
+</div>
+
+<h2 id="elasticsearch-configuration">Elasticsearch configuration</h2>
+
+<p>Finally, if you’re using HTTP Basic Authentication and the internal user database for the Kibana server user, make sure that both authentication domains are active in <code class="highlighter-rouge">sg_config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jwt_auth_domain</span><span class="pi">:</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">0</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">jwt</span>
+    <span class="s">...</span>
+<span class="na">basic_internal_auth_domain</span><span class="pi">:</span> 
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">basic</span>
+    <span class="na">challenge</span><span class="pi">:</span> <span class="no">false</span>
+    <span class="s">...</span>
+</code></pre></div></div>
