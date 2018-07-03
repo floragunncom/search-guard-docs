@@ -1,0 +1,151 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="upgrading-search-guard">Upgrading Search Guard</h1>
+
+<p><strong>If you’re looking for specific upgrade instructions from 5.x to 6.x, please follow the <a href="upgrading_5_6.md">steps described here</a></strong>.</p>
+
+<p>The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.</p>
+
+<p>There are two types of upgrades to distinguish:</p>
+
+<ul>
+  <li>Upgrading Search Guard for your current Elasticsearch version
+    <ul>
+      <li>for example, upgrading from  to</li>
+    </ul>
+  </li>
+  <li>Upgrading Search Guard and Elasticsearch
+    <ul>
+      <li>for example, upgrading from  to</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your Elasticsearch nodes, without any downtime.</p>
+
+<p>In the latter case, you need to first upgrade your Elasticsearch installation, and after that install the correct Search Guard version. If you need to perform a full cluster restart or not depends on the Elasticsearch version you are upgrading from and to. Please consult the official Elasticsearch documentation:</p>
+
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html" target="_blank">https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html</a></p>
+
+<p>Before starting the upgrade, check if there are any breaking changes either in Elasticsearch or Search Guard:</p>
+
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes.html" target="_blank">Elasticsearch Breaking Changes</a></p>
+
+<p><a href="https://github.com/floragunncom/search-guard/wiki/Changelog" target="_blank">Search Guard Change Log</a></p>
+
+<p>If you have a multicluster setup with tribe nodes, upgrade the tribe nodes after all other nodes.</p>
+
+<h2 id="check-permission-schema">Check permission schema</h2>
+
+<p>The permission schema can change from Elasticsearch version to Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the <code class="highlighter-rouge">sg_roles.yml</code> and <code class="highlighter-rouge">sg_action_groups.yml</code> file that ships with Search Guard. Therefore always prefer using <a href="configuration_action_groups.md">action groups</a>  instead of assigning single permissions to roles directly.</p>
+
+<p>This applies for all Elasticsearch upgrades.</p>
+
+<h2 id="upgrading-search-guard-only">Upgrading Search Guard Only</h2>
+
+<p>Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the <a href="../_changelogs/changelog_searchguard.md">Search Guard changelog</a>, you don’t need to adapt any configuration files.</p>
+
+<p>Given there are no breaking changes, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:</p>
+
+<ul>
+  <li>Stop your Elasticsearch node</li>
+  <li>Remove the old version of Search Guard
+    <ul>
+      <li><code class="highlighter-rouge">bin/elasticsearch-plugin remove search-guard-</code></li>
+    </ul>
+  </li>
+  <li>Install the new version of Search Guard
+    <ul>
+      <li>See the chapter <a href="installation.md">Installing Search Guard</a>
+ for instructions</li>
+    </ul>
+  </li>
+</ul>
+
+<p>After that, restart your node and check that Elasticsearch and Search Guard are starting without errors.</p>
+
+<p>Then, repeat this process for all other nodes in the cluster.</p>
+
+<h2 id="upgrading-elasticsearch-and-search-guard">Upgrading Elasticsearch and Search Guard</h2>
+
+<p><strong>If you’re looking for specific upgrade instructions from 5.x to 6.x, please follow the <a href="upgrading_5_6.md">steps described here</a></strong>.</p>
+
+<p>First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:</p>
+
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html" target="_blank">Upgrading Elasticsearch</a></p>
+
+<h3 id="minor-upgrades---rolling-restart">Minor Upgrades - Rolling restart</h3>
+
+<p>Follow the official Elasticsearch guideline for rolling upgrades for your Elasticsearch version:</p>
+
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html" target="_blank">Rolling upgrades</a></p>
+
+<p>Depending on your configured authentication and authorisation modules, you need to provide additional credentials in the <code class="highlighter-rouge">curl</code> calls mentioned in the rolling upgrade guide.</p>
+
+<p>You can either use a user that has full cluster management permissions, or use an admin certificate, which has full access as well.</p>
+
+<p><strong>Example: Using HTTP Basic authentication</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ss</span> <span class="nt">-u</span> admin:admin <span class="nt">--insecure</span> <span class="nt">-XPUT</span> <span class="s1">'https://localhost:9200/_cluster/settings?pretty'</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "persistent": {
+    "cluster.routing.allocation.enable": "none"
+  }
+}
+'</span>
+</code></pre></div></div>
+
+<p><strong>Example: Using an admin certificate</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ss</span> <span class="nt">-XPUT</span> <span class="s1">'https://localhost:9200/_cluster/settings?pretty'</span> <span class="se">\</span>
+  <span class="nt">-E</span> <span class="s2">"certificates/CN=kirk,OU=client,O=client,L=Test,C=DE.all.pem"</span> <span class="se">\</span>
+  <span class="nt">--cacert</span> <span class="s2">"certificates/chain-ca.pem"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "persistent": {
+    "cluster.routing.allocation.enable": "none"
+  }
+}
+'</span>    
+</code></pre></div></div>
+
+<h4 id="steps">Steps</h4>
+
+<p>Steps from the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html" target="_blank">Rolling upgrades guide</a>:</p>
+
+<ol>
+  <li>Disable shard allocation</li>
+  <li>Stop non-essential indexing and perform a synced flush (Optional)</li>
+  <li>Stop and upgrade a single node</li>
+  <li>Upgrade any plugins: Upgrade the Search Guard plugin</li>
+  <li>Start the upgraded node</li>
+  <li>Reenable shard allocation</li>
+  <li>Wait for the node to recover</li>
+  <li>Repeat for all nodes</li>
+  <li>If there are any changes in the permission schema, change the <code class="highlighter-rouge">sg_roles.yml</code> and/or <code class="highlighter-rouge">sg_action_groups.yml</code> and update the Search Guard configuration with <code class="highlighter-rouge">sgadmin</code></li>
+</ol>
+
+<h3 id="major-upgrades---full-cluster-restart">Major Upgrades - Full cluster restart</h3>
+
+<p>Follow the official Elasticsearch guideline for full cluster restart upgrades for your Elasticsearch version:</p>
+
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html" target="_blank">Full cluster restart upgrade</a></p>
+
+<p>The same rules for the <code class="highlighter-rouge">curl</code> commands as above apply, you need to execute them by using an admin certificate or by providing credentials for a user that has full cluster management permissions.</p>
+
+<h3 id="back-up-the-search-guard-configuration-optional">Back up the Search Guard configuration (Optional)</h3>
+
+<p>In case you do not have acces to your original Search Guard configuration files anymore, you can retrieve the current configuration of your running cluster by using <code class="highlighter-rouge">sgadmin</code> with the <code class="highlighter-rouge">-r</code> (<code class="highlighter-rouge">--retrieve</code>) switch:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./sgadmin.sh <span class="se">\ </span>
+  <span class="nt">-ks</span> kirk.jks <span class="nt">-kspass</span> changeit <span class="se">\ </span> 
+  <span class="nt">-ts</span> truststore.jks <span class="nt">-tspass</span> changeit <span class="se">\ </span>
+  <span class="nt">-icl</span> <span class="nt">-nhnv</span> <span class="nt">-r</span>
+</code></pre></div></div>
+
+<p>This will retrieve and save all Search Guard configuration files to your working directory. You can later use these files to initialize Search Guard after the upgrade.</p>
+
+<p>For a major upgrade, the permission schema has very likely changed. so compare especially the <code class="highlighter-rouge">sg_roles.yml</code> and <code class="highlighter-rouge">sg_action_groups.yml</code> files with the versions that ship with the Search Guard plugin.</p>

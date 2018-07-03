@@ -1,0 +1,41 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="compatibility">Compatibility</h1>
+
+<h2 id="compatibility-with-other-plugins">Compatibility with other plugins</h2>
+
+<p>If you have other plugins installed, please check the compatibility with Search Guard.</p>
+
+<p>As a rule of thumb, if a plugin is compatible with Shield, it is also compatible with Search Guard. Specifically:</p>
+
+<p>If the plugin talks to Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS and HTTP Basic Authentication.</p>
+
+<p>If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster <a href="https://search-guard.com/searchguard-elasicsearch-transport-clients/" target="_blank">in this blog post</a>.</p>
+
+<h3 id="compatible-plugins-and-tools">Compatible plugins and tools</h3>
+
+<p>The following plugins and tools have been tested for compatibility with Search Guard:</p>
+
+<ul>
+  <li><a href="https://www.elastic.co/de/products/kibana" target="_blank">Kibana</a> (with the Search Guard Kibana plugin installed)</li>
+  <li><a href="https://www.elastic.co/de/products/logstash" target="_blank">Logstash</a></li>
+  <li><a href="https://www.elastic.co/de/products/beats" target="_blank">Beats</a></li>
+  <li><a href="https://www.elastic.co/guide/en/x-pack/current/xpack-monitoring.html" target="_blank">X-Pack Monitoring</a></li>
+  <li><a href="https://www.elastic.co/guide/en/x-pack/current/xpack-alerting.html" target="_blank">X-Pack Alerting</a></li>
+  <li><a href="https://www.elastic.co/guide/en/x-pack/current/xpack-ml.html" target="_blank">X-Pack Machine Learning</a></li>
+  <li><a href="https://github.com/Yelp/elastalert" target="_blank">ElastAlert</a></li>
+  <li><a href="https://github.com/elastic/curator" target="_blank">Curator</a></li>
+  <li><a href="https://siren.solutions/kibi/" target="_blank">Kibi</a></li>
+  <li><a href="https://syslog-ng.org/" target="_blank">syslog-ng</a></li>
+  <li>Kopf / <a href="https://github.com/lmenezes/cerebro" target="_blank">Cerebro</a></li>
+  <li><a href="https://grafana.com/" target="_blank">Grafana</a></li>
+  <li>ES-Hadoop / Spark</li>
+  <li><a href="http://docs.graylog.org/en/2.3/pages/configuration/elasticsearch.html" target="_blank">Graylog</a></li>
+</ul>
+
+<h3 id="incompatible-plugins-and-tools">Incompatible plugins and tools</h3>
+
+<ul>
+  <li><a href="https://github.com/jprante/elasticsearch-jdbc" target="_blank">JDBC Importer</a></li>
+</ul>

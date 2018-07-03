@@ -1,0 +1,20 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h2 id="installation">Installation</h2>
+
+<h1 id="http-basic-authentication">HTTP Basic Authentication</h1>
+
+<p>In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">http_authenticator</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">basic</span>
+  <span class="na">challenge</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>In most cases, you will want to set the <code class="highlighter-rouge">challenge</code> flag to <code class="highlighter-rouge">true</code>. The flag defines the behaviour of Search Guard, if the <code class="highlighter-rouge">Authorization</code> field in the HTTP header is not set:</p>
+
+<p>If <code class="highlighter-rouge">challenge</code> is set to <code class="highlighter-rouge">true</code>, Search Guard will send a response with status <code class="highlighter-rouge">UNAUTHORIZED</code> (401) back to the client, and set the <code class="highlighter-rouge">WWW-Authenticate</code> header to <code class="highlighter-rouge">Basic realm="Search Guard"</code>. If the client is accessing the Search Guard secured cluster with a browser, this will trigger the authentication dialog and the user is prompted to enter username and password.</p>
+
+<p>If <code class="highlighter-rouge">challenge</code> is set to <code class="highlighter-rouge">false</code>, and no <code class="highlighter-rouge">Authorization</code> header field is set, Search Guard will <strong>not</strong> sent a <code class="highlighter-rouge">WWW-Authenticate</code> response back to the client, and authentication will fail. You may want to use this setting if you have another challenge <code class="highlighter-rouge">http_authenticator</code> in your configured authentication domains (Note that there can only be one challenge authenticator).  One such scenario is when you plan to use Basic Authentication and Kerberos together, and set Kerberos to <code class="highlighter-rouge">challenge: true</code>. In that case, you can still use Basic Authentication, but only with pre-authenticated requests</p>

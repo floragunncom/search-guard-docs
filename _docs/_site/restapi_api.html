@@ -1,0 +1,477 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h2 id="general-usage-and-return-values">General usage and return values</h2>
+
+<p>The API provides <code class="highlighter-rouge">GET</code>, <code class="highlighter-rouge">PUT</code> and <code class="highlighter-rouge">DELETE</code> handlers for users, roles, roles mapping and action groups. The general format is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/&lt;configuration type&gt;/{resource name}
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">configuration type</code> can be one of:</p>
+
+<ul>
+  <li>internalusers</li>
+  <li>rolesmapping</li>
+  <li>roles</li>
+  <li>actiongroups</li>
+</ul>
+
+<p>The resource name specifies the entry in the <code class="highlighter-rouge">configuration type</code> you want to operate on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.</p>
+
+<p>The API returns the following HTTP status codes:</p>
+
+<ul>
+  <li>200: A resource was modified succesfully</li>
+  <li>201: A resource was created</li>
+  <li>400: The request could not be processed</li>
+  <li>404: The resource could not be found</li>
+</ul>
+
+<p>The response body has the format:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="err">&lt;HTTP</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code&gt;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="err">&lt;message&gt;</span><span class="w">
+  </span><span class="s2">"invalid_keys"</span><span class="p">:</span><span class="w">
+  </span><span class="s2">"missing_mandatory_keys"</span><span class="w">
+  </span><span class="s2">"specify_one_of:"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The last three entries are returned if you <code class="highlighter-rouge">PUT</code> a new resource but the content is malformed. <code class="highlighter-rouge">invalid_keys</code> is used when the content contains invalid keys. <code class="highlighter-rouge">missing_mandatory_keys</code> is used when a mandatory key is missing. And <code class="highlighter-rouge">specify_one_of</code> is used when the content is missing a key.</p>
+
+<h2 id="internal-users-api">Internal Users API</h2>
+
+<p>Used to receive, create, update and delete users. Users are added to the internal user database. It only makes sense to use this if you use <code class="highlighter-rouge">internal</code> as the <code class="highlighter-rouge">authentication_backend</code>.</p>
+
+<h3 id="endpoint">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/internalusers/{username}
+</code></pre></div></div>
+
+<p>Where <code class="highlighter-rouge">username</code> is the name of the user.</p>
+
+<p><strong>Note: The <code class="highlighter-rouge">user</code> endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7</strong></p>
+
+<h3 id="get">GET</h3>
+
+<h4 id="get-a-single-user">Get a single user</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/internalusers/{username}
+</code></pre></div></div>
+<p>Returns the settings for the respective user in JSON format, for example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/internalusers/kirk
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"kirk"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"hash"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"roles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"captains"</span><span class="p">,</span><span class="w"> </span><span class="s2">"starfleet"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="get-all-users">Get all users</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/internalusers/
+</code></pre></div></div>
+
+<p>Returns all users in JSON format.</p>
+
+<h3 id="delete">Delete</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/internalusers/{username}
+</code></pre></div></div>
+
+<p>Deletes the user specified by <code class="highlighter-rouge">username</code>. If successful, the call returns with status code 200 and a JSON success message.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/internalusers/kirk
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"user kirk deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="put">PUT</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/internalusers/{username}
+</code></pre></div></div>
+
+<p>Replaces or creates the user specified by <code class="highlighter-rouge">username</code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/_searchguard/api/user/kirk</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kirk"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"captains"</span><span class="p">,</span><span class="w"> </span><span class="s2">"starfleet"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You need to specify either <code class="highlighter-rouge">hash</code> or <code class="highlighter-rouge">password</code>. <code class="highlighter-rouge">hash</code> is the hashed user password. You can either use an already hashed password (“hash” field) or provide it in clear text (“password”). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,<code class="highlighter-rouge">hash</code> takes precedence.</p>
+
+<p><code class="highlighter-rouge">roles</code> contains an array of the user’s backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"User kirk created"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="roles-mapping-api">Roles mapping API</h2>
+
+<p>Used to receive, create, update and delete the mapping of users, backendroles and hosts to Search Guard roles.</p>
+
+<h3 id="endpoint-1">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/rolesmapping/{rolename}
+</code></pre></div></div>
+<p>Where <code class="highlighter-rouge">rolename</code> is the name of the role.</p>
+
+<h3 id="get-1">GET</h3>
+
+<h4 id="get-a-single-role-mapping">Get a single role mapping</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/rolesmapping/{rolename}
+</code></pre></div></div>
+
+<p>Retrieve a role mapping, specified by rolename, in JSON format.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/rolesmapping/sg_role_starfleet
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sg_role_starfleet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"backendroles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"starfleet"</span><span class="p">,</span><span class="w"> </span><span class="s2">"captains"</span><span class="p">,</span><span class="w"> </span><span class="s2">"defectors"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cn=ldaprole,ou=groups,dc=example,dc=com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"hosts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*.starfleetintranet.com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"worf"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="get-all-role-mappings">Get all role mappings</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/rolesmapping/{rolename}
+</code></pre></div></div>
+
+<p>Returns all role mappings in JSON format.</p>
+
+<h3 id="delete-1">DELETE</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/rolesmapping/{rolename}
+</code></pre></div></div>
+
+<p>Deletes the rolemapping specified by <code class="highlighter-rouge">rolename</code>. If successful, the call returns with status code 200 and a JSON success message.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/rolesmapping/sg_role_starfleet
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"rolesmapping sg_role_starfleet deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="put-1">PUT</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/rolesmapping/{rolename}
+</code></pre></div></div>
+<p>Replaces or creates the role mapping specified by <code class="highlighter-rouge">rolename </code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/_searchguard/api/rolesmapping/sg_role_starfleet</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"backendroles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"starfleet"</span><span class="p">,</span><span class="w"> </span><span class="s2">"captains"</span><span class="p">,</span><span class="w"> </span><span class="s2">"defectors"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cn=ldaprole,ou=groups,dc=example,dc=com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"hosts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*.starfleetintranet.com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"users"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"worf"</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You need to specify at least one of <code class="highlighter-rouge">backendroles</code>, <code class="highlighter-rouge">hosts</code> or <code class="highlighter-rouge">users</code>.</p>
+
+<p>If the call is succesful, a JSON structure is returned, indicating whether the roles mapping was created or updated.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"rolesmapping sg_role_starfleet created."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="roles-and-tenants-api">Roles and Tenants API</h2>
+
+<p>Used to receive, create, update and delete roles and their respective permissions.</p>
+
+<h3 id="endpoint-2">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/roles/{rolename}
+</code></pre></div></div>
+<p>Where <code class="highlighter-rouge">rolename</code> is the name of the role.</p>
+
+<h3 id="get-2">GET</h3>
+
+<h4 id="get-a-single-role">Get a single role</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/roles/{rolename}
+</code></pre></div></div>
+
+<p>Retrieve a role and its permissions, specified by rolename, in JSON format.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/roles/sg_role_starfleet
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sg_role_starfleet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"indices"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pub*"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"*"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"READ"</span><span class="w"> </span><span class="p">]</span><span class="w">
+        </span><span class="s2">"_dls_"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">bool</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">must_not</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">match</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">Designation</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">CEO</span><span class="se">\"</span><span class="s2">  }}}}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_fls_"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Designation"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"FirstName"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LastName"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Salary"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="get-all-roles">Get all roles</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/roles/{rolename}
+</code></pre></div></div>
+
+<p>Returns all roles in JSON format.</p>
+
+<h3 id="delete-2">DELETE</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/roles/{rolename}
+</code></pre></div></div>
+<p>Deletes the role specified by <code class="highlighter-rouge">rolename</code>. If successful, the call returns with status code 200 and a JSON success message.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/roles/sg_role_starfleet
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"role sg_role_starfleet deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="put-2">PUT</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/roles/{rolename}
+</code></pre></div></div>
+<p>Replaces or creates the role specified by <code class="highlighter-rouge">rolename </code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/_searchguard/api/rolesmapping/sg_role_starfleet</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"cluster"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"indices"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"pub*"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"*"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"READ"</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="err">_dls_</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">bool</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">must_not</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">match</span><span class="se">\"</span><span class="s2">: { </span><span class="se">\"</span><span class="s2">Designation</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">CEO</span><span class="se">\"</span><span class="s2">}}}}"</span><span class="w">
+      </span><span class="err">_fls_</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"field1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"field2"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tenants"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">tenant</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="err">RW</span><span class="p">,</span><span class="w">
+      </span><span class="err">tenant</span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="err">RO</span><span class="w">
+    </span><span class="p">}</span><span class="w">    
+  </span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The JSON format resembles the format used in <code class="highlighter-rouge">sg_roles.yml</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cluster"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"&lt;cluster permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"&lt;cluster permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"indices"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"&lt;indexname&gt;"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"&lt;typename&gt;"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"&lt;index/type permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"&lt;index/type permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"_dls_"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;DLS query&gt;"</span><span class="w">
+      </span><span class="s2">"_fls_"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"field"</span><span class="p">,</span><span class="w"> </span><span class="s2">"field"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"&lt;indexname&gt;"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"&lt;typename&gt;"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"&lt;index/type permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"&lt;index/type permission&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"tenants"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">&lt;tenantname&gt;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;RW</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">RO&gt;</span><span class="p">,</span><span class="w">
+      </span><span class="err">&lt;tenantname&gt;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;RW</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="err">RO&gt;</span><span class="p">,</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>If you’re using DLS in the role definition, make sure to escape the quotes correctly!</strong></p>
+
+<p>If the call is succesful, a JSON structure is returned, indicating whether the role was created or updated.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"role sg_role_starfleet created."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="action-groups-api">Action groups API</h2>
+
+<p>Used to receive, create, update and delete action groups.</p>
+
+<p><strong>Note: The <code class="highlighter-rouge">actiongroup</code> (singular) endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7</strong></p>
+
+<h3 id="endpoint-3">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/actiongroups/{actiongroup}
+</code></pre></div></div>
+<p>Where <code class="highlighter-rouge">actiongroup</code> is the name of the role.</p>
+
+<h3 id="get-3">GET</h3>
+
+<h4 id="get-a-single-action-group">Get a single action group</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/actiongroups/{actiongroup}
+</code></pre></div></div>
+<p>Returns the settings for the respective action group in JSON format, for example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/actiongroups/SEARCH
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"SEARCH"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"indices:data/read/search*"</span><span class="p">,</span><span class="w"> </span><span class="s2">"indices:data/read/msearch*"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SUGGEST"</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="get-all-action-groups">Get all action groups</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/actiongroups/
+</code></pre></div></div>
+
+<p>Returns all action groups in JSON format.</p>
+
+<h3 id="delete-3">Delete</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/actiongroups/{actiongroup}
+</code></pre></div></div>
+
+<p>Deletes the action group specified by <code class="highlighter-rouge">actiongroup </code>. If successful, the call returns with status code 200 and a JSON success message.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/actiongroups/SEARCH
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"actiongroup SEARCH deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="put-3">PUT</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/actiongroups/{actiongroup}
+</code></pre></div></div>
+
+<p>Replaces or creates the action group specified by <code class="highlighter-rouge">actiongroup </code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/actiongroups/SEARCH
+{
+  "permissions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
+}
+</code></pre></div></div>
+<p>The field permissions is mandatory and contains permissions or references to other action groups.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"action group SEARCH created"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="authentication-and-authorization-api">Authentication and Authorization API</h2>
+
+<p>Used to retrieve the configured authentication and authorization modules.</p>
+
+<h3 id="endpoint-4">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/sgconfig
+</code></pre></div></div>
+
+<h3 id="get-4">GET</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/sgconfig
+</code></pre></div></div>
+
+<p>Returns the configured authentication and authorization modules in JSON format.</p>
+
+<h2 id="license-api">License API</h2>
+
+<p>Used to retrieve and update the Search Guard license.</p>
+
+<h3 id="endpoint-5">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/license/
+</code></pre></div></div>
+
+<h3 id="get-5">GET</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/license/
+</code></pre></div></div>
+<p>Returns the currently installed license in JSON format.</p>
+
+<h3 id="put-4">PUT</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PUT /_searchguard/api/license/
+</code></pre></div></div>
+
+<p>Validates and replaces the currently active Search Guard license. Invalid (e.g. expired) licensens are rejected.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">PUT</span><span class="w"> </span><span class="err">/_searchguard/api/license/</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"sg_license"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;licensestring&gt;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="cache-api">Cache API</h2>
+
+<p>Used to manage the Search Guard internal user, authentication and authorization cache.</p>
+
+<h3 id="endpoint-6">Endpoint</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/cache
+</code></pre></div></div>
+
+<h3 id="delete-4">Delete</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DELETE /_searchguard/api/cache
+</code></pre></div></div>
+
+<p>Flushes the Search Guard cache.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Cache flushed successfully."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="deprecated-get-configuration-api">DEPRECATED: Get Configuration API</h2>
+
+<p>This endpoint is deprecated and will be removed in future Search Guard versions. Instead, use the GET endpoint without a resource name on each API endpoint separately.</p>
+
+<h3 id="endpoint-7">Endpoint</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/_searchguard/api/configuration/{configname}
+</code></pre></div></div>
+<p>Where <code class="highlighter-rouge">configname</code> can be one of</p>
+
+<ul>
+  <li>config</li>
+  <li>internalusers</li>
+  <li>rolesmapping</li>
+  <li>roles</li>
+  <li>actiongroups</li>
+</ul>
+
+<h3 id="get-6">GET</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /_searchguard/api/configuration/{configname}
+</code></pre></div></div>
+<p>A successful call returns a JSON structure containing the complete settings for the requested configuration, for example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="s2">"sg_role_starfleet"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"backendroles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"starfleet"</span><span class="p">,</span><span class="w"> </span><span class="s2">"captains"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cn=ldaprole,ou=groups,dc=example,dc=com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"hosts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"*.starfleetintranet.com"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"worf"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>

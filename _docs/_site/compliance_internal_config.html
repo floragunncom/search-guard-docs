@@ -1,0 +1,290 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="search-guard-configuration-change-tracking">Search Guard configuration change tracking</h1>
+
+<p><strong>To use the compliance features please install the <a href="installation_versionmatrix.md">Search Guard Compliance Edition</a></strong></p>
+
+<p>Search Guard is able to monitor read- and write access to the Search Guard configuration index. This makes it possible to track which user has accessed the configuration information, and get notified about any changes immediately.</p>
+
+<h2 id="enabling-and-disabling">Enabling and disabling</h2>
+
+<p>The elasticsearch configuration monitoring can be switched on an off by the following entry in elasticsearch.yml:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.compliance.history.internal_config_enabled</td>
+      <td>boolean, whether to enable or disable Search Guard configuration monitoring. Default: true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="audit-log-category">Audit log category</h2>
+
+<p>The Elasticsearch configuration events are logged in the <code class="highlighter-rouge">COMPLIANCE_INTERNAL_CONFIG_READ</code> and <code class="highlighter-rouge">COMPLIANCE_INTERNAL_CONFIG_WRITE</code> category.</p>
+
+<h2 id="read-field-reference">Read Field reference</h2>
+
+<h3 id="format-timestamp-and-category-attributes">Format, timestamp and category attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_format_version</td>
+      <td>Audit log message format version, current: 3</td>
+    </tr>
+    <tr>
+      <td>audit_utc_timestamp</td>
+      <td>UTC timestamp when the event was generated</td>
+    </tr>
+    <tr>
+      <td>audit_category</td>
+      <td>Audit log category, <code class="highlighter-rouge">COMPLIANCE_EXTERNAL_CONFIG</code> for all events</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-and-node-attributes">Cluster and node attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_cluster_name</td>
+      <td>Name of the cluster this event was emitted on.</td>
+    </tr>
+    <tr>
+      <td>audit_node_id</td>
+      <td>The ID of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_name</td>
+      <td>The name of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_address</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_name</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="configuration-attributes">Configuration attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_trace_indices</td>
+      <td>The index name used to read the config. May contain aliases or wildvards.</td>
+    </tr>
+    <tr>
+      <td>audit_trace_resolve_indices</td>
+      <td>The index name used to read the config. May contain aliases or wildcards.</td>
+    </tr>
+    <tr>
+      <td>audit_trace_doc_id</td>
+      <td>The configuration that has been read, one of <code class="highlighter-rouge">internalusers</code>, <code class="highlighter-rouge">roles</code>, <code class="highlighter-rouge">rolesmapping</code>, <code class="highlighter-rouge">actiongroups</code>, <code class="highlighter-rouge">config</code></td>
+    </tr>
+    <tr>
+      <td>audit_request_body</td>
+      <td>The configuration that has been read, as JSON string</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="logged-configuration">Logged configuration</h3>
+
+<p>The <code class="highlighter-rouge">audit_request_body</code> contains the exact configuration settings the user has seen, for example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"roles"</span><span class="p">:{</span><span class="w">  
+      </span><span class="s2">"sg_all_access"</span><span class="p">:{</span><span class="w">  
+         </span><span class="s2">"readonly"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cluster"</span><span class="p">:[</span><span class="w">  
+            </span><span class="s2">"UNLIMITED"</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"indices"</span><span class="p">:{</span><span class="w">  
+            </span><span class="s2">"*"</span><span class="p">:{</span><span class="w">  
+               </span><span class="s2">"*"</span><span class="p">:[</span><span class="w">  
+                  </span><span class="s2">"UNLIMITED"</span><span class="w">
+               </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"tenants"</span><span class="p">:{</span><span class="w">  
+            </span><span class="s2">"admin_tenant"</span><span class="p">:</span><span class="s2">"RW"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+     </span><span class="err">...</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note: Since the JSON object is stored as String, the quotation marks are escaped in the original output. Depending on your JSON parser you might need to remove them first.</p>
+
+<h2 id="write-field-reference">Write Field reference</h2>
+
+<h3 id="format-timestamp-and-category-attributes-1">Format, timestamp and category attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_format_version</td>
+      <td>Audit log message format version, current: 3</td>
+    </tr>
+    <tr>
+      <td>audit_utc_timestamp</td>
+      <td>UTC timestamp when the event was generated</td>
+    </tr>
+    <tr>
+      <td>audit_category</td>
+      <td>Audit log category, <code class="highlighter-rouge">COMPLIANCE_EXTERNAL_CONFIG</code> for all events</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-and-node-attributes-1">Cluster and node attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_cluster_name</td>
+      <td>Name of the cluster this event was emitted on.</td>
+    </tr>
+    <tr>
+      <td>audit_node_id</td>
+      <td>The ID of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_name</td>
+      <td>The name of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_address</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_name</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="request-attributes">Request attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_request_origin</td>
+      <td>The layer from which the event originated. One if <code class="highlighter-rouge">TRANSPORT</code> or <code class="highlighter-rouge">REST</code>.</td>
+    </tr>
+    <tr>
+      <td>audit_request_remote_address</td>
+      <td>The adress where the request came from.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="user-attributes">User attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_request_effective_user</td>
+      <td>The username of the user that has changed the configuration</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="index-attributes">Index attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_trace_indices</td>
+      <td>Array, the index name(s) as contained in the request. Can contain wildcards, date patterns and aliases.</td>
+    </tr>
+    <tr>
+      <td>audit_trace_resolved_indices</td>
+      <td>Array, the resolved, concrete index name(s) affected by this request. Only logged if <code class="highlighter-rouge">resolve_indices</code> is true. Optional.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="document-and-fields-attributes">Document and fields attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_compliance_operation</td>
+      <td>The operation on the configuration, can be one of <code class="highlighter-rouge">CREATE</code>, <code class="highlighter-rouge">UPDATE</code> or <code class="highlighter-rouge">DELETE</code>.</td>
+    </tr>
+    <tr>
+      <td>audit_trace_doc_id</td>
+      <td>Name of the configuration that has changed, one of <code class="highlighter-rouge">internalusers</code>, <code class="highlighter-rouge">roles</code>, <code class="highlighter-rouge">rolesmapping</code>, <code class="highlighter-rouge">actiongroups</code>, <code class="highlighter-rouge">config</code></td>
+    </tr>
+  </tbody>
+</table>

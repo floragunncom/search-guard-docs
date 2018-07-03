@@ -1,0 +1,109 @@
+<!---
+Copryight 2016-2017 floragunn GmbH
+-->
+
+<h1 id="http-basic-authentication">HTTP Basic Authentication</h1>
+
+<p>HTTP Basic is the most common used authentication type and probably the one you are most familiar with. If a user tries to access Kibana:</p>
+
+<ul>
+  <li>Search Guard checks whether the user has an active session with valid username/password credentials</li>
+  <li>if so, the credentials are added to any HTTP call from Kibana to Elasticsearch/Search Guard
+    <ul>
+      <li>Search Guard will use these credentials for authentication and authorization  and for assigning roles and permissions</li>
+      <li>Depending on the configured authentication backend, the credentials are checked against the internal user database, LDAP or Active Directory</li>
+    </ul>
+  </li>
+  <li>If the user does not have any active session, a customizable login page is display and the user has to log in.</li>
+</ul>
+
+<p>To activate Basic Authentication and the login page, add the following entry to <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<p><strong>For v13 and below:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.basicauth.enabled: true
+</code></pre></div></div>
+
+<p><strong>For v14 and above:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.auth.type: "basic"
+</code></pre></div></div>
+
+<p>Use the following settings in <code class="highlighter-rouge">kibana.yml</code> to configure HTTP Basic authentication:</p>
+
+<h2 id="session-management">Session management</h2>
+
+<p>The user session is stored in an encrypted cookie. Use the following to configuration options to control the session behavior:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.cookie.secure</td>
+      <td>boolean, if set to true cookies are only stored when using HTTPS. Default: false.</td>
+    </tr>
+    <tr>
+      <td>searchguard.cookie.name</td>
+      <td>String, name of the cookie. Default: ‘searchguard_authentication’</td>
+    </tr>
+    <tr>
+      <td>searchguard.cookie.password</td>
+      <td>String, key used to encrypt the cookie. Must be at least 32 characters long. Default: ‘searchguard_cookie_default_password’</td>
+    </tr>
+    <tr>
+      <td>searchguard.cookie.ttl</td>
+      <td>Integer, lifetime of the cookie in milliseconds. Can be set to 0 for session cookie. Default: 1 hour</td>
+    </tr>
+    <tr>
+      <td>searchguard.session.ttl</td>
+      <td>Integer, lifetime of the session in milliseconds. If set, the user is prompted to log in again after the configured time, regardless of the cookie. Default: 1 hour</td>
+    </tr>
+    <tr>
+      <td>searchguard.session.keepalive</td>
+      <td>boolean, if set to true the session lifetime is extended by <code class="highlighter-rouge">searchguard.session.ttl</code> upon each request. Default: true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="preventing-users-from-logging-in">Preventing users from logging in</h2>
+
+<p>You can prevent users from logging in to Kibana by listing them in <code class="highlighter-rouge">kibana.yml</code>. This is useful if you don’t want system users like the Kibana server user or the logstash user to log in. In <code class="highlighter-rouge">kibana.yml</code>, set:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
+</code></pre></div></div>
+
+<h2 id="configuration-example">Configuration example</h2>
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-yaml">
+<code class=" js-code language-markup">
+# v13 and below: Enable HTTP Basic Authentication
+searchguard.basicauth.enabled: true
+
+# v14 and above: Enable HTTP Basic Authentication
+searchguard.auth.type: "basic"
+
+# Configure session management
+searchguard.cookie.password: &lt;encryption key, min. 32 characters&gt;
+
+# Use HTTPS instead of HTTP
+elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+
+# Configure the Kibana internal server user
+elasticsearch.username: "kibanaserver"
+elasticsearch.password: "kibanaserver"
+
+# Disable SSL verification when using self-signed demo certificates
+elasticsearch.ssl.verificationMode: none
+
+# Whitelist basic headers and multi tenancy header
+elasticsearch.requestHeadersWhitelist: ["Authorization", "sgtenant"]
+</code>
+</pre>
+</div>

@@ -1,0 +1,69 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="kerberos">Kerberos</h1>
+
+<h2 id="static-configuration-in-elasticsearchyml">Static configuration in elasticsearch.yml</h2>
+
+<p>Due to the nature of Kerberos, you need to define some (static) settings in <code class="highlighter-rouge">elasticsearch.yml</code>, and some in <code class="highlighter-rouge">sgconfig.yml</code>.</p>
+
+<p>In <code class="highlighter-rouge">elasticsearch.yml</code>, you need to define:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.kerberos.krb5_filepath</span><span class="pi">:</span> <span class="s1">'</span><span class="s">/etc/krb5.conf'</span>
+<span class="s">searchguard.kerberos.acceptor_keytab_filepath</span><span class="pi">:</span> <span class="s1">'</span><span class="s">eskeytab.tab'</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">searchguard.kerberos.krb5_filepath</code> defines the path to your Kerberos configuration file. This file contains various settings regarding your Kerberos installation, for example, the realm name(s) and the hostname(s) and port(s) of the Kerberos Key Distribution Center services.</p>
+
+<p><code class="highlighter-rouge">searchguard.kerberos.acceptor_keytab_filepath</code> defines the path to the keytab file, containing the principal that Search Guard will use to issue requests against Kerberos/KDC.</p>
+
+<p><code class="highlighter-rouge">acceptor_principal: 'HTTP/localhost'</code> defines the principal that Search Guard will use to issue requests against Kerberos/KDC.</p>
+
+<p>The <code class="highlighter-rouge">acceptor_principal</code> defines the acceptor/server principal name Search Guard uses to issue requests against Kerberos/KDC. This must be present in the keytab file.</p>
+
+<p><strong>Due to security restrictions the keytab file must be placed in the <code class="highlighter-rouge">&lt;ES installation directory&gt;/conf</code> directory or a subdirectory, and the path in <code class="highlighter-rouge">elasticsearch.yml</code> must be configured relative, not absolute.</strong></p>
+
+<h2 id="dynamic-configuration-in-sgconfigyml">Dynamic configuration in sgconfig.yml</h2>
+
+<p>A typical Kerberos authentication domain in sgconfig.yml looks like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">authc</span><span class="pi">:</span>
+      <span class="na">kerberos_auth_domain</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+        <span class="na">http_authenticator</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">kerberos</span>
+          <span class="na">challenge</span><span class="pi">:</span> <span class="no">true</span>
+          <span class="na">config</span><span class="pi">:</span>
+            <span class="na">krb_debug</span><span class="pi">:</span> <span class="no">false</span>
+            <span class="na">strip_realm_from_principal</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">authentication_backend</span><span class="pi">:</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">noop</span>
+</code></pre></div></div>
+
+<p>Authentication against Kerberos via a browser on HTTP level is achieved by using SPNEGO. The Kerberos/SPNEGO implementations vary, depending on your browser/operating system. This is important when deciding if you need to set the <code class="highlighter-rouge">challenge</code> flag to true or false.</p>
+
+<p>As with <a href="httpbasic.md">HTTP Basic Authentication</a>, this flag determines how Search Guard should react when no <code class="highlighter-rouge">Authorization</code> header is found in the HTTP request, or if this header does not equal <code class="highlighter-rouge">negotiate</code>.</p>
+
+<p>If set to true, Search Guard will send a response with status code 401 and a <code class="highlighter-rouge">WWW-Authenticate</code> header set to <code class="highlighter-rouge">Negotiate</code>. This will tell the client (browser) to resend the request with the <code class="highlighter-rouge">Authorization</code> header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting <code class="highlighter-rouge">challenge</code> to false thus only makes sense if the Kerberos credentials are sent in the inital request.</p>
+
+<p>As the name implies, setting <code class="highlighter-rouge">krb_debug</code> to true will output a lot of Kerberos specific debugging messages to stdout. Use this if you encounter any problems with your Kerberos integration.</p>
+
+<p>If you set <code class="highlighter-rouge">strip_realm_from_principal</code> to true, Search Guard will strip the realm from the user name.</p>
+
+<h2 id="authentication-backend">Authentication backend</h2>
+
+<p>Since SPNEGO/Kerberos authenticates a user on HTTP level, no additional <code class="highlighter-rouge">authentication_backend</code> is needed, hence it can be set to <code class="highlighter-rouge">noop</code>.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>Set <code class="highlighter-rouge">krb_debug: true</code> in the dynamic configuration. Now any login attempt with a SPNEGO token should print diagnostic information to stdout.</p>
+
+<p>If you do not see any output or use an older Search Guard Kerberos module set the following JVM porperties manually:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">-Dsun.security.krb5.debug=true</code></li>
+  <li><code class="highlighter-rouge">-Djava.security.debug=gssloginconfig,logincontext,configparser,configfile</code></li>
+  <li><code class="highlighter-rouge">-Dsun.security.spnego.debug=true</code></li>
+</ul>

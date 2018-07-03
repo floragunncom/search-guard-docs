@@ -1,0 +1,179 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="http-headerproxy-based-authentication">HTTP-header/Proxy based authentication</h1>
+
+<p><strong>This module is deprecated and will be replaced in future versions of Search Guard.</strong></p>
+
+<p>You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Search Guard authentication backend.</p>
+
+<p>Most of these solutions work as a proxy in front of Elasticsearch/Search Guard. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependant on the SSO solution you have in place.</p>
+
+<p>Search Guard can extract these HTTP header fields from the request, and use these values to determine the permissions a user has.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<h3 id="enabling-proxy-detection">Enabling proxy detection</h3>
+
+<p>To enable proxy detection, configure it in the <code class="highlighter-rouge">xff</code> section of <code class="highlighter-rouge">sg_config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">xff</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">remoteIpHeader</span><span class="pi">:</span> <span class="s1">'</span><span class="s">x-forwarded-for'</span>
+        <span class="na">internalProxies</span><span class="pi">:</span> <span class="s1">'</span><span class="s">192\.168\.0\.11|192\.168\.0\.12'</span>
+</code></pre></div></div>
+
+<p>You can configure the following settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.dynamic.http.xff.enabled</td>
+      <td>Boolean, Enable or disable proxy support. Default: true</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.http.xff.internalProxies</td>
+      <td>A regular expression containing the IP addresses of all trusted proxies.</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.http.xff.remoteIpHeader</td>
+      <td>String, name of the HTTP header field where the chain of hostnames are stored. Default: <code class="highlighter-rouge">x-forwarded-for</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to determine if a request comes from a trusted internal proxy, Search Guard compares the remote address of the HTTP request with the list of configured internal proxies.  If the remote address is not in the list of trusted proxies, it is treated like a client request. Proxy authentication will not work in this case.</p>
+
+<h3 id="enabling-proxy-authentication">Enabling proxy authentication</h3>
+
+<p>The names of the respective HTTP header fields which carry the authenticated username and role(s) can be configured in in the <code class="highlighter-rouge">proxy</code> HTTP authenticator section:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">proxy_auth_domain</span><span class="pi">:</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">proxy</span>
+    <span class="na">challenge</span><span class="pi">:</span> <span class="no">false</span>
+    <span class="na">config</span><span class="pi">:</span>
+      <span class="na">user_header</span><span class="pi">:</span> <span class="s2">"</span><span class="s">x-proxy-user"</span>
+      <span class="na">roles_header</span><span class="pi">:</span> <span class="s2">"</span><span class="s">x-proxy-roles"</span>
+  <span class="na">authentication_backend</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">noop</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_header</td>
+      <td>String, The HTTP header field containing the authenticated username. Default: <code class="highlighter-rouge">x-proxy-user</code></td>
+    </tr>
+    <tr>
+      <td>roles_header</td>
+      <td>String, The HTTP header field containing the comma separated list of authenticated role names. Roles found in this header field will be used as backend roles and can be used to <a href="configuration_roles_mapping.md">map the user to Search Guard roles</a>. Default: <code class="highlighter-rouge">x-proxy-roles</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="example">Example</h2>
+
+<p>In the following example we run an nginx proxy in front of a 3-node Elasticsearch cluster. For the sake of simplicity we use hardcoded values for <code class="highlighter-rouge">x-proxy-user</code> and <code class="highlighter-rouge">x-proxy-roles</code>. In a real world example you would set these headers dynamically.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>events {
+  worker_connections  1024;
+}
+
+http {
+
+  upstream elasticsearch {
+    server sgssl-0.example.com:9200;
+    server sgssl-1.example.com:9200;
+    server sgssl-2.example.com:9200;
+    keepalive 15;
+  }
+
+  server {
+    listen       8090;
+    server_name  nginx.example.com;
+
+    location / {
+      proxy_pass https://elasticsearch;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header x-proxy-user admin;
+      proxy_set_header x-proxy-roles admin;
+    }
+  }
+
+}
+</code></pre></div></div>
+
+<p>The corresponding minimal sg_config.yml looks like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard:
+  dynamic:
+    http:
+      xff:
+        enabled: true
+        internalProxies: '172.16.0.203' # nginx proxy
+    authc:
+      proxy_auth_domain:
+        http_enabled: true
+        transport_enabled: true
+        order: 0
+        http_authenticator:
+          type: proxy
+          challenge: false
+          config:
+            user_header: "x-proxy-user"
+            roles_header: "x-proxy-roles"
+        authentication_backend:
+          type: noop
+</code></pre></div></div>
+
+<p>The important part is to enable the <code class="highlighter-rouge">X-Forwarded-For (XFF)</code> resolution and to set the IP(s) of the internal proxies correctly:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>enabled: true
+internalProxies: '172.16.0.203' # nginx proxy
+</code></pre></div></div>
+<p>In our case, <code class="highlighter-rouge">nginx.example.com</code> runs on <code class="highlighter-rouge">172.16.0.203</code>, so we need to  add this IP to the list of internal proxies.</p>
+
+<p><strong>Make sure to set the <code class="highlighter-rouge">internalProxies</code> correctly, so only requests  from trusted IPs are accepted.</strong></p>
+
+<h2 id="kibana-proxy-authentication">Kibana proxy authentication</h2>
+
+<p>If you plan to use proxy authentication with Kibana, the most common setup is to place an authenticating proxy in front of Kibana, and let Kibana pass the user and role header to Search Guard:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authentication Proxy -&gt; Kibana -&gt; Search Guard
+</code></pre></div></div>
+
+<p>In this case the remote address of the HTTP call is the IP of Kibana, because it sits directly in front of Search Guard. Therefore you need to add the IP of Kibana to the list of internal proxies:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">xff</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">remoteIpHeader</span><span class="pi">:</span> <span class="s1">'</span><span class="s">x-forwarded-for'</span>
+        <span class="na">internalProxies</span><span class="pi">:</span> <span class="s1">'</span><span class="s">&lt;Kibana</span><span class="nv"> </span><span class="s">IP&gt;'</span>
+</code></pre></div></div>
+
+<p>To pass the user and role headers that the authenticating proxy adds from Kibana to Search Guard, you need to add them to the HTTP header whitelist in <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>elasticsearch.requestHeadersWhitelist: ["authorization", "sgtenant", "x-proxy-user", "x-proxy-roles"]
+
+</code></pre></div></div>

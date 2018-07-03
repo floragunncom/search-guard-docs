@@ -1,0 +1,99 @@
+<!--- Copryight 2017 floragunn GmbH -->
+
+<h1 id="generated-artefacts-and-settings">Generated artefacts and settings</h1>
+
+<h2 id="generated-certificates">Generated certificates</h2>
+
+<p>After executing the demo installer, you will find the following generated certificates in the config directory of your Elasticsearch installation:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">root-ca.pem</code>— the root CA used for signing all other certificates</li>
+  <li><code class="highlighter-rouge">esnode.pem</code>— the node certificate used on the transport- and REST-layer.</li>
+  <li><code class="highlighter-rouge">esnode-key.pem</code>— the private key for the node certificate</li>
+  <li><code class="highlighter-rouge">kirk.pem</code>— the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API</li>
+  <li><code class="highlighter-rouge">kirk-key.pem</code>— the private key for the admin certificate</li>
+</ul>
+
+<p>These certificates are used for TLS encryption on the REST- and the transport layer of Elasticsearch, and for granting admin access to the Search Guard configuration index. For a detailed description on the types of certificates Search Guard uses, please see <a href="tls_certificates_production.md">Moving TLS to production</a>.</p>
+
+<h2 id="generated-configuration">Generated configuration</h2>
+
+<p>The demo installer automatically appends mandatory and useful configuration settings for Search Guard to <code class="highlighter-rouge">elasticsearch.yml</code>. These additions are enclosed by the following lines:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">######## Start Search Guard Demo Configuration ########</span>
+<span class="nn">...</span>
+<span class="c1">######## End Search Guard Demo Configuration ########</span>
+</code></pre></div></div>
+
+<p>If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in <code class="highlighter-rouge">elasticsearch.yml</code>.</p>
+
+<h3 id="tls-settings">TLS settings</h3>
+
+<p>The following lines configure TLS for the REST- and the transport layer:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.http.enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="s">searchguard.ssl.http.pemcert_filepath</span><span class="pi">:</span> <span class="s">esnode.pem</span>
+<span class="s">searchguard.ssl.http.pemkey_filepath</span><span class="pi">:</span> <span class="s">esnode-key.pem</span>
+<span class="s">searchguard.ssl.http.pemtrustedcas_filepath</span><span class="pi">:</span> <span class="s">root-ca.pem</span>
+
+<span class="s">searchguard.ssl.transport.pemcert_filepath</span><span class="pi">:</span> <span class="s">esnode.pem</span>
+<span class="s">searchguard.ssl.transport.pemkey_filepath</span><span class="pi">:</span> <span class="s">esnode-key.pem</span>
+<span class="s">searchguard.ssl.transport.pemtrustedcas_filepath</span><span class="pi">:</span> <span class="s">root-ca.pem</span>
+<span class="s">searchguard.ssl.transport.enforce_hostname_verification</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<p>Notes: TLS on the transport layer is mandatory, so you cannot switch it off. TLS on the REST layer can be enabled or disables per node.</p>
+
+<p>For details on the TLS configuration please refer to <a href="tls_configuration.md">Configuring TLS</a>.</p>
+
+<h3 id="admin-certificate">Admin certificate</h3>
+
+<p>In order to apply changes to the Search Guard configuration index, an admin TLS cetificate is required. This line tells Search Guard that the DN of the generated <code class="highlighter-rouge">kirk.pem</code> certificate denotes an admin certificate and should be granted elevated privileges:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.authcz.admin_dn</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">CN=kirk,OU=client,O=client,L=test, C=de</span>
+</code></pre></div></div>
+
+<h3 id="allow-demo-certificates-and-auto-initialization">Allow demo certificates and auto-initialization</h3>
+
+<p>By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the <code class="highlighter-rouge">&lt;Elasticsearch directory&gt;/plugins/search-guard-/sgconfig</code> directory.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.allow_unsafe_democertificates</span><span class="pi">:</span> <span class="no">true</span>
+<span class="s">searchguard.allow_default_init_sgindex</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Both options are unsafe for production, so their default value is <code class="highlighter-rouge">false</code>. Don’t forget to remove them if you move your configuration to production!</p>
+
+<h3 id="allow-snapshot--restore">Allow snapshot / restore</h3>
+
+<p>To perform snapshot and restore operations, a user needs to have special privileges assigned. The next two lines enable these privileges:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.enable_snapshot_restore_privilege</span><span class="pi">:</span> <span class="no">true</span>
+<span class="s">searchguard.check_snapshot_restore_write_privileges</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Details can be found in the <a href="snapshots.md">Snapshot &amp; Restore</a> chapter.</p>
+
+<h3 id="audit-logging">Audit logging</h3>
+
+<p>This line tells Search Guard to enable audit logging and to store the generated audit trail directly in Elasticsearch:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.audit.type</span><span class="pi">:</span> <span class="s">internal_elasticsearch</span>
+</code></pre></div></div>
+
+<p>The default index name for storing the audit trail is <code class="highlighter-rouge">sg6-auditlog-YYYY.MM.dd</code> which means a daily rolling index is used. A complete description how to configure and use Audit Logging can be found <a href="auditlogging.md">here</a>.</p>
+
+<h3 id="rest-api-access-control">REST API access control</h3>
+
+<p>Tells Search Guard which Search Guard roles can access the REST Management API to perform changes to the configuration:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.restapi.roles_enabled</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">sg_all_access"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>In the demo setup, this Search Guard role is assigned to the user <code class="highlighter-rouge">admin</code>. If you have installed the Kibana Configuration GUI, simply login as <code class="highlighter-rouge">admin/admin</code>.</p>
+
+<h3 id="default-cluster-name-and-host">Default cluster name and host</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">cluster.name</span><span class="pi">:</span> <span class="s">searchguard_demo</span>
+<span class="s">network.host</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+</code></pre></div></div>

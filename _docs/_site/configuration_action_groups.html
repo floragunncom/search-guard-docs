@@ -1,0 +1,175 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="using-and-defining-action-groups">Using and defining action groups</h1>
+
+<p>Hint: You can also use the <a href="kibana_config_gui.md">Kibana Confguration GUI</a> for configuring the Action Groups.</p>
+
+<p>An action group is simply a collection of permissions with a telling name. Action groups are defined in the file <code class="highlighter-rouge">sg_action_groups.yml</code> and can be referred to in <code class="highlighter-rouge">sg_roles.yml</code>. Action groups can be nested.</p>
+
+<p>The file structure is very simple:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">&lt;action group name&gt;</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">&lt;permission</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">groups&gt;'</span>
+    <span class="pi">-</span> <span class="s1">'</span><span class="s">&lt;permission</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">group&gt;'</span>
+    <span class="pi">-</span> <span class="s">...</span>
+</code></pre></div></div>
+
+<p><strong>The action group name must not contain dots.</strong></p>
+
+<p>Using action groups is the preferred way of assigning permissions to a role.</p>
+
+<h2 id="pre-defined-action-groups">Pre-defined action groups</h2>
+
+<p>Search Guard ships with a list of pre-defined action groups that are suitable for most use cases.</p>
+
+<h3 id="general">General</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UNLIMITED</td>
+      <td>Grants complete access, can be used on index- and cluster-level. Equates to <code class="highlighter-rouge">"*"</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="index-level-action-groups">Index-level action groups</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>INDICES_ALL</td>
+      <td>Grants all permissions on the index. Equates to <code class="highlighter-rouge">indices:*</code></td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>Grants permission to use get and mget actions (only)</td>
+    </tr>
+    <tr>
+      <td>READ</td>
+      <td>Grants read permissions like get, mget or getting field mappings, but exludes search permissions</td>
+    </tr>
+    <tr>
+      <td>WRITE</td>
+      <td>Grants write permissions to documents</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>Grants permission to delete documents</td>
+    </tr>
+    <tr>
+      <td>CRUD</td>
+      <td>Combines the READ, WRITE and DELETE action groups</td>
+    </tr>
+    <tr>
+      <td>SEARCH</td>
+      <td>Grants permission to search documents</td>
+    </tr>
+    <tr>
+      <td>SUGGEST</td>
+      <td>Grants permission to use the suggest API. Already included in the READ action group.</td>
+    </tr>
+    <tr>
+      <td>CREATE_INDEX</td>
+      <td>Grants permission to create indices and mappings</td>
+    </tr>
+    <tr>
+      <td>INDICES_MONITOR</td>
+      <td>Grants permission to execute all actions regarding index monitoring, e.g. recovery, segments info, index stats &amp; status</td>
+    </tr>
+    <tr>
+      <td>MANAGE_ALIASES</td>
+      <td>Grants permission to manage aliases</td>
+    </tr>
+    <tr>
+      <td>MANAGE</td>
+      <td>Grants all <code class="highlighter-rouge">monitor</code> and index administration permissions</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-level-action-groups">Cluster-level action groups</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CLUSTER_ALL</td>
+      <td>Grants all cluster permissions. Equates to <code class="highlighter-rouge">cluster:*</code></td>
+    </tr>
+    <tr>
+      <td>CLUSTER_MONITOR</td>
+      <td>Grants all cluster monitoring permissions. Equates to <code class="highlighter-rouge">cluster:monitor/*</code></td>
+    </tr>
+    <tr>
+      <td>CLUSTER_COMPOSITE_OPS_RO</td>
+      <td>Grants read-only permissions to execute multi requests like mget, msearch or mtv, plus permission to query for aliases.</td>
+    </tr>
+    <tr>
+      <td>CLUSTER_COMPOSITE_OPS</td>
+      <td>Same as <code class="highlighter-rouge">CLUSTER\_COMPOSITE\_OPS\_RO</code>, but also grants bulk write permissions and all aliases permissions.</td>
+    </tr>
+    <tr>
+      <td>MANAGE_SNAPSHOTS</td>
+      <td>Grants full permissions to manage snapshots and repositories.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="multi--and-bulk-requests">Multi- and bulk requests</h3>
+
+<p>To execute mult- and bulk requests, the respective user needs to have</p>
+
+<ul>
+  <li>multi and/or bulk permission on cluster level.</li>
+  <li>the respective permission(s) on index level</li>
+</ul>
+
+<p>For example, if a user exeuctes a bulk request containing a delete request for index1 and an update request for index2, three permissions are required</p>
+
+<ul>
+  <li>bulk permission on cluster level</li>
+  <li>delete permission for index1</li>
+  <li>write permission for index2</li>
+</ul>
+
+<h2 id="defining-your-own-action-groups">Defining your own action groups</h2>
+
+<p>You can define your own action groups in <code class="highlighter-rouge">sg_action_groups.yml</code>. You can use any name you want. And you can also reference an action group from within another action group:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">SEARCH</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">indices:data/read/search*"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">indices:data/read/msearch*"</span>
+  <span class="pi">-</span> <span class="s">SUGGEST</span>
+<span class="na">SUGGEST</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">indices:data/read/suggest*"</span>
+</code></pre></div></div>
+
+<p>In this case, the action group <code class="highlighter-rouge">SEARCH</code> includes the (wildcarded) <code class="highlighter-rouge">search*</code> and <code class="highlighter-rouge">msearch*</code> permissions, and also all permissions defined by the action group <code class="highlighter-rouge">SUGGEST</code>.</p>
+
+<p>You can then reference these action groups in the file <code class="highlighter-rouge">sg_roles.yml</code> simply by name:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sg_readall</span><span class="pi">:</span>
+  <span class="na">indices</span><span class="pi">:</span>
+    <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+      <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">SEARCH</span>
+</code></pre></div></div>

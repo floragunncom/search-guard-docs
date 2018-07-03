@@ -42,17 +42,19 @@ labels:
     quickstart: Quickstart
     installation: Installation
     tls: TLS Setup
-    configuration: "Configuration"
+    configuration: "Applying Configuration Changes"
     authauth: Authentication and Authorization
     rolespermissions: "Users, Roles and Permissions"
     eeadvanced: Advanced Security Features
     dlsfls: Document- and Field-Level Security
+    kibana: Kibana
+    logstash: Logstash
     auditlog: Audit Logging
     compliance: Compliance
     restapi: REST API
     esstack: Integrating with the Elastic stack
     xpack: Integrating with X-Pack
-    x_pack_alternatives: X-Pack Alternatives
+    ccs: Cross Cluster Search and Tribe
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs

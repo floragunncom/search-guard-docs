@@ -1,0 +1,50 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="running-search-guard-behing-a-proxy">Running Search Guard behing a proxy</h1>
+
+<p>Search Guard supports Elasticsearch installations running behind one or more proxies or loadbalancers. This can be a single nginx, load balancer or forwarding requests to an Elasticsearch cluster or a chain of proxies.</p>
+
+<p>If a request is routed via one or more proxies or loadbalancers, the host field of the HTTP request only contains the proxies/loadbalancers hostname.  The remote IP is set to the proxy’s IP. This effectively hides the client’s hostname and IP, which means that you cannot configure permissions based on hostname or IP.</p>
+
+<p>To mitigate this, a proxy/loadbalancer usually sets its own hostname in the hosts field of the request and appends the previous value of this field to a special HTTP header field, usually “x-fowarded-for”. If you are running several proxies, this field contains a comma separated list of all proxies, including the client the request originated from (“proxy chain”). Search Guard can extract the original hostname and apply permissions accordingly.</p>
+
+<p>If you are not familiar with proxies/loadbalancers and how they affect HTTP header fields, please refer to this <a href="https://en.wikipedia.org/wiki/X-Forwarded-For" target="_blank">Wikipedia article</a> or the <a href="https://tools.ietf.org/html/rfc7239" target="_blank">the original RFC</a>.</p>
+
+<p>Search Guard supports proxies/loadbalancers by a special section in the configuration called <code class="highlighter-rouge">xff</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">xff</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+        <span class="na">remoteIpHeader</span><span class="pi">:</span> <span class="s1">'</span><span class="s">x-forwarded-for'</span>
+        <span class="na">internalProxies</span><span class="pi">:</span> <span class="s1">'</span><span class="s">192\.168\.0\.11|192\.168\.0\.12'</span>
+</code></pre></div></div>
+
+<p>You can configure the following settings:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.dynamic.http.xff.enabled</td>
+      <td>Boolean, Enable or disable proxy support. Default: true</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.http.xff.internalProxies</td>
+      <td>A regular expression containing all trusted proxies. Search Guard compares the remote address of the HTTP request with the list of internal proxies. If the remote address is not in the list of trusted proxies, it is treated like a client request. <a href="proxy_auth.md">Proxy authentication</a> will not work in this case.</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.http.xff.remoteIpHeader</td>
+      <td>String, name of the HTTP header field where the chain of hostnames are stored. Default: <code class="highlighter-rouge">x-forwarded-for</code></td>
+    </tr>
+  </tbody>
+</table>
+
