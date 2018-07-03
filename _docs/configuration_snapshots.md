@@ -2,7 +2,7 @@
 title: Snapshot, Restore, Index Aliases
 html_title: Snapshot Restore
 slug: snapshot-restore
-category: esstack
+category: rolespermissions
 order: 1000
 layout: docs
 edition: community

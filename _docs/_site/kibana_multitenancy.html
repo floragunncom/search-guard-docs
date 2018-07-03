@@ -1,0 +1,271 @@
+<h1 id="multitenancy">Multitenancy</h1>
+
+<h2 id="overview">Overview</h2>
+<p>Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.</p>
+
+<p>This index is configured in <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">kibana.index</span><span class="pi">:</span> <span class="s2">"</span><span class="s">.kibana"</span>
+</code></pre></div></div>
+
+<p>Kibana uses the Kibana server user to read and write from this index. The Kibana server user is also configured in <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">elasticsearch.username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kibanaserver"</span>
+<span class="s">elasticsearch.password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kibanaserver"</span>
+</code></pre></div></div>
+
+<p>This means that regardless of the permissions a user has, he or she will be able to see and modify all dashboards and visualizations.</p>
+
+<p>In case the user does not have permissions to access the underlying index of a visualization, the visualization will simply be blank and a security exception is logged in Elasticsearch.</p>
+
+<p>The Kibana multitenancy module brings true separation of stored objects based on the configured <strong>tenants</strong> of a user’s <strong>role</strong>.</p>
+
+<h2 id="tenants-definition">Tenants: Definition</h2>
+
+<p>A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.</p>
+
+<p>Any Kibana user always has access to two preconfigured tenants: Global and Private.</p>
+
+<p>The Global tenant is shared with every user. This is the default tenant if no other tenant is selected.  You’ll find objects that you have created before installing the multi tenancy module there.</p>
+
+<p>The Private tenant is not shared.  It is only accessible for the currently logged in user.</p>
+
+<h2 id="installation-and-configuration">Installation and configuration</h2>
+
+<p>In order for multitenancy to work, you need to configure:</p>
+
+<ul>
+  <li>Elasticsearch: Search Guard and the Kibana multitenancy enterprise module (automatically installed).</li>
+  <li>Kibana: the Search Guard Kibana plugin.</li>
+</ul>
+
+<p>Multi tenancy will not work properly if you install only one of the modules or plugins, or if the configuration does not match in Elasticsearch and Kibana.</p>
+
+<h3 id="elasticsearch-configuration">Elasticsearch: Configuration</h3>
+
+<p>Multi tenancy is configured in sg_config.yml:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">kibana</span><span class="pi">:</span>
+      <span class="na">multitenancy_enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">server_username</span><span class="pi">:</span> <span class="s1">'</span><span class="s">xxx'</span>
+      <span class="s">...</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="na">anonymous_auth_enabled</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">xff</span><span class="pi">:</span>
+        <span class="na">enabled</span><span class="pi">:</span> <span class="no">false</span>
+        <span class="s">...</span>
+</code></pre></div></div>
+<p>The following configuration keys are available:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.dynamic.kibana.multitenancy_enabled</td>
+      <td>boolean, enable or disable multi tenancy. Default: true.</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.kibana.server_username</td>
+      <td>String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: <code class="highlighter-rouge">kibanaserver</code>.</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.kibana.index</td>
+      <td>String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: <code class="highlighter-rouge">.kibana</code>.</td>
+    </tr>
+    <tr>
+      <td>searchguard.dynamic.kibana.do_not_fail_on_forbidden</td>
+      <td>boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Default: false.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="adding-tenants">Adding tenants</h3>
+
+<p>If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.</p>
+
+<p>You can define an arbitrary number of additional tenants per Search Guard role in <code class="highlighter-rouge">sg_roles.yml</code>, for example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sg_human_resources</span><span class="pi">:</span>
+  <span class="na">cluster</span><span class="pi">:</span>
+    <span class="s">...</span>
+  <span class="na">indices</span><span class="pi">:</span>
+    <span class="s">...</span>
+  <span class="na">tenants</span><span class="pi">:</span>
+    <span class="na">human_resources</span><span class="pi">:</span> <span class="s">RW</span>
+    <span class="na">human_resources_readonly</span><span class="pi">:</span> <span class="s">RO</span>
+</code></pre></div></div>
+
+<p>In this example, a user that has the role <code class="highlighter-rouge">sg_human_resources</code> has access to the tenant human_resources with read/write access, and read-only access to the tenant <code class="highlighter-rouge">human_resources_readonly</code>.</p>
+
+<h3 id="kibana-plugin-configuration">Kibana: Plugin Configuration</h3>
+
+<p>Enable the multi tenancy feature in <code class="highlighter-rouge">kibana.yml</code> by adding:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.multitenancy.enabled</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>In addition, Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named <code class="highlighter-rouge">sgtenant</code>. Add this header and also the standard <code class="highlighter-rouge">Authorization</code> header to the white list. If the <code class="highlighter-rouge">sgtenant</code> header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">elasticsearch.requestHeadersWhitelist</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">sgtenant"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">Authorization"</span><span class="pi">,</span> <span class="nv">...</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>(If you use Search Guard authentication modules other than Basic Authentication, for example Proxy Authentication, the required HTTP headers may vary.)</p>
+
+<p>Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:</p>
+
+<p>Kibana server user:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">kibana.yml</span><span class="pi">:</span> <span class="s">elasticsearch.username</span>
+<span class="na">sg_config</span><span class="pi">:</span> <span class="s">searchguard.dynamic.kibana.server_username</span>
+</code></pre></div></div>
+
+<p>Kibana index name:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">kibana.yml</span><span class="pi">:</span> <span class="s">kibana.index</span>
+<span class="na">sg_config</span><span class="pi">:</span> <span class="s">searchguard.dynamic.kibana.index</span>
+</code></pre></div></div>
+
+<h3 id="kibana-tenant-configuration">Kibana: Tenant Configuration</h3>
+
+<p>By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in <code class="highlighter-rouge">kibana.yml</code>. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.</p>
+
+<p>The Private tenant is meant as a user’s private space, thus is not shared.</p>
+
+<p>You can enable and disable these tenants by the following <code class="highlighter-rouge">kibana.yml</code> configuration keys:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.multitenancy.tenants.enable_global</td>
+      <td>boolean, enable or disable the global tenant. Default: true.</td>
+    </tr>
+    <tr>
+      <td>searchguard.multitenancy.tenants.enable_private</td>
+      <td>boolean, enable or disable the private tenant. Default: true.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, login will not be possible.</strong></p>
+
+<h3 id="kibana-setting-preferred--default-tenants">Kibana: Setting preferred / default tenants</h3>
+
+<p>If a user logs in the first time and has not chosen a tenant yet, Search Guard will</p>
+
+<ul>
+  <li>collect all available tenants for the logged in user</li>
+  <li>sort them alphabetically</li>
+  <li>if enabled, add the global and private tenant on top</li>
+  <li>choose the first tenant from this list</li>
+</ul>
+
+<p>If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.multitenancy.tenants.preferred</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">tenant1"</span><span class="pi">,</span><span class="s2">"</span><span class="s">tenant2"</span><span class="pi">,</span><span class="nv">...</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Search Guard will compare the list of preferred tenants with the list of available tenants for the logged in user, and chose the first matching tenant.</p>
+
+<h3 id="kibana-selecting-tenants-by-query-parameter">Kibana: Selecting tenants by query parameter</h3>
+
+<p>Tenants can also be switched by adding a query parameter to the URL. This is especially handy if you want to share a visualization or dashboard.</p>
+
+<p>For any Kibana URL, you can add a query param <code class="highlighter-rouge">sg_tenant</code> which will overwrite the currently selected tenant.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://localhost:5601/app/kibana?sg_tenant=mytenant#/visualize/edit/919f5810-55ff-11e7-a198-5f6d82ac1c15?_g=()
+</code></pre></div></div>
+
+<p>Make sure to add the the query parameter before the hash sign.</p>
+
+<h3 id="using-the-kibana-api">Using the Kibana API</h3>
+
+<p>Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with tenants, specify the tenant by adding the <code class="highlighter-rouge">sg_tenant</code> HTTP header:</p>
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-bash">
+<code class=" js-code language-markup">
+curl \
+   -u hr_employee:hr_employee \
+   <b>-H "sg_tenant: management" \</b>
+   -H 'Content-Type: application/json' \
+   -H "kbn-xsrf: true" \
+   -XGET "http://localhost:5601/api/saved_objects"
+</code>
+</pre>
+</div>
+
+<h3 id="filter-bar-for-tenants">Filter bar for tenants</h3>
+
+<p>If you have a huge amount of tenants, the tenant list can get long. You can use a filter bar to quickly filter the tenants list. Enable it in <code class="highlighter-rouge">kibana.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.multitenancy.enable_filter</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<p>Which will display a filter bar in the top navigation of the page:</p>
+
+<p align="center">
+<img src="
+kibana_filter_roles.png" style="width: 90%" class="md_image" />
+</p>
+
+<h2 id="selecting-tenants-in-kibana">Selecting tenants in Kibana</h2>
+
+<p>If the plugin is installed correctly, you will see a new entry in the left navigation panel called “Tenants”:</p>
+
+<p align="center">
+<img src="
+kibana_mt_nav.png" style="width: 20%" class="md_image" />
+</p>
+
+<p>After clicking it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:</p>
+
+<p align="center">
+<img src="
+kibana_select_tenants.png" style="width: 100%" class="md_image" />
+</p>
+
+<p>All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user.  So you do not need to change it every time you log in.</p>
+
+<h2 id="under-the-hood-index-rewriting-snapshot--restore">Under the hood: Index rewriting, Snapshot &amp; Restore</h2>
+
+<p>In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.</p>
+
+<p>For example, if your Kibana index is called “.kibana”, and the currently selected tenant is “human_resources”, Search Guard will create a new index called something like “.kibana_1592542611_humanresources”, and places saved objects will in this index.</p>
+
+<p>The structure of the index name for a regular tenant is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;kibana index name&gt;_&lt;tenant hashcode&gt;_&lt;tenant name&gt;
+</code></pre></div></div>
+
+<p>There are two default tenants in additions, Global and Private. The structure of the index name for the Private tenants is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;kibana index name&gt;_&lt;username hashcode&gt;_&lt;username&gt;
+</code></pre></div></div>
+
+<p>The structure of the index name for the Global tenants is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;kibana index name&gt;
+</code></pre></div></div>
+
+<p>Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user’s permissions for the selected tenant index. You do not need to configure anything special in <code class="highlighter-rouge">sg_roles.yml</code>, apart from the standard permissions for the Kibana index. See <a href="kibana_installation.md">Using Search Guard with Kibana</a> for further information.</p>
+
+<p><strong>If you use snapshot / restore, you need to include all tenant indices, otherwise you will loose data!</strong></p>
+
+<p>In order to include all Kibana indices in your backup / snapshot, the easiest way is to simply use wildcards:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;kibana index name&gt;*
+</code></pre></div></div>

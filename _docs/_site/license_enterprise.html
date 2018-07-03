@@ -1,0 +1,119 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="enterprise-and-compliance-edition">Enterprise and Compliance Edition</h1>
+
+<h2 id="trial-license">Trial License</h2>
+
+<p>When installing Search Guard for the first time, a trial license is automatically generated. Depending on the installed version, it unlocks all Enteprise and Compliance features without any limitation.</p>
+
+<p>This trial license is valid for 60 days. If you want to extend it, just <a href="https://search-guard.com/contacts/">contact us</a> and we’re happy to send you an extended license.</p>
+
+<h2 id="enterprise-and-compliance-license">Enterprise and Compliance License</h2>
+
+<p>For running Search Guard Enterprise or Compliance on production systems you need to <a href="https://search-guard.com/licensing/" target="_blank">obtain a license</a>. Search Guard is licensed per cluster with an unlimited number of nodes. The license covers all non-production systems like development, staging and QA as well.</p>
+
+<p>For a feature comparison between the Complince, Enterprise and Community Edition please refer to <a href="https://search-guard.com/licensing/" target="_blank">our website</a>.</p>
+
+<p><strong>In order to use the Compliance Edition you need to run Elasticsearch 6.2.x or higher</strong></p>
+
+<h2 id="academic-and-scientific-license">Academic and Scientific License</h2>
+
+<p>Because we love to support education and science, we offer free licenses for non-profit academic and scientific usage.</p>
+
+<p>Free enterprise licenses are available for:</p>
+
+<ul>
+  <li>Non-profit academic and scientific projects</li>
+  <li>Non-profit educational purposes</li>
+  <li>Unlimited amount of clusters</li>
+  <li>Unlimited amount of time</li>
+</ul>
+
+<p>Please see the <a href="https://search-guard.com/licensing/" target="_blank">License and Support page</a> to see if your institution is eligible for this programme.</p>
+
+<h2 id="oem-license">OEM license</h2>
+
+<p>If you’re a system integrator or want to ship Search Guard as part of your own product, please <a href="https://search-guard.com/partners/" target="_blank">see our partners page</a> for further information.</p>
+
+<h2 id="license-handling">License Handling</h2>
+
+<h3 id="displaying-your-current-license">Displaying your current license</h3>
+
+<p>You have several ways to check the validity of your current license.</p>
+
+<h4 id="logfile">Logfile</h4>
+
+<p>On startup, Search Guard will print license information to the Elasticsearch logfile on <code class="highlighter-rouge">INFO</code> level. If your license is about to expire, a message on <code class="highlighter-rouge">WARN</code> level is printed. Running Search Guard with an expired license will result in <code class="highlighter-rouge">ERROR</code> message in the logfile.</p>
+
+<h4 id="http-license-endpoint">HTTP license endpoint</h4>
+
+<p>The following endpoint will return your current license and information about the active Search Guard modules in JSON format:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://&lt;Elasticsearch Host&gt;:&lt;HTTP Port&gt;/_searchguard/license
+</code></pre></div></div>
+
+<p>For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://example.com:9200/_searchguard/license
+</code></pre></div></div>
+
+<p>You don’t need to authenticate to access this endpoint.</p>
+
+<h4 id="rest-api">REST API</h4>
+
+<p>The REST API offers an endpoint to retrieve your current license information. To access it, you need to use an account that has the privilege to use the REST API. If you used the demo installation script for installing and initializing Search Guard, you can use the admin user for that, e.g.:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ss</span> <span class="nt">--insecure</span> <span class="nt">-u</span> admin:admin <span class="nt">-XGET</span> https://example.com:9200/_searchguard/license?pretty
+</code></pre></div></div>
+
+<p>See the <a href="restapi_api.md">REST management API</a> configuration chapter for further information on how to configure API users.</p>
+
+<h4 id="kibana-configuration-gui">Kibana Configuration GUI</h4>
+
+<p>If you’re using the Search Guard Kibana plugin, you can display your license and system information by clicking on “Search Guard” / “License &amp; System Info”.</p>
+
+<h3 id="applying-an-enterprise-or-compliance-license">Applying an Enterprise or Compliance License</h3>
+
+<p>After obtaining a license, you can apply it in two ways.</p>
+
+<h4 id="sg_configyml">sg_config.yml</h4>
+
+<p>Add the license string to sg_config.yml and upload the configuration by using sgadmin. You can either configure the license on a single line, or use YAML multi-line format:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">license</span><span class="pi">:</span> <span class="s">LS0tLS1CRUdJTiBQR1A...</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="s">...</span>
+    <span class="na">authc</span><span class="pi">:</span>          
+      <span class="s">...</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">license</span><span class="pi">:</span> <span class="pi">|-</span>
+      <span class="no">LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU</span>
+      <span class="no">1NBR0UtLS0tLQpIYXNoOiBTSEE1M</span>
+      <span class="no">...    </span>
+    <span class="no">http:</span>
+      <span class="no">...</span>
+    <span class="no">authc:          </span>
+      <span class="no">...</span>
+</code></pre></div></div>
+
+<p>When using <code class="highlighter-rouge">sgadmin</code> to upload the changed <code class="highlighter-rouge">sg_config.yml</code> with the new license, any existing license will be overwritten. In order to backup your existing license, you can use the the <code class="highlighter-rouge">-r</code> (<code class="highlighter-rouge">--retrieve</code>) switch with <a href="sgadmin.md">sgadmin</a>, e.g.:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./sgadmin.sh <span class="se">\ </span>
+  <span class="nt">-ks</span> kirk.jks <span class="nt">-kspass</span> changeit <span class="se">\ </span> 
+  <span class="nt">-ts</span> truststore.jks <span class="nt">-tspass</span> changeit <span class="se">\ </span>
+  <span class="nt">-icl</span> <span class="nt">-nhnv</span> <span class="nt">-r</span>
+</code></pre></div></div>
+<h4 id="rest-api-1">REST API</h4>
+
+<p>You can use the <a href="restapi_api.md">REST management API</a> license endpoint to <code class="highlighter-rouge">POST</code> an Enterprise License to Search Guard.</p>
+
+<h4 id="kibana-configuration-gui-1">Kibana Configuration GUI</h4>
+
+<p>If you’re using the Search Guard Kibana plugin, you upload a new license by clicking on “Search Guard” / “License &amp; System Info” / “Upload new license”. Paste the complete license string in the input field and click on “Upload”.</p>

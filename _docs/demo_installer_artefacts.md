@@ -85,7 +85,7 @@ searchguard.enable_snapshot_restore_privilege: true
 searchguard.check_snapshot_restore_write_privileges: true
 ```
 
-Details can be found in the [Snapshot & Restore](snapshots.md) chapter.
+Details can be found in the [Snapshot & Restore](configuration_snapshots.md) chapter.
 
 ### Audit logging
 

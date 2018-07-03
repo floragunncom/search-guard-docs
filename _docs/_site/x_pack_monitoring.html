@@ -1,0 +1,96 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="using-search-guard-with-x-pack-monitoring">Using Search Guard with X-Pack Monitoring</h1>
+
+<p>Search Guard is compatible with the free X-Pack monitoring component. At the moment, you can only use exporters of type <code class="highlighter-rouge">http</code>.</p>
+
+<p>This documentation assumes that you already installed and configured Kibana and the <a href="kibana_installation.md">Search Guard Kibana</a> plugin.</p>
+
+<h2 id="elasticsearch-install-x-pack-and-enable-monitoring">Elasticsearch: Install X-Pack and enable Monitoring</h2>
+
+<p>Install X-Pack on every node in your Elasticsearch Cluster. Please refer to the official X-Pack documentation regarding <a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html" target="_blank">installation instructions</a>.</p>
+
+<p>In <code class="highlighter-rouge">elasticsearch.yml</code>, disable X-Pack Security and enable X-Pack Monitoring:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">xpack.security.enabled</span><span class="pi">:</span> <span class="no">false</span>
+<span class="s">xpack.monitoring.enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<h2 id="elasticsearch-add-the-monitoring-user">Elasticsearch: Add the monitoring user</h2>
+
+<p>For the <code class="highlighter-rouge">http</code> monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you are using the demo configuration files, assign the roles <code class="highlighter-rouge">sg_xp_monitoring</code> and the <code class="highlighter-rouge">sg_kibana_user</code> role to this user.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sg_xp_monitoring</span><span class="pi">:</span>
+  <span class="na">readonly</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">indices</span><span class="pi">:</span>
+    <span class="s1">'</span><span class="s">?monitor*'</span><span class="pi">:</span>
+      <span class="s1">'</span><span class="s">*'</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">INDICES_ALL</span>
+</code></pre></div></div>
+
+<h2 id="elasticsearch-configure-a-monitoring-exporter">Elasticsearch: Configure a monitoring exporter</h2>
+
+<p>At the moment Search Guard supports exporters of type <code class="highlighter-rouge">http</code> only. Configure your <code class="highlighter-rouge">http</code> exporter, and configure the user you have mapped to the <code class="highlighter-rouge">sg_xp_monitoring</code> and the <code class="highlighter-rouge">sg_kibana_user</code> role in the last step:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">xpack.monitoring.exporters</span><span class="pi">:</span>
+  <span class="na">id1</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">http</span>
+    <span class="na">host</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">https://127.0.0.1:9200"</span><span class="pi">]</span>
+    <span class="s">auth.username</span><span class="pi">:</span> <span class="s">monitor</span>
+    <span class="s">auth.password</span><span class="pi">:</span> <span class="s">monitor</span>
+    <span class="na">ssl</span><span class="pi">:</span>
+      <span class="s">truststore.path</span><span class="pi">:</span> <span class="s">truststore.jks</span>
+      <span class="s">truststore.password</span><span class="pi">:</span> <span class="s">changeit</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>host</td>
+      <td>The hostname of the cluster to monitor</td>
+    </tr>
+    <tr>
+      <td>auth.username</td>
+      <td>The username of the user mapped to the monitor role</td>
+    </tr>
+    <tr>
+      <td>auth.password</td>
+      <td>The password of the user mapped to the monitor role</td>
+    </tr>
+    <tr>
+      <td>truststore.path</td>
+      <td>the truststore that contains the Root CA and intermediate certificates used to sign the certificates of the cluster to monitor</td>
+    </tr>
+    <tr>
+      <td>truststore.password</td>
+      <td>the password for the truststore</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="kibana-install-x-pack">Kibana: Install X-Pack</h2>
+
+<p>As with Elasticsearch, install X-Pack on Kibana. Please refer to the official X-Pack documentation regarding <a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html" target="_blank">installation instructions</a>.</p>
+
+<h2 id="kibana-enable-x-pack-monitoring">Kibana: Enable X-Pack Monitoring</h2>
+
+<p>In <code class="highlighter-rouge">kibana.yml</code>, disable X-Pack Security and enable X-Pack Monitoring:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">xpack.security.enabled</span><span class="pi">:</span> <span class="no">false</span>
+<span class="s">xpack.monitoring.enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="nn">...</span>
+</code></pre></div></div>
+
+<h2 id="known-issues-and-limitations">Known issues and limitations</h2>
+
+<h3 id="exporter-types">Exporter types</h3>
+
+<p>At the moment, only <code class="highlighter-rouge">http</code> is supported.</p>

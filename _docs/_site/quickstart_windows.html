@@ -1,0 +1,200 @@
+<!--- Copryight 2017 floragunn GmbH -->
+
+<h1 id="manual-installation-windows">Manual installation (Windows)</h1>
+
+<p>To quickly set up a Search Guard secured Elasticsearch cluster on Windows:</p>
+
+<ol>
+  <li>Install the Search Guard Plugin to Elasticsearch</li>
+  <li>Download and unzip the demo certificates to the config directory of Elasticsearch</li>
+  <li>Add the Search Guard minimal configuration to elasticsearch.yml</li>
+</ol>
+
+<p>To use the (optional) Search Guard Kibana plugin which adds security and configuration features to Kibana:</p>
+
+<ol>
+  <li>Install the Search Guard Kibana plugin to Kibana</li>
+  <li>Add the minimal Kibana configuration to <code class="highlighter-rouge">kibana.yml</code></li>
+</ol>
+
+<h2 id="install-search-guard-on-elasticsearch">Install Search Guard on Elasticsearch</h2>
+
+<p>Search Guard can be installed like any other Elasticsearch plugin by using the <code class="highlighter-rouge">elasticsearch-plugin</code> command.</p>
+
+<p>Change to the directory of your Elasticsearch installation and type:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/elasticsearch-plugin install <span class="nt">-b</span> com.floragunn:search-guard-:&lt;version&gt;
+</code></pre></div></div>
+
+<p>For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/elasticsearch-plugin install <span class="nt">-b</span> com.floragunn:search-guard-:
+</code></pre></div></div>
+
+<p><strong>Replace the version number</strong> in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch  will not run on Elasticsearch  and vice versa.</p>
+
+<p>An overview of all available Search Guard versions can be found on the <a href="https://github.com/floragunncom/search-guard/wiki">Search Guard Version Matrix</a> page.</p>
+
+<p>For offline installation and more details, see the <a href="installation.md">Search Guard installation chapter</a></p>
+
+<h2 id="download-and-install-the-search-guard-demo-certificates">Download and install the Search Guard demo certificates</h2>
+
+<p>Download the <a href="https://downloads.search-guard.com/downloads/certificates/certificates.zip" target="_blank">certificates zip file</a>, unpack it and place all files in the following directory:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;ES installation directory&gt;/config
+</code></pre></div></div>
+
+<h2 id="add-the-minimal-search-guard-configuration">Add the minimal Search Guard configuration</h2>
+
+<p>Add the following minimal Search Guard configuration to <code class="highlighter-rouge">elasticsearch.yml</code>:</p>
+
+<div class="code-highlight " data-label="">
+<span class="js-copy-to-clipboard copy-code">copy</span> 
+<pre class="language-yml">
+<code class=" js-code language-markup">
+searchguard.ssl.transport.pemcert_filepath: esnode.pem
+searchguard.ssl.transport.pemkey_filepath: esnode-key.pem
+searchguard.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+searchguard.ssl.transport.enforce_hostname_verification: false
+searchguard.ssl.http.enabled: true
+searchguard.ssl.http.pemcert_filepath: esnode.pem
+searchguard.ssl.http.pemkey_filepath: esnode-key.pem
+searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
+searchguard.allow_unsafe_democertificates: true
+searchguard.allow_default_init_sgindex: true
+searchguard.authcz.admin_dn:
+  - CN=kirk,OU=client,O=client,L=test,C=de
+searchguard.enable_snapshot_restore_privilege: true
+searchguard.check_snapshot_restore_write_privileges: true
+searchguard.restapi.roles_enabled: ["sg_all_access"]
+</code>
+</pre>
+</div>
+
+<p>Restart your node(s) for the changes to take effect.</p>
+
+<h2 id="testing-the-elasticsearch-installation">Testing the Elasticsearch installation</h2>
+
+<ul>
+  <li>Open <code class="highlighter-rouge">https://localhost:9200/_searchguard/authinfo</code>.</li>
+  <li>Accept the self-signed demo TLS certificate.</li>
+  <li>In the HTTP Basic Authentication dialogue, use <code class="highlighter-rouge">admin</code> as username and <code class="highlighter-rouge">admin</code> as password.</li>
+  <li>This will print out information about the user <code class="highlighter-rouge">admin</code> in JSON format.</li>
+</ul>
+
+<h2 id="applying-configuration-changes">Applying configuration changes</h2>
+
+<p>The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch, the <em>Search Guard Index</em>.</p>
+
+<p>Changes to the Search Guard configuration must be applied to this index by either</p>
+
+<ul>
+  <li>Using the Kibana Configuration GUI (Enterprise feature)</li>
+  <li>Using the sgadmin command line tool with the generated admin certificate</li>
+</ul>
+
+<p>For using the Kibana Configuration GUI you need to install the Search Guard Kibana Plugin, as described below.</p>
+
+<p>If you want to use the sgadmin tool:</p>
+
+<ul>
+  <li>Apply your changes to the demo configuration files located in <code class="highlighter-rouge">&lt;Elasticsearch directory&gt;/plugins/search-guard-/sgconfig</code></li>
+  <li>Execute sgadmin to upload the changed configuration to Search Guard</li>
+</ul>
+
+<p>To execute sgadmin, first cd into</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Elasticsearch directory&gt;/plugins/search-guard-/tools
+</code></pre></div></div>
+
+<p>And execute:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sgadmin.bat -cd ..\sgconfig -key ..\..\..\config\kirk-key.pem -cert ..\..\..\config\kirk.pem -cacert ..\..\..\config\root-ca.pem -nhnv -icl
+</code></pre></div></div>
+
+<p>This will read the contents of the configuration files in <code class="highlighter-rouge">&lt;Elasticsearch directory&gt;/plugins/search-guard-/sgconfig</code> and upload the contents to the Search Guard index.</p>
+
+<p>The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the <a href="sgadmin.md">Using sgadmin</a> chapter.</p>
+
+<h2 id="install-search-guard-on-kibana">Install Search Guard on Kibana</h2>
+
+<p>The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana.</p>
+
+<ul>
+  <li>Download the <a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22">Search Guard Kibana plugin zip file</a> matching your exact Kibana version from Maven</li>
+  <li>Stop Kibana</li>
+  <li>cd into your Kibana installaton directory.</li>
+  <li>Execute: <code class="highlighter-rouge">bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-&lt;version&gt;.zip</code>.</li>
+</ul>
+
+<h2 id="add-the-search-guard-kibana-configuration">Add the Search Guard Kibana configuration</h2>
+
+<p>If you’ve used the demo configuration to initializing Search Guard as outlined above, add the following lines to your <code class="highlighter-rouge">kibana.yml</code> and restart Kibana:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use HTTPS instead of HTTP</span>
+<span class="s">elasticsearch.url</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://localhost:9200"</span>
+
+<span class="c1"># Configure the Kibana internal server user</span>
+<span class="s">elasticsearch.username</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kibanaserver"</span>
+<span class="s">elasticsearch.password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">kibanaserver"</span>
+
+<span class="c1"># Disable SSL verification because we use self-signed demo certificates</span>
+<span class="s">elasticsearch.ssl.verificationMode</span><span class="pi">:</span> <span class="s">none</span>
+
+<span class="c1"># Whitelist the Search Guard Multi Tenancy Header</span>
+<span class="s">elasticsearch.requestHeadersWhitelist</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">Authorization"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">sgtenant"</span> <span class="pi">]</span>
+</code></pre></div></div>
+
+<h2 id="start-kibana">Start Kibana</h2>
+
+<p>After Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Kibana will continue to start.</p>
+
+<h2 id="testing-the-kibana-installation">Testing the Kibana installation</h2>
+
+<ul>
+  <li>Open <code class="highlighter-rouge">http://localhost:5601/</code>.</li>
+  <li>You should be redirected to the Kibana login page</li>
+  <li>On the login dialogue, use <code class="highlighter-rouge">admin</code> as username and <code class="highlighter-rouge">admin</code> as password.</li>
+</ul>
+
+<p>If everything is set up correctly, you should see three new navigation entries on the left pane:</p>
+
+<ul>
+  <li>Search Guard - the <a href="kibana_config_gui.md">Search Guard configuration GUI</a></li>
+  <li>Tenants - to select a tenant for <a href="kibana_multitenancy.md">Kibana Multitenancy</a></li>
+  <li>Logout - to end your current session</li>
+</ul>
+
+<h2 id="applying-configuration-changes-1">Applying configuration changes</h2>
+
+<p>The Search Guard configuration GUI allows you to edit</p>
+
+<ul>
+  <li>Search Guard Roles - define access permissions to indices and types</li>
+  <li>Action Groups - define groups of access permissions</li>
+  <li>Role Mappings - Assign users by username or their backend roles to Search Guard roles</li>
+  <li>Internal User Database - An authentication backend that stores users directly in Elasticsearch</li>
+</ul>
+
+<p>Furthermore you can view your currently active license, upload a new license if it has expired, and display the Search Guard system status.</p>
+
+<h2 id="where-to-go-next">Where to go next</h2>
+
+<p>If you have not already done so, make yourself familiar with the <a href="overview.md">Search Guard Main Concepts</a>.</p>
+
+<p>After that, configure roles and access permissions by either modifying the configuration files and uploading them via <code class="highlighter-rouge">sgadmin</code>, or use the Kibana configuration GUI to change them directly.</p>
+
+<ul>
+  <li><a href="configuration_action_groups.md">Using and defining action groups</a></li>
+  <li><a href="configuration_roles_permissions.md">Defining roles and permissions</a></li>
+  <li><a href="configuration_roles_mapping.md">Mapping users to Search Guard roles</a></li>
+  <li><a href="configuration_internalusers.md">Adding users to the internal user database</a></li>
+</ul>
+
+<p>If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, <a href="configuration_auth.md">configure your existing authentication and authorisation backends</a> in <code class="highlighter-rouge">sg_config.yml</code>.</p>
+
+<p>For fine-grained access control on document- and field level, use the Search Guard <a href="dlsfls_dls.md">Document and field level security module</a>.</p>
+
+<p>If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the <a href="auditlogging.md">Search Guard Audit Logging</a> to generate and store audit trails.</p>
+
+<p>And if you need to support multiple tenants in Kibana, use <a href="kibana_multitenancy.md">Kibana Multitenancy</a> to separate Visualizations and Dashboards by tenant.</p>

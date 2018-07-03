@@ -1,0 +1,272 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="elasticsearch-configuration-tracking">Elasticsearch configuration tracking</h1>
+
+<p><strong>To use the compliance features please install the <a href="installation_versionmatrix.md">Search Guard Compliance Edition</a></strong></p>
+
+<p>Search Guard is able to monitor the integrity of your Elasticsearch installation and emit events describing your current configuration.</p>
+
+<p>These features help to detect any changes to your Elasticsearch or Search Guard installation and for proofing that you applied critical fixes and upgrades in time.</p>
+
+<p>The way Elasticsearch can be configured includes</p>
+
+<ul>
+  <li>Setting in elasticsearch.yml</li>
+  <li>Environment variables used in elasticsearch.yml</li>
+  <li>Java properties</li>
+  <li>Files used by Search Guard like PEM certificates, keystores or Kerberos keytabs</li>
+</ul>
+
+<p>On node startup, Search Guard will emit an event that contains these settings and their respective sha256 checksum.</p>
+
+<h2 id="enabling-and-disabling">Enabling and disabling</h2>
+
+<p>The elasticsearch configuration monitoring can be switched on an off by the following entry in elasticsearch.yml:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.compliance.history.external_config_enabled</td>
+      <td>boolean, whether to enable or disable elasticsearch configuration logging. Default: true</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="audit-log-category">Audit log category</h2>
+
+<p>The Elasticsearch configuration events are logged in the <code class="highlighter-rouge">COMPLIANCE_EXTERNAL_CONFIG</code>category.</p>
+
+<h2 id="field-reference">Field reference</h2>
+
+<h3 id="format-timestamp-and-category-attributes">Format, timestamp and category attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_format_version</td>
+      <td>Audit log message format version, current: 3</td>
+    </tr>
+    <tr>
+      <td>audit_utc_timestamp</td>
+      <td>UTC timestamp when the event was generated</td>
+    </tr>
+    <tr>
+      <td>audit_category</td>
+      <td>Audit log category, <code class="highlighter-rouge">COMPLIANCE_EXTERNAL_CONFIG</code> for all events</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="cluster-and-node-attributes">Cluster and node attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_cluster_name</td>
+      <td>Name of the cluster this event was emitted on.</td>
+    </tr>
+    <tr>
+      <td>audit_node_id</td>
+      <td>The ID of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_name</td>
+      <td>The name of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_address</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+    <tr>
+      <td>audit_node_host_name</td>
+      <td>The host address of the node where the event was generated.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="configuration-attributes">Configuration attributes</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit_compliance_file_infos</td>
+      <td>All external files referenced in the configuration, with modification date and sha256 checksum.</td>
+    </tr>
+    <tr>
+      <td>audit_request_body</td>
+      <td>Detailed configuration information as JSON string.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="file-information">File information</h2>
+
+<p>The <code class="highlighter-rouge">audit_compliance_file_infos</code> key contains an array that lists all files used by Search Guard that are configured in elasticsearch.yml. Example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"audit_compliance_file_infos"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"path"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/elasticsearch/truststore.jks"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"sha256"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"502be6ca9080666271ee9122998e6793e19fda080be095da60bab5aae8243f17"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"last_modified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-13T12:10:29.000+00:00"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"searchguard.ssl.http.truststore_filepath"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"path"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/elasticsearch/CN=sgssl-0.example.com,OU=SSL,O=Test,L=Test,C=DE-keystore.jks"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"sha256"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"9a5058ca0efb0068aeafc307f86d4af48274dab315702e014e1cdaf4bcc32f3b"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"last_modified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-13T12:10:29.000+00:00"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"searchguard.ssl.transport.keystore_filepath"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"path"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/elasticsearch/sgssl-0.example.com.http_srv.keytab"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"sha256"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bb12b7483d9c449ac27cf6e6c698172bf227dc1ea1892d9e27732071731b9f8c"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"last_modified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-15T16:27:50.522+00:00"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"searchguard.kerberos.acceptor_keytab_filepath"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+   </span><span class="err">...</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>path</td>
+      <td>Absolute path to the file</td>
+    </tr>
+    <tr>
+      <td>sha256</td>
+      <td>SHA256 checksum of the file</td>
+    </tr>
+    <tr>
+      <td>last_modified</td>
+      <td>Last modification date of the file</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>The configuration key in elasticsearch.yml this file is referenced by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="configuration-information">Configuration information</h2>
+
+<p>The detailed configuration settings can be found in the <code class="highlighter-rouge">audit_request_body</code> field of the generated event. The value is a JSON string with three keys:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>external_configuration</td>
+      <td>The content of the elasticsearch.yml on node startup</td>
+    </tr>
+    <tr>
+      <td>os_environment</td>
+      <td>Environment variables on node startup</td>
+    </tr>
+    <tr>
+      <td>java_properties</td>
+      <td>Java properties on node startup</td>
+    </tr>
+    <tr>
+      <td>sha256_checksum</td>
+      <td>SHA256 checksum of the combined external_configuration, os_environment and java_properties. Can be used to detect any changes to your Elasticsearch installation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="external-configuration">External configuration</h3>
+
+<p>The <code class="highlighter-rouge">external_configuration</code> contains the <code class="highlighter-rouge">elasticsearch.yml</code> settings on node startup as JSON String. Example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"external_configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="s2">"elasticsearch_yml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+			</span><span class="s2">"searchguard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+				</span><span class="s2">"compliance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+					</span><span class="s2">"disable_anonymous_authentication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+						</span><span class="s2">"external_config_enabled"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+						</span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+							</span><span class="s2">"watched_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"humanresources,Designation,FirstName,LastName"</span><span class="p">],</span><span class="w">
+							</span><span class="s2">"ignore_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"admin"</span><span class="p">]</span><span class="w">
+						</span><span class="p">},</span><span class="w">
+						</span><span class="s2">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+							</span><span class="s2">"diffs_only"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+							</span><span class="s2">"ignore_users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"finance_trainee"</span><span class="p">],</span><span class="w">
+							</span><span class="s2">"watched_indices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"finance"</span><span class="p">]</span><span class="w">
+						</span><span class="p">},</span><span class="w">
+						</span><span class="s2">"metadata_only"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+					</span><span class="p">}</span><span class="w">
+				</span><span class="p">},</span><span class="w">
+				</span><span class="s2">"kerberos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+					</span><span class="s2">"acceptor_principal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP/sgssl-0.example.com"</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"krb5_filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/krb5.conf"</span><span class="p">,</span><span class="w">
+					</span><span class="s2">"acceptor_keytab_filepath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sgssl-0.example.com.http_srv.keytab"</span><span class="w">
+				</span><span class="p">},</span><span class="w">
+				</span><span class="err">...</span><span class="w">
+			</span><span class="p">}</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note: Since the JSON object is stored as String, the quotation marks are escaped in the originl output. Depending on your JSON parser you might need to remove them first.</p>
+
+<h3 id="environment-variables">Environment variables</h3>
+
+<p>The <code class="highlighter-rouge">os_environment</code> key contains all environment variables as String. Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"LANGUAGE=en_US:en, 
+PATH=/usr/share/elasticsearch/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:
+-Dsun.security.krb5.debug=false
+-Dsun.security.spnego.debug=false
+..."
+</code></pre></div></div>
+
+<h3 id="java-properties">Java properties</h3>
+
+<p>The <code class="highlighter-rouge">java_environment</code> key contains all java properties as String. Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"java.version=1.8.0_151
+java.vendor.url=http://java.oracle.com/
+-Enetwork.host=sgssl-0.example.com
+-Esearchguard.ssl.http.keystore_filepath=keystore.jks
+-Esearchguard.kerberos.acceptor_keytab_filepath=sgssl-0.example.com.http_srv.keytab
+..."
+</code></pre></div></div>

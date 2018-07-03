@@ -11,6 +11,20 @@ description: Step-by-step instructions on how to troubleshoot Kibana issues.
 
 # Kibana troubleshooting
 
+## Plugin hapi-auth-cookie already registered 
+
+Kibana fails to start and display 
+
+```
+Plugin hapi-auth-cookie already registered 
+```
+
+in the log files. This means you have X-Pack installed and X-Pack Security is enabled. Disable it by setting:
+
+```
+xpack.security.enabled: false
+```
+
 ## No living connections
 
 ### Check connection settings

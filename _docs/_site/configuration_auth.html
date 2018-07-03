@@ -1,0 +1,161 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="configuring-authentication-and-authorisation">Configuring authentication and authorisation</h1>
+
+<p>Search Guard comes with pluggable authentication and authorisation modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorisation modules like:</p>
+
+<ul>
+  <li><a href="configuration_internalusers.md">Search Guard Internal user database</a></li>
+  <li><a href="ldap.md">LDAP and Active Directory</a></li>
+  <li><a href="kerberos.md">Kerberos</a></li>
+  <li><a href="jwt.md">JSON Web token</a></li>
+  <li><a href="proxy_auth.md">Proxy Authentication</a></li>
+</ul>
+
+<p>The main configuration file for authentication and authorization modules  is <code class="highlighter-rouge">sg_config.yml</code>. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user roles are fetched from backend systems (optional).</p>
+
+<p>It has three main parts:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">searchguard</span><span class="pi">:</span>
+  <span class="na">dynamic</span><span class="pi">:</span>
+    <span class="na">http</span><span class="pi">:</span>
+      <span class="s">...</span>
+    <span class="na">authc</span><span class="pi">:</span>
+      <span class="s">...</span>
+    <span class="na">authz</span><span class="pi">:</span>
+      <span class="s">...</span>
+</code></pre></div></div>
+
+<h2 id="http">HTTP</h2>
+
+<p>The <code class="highlighter-rouge">http</code> section has the following format:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">anonymous_auth_enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span>
+<span class="na">xff</span><span class="pi">:</span> <span class="c1"># non mandatory section</span>
+  <span class="na">enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span>
+  <span class="na">internalProxies</span><span class="pi">:</span> <span class="s">&lt;string&gt;</span> <span class="c1"># Regex pattern</span>
+  <span class="na">remoteIpHeader</span><span class="pi">:</span> <span class="s">&lt;string&gt;</span> <span class="c1"># Name of the header in which to look. Typically: x-forwarded-for</span>
+  <span class="na">proxiesHeader</span><span class="pi">:</span> <span class="s">&lt;string&gt;</span>
+  <span class="na">trustedProxies</span><span class="pi">:</span> <span class="s">&lt;string&gt;</span> <span class="c1"># Regex pattern</span>
+</code></pre></div></div>
+
+<p>Note that if you disable anonymous authentication, SG won’t initialize if you have not given at least one enabled <code class="highlighter-rouge">authc</code>.</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>The <code class="highlighter-rouge">authc</code> section has the following format:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">&lt;name&gt;</span><span class="pi">:</span>
+  <span class="na">http_enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span>
+  <span class="na">transport_enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span> 
+  <span class="na">order</span><span class="pi">:</span> <span class="s">&lt;integer&gt;</span>
+    <span class="s">http_authenticator</span><span class="pi">:</span>
+      <span class="s">...</span>
+    <span class="s">authentication_backend</span><span class="pi">:</span>
+      <span class="s">...</span>
+</code></pre></div></div>
+
+<p>An entry in the <code class="highlighter-rouge">authc</code> section is called an <code class="highlighter-rouge">authentication domain</code>. It specifies where to get the user credentials from, and against which backend they should be authenticated.</p>
+
+<p>You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. <code class="highlighter-rouge">basic_auth_internal</code>), <code class="highlighter-rouge">enabled</code> flags and an <code class="highlighter-rouge">order</code>. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so “first one wins”.</p>
+
+<p>You can enable or disable an authentication domain for HTTP/REST and transport independantly. This is for example useful if you want to use differen autehentication methods for <code class="highlighter-rouge">TransportClients</code>.</p>
+
+<p>The <code class="highlighter-rouge">http_authenticator</code> specifies which authentication method you want to use on the HTTP layer.</p>
+
+<p>The syntax for defining an authenticator on the HTTP layer is:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">http_authenticator</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">&lt;type&gt;</span>
+  <span class="na">challenge</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="s">...</span>
+</code></pre></div></div>
+
+<p>Allowed values for <code class="highlighter-rouge">type</code> are:</p>
+
+<ul>
+  <li>basic</li>
+  <li>HTTP basic authentication. No additional configuration is needed. See <a href="httpbasic.md">HTTP Basic Authentication</a> for further details.</li>
+  <li>kerberos</li>
+  <li>Kerberos authentication. Additional, <a href="kerberos.md">Kerberos-specific configuration</a> is needed.</li>
+  <li>jwt
+    <ul>
+      <li>JSON web token authentication. Additional, <a href="jwt.md">JWT-specific configuration</a> is needed.</li>
+    </ul>
+  </li>
+  <li>proxy
+    <ul>
+      <li>Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the “X-forwarded-for” module has to be enabled as well. See <a href="proxies.md">Running Search Guard behind a proxy</a> and <a href="proxy_auth.md">Proxy authentication</a> for further details.</li>
+    </ul>
+  </li>
+  <li>clientcert
+    <ul>
+      <li>Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>After the HTTP authenticator was executed, you need to specify against which backend system you want to authenticate the user. This is specified in the <code class="highlighter-rouge">authentication_backend</code> section and has the following format:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">authentication_backend</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">&lt;type&gt;</span>
+  <span class="na">config</span><span class="pi">:</span>
+    <span class="s">...</span>
+</code></pre></div></div>
+
+<p>Possible vales for <code class="highlighter-rouge">type</code> are:</p>
+
+<ul>
+  <li>noop
+    <ul>
+      <li>This means that no further authentication against any backend system is performed. Use <code class="highlighter-rouge">noop</code> if the HTTP authenticator has already authenticated the user completely, as in the case of JWT, Kerberos, Proxy or Client certificate authentication.</li>
+    </ul>
+  </li>
+  <li>internal
+    <ul>
+      <li>use the users and roles defined in <code class="highlighter-rouge">sg_internal_users</code> for authentication.</li>
+    </ul>
+  </li>
+  <li>ldap
+    <ul>
+      <li>authenticate users against an LDAP server. This requires <a href="ldap.md">additional, LDAP specific</a> configuration settings.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>After the user has been authenticated, Search Guard can optionally collect additional user roles from backend systems. The authorization configuration has the following format:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">authz</span><span class="pi">:</span>
+  <span class="s">&lt;name&gt;</span><span class="pi">:</span>
+    <span class="na">http_enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span>
+    <span class="na">transport_enabled</span><span class="pi">:</span> <span class="s">&lt;true|false&gt;</span> 
+    <span class="na">authorization_backend</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">&lt;type&gt;</span>
+      <span class="na">config</span><span class="pi">:</span>
+        <span class="s">...</span>
+</code></pre></div></div>
+
+<p>You can also define multiple entries in this section the same way as you can for authentication entries. The execution order is not relevant here, hence there is no <code class="highlighter-rouge">order</code> field.</p>
+
+<p>Possible vales for <code class="highlighter-rouge">type</code> are:</p>
+
+<ul>
+  <li>noop
+    <ul>
+      <li>Used for skipping this step altogether</li>
+    </ul>
+  </li>
+  <li>ldap
+    <ul>
+      <li>Fetch additional roles from an LDAP server. This requires <a href="ldap.md">additional, LDAP specific</a> configuration settings.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="examples">Examples</h2>
+
+<p>The <a href="https://github.com/floragunncom/search-guard/blob/master/sgconfig/sg_config.yml" target="_blank">sg_config.yml</a> that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.</p>

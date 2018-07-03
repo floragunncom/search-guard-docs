@@ -1,8 +1,8 @@
 ---
-title: Logstash
+title: Configuration
 html_title: Logstash
 slug: logstash
-category: esstack
+category: logstash
 order: 200
 layout: docs
 edition: community

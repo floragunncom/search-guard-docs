@@ -1,0 +1,63 @@
+<!---
+Copryight 2016-2017 floragunn GmbH
+-->
+
+<h1 id="using-kibana-with-kerberos">Using Kibana with Kerberos</h1>
+
+<p>Due to the way Kerberos operates and how Kibana handles the HTTP request flow, at the moment it is not possible to use Kerberos with the Kibana plugin. If you want to use Kerberos, please make sure the Search Guard Kibana plugin is not installed!</p>
+
+<p><strong>Kerberos authentication will work, but Multi Tenancy and the Config GUI are not supported at the moment. See also “Known Issues”.</strong></p>
+
+<h2 id="elasticsearch-configuration">Elasticsearch configuration</h2>
+
+<p>If you’re using HTTP Basic Authentication and the internal user database for the Kibana server user, make sure that only the Kerberos authenticator has set <code class="highlighter-rouge">challenge</code> to <code class="highlighter-rouge">true</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">basic_internal_auth_domain</span><span class="pi">:</span> 
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">0</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">basic</span>
+    <span class="na">challenge</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">authentication_backend</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">intern</span>
+<span class="na">kerberos_auth_domain</span><span class="pi">:</span> 
+  <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">order</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">http_authenticator</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">kerberos</span>
+    <span class="na">challenge</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">config</span><span class="pi">:</span>
+    <span class="s">...</span>
+</code></pre></div></div>
+
+<h2 id="browser-configuration">Browser configuration</h2>
+
+<p>Depending on the browser you are using, make sure you have configure the Kibana domain correctly for Kerberos authentication. Please refer to the documentation of your browser for further instructions.</p>
+
+<h2 id="known-issues">Known Issues</h2>
+
+<h2 id="x-pack-monitoring">X-Pack Monitoring</h2>
+
+<p>Due to a bug regarding handling HTTP error codes 401 and 403 in X-Pack, it is currently not possible to use X-Pack Monitoring with Kerberos.</p>
+
+<h2 id="x-pack-machine-learning">X-Pack Machine Learning</h2>
+
+<p>Due to the way HTTP requests are handled by the machine learning module internally, it is currently not possible to use X-Pack Machine Learning with Kerberos.</p>
+
+<h2 id="disabling-the-replay-cache">Disabling the replay cache</h2>
+
+<p>Kerberos/SPNEGO has a security mechanism called “Replay Cache”. The replay cache makes sure that an Kerberos/SPENGO token can be used only once in a certain timeframe. This conflicts with the Kibana request handling, where one browser request to Kibana can result in multiple requests to Elasticsearch.</p>
+
+<p>These sub-requests will all carry the same Kerberos token and are thus interpreted as replay attack. You will see error messages like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[com.floragunn.dlic.auth.http.kerberos.HTTPSpnegoAuthenticator] Service login not successful due to java.security.PrivilegedActionException: GSSException: Failure unspecified at GSS-API level (Mechanism level: Request is a replay (34)) 
+</code></pre></div></div>
+
+<p>At the moment, the only way to make Kerberos work with Kibana is to disable the replay cache. This is of course not optimal, but so far the only known way.</p>
+
+<p>With Oracle JDK, you can set</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-Dsun.security.krb5.rcache=none
+</code></pre></div></div>
+
+<p>in <code class="highlighter-rouge">jvm.options</code> of Elasticsearch.</p>
