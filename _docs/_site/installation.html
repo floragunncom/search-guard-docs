@@ -1,0 +1,212 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="installation">Installation</h1>
+
+<p>This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the <strong><a href="quickstart.md">Quickstart Guide</a></strong>.</p>
+
+<h2 id="community-enterprise-and-compliance-edition">Community, Enterprise and Compliance Edition</h2>
+
+<p>Search Guard ships with all Enterprise features already installed and enabled by default. Just install the <a href="installation_versionmatrix.md">Enterprise Edition matching the version of your Elasticsearch installation</a> and you are good to go.</p>
+
+<p>The Compliance Edition requires Elasticsearch 6.2.1 or higher. In order to use the Compliance features in addition to the Enterprise features you need to install the <a href="installation_versionmatrix.md">Search Guard Compliance Edition matching the version of your Elasticsearch installation</a>.</p>
+
+<p>If you just want to use the free Community Edition, install Search Guard Enterprise and then <a href="license_community.md">disable all commercial features</a>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<h3 id="ensure-that-your-java-virtual-machine-is-supported">Ensure that your Java Virtual Machine is supported</h3>
+
+<ul>
+  <li>We support only OpenJDK 7/8 or Oracle JVM 7/8.</li>
+  <li>There is <strong>no</strong> support for IBM VM or any other vendor than OpenJDK/Oracle JVM</li>
+</ul>
+
+<h3 id="generate-all-required-tls-certificates">Generate all required TLS certificates</h3>
+
+<p>Make sure you have TLS certificates for all nodes and at least one admin certificate. If you already have a PKI infrastructure in place, you usually obtain the required certificates by issuing certificate signing requests to your PKI.</p>
+
+<p>If this is not the case, you have the following options to generate certificates:</p>
+
+<ul>
+  <li>Use the <a href="tls_generate_installation_script.md">Search Guard demo installation script</a>  (not safe for production)</li>
+  <li>Download the <a href="tls_download_certificates.md">Search Guard demo certificates</a> (not safe for production)</li>
+  <li>Use the <a href="tls_generate_online.md">Online TLS generator service</a> (not safe for production)</li>
+  <li>Use the <a href="tls_generate_tlstool.md">Offline TLS Tool</a> (safe for production)</li>
+  <li>Use and customize the <a href="tls_generate_example_scripts.md">example PKI scripts</a> (safe for production)</li>
+  <li>Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)</li>
+  <li>Using tools like OpenSSL and/or keytool (safe for production)</li>
+</ul>
+
+<p>For a typical installation you will want to generate</p>
+
+<ul>
+  <li>One certificate for each node</li>
+  <li>One admin certificate</li>
+</ul>
+
+<p>It’s possible to use the same certificate on each node, however this is less secure since you cannot use the hostname verification and DNS lookup feature of Search Guard to check the validity of the TLS certificates.</p>
+
+<h2 id="first-time-installation-full-cluster-restart">First time installation: Full cluster restart</h2>
+
+<p>A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our <a href="upgrading.md">upgrade instructions</a>.</p>
+
+<h2 id="general">General</h2>
+
+<p>The first time installation procedure on a production cluster is to:</p>
+
+<ol>
+  <li>Disable shard allocation</li>
+  <li>Stop all nodes</li>
+  <li>Install the Search Guard plugin on all nodes</li>
+  <li>Add at least the <a href="tls_configuration.md">TLS configuration</a> to <code class="highlighter-rouge">elasticsearch.yml</code></li>
+  <li>Restart Elasticsearch and check that the nodes come up</li>
+  <li>Re-enable shard allocation by using <a href="sgadmin.md">sgadmin</a></li>
+  <li>Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with <a href="sgadmin.md">sgadmin</a></li>
+</ol>
+
+<p>While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.</p>
+
+<h2 id="disable-shard-allocation">Disable shard allocation</h2>
+
+<p>This step is optional but recommended especially for large clusters with a huge amount of data. This step makes sure that shards will not be shifted around when restarting the cluster, causing a lot of I/O. See also <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html" target="_blank">https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html</a></p>
+
+<p><strong>Example using curl</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ss</span> <span class="nt">-XPUT</span> <span class="s1">'https://localhost:9200/_cluster/settings?pretty'</span> <span class="se">\ </span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "persistent": {
+    "cluster.routing.allocation.enable": "none"
+  }
+}
+'</span>
+</code></pre></div></div>
+
+<h2 id="installing-search-guard">Installing Search Guard</h2>
+
+<p>Search Guard can be installed like any other Elasticsearch plugin by using the <code class="highlighter-rouge">elasticsearch-plugin</code> command.</p>
+
+<p>Change to the directory of your Elasticsearch installation and type:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/elasticsearch-plugin install <span class="nt">-b</span> com.floragunn:search-guard-:&lt;version&gt;
+</code></pre></div></div>
+
+<p>For example:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/elasticsearch-plugin install <span class="nt">-b</span> com.floragunn:search-guard-:
+</code></pre></div></div>
+
+<p><strong>Replace the version number</strong> in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch  will not run on Elasticsearch  and vice versa.</p>
+
+<p>An overview of all available Search Guard versions can be found on the <a href="installation_versionmatrix.md">Search Guard Version Matrix page</a> page.</p>
+
+<p>After the installation you see a folder called <code class="highlighter-rouge">search-guard-</code> in the plugin directory of your Elasticsearch installation.</p>
+
+<h3 id="offline-installation">Offline installation</h3>
+
+<p>If you are behind a firewall and need to perform an offline installation, follow these steps:</p>
+
+<ul>
+  <li>Download the <a href="https://github.com/floragunncom/search-guard/wiki">Search Guard  version matching your Elasticsearch version</a> from Maven Central:
+    <ul>
+      <li><a href="http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-6%22">All versions of Search Guard </a></li>
+      <li>Download the <strong>zip file</strong> of the Search Guard plugin</li>
+    </ul>
+  </li>
+  <li>Change to the directory of your Elasticsearch installation and type:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/elasticsearch-plugin install <span class="nt">-b</span> file:///path/to/search-guard--&lt;version&gt;.zip
+</code></pre></div></div>
+<h3 id="additional-permissions-dialogue">Additional permissions dialogue</h3>
+
+<p>You will see the following warning message when installating Search Guard. Confirm it by pressing ‘y’:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@     WARNING: plugin requires additional permissions     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<span class="k">*</span> java.lang.RuntimePermission accessClassInPackage.sun.misc
+<span class="k">*</span> java.lang.RuntimePermission getClassLoader
+<span class="k">*</span> java.lang.RuntimePermission loadLibrary.<span class="k">*</span>
+<span class="k">*</span> java.lang.reflect.ReflectPermission suppressAccessChecks
+<span class="k">*</span> java.security.SecurityPermission getProperty.ssl.KeyManagerFactory.algorithm
+...
+See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
+<span class="k">for </span>descriptions of what these permissions allow and the associated risks.
+</code></pre></div></div>
+
+<h2 id="adding-the-tls-configuration">Adding the TLS configuration</h2>
+
+<p>The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates must be specified relative to the Elasticsearch <code class="highlighter-rouge">config</code> directory:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.transport.pemcert_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_node_certificate&gt;</span>
+<span class="s">searchguard.ssl.transport.pemkey_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_node_certificate_key&gt;</span>
+<span class="s">searchguard.ssl.transport.pemkey_password</span><span class="pi">:</span> <span class="s">&lt;key_password (optional)&gt;</span>
+<span class="s">searchguard.ssl.transport.pemtrustedcas_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_root_ca&gt;</span>
+<span class="s">searchguard.ssl.transport.enforce_hostname_verification</span><span class="pi">:</span> <span class="s">&lt;true | </span><span class="no">false</span><span class="s">&gt;</span>
+
+<span class="s">searchguard.authcz.admin_dn</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">CN=kirk,OU=client,O=client,L=test, C=de</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">searchguard.ssl.transport.pem*</code> keys define the paths to the node certificate, relative to the Elasticsearch <code class="highlighter-rouge">config</code> directory.</p>
+
+<p>The <code class="highlighter-rouge">searchguard.authcz.admin_dn</code> entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.</p>
+
+<p>If you want to use TLS also on the REST layer (HTTPS), add the following lines to <code class="highlighter-rouge">elasticsearch.yml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.http.enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="s">searchguard.ssl.http.pemcert_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_http_certificate&gt;</span>
+<span class="s">searchguard.ssl.http.pemkey_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_http_certificate_key&gt;</span>
+<span class="s">searchguard.ssl.http.pemkey_password</span><span class="pi">:</span> <span class="s">&lt;key_password (optional)&gt;</span>
+<span class="s">searchguard.ssl.http.pemtrustedcas_filepath</span><span class="pi">:</span> <span class="s">&lt;path_to_http_root_ca&gt;</span>
+</code></pre></div></div>
+
+<p>You can use the same certificates on the transport and on the REST layer. For production systems, we recommend to use individual certificates.</p>
+
+<h2 id="optional-enable-the-rest-management-api">Optional: Enable the REST management API</h2>
+
+<p>In order to use the REST management API, configure the Search Guard roles that should have access to the API. The following entry grants full access to the API for the role <code class="highlighter-rouge">sg_all_access</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.restapi.roles_enabled</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">sg_all_access"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>If you want to further restrict access to certain API endpoints, please refer to the <a href="restapi_api_access.md">REST management API documentation chapter</a>.</p>
+
+<p>The REST management API is an Enterprise feature.</p>
+
+<h2 id="re-enable-shard-allocation">Re-enable shard allocation</h2>
+
+<p>After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgadmin or curl:</p>
+
+<p><strong>Example using sgadmin</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./sgadmin.sh <span class="nt">--enable-shard-allocation</span>
+ <span class="nt">-cert</span> ./kirk.pem <span class="nt">-key</span> ./kirk-key.pem <span class="nt">-cacert</span> ./root-ca.pem 
+</code></pre></div></div>
+
+<h2 id="initializing-search-guard">Initializing Search Guard</h2>
+
+<p>All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a “Security First” mantra, so no default users or passwords are applied by default.</p>
+
+<p>You intialize Search Guard by using the <a href="sgadmin.md">sgadmin command line tool</a> with the admin certificate configured by the <code class="highlighter-rouge">searchguard.authcz.admin_dn</code> configuration key. This has to be performed at least once to tell Search Guard which <a href="configuration_auth.md">authentication and authorisation modules</a> to use.</p>
+
+<p>Once initialized, you can also use the Search Guard configuration GUI to edit roles and permissions.</p>
+
+<h2 id="search-guard-health-check">Search Guard Health Check</h2>
+
+<p>To check if Search Guard is installed and up and running, access the healthcheck endpoint like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://&lt;hostname&gt;:9200/_searchguard/health
+</code></pre></div></div>
+
+<p>It returns a JSON snippet like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  message: null,
+  mode: "strict",
+  status: "UP"
+}
+</code></pre></div></div>

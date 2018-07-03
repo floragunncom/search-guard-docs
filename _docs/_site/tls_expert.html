@@ -1,0 +1,109 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="expert-features">Expert features</h1>
+
+<h2 id="custom-inter-node-traffic-evaluator">Custom inter-node traffic evaluator</h2>
+
+<p>If the provided methods of listing the DNs of node certificates or adding an OID to the certificates does not work for you, you can implement your own class to identify inter-cluster traffic. It must implement the following interface:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">com</span><span class="o">.</span><span class="na">floragunn</span><span class="o">.</span><span class="na">searchguard</span><span class="o">.</span><span class="na">transport</span><span class="o">.</span><span class="na">InterClusterRequestEvaluator</span>
+</code></pre></div></div>
+
+<p>And provide a singe argument constructor that takes a</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">org</span><span class="o">.</span><span class="na">elasticsearch</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">settings</span><span class="o">.</span><span class="na">Settings</span>
+</code></pre></div></div>
+
+<p>as argument. For example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MyInterClusterRequestEvaluator</span>
+  <span class="kd">implements</span> <span class="n">InterClusterRequestEvaluator</span> <span class="o">{</span>
+    
+    <span class="kd">public</span> <span class="nf">MyInterClusterRequestEvaluator</span><span class="o">(</span><span class="kd">final</span> <span class="n">Settings</span> <span class="n">settings</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isInterClusterRequest</span><span class="o">(</span>
+       <span class="n">TransportRequest</span> <span class="n">request</span><span class="o">,</span>
+       <span class="n">X509Certificate</span><span class="o">[]</span> <span class="n">localCerts</span><span class="o">,</span>
+       <span class="n">X509Certificate</span><span class="o">[]</span> <span class="n">peerCerts</span><span class="o">,</span>
+       <span class="kd">final</span> <span class="n">String</span> <span class="n">principal</span><span class="o">)</span> <span class="o">{</span>
+       <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Make sure the class is on the classpath, and configure your custom implementation in <code class="highlighter-rouge">elasticsearch.yml</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.cert.intercluster_request_evaluator_class: ...
+</code></pre></div></div>
+
+<h2 id="custom-principal-extractor">Custom Principal Extractor</h2>
+
+<p>When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X.500 principal as username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.</p>
+
+<p>Create a class that implements the <code class="highlighter-rouge">com.floragunn.searchguard.ssl.transport.PrincipalExtractor</code> interface:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PrincipalExtractor</span> <span class="o">{</span>
+    
+  <span class="kd">public</span> <span class="kd">enum</span> <span class="n">Type</span> <span class="o">{</span>
+      <span class="n">HTTP</span><span class="o">,</span>
+      <span class="n">TRANSPORT</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**
+   * Extract the principal name
+   * 
+   * Please note that this method gets called for principal 
+   * extraction of other nodes as well as transport clients. 
+   * It's up to the implementer to distinguish between them
+   * and handle them appropriately.
+   * 
+   * Implementations must be public classes with a default 
+   * public default constructor.
+   * 
+   * @param x509Certificate The first X509 certificate in the 
+   *  peer certificate chain. This can be null, in this case the 
+   *  method must also return &lt;code&gt;null&lt;/code&gt;.
+   *
+   * @return The principal as string. This may be &lt;code&gt;null&lt;/code&gt;
+   *  in case where x509Certificate is null or the principal cannot 
+   *  be extracted because of any other circumstances.
+   */</span>
+  <span class="n">String</span> <span class="nf">extractPrincipal</span><span class="o">(</span><span class="n">X509Certificate</span> <span class="n">x509Certificate</span><span class="o">,</span> <span class="n">Type</span> <span class="n">type</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can then define the Principal Extractor to use in <code class="highlighter-rouge">elasticsearch.yml</code> like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.transport.principal_extractor_class</span><span class="pi">:</span> <span class="s">com.example.MyPrincipalExtractor</span>
+</code></pre></div></div>
+<h2 id="injecting-an-sslcontext">Injecting an SSLContext</h2>
+
+<p>If you are integrating Search Guard with your own software, you might already have an <code class="highlighter-rouge">javax.net.ssl.SSLContext</code> object available that you want to use. In this case, instead of building an <code class="highlighter-rouge">SSLContext</code> from the configured keystore and truststore, you can instruct Search Guard to use your <code class="highlighter-rouge">SSLContext</code> directly.</p>
+
+<p>Search Guard is able to manage multiple <code class="highlighter-rouge">SSLContext</code> objects. You need to register the objects you want to use with the <code class="highlighter-rouge">com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore</code> and an id first. When constructing the <code class="highlighter-rouge">Settings</code> object used for instantiating the <code class="highlighter-rouge">TransportClient</code>, you can configure which <code class="highlighter-rouge">SSLContext</code> should be used for this <code class="highlighter-rouge">TransportClient</code>.</p>
+
+<p>Example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SSLContext</span> <span class="n">sslContext</span> <span class="o">=</span> <span class="err">…</span>
+
+<span class="n">ExternalSearchGuardKeyStore</span><span class="o">.</span><span class="na">registerExternalSslContext</span><span class="o">(</span>
+    <span class="s">"mycontext"</span><span class="o">,</span>
+     <span class="n">sslContext</span>
+<span class="o">);</span>
+
+<span class="kd">final</span> <span class="n">Settings</span> <span class="n">tcSettings</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"searchguard.ssl.client.external_context_id"</span><span class="o">,</span> <span class="s">"mycontext"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"path.home"</span><span class="o">,</span><span class="s">"."</span><span class="o">)</span>
+    <span class="o">...</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Client</span> <span class="n">client</span> <span class="o">=</span> <span class="n">TransportClient</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">settings</span><span class="o">(</span><span class="n">tcSettings</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">addPlugin</span><span class="o">(</span><span class="n">SearchGuardSSLPlugin</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</code></pre></div></div>

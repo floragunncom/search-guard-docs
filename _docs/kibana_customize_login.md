@@ -1,7 +1,7 @@
 ---
 title: Customizing the login page
 slug: kibana-login-customizing
-category: kibana
+category: kibana-authentication
 order: 250
 layout: docs
 edition: community

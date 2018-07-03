@@ -1,0 +1,181 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+
+<h1 id="using-the-search-guard-configuration-gui">Using the Search Guard configuration GUI</h1>
+
+<p>The Search Guard configuration GUI provides an intuitive way to manage users, roles and permissions, the Search Guard system status and the Search Guard license.</p>
+
+<p>The configuration GUI is part of the <a href="kibana_installation.md">Search Guard Kibana plugin</a> and installed by default.</p>
+
+<p>It uses the Search Guard <a href="restapi_api_access.md">REST management API</a> under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.</p>
+
+<p><strong>The configuration GUI is an Enterprise feature and not available in the Community Edition</strong></p>
+
+<h2 id="access-control">Access control</h2>
+
+<p>The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in <code class="highlighter-rouge">elasticsearch.yml</code> with the following key:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>searchguard.restapi.roles_enabled: ["sg_all_access", ...]
+</code></pre></div></div>
+
+<p>If you have <a href="restapi_api_access.md">restricted certain endpoints</a> for the currently logged in user, the plugin will automatically disable these features.</p>
+
+<p>For everything to work, the logged in user should have:</p>
+
+<ul>
+  <li>Access to the <code class="highlighter-rouge">ACTIONGROUPS</code> endpoint with <code class="highlighter-rouge">GET</code> method</li>
+  <li>Otherwise, autocompletion of action groups will not work</li>
+  <li>the permission <code class="highlighter-rouge">indices:admin/validate/query</code> on all indices</li>
+  <li>Otherwise, the syntax check for DLS queries will not work</li>
+</ul>
+
+<h2 id="main-menu">Main menu</h2>
+
+<p>If you log in with a user that has access to the GUI, you will see a new navigation entry called “Search Guard” in the left navigation pane.</p>
+
+<p align="center">
+<img src="kibana_gui_nav.png" style="width: 20%" class="md_image" />
+</p>
+
+<p>If you click on it you will be taken to the main navigation screen.</p>
+
+<p align="center">
+<img src="kibana_gui_main.png" style="width: 70%" class="md_image" />
+</p>
+
+<p>To edit user, roles and permissions click on:</p>
+
+<ul>
+  <li>Action Groups: Edit action groups</li>
+  <li>Roles Mappings: Map users, backend roles and hostnames to Search Guard roles</li>
+  <li>Roles: Manage Search Guard roles, permissions, DLS/FLS and tenants</li>
+  <li>Internal User Database: Add end edit users stored in the Internal User Database authentication backend</li>
+</ul>
+
+<p>For managing Search Guard:</p>
+
+<ul>
+  <li>Authentication &amp; Authorization: Display the currently configured authentication and authorization modules and their settings</li>
+  <li>License &amp; System Info: Display the system status and the loaded modules, display and upload Search Guard licenses</li>
+  <li>Purge Cache: Purge all Search Guard internal caches</li>
+</ul>
+
+<h2 id="listing-resources">Listing Resources</h2>
+
+<p>If you click on any of the resources menu items, you will see a screen which lists all resources with additional infos. For example, the “Search Guard Roles” listing will display the cluster permissions, any indices with configured permissions and the tenants for each role.</p>
+
+<p align="center">
+<img src="kibana_gui_list.png" style="width: 100%;border: 1px solid" />
+</p>
+
+<p>You can filter the list of resources and add a new resource by using the controls on the top of the table:</p>
+
+<p align="center">
+<img src="kibana_gui_filterbar.png" style="width: 100%" class="md_image" />
+</p>
+
+<p>For each resource, you can decide to edit, clone or delete it by using the controls on the right:</p>
+
+<p align="center">
+<img src="kibana_gui_edit_clone_delete.png" style="width: 20%" class="md_image" />
+</p>
+
+<h2 id="reserved-resources">Reserved Resources</h2>
+
+<p>If a resource is reserved, it is marked underneath the resource name. You cannot edit or delete reserved resources.</p>
+
+<p align="center">
+<img src="kibana_gui_reserved.png" style="width: 20%" class="md_image" />
+</p>
+
+<p>If you want to mark or unmark a resource, you need to change the readonly flag in the respective configuration YAML file and upload the changes via <code class="highlighter-rouge">sgadmin</code>. Example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sg_kibana_server:
+  readonly: false
+  ...
+</code></pre></div></div>
+
+<h3 id="cloning-resources">Cloning Resources</h3>
+
+<p>If you want to copy any resource, including reserved resources, you can always use the “Clone” button.</p>
+
+<h2 id="editing-resources">Editing Resources</h2>
+
+<p>Depending on the type of resource, the edit screens will look slightly different. Most settings are self-explanatory.</p>
+
+<h3 id="permissions-dialogue">Permissions dialogue</h3>
+
+<p>With the permissions dialogue you can edit permissions for:</p>
+
+<ul>
+  <li>Roles on cluster-level</li>
+  <li>Roles on index level</li>
+  <li>Action Groups</li>
+</ul>
+
+<p>The recommended way to manage permissions is to use the pre-defined action groups that ship with Search Guard. If you want to edit permissions on a more fine-grained level, you can click on the “Advanced” checkbox will will let you edit single permissions.</p>
+
+<p align="center">
+<img src="kibana_gui_permissions.png" style="width: 70%" class="md_image" />
+</p>
+
+<h3 id="index--and-document-type-permissions">Index- and Document-Type Permissions</h3>
+
+<p>To edit index-level permissions, you need to first select the index and the document type you want to edit permissions for. You can then so so in the permissions dialogue displayed below.</p>
+
+<p align="center">
+<img src="kibana_index_level_permissions.png" style="width: 70%" class="md_image" />
+</p>
+
+<p>Note: Since documen types are deprecated in Elasticsearch 6, document type level permissions will be removed in Search Guard 7.</p>
+
+<h3 id="index--and-document-type-permissions-1">Index- and Document-Type Permissions</h3>
+
+<p>If you want to add new index- and document-type permissions, click on the “Add new index and document Type” button. You need to enter and save the indexname and document-type name before you can configure the permissions.</p>
+
+<p align="center">
+<img src="kibana_gui_add_index.png" style="width: 70%" class="md_image" />
+</p>
+
+<h3 id="document--and-field-level-security">Document- and Field-Level-Security</h3>
+
+<p>You can configure Document- and Field-Level-Security for each role and index separately. First, select the index you want to edit.</p>
+
+<p>You can then enter the Document-Level security in the text field under “Document Level Security Query”. Clicking on the tick symbol will validate the query syntactically.</p>
+
+<p>For Fiel-Level-Security you can list the fields, and specify if they should be included (white-listed) or excluded (black-listed).</p>
+
+<p align="center">
+<img src="kibana_gui_dlsfls.png" style="width: 70%" class="md_image" />
+</p>
+
+<h3 id="tenants">Tenants</h3>
+
+<p>The “Tenants” tab on the edit roles screen allows you to add and remove tenants for any role. You can define whether the role should have read/write acess or read-only access to the tenant:</p>
+
+<p align="center">
+<img src="kibana_gui_tenants.png" style="width: 70%" class="md_image" />
+</p>
+
+<h2 id="authentication-and-authorization-settings">Authentication and Authorization settings</h2>
+
+<p>By clicking on the Authentication &amp; Authorization navigation entry, you can display the currently configured authentication and authorization domains. Disabled domains are greyed out. By clicking on the arrow symbol besided any domain, you can display its configuration.</p>
+
+<p align="center">
+<img src="kibana_gui_auth.png" style="width: 70%" class="md_image" />
+</p>
+
+<h2 id="license--system-status">License &amp; System Status</h2>
+
+<p>The License &amp; System Status displays the deployed Search Guard license, and also information about the loaded Search Guard modules and its version number.</p>
+
+<p>By clicking on “Upload license” you can upload an Enterprise License to your cluster.</p>
+
+<p align="center">
+<img src="kibana_gui_license.png" style="width: 70%" class="md_image" />
+</p>
+
+<h2 id="purging-the-cache">Purging the Cache</h2>
+
+<p>The “Purge Cache” button will purge all Search Guard internal caches on all nodes.</p>

@@ -26,6 +26,13 @@ Please check the `elasticsearch.yml` file and see whether TLS on the REST layer 
 searchguard.ssl.http.enabled: true
 ```
 
+Since 6.3.0 Elasticsearch and Kibana ship in two flavors: Bundled with X-Pack and a pure OSS flavor. If you are running the bundled version, make sure to disable X-Pack security by setting:
+
+```
+xpack.security.enabled: false
+```
+
+
 ## Installing the Search Guard Plugin
 
 Copy the URL of the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
@@ -195,6 +202,6 @@ searchguard.allow_client_certificates: true
 
 ## Where to go next
 
-* [Set up Kibana authentication](kibana_authentication.md)
+* [Set up Kibana authentication](kibana_authentication_types.md)
 * [Use the config GUI for administering Search Guard](kibana_config_gui.md)
 * [Set up Kibana Multitenancy](kibana_multitenancy.md)

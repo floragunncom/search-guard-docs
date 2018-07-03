@@ -2,7 +2,7 @@
 title: Cross Cluster Search and Tribe
 html_title: Cross Cluster and Tribe
 slug: cross-cluster-tribe
-category: esstack
+category: ccs
 order: 800
 layout: docs
 edition: community

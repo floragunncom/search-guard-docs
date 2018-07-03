@@ -3,8 +3,8 @@
 		<a href="#" {% if include.category == page.category %} class="selected" {% endif %}>{{site.labels.navigation[include.category]}}</a>
 		<ul style="list-style-type: none;">
 			{% for item in items %}
-			<li {% if item.title == page.title %} class="has-children selected" {% endif %}>				
-				<a {% if item.title == page.title %} class="selected" {% endif %} href="{{site.baseurl}}{{ item.url }}">{{ item.title }}</a>
+			<li {% if item.title == page.title and item.category == page.category %} class="has-children selected" {% endif %}>				
+				<a {% if item.title == page.title and item.category == page.category %} class="selected" {% endif %} href="{{site.baseurl}}{{ item.url }}">{{ item.title }}</a>
 				{% if item.subcategory != null %}
 				
 				{% assign subitems = site[include.collectionname] | where:'category', item.subcategory | sort: 'order' %}

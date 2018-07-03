@@ -1,0 +1,342 @@
+<!---
+Copryight 2017 floragunn GmbH
+-->
+<h1 id="configuring-tls">Configuring TLS</h1>
+
+<p>TLS is configured in the <code class="highlighter-rouge">config/elasticsearch.yml</code> file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the <code class="highlighter-rouge">elasticsearch.yml</code> file, the order does not matter.</p>
+
+<p><strong>You can find an example configuration template with all options on <a href="https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml" target="_blank">GitHub</a></strong></p>
+
+<h2 id="using-x509-pem-certificates-and-pkcs-8-keys">Using X.509 PEM certificates and PKCS #8 keys</h2>
+
+<p>Use the following keys to configure the location of your PEM certificates and private keys:</p>
+
+<h3 id="transport-layer-tls">Transport layer TLS</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.transport.pemkey_filepath</td>
+      <td>Path to the certificates key file (PKCS #8), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.pemkey_password</td>
+      <td>Key password. Omit this setting if the key has no password. (optional)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.pemcert_filepath</td>
+      <td>Path to the X.509 node certificate chain (PEM format), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.pemtrustedcas_filepath</td>
+      <td>Path to the root CA(s) (PEM format), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-layer-tls">REST layer TLS</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.http.pemkey_filepath</td>
+      <td>Path to the certificates key file (PKCS #8), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.pemkey_password</td>
+      <td>Key password. Omit this setting if the key has no password. (optional)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.pemcert_filepath</td>
+      <td>Path to the X.509 node certificate chain (PEM format), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.pemtrustedcas_filepath</td>
+      <td>Path to the root CA(s) (PEM format), which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="using-keystore-and-truststore-files">Using Keystore and Truststore files</h2>
+<p>As an alternative to certificates and private keys in PEM format, you can also use keystore and truststore files in JKS or PKCS12 format. The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.</p>
+
+<h3 id="transport-layer-tls-1">Transport layer TLS</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.transport.keystore_type</td>
+      <td>The type of the keystore file, JKS or PKCS12 (Optional, default: JKS)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.keystore_filepath</td>
+      <td>Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.keystore_alias: my_alias</td>
+      <td>Alias name (optional, default: first alias which could be found)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.keystore_password</td>
+      <td>Keystore password (default: changeit)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.truststore_type</td>
+      <td>The type of the truststore file, JKS or PKCS12 (default: JKS)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.truststore_filepath</td>
+      <td>Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.truststore_alias</td>
+      <td>Alias name (optional, default: all certificates)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.truststore_password</td>
+      <td>Truststore password (default: changeit)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rest-layer-tls-1">REST layer TLS</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.http.enabled</td>
+      <td>Whether to enable TLS on the REST layer or not. If enabled, only HTTPS is allowed. (Optional, default: false)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.keystore_type</td>
+      <td>The type of the keystore file, JKS or PKCS12 (Optional, default: JKS)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.keystore_filepath</td>
+      <td>Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.keystore_alias</td>
+      <td>Alias name (optional, default: first alias which could be found)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.keystore_password</td>
+      <td>Keystore password (default: changeit)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.truststore_type</td>
+      <td>The type of the truststore file, JKS or PKCS12 (default: JKS)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.truststore_filepath</td>
+      <td>Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.truststore_alias</td>
+      <td>Alias name (optional, default: all certificates)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.truststore_password</td>
+      <td>Truststore password (default: changeit)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="configuring-node-certificates">Configuring Node certificates</h2>
+
+<p>Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. The simplest way of configuring node certificates is to list the DNs of these certificates in <code class="highlighter-rouge">elasticsearch.yml</code>. Search Guard supports wildcards and regular expressions:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.nodes_dn</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">CN=node.other.com,OU=SSL,O=Test,L=Test,C=DE'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">CN=*.example.com,OU=SSL,O=Test,L=Test,C=DE'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">CN=elk-devcluster*'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">/CN=.*regex/'</span>
+</code></pre></div></div>
+
+<p>If your node certificates have an OID identifier in the SAN section, you can omit this configuration completely. See <a href="tls_certificates_production.md">TLS for production environments</a> for more details regarding this option.</p>
+
+<h2 id="configuring-admin-certificates">Configuring Admin certificates</h2>
+
+<p>Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the <a href="sgadmin.md">sgadmin</a> command line tool, or to use the <a href="restapi_api_access.md">REST management API</a>. Admin certificates are configured in <code class="highlighter-rouge">elasticsearch.yml</code> by simply stating their DN(s).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.authcz.admin_dn</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">CN=admin,OU=SSL,O=Test,L=Test,C=DE</span>
+</code></pre></div></div>
+
+<p>For security reasons, you cannot use wildcards or regular expressions here.</p>
+
+<h2 id="using-openssl">Using OpenSSL</h2>
+
+<p>Search Guard supports OpenSSL. We recommend to use OpenSSL in production for enhanced performance and a wider range of modern cipher suites. In order to use OpenSSL, you need to install OpenSSL, the Apache Portable Runtime and a Netty version with OpenSSL support matching your platform on all nodes. This is described in the <a href="tls_openssl.md">OpenSSL</a> chapter.</p>
+
+<p>If OpenSSL is enabled, but for one reason or another the installation does not work, Search Guard will fall back to the Java JCE as security engine.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.transport.enable_openssl_if_available</td>
+      <td>Enable OpenSSL on the transport layer if avaliable. (Optional, default: true)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.enable_openssl_if_available</td>
+      <td>Enable OpenSSL on the REST layer if available. (Optional, default: true)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>See the <a href="tls_openssl.md">OpenSSL</a> chapter for more information on how to install all required components.</p>
+
+<h2 id="advanced-hostname-verification-and-dns-lookup">Advanced: Hostname verification and DNS lookup</h2>
+
+<p>In addition to verifying the TLS certificates against the Root CA and/or intermediate CA(s), Search Guard can apply additional checks on the transport layer to further secure your cluster.</p>
+
+<p>With <strong>hostname verification</strong> enabled, Search Guard verifies that the hostname of the communication partner matches the hostname in the certificate. For example, if the hostname of your node is <code class="highlighter-rouge">node-0.example.com</code> then the hostname in the TLS certificate has to be set to <code class="highlighter-rouge">node-0.example.com</code> as well. Otherwise, an error is thrown. The hostname is taken from the <code class="highlighter-rouge">subject</code> or the <code class="highlighter-rouge">SAN</code> entries of your certificate.</p>
+
+<p>In addition, when <strong>resolve hostnames</strong> is enabled, Search Guard resolves the (verified) hostname against your DNS. If the hostname does not resolve, an error is thrown.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.transport.enforce_hostname_verification</td>
+      <td>Whether or not to verify hostnames on the transport layer. (Optional, default: true)</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.resolve_hostname</td>
+      <td>Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true, only works if hostname verification is enabled.)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="advanced-client-authentication">Advanced: Client authentication</h2>
+
+<p>With TLS client authentication enabled, REST clients can send a TLS certificate with the HTTP request to provide identity information to Search Guard. There are three main usage scenarios for TLS client authentication:</p>
+
+<ul>
+  <li>Providing an admin certificate when using the REST management API.</li>
+  <li>Configuring roles and permissions based on a client certificate.</li>
+  <li>Providing identity information for tools like Kibana, logstash or Beats</li>
+</ul>
+
+<p>TLS client authentication has three modes:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">NONE</code>: Search Guard does not accept TLS client certificates. If one is sent, it is discarded.</li>
+  <li><code class="highlighter-rouge">OPTIONAL</code>: Search Guard accepts TLS client certificates if they are sent, but does not enforce them.</li>
+  <li><code class="highlighter-rouge">REQUIRE</code>: Search Guard only accepts REST requests when a valid client TLS certificate is sent.</li>
+</ul>
+
+<p>For the REST management API, the client authentication modes has to be OPTIONAL at least.</p>
+
+<p>You can configure the client authentication mode by using the following key:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.http.clientauth_mode</td>
+      <td>The TLS client authentication mode to use. Can be one of <code class="highlighter-rouge">NONE</code>, <code class="highlighter-rouge">OPTIONAL</code> or <code class="highlighter-rouge">REQUIRE</code>. (Optional, default: OPTIONAL)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="expert-enabled-ciphers-and-protocols">Expert: Enabled ciphers and protocols</h2>
+
+<p>You can limit the allowed ciphers and TLS protocols for the REST layer. For example, you can only allow strong ciphers and limit the TLS versions to the most recent ones.</p>
+
+<p>If this is not set, the ciphers and TLS versions are negotiated between the browser and Search Guard automatically, which in some cases can lead to a weaker cipher suite being used. You can configure the ciphers and protocols by using the following keys:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>searchguard.ssl.http.enabled_ciphers</td>
+      <td>Array, enabled TLS cipher suites for the REST layer. Only Java format is supported.</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.http.enabled_protocols</td>
+      <td>Array, enabled TLS protocols for the REST layer. Only Java format is supported.</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.enabled_ciphers</td>
+      <td>Array, enabled TLS cipher suites for the transport layer. Only Java format is supported.</td>
+    </tr>
+    <tr>
+      <td>searchguard.ssl.transport.enabled_protocols</td>
+      <td>Array, enabled TLS protocols for the transport layer. Only Java format is supported.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.http.enabled_ciphers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLS_DHE_RSA_WITH_AES_256_CBC_SHA"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLS_DHE_DSS_WITH_AES_128_CBC_SHA256"</span>
+<span class="s">searchguard.ssl.http.enabled_protocols</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLSv1.1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLSv1.2"</span>
+</code></pre></div></div>
+
+<p><strong>Note: By default Search Guard disables <code class="highlighter-rouge">TLSv1</code> because it is unsecure. If you need to use <code class="highlighter-rouge">TLSv1</code> and you know what you  are doing, you can re-enable it like:</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">searchguard.ssl.http.enabled_protocols</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLSv1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLSv1.1"</span>
+  <span class="pi">-</span> <span class="s2">"</span><span class="s">TLSv1.2"</span>
+</code></pre></div></div>
+
+<h2 id="expert-disable-client-initiated-renegotiation-for-java-8">Expert: Disable client initiated renegotiation for Java 8</h2>
+
+<p>Set <code class="highlighter-rouge">-Djdk.tls.rejectClientInitiatedRenegotiation=true</code> to disable secure client initiated renegotiation (which is enabled by default). This can be set via <code class="highlighter-rouge">ES_JAVA_OPTS</code> in config/jvm.options. See also <a href="https://github.com/floragunncom/search-guard/issues/362">#362</a> for more details.</p>
+
+<h2 id="configuration-example">Configuration example</h2>
+
+<p>For an up-to-date, complete configuration example with all features, please refer to the configuration template in the Search Guard SSL repository:</p>
+
+<p><a href="https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml" target="_blank">Search Guard SSL configuration template</a></p>
