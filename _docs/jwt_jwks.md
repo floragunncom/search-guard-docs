@@ -21,7 +21,7 @@ Search Guard can integrate with *identity providers* (IdP) that are compatible w
   * Search Guard will retrieve the public key for validating the JSON web tokens automatically from the JWKS endpoint of your IdP. There is no need to configure keys or shared secrets in `sg_config.yml`.
 * Key rollover
   * You can change the keys used for signing the JWTs directly in your IdP. If Search Guard detects an unknown key, it tries to retrieve it from the IdP, transparent to the user.
-
+* [Kibana Single Sign On](kibana_authentication_openid.md)
    
 ## Configuring OpenID integration
 
@@ -38,28 +38,26 @@ openid_auth_domain:
     type: openid
     challenge: false
     config:
-      jwt_header: "Authorization"
-      jwt_url_parameter: null
-      roles_key: roles
       subject_key: preferred_username
+      roles_key: roles
       openid_connect_url: https://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration
   authentication_backend:
     type: noop
 ```
 
-Configuration parameter:
+Configuration parameters:
 
 | Name | Description |
 |---|---|
 | openid\_connect\_url | The URL of your IdP where Search Guard can find the OpenID metadata/configuration settings. This URL differs between IdPs, please refer to your IdP configuration. Mandatory. |
-| jwt\_header | The HTTP header which stores the token. This is typically the `Authorization` header with the `Bearer` schema: `Authorization: Bearer <token>`. The default is `Authorization`.|
-| jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here.|
-| subject_key | The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim.|
-| roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
+| jwt\_header | The HTTP header which stores the token. This is typically the `Authorization` header with the `Bearer` schema: `Authorization: Bearer <token>`. Optional. The default is `Authorization`.|
+| jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. Optional.|
+| subject_key | The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional.|
+| roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. Mandatory only if you want to use roles in the JWT.|
 
 ## OpenID connect URL
 
-OpenID specifies various endpoints for integration purposes. The most important endpoint is the `well-known` configuration endpoint: It lists endpoints and other configuration options relevant to the Search Guard.
+OpenID specifies various endpoints for integration purposes. The most important endpoint is the `well-known` configuration endpoint: It lists endpoints and other configuration options relevant to Search Guard.
 
 The URL differs between IdPs, but it usually ends in `/.well-known/openid-configuration`. Keycloak example:
 
@@ -228,3 +226,7 @@ In theory it is possible to DOS attack an OpenID based infrastructure by sending
 |---|---|
 | refresh\_rate\_limit\_count | The maximum number of unknown key ids in the time window. Default: 10  |
 | refresh\_rate\_limit\_time\_window\_ms | The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000 |
+
+## Kibana Single Sign On
+
+The Kibana Plugin has OpenID support built in since version 14. Please refer to the [Kibana OpenID configuration](kibana_authentication_openid.md) for details.
