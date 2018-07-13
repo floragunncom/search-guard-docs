@@ -185,7 +185,7 @@ To upload all configuration files in a directory, use:
 If you want to push a single configuration file, use:
 
 ```bash
-./sgadmin.sh -f ../sg_internal_users.yml -t internalusers  \
+./sgadmin.sh -f ../sgconfig/sg_internal_users.yml -t internalusers  \
     -ts ... -tspass ... -ks ... -kspass ...
 ```
 
