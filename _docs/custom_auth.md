@@ -48,13 +48,13 @@ The methods to implement are [fully documented in JavaDoc](https://github.com/fl
 
 ## Implementing a custom AuthenticationBackend
 
-A custom AuthenticationBackend must extend the interface `com.floragunn.searchguard.auth.HTTPAuthenticator`.
+A custom AuthenticationBackend must extend the interface `com.floragunn.searchguard.auth.AuthenticationBackend`.
 
 The methods to implement are [fully documented in JavaDoc](https://github.com/floragunncom/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthenticationBackend.java).
 
 ## Implementing a custom AuthorisationBackend
 
-A custom AuthorisationBackend must extend the interface `com.floragunn.searchguard.auth.HTTPAuthenticator`.
+A custom AuthorisationBackend must extend the interface `com.floragunn.searchguard.auth.AuthorizationBackend`.
 
 The methods to implement are [fully documented in JavaDoc](https://github.com/floragunncom/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthorizationBackend.java).
 
