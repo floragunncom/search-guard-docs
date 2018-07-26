@@ -9,7 +9,7 @@ layout: changelogs
 Copryight 2017 floragunn GmbH
 -->
 
-# Search Guard v19
+# Search Guard v19.1
 
 Release Date: 21.06.2018
 
