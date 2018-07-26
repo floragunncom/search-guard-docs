@@ -2,7 +2,7 @@
 title: Search Guard 5.x-18
 slug: changelog-5-x-18
 category: changelogs
-order: 100
+order: 91
 layout: changelogs
 ---
 <!---
