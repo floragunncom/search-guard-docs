@@ -37,6 +37,7 @@
 							      <th>Search Guard Version</th>
 							      <th>Kibana Plugin Version</th>
 							      <th>Artifact</th>
+							      <th>Support available</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -48,6 +49,7 @@
 							      <td>{{ sgversions[1] }}</td>
 								  <td>{{ sgversions[2] }}</td>
 								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+								  <td>{{ sgversions[3] }}</td>
 							    </tr>
 							    {% endfor %}
 							  </tbody>
@@ -61,6 +63,7 @@
 							      <th>Search Guard Version</th>
 							      <th>Kibana Plugin Version</th>
 							      <th>Artifact</th>
+							      <th>Support available</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -72,6 +75,7 @@
 							      <td>{{ sgversions[1] }}</td>
 								  <td>{{ sgversions[2] }}</td>
 								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+								  <td>{{ sgversions[3] }}</td>
 							    </tr>
 							    {% endfor %}
 							  </tbody>
@@ -84,6 +88,7 @@
 							      <th>Elasticsearch Version</th>
 							      <th>Search Guard SSL Version</th>
 							      <th>Artifact</th>
+							      <th>Support available</th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -98,8 +103,9 @@
 								  {% else  %}
 								  <td><i>not released as standalone plugin</i></td>
 								  {% endif  %}
+								  <td>{{ sgversions[3] }}</td>
 							    </tr>
-							    {% endfor %}
+							    {% endfor %}							  
 							  </tbody>
 							</table>
 
