@@ -2,9 +2,9 @@
 title: Search Guard end of life policy
 html_title: End of life
 slug: eol-policy
-category: changelogs
+category: installation
 order: 1001
-layout: changelogs
+layout: docs
 description: Search Guard End Of Life policy.
 ---
 
@@ -43,7 +43,7 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 6.3.0 at the time of writing
+  * 6.3.2, 6.3.1, 6.3.0 at the time of writing
 * Current release of the previous minor version of the current major version
   * 6.2.4 at the time of writing
 * Last release of the previous major version (not all feature will be backported)
@@ -61,14 +61,14 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | End of life date |
 |---|---|
-6.3.x-y	| 2019-12-13	 |
+6.3.x-y	| 2019-12-13 |
 6.2.x-y	| 2019-08-06 |
 6.1.x-y	| 2019-06-13 |
 6.0.x-y	| 2019-05-14 |
 5.6.x-y	| 2019-03-11 |
 5.5.x-y	| 2019-01-06 |
-5.4.x-y	| 2019-11-04 |
-5.3.x-y	| 2019-09-28 |
+5.4.x-y	| 2018-11-04 |
+5.3.x-y	| 2018-09-28 |
 5.2.x-y	| 2018-07-31 |
 5.1.x-y	| 2018-06-08 |
 5.0.x-y	| 2018-04-26 |
@@ -76,7 +76,7 @@ Critical security fixes will be backported to all active releases, including all
 2.3.x.y	| 2017-09-30 |
 2.2.x.y	| 2017-08-02 |
 
-## Maintenance and support overview as of 21.06.2018
+## Maintenance and support overview as of 26.07.2018
 
 ### Search Guard 6
 
@@ -85,7 +85,7 @@ Critical security fixes will be backported to all active releases, including all
 6.3.x-y | yes | yes | yes |
 6.2.4-y | yes | yes | yes |
 6.2.x-y | no | yes | yes |
-6.1.x-y | no | yes | yes |
+6.1.x-y | no | no | yes |
 
 ### Search Guard 5
 
