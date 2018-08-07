@@ -6,7 +6,7 @@ category: authauth
 order: 100
 layout: docs
 edition: community
-description: How to configure, mix and chain authentication and authorization domains for Search Guard. 
+description: How to configure, mix and chain authentication and authorization domains for Search Guard.
 ---
 <!---
 Copryight 2017 floragunn GmbH
@@ -59,7 +59,7 @@ The `authc` section has the following format:
 ```yaml
 <name>:
   http_enabled: <true|false>
-  transport_enabled: <true|false> 
+  transport_enabled: <true|false>
   order: <integer>
     http_authenticator:
       ...
@@ -69,7 +69,7 @@ The `authc` section has the following format:
 
 An entry in the `authc` section is called an `authentication domain`. It specifies where to get the user credentials from, and against which backend they should be authenticated.
 
-You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins". 
+You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins".
 
 You can enable or disable an authentication domain for HTTP/REST and transport independantly. This is for example useful if you want to use differen autehentication methods for `TransportClients`.
 
@@ -110,9 +110,9 @@ authentication_backend:
 Possible vales for `type` are:
 
 * noop
-  * This means that no further authentication against any backend system is performed. Use `noop` if the HTTP authenticator has already authenticated the user completely, as in the case of JWT, Kerberos, Proxy or Client certificate authentication. 
+  * This means that no further authentication against any backend system is performed. Use `noop` if the HTTP authenticator has already authenticated the user completely, as in the case of JWT, Kerberos, Proxy or Client certificate authentication.
 * internal
-  * use the users and roles defined in `sg_internal_users` for authentication. 
+  * use the users and roles defined in `sg_internal_users` for authentication.
 * ldap
   * authenticate users against an LDAP server. This requires [additional, LDAP specific](ldap.md) configuration settings.
 
@@ -124,7 +124,7 @@ After the user has been authenticated, Search Guard can optionally collect addit
 authz:
   <name>:
     http_enabled: <true|false>
-    transport_enabled: <true|false> 
+    transport_enabled: <true|false>
     authorization_backend:
       type: <type>
       config:
