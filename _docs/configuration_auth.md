@@ -11,9 +11,9 @@ description: How to configure, mix and chain authentication and authorization do
 <!---
 Copryight 2017 floragunn GmbH
 -->
-# Configuring authentication and authorisation
+# Configuring authentication and authorization
 
-Search Guard comes with pluggable authentication and authorisation modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorisation modules like:
+Search Guard comes with pluggable authentication and authorization modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorization modules like:
 
 * [Search Guard Internal user database](configuration_internalusers.md)
 * [LDAP and Active Directory](ldap.md)
