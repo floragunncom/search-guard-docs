@@ -88,9 +88,9 @@ http_authenticator:
 Allowed values for `type` are:
 
 * basic
- * HTTP basic authentication. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
+  * HTTP basic authentication. No additional configuration is needed. See [HTTP Basic Authentication](httpbasic.md) for further details.
 * kerberos
- * Kerberos authentication. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
+  * Kerberos authentication. Additional, [Kerberos-specific configuration](kerberos.md) is needed.
 * jwt
   * JSON web token authentication. Additional, [JWT-specific configuration](jwt.md) is needed.
 * proxy
