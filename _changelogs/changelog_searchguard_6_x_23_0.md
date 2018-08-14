@@ -30,14 +30,14 @@ Release Date: 14.08.2018
 ### Search Guard
 
 * Added full support for SAML
-  * ..  
+  * [SAML documentation](/latest/saml-authentication){:target="_blank"}  
 * Use internal user database as authorizer
-  * ..
+  * [Documentation](/latest/internal-users-database#authorization){:target="_blank"}
   * [https://github.com/floragunncom/search-guard/pull/475](https://github.com/floragunncom/search-guard/pull/475){:target="_blank"}
 * Add logged in user to log4j thread context
   * Makes it possible to add the user name to each log statement for improved debugging
   * Makes it possible to filter log statements by user name, which makes debugging Kibana permission issues easier by filtering the Kibana server user
-  * ...
+  * [Documentation](/latest/troubleshooting-setting-log-level){:target="_blank"}
   * [https://github.com/floragunncom/search-guard/pull/534](https://github.com/floragunncom/search-guard/pull/534){:target="_blank"}
 
 ### Proxy authentication
