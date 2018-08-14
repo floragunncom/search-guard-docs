@@ -22,6 +22,7 @@ searchguard:
   nextmajorversion: 6.2.4-21.0
   islatestversion: false
   allversions:
+    - 6x-23
     - 6x-22
     - 6x-21
     - 6x-20
@@ -29,7 +30,8 @@ searchguard:
     - v2
 
 docroots: 
-  6x-22: latest
+  6x-23: latest
+  6x-22: 6.x-22
   6x-21: 6.x-21
   6x-20: 6.x-20
   v5: v5
@@ -58,6 +60,7 @@ labels:
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    6x-23: Search Guard 6.x-23
     6x-22: Search Guard 6.x-22
     6x-21: Search Guard 6.x-21
     6x-20: Search Guard 6.x-20
@@ -154,26 +157,26 @@ algolia:
 
 sgversions:
   enterprise:
-    - 6.3.2|22.3|14-beta-1|yes
-    - 6.3.1|22.3|14-beta-1|yes
-    - 6.3.0|22.3|14-beta-1|yes
-    - 6.2.4|22.3|14-beta-1|yes
-    - 6.2.3|22.3|14-beta-1|yes
-    - 6.2.2|22.3|14-beta-1|yes
-    - 6.2.1|22.3|14-beta-1|yes
-    - 6.1.4|22.3|12|yes
-    - 6.1.3|22.3|12|yes
-    - 6.1.2|22.3|12|yes
-    - 6.1.1|22.3|12|yes
-    - 6.1.0|22.3|12|yes
+    - 6.3.2|23.0|14|yes
+    - 6.3.1|23.0|14|yes
+    - 6.3.0|23.0|14|yes
+    - 6.2.4|23.0|14|yes
+    - 6.2.3|23.0|14|yes
+    - 6.2.2|23.0|14|yes
+    - 6.2.1|23.0|14|yes
+    - 6.1.4|23.0|12|yes
+    - 6.1.3|23.0|12|yes
+    - 6.1.2|23.0|12|yes
+    - 6.1.1|23.0|12|yes
+    - 6.1.0|23.0|12|yes
   compliance:
-    - 6.3.2|compliance-2|14-beta-1|yes
-    - 6.3.1|compliance-2|14-beta-1|yes
-    - 6.3.0|compliance-2|14-beta-1|yes
-    - 6.2.4|compliance-2|14-beta-1|yes
-    - 6.2.3|compliance-2|14-beta-1|yes
-    - 6.2.2|compliance-2|14-beta-1|yes
-    - 6.2.1|compliance-2|14-beta-1|yes
+    - 6.3.2|23.0|14|yes
+    - 6.3.1|23.0|14|yes
+    - 6.3.0|23.0|14|yes
+    - 6.2.4|23.0|14|yes
+    - 6.2.3|23.0|14|yes
+    - 6.2.2|23.0|14|yes
+    - 6.2.1|23.0|14|yes
   sgssl:
     - 6.3.2|25.4|false|no
     - 6.3.1|25.4|false|no
