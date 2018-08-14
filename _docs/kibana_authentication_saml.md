@@ -14,16 +14,22 @@ Copryight 2016-2017 floragunn GmbH
 
 # Using Kibana with SAML authentication
 
-**For Kibana SAML authentication to work you need at least v14-beta-1 and above. This is beta software. Configuration keys and other values are subject to change.**
+**For Kibana SAML authentication to work you need at least the Search Guard Kibana Plugin v14 and above.**
 
-Since most of the SAML specific configuration is done in Search Guard, just activate SAML by adding:
+Since most of the SAML specific configuration is done in Search Guard, just activate SAML in your `kibana.yml` by adding:
 
 ```
 searchguard.auth.type: "saml"
 ```
 
-In addition, the Kibana endpoint for validating the SAML assertions must be whitelisted:
+In addition the Kibana endpoint for validating the SAML assertions must be whitelisted:
 
 ```
-server.xsrf.whitelist: [/sg/saml/acs]
+server.xsrf.whitelist: ["/searchguard/saml/acs"]
+```
+
+If you use the logout POST binding, you also need to whitelist the logout endpoint:
+
+```
+server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```

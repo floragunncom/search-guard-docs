@@ -10,8 +10,6 @@ layout: troubleshooting
 
 # SAML troubleshooting
 
-**This is preliminary documentation for the Search Guard SAML beta.**
-
 If you encounter any problems while using SAML, please check the following steps to pinpoint the problem. 
 
 ## Check the sp.entity_id
@@ -51,7 +49,7 @@ After a successful login, your IdP sends a SAML Response via HTTP POST to the so
 The endpoint Search Guard Kibana plugin provides is:
 
 ```
-/sg/saml/acs
+/searchguard/saml/acs
 ```
 
 Make sure that you have configured this endpoint correctly in your IdP. Some IdPs also require you to whitelist all endpoints it will send requests to. Make sure the ACS endpoint is listed.
@@ -65,7 +63,7 @@ Okta example:
 Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `kibana.yml`:
 
 ```
-server.xsrf.whitelist: [/sg/saml/acs]
+server.xsrf.whitelist: [/searchguard/saml/acs]
 ```
 
 ## Make sure all documents are signed
@@ -121,15 +119,10 @@ This will print out the SAML response in the Elasticsearch log file so you can i
 Another way of inspecting the SAML Response is to montitor the network traffic while logging in to Kibana. The IdP will HTTP POST the base64-encoded SAML Response to:
 
 ```
-/sg/saml/acs
+/searchguard/saml/acs
 ```
 
 Inspect the payload of this POST request and use a tool like [https://www.base64decode.org/](https://www.base64decode.org/) to decode it.
-
-
-## Inspecting the JWT token
-
-**TBD**
 
 ## Checking the role mapping: NamedID and Roles
 
@@ -161,3 +154,13 @@ saml:
         roles_key: Role
 ```
 
+## Inspecting the JWT token
+
+Search Guard trades the heavyweight SAML response for a more lightweight JSON web token. The username and roles in the JWT are ultimately mapped to Search Guard roles. If there is a problem with the mapping, you can enable the token debug mode in the `log4j2.properties` like:
+
+```
+logger.token.name = com.floragunn.dlic.auth.http.saml.Token
+logger.token.level = debug
+```
+
+This will print the JWT in the logfile. You can then decode the JWT and inspect its content, for example by using [https://jwt.io/](https://jwt.io/). 

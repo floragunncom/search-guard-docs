@@ -17,8 +17,10 @@ Copryight 2010 floragunn GmbH
 
 ## Features
 * Add full support for SAML Single Sign On
+  * [Documentation](/latest/kibana-authentication-saml){:target="_blank"} 
 * Add full support for OpenID Single Sign On
 * Add full support for Kerberos
+  * [Documentation](/latest/kibana-authentication-kerberos) 
 * Make it possible to redirect to an URL when a JWT expires
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/116](https://github.com/floragunncom/search-guard-kibana-plugin/pull/116){:target="_blank"} 
 * Check that X-Pack security is disabled if it is installed 
@@ -46,7 +48,7 @@ Copryight 2010 floragunn GmbH
 * Fix session timeout
   * This PR fixes a regression where the session would not be extended as configured.
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/117](https://github.com/floragunncom/search-guard-kibana-plugin/pull/117){:target="_blank"}
-* Fix case sensitivity fpr JWTs in URLs
+* Fix case sensitivity for JWTs in URLs
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/115](https://github.com/floragunncom/search-guard-kibana-plugin/pull/115){:target="_blank"}
 * Fix short links in share URLs
   * Fixes an issue where converting a snapshot URL wouldn't work anymore

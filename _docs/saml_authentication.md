@@ -14,8 +14,6 @@ Copryight 2018 floragunn GmbH
 
 # SAML Authentication
 
-**This is preliminary documentation for the Search Guard SAML Beta. Configuration keys and other values are subject to change.**
-
 Search Guard supports user authentication via SAML Single Sign-On. Search Guard implements the Web Browser SSO profile of the SAML 2.0 protocol.
 
 This profile is intended to be used with web browsers. It is not a general-purpose way of authenticating users against Search Guard, so it is not meant for using it with other REST clients. The primary use case is to support Kibana Single Sign-On. 
@@ -164,10 +162,6 @@ SAML, unlike other protocols like JWT or Basic Authentication, is not meant to b
 |---|---|
 | exchange_key | The key to sign the token. The algorithm is HMAC256, so it should have at least 32 characters. |
 
-### Token expiration
-
-**TBD**
-
 ## TLS settings
 
 If you are loading the IdP metadata from a URL, it is recommended to use SSL/TLS. If you use an external IdP like Okta or Auth0 that uses a trusted certificate, you usually do not need to configure anything. If you host the IdP yourself and use your own root CA, you can customize the TLS settings as follows. These settings are only used for loading SAML metadata over https.
@@ -281,7 +275,7 @@ authc:
 
 ## Kibana configuration
 
-**For Kibana SAML authentication to work you need at least v14-beta-1 and above. This is beta software. Configuration keys and other values are subject to change.**
+**For Kibana SAML authentication to work you need at least the Search Guard Kibana Plugin v14 and above.**
 
 Since most of the SAML specific configuration is done in Search Guard, just activate SAML in your `kibana.yml` by adding:
 
@@ -292,5 +286,11 @@ searchguard.auth.type: "saml"
 In addition the Kibana endpoint for validating the SAML assertions must be whitelisted:
 
 ```
-server.xsrf.whitelist: [/sg/saml/acs]
+server.xsrf.whitelist: ["/searchguard/saml/acs"]
+```
+
+If you use the logout POST binding, you also need to whitelist the logout endpoint:
+
+```
+server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```

@@ -6,7 +6,7 @@ category: kibana-authentication
 order: 700
 layout: docs
 edition: community
-description: How to usee Kerberos to implement Kibana Single Sign On.
+description: How to use Kerberos to implement Kibana Single Sign On.
 ---
 <!---
 Copryight 2016-2017 floragunn GmbH
@@ -14,9 +14,15 @@ Copryight 2016-2017 floragunn GmbH
 
 # Using Kibana with Kerberos
 
-Due to the way Kerberos operates and how Kibana handles the HTTP request flow, at the moment it is not possible to use Kerberos with the Kibana plugin. If you want to use Kerberos, please make sure the Search Guard Kibana plugin is not installed! 
+**For full Kerberos support in Kibana you need the Search Guard Kibana plugin v14 or above.**
+ 
+Once you have set up [Kerberos](kerberos.md) for Elasticsearch, configure it as authentication type in kibana.yml like: 
 
-**Kerberos authentication will work, but Multi Tenancy and the Config GUI are not supported at the moment. See also "Known Issues".**
+```
+searchguard.auth.type: "kerberos"
+```
+
+You can use all Search Guard features like multi tenancy and the configuration GUI with Kerberos. Due to bugs and limitations in Kibana and X-Pack, not all X-Pack features will work however, please see below.
 
 ## Elasticsearch configuration
 
