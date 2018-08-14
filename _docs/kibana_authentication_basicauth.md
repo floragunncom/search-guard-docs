@@ -33,7 +33,7 @@ searchguard.basicauth.enabled: true
 **For v14 and above:**
 
 ```
-searchguard.auth.type: "basic"
+searchguard.auth.type: "basicauth"
 ```
 
 
@@ -70,7 +70,7 @@ searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
 searchguard.basicauth.enabled: true
 
 # v14 and above: Enable HTTP Basic Authentication
-searchguard.auth.type: "basic"
+searchguard.auth.type: "basicauth"
 
 # Configure session management
 searchguard.cookie.password: &lt;encryption key, min. 32 characters&gt;
