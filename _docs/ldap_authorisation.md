@@ -93,7 +93,6 @@ You can configure multiple attribute names separated by comma:
 ```yaml
 userrolename: roles, otherroles
 ```
-
 This approach can be combined with querying the role subtree. Search Guard will first fetch the roles from the user's role attribute, and the execute the role search.
 
 If you don't use/have a role subtree, you can disable the role search completely:

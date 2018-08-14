@@ -19,11 +19,13 @@ Copryight 2010 floragunn GmbH
 * Add full support for SAML Single Sign On
   * [Documentation](/latest/kibana-authentication-saml){:target="_blank"} 
 * Add full support for OpenID Single Sign On
+  * [Documentation](/latest/kibana-authentication-openid){:target="_blank"}  
 * Add full support for Kerberos
-  * [Documentation](/latest/kibana-authentication-kerberos) 
+  * [Documentation](/latest/kibana-authentication-kerberos){:target="_blank"}  
 * Make it possible to redirect to an URL when a JWT expires
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/116](https://github.com/floragunncom/search-guard-kibana-plugin/pull/116){:target="_blank"} 
-* Check that X-Pack security is disabled if it is installed 
+* Check that X-Pack security is disabled if it is installed
+  * [Documentation](/latest/kibana-authentication-jwt#login-url){:target="_blank"} 
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/107](https://github.com/floragunncom/search-guard-kibana-plugin/pull/107){:target="_blank"}
  
 ## Fixes
