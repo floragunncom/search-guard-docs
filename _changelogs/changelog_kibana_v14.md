@@ -31,13 +31,13 @@ Copryight 2010 floragunn GmbH
 ## Fixes
 
 * Fix erroneous redirect after logout
-  * The telemetry opt-out popup would sometimes cause a erroneous redirect on the logout page
+  * The telemetry opt-out popup would sometimes cause an erroneous redirect on the logout page
   *  [https://github.com/floragunncom/search-guard-kibana-plugin/pull/126](https://github.com/floragunncom/search-guard-kibana-plugin/pull/126){:target="_blank"}
 * Improve handling of non-existing indices or wildcards
   * If users would enter a non-existing index, they had to click on the entry in the dropdown for the value to be accepted
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/125](https://github.com/floragunncom/search-guard-kibana-plugin/pull/125){:target="_blank"}
 * Fix an issue where the plugin would crash while checking for session timeout    
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/121] (https://github.com/floragunncom/search-guard-kibana-plugin/pull/121){:target="_blank"}
+  * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/121](https://github.com/floragunncom/search-guard-kibana-plugin/pull/121)
   * [https://github.com/floragunncom/search-guard/issues/535](https://github.com/floragunncom/search-guard/issues/535)
 * Fix links that have a regex as one of the parameters
   * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/119](https://github.com/floragunncom/search-guard-kibana-plugin/pull/119){:target="_blank"}
