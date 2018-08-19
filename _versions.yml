@@ -11,4 +11,4 @@ index: true
 baseurl: /latest
 
 algolia:
-  index_name: '6x-23'
+  index_name: 'latest'
