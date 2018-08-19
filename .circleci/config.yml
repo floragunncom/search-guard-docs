@@ -18,7 +18,7 @@ jobs:
             echo "Last commit message: $GIT_COMMIT_DESC"
             if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
               echo "Rebuilding Search Index"
-              jekyll algolia push
+              jekyll algolia push --config _config.yml,_versions.yml
             else
               echo "Skipping Search Index"
             fi            
