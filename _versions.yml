@@ -11,4 +11,4 @@ index: false
 baseurl: /6.x-21
 
 algolia:
-  index_name: '6.x-21'
+  index_name: '6x-21'
