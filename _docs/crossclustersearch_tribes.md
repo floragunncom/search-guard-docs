@@ -26,6 +26,27 @@ When accessing a `remote cluster` from a `coordinating cluster` via Cross Cluste
 
 While it is possible to have different configurations regarding authentication and authorization on the remote and coordinating cluster, it is highly recommended to use the same settings on both.
 
+## Permissions
+
+To query indices on remote clusters, the user needs to have the following permissions for this index, in addition to the READ or SEARCH permissions:
+
+```
+indices:admin/shards/search_shards
+```
+
+Example:
+
+```
+sg_ humanresources:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS_RO
+  indices:
+    'humanresources':
+      '*':
+        - READ
+        - indices:admin/shards/search_shards # needed for CCS
+```
+
 # Tribe nodes
 
 **Note: Tribe nodes are deprecated from Elasticsearch 6.x onwards.**
