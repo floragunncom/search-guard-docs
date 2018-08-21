@@ -164,10 +164,10 @@ searchguard.authcz.admin_dn:
 
 ## Disable TLS Client Renegotiation
 
-Secure Client-Initiated Renegotiation is enabled by default, but could be used for denial of service attacks on the HTTP port. If you want to disable Client-Initiated Renegotiation for production, add the following line to config/jvm.options:
+Secure Client-Initiated Renegotiation is disabked by default, because it could be used for denial of service attacks on the HTTP port. If you want to enable Client-Initiated Renegotiation, add the following line to config/jvm.options:
 
 ```
--Djdk.tls.rejectClientInitiatedRenegotiation=true
+-Djdk.tls.rejectClientInitiatedRenegotiation=false
 ```
 
 ## Disable TLS versions and weak ciphers
