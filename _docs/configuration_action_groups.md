@@ -45,12 +45,12 @@ Search Guard ships with a list of pre-defined action groups that are suitable fo
 | Name | Description |
 |---|---|
 | INDICES_ALL | Grants all permissions on the index. Equates to `indices:*`| 
-| GET | Grants permission to use get and mget actions (only) |
-| READ | Grants read permissions like get, mget or getting field mappings, but exludes search permissions | 
+| GET | Grants permission to use get and mget actions only |
+| READ | Grants read permissions like get, mget or getting field mappings, and search permissons | 
 | WRITE | Grants write permissions to documents |
 | DELETE | Grants permission to delete documents |
 | CRUD | Combines the READ, WRITE and DELETE action groups |
-| SEARCH | Grants permission to search documents |
+| SEARCH | Grants permission to search documents. Includes SUGGEST. |
 | SUGGEST | Grants permission to use the suggest API. Already included in the READ action group. |
 | CREATE_INDEX | Grants permission to create indices and mappings| 
 | INDICES_MONITOR | Grants permission to execute all actions regarding index monitoring, e.g. recovery, segments info, index stats & status |
