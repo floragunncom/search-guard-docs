@@ -43,6 +43,14 @@ Make sure to also add it to the header whitelist in `kibana.yml`, leaving Author
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "<JWT header name>"]
 ```
 
+## Login URL
+
+By default Search Guard will display an error page when the request does not contain a JWT or if the JWT is expired. If you want to redirect to an IdP instead, you can configure the URL like:
+
+```
+searchguard.jwt.login_endpoint: "https://myidp.com"
+```
+
 ## JWT as URL parameter
 
 Search Guard is capable of processing JWT passed as URL parameter rather than HTTP headers. Due to Kibana limitations Search Guard needs to copy the token from the URL parameter to an HTTP header field before sending it to Elasticsearch. You need to configure the name of the URL parameter, and optionally the name of the HTTP header the token gets copied to. The default is `Authorization`.

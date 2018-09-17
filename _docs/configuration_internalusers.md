@@ -75,3 +75,23 @@ basic_internal_auth_domain:
   authentication_backend:
     type: internal
 ```
+
+## Authorization
+
+You can also use the internal user database for authorization, means assigning backend roles, only. This is useful when your primary way of authentication does not provide any role information.
+
+For example, you can use LDAP or JWT for authentication, and the internal user database for authorization/assigning roles.
+
+Search Guard will use the name of the autenticated user to look up the corresponding entry in the internal user database. If found, the configures roles will be assigned as backen roles to this user.
+
+If you use the internal user database for authorization only, there is no need to set a password hash. The entries are solely used for assigning backend roles.
+
+Configuration:
+
+```
+authz:
+  internal_authorization:
+    enabled: true
+    authorization_backend:
+      type: internal
+```      

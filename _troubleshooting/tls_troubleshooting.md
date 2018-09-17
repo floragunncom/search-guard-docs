@@ -10,19 +10,6 @@ layout: troubleshooting
 
 # TLS troubleshooting
 
-## Setting the log level to debug
-
-For troubleshooting any problem with Search Guard, it is recommended to set the log level to at least `debug`.
-
-Add the following lines in `config/log4j2.properties` and restart your node:
-
-```
-logger.searchguard.name = com.floragunn
-logger.searchguard.level = debug
-```
-
-This will already print out a lot if helpful information in your log file. If this information is not sufficient, you can also set the log level to `trace`.
-
 ## Validate your elasticsearch.yml
 
 The Elasticsearch configuration is in yaml format, and so is the Search Guard configuration. A quick way of checking the validity of any yml file is to use the Yaml Lint web service:

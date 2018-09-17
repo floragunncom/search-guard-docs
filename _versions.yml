@@ -1,14 +1,14 @@
 searchguard:
-  majorversion: 6.x-20
+  majorversion: 6.x-23
   minorversion: 0
-  fullversion: 6.2.2-20.1
-  nextminorversion: 6.2.2-20.2
-  nextmajorversion: 6.2.2-21.0
-  islatestversion: false
+  fullversion: 6.3.2-23.0
+  nextminorversion: 6.3.2-23.1
+  nextmajorversion: 6.3.2-24.0
+  islatestversion: true
 
-index: false
+index: true
 
-baseurl: /6.x-20
+baseurl: /latest
 
 algolia:
-  index_name: '6x-20'
+  index_name: 'latest'
