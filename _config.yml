@@ -60,6 +60,7 @@ labels:
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    resources: Resources
     6x-23: Search Guard 6.x-23
     6x-22: Search Guard 6.x-22
     6x-21: Search Guard 6.x-21
@@ -70,6 +71,7 @@ labels:
     docs: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    reources: Resources
 
 
 relative_links:
@@ -86,6 +88,9 @@ collections:
     output: true
     permalink: :title
   changelogs:
+    output: true
+    permalink: :title
+  resources:
     output: true
     permalink: :title
 
