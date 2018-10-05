@@ -64,7 +64,7 @@ curl \
 </div>
 
 ## Multi tenancy
-If you are using [Search Guard Multitenancy](kibana_multitenancy.md), you can also specify the tenant by adding the `sg_tenant` HTTP header:
+If you are using [Search Guard Multitenancy](kibana_multitenancy.md), you can also specify the tenant by adding the `sgtenant` HTTP header:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 
@@ -72,7 +72,7 @@ If you are using [Search Guard Multitenancy](kibana_multitenancy.md), you can al
 <code class=" js-code language-markup">
 curl \
    -u hr_employee:hr_employee \
-   <b>-H "sg_tenant: management" \</b>
+   <b>-H "sgtenant: management" \</b>
    -H 'Content-Type: application/json' \
    -H "kbn-xsrf: true" \
    -XGET "http://localhost:5601/api/saved_objects/_find?type=index-pattern"

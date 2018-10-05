@@ -60,6 +60,7 @@ labels:
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    resources: Resources
     6x-23: Search Guard 6.x-23
     6x-22: Search Guard 6.x-22
     6x-21: Search Guard 6.x-21
@@ -70,6 +71,7 @@ labels:
     docs: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    reources: Resources
 
 
 relative_links:
@@ -86,6 +88,9 @@ collections:
     output: true
     permalink: :title
   changelogs:
+    output: true
+    permalink: :title
+  resources:
     output: true
     permalink: :title
 
@@ -158,6 +163,7 @@ algolia:
 
 sgversions:
   enterprise:
+    - 6.4.2|23.1|15|yes
     - 6.4.1|23.1|15|yes
     - 6.4.0|23.1|15|yes
     - 6.3.2|23.1|15|yes
@@ -173,11 +179,12 @@ sgversions:
     - 6.1.1|22.3|12|yes
     - 6.1.0|22.3|12|yes
   compliance:
-    - 6.4.1|23.1|14|yes
-    - 6.4.0|23.1|14|yes
-    - 6.3.2|23.1|14|yes
-    - 6.3.1|23.1|14|yes
-    - 6.3.0|23.1|145|yes
+    - 6.4.2|23.1|15|yes
+    - 6.4.1|23.1|15|yes
+    - 6.4.0|23.1|15|yes
+    - 6.3.2|23.1|15|yes
+    - 6.3.1|23.1|15|yes
+    - 6.3.0|23.1|15|yes
     - 6.2.4|23.0|14|yes
     - 6.2.3|23.0|14|yes
     - 6.2.2|23.0|14|yes
