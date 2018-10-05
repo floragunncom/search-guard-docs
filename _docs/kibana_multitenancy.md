@@ -166,17 +166,17 @@ Search Guard will compare the list of preferred tenants with the list of availab
 
 Tenants can also be switched by adding a query parameter to the URL. This is especially handy if you want to share a visualization or dashboard.
 
-For any Kibana URL, you can add a query param `sg_tenant` which will overwrite the currently selected tenant.
+For any Kibana URL, you can add a query param `sgtenant` which will overwrite the currently selected tenant.
 
 ```
-http://localhost:5601/app/kibana?sg_tenant=mytenant#/visualize/edit/919f5810-55ff-11e7-a198-5f6d82ac1c15?_g=()
+http://localhost:5601/app/kibana?sgtenant=mytenant#/visualize/edit/919f5810-55ff-11e7-a198-5f6d82ac1c15?_g=()
 ```
 
 Make sure to add the the query parameter before the hash sign.
 
 ### Using the Kibana API
 
-Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with tenants, specify the tenant by adding the `sg_tenant` HTTP header:
+Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with tenants, specify the tenant by adding the `sgtenant` HTTP header:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 
@@ -184,7 +184,7 @@ Kibana offers an API for saved objects like index patterns, dashboards and visua
 <code class=" js-code language-markup">
 curl \
    -u hr_employee:hr_employee \
-   <b>-H "sg_tenant: management" \</b>
+   <b>-H "sgtenant: management" \</b>
    -H 'Content-Type: application/json' \
    -H "kbn-xsrf: true" \
    -XGET "http://localhost:5601/api/saved_objects"
