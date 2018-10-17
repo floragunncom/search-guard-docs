@@ -107,3 +107,26 @@ sg_kibana_user:
   readonly: true
   ...
 ```
+
+## Hidden resources
+
+Any resource can be marked *hidden*. As the name implies, a hidden resource
+
+* is removed from any API GET request result
+  * when querying for a single hidden resource, a `404` is returned
+  * when querying for all resources, hidden resources are filtered from the result set
+* cannot be deleted
+  * a `404` is returned instead
+* cannot be changed
+  * a `403` is returned instead 
+
+Hidden resources are most useful if you want to give end users access to the REST API, but you want to hide some of the service users your platform is using. For example, the Kibana server user or the logstash user.
+
+Example:
+
+```yaml
+sg_kibana_server:
+  hidden: true
+  ...
+```  
+  
