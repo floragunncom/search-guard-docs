@@ -1,6 +1,6 @@
 ---
 title: System integrators
-html_title: Cross Cluster and Tribe
+html_title: System integrators
 slug: system-integrators-oem-search-guard
 category: integrators
 order: 100
@@ -43,7 +43,7 @@ com.floragunn.searchguard.support.SG_INJECTED_USER
 
 By enabling this feature, you make it possible to inject users in the ThreadContext. Usually, this is done by an Elasticsearch plugin running in front of Search Guard. However, it is also possible to use a `TransportClient` for it. Thus you have to make sure that end users are not able to connect to the Elasticsearch cluster on the transport layer. **Otherwise a malicious attacker can inject any user and impersonate as any user, without having to authenticate!**
 
-If your plugin registers a HTTP transport to intercept REST calls and to inject users, be aware that you cannot use TLS on the REST layer anymore. This is because Elasticsearch only allows one HTTP transport. So the Search Guard TLS HTTP transport has to be disabled. 
+If your plugin registers an HTTP transport to intercept REST calls and to inject users, be aware that you cannot use TLS on the REST layer anymore. This is because Elasticsearch only allows one HTTP transport. So the Search Guard TLS HTTP transport has to be disabled. 
 
 ### Format
 
@@ -139,6 +139,35 @@ searchguard.authcz.admin_dn:
 
 Any entry that is not a DN will be treated as usernames, whereas DNs are applied to admin certificates.
 
+## SSL only mode
+
+Search Guard can be operated in "SSL only mode". If this is enabled, Search Guard behaves as if only the SSL functionality was deployed:
+
+* The authentication / authorization modules are not loaded
+* The DLS/FLS, Audit Logging and Compliance features are not loaded
+
+Effectively this is identical with only deploying the Search Guard SSL plugin. The TLS only mode can be activated by the following setting in elasticsearch.yml:
+
+```
+searchguard.ssl_only: true
+```
+
+## Snapshot and restore access to the Search Guard index
+
+By default, Search Guard does not allow to take a snapshot and restore the Search Guard index. This limitation can be lifted by explicitly allowing access to the Search Guard index in elasticsearch.yml:
+
+```
+searchguard.unsupported.restore.sgindex.enabled: true
+``` 
+
+Note: This setting must be configured **in addition** to
+
+```
+searchguard.enable_snapshot_restore_privilege: true
+```
+
+Please also refer to the [snapshot and restore configuration](configuration_snapshots.md) documentation.
+
 ## Custom inter-node traffic evaluator
 
 If the provided methods of listing the DNs of node certificates or adding an OID to the certificates does not work for you, you can implement your own class to identify inter-cluster traffic. It must implement the following interface:
@@ -147,7 +176,7 @@ If the provided methods of listing the DNs of node certificates or adding an OID
 com.floragunn.searchguard.transport.InterClusterRequestEvaluator
 ```
 
-And provide a singe argument constructor that takes a
+And provide a single argument constructor that takes a
 
 ```java
 org.elasticsearch.common.settings.Settings
@@ -182,7 +211,7 @@ searchguard.cert.intercluster_request_evaluator_class: ...
 
 ## Custom Principal Extractor
 
-When using (client) TLS certificates for authentication and authorisation, Search Guard uses the X.500 principal as username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your own implementation.
+When using (client) TLS certificates for authentication and authorization, Search Guard uses the X.500 principal as the username by default. If you want to use any other part of the certificate as principal, Search Guard provides a hook for your implementation.
 
 Create a class that implements the `com.floragunn.searchguard.ssl.transport.PrincipalExtractor` interface:
 
@@ -225,9 +254,9 @@ searchguard.ssl.transport.principal_extractor_class: com.example.MyPrincipalExtr
 ```
 ## Injecting an SSLContext
 
-If you are integrating Search Guard with your own software, you might already have an `javax.net.ssl.SSLContext` object available that you want to use. In this case, instead of building an `SSLContext` from the configured keystore and truststore, you can instruct Search Guard to use your `SSLContext` directly.
+If you are integrating Search Guard with your software, you might already have a `javax.net.ssl.SSLContext` object available that you want to use. In this case, instead of building an `SSLContext` from the configured keystore and truststore, you can instruct Search Guard to use your `SSLContext` directly.
 
-Search Guard is able to manage multiple `SSLContext` objects. You need to register the objects you want to use with the `com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore` and an id first. When constructing the `Settings` object used for instantiating the `TransportClient`, you can configure which `SSLContext` should be used for this `TransportClient`.
+Search Guard can manage multiple `SSLContext` objects. You need to register the objects you want to use with the `com.floragunn.searchguard.ssl.ExternalSearchGuardKeyStore` and an id first. When constructing the `Settings` object used for instantiating the `TransportClient`, you can configure which `SSLContext` should be used for this `TransportClient`.
 
 Example:
 
