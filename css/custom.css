@@ -59,3 +59,52 @@ pre{background:#f5f2f0;}
 .code-highlight :not(pre)>code[class*=language-], .code-highlight pre[class*=language-] {
 	background-color: #f5f2f0
 }
+
+.edition-button {
+    border-width: 3px !important;
+    font-size: 1.2em !important;
+    vertical-align:middle !important;
+    margin: 0px !important;
+}
+
+.edition-button-community {
+    color: #0088c2 !important;
+    border-color: #0088c2 !important;
+}
+
+.edition-button-enterprise {
+    color: #075374 !important;
+    border-color: #075374 !important;
+}
+
+.edition-button-compliance {
+    color: #005ba5 !important;
+    border-color: #005ba5 !important;
+}
+
+.main-nav-level-1 {
+    font-size: 1.2em !important;
+}
+
+.main-nav-level-2 {
+    font-size: 1.1em !important;
+}
+
+.left-nav-level-1 {
+    font-size: 1.1em !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.left-nav-level-2 {
+    font-size: 1.03em !important;
+}
+
+.left-nav-level-3 {
+    font-size: 1em !important;
+}
+
+.search-input {
+    font-size: 1.2em !important;
+    font-weight: 400 !important;
+}
