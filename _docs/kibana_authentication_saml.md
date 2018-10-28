@@ -7,6 +7,10 @@ order: 800
 layout: docs
 edition: enterprise
 description: How to configure Kibana for SAML Single Sign On authentication.
+resources:
+  - "https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single Sign-On (blogpost)"
+
+
 ---
 <!---
 Copryight 2016-2017 floragunn GmbH

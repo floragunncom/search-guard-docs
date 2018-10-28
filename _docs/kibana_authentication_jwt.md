@@ -7,12 +7,18 @@ order: 300
 layout: docs
 edition: community
 description: How to use JSON web tokens to implement Kibana Single Sign on.
+resources:
+  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure Elasticsearch (blog post)"
+  - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 ---
 <!---
 Copryight 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with JWT
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Activate JWT by adding the following to `kibana.yml`:
 

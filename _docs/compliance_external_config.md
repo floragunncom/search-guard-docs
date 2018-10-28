@@ -13,8 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Elasticsearch configuration tracking
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 Search Guard is able to monitor the integrity of your Elasticsearch installation and emit events describing your current configuration.
 
@@ -29,7 +30,7 @@ The way Elasticsearch can be configured includes
 
 On node startup, Search Guard will emit an event that contains these settings and their respective sha256 checksum.
 
-## Enabling and disabling 
+## Enabling and disabling configuration tracking
 
 The elasticsearch configuration monitoring can be switched on an off by the following entry in elasticsearch.yml:
 
@@ -151,7 +152,8 @@ The `external_configuration` contains the `elasticsearch.yml` settings on node s
 }
 ```
 
-Note: Since the JSON object is stored as String, the quotation marks are escaped in the originl output. Depending on your JSON parser you might need to remove them first.
+Since the JSON object is stored as String, the quotation marks are escaped in the originl output. Depending on your JSON parser you might need to remove them first.
+{: .note .js-note .note-warning}
 
 ### Environment variables
 

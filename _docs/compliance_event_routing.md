@@ -13,8 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Event routing and multiple endpoints
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 The Search Guard Compliance Edition extends the storage capabilities of the Audit Log module and makes it possible to configure multiple endpoints per event category.
 

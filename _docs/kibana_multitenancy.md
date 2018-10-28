@@ -7,9 +7,17 @@ order: 300
 layout: docs
 edition: enterprise
 description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
+resources:
+  - "https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi Tenancy with Search Guard (blog post)"
+  - "https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch and Kibana with Search Guard for free (blog post, external)"
+  - "troubleshooting-multitenancy|Multitenancy Troubleshooting (documentation)"
+
 ---
 
 # Multitenancy
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Overview
 Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
@@ -261,3 +269,4 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 ```
 <kibana index name>*
 ```
+

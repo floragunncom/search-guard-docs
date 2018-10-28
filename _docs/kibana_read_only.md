@@ -10,6 +10,9 @@ description: Use the Kibana read only mode to give users access to dashboards, b
 ---
 
 # Read only mode
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard provides a read only mode for Kibana. When a user is assigned to this mode, only the Dashboards and, if configured, the Multitenancy navigation entries are accessible.
 

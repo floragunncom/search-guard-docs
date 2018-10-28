@@ -7,6 +7,9 @@ order: 580
 layout: docs
 edition: enterprise
 description: How to configure SAML support in Search Guard to implement Kibana Single Sign On.
+resources:
+  - "https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single Sign-On (blogpost)"
+
 ---
 <!---
 Copryight 2018 floragunn GmbH

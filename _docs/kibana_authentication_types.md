@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Authentication Types
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The Search Guard Kibana plugin offers several ways of authenticating users. Regardless of which method you choose, please make sure it matches the configured authentication type configured in Search Guard. 
 

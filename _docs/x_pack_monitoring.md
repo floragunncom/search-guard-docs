@@ -6,11 +6,17 @@ order: 100
 layout: docs
 edition: community
 description: How to configure Search Guard and X-Pack Monitoring for Elasticsearch
+resources:
+  - "https://search-guard.com/elasticsearch-monitoring-searchguard/|Using X-Pack Monitoring with Search Guard (blog post)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Monitoring
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard is compatible with the free X-Pack monitoring component. At the moment, you can only use exporters of type `http`. 
 

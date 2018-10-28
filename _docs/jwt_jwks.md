@@ -6,6 +6,9 @@ order: 600
 layout: docs
 edition: enterprise
 description: How to connect Search Guard with an OpenID provider like Keycloak and how to use JSON web keys to automatially fetch encryption keys
+resources:
+  - "https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID and Keycloak"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH

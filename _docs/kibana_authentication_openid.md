@@ -7,6 +7,9 @@ order: 350
 layout: docs
 edition: community
 description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
+resources:
+  - "https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID and Keycloak"
+
 ---
 <!---
 Copryight 2016-2017 floragunn GmbH

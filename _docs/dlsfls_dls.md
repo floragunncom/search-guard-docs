@@ -7,12 +7,20 @@ order: 100
 layout: docs
 edition: enterprise
 description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your Elasticsearch cluster.
+resources:
+  - "search-guard-presentations#dls-fls|Document- and Field-level security (presentation)"
+  - https://search-guard.com/document-field-level-security-search-guard/|Document- and field-level security with Search Guard (blog post)
+  - https://search-guard.com/attribute-based-document-access/|Attribute based document access (blog post)
+
 ---
 <!---
 Copryight 2016 floragunn GmbH
 -->
 
 # Document-level security
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Document-level security restricts a user's access to certain documents within an index. To enable document-level security you configure an Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
 

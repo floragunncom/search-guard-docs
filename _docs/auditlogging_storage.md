@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Configuring storage types
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search guard comes with multiple audit log storage types. This specifies where you want to store the tracked events. You can choose from:
 

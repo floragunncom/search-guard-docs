@@ -1,9 +1,9 @@
 {% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
 <li>
 		{%if include.url  != null %}
-			<a href="{{site.baseurl}}{{include.url}}">{{site.labels.navigation[include.category]}}</a>											
+			<a href="{{site.baseurl}}{{include.url}}" class="main-nav-level-2">{{site.labels.navigation[include.category]}}</a>											
 		{% else %}
-			<a href="{{site.baseurl}}{{items[0].url}}">{{site.labels.navigation[include.category]}}</a>											
+			<a href="{{site.baseurl}}{{items[0].url}}" class="main-nav-level-2">{{site.labels.navigation[include.category]}}</a>											
 		{% endif %}
 
 </li>

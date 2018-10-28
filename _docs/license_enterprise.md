@@ -2,16 +2,22 @@
 title: Enterprise and Compliance Edition
 slug: search-guard-enterprise-edition
 category: installation
-order: 200
+order: 300
 layout: docs
 edition: enterprise
 description: The Search Guard Enterprise and Compliance license offers enterprise security for Elasticsearch for unlimited nodes at a steady rate. Scale your cluster, not your cost!  
+resources:
+  - "https://search-guard.com/product/|Search Guard editions feature comparison (website)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Enterprise and Compliance Edition
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Trial License
 
@@ -25,7 +31,8 @@ For running Search Guard Enterprise or Compliance on production systems you need
 
 For a feature comparison between the Complince, Enterprise and Community Edition please refer to [our website](https://search-guard.com/licensing/){:target="_blank"}.
 
-**In order to use the Compliance Edition you need to run Elasticsearch 6.2.x or higher**
+In order to use the Compliance Edition you need to run Elasticsearch 6.2.x or higher
+{: .note .js-note .note-warning}
 
 ## Academic and Scientific License
 

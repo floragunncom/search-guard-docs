@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Anonymous authentication
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard supports anonymous authentication. Usually, if no user credentials are provided, Search Guard will decline the request with a security exception. However, if you enable anonymous authentication, unauthenticated requests get assigned to a default user and backend role automatically.
 

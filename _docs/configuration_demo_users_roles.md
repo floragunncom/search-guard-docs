@@ -12,6 +12,9 @@ description: Description of the demo users and roles Search Guard ships with. Us
 Copryight 2017 floragunn GmbH
 -->
 # Demo users and roles
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard ships with a demo configuration that contains users and roles for a variety of use cases. You can use these users and roles as a blueprint for your own permission schema.
 

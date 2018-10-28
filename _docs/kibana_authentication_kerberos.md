@@ -13,16 +13,25 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with Kerberos
+{: .no_toc}
 
-**For full Kerberos support in Kibana you need the Search Guard Kibana plugin v14 or above.**
- 
+{% include_relative _includes/toc.md %}
+
+## Kibana configuration
+
+For full Kerberos support in Kibana you need the Search Guard Kibana plugin v14 or above.
+{: .note .js-note .note-warning}
+
 Once you have set up [Kerberos](kerberos.md) for Elasticsearch, configure it as authentication type in kibana.yml like: 
 
 ```
 searchguard.auth.type: "kerberos"
 ```
 
-You can use all Search Guard features like multi tenancy and the configuration GUI with Kerberos. Due to bugs and limitations in Kibana and X-Pack, not all X-Pack features will work however, please see below.
+You can use all Search Guard features like multi tenancy and the configuration GUI with Kerberos. 
+
+Due to bugs and limitations in Kibana and X-Pack, not all X-Pack features will work however, please see below.
+{: .note .js-note .note-warning}
 
 ## Elasticsearch configuration
 
