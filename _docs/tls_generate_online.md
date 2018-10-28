@@ -5,13 +5,21 @@ category: generating-certificates
 order: 200
 layout: docs
 edition: community
-description: Use the Search Guard online TLS service to generate all certificates required to run Search Guard. The certificates, key and truststore files are generated in the background and we will send you a download link once the certificates have been created.
+description: Use the Search Guard online TLS service to generate all certificates required to run Search Guard. 
+resources:
+  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Online TLS certificate generator
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 We provide an [online TLS service](https://search-guard.com/tls-certificate-generator/){:target="_blank"} which you can use to generate all required certificates for running Search Guard: 
 
@@ -21,7 +29,7 @@ You need to provide your email address and organisation name, and can specify up
 
 Your email is necessary to send you the download link, while the organisation name will become part of the generated root CA. **Use only letters, digits, hyphens and dots for the hostname**.
 
-## Contents
+## Generated artefacts
 
 After downloading and unpacking the certificate archive, you will see the following file structure:
 

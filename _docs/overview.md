@@ -5,6 +5,11 @@ category: quickstart
 order: 100
 layout: docs
 description: How Search Guard extracts credentials from a request and how they are mapped to users, roles and permissions.
+resources:
+  - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
+  - "search-guard-presentations#architecture-request-flow|Architecture and Request Flow (presentation)"
+  - "search-guard-presentations#configuration-basics|Configuration Basics (presentation)"
+
 ---
 
 <!---
@@ -12,6 +17,9 @@ Copryight 2016 floragunn GmbH
 -->
 
 # Search Guard main concepts
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, LDAP / Active Directory, JSON web tokens, TLS certificates and Proxy authentication / SSO.
 
@@ -28,10 +36,10 @@ Regardless of what authentication method you use, the basic flow is as follows:
 * Search Guard determines the **permissions** associated with the Search Guard role and decides whether the action the user wants to perform is allowed or not.
 * If your are using [Document- and Field-Level-Security](dlsfls_dls.md), you can also apply more fine grained permissions based on documents and individual fields.  
 
-# Authentication flow
+## Authentication flow
 
 <p align="center">
-<img src="authentication_flow.png" style="width: 50%" class="md_image"/>
+<img src="authentication_flow.png" style="width: 40%" class="md_image"/>
 </p>
 
 ## Credentials

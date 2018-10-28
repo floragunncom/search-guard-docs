@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Active Directory and LDAP
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Active Directory and LDAP can be used for authentication and authorisation thus it can be used both in the `authc` and `authz` section of the configuration. 
 

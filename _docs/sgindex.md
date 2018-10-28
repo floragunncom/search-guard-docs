@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Managing the Search Guard index
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Index name
 

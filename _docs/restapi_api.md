@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 ## General usage and return values
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The API provides `GET`, `PUT` and `DELETE` handlers for users, roles, roles mapping and action groups. The general format is:
 
@@ -63,7 +66,8 @@ Used to receive, create, update and delete users. Users are added to the interna
 
 Where `username` is the name of the user.
 
-**Note: The `user` endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7**
+Note: The `user` endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7.
+{: .note .js-note .note-warning}
 
 ### GET
 
@@ -343,7 +347,8 @@ The JSON format resembles the format used in `sg_roles.yml`:
 }
 ```
 
-**If you're using DLS in the role definition, make sure to escape the quotes correctly!**
+If you're using DLS in the role definition, make sure to escape the quotes correctly!
+{: .note .js-note .note-warning}
 
 If the call is succesful, a JSON structure is returned, indicating whether the role was created or updated.
 
@@ -358,7 +363,8 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 
 Used to receive, create, update and delete action groups.
 
-**Note: The `actiongroup` (singular) endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7**
+Note: The `actiongroup` (singular) endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7.
+{: .note .js-note .note-warning}
 
 ### Endpoint
 

@@ -9,6 +9,9 @@ description: Search Guard End Of Life policy.
 ---
 
 # Search Guard end of life policy
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Summary
 
@@ -43,11 +46,11 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 6.3.2, 6.3.1, 6.3.0 at the time of writing
+  * 6.4.2, 6.4.1 and 6.4.0 at the time of writing
 * Current release of the previous minor version of the current major version
-  * 6.2.4 at the time of writing
+  * 6.3.2 at the time of writing
 * Last release of the previous major version (not all feature will be backported)
-  * 5.6.10 at the time of writing
+  * 5.6.12 at the time of writing
 
 ## Inactive releases
 
@@ -61,6 +64,7 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | End of life date |
 |---|---|
+6.4.x-y	| 2020-02-23 |
 6.3.x-y	| 2019-12-13 |
 6.2.x-y	| 2019-08-06 |
 6.1.x-y	| 2019-06-13 |
@@ -76,14 +80,15 @@ Critical security fixes will be backported to all active releases, including all
 2.3.x.y	| 2017-09-30 |
 2.2.x.y	| 2017-08-02 |
 
-## Maintenance and support overview as of 26.07.2018
+## Maintenance and support overview as of 26.08.2018
 
 ### Search Guard 6
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
+6.4.x-y | yes | yes | yes |
 6.3.x-y | yes | yes | yes |
-6.2.4-y | yes | yes | yes |
+6.2.4-y | no | yes | yes |
 6.2.x-y | no | yes | yes |
 6.1.x-y | no | no | yes |
 
@@ -91,7 +96,7 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
-5.6.10 | yes | yes | yes |
+5.6.12 | yes | yes | yes |
 5.6.x-y | no | no | yes |
 5.5.3-y	| no | no | no |
 5.5.0-y-5.5.2-y	| no | no | no |

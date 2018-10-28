@@ -7,6 +7,9 @@ order: 700
 layout: docs
 edition: community
 description: How to use the Search Guard User Impersonation feature to submit requests on behalf of another user.
+resources:
+  - "https://search-guard.com/elasticsearch-user-impersonation/|User Impersonation: Submit requests on behalf of another user (blog post)"
+
 ---
 
 <!---
@@ -14,6 +17,9 @@ Copryight 2018 floragunn GmbH
 -->
 
 # User Impersonation
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The Search Guard user impersonation feature lets you submit requests on behalf of another user. It means that a user can log in with his or her credentials, and then impersonate as another user, without having to know this users username or password.
 

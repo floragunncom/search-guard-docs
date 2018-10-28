@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # REST management API
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 This module adds the capability of managing users, roles, roles mapping and action groups via a REST Api. It is required if you plan to use the Kibana config GUI.
 

@@ -1,0 +1,15 @@
+{%if page.resources != null %}
+<div class="note js-note additional-resources">
+	<h4 class="note-title additional-resources-title"> Additional resources </h4>
+	<p class="note-description">
+		<ul style="list-style-type: none">
+		{% for resourcestring in page.resources %}
+		{% assign resource = resourcestring | split: "|" %}
+			<li>
+				<a href="{{ resource[0] }}" target="_blank">{{ resource[1] }}</a>
+			</li>
+		{% endfor %}
+		</ul>	
+	</p>
+</div>
+{% endif %}		

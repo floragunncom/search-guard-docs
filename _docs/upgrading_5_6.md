@@ -11,10 +11,14 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Upgrading from 5.x to 6.x
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Upgrading Search Guard from 5.x to 6.x can be done while you upgrade Elasticsearch from 5.x to 6.x. You can do this by performing a full cluster restart, or by doing a rolling restart: 
 
-**Search Guard supports running a mixed cluster of 5.6.x and 6.x nodes and is thus compatible with the Elasticsearch upgrade path.**
+Search Guard supports running a mixed cluster of 5.6.x and 6.x nodes and is thus compatible with the Elasticsearch upgrade path.
+{: .note .js-note .note-warning}
 
 If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
 
@@ -95,7 +99,8 @@ After upgrading a node from ES 5.x to 6.x, simply [install](installation.md) the
 
 Search Guard 6 is able to read the Search Guard configuration index created with Search Guard 5.x. You do not need to change any settings during the upgrade process. 
 
-**After all nodes have been upgraded to 6.x, it is recommended to delete and recreate the Search Guard index.**
+After all nodes have been upgraded to 6.x, it is recommended to delete and recreate the Search Guard index.
+{: .note .js-note .note-warning}
 
 ### Back up your current Search Guard configuration
 
@@ -136,8 +141,6 @@ Re-create the Search Guard index with the backup of your configuration:
 
 Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](kibana_installation.md) the correct version of the Search Guard plugin to Kibana. There are no configuration changes in `kibana.yml`.
 
-**Note that beginning with Search Guard 6, the Kibana plugin is released on [Maven](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} , not GitHub.**
-
 ### If you use Kibana Multi Tenancy
 
 The Elasticsearch [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/6.x/xpack-upgrade-assistant.html) will migrate the .kibana index from 5.x to 6.x. 
@@ -158,7 +161,8 @@ While running in mixed mode, the following limitations apply:
 
 Search Guard 6 uses a new layout for the Search Guard configuration index, and is also able to read and configuration indices created with Search Guard 5. 
 
-**While running in mixed mode, do not perform changes to the Search Guard configuration index.**
+While running in mixed mode, do not perform changes to the Search Guard configuration index.
+{: .note .js-note .note-warning}
 
 This applies to sgadmin and the REST management API. Configuration changes are possible again after all nodes have been upgraded.
 

@@ -6,15 +6,24 @@ order: 200
 layout: docs
 edition: community
 description: Search Guard TLS configuration settings for the REST and the transport layer. Extended security options for hostname verification and DNS lookups. 
+resources:
+  - troubleshooting-tls|Troubleshooting TLS problems (docs)  
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 # Configuring TLS
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 TLS is configured in the `config/elasticsearch.yml` file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
 
-**You can find an example configuration template with all options on [GitHub](https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}**
+You can find an example configuration template with all options on [GitHub](https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
+{: .note .js-note .note-warning}
 
 ## Using X.509 PEM certificates and PKCS #8 keys
 
@@ -168,7 +177,10 @@ searchguard.ssl.http.enabled_protocols:
   - "TLSv1.2"
 ```
 
-**Note: By default Search Guard disables `TLSv1` because it is unsecure. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
+By default Search Guard disables `TLSv1` because it is unsecure. 
+{: .note .js-note .note-warning}
+
+If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
 
 ```yaml
 searchguard.ssl.http.enabled_protocols:

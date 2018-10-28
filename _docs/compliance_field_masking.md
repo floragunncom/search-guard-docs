@@ -13,8 +13,9 @@ Copryight 2018 floragunn GmbH
 -->
 
 # Field anonymization
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 Instead of removing sensitive fields from a document with [field-level security](dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only and replaces the actual field value with a cryptographic hash. 
 

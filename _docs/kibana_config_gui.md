@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Using the Search Guard configuration GUI
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The Search Guard configuration GUI provides an intuitive way to manage users, roles and permissions, the Search Guard system status and the Search Guard license.
 
@@ -20,7 +23,8 @@ The configuration GUI is part of the [Search Guard Kibana plugin](kibana_install
 
 It uses the Search Guard [REST management API](restapi_api_access.md) under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.
 
-**The configuration GUI is an Enterprise feature and not available in the Community Edition**
+The configuration GUI is an Enterprise feature and not available in the Community Edition.
+{: .note .js-note .note-warning}
 
 ## Access control
 
@@ -135,7 +139,8 @@ To edit index-level permissions, you need to first select the index and the docu
 <img src="kibana_index_level_permissions.png" style="width: 70%" class="md_image"/>
 </p>
 
-Note: Since documen types are deprecated in Elasticsearch 6, document type level permissions will be removed in Search Guard 7.
+Since document types are deprecated in Elasticsearch 6, document type level permissions will be removed in Search Guard 7.
+{: .note .js-note .note-warning}
 
 ### Index- and Document-Type Permissions
 
