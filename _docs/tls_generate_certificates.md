@@ -7,12 +7,20 @@ order: 100
 layout: docs
 edition: community
 description: Various options for generating TLS certificates that you can use with Search Guard.
+resources:
+  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Generating TLS certificates
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
 
@@ -39,6 +47,3 @@ For generating certificates you have the following options:
 * Using tools like OpenSSL and/or keytool (safe for production)
 
 If you have your own PKI infrastructure and are already familiar with TLS certificates, you can jump directly to [TLS certificates for production environments](tls_certificates_production.md).
-
-
-

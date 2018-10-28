@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # HTTP Basic Authentication
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 HTTP Basic is the most common used authentication type and probably the one you are most familiar with. If a user tries to access Kibana:  
 

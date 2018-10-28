@@ -12,6 +12,11 @@ description: How to handle disable Search Guard temporarily without removing the
 Copryight 2017 floragunn GmbH
 -->
 # Disabling or Removing Search Guard
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
+
+## Disabling Search Guard
 
 In order to disable Search Guard without removing it, add the following line to `elasticsearch.yml`:
 
@@ -21,7 +26,10 @@ searchguard.disabled: true
 
 Disabling Search Guard requires a full cluster restart, since transport layer TLS will also be disabled. You don't need to remove the Search Guard specific settings from `elasticsearch.yml`.
 
-**Note: If you disable Search Guard, the Search Guard configuration index will also be exposed. Please use this feature carefully.**
+If you disable Search Guard, the Search Guard configuration index will also be exposed. Please use this feature carefully.
+{: .note .js-note .note-warning}
+
+## Removing Search Guard
 
 In order to remove Search Guard completely you need to
 

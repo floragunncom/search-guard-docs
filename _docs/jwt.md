@@ -6,12 +6,19 @@ order: 500
 layout: docs
 edition: enterprise
 description: How to configure JSON web token (JWT) with Search Guard to implement Single-Sign-On access to your Elasticsearch cluster.
+resources:
+  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure Elasticsearch (blog post)"
+  - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # JSON web tokens
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Token based authentication
 
@@ -86,7 +93,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI
 
 ## Configuring JWT support in Search Guard
 
-*Note: If JWT is the only authentication method you use, you should disable the [Search Guard User Cache](configuration_cache.md).*
+If JWT is the only authentication method you use, you should disable the [Search Guard User Cache](configuration_cache.md).
+{: .note .js-note .note-warning}
 
 In order to use JWT, set up an authentication domain and choose `jwt` as HTTP authentication type. Since the tokens already contain all required information to verify the request, `challenge` must be set to `false` and `authentication_backend` to `noop`.
 

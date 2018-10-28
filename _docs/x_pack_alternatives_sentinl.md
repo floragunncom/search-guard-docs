@@ -10,6 +10,9 @@ description: Replace X-Pack Alerting and Reporting with Sentinl, the alerting an
 Copryight 2017 floragunn GmbH
 -->
 # Using Search Guard with SENTINL
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 As an alternative to X-Pack Alerting and X-Pack Monitoring, we recommend Sentinl by [Siren Solutions](https://siren.io/){:target="_blank"})
 

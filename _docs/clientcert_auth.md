@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Client certificate based authentication
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard can use a client TLS certificate in the HTTP request to authenticate users and assign roles and permissions.
 

@@ -7,14 +7,20 @@ order: 400
 layout: docs
 edition: compliance
 description: Use the Search Guard Compliance edition to create immutable indices. Documents created in an immutable index cannot be changed after they have been created.
+resources:
+  - "https://search-guard.com/immutable-indices-gdpr/|
+How Immutable Indices help you to stay GDPR compliant (blog post)"
+
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Immutable indices
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 You can mark any index in Elasticsearch as immutable. Documents in immutable indices follow the write-once, read-many paradigm. This means that you can create documents, but once created, they cannot be changed anymore, thus making them immutable.
 

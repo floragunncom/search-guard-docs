@@ -6,12 +6,20 @@ order: 400
 layout: docs
 edition: community
 description: How to generate TLS certificates by customizing and using the example PKI scripts from the Search Guard SSL project.
+resources:
+  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Using the example PKI scripts
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 If you want to generate the certificates on your own machine, you can use the Search Guard example PKI scripts as a starting point. The scripts are shipped with Search Guard SSL and run on Linux or OS X.
 
@@ -113,5 +121,5 @@ You can change the DN, the hostname and the IP of the generated certificate by m
 -ext san=dns:$NODE_NAME.example.com,dns:localhost,ip:127.0.0.1,oid:1.2.3.4.5.5
 ```
 
-*Note: For `gen_node_cert.sh`, make sure you keep the oid:1.2.3.4.5.5
- part! This OID value is used to identify node certificates in your cluster.*
+For `gen_node_cert.sh`, make sure you keep the oid:1.2.3.4.5.5 part! This OID value is used to identify node certificates in your cluster.
+{: .note .js-note .note-warning}

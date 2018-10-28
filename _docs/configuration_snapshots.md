@@ -12,6 +12,9 @@ description: Control access to the snapshot and restore features of Elasticsearc
 Copryight 2017 floragunn GmbH
 -->
 # Aliases, snapshots and restore
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Index alias handling
 

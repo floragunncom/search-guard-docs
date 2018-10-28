@@ -13,10 +13,11 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with Kerberos
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Due to the way Kerberos operates and how Kibana handles the HTTP request flow, at the moment it is not possible to use Kerberos with the Kibana plugin. If you want to use Kerberos, please make sure the Search Guard Kibana plugin is not installed! 
-
-**Kerberos authentication will work, but Multi Tenancy and the Config GUI are not supported at the moment. See also "Known Issues".**
 
 ## Elasticsearch configuration
 

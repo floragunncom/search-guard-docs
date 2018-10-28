@@ -7,12 +7,20 @@ order: 100
 layout: docs
 edition: enterprise
 description: Include or exclude individual fields from your documents by using the Field-level security module of Search Guard.
+resources:
+  - "search-guard-presentations#dls-fls|Document- and Field-level security (presentation)"
+  - https://search-guard.com/document-field-level-security-search-guard/|Document- and field-level security with Search Guard (blog post)
+  - https://search-guard.com/attribute-based-document-access/|Attribute based document access (blog post)
+
 ---
 <!---
 Copryight 2016 floragunn GmbH
 -->
 
 # Field-level security
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Field-level security controls which fields a user is able to see. As with document-level security, FLS can be defined per role and per index. Search Guard supports including (whitelisting) and excluding (blacklisting) fields from documents.
 

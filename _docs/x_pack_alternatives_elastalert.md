@@ -10,6 +10,9 @@ description: How to configure and use Search Guard and ElastAlert for Elasticsea
 Copryight 2017 floragunn GmbH
 -->
 # Using Search Guard with ElastAlert
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 As an alternative to X-Pack Alerting, we recommend ElastAlert.
 
