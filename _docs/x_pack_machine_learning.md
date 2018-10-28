@@ -11,6 +11,9 @@ description: How to configure Search Guard and X-Pack Machine Learning for Elast
 Copryight 2017 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Machine Learning
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard is compatible with the X-Pack Machine Learning component. 
 

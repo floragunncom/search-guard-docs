@@ -7,11 +7,17 @@ order: 100
 layout: docs
 edition: community
 description: How to configure, mix and chain authentication and authorization domains for Search Guard.
+resources:
+  - "search-guard-presentations#configuration-basics|Search Guard configuration basics (presentation)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 # Configuring authentication and authorization
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard comes with pluggable authentication and authorization modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorization modules like:
 

@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Using logstash with Search Guard
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Logstash connects to Elasticserch on the REST layer, just like a browser or curl. In order to use logstash with a Search Guard secured cluster:
 

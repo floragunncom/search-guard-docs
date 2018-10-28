@@ -3,6 +3,8 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
+  toc_levels: "1..2"
+  parse_block_html: false
   syntax_highlighter_opts:
     disable: true
 

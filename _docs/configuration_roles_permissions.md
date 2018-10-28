@@ -12,6 +12,9 @@ description: How to define role based access to Elasticsearch on index- and docu
 Copryight 2017 floragunn GmbH
 -->
 # Defining Roles and permissions
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring Roles and Permissions.
 
@@ -39,13 +42,15 @@ Search Guard roles and their associated permissions are defined in the file `sg_
       <tenantname>: <RW|RO>        
 ```
 
-**The Search Guard role name must not contain dots.**
+The Search Guard role name must not contain dots.
+{: .note .js-note .note-warning}
 
 The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](dlsfls_dls.md). Please refer to this chapter for details.
 
 The key `tenants` is used to configure [Kibana multi-tenancy](kibana_multitenancy.md). Please refer to this chapter for details.
 
-**Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.**
+Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.
+{: .note .js-note .note-warning}
 
 ## Cluster-level permissions
 
@@ -67,7 +72,8 @@ sg_finance:
 
 The `indices` entry is used to allow/disallow actions that affect a single index. You can define permissions for each document type in your index separately.
 
-**Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.**
+Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.
+{: .note .js-note .note-warning}
 
 
 ### Dynamic index names: Wildcards and regular expressions
@@ -81,7 +87,8 @@ The index name supports (filtered) index aliases. Both the index name and the do
 * Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
   * `'/\S*/'` will match any non whitespace characters
 
-**Note: The index name cannot contain dots. Instead, use the `?` wildcard, as in `?kibana`.** 
+Note: The index name cannot contain dots. Instead, use the `?` wildcard, as in `?kibana`.
+{: .note .js-note .note-warning}
 
 Example: 
 

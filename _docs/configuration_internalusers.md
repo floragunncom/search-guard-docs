@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Configuring the Internal Users Database
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Internal Users Database.
 

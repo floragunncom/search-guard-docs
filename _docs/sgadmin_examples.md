@@ -11,8 +11,11 @@ description: Example sgadmin calls that you can use as template and blueprint.
 Copryight 2017 floragunn GmbH
 -->
 # sgadmin Examples
+{: .no_toc}
 
-#### Apply default configuration with Keystore and Truststore files
+{% include_relative _includes/toc.md %}
+
+## Apply default configuration with Keystore and Truststore files
 ```
 ./sgadmin.sh \
    -cd /path/to/sgconfig/ \
@@ -24,7 +27,7 @@ Copryight 2017 floragunn GmbH
    -icl
 ```
 
-#### Apply default configuration with PEM certificates
+## Apply default configuration with PEM certificates
 ```
 ./sgadmin.sh \
    -cd /path/to/sgconfig/ \
@@ -36,7 +39,7 @@ Copryight 2017 floragunn GmbH
    -icl
 ```
 
-#### Apply single file to cluster named "myclustername"
+## Apply single file to cluster named "myclustername"
 ```
 ./sgadmin.sh \
    -f /path/to/sg_internal_users.yml \
@@ -49,7 +52,7 @@ Copryight 2017 floragunn GmbH
    -nhnv
 ```
 
-#### Apply single file, ignoring clustername but specifying host and port
+## Apply single file, ignoring clustername but specifying host and port
 ```
 ./sgadmin.sh \
    -h esnode1.mycompany.com \
@@ -62,7 +65,7 @@ Copryight 2017 floragunn GmbH
    -tspass changeit
    -icl
 ```
-#### Retrieving the current active Search Guard configuration from a cluster
+## Retrieving the current active Search Guard configuration from a cluster
 ```
 ./sgadmin.sh \
    -ks /path/to/keystore.jks \
@@ -72,7 +75,7 @@ Copryight 2017 floragunn GmbH
    -r
 ```
 
-#### Reload the current configuration, thus flushing the Search Guard user caches
+## Reload the current configuration, thus flushing the Search Guard user caches
 
 ```
 ./sgadmin.sh \
@@ -83,7 +86,7 @@ Copryight 2017 floragunn GmbH
    -rl
 ```
 
-#### Setting the number of replica shards to 5
+## Setting the number of replica shards to 5
 ```
 ./sgadmin.sh \
    -ks /path/to/keystore.jks \
@@ -93,7 +96,7 @@ Copryight 2017 floragunn GmbH
    -us 5
 ```
 
-#### Enabling replica auto expansion
+## Enabling replica auto expansion
 ```
 ./sgadmin.sh \
    -ks /path/to/keystore.jks \

@@ -7,12 +7,18 @@ order: 100
 layout: docs
 edition: enterprise
 description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
+resources:
+  - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Active Directory and LDAP
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Activating the module
 
@@ -224,7 +230,10 @@ ldap:
 | enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
 
 
-**Note: By default Search Guard disables `TLSv1` because it is unsecure. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
+By default Search Guard disables `TLSv1` because it is unsecure. 
+{: .note .js-note .note-warning}
+
+If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:
 
 ```yaml
 enabled_ssl_protocols:

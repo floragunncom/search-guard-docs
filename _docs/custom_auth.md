@@ -13,6 +13,9 @@ Copryight 2017 floragunn GmbH
 
 
 # Custom authentication modules
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 If none of the Enterprise modules fits your needs, you can also write your own implementation. This is a feature of the Enterprise Edition, you can implement your own HTTP authenticator and also your own authentication and authorization backends.
 

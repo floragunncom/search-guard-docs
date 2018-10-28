@@ -12,10 +12,11 @@ Copryight 2017 floragunn GmbH
 -->
 
 # OpenSSL setup
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
-
-# Enabling OpenSSL
 
 ## Dynamically linked
 

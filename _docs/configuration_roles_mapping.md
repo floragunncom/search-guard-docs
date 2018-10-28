@@ -11,6 +11,9 @@ description: How to map users and backend roles to Search Guard roles to impleme
 Copryight 2017 floragunn GmbH
 -->
 # Map users, backend roles and hosts to Search Guard roles
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Roles Mapping.
 

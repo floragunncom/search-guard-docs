@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Installing the Search Guard Kibana plugin
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
@@ -177,9 +180,10 @@ searchguard:
       ...
 ```
 
-**Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
+While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.
+{: .note .js-note .note-warning}
 
-# Client certificates: elasticsearch.ssl.certificate
+## Client certificates: elasticsearch.ssl.certificate
 
 In kibana.yml, you can configure Kibana to use a TLS certificate by setting the following options:
 

@@ -13,6 +13,7 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Running Search Guard behing a proxy
+{: .no_toc}
 
 Search Guard supports Elasticsearch installations running behind one or more proxies or loadbalancers. This can be a single nginx, load balancer or forwarding requests to an Elasticsearch cluster or a chain of proxies.
 

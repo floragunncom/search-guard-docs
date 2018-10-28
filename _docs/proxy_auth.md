@@ -12,8 +12,12 @@ Copryight 2017 floragunn GmbH
 -->
 
 # HTTP-header/Proxy based authentication
+{: .no_toc}
 
-**This module is deprecated and will be replaced in future versions of Search Guard.**
+{% include_relative _includes/toc.md %}
+
+This module is deprecated and will be replaced in future versions of Search Guard.
+{: .note .js-note .note-warning}
 
 You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Search Guard authentication backend.
 

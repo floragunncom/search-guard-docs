@@ -13,6 +13,9 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with Proxy authentication
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Activate proxy authentication by adding the following to `kibana.yml`:
 

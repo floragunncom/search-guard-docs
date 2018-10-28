@@ -6,11 +6,19 @@ order: 200
 layout: docs
 edition: community
 description: Search Guard ships with a demo installer for quickly setting up a working configuration. Use it for PoCs or checking out our features. 
+resources:
+  - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
+  - "search-guard-presentations#architecture-request-flow|Architecture and Request Flow (presentation)"
+  - "search-guard-presentations#configuration-basics|Configuration Basics (presentation)"
+
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->
 
 # Demo Installer 
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 To quickly set up a Search Guard secured Elasticsearch cluster:
 

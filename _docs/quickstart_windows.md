@@ -11,6 +11,9 @@ description: How to download and install Search Guard and all required TLS certi
 <!--- Copryight 2017 floragunn GmbH -->
 
 # Manual installation (Windows) 
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 To quickly set up a Search Guard secured Elasticsearch cluster on Windows:
 

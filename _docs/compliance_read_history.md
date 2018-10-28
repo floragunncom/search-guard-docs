@@ -7,14 +7,17 @@ order: 100
 layout: docs
 edition: compliance
 description: Use the Read History Audit Logging to monitor read access to sensitive data and stay compliant with GDRP, HIPAA, PCI and SOX.
+resources:
+  - https://search-guard.com/read-history-gdpr/|Using X-Pack Monitoring with Search Guard (blog post)
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Read History Audit Logging
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 

@@ -1,16 +1,25 @@
 {% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
 <li>
-		<a href="#" {% if include.category == page.category %} class="selected" {% endif %}>{{site.labels.navigation[include.category]}}</a>
+		<a href="#" 
+			{% if include.category == page.category %} class="selected left-nav-level-1" 
+			{% else %} class="left-nav-level-1"
+			{% endif %}>
+			{{site.labels.navigation[include.category]}}</a>
 		<ul style="list-style-type: none;">
 			{% for item in items %}
 			<li {% if item.title == page.title and item.category == page.category %} class="selected" {% endif %}>				
-				<a {% if item.title == page.title and item.category == page.category %} class="selected" {% endif %} href="{{site.baseurl}}{{ item.url }}">{{ item.title }}</a>
+				<a href="{{site.baseurl}}{{ item.url }}"
+					{% if item.title == page.title and item.category == page.category %} class="selected left-nav-level-2" 
+					{% else %} class="left-nav-level-2"
+					{% endif %} >
+					{{ item.title }}
+				</a>
 
 				{% if item.anchors != null %}
 					<ul {% if item.title == page.title and item.category == page.category %} class="selected" {% endif %}>
 						{% for anchor in item.anchors %}
 						<li>				
-							<a href="{{site.baseurl}}{{ item.url }}#{{ anchor[1]}}">{{ anchor[0]}}</a>
+							<a href="{{site.baseurl}}{{ item.url }}#{{ anchor[1]}}" class="left-nav-level-3">{{ anchor[0]}}</a>
 						</li>
 						{% endfor %}
 					</ul>

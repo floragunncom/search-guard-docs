@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Kerberos
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Static configuration in elasticsearch.yml
 

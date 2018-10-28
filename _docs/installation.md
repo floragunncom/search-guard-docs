@@ -6,12 +6,18 @@ category: installation
 order: 100
 layout: docs
 description: Step by step instructions for setting up Search Guard on a new or existing Elastcsearch cluster. 
+resources:
+  - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
+  
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Installation
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](quickstart.md)**. 
 

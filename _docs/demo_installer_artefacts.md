@@ -11,6 +11,9 @@ description: Description of the generated artefacts of the demo installer, what 
 <!--- Copryight 2017 floragunn GmbH -->
 
 # Generated artefacts and settings
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Generated certificates
 
