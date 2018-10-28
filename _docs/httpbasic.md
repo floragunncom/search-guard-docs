@@ -11,9 +11,8 @@ description: How to set up HTTP Basic Authentication on the REST layer of Elasti
 Copryight 2017 floragunn GmbH
 -->
 
-## Installation
-
 # HTTP Basic Authentication
+{: .no_toc}
 
 In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:
 

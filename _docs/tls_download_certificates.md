@@ -6,12 +6,20 @@ order: 110
 layout: docs
 edition: community
 description: How to download and install the Search Guard demo certificates for quickly setting up a PoC.
+resources:
+  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Search Guard demo certificates
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 In order to set up a Search Guard PoC quickly, you can simply download and install our demo TLS certificates. The certificates can be used for node to node TLS encryption, REST encryption and for using sgadmin. They work on Linux, Mac and Windows.
 
@@ -19,7 +27,8 @@ In order to set up a Search Guard PoC quickly, you can simply download and insta
 <a href="https://downloads.search-guard.com/resources/certificates/certificates.zip" target="_blank" class="button stroke rounded large blue">Download Demo Certificates</a>
 </div>
 
-**The certificates are for PoC usage only. Do not install on production.**
+The certificates are for PoC usage only. Do not install on production.
+{: .note .js-note .note-warning}
 
 ## Download and install
 
@@ -131,5 +140,3 @@ Done with success
 		</li>
 	</ul>	
 </div>
-
-

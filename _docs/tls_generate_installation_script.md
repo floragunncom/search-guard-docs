@@ -6,16 +6,21 @@ order: 100
 layout: docs
 edition: community
 description: How to generate TLS certificates by using the demo installation script that ships with Search Guard.
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Using the Search Guard demo installer
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The demo installation script that ships with Search Guard comes with certificates that you can use to run a PoC or to test-drive our features. 
 
-**Since the demo certificates are the same for each Search Guard installation, do not use them in production.**
+Since the demo certificates are the same for each Search Guard installation, do not use them in production.
+{: .note .js-note .note-warning}
 
 To execute the demo installation:
 

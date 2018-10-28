@@ -12,6 +12,9 @@ description: Search Guard fully supports the Cross Cluster Search feature of Ela
 Copryight 2017 floragunn GmbH
 -->
 # Cross Cluster Search Support
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Search Guard supports [Cross Cluster Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cross-cluster-search.html){:target="_blank"} out of the box, so there is nothing special to configure to make it work. Cross Cluster Search will replace Tribe nodes which are deprecated in Elasticsearch 6.x.
 
@@ -47,9 +50,10 @@ sg_ humanresources:
         - indices:admin/shards/search_shards # needed for CCS
 ```
 
-# Tribe nodes
+## Tribe nodes
 
-**Note: Tribe nodes are deprecated from Elasticsearch 6.x onwards.**
+Tribe nodes are deprecated from Elasticsearch 6.x onwards.
+{: .note .js-note .note-warning}
 
 Search Guard offers support for tribe nodes. A tribe node ["acts as a federated client across multiple clusters"](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-tribe.html){:target="_blank"} and is commonly used to retrieve information from multiple Elasticsearch clusters making it look like one combined cluster.
 

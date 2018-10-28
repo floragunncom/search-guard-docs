@@ -11,6 +11,9 @@ description: Different ways to use the Search Guard role mapping feature to map 
 Copryight 2017 floragunn GmbH
 -->
 # Expert: Role mapping modes
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 By default, Search Guard maps every incoming request to a Search Guard role by mapping the user name, the backend roles and/or the hostname to one or more Search Guard roles. This is configured in roles mapping configuration.
 

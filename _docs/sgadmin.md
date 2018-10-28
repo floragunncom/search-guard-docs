@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Using sgadmin to configure Search Guard
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 The Search Guard configuration, including users, roles and permissions, is stored in an index on the Elasticsearch cluster. This allows for hot configuration reloading, and eliminates the need to place configuration files on any node.
 

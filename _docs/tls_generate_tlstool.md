@@ -4,14 +4,22 @@ slug: offline-tls-tool
 category: generating-certificates
 order: 300
 layout: docs
-edition: beta
+edition: community
 description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elasticsearch cluster.
+resources:
+  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
+  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
+  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # TLS Tool
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 We provide an [offline TLS tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-tlstool%22){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
 
@@ -410,3 +418,6 @@ By using the `-es` switch you can also check the TLS configuration in your elast
 ```
 <installation directory>/tools/sgtlsdiag.sh -es /etc/elasticsearch/elasticsearch.yml
 ```
+
+
+

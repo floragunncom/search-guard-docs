@@ -7,12 +7,18 @@ order: 200
 layout: docs
 edition: enterprise
 description: Use Search Guard's Active Directory and LDAP feature to authenticate users.
+resources:
+  - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 
 # Active Directory and LDAP Authentication
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 ## Activating Authentication
 

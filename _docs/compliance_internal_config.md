@@ -13,12 +13,13 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Search Guard configuration change tracking
+{: .no_toc}
 
-**To use the compliance features please install the [Search Guard Compliance Edition](installation_versionmatrix.md)**
+{% include_relative _includes/toc.md %}
 
 Search Guard is able to monitor read- and write access to the Search Guard configuration index. This makes it possible to track which user has accessed the configuration information, and get notified about any changes immediately.
 
-## Enabling and disabling 
+## Enabling and disabling configuration change tracking
 
 The elasticsearch configuration monitoring can be switched on an off by the following entry in elasticsearch.yml:
 
@@ -87,7 +88,8 @@ The `audit_request_body` contains the exact configuration settings the user has 
 }
 ```
 
-Note: Since the JSON object is stored as String, the quotation marks are escaped in the original output. Depending on your JSON parser you might need to remove them first.
+Since the JSON object is stored as String, the quotation marks are escaped in the original output. Depending on your JSON parser you might need to remove them first.
+{: .note .js-note .note-warning}
 
 ## Write Field reference
 

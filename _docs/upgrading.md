@@ -11,8 +11,12 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Upgrading Search Guard
+{: .no_toc}
 
-**If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md)**.
+{% include_relative _includes/toc.md %}
+
+If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md).
+{: .note .js-note .note-warning}
 
 The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.
 
@@ -62,7 +66,8 @@ Then, repeat this process for all other nodes in the cluster.
 
 ## Upgrading Elasticsearch and Search Guard
 
-**If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md)**.
+If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md).
+{: .note .js-note .note-warning}
 
 First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
 

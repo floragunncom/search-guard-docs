@@ -2,15 +2,23 @@
 title: Community Edition
 slug: search-guard-community-edition
 category: installation
-order: 300
+order: 200
 layout: docs
 edition: community
 description: The Search Guard Community Edition provides TLS encryption and index-level permissions on REST and transport for free.
+resources:
+  - "https://search-guard.com/product/|Search Guard editions feature comparison (website)"
+
 ---
 <!---
 Copryight 2017 floragunn GmbH
 -->
 # Search Guard Community Edition
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
+
+## Overview 
 
 The Community Edition of Search Guard is free, and you can use it for production and non-production systems. It includes TLS encryption on REST and on transport layer, HTTP Basic Authentication, the Internal User Database authentication backend and Kibana session management.
 
@@ -22,9 +30,7 @@ searchguard.enterprise_modules_enabled: false
 
 Setting this flag will disable any commercial module or custom authentication domain and will run only the free Community features of Search Guard.
 
-## Checking your version
-
-### HTTP License endpoint
+## HTTP License endpoint
 
 If you are unsure whether you are running the free Community Edition or not, you can visit the HTTP license endpoint of Search Guard like:
 
@@ -51,8 +57,7 @@ sg_license: {
 ...
 ```
 
-
-### Logfile
+## Logfile
 
 On startup, Search Guard will print license information to the Elasticsearch logfile on `INFO` level. If you are running the Community Edition you will find the following entry:
 

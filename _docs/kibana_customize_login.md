@@ -12,6 +12,7 @@ Copryight 2016-2017 floragunn GmbH
 -->
 
 # Customizing the login page
+{: .no_toc}
 
 You can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
 

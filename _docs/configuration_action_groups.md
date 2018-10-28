@@ -12,6 +12,9 @@ description: How to define and use Search Guard action groups for easy configura
 Copryight 2017 floragunn GmbH
 -->
 # Using and defining action groups
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Hint: You can also use the [Kibana Confguration GUI](kibana_config_gui.md) for configuring the Action Groups.
 

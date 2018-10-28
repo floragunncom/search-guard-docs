@@ -12,6 +12,9 @@ Copryight 2017 floragunn GmbH
 -->
 
 # Audit Logging
+{: .no_toc}
+
+{% include_relative _includes/toc.md %}
 
 Audit logging enables you to track access to your Elasticsearch cluster, log security related events and provide evidence in case of an attack. Audit logging helps you to stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
 
@@ -126,7 +129,8 @@ You can disable this feature by setting:
 searchguard.audit.resolve_indices: false
 ```
 
-**Note: Disabling this feature only takes effect if `searchguard.audit.log_request_body ` is also set to `false`**
+Note: Disabling this feature only takes effect if `searchguard.audit.log_request_body ` is also set to `false`
+{: .note .js-note .note-warning}
 
 ### Configuring bulk request handling
 
