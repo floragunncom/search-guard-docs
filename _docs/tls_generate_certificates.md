@@ -20,8 +20,6 @@ Copryight 2017 floragunn GmbH
 # Generating TLS certificates
 {: .no_toc}
 
-{% include_relative _includes/toc.md %}
-
 Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
 
 By using TLS:
