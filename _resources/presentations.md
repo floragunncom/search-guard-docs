@@ -10,14 +10,20 @@ anchors: # for navigation
   "Architecture and Request Flow": "architecture-request-flow"
   "Configuration Basics": "configuration-basics"
   "Active Directory & LDAP": "active-directory-ldap"
+  "JSON web tokens": "json-web-tokens"
+  "Audit logging": "audit-logging"  
   "Document- and Field-Level Security": "dls-fls"      
 resources: # for sitemap
   - "/resources/presentations/01_SG_Documents_installation.pdf"      
   - "/resources/presentations/02_SG_Documents_architecture_request_flow.pdf"
   - "/resources/presentations/03_SG_Documents_configuration_basics.pdf"
   - "/resources/presentations/04_SG_Documents_active_directory_ldap.pdf"
+  - "/resources/presentations/05_SG_Documents_json_web_tokens.pdf"
+  - "/resources/presentations/06_SG_Documents_auditlogging.pdf" 
   - "/resources/presentations/07_SG_Documents_document_and_field_level_security.pdf"
+
 ---
+
 <!---
 Copryight 2017 floragunn GmbH
 -->
@@ -36,7 +42,7 @@ Copryight 2017 floragunn GmbH
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/01_SG_Documents_installation.pdf" target="_blank">
-						<i class="fa fa-file-pdf-o"></i> pdf  (14 MB) </a>
+						<i class="fa fa-file-pdf-o"></i> pdf  (920 KB) </a>
 				</li>
 			</ul>
 		</div>
@@ -56,7 +62,7 @@ Copryight 2017 floragunn GmbH
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/02_SG_Documents_architecture_request_flow.pdf" target="_blank">
-						<i class="fa fa-file-pdf-o"></i> pdf  (14 MB) </a>
+						<i class="fa fa-file-pdf-o"></i> pdf  (2,6 MB) </a>
 				</li>
 			</ul>
 		</div>
@@ -77,7 +83,7 @@ Copryight 2017 floragunn GmbH
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/03_SG_Documents_configuration_basics.pdf" target="_blank">
-						<i class="fa fa-file-pdf-o"></i> pdf  (30 MB) </a>
+						<i class="fa fa-file-pdf-o"></i> pdf  (330 KB) </a>
 				</li>
 			</ul>
 		</div>
@@ -97,7 +103,47 @@ Copryight 2017 floragunn GmbH
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/04_SG_Documents_active_directory_ldap.pdf" target="_blank">
-						<i class="fa fa-file-pdf-o"></i> pdf  (7 MB) </a>
+						<i class="fa fa-file-pdf-o"></i> pdf  (342 KB) </a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h2 id="json-web-tokens">JSON web tokens</h2>
+<div class="book">
+	<div class="row">
+		<div class="col-md-6">
+			<a href="/resources/presentations/05_SG_Documents_json_web_tokens.pdf" target="_blank">
+				<img src="elasticsearch_json_web_tokens.png" class="book-image" alt="book cover"> 
+			</a>		
+		</div>
+		<div class="col-md-6">
+			<p class="book-description">How to use JSON web tokens for Elasticsearch single sign on authentication</p>
+			<ul class="book-download-list">
+				<li class="book-download-item">
+					<a href="/resources/presentations/05_SG_Documents_json_web_tokens.pdf" target="_blank">
+						<i class="fa fa-file-pdf-o"></i> pdf  (300 KB) </a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<h2 id="audit-logging">Audit logging</h2>
+<div class="book">
+	<div class="row">
+		<div class="col-md-6">
+			<a href="/resources/presentations/06_SG_Documents_auditlogging.pdf" target="_blank">
+				<img src="elasticsearch_auditlogging.png" class="book-image" alt="book cover"> 
+			</a>		
+		</div>
+		<div class="col-md-6">
+			<p class="book-description">Use Search Guard audit logging to track access to your cluster and to stay compliant with regulations like PCI, HIPAA, SOX, GDPR and ISO.</p>
+			<ul class="book-download-list">
+				<li class="book-download-item">
+					<a href="/resources/presentations/06_SG_Documents_auditlogging.pdf" target="_blank">
+						<i class="fa fa-file-pdf-o"></i> pdf  (350 KB) </a>
 				</li>
 			</ul>
 		</div>
@@ -118,7 +164,7 @@ Copryight 2017 floragunn GmbH
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/07_SG_Documents_document_and_field_level_security.pdf" target="_blank">
-						<i class="fa fa-file-pdf-o"></i> pdf  (11 MB) </a>
+						<i class="fa fa-file-pdf-o"></i> pdf  (320 KB) </a>
 				</li>
 			</ul>
 		</div>
