@@ -1,9 +1,9 @@
 ---
-title: Configuration
-html_title: Logstash
-slug: logstash
-category: logstash
-order: 200
+title: Logstash
+html_title: Using logstash with Search Guard
+slug: elasticsearch-logstash-search-guard
+category: esclients
+order: 100
 layout: docs
 edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.

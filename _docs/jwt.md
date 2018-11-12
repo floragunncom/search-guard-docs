@@ -72,7 +72,7 @@ Example:
   "iss": "floragunn.com",
   "exp": 1300819380,
   "name": "John Doe",
-  "roles": "admin, devops"
+  "roles": ["admin, "devops"]
 }
 ```
 
@@ -137,13 +137,17 @@ Since JSON web tokens are self-contained and the user is authenticated on HTTP l
 jwt_auth_domain:
   ...
     config:
-      signing_key: "a3M5MjEwamRqOTAxOTJqZDE="
+      signing_key: "bmRSMW00c2pmNUk4Uk9sVVFmUnhjZEhXUk5Hc0V5MWgyV2p1RFE3Zk1wSTE="
       ...
 ```
 
+
 Please refer to the documentation of your authentication server on how to obtain it.
 
-While HMACs are simple to use they do not provide guarantees with regards to the creator of the JWT: Everyone that is in possession of the shared key can generate valid JWTs. In case the private key is lost, all participating systems need to exchange it.
+While HMACs are simple to use they do not provide guarantees with regards to the creator of the JWT: Anyone who is in possession of the shared key can generate valid JWTs. In case the shared key is lost, all participating systems need to exchange it.
+
+For security reasons, the shared key must be at least 32 characters
+{: .note .js-note .note-warning}
 
 ## Asymmetric key algorithms: RSA and ECDSA 
 
