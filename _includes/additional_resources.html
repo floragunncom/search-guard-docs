@@ -5,8 +5,13 @@
 		<ul style="list-style-type: none">
 		{% for resourcestring in page.resources %}
 		{% assign resource = resourcestring | split: "|" %}
+		{% assign urlparts = resource[0] | split: "#" %}		
 			<li>
-				<a href="{{ resource[0] }}" target="_blank">{{ resource[1] }}</a>
+				{%if urlparts[1] != null %}
+				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}#{{ urlparts[1] }}" target="_blank">{{ resource[1] }}</a>
+				{% else %}
+				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}" target="_blank">{{ resource[1] }}</a>
+				{% endif %}		
 			</li>
 		{% endfor %}
 		</ul>	
