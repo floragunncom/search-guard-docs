@@ -52,12 +52,12 @@ labels:
     eeadvanced: Advanced Security Features
     dlsfls: Document- and Field-Level Security
     kibana: Kibana
-    logstash: Logstash
     auditlog: Audit Logging
     compliance: Compliance
     restapi: REST API
     esstack: Integrating with the Elastic stack
-    xpack: Integrating with X-Pack
+    esclients: Elasticsearch clients
+    xpack: X-Pack Integration
     ccs: Cross Cluster Search and Tribe
     integration_other: Other Integrations
     troubleshooting: Troubleshooting
