@@ -1,0 +1,15 @@
+{%if page.showsearch != false %}
+
+<hr />
+
+<h3>Not what you were looking for? Try the search.</h3>
+
+<div class="widget">
+	<div class="search">
+		<form action="{{site.baseurl}}/search.html" method="GET">
+			<input type="text" name="q" class="search-input form-control" placeholder="search" id="search-box-footer">
+			<i class="fa fa-search search-icon"></i>
+		</form>
+	</div>
+</div>
+{% endif %}
