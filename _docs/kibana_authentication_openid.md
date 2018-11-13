@@ -70,8 +70,8 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 | searchguard.openid.client_secret | The [client secret](https://auth0.com/docs/applications/how-to-rotate-client-secret){:target="_blank"} of the OpenID client configured in your IdP. Mandatory. |
 | searchguard.openid.scope | The [scope of the identity token](https://auth0.com/docs/scopes/current){:target="_blank"} issued by the IdP. Option. Default: 'openid profile email address phone'.|
 | searchguard.openid.header | HTTP header name of the JWT token. Optional. Default: 'Authorization' |
+| searchguard.openid.base\_redirect\_url | The URL where the IdP redirects to after successful authentication. Optional. If not set, the `server.host`, `server.port` and `server.basepath` from `kibana.yml` are used. |
 | searchguard.openid.logout_url | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata. |
-
 
 
 ## Configuration example
