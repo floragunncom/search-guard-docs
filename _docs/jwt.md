@@ -168,7 +168,11 @@ jwt_auth_domain:
       ...
 ```
 
-Search Guard will detect the used algorithm (RSA/ECDSA) automatically, and you can also break the key into multiple lines if required.
+Search Guard will detect the used algorithm (RSA/ECDSA) automatically.
+
+Please make sure that you keep the content of your public key on one line. Depending on the YAML parser, breaking it into newlines may lead to unwanted whitespaces in the key, rendering it unreadable.
+{: .note .js-note .note-warning}
+
 
 ## Using JWT in HTTP requests: Bearer authentication
 
