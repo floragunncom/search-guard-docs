@@ -99,3 +99,50 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
   "message":"rolesmapping sg_role_starfleet created."
 }
 ```
+
+## PATCH
+
+The PATCH endpoint can be used to change individual attributes of a roles mapping, or to create, change and delete roles mappings in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
+
+[JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
+
+The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
+{: .note .js-note .note-warning}
+
+### Patch a roles mapping
+
+```
+PATCH /_searchguard/api/rolesmapping/{rolename}
+```
+
+Adds, deletes or changes one or more attributes of a user specified by `rolename `.
+
+```json
+PATCH /_searchguard/api/rolesmapping/sg_human_resources
+[ 
+  { 
+    "op": "replace", "path": "/users", "value": ["myuser"] 
+  },
+  { 
+    "op": "replace", "path": "/backendroles", "value": ["mybackendrole"] 
+  }
+]
+```
+
+### Bulk add, delete and change roles mappings
+
+```json
+PATCH /_searchguard/api/rolesmapping
+[ 
+  { 
+    "op": "add", "path": "/sg_human_resources", "value": { "users": ["user1"], "backendroles": ["backendrole2"] } 
+  },
+  { 
+    "op": "add", "path": "/sg_finance", "value": { "users": ["user2"], "backendroles": ["backendrole2"] } 
+  },
+  { 
+    "op": "delete", "path": "/sg_management"
+  }
+]
+```
+

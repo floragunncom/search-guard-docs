@@ -33,9 +33,10 @@ Effects:
 * Search Guard will assign the (unauthenticated) request to the anonymous role and evaluate the associated permissions
 * Kibana will load and the user has access to all indices configured for the anonymous role
 * In anonymous mode, Kibana will display a `login` button instead of the `logout` button. The `login` button will display the Search Guard login page where the user can use credentials to log in and enter authenticated mode.
-* In authenticated mode, Kibana will display a `logout`button which ends the user session and enters anonymous mode again.
+* In authenticated mode, Kibana will display a `logout` button which ends the user session and enters anonymous mode again.
 
-**Note: Kibana anonymous authentication only works in conjunction with Basic authentication. SSO authentication like JWT, OpenID or SAML is not supported**
+Kibana anonymous authentication only works in conjunction with Basic authentication. SSO authentication like JWT, OpenID or SAML is not supported
+{: .note .js-note .note-warning}
 
 ## Activating anonymous authentication in Elasticsearch
 

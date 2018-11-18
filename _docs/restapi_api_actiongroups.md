@@ -93,3 +93,44 @@ The field permissions is mandatory and contains permissions or references to oth
   "message":"action group SEARCH created"
 }
 ```
+
+## PATCH
+
+The PATCH endpoint can be used to change individual attributes of an action group, or to create, change and delete action groups in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
+
+[JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
+
+The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
+{: .note .js-note .note-warning}
+
+### Patch an action group
+
+```
+PATCH /_searchguard/api/actiongroups/{actiongroup}
+```
+
+Adds, deletes or changes one or more attributes of a user specified by `actiongroup `.
+
+```json
+PATCH /_searchguard/api/actiongroups/CREATE_INDEX
+[ 
+  { 
+    "op": "replace", "path": "/permissions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
+  }
+]
+```
+
+### Bulk add, delete and change action groups
+
+```json
+PATCH /_searchguard/api/actiongroups
+[ 
+  { 
+    "op": "add", "path": "/CREATE_INDEX", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
+  },
+  { 
+    "op": "delete", "path": "/CRUD"
+  }
+]
+```
+

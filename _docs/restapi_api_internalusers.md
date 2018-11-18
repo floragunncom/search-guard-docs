@@ -42,9 +42,13 @@ GET /_searchguard/api/internalusers/kirk
 
 ```json
 {
-  "kirk" : {
-    "hash" : "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
-    "roles" : [ "captains", "starfleet" ]
+  "kirk": {
+    "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
+    "roles": [ "captains", "starfleet" ],
+    "attributes": {
+       "attribute1": "value1",
+       "attribute2": "value2",       	
+    }
   }
 }
 ```
@@ -85,11 +89,15 @@ PUT /_searchguard/api/internalusers/{username}
 Replaces or creates the user specified by `username`.
 
 ```json
-PUT /_searchguard/api/user/kirk
+PUT /_searchguard/api/internalusers/kirk
 {
   "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
   "password": "kirk",
-  "roles": ["captains", "starfleet"]
+  "roles": ["captains", "starfleet"],
+   "attributes": {
+     "attribute1": "value1",
+     "attribute2": "value2",       	
+   }
 }
 ```
 
@@ -103,3 +111,51 @@ You need to specify either `hash` or `password`. `hash` is the hashed user passw
   "message":"User kirk created"
 }
 ```
+
+## PATCH
+
+The PATCH endpoint can be used to change individual attributes of a user, or to create, change and delete users in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
+
+[JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
+
+The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
+{: .note .js-note .note-warning}
+
+### Patch a single user
+
+```
+PATCH /_searchguard/api/internalusers/{username}
+```
+
+Adds, deletes or changes one or more attributes of a user specified by `username`.
+
+```json
+PATCH /_searchguard/api/internalusers/kirk
+[ 
+  { 
+    "op": "replace", "path": "/roles", "value": ["klingons"] 
+  },
+  { 
+    "op": "replace", "path": "/attributes", "value": {"newattribute": "newvalue"} 
+  }
+]
+```
+
+### Bulk add, delete and change users
+
+```json
+PATCH /_searchguard/api/internalusers
+[ 
+  { 
+    "op": "add", "path": "/spock", "value": { "password": "testpassword1", "roles": ["testrole1"] } 
+  },
+  { 
+    "op": "add", "path": "/worf", "value": { "password": "testpassword2", "roles": ["testrole2"] } 
+  },
+  { 
+    "op": "delete", "path": "/riker"
+  }
+]
+```
+
+

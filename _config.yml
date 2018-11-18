@@ -59,7 +59,7 @@ labels:
     esclients: Elasticsearch clients
     xpack: X-Pack Integration
     ccs: Cross Cluster Search and Tribe
-    integration_other: Other Integrations
+    oem: OEM and system integrators
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources

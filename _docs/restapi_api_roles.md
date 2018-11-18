@@ -139,3 +139,47 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
   "message":"role sg_role_starfleet created."
 }
 ```
+
+## PATCH
+
+The PATCH endpoint can be used to change individual attributes of a rolw, or to create, change and delete roles in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
+
+[JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
+
+
+The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
+{: .note .js-note .note-warning}
+
+### Patch a single role
+
+```
+PATCH /_searchguard/api/roles/{rolename}
+```
+
+Adds, deletes or changes one or more attributes of a role specified by `rolename`.
+
+```json
+PATCH /_searchguard/api/roles/starfleet
+[ 
+  { 
+    "op": "replace", "path": "/indices/public/_fls_", "value": ["field1"] 
+  }, 
+  { 
+    "op": "remove", "path": "/indices/public/_dls_" 
+  }   
+]
+```
+
+### Bulk add, delete and change users
+
+```json
+PATCH /_searchguard/api/roles
+[ 
+  { 
+    "op": "add", "path": "/klingons",  "value": { "indices" : { "klingonindex" : { "*" : [ "READ" ] }  } } 
+  },
+  { 
+    "op": "add", "path": "/romulans",  "value": { "indices" : { "romulansindex" : { "*" : [ "READ" ] }  } } 
+  }
+]
+```
