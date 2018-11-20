@@ -13,6 +13,10 @@ Copryight 2010 floragunn GmbH
 
 # Search Guard Changelogs
 
+### [Search Guard 6.x-23.2](changelog_searchguard_6_x_23_2.md)
+
+Release Date: 20.11.2018
+
 ### [Search Guard 6.x-23.1](changelog_searchguard_6_x_23_1.md)
 
 Release Date: 25.09.2018
