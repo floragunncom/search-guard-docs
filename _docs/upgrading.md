@@ -2,7 +2,7 @@
 title: Upgrading Search Guard
 slug: upgrading
 category: installation
-order: 400
+order: 380
 layout: docs
 description: How to upgrade Search Guard and Elasticsearch by rolling restarts or a full cluster restart. 
 ---
@@ -16,6 +16,9 @@ Copryight 2017 floragunn GmbH
 {% include_relative _includes/toc.md %}
 
 If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md).
+{: .note .js-note .note-warning}
+
+If you are upgrading from Elasticsearch <= 6.5.0 to Elasticsearch >= 6.5.0, please read the [upgrade instructions to Elasticsearch 6.5.x](upgrading_6_5_0.md). 
 {: .note .js-note .note-warning}
 
 The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.
@@ -67,6 +70,9 @@ Then, repeat this process for all other nodes in the cluster.
 ## Upgrading Elasticsearch and Search Guard
 
 If you're looking for specific upgrade instructions from 5.x to 6.x, please follow the [steps described here](upgrading_5_6.md).
+{: .note .js-note .note-warning}
+
+If you are upgrading from Elasticsearch <= 6.5.0 to Elasticsearch >= 6.5.0, please read the [upgrade instructions to Elasticsearch 6.5.x](upgrading_6_5_0.md). 
 {: .note .js-note .note-warning}
 
 First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
