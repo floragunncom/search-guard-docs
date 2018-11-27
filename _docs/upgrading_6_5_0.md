@@ -26,11 +26,6 @@ Please update your role definitions accordingly by comparing your permissions fo
 * the `sg_roles.yml` file in the `plugins/search-guard-6/sgconfig` folder
 * the [sg_roles.yml on GitHub](https://github.com/floragunncom/search-guard/blob/13e90b17509e95413e85ea67d2cf105935204dac/sgconfig/sg_roles.yml){:target="_blank"}
 
-
-
-While running in mixed mode, do not perform changes to the Search Guard configuration index.
-{: .note .js-note .note-warning}
-
 ## Kibana Spaces
 
 At the moment Search Guard is not compatible with Kibana Spaces. In your `kibana.yml`, disable Spaces by setting
