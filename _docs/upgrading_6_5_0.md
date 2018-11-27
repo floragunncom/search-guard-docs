@@ -31,7 +31,7 @@ Please update your role definitions accordingly by comparing your permissions fo
 At the moment Search Guard is not compatible with Kibana Spaces. In your `kibana.yml`, disable Spaces by setting
 
 ```
-xpack.spaces.enabled: true
+xpack.spaces.enabled: false
 ```
 
 ## Kibana saved objects migration
@@ -61,7 +61,7 @@ Notes:
 * Search Guard will check if the provided index name is indeed a tenant index. If this is not the case, the migration will not be executed
 * You can disable these checks by adding `force=false`.
 
-## X-Pack: Kibana optmimize bug
+## X-Pack: Kibana optimize bug
 
 Kibana currently has a bug in the optimization step if you use X-Pack, but disable reporting:
 
