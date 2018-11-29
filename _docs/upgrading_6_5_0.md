@@ -17,6 +17,12 @@ Copryight 2017 floragunn GmbH
 
 If you are upgrading from Elasticsearch / Search Guard <= 6.5.0 to an Elasticsearch / Search Guard version >= 6.5.0 please read the following instructions.
 
+## OpenSSL / tcnative
+
+If you are using OpenSSL, you need to upgrade the tcnative library to 2.0.15:
+
+* [OpenSSL setup](tls_openssl.md)
+
 ## Kibana roles changes
 
 Due to changes in the Elastic stack, the permissions for the built-in `sg_kibana_server` and `sg_kibana_user` have changed.
