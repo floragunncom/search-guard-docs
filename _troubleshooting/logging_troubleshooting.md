@@ -4,6 +4,12 @@ slug: troubleshooting-setting-log-level
 category: troubleshooting
 order: 50
 layout: troubleshooting
+<<<<<<< HEAD
+=======
+resources:
+  - https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|Elasticsearch logging configuration (website)
+
+>>>>>>> 6.x
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->
@@ -12,15 +18,38 @@ layout: troubleshooting
 
 For troubleshooting any problem with Search Guard, it is recommended to set the log level at least to `debug`.
 
+<<<<<<< HEAD
 Add the following lines in `config/log4j2.properties` and restart your node:
+=======
+## Turn on debug logging temporarily 
+
+To turn on debug logging temporarily, you can use the  `_cluster/settings` API of Elasticsearch:
+
+```
+curl -u admin:admin --insecure -X PUT "https://localhost:9200/_cluster/settings" -H 'Content-Type: application/json' -d '{
+  "transient": {
+    "logger.com.floragunn": "debug"
+  }
+}'
+```
+
+The user executing this command must have `cluster:admin/settings/update` cluster permission.
+
+## Turn on debug logging via log4j.properties
+
+To turn on debug mode permanently, add the following lines in `config/log4j2.properties` and restart your node:
+>>>>>>> 6.x
 
 ```
 logger.searchguard.name = com.floragunn
 logger.searchguard.level = debug
 ```
 
+<<<<<<< HEAD
 This already print out a lot if helpful information in your log file. If this information is not sufficient, you can also set the log level to `trace`.
 
+=======
+>>>>>>> 6.x
 ## Filter logs by username
 
 Search Guard adds the currently logged in user to the log4j *Thread Context Map*. This makes it possible to exclude/filter log messages for certain users.

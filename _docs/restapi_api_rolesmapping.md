@@ -50,7 +50,7 @@ GET /_searchguard/api/rolesmapping/sg_role_starfleet
 ### Get all role mappings
 
 ```
-GET /_searchguard/api/rolesmapping/{rolename}
+GET /_searchguard/api/rolesmapping
 ```
 
 Returns all role mappings in JSON format.
@@ -145,4 +145,3 @@ PATCH /_searchguard/api/rolesmapping
   }
 ]
 ```
-
