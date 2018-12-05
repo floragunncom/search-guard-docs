@@ -19,9 +19,13 @@ If you are upgrading from Elasticsearch / Search Guard <= 6.5.0 to an Elasticsea
 
 ## OpenSSL / tcnative
 
+<<<<<<< Updated upstream
 If you are using OpenSSL, you need to upgrade the tcnative library to 2.0.15:
 
 * [OpenSSL setup](tls_openssl.md)
+=======
+If you are using OpenSSL, you need to upgrade the tcnative library to 2.0.15. 
+>>>>>>> Stashed changes
 
 ## Kibana roles changes
 
