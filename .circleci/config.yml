@@ -16,9 +16,9 @@ jobs:
             ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /6.x-21 ./_site/*
             export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
             echo "Last commit message: $GIT_COMMIT_DESC"
-            if [[ $GIT_COMMIT_DESC == *"[index]"* ]]; then
-              echo "Rebuilding Search Index"
-              jekyll algolia push --config _config.yml,_versions.yml
-            else
+            if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
               echo "Skipping Search Index"
-            fi
+            else
+              echo "Rebuilding Search Index"
+              jekyll algolia push --config _config.yml,_versions.yml              
+            fi            
