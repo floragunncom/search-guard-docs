@@ -42,7 +42,7 @@ Copy the URL of the [Search Guard Kibana plugin zip](https://search.maven.org/#s
 
 * Stop Kibana
 * cd into your Kibana installaton directory
-* Execute: `bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`
+* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`
 
 ### Offline installation
 
@@ -50,9 +50,9 @@ Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7
 
 * Stop Kibana
 * cd into your Kibana installation directory
-* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
+* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
 
-After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped.  
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`
 
 ## Configuring the Kibana server user
 

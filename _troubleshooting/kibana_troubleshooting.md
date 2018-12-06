@@ -11,6 +11,15 @@ description: Step-by-step instructions on how to troubleshoot Kibana issues.
 
 # Kibana troubleshooting
 
+## Kibana optimization is very slow, stalls or exit unexpectedly
+
+The Kibana optimization process is shaky and problems are typically not related to Search Guard.
+Most issues can be resolved by giving the process more memory:
+
+```
+NODE_OPTIONS="--max-old-space-size=8192" /usr/share/kibana/bin/kibana-plugin install <Plugin URL>
+```
+
 ## Plugin hapi-auth-cookie already registered 
 
 Kibana fails to start and display 
