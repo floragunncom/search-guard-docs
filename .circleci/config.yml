@@ -11,5 +11,9 @@ jobs:
       - run:
           name: Build Docs
           command: |
+            # sanity checks
+            echo "Merge marker sanity check"
+            (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
+
             bundle install
             bundle exec jekyll build --config _config.yml,_versions.yml
