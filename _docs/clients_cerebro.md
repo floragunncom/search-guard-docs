@@ -6,10 +6,10 @@ category: esclients
 order: 600
 layout: docs
 edition: community
-description: How to configure and use fluentd with a Search Guard secured cluster.
+description: How to configure and use Cerebro with a Search Guard secured cluster.
 resources:
   - https://www.playframework.com/documentation/2.6.x/WsSSL|Configuring WS SSL (website)
-  - https://www.playframework.com/documentation/2.5.x/ExampleSSLConfig|Example configurations (website)x
+  - https://www.playframework.com/documentation/2.5.x/ExampleSSLConfig|Example configurations (website)
 
 ---
 <!---
