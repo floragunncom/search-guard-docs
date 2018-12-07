@@ -20,6 +20,8 @@ Most issues can be resolved by giving the process more memory:
 NODE_OPTIONS="--max-old-space-size=8192" /usr/share/kibana/bin/kibana-plugin install <Plugin URL>
 ```
 
+If this also not not working try with `--no-optimize` (especially if you install the plugin in a Dockerfile).
+
 ## Plugin hapi-auth-cookie already registered 
 
 Kibana fails to start and display 
