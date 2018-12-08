@@ -41,17 +41,17 @@ xpack.security.enabled: false
 Copy the URL of the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
 
 * Stop Kibana
-* cd into your Kibana installaton directory.
-* Execute: `bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`.
+* cd into your Kibana installaton directory
+* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`
 
 ### Offline installation
 
 Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
 * Stop Kibana
-* cd into your Kibana installation directory.
-* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`.
+* cd into your Kibana installation directory
+* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
 
-After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped.  
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. If you are on ES 6.5.x or higher you can also try with `--no-optimize` (especially if you install the plugin in a Dockerfile).
 
 ## Configuring the Kibana server user
 
