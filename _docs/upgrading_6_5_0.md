@@ -33,6 +33,12 @@ Please update your role definitions accordingly by comparing your permissions fo
 * the `sg_roles.yml` file in the `plugins/search-guard-6/sgconfig` folder
 * the [sg_roles.yml on GitHub](https://github.com/floragunncom/search-guard/blob/13e90b17509e95413e85ea67d2cf105935204dac/sgconfig/sg_roles.yml){:target="_blank"}
 
+Make also sure that the actions groups are up to date by comparing your `sg_action_groups.yml` with either:
+
+* the `sg_action_groups.yml` file in the `plugins/search-guard-6/sgconfig` folder
+* the [sg_action_groups.yml on GitHub](https://github.com/floragunncom/search-guard/blob/13e90b17509e95413e85ea67d2cf105935204dac/sgconfig/sg_action_groups.yml){:target="_blank"}
+
+
 ## Kibana Spaces
 
 At the moment Search Guard is not compatible with Kibana Spaces. In your `kibana.yml`, disable Spaces by setting
