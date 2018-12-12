@@ -164,6 +164,7 @@ algolia:
 
 sgversions:
   enterprise:
+    - 6.5.3|23.2|16|yes
     - 6.5.2|23.2|16|yes
     - 6.5.1|23.2|16|yes
     - 6.4.3|23.2|16|yes
@@ -183,6 +184,7 @@ sgversions:
     - 6.1.1|22.3|12|yes
     - 6.1.0|22.3|12|yes
   sgssl:
+    - 6.5.3|25.4|false|no
     - 6.5.2|25.4|false|no
     - 6.5.1|25.4|false|no
     - 6.4.3|25.4|false|no
