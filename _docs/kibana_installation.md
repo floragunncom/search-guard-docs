@@ -35,6 +35,12 @@ Since 6.3.0 Elasticsearch and Kibana ship in two flavors: Bundled with X-Pack an
 xpack.security.enabled: false
 ```
 
+Since 6.5.0 you need to disable Kibana Spaces because we are not supporting them currently:
+
+```
+xpack.spaces.enabled: false
+```
+
 
 ## Installing the Search Guard Plugin
 
@@ -51,7 +57,8 @@ Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7
 * cd into your Kibana installation directory
 * Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
 
-After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. If you are on ES 6.5.x or higher you can also try with `--no-optimize` (especially if you install the plugin in a Dockerfile).
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. If you are on ES 6.5.x or higher you can also try with `--no-optimize` (especially if you install the plugin in a Dockerfile). Kibana also currently [has a bug in the optimization step if you use X-Pack, but disable reporting](https://github.com/elastic/kibana/issues/25728). Please check if your Kibana version is affected and correct your `kibana.yml` accordingly.
+
 
 ## Configuring the Kibana server user
 
