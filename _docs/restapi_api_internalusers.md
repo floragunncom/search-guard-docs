@@ -158,4 +158,25 @@ PATCH /_searchguard/api/internalusers
 ]
 ```
 
+## Password rules
 
+In order to enforce password rules (e.g. mixed letters and digits, minimum 16 characters), you can configure a regular expression in `elasticsearch.yml`:
+
+```
+searchguard.restapi.password_validation_regex: "(?=.*[A-Z])(?=.*[^a-zA-Z\\\\d])(?=.*[0-9])(?=.*[a-z]).{8,}"
+```
+
+If the password does not match the configured regular expression, Search Guard will return:
+
+```
+{
+	"status": "error",
+	"reason": "<error message>"
+} 
+```
+
+The error message should match your regular expression and tell the user what rules the password must meet. If you are using the Kibana config GUI, the error message will be displayed to the user. You can set the error message in `elasticsearch.yml`:
+
+```
+searchguard.restapi.password_validation_error_message: "Password must be at least 8 characters ..."
+```
