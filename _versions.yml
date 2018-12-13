@@ -1,9 +1,9 @@
 searchguard:
-  majorversion: 6.x-23
+  majorversion: 6.x-24
   minorversion: 0
-  fullversion: 6.3.2-23.0
-  nextminorversion: 6.3.2-23.1
-  nextmajorversion: 6.3.2-24.0
+  fullversion: 6.5.3-24.0
+  nextminorversion: 6.5.3-24.1
+  nextmajorversion: 6.5.3-25.0
   islatestversion: true
 
 index: true
