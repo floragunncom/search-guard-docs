@@ -48,17 +48,17 @@ Use the following keys to configure the location of your PEM certificates and pr
 | searchguard.ssl.http.pemtrustedcas_filepath | Path to the root CA(s) (PEM format), which must be under the config/ directory, specified using a relative path (mandatory) |
 
 ## Using Keystore and Truststore files
-As an alternative to certificates and private keys in PEM format, you can also use keystore and truststore files in JKS or PKCS12 format. The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
+As an alternative to certificates and private keys in PEM format, you can also use keystore and truststore files in JKS or PKCS12/PFX format. The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
 
 ### Transport layer TLS
 
 | Name | Description |
 |---|---|
-| searchguard.ssl.transport.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
+| searchguard.ssl.transport.keystore\_type | The type of the keystore file, JKS or PKCS12/PFX (Optional, default: JKS) |
 | searchguard.ssl.transport.keystore\_filepath | Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.keystore\_alias: my\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.transport.keystore_password | Keystore password (default: changeit) |
-| searchguard.ssl.transport.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
+| searchguard.ssl.transport.truststore_type | The type of the truststore file, JKS or PKCS12/PFX (default: JKS) |
 | searchguard.ssl.transport.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.transport.truststore_password | Truststore password (default: changeit) |
@@ -68,11 +68,11 @@ As an alternative to certificates and private keys in PEM format, you can also u
 | Name | Description |
 |---|---|
 | searchguard.ssl.http.enabled | Whether to enable TLS on the REST layer or not. If enabled, only HTTPS is allowed. (Optional, default: false) |
-| searchguard.ssl.http.keystore\_type | The type of the keystore file, JKS or PKCS12 (Optional, default: JKS) |
+| searchguard.ssl.http.keystore\_type | The type of the keystore file, JKS or PKCS12/PFX (Optional, default: JKS) |
 | searchguard.ssl.http.keystore\_filepath | Path to the keystore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.keystore\_alias | Alias name (optional, default: first alias which could be found) |
 | searchguard.ssl.http.keystore_password | Keystore password (default: changeit) |
-| searchguard.ssl.http.truststore_type | The type of the truststore file, JKS or PKCS12 (default: JKS) |
+| searchguard.ssl.http.truststore_type | The type of the truststore file, JKS or PKCS12/PFX (default: JKS) |
 | searchguard.ssl.http.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.http.truststore_password | Truststore password (default: changeit) |
