@@ -13,6 +13,10 @@ Copryight 2010 floragunn GmbH
 
 # Search Guard Kibana Plugin Changelogs
 
+### [Search Guard Kibana Plugin 6.x-17](changelog_kibana_v17.md)
+
+Release Date: 20.12.2018
+
 ### [Search Guard Kibana Plugin 6.x-16](changelog_kibana_v16.md)
 
 Release Date: 20.11.2018

@@ -72,7 +72,7 @@ Java uses **keystores** and a **truststores** to store certificates and private 
 
 The **keystore** holds the private keys and the associated certificates. It is used to **provide credentials** to the communication partner.
 
-Search Guard supports two key and truststore formats: JKS and PKCS12. In addition, certificates in PEM format are also supported since v12.
+Search Guard supports two key and truststore formats: JKS and PKCS12/PFX. In addition, certificates in PEM format are also supported since v12.
 
 In a typical Search Guard setup, each node in the cluster has both a keystore and a truststore. If a node wants to communicate with another node, it uses its own certificate stored in the keystore to identify itself.
 

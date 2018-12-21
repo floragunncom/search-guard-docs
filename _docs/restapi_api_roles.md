@@ -43,7 +43,7 @@ GET /_searchguard/api/roles/sg_role_starfleet
   "sg_role_starfleet" : {
     "indices" : {
       "pub*" : {
-        "*" : [ "READ" ]
+        "*" : [ "READ" ],
         "_dls_": "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"  }}}}",
         "_fls_": [
           "Designation",
@@ -85,22 +85,22 @@ DELETE /_searchguard/api/roles/sg_role_starfleet
 ```
 PUT /_searchguard/api/roles/{rolename}
 ```
-Replaces or creates the role specified by `rolename `.
+Replaces or creates the role specified by `rolename`.
 
 ```json
-PUT /_searchguard/api/rolesmapping/sg_role_starfleet
+PUT /_searchguard/api/roles/sg_role_starfleet
 {
   "cluster" : [ "*" ],
   "indices" : {
     "pub*" : {
       "*" : [ "READ" ],
-      _dls_: "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"}}}}"
-      _fls_: ["field1", "field2"]
-    },
-    "tenants": {
-      tenant1: RW,
-      tenant2: RO
-    }    
+      "_dls_": "{ \"bool\": { \"must_not\": { \"match\": { \"Designation\": \"CEO\"}}}}",
+      "_fls_": ["field1", "field2"]
+    }
+  },
+  "tenants": {
+    "tenant1": "RW",
+    "tenant2": "RO"
   }  
 }
 ```
@@ -113,17 +113,17 @@ The JSON format resembles the format used in `sg_roles.yml`:
   "indices" : {
     "<indexname>" : {
       "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
-      "_dls_": "<DLS query>"
+      "_dls_": "<DLS query>",
       "_fls_": ["field", "field"]
     },
     "<indexname>" : {
       "<typename>" : [ "<index/type permission>", "<index/type permission>", ... ],
     },
     "tenants": {
-      <tenantname> : <RW | RO>,
-      <tenantname> : <RW | RO>,
+      "<tenantname>" : "<RW | RO>",
+      "<tenantname>" : "<RW | RO>",
       ...
-    }    
+    }
   }
 }
 ```

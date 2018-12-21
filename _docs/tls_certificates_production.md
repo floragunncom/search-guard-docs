@@ -27,7 +27,7 @@ When moving Search Guard to production you most likely want to use certificates 
 Search Guard supports certificates in the following formats:
 
 * X509 PEM certificates and PKCS8 private keys
-* Keystores and truststores in JKS or PKCS12 format
+* Keystores and truststores in JKS or PKCS12/PFX format
 
 ## Types of certificates
 
