@@ -13,5 +13,5 @@ Copryight 2017 floragunn GmbH
 
 All Search Guard releases, past and present, are available on Maven Central. You can either download the releases from there (offline install) or use the Elasticsearch plugin install command to install Search Guard directly (online install). 
 
-If you are upgrading from Elasticsearch <= 6.5.0 to Elasticsearch >= 6.5.0, please read the [upgrade instructions to Elasticsearch 6.5.x](upgrading_6_5_0.md). 
+If you are upgrading from Elasticsearch < 6.5.0 to Elasticsearch >= 6.5.0, please read the [upgrade instructions to Elasticsearch 6.5.x](upgrading_6_5_0.md). 
 {: .note .js-note .note-warning}

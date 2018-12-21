@@ -18,7 +18,7 @@ Copryight 2017 floragunn GmbH
 
 The Search Guard configuration, including users, roles and permissions, is stored in an index on the Elasticsearch cluster. This allows for hot configuration reloading, and eliminates the need to place configuration files on any node.
 
-Configuration settings are loaded into the Search Guard configuration index using the `sgadmin` tool. `sgadmin` identifies itself against a Search Guard secured Elasticsearch cluster via an admin TLS certificate, either in `.pem` or `.jks` format. 
+Configuration settings are loaded into the Search Guard configuration index using the `sgadmin` tool. `sgadmin` identifies itself against a Search Guard secured Elasticsearch cluster via an admin TLS certificate, either in `.pem`, `.jks`, `.p12` or `.pfx` format. 
 
 If the Search Guard index is inititialized, you can also use the Kibana Configuration GUI to change users, roles and permissions. However, you need to run `sgadmin` at least once to initialize the index and configure the authentication and authorization methods you would like to use.
 
@@ -126,11 +126,11 @@ Use the following options to control the key and truststore settings:
 |---|---|
 | -ks | The location of the keystore containing the admin certificate and all intermediate certificates, if any. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
 | -kspass | The password for the keystore.|
-| -kst | The key store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.|
+| -kst | The key store type, either JKS or PKCS12/PFX. If not specified, Search Guard tries to deduct the type from the file extension.|
 | -ksalias | The alias of the admin certificate, if any.|
 | -ts | The location of the truststore containing the root certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
 | -tspass | The password for the truststore.|
-| -tst | The trust store type, either JKS or PKCS12. If not specified, Search Guard tries to deduct the type from the file extension.|
+| -tst | The trust store type, either JKS or PKCS12/PFX. If not specified, Search Guard tries to deduct the type from the file extension.|
 | -tsalias | The alias for the root certificate, if any.|
 
 ## Command line options
