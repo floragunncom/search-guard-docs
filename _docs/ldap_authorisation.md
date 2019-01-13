@@ -72,6 +72,18 @@ Search Guard then issues the substituted query against the configured role subtr
 rolebase: 'ou=groups,dc=example,dc=com'
 ```
 
+Since Search Guard v24 you can alternatively configure multiple role bases (this combines and replaces the `rolesearch` and `rolebase` attribute): 
+
+```yaml
+roles:
+  normalroles:
+    base: 'ou=groups,dc=example,dc=com'
+    search: '(uniqueMember={0})'
+  other:
+    base: 'ou=othergroups,dc=example,dc=com'
+    search: '(owner={0})'
+```
+
 If you use nested roles (roles which are members of other roles etc.), you can configure Search Guard to resolve these roles as well:
 
 ```yaml
@@ -227,6 +239,48 @@ authz:
         username_attribute: uid
         rolebase: 'ou=groups,dc=example,dc=com'
         rolesearch: '(member={0})'
+        userroleattribute: null
+        userrolename: none
+        rolename: cn
+        resolve_nested_roles: true
+        skip_users:
+          - kibanaserver
+          - 'cn=Michael Jackson,ou*people,o=TEST'
+          - '/\S*/'
+```
+
+or 
+
+```yaml
+authz:
+  ldap:
+    enabled: true
+    authorization_backend:
+      type: ldap
+      config:
+        enable_ssl: true
+        enable_start_tls: false
+        enable_ssl_client_auth: false
+        verify_hostnames: true
+        hosts:
+          - ldap.example.com:636
+        bind_dn: cn=admin,dc=example,dc=com
+        password: password
+        users:
+          people:
+            base: 'ou=people,dc=example,dc=com'
+            search: '(uid={0})'
+          other:
+            base: 'ou=otherpeople,dc=example,dc=com'
+            search: '(initials={0})'
+        username_attribute: uid
+        roles:
+          normalroles:
+            base: 'ou=groups,dc=example,dc=com'
+            search: '(uniqueMember={0})'
+          other:
+            base: 'ou=othergroups,dc=example,dc=com'
+            search: '(owner={0})'
         userroleattribute: null
         userrolename: none
         rolename: cn
