@@ -31,6 +31,21 @@ searchguard.basicauth.enabled: false
 searchguard.auth.type: "proxy"
 ```
 
+**For v17 it's also possible to use:**
+
+```yaml
+searchguard.auth.type: "proxycache"
+# The header that identifies the user - (required, no default)
+searchguard.proxycache.user_header: x-proxy-user
+# The header that identifies the user's role(s) - (required, no default)
+searchguard.proxycache.roles_header: x-proxy-roles
+# Redirect to this URL if the user isn't authenticated - (optional, no default)
+#searchguard.proxycache.login_endpoint: "https://login.sso.company.com"
+```
+which works similar to "proxy" auth but only transmit the headers once by storing them in a cookie.
+
+
+
 ## Whitelist the proxy headers
 
 Make sure to whitelist all HTTP headers set by your proxy in the header whitelist in kibana.yml, leaving `Authorization`intact:

@@ -98,6 +98,52 @@ In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName`
 }
 ```
 
+## Custom field masking
+Since Search Guard v24 you can configure alternative hash algorithms (instead of Blake2bDigest) and you also can mask only a part of the field value.
+
+### Defining an alternative hash algorithm
+
+```
+sg_masking_sha:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS_RO
+  indices:
+    'humanresources':
+      '*':
+        - READ
+      _masked_fields_:
+        - '*Name::SHA-1'
+        - 'Address::SHA-512'
+```
+
+The above example means that all values of all fields ending with `Name` are anonymized with an SHA-1 hash and all values of the field `Address` are anonymized with an SHA-512. All hashing algorithms provided which are provided by your JVM are supported. This typically includes MD5, SHA-1, SHA-384, and SHA-512.
+
+If you use the REST API to define your roles and masked fields then the validity or your alternative hash algorithm is checked.
+
+### Pattern-based field anonymization
+
+You can apply one or more regex patterns and replacement strings to configure how the value of a particular field will be anonymized.
+The formal definition is `<field-pattern>::/<regex>/::<replacement-string>`. There can be multiple regex/replacement tuples whereas the result from one on the left side is passed as in input to the one on the right side (like piping in a shell). The regex can include `^` and `$`, they are not implicitly assumed. 
+
+```
+sg_pattern_anonymization:
+  cluster:
+    - CLUSTER_COMPOSITE_OPS_RO
+  indices:
+    'humanresources':
+      '*':
+        - READ
+      _masked_fields_:
+        - 'lastname::/.*/::*'
+        - '*ip_source::/[0-9]{1,3}$/::XXX::/^[0-9]{1,3}/::***'
+```
+
+The above example means that every field value of the field `lastname` is anonymized by replacing all characters with a *.
+All values of all fields ending with `ip_source` are anonymized by replacing the last three numbers with XXX and then take this and anonymize it
+by replacing the last three numbers with ***. So an example IP address of `100.200.121.212` will result in `100.200.***.XXX`.
+
+If you use the REST API to define your roles and masked fields then the syntax of your patterns is checked.
+
 ## Effects on the compliance read history
 
 The [compliance read history](compliance_read_history.md) feature makes it possible to track read access to sensitive fields in your documents. For example, you can track access to the email field of customer records in order to stay GDPR compliant.

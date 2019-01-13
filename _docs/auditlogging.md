@@ -208,6 +208,24 @@ If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in
 
 Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
 
+
+# Configuring retries
+
+In case your audit log sinks fail occasionally you can configure a retry mechanism. Please note that the messages for which a retry is needed are only held in memory. So this is not reliable in case of an expected or unexpected node shutdown. If you need reliable audit logs you need to have a performant and high available sink like Apache Kafka.
+
+To enable retry define `searchguard.audit.config.retry_count` in elasticsearch.yml with a value greater then zero. You can also set `searchguard.audit.config.retry_delay_ms` to configure the waiting time until the next retry (default: 1000 which is 1 sec).
+
+A `searchguard.audit.config.retry_count` of 1 means: try and if it fails wait delayMs and try once again.
+
+Example:
+
+```yaml
+# try and if it fails wait 500ms and try 10 times again (and wait 500 ms between each try) again
+searchguard.audit.config.retry_count: 10
+searchguard.audit.config.retry_count: 500
+
+```
+
 ## Expert: Finetuning the thread pool
 
 All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:

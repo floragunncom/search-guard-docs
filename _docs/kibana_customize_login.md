@@ -28,6 +28,6 @@ Use the following setting in kibana.yml to customize one or more elements:
 | searchguard.basicauth.login.showbrandimage | boolean, show or hide the brand image, Default: true|
 | searchguard.basicauth.login.brandimage | String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
 | searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
-| searchguard.basicauth.login.title | String, title of the login page. |
-| searchguard.basicauth.login.subtitle | String, subtitle of the login page. |
+| searchguard.basicauth.login.title | String, title of the login page. Can contain HTML tags|
+| searchguard.basicauth.login.subtitle | String, subtitle of the login page. . Can contain HTML tags|
 | searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
