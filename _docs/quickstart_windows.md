@@ -8,7 +8,7 @@ edition: community
 description: How to download and install Search Guard and all required TLS certificates on a Windows machine. 
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2017 floragunn GmbH -->
 
 # Manual installation (Windows) 
 {: .no_toc}

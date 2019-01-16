@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the roles mapping REST API endpoints to assign users to Search Guard roles.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # Roles mapping API

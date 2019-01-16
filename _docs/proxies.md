@@ -9,7 +9,7 @@ edition: community
 description: How to setup, configure and run Search Guard behind one or more proxies.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Running Search Guard behing a proxy

@@ -8,7 +8,7 @@ layout: docs
 description: Description of the generated artefacts of the demo installer, what they mean, and how to use them. 
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2017 floragunn GmbH -->
 
 # Generated artefacts and settings
 {: .no_toc}

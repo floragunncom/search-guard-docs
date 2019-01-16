@@ -9,7 +9,7 @@ edition: compliance
 description: How to configure event routing to ship the compliance events to their correct storage destination
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Search Guard configuration change tracking

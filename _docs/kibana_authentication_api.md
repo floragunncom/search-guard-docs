@@ -9,7 +9,7 @@ edition: community
 description: How to use the Kibana saved objects API when authentication is configured.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # Using the Kibana API

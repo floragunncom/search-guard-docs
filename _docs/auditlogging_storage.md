@@ -9,7 +9,7 @@ edition: enterprise
 description: How to store audit events in Elasticsearch, external SIEM or monitoring systems, or a custom storage.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Configuring storage types

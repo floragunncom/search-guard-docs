@@ -12,7 +12,7 @@ resources:
 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Configuring authentication and authorization
 {: .no_toc}

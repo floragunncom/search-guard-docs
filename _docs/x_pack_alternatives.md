@@ -9,6 +9,6 @@ edition: community
 description: Alternatives for X-Pack Alerting 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # X-Pack Alternatives

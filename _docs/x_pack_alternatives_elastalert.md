@@ -7,7 +7,7 @@ layout: docs
 description: How to configure and use Search Guard and ElastAlert for Elasticsearch as an alternative to X-Pack.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Using Search Guard with ElastAlert
 {: .no_toc}

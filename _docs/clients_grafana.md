@@ -9,7 +9,7 @@ edition: community
 description: How to configure and use Grafana with a Search Guard secured cluster.
 ---
 <!---
-Copryight floragunn GmbH
+Copyright floragunn GmbH
 -->
 
 # Using Grafana with Search Guard

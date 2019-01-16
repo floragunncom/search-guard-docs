@@ -9,7 +9,7 @@ edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 
 # Using logstash with Search Guard

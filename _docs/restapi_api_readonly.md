@@ -8,7 +8,7 @@ edition: enterprise
 description: How to use the readonly flag to protect Search Guard resources from being overwritten.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Reserved / readonly resources

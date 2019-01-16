@@ -9,7 +9,7 @@ edition: community
 description: How to configure and use fluentd with a Search Guard secured cluster.
 ---
 <!---
-Copryight floragunn GmbH
+Copyright floragunn GmbH
 -->
 
 # Using fluentd with Search Guard

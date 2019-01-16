@@ -8,7 +8,7 @@ edition: community
 description: Use the powerful sgadmin command line tool to manage and configure  everything in Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Using sgadmin to configure Search Guard

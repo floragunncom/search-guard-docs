@@ -9,7 +9,7 @@ edition: community
 description: Search Guard fully supports the Cross Cluster Search feature of Elasticsearch. Implement access control on distributed clusters.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Cross Cluster Search Support
 {: .no_toc}

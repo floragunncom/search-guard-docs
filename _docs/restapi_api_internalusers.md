@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the internal users REST API endpoints to manage users.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # Internal Users API

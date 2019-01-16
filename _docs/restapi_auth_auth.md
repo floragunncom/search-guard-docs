@@ -10,7 +10,7 @@ description: How to use the authentication REST API endpoints.
 ---
 
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 

@@ -8,7 +8,7 @@ edition: enterprise
 description: How to configure Kerberos/SPNEGO with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Kerberos

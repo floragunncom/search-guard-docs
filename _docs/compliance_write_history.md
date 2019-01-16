@@ -13,7 +13,7 @@ Write History: Monitoring document changes for GDPR compliance (blog post)"
 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Write History Audit Logging

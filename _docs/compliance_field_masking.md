@@ -9,7 +9,7 @@ edition: compliance
 description: Use the Search Guard Compliance edition to mask and anonymize sensitive fields in any Elasticsearch index.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # Field anonymization

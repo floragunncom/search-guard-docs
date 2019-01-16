@@ -9,7 +9,7 @@ edition: community
 description: Description of the demo users and roles Search Guard ships with. Use them as blueprint for your own permission schema.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Demo users and roles
 {: .no_toc}
