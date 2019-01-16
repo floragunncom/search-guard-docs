@@ -105,7 +105,7 @@ bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguar
 For example:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:{{site.searchguard.fullcurrentversion}}
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:{{site.searchguard.fullversion}}
 ```
 
 **Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.

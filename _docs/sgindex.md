@@ -30,3 +30,15 @@ Search Guard manages the number of replica shards of the Search Guard index auto
 If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the `-dra` switch of sgadmin. To set the number of replica shards, use sgadmin with the `-us` switch. To re-enable replica auto-expansion, use the `-era` switch. See also section "Index and replica settings" in the [sgadmin chapter](sgadmin.md).
 
 Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search Guard index.
+
+## Disable auto expand replicas of the searchguard index
+
+There are several situations where the auto-expand feature is not suitable including:
+
+* When using a Hot/Warm Architecture
+* Running multiple instances of Elasticsearch on the same host machine
+* When `cluster.routing.allocation.same_shard.host` is set to `false`, see also [elastic/elasticsearch#29933](https://github.com/elastic/elasticsearch/issues/29933)
+* The searchguard index stays constantly yellow
+
+To solve this disable the auto-expand replicas feature of the searchguard index and set the number of replicas manually.
+You can also keep the auto-expand replicas feature and set it to "0-n" where n is the number of datanodes-2.
