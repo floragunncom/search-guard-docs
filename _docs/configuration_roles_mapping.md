@@ -77,6 +77,15 @@ sg_read_write:
 
 A request can be assigned to one or more Search Guard roles. If a request is mapped to more than one role, the permissions of these roles are combined.
 
+## Use wildcards and regular expressions
+
+For users, backendroles, and hosts you can also use wildcards and regular expressions.
+
+* An asterisk (`*`) will match any character sequence (or an empty sequence)
+* A question mark (`?`) will match any single character (but NOT empty character)
+* Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
+  * `'/\S*/'` will match any non whitespace characters
+
 ## Advanced: Hostname lookup
 
 Search Guard provides three different approaches to resolve the actual hostname against the configured hosts mapping in `sg_roles_mapping`. This can be configured in `sg_config.yml`:
