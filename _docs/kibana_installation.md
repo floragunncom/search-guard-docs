@@ -35,11 +35,17 @@ Since 6.3.0 Elasticsearch and Kibana ship in two flavors: Bundled with X-Pack an
 xpack.security.enabled: false
 ```
 
-Since 6.5.0 you need to disable Kibana Spaces because we are not supporting them currently:
+## Kibana Spaces (since 6.5.0)
+
+Since Kibana plugin v17 you can use Spaces together with Search Guard (but not together with the multitenancy feature).
+
+Prior to Kibana plugin v17 (or if you experience problems with unexpected browser login popup's) Spaces needs to be disabled by setting
 
 ```
 xpack.spaces.enabled: false
 ```
+
+in your `kibana.yml`.
 
 
 ## Installing the Search Guard Plugin

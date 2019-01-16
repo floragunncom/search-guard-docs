@@ -80,6 +80,23 @@ management:
 
 Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
 
+## User Roles
+
+You can use the variable `${user.roles}` in the DLS query, and Search Guard will replace it with a comma-delimited list of the backend roles of the current user.
+
+Let's imagine that each employee document has an array field called `role`, which contains backend role names and at least one of them is needed to access this document. You can do so by defining:
+
+```yaml
+management:
+  indices:
+    'humanresources':
+      'employees':
+        - '*'
+      _dls_: '{"terms" : { "role" : [${user.roles}]}}'
+```
+
+Before the DLS query is applied to the result set, `${user.roles}` is replaced with a comma-delimited list of the backend roles of the current user. You can use this variable repeatedly in the DLS query if required.
+
 ## LDAP and JWT user attributes
 
 Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.

@@ -68,6 +68,18 @@ Search Guard then issues this query against the user subtree ("userbase"). Curre
 userbase: 'ou=people,dc=example,dc=com'
 ```
 
+Since Search Guard v24 you can alternatively configure multiple user bases (this combines and replaces the `usersearch` and `userbase` attribute): 
+
+```yaml
+users:
+  people:
+    base: 'ou=people,dc=example,dc=com'
+    search: '(uid={0})'
+  other:
+    base: 'ou=otherpeople,dc=example,dc=com'
+    search: '(initials={0})'
+```
+
 If the query was successful, Search Guard retrieves the username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as the username:
 
 ```yaml
@@ -106,5 +118,35 @@ ldap:
       password: password
       userbase: 'ou=people,dc=example,dc=com'
       usersearch: '(sAMAccountName={0})'
+      username_attribute: uid
+```
+
+or
+
+```yaml
+ldap:
+  enabled: false
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: ldap
+    config:
+      enable_ssl: true
+      enable_start_tls: false
+      enable_ssl_client_auth: false
+      verify_hostnames: true
+      hosts:
+        - ldap.example.com:636
+      bind_dn: cn=admin,dc=example,dc=com
+      password: password
+      users:
+        people:
+          base: 'ou=people,dc=example,dc=com'
+          search: '(uid={0})'
+        other:
+          base: 'ou=otherpeople,dc=example,dc=com'
+          search: '(initials={0})'
       username_attribute: uid
 ```

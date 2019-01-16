@@ -101,6 +101,22 @@ PUT /_searchguard/api/internalusers/kirk
 }
 ```
 
+If `username` contains a dot you need to do
+
+```json
+PUT /_searchguard/api/internalusers/misterkirk
+{
+  "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
+  "usename": "mister.kirk",
+  "password": "kirk",
+  "roles": ["captains", "starfleet"],
+   "attributes": {
+     "attribute1": "value1",
+     "attribute2": "value2",       	
+   }
+}
+```
+
 You need to specify either `hash` or `password`. `hash` is the hashed user password. You can either use an already hashed password ("hash" field) or provide it in clear text ("password"). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,`hash` takes precedence.
 
 `roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.

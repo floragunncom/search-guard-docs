@@ -114,7 +114,8 @@ config:
 | enable_ssl | Whether to use LDAP over SSL (LDAPS) or not |
 | enable\_start\_tls | Whether to use STARTTLS or not. Cannot be used in combination with LDAPS. |
 | enable\_ssl\_client\_auth | Whether to send the client certificate to the LDAP server or not.  |
-| verify\_hostnames | Whether to verify the hostnames of the server's TLS certificate or not  |
+| verify\_hostnames | Whether to verify the hostnames of the server's TLS certificate or not (default: true). If you have a running cluster with hostname verification enabled (the default) and you like to switch it off you need to restart all nodes after you applied the config.|
+| trust\_all | Whether to verify the hostnames and the LDAP server certificate (default false). If you have a running cluster and you like to enable trust all you need to restart all nodes after you applied the config.|
 
 ### Certificate validation
 

@@ -41,11 +41,15 @@ Make also sure that the actions groups are up to date by comparing your `sg_acti
 
 ## Kibana Spaces
 
-At the moment Search Guard is not compatible with Kibana Spaces. In your `kibana.yml`, disable Spaces by setting
+Since Kibana plugin v17 you can use Spaces together with Search Guard (but not together with the multitenancy feature).
+
+Prior to Kibana plugin v17 (or if you experience problems with unexpected browser login popup's) Spaces needs to be disabled by setting
 
 ```
 xpack.spaces.enabled: false
 ```
+
+in your `kibana.yml`.
 
 ## Kibana saved objects migration
 
