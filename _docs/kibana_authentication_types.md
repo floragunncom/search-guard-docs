@@ -63,3 +63,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-
 Regardless which authentication method you choose for your users, the internal Kibana server user will always pass its credentials as base64-encoded HTTP Basic Authentication header. You need to configure at least one Search Guard authentication domain on Elasticsearch side that supports HTTP Basic authentication.
 
 This does not mean that you need to enable Basic Authentication for regular users. The Kibana server user operates under the hood and is independant from user authentication.
+
+## About certificate based authentication
+
+We do not yet provide support for certificate-based (two-way SSL) authentication against Kibana due to technical limitations of the Kibana architecture.
