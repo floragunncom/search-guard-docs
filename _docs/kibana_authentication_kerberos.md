@@ -60,7 +60,7 @@ kerberos_auth_domain:
 
 Depending on the browser you are using, make sure you have configure the Kibana domain correctly for Kerberos authentication. Please refer to the documentation of your browser for further instructions.
 
-## Known Issues
+## Known Issues/Limitations
 
 ## X-Pack Monitoring
 
@@ -69,6 +69,10 @@ Due to a bug regarding handling HTTP error codes 401 and 403 in X-Pack, it is cu
 ## X-Pack Machine Learning
 
 Due to the way HTTP requests are handled by the machine learning module internally, it is currently not possible to use X-Pack Machine Learning with Kerberos. 
+
+## Kibana URL shortener
+
+It's currently not possible to use the Kibana URL shortener together with Kibana/SPNEGO due to technical limitations of the Kibana architecture.
 
 ## Disabling the replay cache
 
