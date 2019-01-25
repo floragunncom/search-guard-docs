@@ -87,7 +87,7 @@ If you would like to combine all permissions for that index, enable this feature
 searchguard.dynamic.multi_rolespan_enabled: true
 ```
 
-This will become the default behavior for Search Guard 7. At the moment the default for this switch is `false`for backwards compatibility.
+This will become the default behavior for Search Guard 7. At the moment the default for this switch is `false` for backwards compatibility.
 
 ## Use wildcards and regular expressions
 
