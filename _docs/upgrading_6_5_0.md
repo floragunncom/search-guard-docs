@@ -1,7 +1,7 @@
 ---
 title: Upgrading to Elasticsearch 6.5.x
 slug: upgrading-560
-category: installation
+category: upgrading
 order: 410
 layout: docs
 description: Upgrade instructions from Search Guard 6.4.x to Search Guard 6.5.x
