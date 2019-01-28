@@ -46,7 +46,8 @@ index: false
 labels:
   navigation:
     quickstart: Quickstart
-    installation: Installation
+    installation: Installing Search Guard
+    upgrading: Upgrading Search Guard
     tls: TLS Setup
     configuration: "Applying Configuration Changes"
     authauth: Authentication and Authorization
