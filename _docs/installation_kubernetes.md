@@ -1,7 +1,7 @@
 ---
-title: Kubernetes
-html_title: Kubernetes
-slug: search-guard-installation
+title: Kubernetes Helm Charts
+html_title: Kubernetes Helm Charts
+slug: search-guard-kubernetes-helm
 category: installation
 order: 390
 layout: docs
