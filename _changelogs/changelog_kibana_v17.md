@@ -44,10 +44,7 @@ n/a
 * Spaces support
   * Search Guard is now compatible with Kibana Spaces
   * But is not yet compatible with Search Guard multitenancy feature
-  * [PR #160](https://github.com/floragunncom/search-guard-kibana-plugin/pull/160){:target="_blank"} 
-* New proxycache auth type
-  * It's now possible to use proxy authentication, but only transmit the headers once by storing them in a cookie.
-  * [PR #157](https://github.com/floragunncom/search-guard-kibana-plugin/pull/157){:target="_blank"}
+  * [PR #160](https://github.com/floragunncom/search-guard-kibana-plugin/pull/160){:target="_blank"}
 * Allow HTML in login dialogue
   * Now HTML can be used to customize the login dialogue (title and subtitle)
   * [PR #158](https://github.com/floragunncom/search-guard-kibana-plugin/pull/158){:target="_blank"}

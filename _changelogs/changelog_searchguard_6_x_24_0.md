@@ -43,7 +43,7 @@ Copryight 2017 floragunn GmbH
 * Core: username_atttibute is now also supported for Transport authentication
   * [Issue #547](https://github.com/floragunncom/search-guard/issues/547){:target="_blank"} 
   * [PR #594](https://github.com/floragunncom/search-guard/pull/594){:target="_blank"}
-* Core: Log more infos if authenication has finally failed
+* Core: Log more infos if authentication has finally failed
   * Include the remote address in the log message
   * [PR #595](https://github.com/floragunncom/search-guard/pull/595){:target="_blank"}
 
@@ -56,7 +56,7 @@ Copryight 2017 floragunn GmbH
 ### LDAP
 
 * LDAP: Fix LDAP hostname verification
-  * Hostname verfication can now be properly turned off
+  * Hostname verfification can now be properly turned off
   * [PR #21](https://github.com/floragunncom/search-guard-enterprise-modules/pull/21){:target="_blank"}
 * LDAP: Skipping users for authz not working as expected
   * LDAP authenticated users were not skipped properly
