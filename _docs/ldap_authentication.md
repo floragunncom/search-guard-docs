@@ -94,7 +94,7 @@ If this key is not set, or null, then the DN of the LDAP entry is used.
 |---|---|
 | userbase | Specifies the subtree in the directory where user information is stored |
 | usersearch | The actual LDAP query that Search Guard executes when trying to authenticate a user. The variable {0} is substituted with the username.|
-| username_attribute | Search Guard uses this attribute of the directory entry to look for the user name. If set to null, the DN is used (default). |
+| username_attribute | Search Guard uses this attribute of the directory entry to look for the user name. If set to null, the DN is used (default). If this references a multi-value field it is undefined which value will be used. It's therefore not recommended to set it to a multi-value field.|
 
 ### Complete authentication example
 
