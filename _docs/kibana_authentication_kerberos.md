@@ -5,8 +5,8 @@ slug: kibana-authentication-kerberos
 category: kibana-authentication
 order: 700
 layout: docs
-edition: community
-description: How to use Kerberos to implement Kibana Single Sign On.
+edition: enterprise
+description: How to usee Kerberos to implement Kibana Single Sign On.
 ---
 <!---
 Copryight 2016-2017 floragunn GmbH
