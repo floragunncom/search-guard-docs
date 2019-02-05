@@ -5,7 +5,7 @@ slug: kibana-authentication-jwt
 category: kibana-authentication
 order: 300
 layout: docs
-edition: community
+edition: enterprise
 description: How to use JSON web tokens to implement Kibana Single Sign on.
 resources:
   - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure Elasticsearch (blog post)"
