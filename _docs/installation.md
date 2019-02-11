@@ -224,3 +224,7 @@ It returns a JSON snippet like:
   status: "UP"
 }
 ```
+
+## Fixing curl issues
+
+If you experience problems with curl commands see [Fixing curl](../_troubleshooting/tls_troubleshooting.md#fixing-curl) first before reporting any issues.

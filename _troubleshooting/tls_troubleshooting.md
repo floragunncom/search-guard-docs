@@ -288,3 +288,40 @@ Search Guard will also print out all available cipher suites on startup:
 JDK with ciphers [TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, 
 TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, ...]
 ```
+
+## Fixing curl
+
+curl is not always curl when it comes to SSL/TLS. Sometimes it depends against which SSL/TLS implementation your curl version was compiled against. And there are a few including OpenSSL, GnuTLS and NSS. We made the experience that NSS and GnuTLS are very often problematic and so we assume (in our docs and scripts) your curl version is compiled against OpenSSL. You can check your curl version with
+
+```
+curl -V
+```
+
+This will print out something like:
+
+```
+curl 7.54.0 (x86_64-apple-darwin17.0) libcurl/7.54.0 OpenSSL/1.0.2g zlib/1.2.11 nghttp2/1.24.0
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp
+Features: AsynchDNS IPv6 Largefile GSS-API Kerberos SPNEGO NTLM NTLM_WB SSL libz HTTP2 UnixSockets HTTPS-proxy
+```
+
+To make curl work best with Search Guard we recommend you use a curl binary with
+
+* Version 7.50 or later
+* Compiled against OpenSSL 1.0.2 or later
+* Protocol needs to include `https`
+* Features should include `GSS-API Kerberos SPNEGO NTLM` if you like to use Kerberos
+
+If curl is compiled against NSS you may need to use explicitly a `./` for a relative or a `/` for an absolute paths like
+
+```
+curl --insecure --cert ./chain.pem --key ./kirk.key.pem "<API Endpoint>"
+```
+
+We already had a lot of issues, here are the most relevant ones:
+
+* [Is it possible to configure elasticsearch/search guard to not make curl try to look for NSS certs?](https://groups.google.com/forum/#!topic/search-guard/LNSa6uf_g7Y)
+* [curl -XGET request on elasticsearch integrated with search-guard throws SSLException](https://github.com/floragunncom/search-guard/issues/58)
+* [Curl with admin ssl certificate not working](https://github.com/floragunncom/search-guard/issues/272)
+* [Unable to Use REST API](https://groups.google.com/forum/#!topic/search-guard/lIDWvqebBBA)
+* [enabling kerberos](https://groups.google.com/d/msg/search-guard/RiYnfg_sPgo/tFHzJu25AQAJ)
