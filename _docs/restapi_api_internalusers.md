@@ -107,7 +107,7 @@ If `username` contains a dot you need to do
 PUT /_searchguard/api/internalusers/misterkirk
 {
   "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
-  "usename": "mister.kirk",
+  "username": "mister.kirk",
   "password": "kirk",
   "roles": ["captains", "starfleet"],
    "attributes": {
