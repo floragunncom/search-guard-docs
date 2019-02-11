@@ -206,7 +206,7 @@ If you do not specify any index in the timelion query, it will simply use a wild
 
 ### Enable the "do not fail on forbidden" mode
 
-If you are using the Enterprise Edition of Search Guard, enable the `do not fail on forbidden` mode in `sg_config.yml` like:
+Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
 
 ```
 searchguard:

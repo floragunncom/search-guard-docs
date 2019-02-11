@@ -175,7 +175,7 @@ In some cases, Kibana will use a wildcard as index name if no index name is give
 
 Search Guard can be run `do not fail on forbidden` mode. With this mode enabled Search Guard filters all indices from a query a user does not have access to. Thus not security exception is raised.
 
-If you are using the Enterprise Edition of Search Guard, enable the `do not fail on forbidden` mode in `sg_config.yml` like:
+Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
 
 ```
 searchguard:
