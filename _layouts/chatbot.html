@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <link rel="stylesheet" href="css/style.min.css">    
+      <link href="css/botchat.css" rel="stylesheet" /> 
+      <link rel="stylesheet" href="css/custom.css">
+      
+      <script src="https://cdn.botframework.com/botframework-webchat/master/botchat.js"></script>
+  </head>    
+  
+  <body class="">
+  
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your   experience.</p>
+    <![endif]-->
+    <!-- End of Preloader -->
+    
+    <div class="page js-page ">
+      
+    <div id="bot"/>
+  
+    <script>
+      function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      var model = {
+        "userId": uuidv4(),
+        "userName": "You",
+        "botId": "SG_KB_WEBAPP_BOT",
+        "botName": "Jean-Luc, your friendly Search Guard Bot",
+        "secret": "IV_x90YAA-A.LeMq1sP54ZRJlSTEE4XdqndPpNa8EQLMX9FZ-mTdVXc",
+      };
+      var user = {
+          id: model.userId,
+          name: model.userName,
+          iconUrl: model.iconUrl
+      };
+      var botConnection = new BotChat.DirectLine({
+          secret:  model.secret,
+          user: user
+      });
+      BotChat.App({
+        chatTitle: "Search Guard Knowledge Bot",
+        botConnection: botConnection,
+        user: user,
+        bot: { id: model.botId, name: model.botName  },
+        resize: 'detect',
+        sendTyping: true,
+        showUploadButton: false,
+      }, document.getElementById("bot"));
+      </script>
+    </div>
+  </body>
+</html>

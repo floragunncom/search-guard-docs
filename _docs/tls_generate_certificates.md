@@ -11,7 +11,8 @@ resources:
   - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
   - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
   - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+  - https://search-guard.com/elasticsearch-tls-certificates-openssl/|Creating Search Guard TLS certificates with OpenSSL (blogpost)
+  - https://www.musingitoutloud.com/creating-a-ca-with-openssl/|Creating a CA with OpenSSL (blogpost)
 ---
 <!---
 Copryight 2017 floragunn GmbH
@@ -43,5 +44,7 @@ For generating certificates you have the following options:
 * Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
 * Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
 * Using tools like OpenSSL and/or keytool (safe for production)
+  * [Creating Search Guard TLS certificates with OpenSSL](https://search-guard.com/elasticsearch-tls-certificates-openssl/) (blogpost)
+  * [Creating a CA with OpenSSL](https://www.musingitoutloud.com/creating-a-ca-with-openssl/) (blogpost)
 
 If you have your own PKI infrastructure and are already familiar with TLS certificates, you can jump directly to [TLS certificates for production environments](tls_certificates_production.md).

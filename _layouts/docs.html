@@ -9,6 +9,7 @@
 	<![endif]-->
 
 	<!-- End of Preloader -->
+
 	<div class="page js-page ">
 
 		{% include main_navigation.html %}
@@ -30,17 +31,23 @@
 							{% include version.html %}
 							{{ content }}
 							{% include additional_resources.html %}
-							{% include additional_resources_search.html %}
+							{% include additional_resources_search.html %}							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 
-		{% include footer.html %}
+		<div id="chatcontainer" style="height: 32px;">
+			<div id='chatTitleBar' style='height: 32px; width: 400px; position:fixed; cursor: pointer;'></div>
+			<iframe src="chatbot.html" style="width: 416px; height: 600px; border:0;"></iframe>
+		</div>
+	
+	{% include footer.html %}
 
 	</div>
-		
+
 	{% include scripts.html %}</body>
 
 	<script type="application/ld+json">
@@ -103,4 +110,7 @@
 		 ]
 	}
 </script>	
+
+
+
 </html>
