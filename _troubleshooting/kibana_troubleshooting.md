@@ -13,7 +13,7 @@ description: Step-by-step instructions on how to troubleshoot Kibana issues.
 
 ## Kibana optimization is very slow, stalls or exit unexpectedly
 
-The Kibana optimization process is shaky and problems are typically not related to Search Guard.
+The Kibana [optimization process is shaky](https://github.com/elastic/kibana/issues/19678){:target="_blank"} and problems are typically not related to Search Guard.
 Most issues can be resolved by giving the process more memory:
 
 ```
