@@ -100,11 +100,31 @@ sg_human_resources:
   indices:
     ...
   tenants:
+    human_resources: 
+      applications:
+        - searchguard:tenant/write
+    human_resources_readonly: 
+      applications:
+        - searchguard:tenant/read
+```
+
+In this example, a user that has the role `sg_human_resources` has access to the tenants `human_resources` and `human_resources_readonly`. The special application permission `searchguard:tenant/write` gives read/write access to the tenant `human_resources`. The access of the tenant `human_resources_readonly` is limited to read-only access by the use of the application permission `searchguard:tenant/read`. 
+
+#### Legacy tenant configuration
+
+Search Guard versions 6.x-24 and before used a different configuration format for tenants. This format is still supported, but deprecated. If you enable [RBAC](./kibana_rbac.md), the configuration will be automatically migrated into the new format.   
+
+```yaml
+sg_human_resources:
+  cluster:
+    ...
+  indices:
+    ...
+  tenants:
     human_resources: RW
     human_resources_readonly: RO
 ```
 
-In this example, a user that has the role `sg_human_resources` has access to the tenant human_resources with read/write access, and read-only access to the tenant `human_resources_readonly`.
 
 ### Kibana: Plugin Configuration
 
@@ -262,7 +282,7 @@ The structure of the index name for the Global tenants is:
 
 Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana_installation.md) for further information.
 
-**If you use snapshot / restore, you need to include all tenant indices, otherwise you will loose data!**
+**If you use snapshot / restore, you need to include all tenant indices, otherwise you will lose data!**
 
 In order to include all Kibana indices in your backup / snapshot, the easiest way is to simply use wildcards:
 
