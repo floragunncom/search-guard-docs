@@ -21,7 +21,7 @@ The Search Guard End of Life policy defines
 * how long a release is supported and maintained
 * how long a release receives critical security updates
 
-The Search Guard end of life policy closely relates to the [Elasticsearch end of life policy](https://www.elastic.co/de/support/eol).
+The Search Guard end of life policy closely relates to the [Elasticsearch end of life policy](https://www.elastic.co/de/support/eol). 
 
 Search Guard releases that **have not reached end of life** are called **active releases**.  
 
@@ -46,11 +46,11 @@ where
 For active releases, we will provide Search Guard updates and maintenance for 
 
 * All releases of the current minor version of the current major version
-  * 6.5.4, 6.5.3, 6.5.2 and 6.5.1 at the time of writing
+  * 6.6.0, 6.6.1, 6.6.2 at the time of writing
 * Current release of the previous minor version of the current major version
-  * 6.4.3 at the time of writing
-* Last release of the previous major version (not all feature will be backported)
-  * 5.6.14 at the time of writing
+  * 6.5.4 at the time of writing
+* Last release of the previous major version (not all features will be backported)
+  * 5.6.15 at the time of writing
 
 ## Inactive releases
 
@@ -64,6 +64,7 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | End of life date |
 |---|---|
+6.6.x-y	| 2020-07-29 |
 6.5.x-y	| 2020-05-14 |
 6.4.x-y	| 2020-02-23 |
 6.3.x-y	| 2019-12-13 |
@@ -87,9 +88,10 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
+6.6.x-y | yes | yes | yes |
 6.5.x-y | yes | yes | yes |
 6.4.x-y | yes | yes | yes |
-6.3.x-y | yes | yes | yes |
+6.3.x-y | no | no | yes |
 6.2.x-y | no | no | yes |
 6.1.x-y | no | no | yes |
 
@@ -97,7 +99,7 @@ Critical security fixes will be backported to all active releases, including all
 
 | Search Guard Version | Active release | Search Guard Updates | Critical Security Updates |
 |---|---|---|---|
-5.6.14-y | yes | yes (partly) | yes |
+5.6.15-y | yes | yes (partly) | yes |
 5.6.x-y | no | no | no |
 5.5.x-y	| no | no | no |
 5.4.x-y	| no | no | no |

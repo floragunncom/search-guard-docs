@@ -72,7 +72,7 @@ The sg_roles section lists all assigned Search Guard roles:
 ]
 ```
 
-Search Guard uses the [roles mapping configuration to map users to Search Guard roles](configuration_roles_mapping.md). You can either use the username or the backend roles for the mapping. Using backend roles is preferred since it will give you greater flexibility.
+Search Guard uses the [roles mapping configuration to map users to Search Guard roles](../_docs/configuration_roles_mapping.md). You can either use the username or the backend roles for the mapping. Using backend roles is preferred since it will give you greater flexibility.
 
 If the user does not have the expected Search Guard roles, please check and correct your `sg_roles_mapping.yml` configuration.
 
