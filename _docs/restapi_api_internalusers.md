@@ -176,11 +176,13 @@ PATCH /_searchguard/api/internalusers
 
 ## Password rules
 
-In order to enforce password rules (e.g. mixed letters and digits, minimum 16 characters), you can configure a regular expression in `elasticsearch.yml`:
+In order to enforce password rules (e.g. mixed letters and digits, minimum length), you can configure a regular expression in `elasticsearch.yml`:
 
 ```
-searchguard.restapi.password_validation_regex: "(?=.*[A-Z])(?=.*[^a-zA-Z\\\\d])(?=.*[0-9])(?=.*[a-z]).{8,}"
+searchguard.restapi.password_validation_regex: "(?=.*[A-Z])(?=.*[^a-zA-Z\d])(?=.*[0-9])(?=.*[a-z]).{8,}"
 ```
+
+The above regex expression, for example, will only permit passwords with a minimum length of eight characters and it must contain at least one upper case, one special char, one digit and one lower case char.
 
 If the password does not match the configured regular expression, Search Guard will return:
 
