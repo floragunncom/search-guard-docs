@@ -61,10 +61,10 @@ For more details on multitenancy configuration, please refer to the [Multitenanc
 
 If you are activating RBAC for an existing Search Guard installation and leave the existing role configuration unchanged, Search Guard will automatically modify it and provide all Kibana application permissions to any user. This retains the Kibana functionality that was available before activating RBAC. Without modification, the configuration would be void of any Kibana application permissions, which means you would lose any access to Kibana.
 
-Concretely, the automatic process adds the role `sg_legacy_kibana_user` using this definition: 
+Concretely, the automatic process adds the role `sg_kibana_user_all_application_access` using this definition: 
 
 ```yaml
-sg_legacy_kibana_user:
+sg_kibana_user_all_application_access:
   applications:
    - kibana:ui:navLinks/* 
 ```
@@ -72,7 +72,7 @@ sg_legacy_kibana_user:
 In `sg_role_mapping`, the role is assigned to any user using this definition:
 
 ```yaml
-sg_legacy_kibana_user:
+sg_kibana_user_all_application_access:
   users:
    - '*'
 ```
