@@ -141,7 +141,7 @@ PATCH /_searchguard/api/rolesmapping
     "op": "add", "path": "/sg_finance", "value": { "users": ["user2"], "backendroles": ["backendrole2"] } 
   },
   { 
-    "op": "delete", "path": "/sg_management"
+    "op": "remove", "path": "/sg_management"
   }
 ]
 ```
