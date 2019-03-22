@@ -153,7 +153,7 @@ PATCH /_searchguard/api/internalusers
     "op": "add", "path": "/worf", "value": { "password": "testpassword2", "roles": ["testrole2"] } 
   },
   { 
-    "op": "delete", "path": "/riker"
+    "op": "remove", "path": "/riker"
   }
 ]
 ```

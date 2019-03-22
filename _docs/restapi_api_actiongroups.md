@@ -129,7 +129,7 @@ PATCH /_searchguard/api/actiongroups
     "op": "add", "path": "/CREATE_INDEX", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
   },
   { 
-    "op": "delete", "path": "/CRUD"
+    "op": "remove", "path": "/CRUD"
   }
 ]
 ```
