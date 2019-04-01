@@ -100,7 +100,7 @@ If this key is not set, or null, then the DN of the LDAP entry is used.
 
 ```yaml
 ldap:
-  enabled: false
+  enabled: true
   order: 1
   http_authenticator:
     type: basic
