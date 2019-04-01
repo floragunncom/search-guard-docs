@@ -174,7 +174,7 @@ Note: For security reasons, wildcards and regular expressions are not supported 
 
 ## Disable TLS Client Renegotiation
 
-Secure Client-Initiated Renegotiation is disabked by default, because it could be used for denial of service attacks on the HTTP port. If you want to enable Client-Initiated Renegotiation, add the following line to config/jvm.options:
+Secure Client-Initiated Renegotiation is disabled by default, because it could be used for denial of service attacks on the HTTP port. If you want to enable Client-Initiated Renegotiation, add the following line to config/jvm.options:
 
 ```
 -Djdk.tls.rejectClientInitiatedRenegotiation=false

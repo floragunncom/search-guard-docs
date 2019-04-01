@@ -153,7 +153,7 @@ Please refer to the [Kibana Multi Tenancy](kibana_multitenancy.md) chapter, sect
 
 Elasticsearch and Search Guard support running your cluster in mixed mode, means with 5.6.x and 6.x nodes. This makes it possible to upgrade via rolling restart.
 
-Running a cluster in mixed mode should only be done while upgrading from 5 to 6. It's not supposed to be a permanent situation and you should aim to minimize the  
+Running a cluster in mixed mode should only be done while upgrading from 5 to 6. It's not supposed to be a permanent situation and you should aim to minimize the duration where a mixed cluster exists.
 
 While running in mixed mode, the following limitations apply:
 
