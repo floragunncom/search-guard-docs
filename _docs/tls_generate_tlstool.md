@@ -190,7 +190,7 @@ defaults:
   nodesDn:
     - "CN=*.example.com,OU=Ops,O=Example Com\\, Inc.,DC=example,DC=com"
   nodeOid: "1.2.3.4.5.5"
-  httpEnabled: true
+  httpsEnabled: true
   reuseTransportCertificatesForHttp: false
 ```
 
