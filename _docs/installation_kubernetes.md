@@ -34,13 +34,13 @@ We recommend at least 8 GB and 4 CPUs. By default, we deploy 5 pods (includes al
 
 You need to have the aws cli installed and configured
 
-```
+```bash
 ./examples/sg_aws_kops.sh -c mytestcluster
 ```
 
 Delete the cluster when you are finished with testing Search Guard
 
-```
+```bash
 ./examples/sg_aws_kops.sh -d mytestcluster
 ```
 
@@ -57,7 +57,7 @@ Please refer to [https://kubernetes.io/docs/setup/minikube/](https://kubernetes.
 
 #### macOS
 
-```
+```bash
 Install https://www.virtualbox.org/wiki/Downloads
 brew install kubectl kubernetes-helm
 brew cask install minikube
@@ -65,7 +65,7 @@ brew cask install minikube
 
 #### Linux
 
-```
+```bash
 Install https://www.virtualbox.org/wiki/Downloads or https://www.linux-kvm.org/page/Main_Page
 
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo cp minikube /usr/local/bin/ && rm minikube
@@ -73,7 +73,7 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
 ```
 
-```
+```bash
 minikube config set memory 8192
 minikube config set cpus 4
 minikube delete
@@ -82,7 +82,7 @@ minikube start
 
 If Minikube is already configured/running make sure it has least 8 GB and 4 CPUs assigned:
 
-```
+```bash
 minikube config view
 ```
 
@@ -92,7 +92,7 @@ If not then execute the steps above (Warning: `minikube delete` will delete your
 
 If the Helm tiller pod is not already running on your cluster
 
-```
+```bash
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 helm init --wait --service-account tiller --upgrade
@@ -100,7 +100,7 @@ helm init --wait --service-account tiller --upgrade
 
 ### Deploy via repository
 
-```
+```bash
 helm repo add sg-helm https://floragunncom.github.io/search-guard-helm
 helm search "search guard"
 helm install --name sg-elk sg-helm/sg-helm --version 6.5.4-24.0-17.0-beta3
@@ -112,7 +112,7 @@ settings. See `sg-helm/values.yaml` for the documented set of settings you can o
 
 Optionally read the comments in `sg-helm/values.yaml` and customize them to suit your needs.
 
-```
+```bash
 $ git clone https://github.com/floragunncom/search-guard-helm.git
 $ helm install search-guard-helm/sg-helm
 ```
@@ -121,7 +121,7 @@ $ helm install search-guard-helm/sg-helm
 
 Check `minikube dashboard` and wait until all pods are running and green (can take up to 15 minutes)
 
-```
+```bash
 export POD_NAME=$(kubectl get pods --namespace default -l "component=sg-elk-sg-helm,role=kibana" -o jsonpath="{.items[0].metadata.name}")
 echo "Visit https://127.0.0.1:5601 and login with admin/admin to use Kibana"
 kubectl port-forward --namespace default $POD_NAME 5601:5601
@@ -144,7 +144,7 @@ They are stored in a secret named `passwd-secret`. All TLS certificates includin
 
   WARNING(!): You currently can not update sg_internal_users.yml because of the random passwords. If you do this you may lock yourself out of the cluster.
 
-  ```
+  ```bash
   $ kubectl exec -it sg-elk-sg-helm-sgadmin-555b5f7df-9sqrm bash
   [root@sg-elk-sg-helm-sgadmin-555b5f7df-9sqrm ~]# /root/sgadmin/tools/sgadmin.sh -h $DISCOVERY_SERVICE -si -icl -key /root/sgcerts/key.pem -cert /root/sgcerts/crt.pem -cacert /root/sgcerts/root-ca.pem
   ```
