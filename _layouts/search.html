@@ -49,6 +49,18 @@
 	</div>
 		
 	{% include scripts.html %}
+	
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch-theme-algolia.min.css">	
+
+	<style>
+		.algolia__result-highlight{background-color:#f6f7f8;font-weight:500;padding:2px 4px;border-radius:3px;font-weight:500;}
+		.ais-search-box{position:relative;max-width:100%;width:100%;}
+		.ais-refinement-list--label{padding:0 10px 0 10px;line-height:40px;color:rgb(51, 51, 51);}
+		.ais-refinement-list--item{background-color:#f6f7f8;border-bottom:1px solid #eaedf1;}
+		.ais-refinement-list--count{color:rgb(51, 51, 51);}
+		.refinement-list{margin-bottom:20px;}
+	</style>
 
 </body>
 	
