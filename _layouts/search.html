@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar">
+								
+								<h4>Category</h4>
+								<div id="refinement-list-category" class="refinement-list">
+								</div>
+
+								<h4>Topic</h4>
+								<div id="refinement-list-h1" class="refinement-list">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9">
+							{% include version.html %}
+
+							<div id="search-box">
+							  <!-- SearchBox widget will appear here -->
+							</div>
+
+							<div id="hits">
+  								<!-- Hits widget will appear here -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}
+	
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch-theme-algolia.min.css">	
+
+	<style>
+		.algolia__result-highlight{background-color:#f6f7f8;font-weight:500;padding:2px 4px;border-radius:3px;font-weight:500;}
+		.ais-search-box{position:relative;max-width:100%;width:100%;}
+		.ais-refinement-list--label{padding:0 10px 0 10px;line-height:40px;color:rgb(51, 51, 51);}
+		.ais-refinement-list--item{background-color:#f6f7f8;border-bottom:1px solid #eaedf1;}
+		.ais-refinement-list--count{color:rgb(51, 51, 51);}
+		.refinement-list{margin-bottom:20px;}
+	</style>
+
+</body>
+	
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.js"></script>
+<script>
+	const search = instantsearch({
+	    appId: '2ESDTH812Y',
+	    apiKey: '0047035979f052146a69e1d0300cd332',
+	    indexName: '{{site.algolia.index_name}}',
+	    urlSync: true,
+	    searchParameters: {
+	        facetingAfterDistinct: true,
+	        snippetEllipsisText: "..."
+	    }
+	});
+	
+	search.addWidget(
+	    instantsearch.widgets.hits({
+	        container: '#hits',
+	        templates: {
+	            empty: '<h2>No results found, please refine your search.</h2>',
+	            item(data) {
+	                return formatHit(data)
+	            }
+	        }
+	    })
+	);
+	
+	search.addWidget(
+	    instantsearch.widgets.searchBox({
+	        container: '#search-box',
+	        placeholder: 'Search ...'
+	    })
+	);
+	
+	// initialize RefinementLists	
+	search.addWidget(
+	    instantsearch.widgets.refinementList({
+	        container: '#refinement-list-category',
+	        attributeName: 'category_name'
+	    })
+	);
+	
+	search.addWidget(
+	    instantsearch.widgets.refinementList({
+	        container: '#refinement-list-h1',
+	        attributeName: 'h1'
+	    })
+	);
+	
+	search.start();
+	
+	function formatHit(item) {
+	    var unique_hierarchy = item.unique_hierarchy;
+	    var headline = item._highlightResult.text ? item._highlightResult.text.value : item.text;
+	    var text = item._snippetResult.text_all.value;
+	    return "<div class='sr_headline'><h2>" + headline + "</h2></div>" +
+	        "<div class='sr_hierarchy'><a alt='" + headline + "' href='{{site.baseurl}}" + item.url + item.css_selector + "'><h5>" + unique_hierarchy + "</h5></a></div>" +
+	        "<div class='sr_text'>" + text + "</div>";
+	}
+
+</script>
+
+</html>

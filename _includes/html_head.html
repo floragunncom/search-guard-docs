@@ -1,0 +1,58 @@
+<head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52993790-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52993790-7');
+</script>
+
+	<!-- Page title -->
+	<title>
+		{%if page.html_title != null %}
+			 Security for Elasticsearch | {{page.html_title}} | Search Guard
+		{% else %}
+			 Security for Elasticsearch | {{page.title}} | Search Guard
+		{% endif %}
+	</title>
+	<!-- OG and Twitter -->
+	<meta property="og:title" content="{%if page.html_title != null %} Security for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
+	<meta property="og:description" content="{{page.description}}" />
+	<meta property="og:locale" content="en_US" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:creator" content="@searchguard" />
+	
+	<!-- Page description -->
+	<meta name="description" content="{{page.description}}">
+
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon  -->
+
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-57px.png" />        
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-114px.png" sizes="114x114" />        
+	<link rel="apple-touch-icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-172px.png" sizes="72x72" />                
+	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-32px.png" sizes="32x32" />
+	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-144px.png" sizes="144x144" />
+
+	<link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}{{page.url}}">
+	
+	{%if site.searchguard.islatestversion == true && item.subcategory == null %}
+		<meta name="robots" content="index, follow">
+	{% else %}
+		<meta name="robots" content="noindex, nofollow">
+	{% endif %}
+	
+
+	<!-- Include StyleSheets -->
+	<link rel="stylesheet" href="css/style.min.css">	
+	<link rel="stylesheet" href="css/custom.min.css">
+
+</head>

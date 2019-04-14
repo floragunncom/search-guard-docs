@@ -1,0 +1,74 @@
+		<!-- Header -->
+		<div class="header background ">
+			<div class="container-fluid container-spaced">
+				<div class="row">
+					<div class="col-md-3 col-sm-6 col-xs-6">
+						<!-- Logo Image -->
+						<a href="index" class="logo-image">
+							<img src="img/logos/search-guard-logo.png" alt="Search Guard - Enterprise Security for Elasticsearch">
+						</a>
+						<!-- End of Logo Image -->
+					</div>
+					<div class="col-md-9 col-sm-6 col-xs-6">
+						<!-- Menu -->
+						<nav class="right helper">
+							<ul class="menu sf-menu js-menu">
+								<li>
+									<a href="index.html" class="main-nav-level-1">Documentation</a>									
+									<ul>
+										{% include main_nav_items.html collectionname="docs" category="quickstart" %}
+										{% include main_nav_items.html collectionname="docs" category="installation" %}
+										{% include main_nav_items.html collectionname="docs" category="upgrading" %}
+										{% include main_nav_items.html collectionname="docs" category="tls" %}
+										{% include main_nav_items.html collectionname="docs" category="configuration" %}
+										{% include main_nav_items.html collectionname="docs" category="authauth" %}
+										{% include main_nav_items.html collectionname="docs" category="rolespermissions" %}
+										{% include main_nav_items.html collectionname="docs" category="dlsfls" %}
+										{% include main_nav_items.html collectionname="docs" category="auditlog" %}
+										{% include main_nav_items.html collectionname="docs" category="compliance" %}
+										{% include main_nav_items.html collectionname="docs" category="restapi" %}
+										{% include main_nav_items.html collectionname="docs" category="kibana" %}
+										{% include main_nav_items.html collectionname="docs" category="esclients" %}
+										{% include main_nav_items.html collectionname="docs" category="xpack" %}										
+										{% include main_nav_items.html collectionname="docs" category="ccs" %}
+										{% include main_nav_items.html collectionname="docs" category="oem" %}
+									</ul>
+								</li>
+								<li>
+									<a href="index.html" class="main-nav-level-1">Troubleshooting</a>									
+									<ul>
+										{% include main_nav_items_flat.html collectionname="troubleshooting" category="troubleshooting" %}
+									</ul>
+								</li>
+								<li>
+									<a href="index.html" class="main-nav-level-1">Resources</a>									
+									<ul>
+										{% include main_nav_items_flat.html collectionname="resources" category="resources" %}
+									</ul>
+								</li>
+
+								<li>
+									<a href="index.html" class="main-nav-level-1">Changelogs</a>									
+									<ul>
+										{% include main_nav_items_flat.html collectionname="changelogs" category="changelogs" %}
+									</ul>
+								</li>
+								<li>
+									<a href="index.html" class="main-nav-level-1">Versions</a>									
+									<ul>
+										{% for version in site.searchguard.allversions %}
+										<li>
+											<a href="/{{site.docroots[version]}}/index">{{site.labels.navigation[version]}}</a>
+										</li>
+										{% endfor %}
+									</ul>
+								</li>
+
+							</ul>
+						</nav>
+						<!-- End of Menu -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of Header -->

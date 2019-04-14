@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/search-guard-docs
+    steps:
+      - run: sudo apt-get -yq update
+      - run: sudo apt-get -yq install openssl libapr1
+      - run: sudo apt-get install ncftp
+      - checkout
+      - run:
+          name: Build Docs
+          command: |
+            # sanity checks
+            echo "Merge marker sanity check"
+            (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
+
+            bundle install
+            bundle exec jekyll build --config _config.yml,_versions.yml

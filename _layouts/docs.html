@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar">
+
+								{% include left_nav_search.html %}
+								
+								{% include left_nav_docs.html %}
+
+							</div>
+						</div>
+						<div class="col-md-9">
+							{% include version.html %}
+							{{ content }}
+							{% include additional_resources.html %}
+							{% include additional_resources_search.html %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}</body>
+
+	<script type="application/ld+json">
+	{
+  		"@context": "http://schema.org",
+  		"@type": "WebSite",
+  		"url": "https://docs.search-guard.com{{site.baseurl}}",
+  		"potentialAction": {
+    		"@type": "SearchAction",
+    		"target": "https://docs.search-guard.com/latest/search.html?q={search_term_string}",
+    		"query-input": "required name=search_term_string"
+  		}
+	}
+	</script>
+	<script type="application/ld+json">
+ 	{ 
+ 		"@context": "http://schema.org",
+ 		"@type": "Organization",
+ 		"name": "Search Guard",
+ 		"legalName" : "floragunn GmbH",
+ 		"url": "https://search-guard.com",
+ 		"logo": "https://search-guard.com/wp-content/uploads/2018/01/sg_logo.png",
+ 		"foundingDate": "2013",
+ 		"founders": 
+ 		[
+	 		{
+	 			"@type": "Person",
+	 			"name": "Jochen Kressin"
+	 		},
+	 		{
+	 			"@type": "Person",
+	 			"name": "Claudia Kressin"
+	 		}
+ 		],
+		 "address": {
+		 "@type": "PostalAddress",
+		 "streetAddress": "Tempelhofer Ufer 16",
+		 "addressLocality": "Berlin",
+		 "postalCode": "10963",
+		 "addressCountry": "Germany"
+		 },
+		 "contactPoint" : [
+			 {
+				 "@type": "ContactPoint",
+				 "contactType": "sales",
+				 "telephone": "[+49-30–89379249]",
+				 "email": "sales@search-guard.com"
+			 },
+			 {
+				 "@type": "ContactPoint",
+				 "contactType": "customer support",
+				 "url": "https://groups.google.com/forum/#!forum/search-guard"				 
+			 }
+		 ],
+		 "sameAs": [ 
+			 "https://twitter.com/searchguard",
+			 "https://www.facebook.com/searchguard/",
+			 "https://www.linkedin.com/company/search-guard/",
+			 "https://www.youtube.com/channel/UCUw93I0DHMvoA8HNQ31AeJw"
+		 ]
+	}
+</script>	
+</html>

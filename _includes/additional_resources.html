@@ -1,0 +1,20 @@
+{%if page.resources != null %}
+<div class="note js-note additional-resources">
+	<h4 class="note-title additional-resources-title"> Additional resources </h4>
+	<p class="note-description">
+		<ul style="list-style-type: none">
+		{% for resourcestring in page.resources %}
+		{% assign resource = resourcestring | split: "|" %}
+		{% assign urlparts = resource[0] | split: "#" %}		
+			<li>
+				{%if urlparts[1] != null %}
+				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}#{{ urlparts[1] }}" target="_blank">{{ resource[1] }}</a>
+				{% else %}
+				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}" target="_blank">{{ resource[1] }}</a>
+				{% endif %}		
+			</li>
+		{% endfor %}
+		</ul>	
+	</p>
+</div>
+{% endif %}		

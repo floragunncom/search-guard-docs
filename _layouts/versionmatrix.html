@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar">
+
+								{% include left_nav_search.html %}
+								
+								{% include left_nav_docs.html %}
+
+							</div>
+						</div>
+						<div class="col-md-9">
+							{% include version.html %}
+							{{ content }}
+							<h2>Search Guard</h2>
+							<table>
+  								<thead>
+							    <tr>
+							      <th>Elasticsearch Version</th>
+							      <th>Search Guard Version</th>
+							      <th>Kibana Plugin Version</th>
+							      <th>Artifact</th>
+							      <th>Support available</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+
+								{% for version in site.sgversions.enterprise %}
+							    <tr>
+							      {% assign sgversions = version | split: "|" %}							       
+							      <td>{{ sgversions[0] }}</td>
+							      <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-6/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-6-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+								  <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+								  <td>{{ sgversions[3] }}</td>
+							    </tr>
+							    {% endfor %}
+							  </tbody>
+							</table>
+
+
+							<h2>Search Guard SSL</h2>
+							<table>
+  								<thead>
+							    <tr>
+							      <th>Elasticsearch Version</th>
+							      <th>Search Guard SSL Version</th>
+							      <th>Artifact</th>
+							      <th>Support available</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+
+								{% for version in site.sgversions.sgssl %}
+							    <tr>
+							      {% assign sgversions = version | split: "|" %}							       
+							      <td>{{ sgversions[0] }}</td>
+							      <td>{{ sgversions[1] }}</td>
+							      {% if sgversions[2] == "true"  %}
+								  <td>com.floragunn:search-guard-ssl:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+								  {% else  %}
+								  <td><i>not released as standalone plugin</i></td>
+								  {% endif  %}
+								  <td>{{ sgversions[3] }}</td>
+							    </tr>
+							    {% endfor %}							  
+							  </tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}</body>
+
+	<script type="application/ld+json">
+	{
+  		"@context": "http://schema.org",
+  		"@type": "WebSite",
+  		"url": "https://docs.search-guard.com{{site.baseurl}}",
+  		"potentialAction": {
+    		"@type": "SearchAction",
+    		"target": "https://docs.search-guard.com/latest/search.html?q={search_term_string}",
+    		"query-input": "required name=search_term_string"
+  		}
+	}
+	</script>
+</html>
