@@ -81,7 +81,7 @@ searchguard.jwt.header: 'Authorization'
 searchguard.jwt.url_param: 'jwtparam'
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: ["https://&lt;hostname&gt;.com:&lt;http port&gt;"]
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

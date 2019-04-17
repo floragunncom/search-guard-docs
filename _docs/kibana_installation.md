@@ -76,10 +76,10 @@ elasticsearch.password: "kibanaserver"
 
 ## Setting up SSL/TLS
 
-If you use TLS on the Elasticsearch REST layer, you need to configure Kibana accordingly. Set the protocol on the entry `elasticsearch.url` to `https`:
+If you use TLS on the Elasticsearch REST layer, you need to configure Kibana accordingly. Set the protocol on the entry `elasticsearch.hosts` to `https`:
 
 ```yaml
-elasticsearch.url: "https://localhost:9200"
+elasticsearch.hosts: ["https://localhost:9200"]
 ```
 
 All requests that Kibana makes to Elasticsearch will now use HTTPS instead of HTTP.
