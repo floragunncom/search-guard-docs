@@ -36,13 +36,13 @@ This is the default. If the user tries to access Kibana and has no active sessio
 
 In this mode, the user is authenticated by a third party system, like an identity provider that issues JSON web tokens, a Kerberos realm or an authenticating proxy. The Kibana plugin will forward any HTTP headers containing user crendentials to Search Guard. As with Basic Authentication, Search Guard uses these credentials for assigning roles and permissions.
 
-*Hint: You cannot the Basic Authentication login page and SSO authentication together.*
+*Hint: You cannot have the Basic Authentication login page and SSO authentication together.*
 
 ### Whitelisting HTTP headers
 
 By default, Kibana does not pass any HTTP header other than `Authorization` to Elasticsearch. If you try to transmit any other header, it is silently discarded.
 
-In order for SSO to work, make sure that any HTTP header that is required for yur configured authentication type is added to the `elasticsearch.requestHeadersWhitelist` configuration entry in `kibana.yml`. 
+In order for SSO to work, make sure that any HTTP header that is required for your configured authentication type is added to the `elasticsearch.requestHeadersWhitelist` configuration entry in `kibana.yml`.
 
 Example:
 
