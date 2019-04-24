@@ -62,7 +62,7 @@ As `sg_internal_users.yml` needs to exist and not be empty when configuring sg, 
 
 The password hash is a salted BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
 
-``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hasher.sh -p mycleartextpassword``
+``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hash.sh -p mycleartextpassword``
 
 ## Configuration
 
