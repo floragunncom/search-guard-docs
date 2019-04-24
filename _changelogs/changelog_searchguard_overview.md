@@ -8,10 +8,14 @@ description: Changelog Overview for the Search Guard and Search Guard SSL
 ---
 
 <!---
-Copryight 2010 floragunn GmbH
+Copryight 2019 floragunn GmbH
 -->
 
 # Search Guard Changelogs
+
+### [Search Guard 6.x-25.0](changelog_searchguard_6_x_25_0.md)
+
+Release Date: 24.04.2019
 
 ### [Search Guard 6.x-24.3](changelog_searchguard_6_x_24_3.md)
 
