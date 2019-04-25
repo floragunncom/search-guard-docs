@@ -9,7 +9,7 @@
 		
 		<ul style="list-style-type: none;">
 			{% for item in items %}
-			<li {% if item.title == page.title and item.category == page.category %} class="has-children selected" {% endif %}>				
+			<li {% if item.title == page.title and item.category == page.category %} class="selected" {% endif %}>				
 				<a href="{{site.baseurl}}{{ item.url }}"
 					{% if item.title == page.title and item.category == page.category %} class="selected left-nav-level-2" 
 					{% else %} class="left-nav-level-2" 

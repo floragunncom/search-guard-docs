@@ -2,9 +2,9 @@
 Copryight 2016-2017 floragunn GmbH
 -->
 
-# Search Guard 6.x Documentation
+# Search Guard 7.x Documentation
 
-This is the master branch of the official Search Guard 6.x documentation.
+This is the master branch of the official Search Guard 7.x documentation.
 
 The latest online version version can be found here:
 

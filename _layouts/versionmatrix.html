@@ -29,7 +29,7 @@
 						<div class="col-md-9">
 							{% include version.html %}
 							{{ content }}
-							<h2>Search Guard</h2>
+							<h2>Search Guard Versions</h2>
 							<table>
   								<thead>
 							    <tr>
@@ -42,48 +42,18 @@
 							  </thead>
 							  <tbody>
 
-								{% for version in site.sgversions.enterprise %}
+								{% for version in site.sgversions %}
 							    <tr>
 							      {% assign sgversions = version | split: "|" %}							       
 							      <td>{{ sgversions[0] }}</td>
-							      <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-6/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-6-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+							      <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-7/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-7-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
 								  <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
-								  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+								  <td>com.floragunn:search-guard-7:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
 								  <td>{{ sgversions[3] }}</td>
 							    </tr>
 							    {% endfor %}
 							  </tbody>
 							</table>
-
-
-							<h2>Search Guard SSL</h2>
-							<table>
-  								<thead>
-							    <tr>
-							      <th>Elasticsearch Version</th>
-							      <th>Search Guard SSL Version</th>
-							      <th>Artifact</th>
-							      <th>Support available</th>
-							    </tr>
-							  </thead>
-							  <tbody>
-
-								{% for version in site.sgversions.sgssl %}
-							    <tr>
-							      {% assign sgversions = version | split: "|" %}							       
-							      <td>{{ sgversions[0] }}</td>
-							      <td>{{ sgversions[1] }}</td>
-							      {% if sgversions[2] == "true"  %}
-								  <td>com.floragunn:search-guard-ssl:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
-								  {% else  %}
-								  <td><i>not released as standalone plugin</i></td>
-								  {% endif  %}
-								  <td>{{ sgversions[3] }}</td>
-							    </tr>
-							    {% endfor %}							  
-							  </tbody>
-							</table>
-
 
 						</div>
 					</div>

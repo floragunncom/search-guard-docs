@@ -13,17 +13,19 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 6.3.0
-  previousversion: 6.2.4
+  currentversion: 7.0.0
+  previousversion: 7.0.1
 
 searchguard:
   esmajorversion: 6
-  majorversion: 6.x-20
-  fullversion: 6.2.2-20.1
-  nextminorversion: 6.2.2-20.2
-  nextmajorversion: 6.2.2-21.0
+  version: 7.x-35.0.0 
+  fullversion: 7.0.0-35.0.0 
+  nextminorversion: 7.0.0-35.1.0 
+  nextmajorversion: 7.0.0-36.0.0 
   islatestversion: false
+  ispreliminaryversion: false
   allversions:
+    - 7x-35
     - 6x-24
     - 6x-23
     - 6x-22
@@ -33,7 +35,8 @@ searchguard:
     - v2
 
 docroots: 
-  6x-24: latest
+  7x-35: latest
+  6x-24: 6.x-24
   6x-23: 6.x-23
   6x-22: 6.x-22
   6x-21: 6.x-21
@@ -46,6 +49,7 @@ index: false
 labels:
   navigation:
     quickstart: Quickstart
+    versions: Search Guard Versions
     installation: Installing Search Guard
     upgrading: Upgrading Search Guard
     tls: TLS Setup
@@ -55,17 +59,16 @@ labels:
     eeadvanced: Advanced Security Features
     dlsfls: Document- and Field-Level Security
     kibana: Kibana
-    auditlog: Audit Logging
+    auditlog: Audit And Compliance Logging
     compliance: Compliance
     restapi: REST API
-    esstack: Integrating with the Elastic stack
-    esclients: Elasticsearch clients
-    xpack: X-Pack Integration
-    ccs: Cross Cluster Search and Tribe
-    oem: OEM and system integrators
+    elasticstack: Integrating with the Elasticstack
+    otherintegrations: Other integrations
+    systemintegrators: Advanced system integrator features
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
+    7x-35: Search Guard 7.x-35-beta1
     6x-24: Search Guard 6.x-24
     6x-23: Search Guard 6.x-23
     6x-22: Search Guard 6.x-22
@@ -84,10 +87,51 @@ relative_links:
   enabled:     true
   collections: true
 
-baseurl: /6.x-20
+baseurl: /latest
+
+collections_dir: _content
 
 collections:
-  docs:
+  docs_quickstart:
+    output: true
+    permalink: :title
+  docs_versions:
+    output: true
+    permalink: :title
+  docs_installation:
+    output: true
+    permalink: :title
+  docs_tls:
+    output: true
+    permalink: :title
+  docs_configuration_changes:
+    output: true
+    permalink: :title
+  docs_auth_auth:
+    output: true
+    permalink: :title
+  docs_roles_permissions:
+    output: true
+    permalink: :title
+  docs_dls_fls:
+    output: true
+    permalink: :title
+  docs_audit_logging:
+    output: true
+    permalink: :title
+  docs_rest_api:
+    output: true
+    permalink: :title
+  docs_kibana:
+    output: true
+    permalink: :title
+  docs_elasticstack:
+    output: true
+    permalink: :title
+  docs_other_integrations:
+    output: true
+    permalink: :title
+  docs_systemintegrators:
     output: true
     permalink: :title
   troubleshooting:
@@ -168,55 +212,4 @@ algolia:
       - singleWordSynonym
 
 sgversions:
-  enterprise:
-    - 6.7.1|24.3|18.3|yes
-    - 6.7.0|24.3|18.3|yes
-    - 6.6.2|24.3|18.3|yes
-    - 6.6.1|24.3|18.3|yes
-    - 6.6.0|24.3|18.3|yes
-    - 6.5.4|24.3|18.3|yes
-    - 6.5.3|24.3|18.3|yes
-    - 6.5.2|24.3|18.3|yes
-    - 6.5.1|24.3|18.3|yes
-    - 6.4.3|24.3|17|yes
-    - 6.4.2|24.3|17|yes
-    - 6.4.1|24.3|17|yes
-    - 6.4.0|24.3|17|yes
-    - 6.3.2|24.0|17|yes
-    - 6.3.1|24.0|17|yes
-    - 6.3.0|24.0|17|yes
-    - 6.2.4|23.0|14|yes
-    - 6.2.3|23.0|14|yes
-    - 6.2.2|23.0|14|yes
-    - 6.2.1|23.0|14|yes
-    - 6.1.4|22.3|12|yes
-    - 6.1.3|22.3|12|yes
-    - 6.1.2|22.3|12|yes
-    - 6.1.1|22.3|12|yes
-    - 6.1.0|22.3|12|yes
-  sgssl:
-    - 6.7.0|25.6|false|no
-    - 6.6.2|25.6|false|no
-    - 6.6.1|25.6|false|no
-    - 6.6.0|25.6|false|no
-    - 6.5.4|25.6|false|no
-    - 6.5.3|25.6|false|no
-    - 6.5.2|25.6|false|no
-    - 6.5.1|25.6|false|no
-    - 6.4.3|25.6|false|no
-    - 6.4.2|25.6|false|no
-    - 6.4.1|25.6|false|no
-    - 6.4.0|25.6|false|no
-    - 6.3.2|25.4|false|no
-    - 6.3.1|25.4|false|no
-    - 6.3.0|25.4|false|no
-    - 6.2.4|25.4|true|yes
-    - 6.2.3|25.4|true|yes
-    - 6.2.2|25.4|true|yes
-    - 6.2.1|25.4|true|yes
-    - 6.1.4|25.4|true|yes
-    - 6.1.3|25.4|true|yes
-    - 6.1.2|25.4|true|yes
-    - 6.1.1|25.4|true|yes
-    - 6.1.0|25.4|true|yes
-    - 6.0.1|25.4|true|yes
+    - 7.0.0|24.3-beta1|24.3-beta1|yes

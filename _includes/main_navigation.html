@@ -14,26 +14,36 @@
 						<nav class="right helper">
 							<ul class="menu sf-menu js-menu">
 								<li>
+									<!-- Just the first article in the collection -->
 									<a href="index.html" class="main-nav-level-1">Documentation</a>									
 									<ul>
-										{% include main_nav_items.html collectionname="docs" category="quickstart" %}
-										{% include main_nav_items.html collectionname="docs" category="installation" %}
-										{% include main_nav_items.html collectionname="docs" category="upgrading" %}
-										{% include main_nav_items.html collectionname="docs" category="tls" %}
-										{% include main_nav_items.html collectionname="docs" category="configuration" %}
-										{% include main_nav_items.html collectionname="docs" category="authauth" %}
-										{% include main_nav_items.html collectionname="docs" category="rolespermissions" %}
-										{% include main_nav_items.html collectionname="docs" category="dlsfls" %}
-										{% include main_nav_items.html collectionname="docs" category="auditlog" %}
-										{% include main_nav_items.html collectionname="docs" category="compliance" %}
-										{% include main_nav_items.html collectionname="docs" category="restapi" %}
-										{% include main_nav_items.html collectionname="docs" category="kibana" %}
-										{% include main_nav_items.html collectionname="docs" category="esclients" %}
-										{% include main_nav_items.html collectionname="docs" category="xpack" %}										
-										{% include main_nav_items.html collectionname="docs" category="ccs" %}
-										{% include main_nav_items.html collectionname="docs" category="oem" %}
+
+										{% include main_nav_items.html collectionname="docs_quickstart" category="quickstart" %}
+										{% include main_nav_items.html collectionname="docs_versions" category="versions" %}								{% include main_nav_items.html collectionname="docs_installation" category="installation" %}
+										{% include main_nav_items.html collectionname="docs_tls" category="tls" %}										
+										{% include main_nav_items.html collectionname="docs_configuration_changes" category="configuration" %}				
+										
+										{% include main_nav_items.html collectionname="docs_auth_auth" category="authauth" %}
+										
+
+										{% include main_nav_items.html collectionname="docs_roles_permissions" category="rolespermissions" %}
+
+										{% include main_nav_items.html collectionname="docs_dls_fls" category="dlsfls" %}
+
+										{% include main_nav_items.html collectionname="docs_audit_logging" category="auditlog" %}
+
+										{% include main_nav_items.html collectionname="docs_rest_api" category="restapi" %}
+
+										{% include main_nav_items.html collectionname="docs_kibana" category="kibana" %}
+
+										{% include main_nav_items.html collectionname="docs_elasticstack" category="elasticstack" %}
+																
+										{% include main_nav_items.html collectionname="docs_other_integrations" category="otherintegrations" %}
+										{% include main_nav_items.html collectionname="docs_systemintegrators" category="systemintegrators" %}
+										
 									</ul>
 								</li>
+
 								<li>
 									<a href="index.html" class="main-nav-level-1">Troubleshooting</a>									
 									<ul>
