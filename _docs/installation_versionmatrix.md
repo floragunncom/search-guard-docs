@@ -15,3 +15,6 @@ All Search Guard releases, past and present, are available on Maven Central. You
 
 If you are upgrading from Elasticsearch < 6.5.0 to Elasticsearch >= 6.5.0, please read the [upgrade instructions to Elasticsearch 6.5.x](upgrading_6_5_0.md). 
 {: .note .js-note .note-warning}
+
+Please also refer to [Search Guard End of Life policy](eol.md) to make sure that you are not running an outdated Search Guard version.  
+{: .note .js-note .note-warning}
