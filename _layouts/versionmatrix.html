@@ -37,7 +37,9 @@
 							      <th>Search Guard Version</th>
 							      <th>Kibana Plugin Version</th>
 							      <th>Artifact</th>
-							      <th>Support available</th>
+							      <th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">Receive new features</a></th>
+										<th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">Receive critical bugfixes</a></th>
+										<th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">End of Life</a></th>
 							    </tr>
 							  </thead>
 							  <tbody>
@@ -50,11 +52,12 @@
 								  <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
 								  <td>com.floragunn:search-guard-7:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
 								  <td>{{ sgversions[3] }}</td>
+									<td>{{ sgversions[4] }}</td>
+									<td>{{ sgversions[5] }}</td>
 							    </tr>
 							    {% endfor %}
 							  </tbody>
 							</table>
-
 						</div>
 					</div>
 				</div>

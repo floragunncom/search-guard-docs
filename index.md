@@ -21,13 +21,36 @@ Copryight 2016-2019 floragunn GmbH
 
 Version: {{site.searchguard.version}}
 
-Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in other countries
+* [Installation](search-guard-versions)
+* [Quick Start](demo-installer)
 
-Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
+<h3>Current releases</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Elasticsearch Version</th>
+        <th>Search Guard Version</th>
+        <th>Kibana Plugin Version</th>
+        <th>Artifact</th>
+    </tr>
+    </thead>
+    <tbody>
 
-Copyright 2016-2019 floragunn GmbH
+    {% for version in site.sgversions %}
 
+    {% assign sgversions = version | split: "|" %}
 
+    {% if sgversions[3] != 'yes' %}
+        {% continue %}
+    {% endif %}
 
-
-
+    <tr>
+                                            
+        <td>{{ sgversions[0] }}</td>
+        <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-7/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-7-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+        <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+        <td>com.floragunn:search-guard-7:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

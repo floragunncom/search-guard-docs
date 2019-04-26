@@ -21,3 +21,5 @@ This page lists all available versions for Elasticsearch >= 7.0.0. For previous 
 * [Search Guard 6 for Elasticsearch 6.x](/6.x-24/search-guard-versions)
 * [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
 
+Please also refer to [Search Guard End of Life policy](eol.md) to make sure that you are not running an outdated Search Guard version.  
+{: .note .js-note .note-warning}
