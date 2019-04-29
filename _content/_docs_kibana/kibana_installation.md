@@ -207,6 +207,9 @@ You can override this behaviour explicitly by using the following option in your
 ```
 # Allow using a client certificate defined in elasticsearch.ssl.certificate
 searchguard.allow_client_certificates: true
+# If you are on Kibana >= 6.5.0 you might want to also set
+#elasticsearch.ssl.alwaysPresentCertificate: true
+# see https://github.com/elastic/kibana/pull/24304
 ```
 
 ## Where to go next
