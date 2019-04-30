@@ -18,19 +18,15 @@ If you have the Search Guard configuration files at hand, you can of course simp
 
 If you're unsure whether your configuration files actually resemble the active Search Guard configuration on your cluster, you can use [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) to retrieve the configuration from a running cluster, and upload it to another one:
 
-Retrieve the current configuration from a cluster running on `staging.example.com` :
+Backup the current configuration from a cluster running on `staging.example.com` :
 
 ```
-./sgadmin.sh --retrieve -h staging.example.com -ts ... -tspass ... -ks ... -kspass ...
+./sgadmin.sh -backup /etc/sgbackup/ -h staging.example.com -ts ... -tspass ... -ks ... -kspass ...
 ```
 
 To upload the dumped files to another cluster, here `production.example.com` listening on port 9301, use:
 
 ```
-./sgadmin.sh -h production.example.com -cd /etc/backup/ 
+./sgadmin.sh -h production.example.com -cd /etc/sgbackup/ 
     -ts ... -tspass ... -ks ... -kspass ...
 ```
-
-You can read more details about this in the "Backup and Restore" chapter of the [sgadmin documentation](../_docs_configuration_changes/configuration_sgadmin.md).
-
-

@@ -188,7 +188,7 @@ To upload all configuration files in a directory, use:
 If you want to push a single configuration file, use:
 
 ```bash
-./sgadmin.sh -f ../sgconfig/sg_internal_users.yml -t internalusers  \
+./sgadmin.sh -f ../sgconfig/sg_internal_users.yml -t internalusers \
     -ts ... -tspass ... -ks ... -kspass ...
 ```
 
@@ -199,6 +199,55 @@ the filetype must be one of:
 * rolesmapping
 * internalusers
 * actiongroups
+* tenants
+
+### Validating configuration files
+
+Before uploading new configurations to your cluster, you can validate them:
+
+```bash
+./sgadmin.sh -cd ../sgconfig -vc <6|7>   \
+    -ts ... -tspass ... -ks ... -kspass ...
+```
+
+| Name | Description |
+|---|---|
+| -vc/--validate-configs <version> | Validate configuration files specified by the -cd or -t switch. Version must be 6 for Search Guard 6 and 7 for Search Guard 7|
+
+### Migrating configuration files
+
+If you upgrade from Search Guard 6 to Search Guard 7, you can automatically migrate your existing configuration files to the new syntax:
+
+```bash
+./sgadmin.sh -migrate ../sgconfig    \
+    -ts ... -tspass ... -ks ... -kspass ...
+```
+
+| Name | Description |
+|---|---|
+| -migrate <folder> | Migrate configuration files in <folder> from version 6 to version 7.|
+
+### Backup and Restore
+
+You can download all current configuration files from your cluster with the following command:
+
+```bash
+./sgadmin.sh -backup <folder>  \
+  -ts ... -tspass ... -ks ... -kspass ...
+```
+
+This will dump the currently active Search Guard configuration from your cluster to individual files in the specified folder. You can then use these files to upload the configuration again to the same or a different cluster. This is for example useful when moving a PoC to production.
+
+To upload the dumped files to another cluster use:
+
+```bash
+./sgadmin.sh -h production.example.com -p 9301 -cd /etc/sgbackup/  \
+    -ts ... -tspass ... -ks ... -kspass ...
+```
+
+| Name | Description |
+|---|---|
+| -backup <folder> | retrieve the current Search Guard configuration from a running cluster, and dump it to the specified <folder>|
 
 ### Cipher settings
 
@@ -209,34 +258,6 @@ Usually you do not need to change the cipher settings. If you do, use the follow
 | -ec | enabled-ciphers, comma separated list of enabled TLS ciphers.|
 | -ep | enabled-protocols, comma separated list of enabled TLS protocols.|
 
-### Backup and Restore
-
-You can download all current configuration files from your cluster with the following command:
-
-```bash
-./sgadmin.sh -r -ts ... -tspass ... -ks ... -kspass ...
-```
-
-This will dump the currently active Search Guard configuration from your cluster to individual files in the working directory. You can then use these files to upload the configuration again to the same or a different cluster. This is for example useful when moving a PoC to production.
-
-You can also specify the download location with the -cd option:
-
-```bash
-./sgadmin.sh -r -h staging.example.com -p 9300  \
-    -cd /etc/backup/ -ts ... -tspass ... -ks ... -kspass ...
-```
-
-To upload the dumped files to another cluster use:
-
-```bash
-./sgadmin.sh -h production.example.com -p 9301 -cd /etc/backup/  \
-    -ts ... -tspass ... -ks ... -kspass ...
-```
-
-| Name | Description |
-|---|---|
-| -r | retrieve the current Search Guard configuration from a running cluster, and dump it to configuration files in the working directory|
-| -cd | Specify the directory to store the files to. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
 
 ### Rescue tools
 

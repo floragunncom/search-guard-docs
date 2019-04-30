@@ -42,7 +42,7 @@ You can configure the following settings:
 
 | Name | Description |
 |---|---|
-| searchguard.dynamic.http.xff.enabled | Boolean, Enable or disable proxy support. Default: true |
+| searchguard.dynamic.http.xff.enabled | Boolean, Enable or disable proxy support. Default: false |
 | searchguard.dynamic.http.xff.internalProxies | A regular expression containing the IP addresses of all trusted proxies. |
 | searchguard.dynamic.http.xff.remoteIpHeader | String, name of the HTTP header field where the chain of hostnames are stored. Default: `x-forwarded-for` |
 

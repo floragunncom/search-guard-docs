@@ -56,48 +56,13 @@ The following entry in sg_config can be used to configure this:
 
 | Name  | Description  |
 |---|---|
-| disallow | forbids multiple filtered index aliases completely |
 | warn | default, logs a warning message if multiple filtered index aliases are detected on `WARN` level |
+| disallow | forbids multiple filtered index aliases completely |
 | nowarn | logs a warning message if multiple filtered index aliases are detected on `DEBUG` level |      
-
-## Snapshot and Restore
-
-The Search Guard configuration index contains sensitive data like user, role and permission information. Since this index can be part of any snapshot the default   behavior of Search Guard is to only allow restore operations **if an admin certificate is used**.
-
-For curl, you need to specify the admin certificate with it's complete certificate chain and the key like:
-
-```bash
-curl --insecure --cert chain.pem --key kirk.key.pem -XPOST '<host>:9200/_snapshot/my_backup/snapshot_1/_restore?pretty'
-```
-
-## Enabling snapshot and restore for regular users
-
-If you want to allow restore operations also for regular users without an admin certificate, you need to enable this feature explicitly in `elasticsearch.yml`:
-
-```
-searchguard.enable_snapshot_restore_privilege: true
-```
 
 ### Required permissions
 
-A role definition in `roles.yml` which allows snapshot and restore operations on all indices looks like:
-
-```yaml
-sg_snapshot_restore:
-  cluster:
-    - cluster:admin/repository/put
-    - cluster:admin/repository/get
-    - cluster:admin/snapshot/status
-    - cluster:admin/snapshot/get
-    - cluster:admin/snapshot/create
-    - cluster:admin/snapshot/restore
-    - cluster:admin/snapshot/delete
-  indices:
-    '*':
-      '*':
-        - indices:data/write/index
-        - indices:admin/create
-```
+In order to perform snapshot and restore operations, the user must be assigned to the built-in `SGS_MANAGE_SNAPSHOTS` role.
 
 ### Restoring a snapshot
 
@@ -114,3 +79,17 @@ POST /_snapshot/my_backup/snapshot_1/_restore
 ```
 
 It is recommended to exclude the Search Guard index from all snapshots globally.
+
+## Snapshot and Restore: Search Guard index
+
+The Search Guard configuration index contains sensitive data like user, role and permission information. 
+
+Restoring the Search Guard configuration index from a snapshot is only allowed **if an admin certificate is used**.
+
+For curl, you need to specify the admin certificate with it's complete certificate chain and the key like:
+
+```bash
+curl --insecure --cert chain.pem --key kirk.key.pem -XPOST '<host>:9200/_snapshot/my_backup/snapshot_1/_restore?pretty'
+```
+
+
