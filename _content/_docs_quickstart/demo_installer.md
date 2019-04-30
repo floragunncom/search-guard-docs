@@ -134,7 +134,7 @@ If you've used the demo configuration to initializing Search Guard as outlined a
 
 ```yaml
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://localhost:9200"
+elasticsearch.hosts: "https://localhost:9200"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

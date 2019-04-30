@@ -1,60 +1,80 @@
 ---
-title: Defining Roles and permissions
-html_title: Roles and permissions
+title: Search Guard roles
+html_title: Search Guard roles
 slug: roles-permissions
 category: rolespermissions
 order: 400
 layout: docs
 edition: community
-description: How to define role based access to Elasticsearch on index- and document-type level with Search Guard.
+description: How to define role based access to Elasticsearch on index level with Search Guard.
 ---
 <!---
 Copyright 2019 floragunn GmbH
 -->
-# Defining Roles and permissions
+
+# Defining Search Guard Roles
 {: .no_toc}
 
 {% include toc.md %}
 
 Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
 
-Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. You can define as many roles as you like. The syntax to define a role, and associate permissions with it, is as follows:
+Search Guard roles are the central place to configure access permissions on:
+
+* Cluster level
+* Index level
+* Document level
+* Field level
+* Kibana level
+
+Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. The syntax to define a role is as follows:
 
 ```yaml
-<sg_role_name>:
-  cluster:
+<role_name>:
+  cluster_permissions:
     - '<action group or single permission>'
     - ...
-  indices:
-    '<indexname or alias>':
-      '<document type>':  
+  index_permissions:
+    - index_patterns:
+      - <index pattern the allowed actions should be applied to>
+      - <index pattern the allowed actions should be applied to>
+      - ...      
+      allowed_actions:
         - '<action group or single permission>'
         - ...
-      '<document type>':  
-        - '<action group or single permission>'
+      dls: '<Document level security query>'
+      fls:
+        - '<field level security field>'
+        - '<field level security field>'        
         - ...
-      _dls_: '<Document level security query>'
-      _fls_:
-        - '<field level security fiels>'
-        - ...
-    tenants:
-      <tenantname>: <RW|RO>
-      <tenantname>: <RW|RO>        
+    - index_patterns:
+      - ...
+  tenant_permissions:
+    - tenant_patterns:
+      - <tenant pattern the allowed actions should be applied to>
+      - <tenant pattern the allowed actions should be applied to>
+      - ...      
+      allowed_actions:
+        - SGS_KIBANA_ALL_WRITE
+    - tenant_patterns:
+      - ...
 ```
 
-The Search Guard role name must not contain dots.
-{: .note .js-note .note-warning}
+## Description
 
-The keys `_dls_` and `_fls_` are used to configure [Document- and Field-level security](../_docs_dls_fls/dlsfls_dls.md). Please refer to this chapter for details.
+| Name | Description |
+|---|---|
+| cluster_permissions | Permissions that apply on the cluster level, e.g. monitoring the cluster health|
+| index_permissions | Permissions that apply to one or more index patterns |
+| allowed_actions | The actions that are allowed for the index or tenant patterns |
+| dls | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set. |
+| fls | The [fields that should be exluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
+| tenant_permissions | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana. |
 
-The key `tenants` is used to configure [Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md). Please refer to this chapter for details.
-
-Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.
-{: .note .js-note .note-warning}
 
 ## Cluster-level permissions
 
-The `cluster` entry is used to define permissions on cluster level. Cluster-level permissions are used to allow/disallow actions that affect either the whole cluster, like querying the cluster health or the nodes stats. 
+The `cluster_permissions` entry is used to define permissions on cluster level. Cluster-level permissions are used to allow/disallow actions that affect either the whole cluster, like querying the cluster health or the nodes stats. 
 
 They are also used to allow/disallow actions that affect multiple indices, like `mget`, `msearch` or `bulk` requests.
 
@@ -62,23 +82,61 @@ Example:
 
 ```yaml
 sg_finance:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
+  cluster_permissions:
+    - SGS_CLUSTER_COMPOSITE_OPS
+  index_permissions:
     ...
 ```
 
 ## Index-level permissions
 
-The `indices` entry is used to allow/disallow actions that affect a single index. You can define permissions for each document type in your index separately.
+The `index_permissions` entry is used to allow/disallow actions that affect indices matching the configured index patterns.
 
-Document types are deprecated in Elasticsearch 6 and will be removed with Elasticsearch 7. Search Guard still supports document types for backwards compatibility. This support will be removed in Search Guard 7. To define permissions for all document types, use an asterisk ('\*') as document type.
-{: .note .js-note .note-warning}
+For example, to apply `READ` permissions on a single index called `humanresources` the configuration would look like:
 
+```yaml
+<role_name>:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - "humanresources"
+      allowed_actions:
+        - READ
+```
 
-### Dynamic index names: Wildcards and regular expressions
+To apply `READ` permissions to two indices called `humanresources` and `finance` you would write:
 
-The index name supports (filtered) index aliases. Both the index name and the document type entries support wildcards and regular expressions.
+```yaml
+<role_name>:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - "humanresources"
+      - "finance"
+      allowed_actions:
+        - READ
+```
+
+To apply `READ` and `WRITE` permissions to two indices called `humanresources` and `finance` you would write:
+
+```yaml
+<role_name>:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - "humanresources"
+      - "finance"
+      allowed_actions:
+        - READ
+        - WRITE
+```
+
+### Dynamic index patterns: Wildcards and regular expressions
+
+When defining index patterns you can use wildcards and regular expressions:
 
 * An asterisk (`*`) will match any character sequence (or an empty sequence)
   * `*my*index` will match `my_first_index` as well as `myindex` but not `myindex1`. 
@@ -87,44 +145,74 @@ The index name supports (filtered) index aliases. Both the index name and the do
 * Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
   * `'/\S*/'` will match any non whitespace characters
 
-Note: The index name cannot contain dots. Instead, use the `?` wildcard, as in `?kibana`.
-{: .note .js-note .note-warning}
-
 Example: 
 
 ```yaml
-sg_kibana:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO    
-  indices:
-    '?kibana':
-      '*':
-        - INDICES_ALL
+<role_name>:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - "logstash-*"
+      allowed_actions:
+        - CRUD
 ```
 
-### Dynamic index names: User name substitution
+### Dynamic index patterns: User name substitution
 
-For `<indexname or alias>` also the placeholder `${user.name}` is allowed to support indices or aliases which contain the name of the user. During evaluation of the permissions, the placeholder is replaced with the username of the authenticated user for this request. Example:
+When defining index patterns the placeholder `${user.name}` is allowed to support indices or aliases which contain the name of the user. 
 
 ```yaml
-sg_own_index:
-  cluster:
-    ...
-  indices:
-    '${user_name}':
-      '*':
-        - INDICES_ALL
+<role_name>:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - "index-${user_name}"
+      allowed_actions:
+        - CRUD
 ```
 
-### Dynamic index names: User attributes
+### Dynamic index patterns: User attributes
 
-Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
+Any authentication and authorization backend can add additional user attributes that you can use for variable substitution.
 
 For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. For the internal user database, they are configured in sg_internalusers.yml.
 
-You can use these attributes in index names to implement index-level access control based on user attributes. For JWT, the attributes start with `attr_jwt_*`, for LDAP they start with `attr_ldap_*`.
+You can use these attributes in index patterns to implement index-level access control based on user attributes: 
+
+* for internal users, the attributes start with `attr_internal_*`
+* for JWT, the attributes start with `attr_jwt_*`
+* for LDAP they start with `attr_ldap_*`.
 
 If you're unsure, what attributes are accessible for the current user you can always check the `/_searchguard/authinfo` endpoint. This endpoint will list all attribute names for the currently logged in user.
+
+### Internal users Example:
+
+If the internal users entry contains an attribute `department`:
+
+```yaml
+jdoe:
+  hash: ...
+  attributes:
+    department: "operations"
+```
+
+You can use this `department` attribute to control index access like:
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - CLUSTER_COMPOSITE_OPS
+  index_permissions:
+    - index_patterns:  
+      - '${attr_internal_department}':
+      allowed_actions:
+        - SGS_CRUD
+```
+
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
+
 
 ### JWT Example:
 
@@ -143,92 +231,47 @@ You can use this `department` claim to control index access like:
 
 ```yaml
 sg_own_index:
-  cluster:
+  cluster_permissions:
     - CLUSTER_COMPOSITE_OPS
-  indices:
-    '${attr_jwt_department}':
-      '*':
-        - INDICES_ALL
+  index_permissions:
+    - index_patterns:  
+      - '${attr_jwt_department}':
+      allowed_actions:
+        - SGS_CRUD
 ```
 
-In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations` for the user `jdoe`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
 
 ### Active Directory / LDAP Example
 
 If the Active Directory / LDAP entry of the current user contains an attribute `department`, you can use it in the same way as as a JWT claim, but with the `ldap.` prefix:
 
 ```yaml
-sg_department_index:
-  cluster:
+sg_own_index:
+  cluster_permissions:
     - CLUSTER_COMPOSITE_OPS
-  indices:
-    '${attr_ldap_department}':
-      '*':
-        - INDICES_ALL
+  index_permissions:
+    - index_patterns:  
+      - '${attr_ldap_department}':
+      allowed_actions:
+        - SGS_CRUD
 ```
 
-In this example, Search Guard grants the `INDICES_ALL` permissions to the index `operations`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations`.
 
 ### Multiple Variables
 
 You can use as many variables, wildcards and regular expressions as needed, for example:
 
 ```yaml
-sg_department_index:
-  cluster:
+sg_own_index:
+  cluster_permissions:
     - CLUSTER_COMPOSITE_OPS
-  indices:
-    'logfiles-${attr_ldap_department}-${user_name}-*':
-      '*':
-        - INDICES_ALL
+  index_permissions:
+    - index_patterns:  
+      - 'logfiles-${attr_ldap_department}-${user_name}-*':
+      allowed_actions:
+        - SGS_CRUD
 ```
 
-## Using action groups to assign permissions
-
-Search Guard comes with the ability to group permissions and give them a telling name. These groups are called [action groups](../_docs_roles_permissions/configuration_action_groups.md) and are the **preferred way of assigning permissions to roles**. Search Guard ships with a predefined set of action groups that will cover most use cases. See chapter [action groups](configuration_action_groups.md) for an overview. Action groups are written in upper case by convention.
-
-Example:
-
-```yaml
-myrole:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO    
-  indices:
-    'index1':
-      '*':
-        - SEARCH
-    'index2':
-      '*':
-        - CRUD
-```
-
-## Using single permissions
-
-If you need to apply a more fine-grained permission schema, Search Guard also supports assigning single permissions to a role.
-
-Single permissions either start with `cluster:` or `indices:`, followed by a REST-style path that further defines the exact action the permission grants access to.
-
-For example, this permission would grant the right to execute a search on an index:
-
-```
-indices:data/read/search
-```
-
-While this permission grants the right to write to the index:
-
-```
-indices:data/write/index
-```
-
-On cluster-level, this permission grants the right to display the cluster health:
-
-```
-cluster:monitor/health
-```
-
-Single permissions also support wildcards. The following permission grants all admin actions on the index: 
-
-```
-indices:admin/*
-```
 

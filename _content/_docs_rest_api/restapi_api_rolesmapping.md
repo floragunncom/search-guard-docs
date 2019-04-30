@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the roles mapping REST API endpoints to assign users to Search Guard roles.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Roles mapping API
@@ -43,7 +43,8 @@ GET /_searchguard/api/rolesmapping/sg_role_starfleet
 ```json
 {
   "sg_role_starfleet" : {
-    "backendroles" : [ "starfleet", "captains", "defectors", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
+    "description": "...",
+    "backend_roles" : [ "starfleet", "captains", "defectors", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
     "hosts" : [ "*.starfleetintranet.com" ],
     "users" : [ "worf" ]
   }
@@ -86,7 +87,7 @@ Replaces or creates the role mapping specified by `rolename `.
 ```json
 PUT /_searchguard/api/rolesmapping/sg_role_starfleet
 {
-  "backendroles" : [ "starfleet", "captains", "defectors", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
+  "backend_roles" : [ "starfleet", "captains", "defectors", "cn=ldaprole,ou=groups,dc=example,dc=com" ],
   "hosts" : [ "*.starfleetintranet.com" ],
   "users" : [ "worf" ]
 }
@@ -138,10 +139,10 @@ PATCH /_searchguard/api/rolesmapping/sg_human_resources
 PATCH /_searchguard/api/rolesmapping
 [ 
   { 
-    "op": "add", "path": "/sg_human_resources", "value": { "users": ["user1"], "backendroles": ["backendrole2"] } 
+    "op": "add", "path": "/sg_human_resources", "value": { "users": ["user1"], "backend_roles": ["backendrole2"] } 
   },
   { 
-    "op": "add", "path": "/sg_finance", "value": { "users": ["user2"], "backendroles": ["backendrole2"] } 
+    "op": "add", "path": "/sg_finance", "value": { "users": ["user2"], "backend_roles": ["backendrole2"] } 
   },
   { 
     "op": "remove", "path": "/sg_management"

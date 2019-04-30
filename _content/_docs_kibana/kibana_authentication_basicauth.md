@@ -9,7 +9,7 @@ edition: community
 description: How to configure Kibana for HTTP Basic Authentication.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # HTTP Basic Authentication
@@ -26,14 +26,6 @@ HTTP Basic is the most common used authentication type and probably the one you 
 * If the user does not have any active session, a customizable login page is display and the user has to log in.
 
 To activate Basic Authentication and the login page, add the following entry to `kibana.yml`:
-
-**For v13 and below:**
-
-```
-searchguard.basicauth.enabled: true
-```
-
-**For v14 and above:**
 
 ```
 searchguard.auth.type: "basicauth"
@@ -69,17 +61,14 @@ searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
 <span class="js-copy-to-clipboard copy-code">copy</span> 
 <pre class="language-yaml">
 <code class=" js-code language-markup">
-# v13 and below: Enable HTTP Basic Authentication
-searchguard.basicauth.enabled: true
-
-# v14 and above: Enable HTTP Basic Authentication
+# Activate basic auth
 searchguard.auth.type: "basicauth"
 
 # Configure session management
 searchguard.cookie.password: &lt;encryption key, min. 32 characters&gt;
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

@@ -18,34 +18,47 @@ Copyright 2019 floragunn GmbH
 
 ## Reserved resources
 
-You can mark any user, role, action group or roles mapping as `reserved` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
+You can mark any user, role, action group or roles mapping as `reserced` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
 
-You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are left untouched. For example, it makes sense to mark the Kibana server user as `reserved`.
+You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are left untouched.
 
-To mark a resource `reserved `, add the following flag:
+To mark a resource `readonly`, add the following flag:
 
 ```yaml
-sg_kibana_user:
+sg_my_role:
   reserved: true
   ...
 ```
 
-To add or remove the readonly flag, you need to use `sgadmin`. 
+To change the `reserved` flag you need to use sgadmin.
+{: .note .js-note .green}
 
 ## Hidden resources
 
-You can mark any user, role, action group or roles mapping as `hidden`. Resources that have this flag set to true are not returned by the REST API, and cannot be changed or deleted.
+Any resource can be marked *hidden*. As the name implies, a hidden resource
 
-You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are completely hidden. 
+* is removed from any API GET request result
+  * when querying for a single hidden resource, a `404` is returned
+  * when querying for all resources, hidden resources are filtered from the result set
+* cannot be deleted
+  * a `404` is returned instead
+* cannot be changed
+  * a `403` is returned instead 
 
-To mark a resource `hidden`, add the following flag:
+Hidden resources are most useful if you want to give end users access to the REST API, but you want to hide some of the service users your platform is using. For example, the Kibana server user or the logstash user.
+
+To change the `reserved` flag you need to use sgadmin.
+{: .note .js-note .green}
+
+Example:
 
 ```yaml
-sg_kibana_user:
+sg_my_role:
   hidden: true
   ...
-```
+```  
 
-Hidden resources are read-only by definition.
+## Static resources
 
-To add or remove the readonly flag, you need to use `sgadmin`. 
+The Search Guard built-in roles and and action groups are marked `static` and cannot be changed.
+{: .note .js-note}

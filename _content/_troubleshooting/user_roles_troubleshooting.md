@@ -7,7 +7,7 @@ layout: troubleshooting
 description: How to troubleshoot problems with Search  Guard users and roles.
 ---
 
-<!--- Copryight 2018 floragunn GmbH -->
+<!--- Copyright 2019 floragunn GmbH -->
 
 # User and roles troubleshooting
 
@@ -36,7 +36,7 @@ curl -k -u admin:admin -XGET "https://sgssl-0.example.com:9200/_searchguard/auth
     "attr.internal.attribute3"
   ],
   "sg_roles" : [
-    "sg_all_access",
+    "SGS_ALL_ACCESS",
     "sg_own_index"
   ],
   "sg_tenants" : {
@@ -67,7 +67,7 @@ The sg_roles section lists all assigned Search Guard roles:
 
 ```
 "sg_roles" : [
-  "sg_all_access",
+  "SGS_ALL_ACCESS",
   "sg_own_index"
 ]
 ```

@@ -8,7 +8,7 @@ description: How to troubleshoot problems with Search Guard roles and permission
 
 ---
 
-<!--- Copryight 2018 floragunn GmbH -->
+<!--- Copyright 2019 floragunn GmbH -->
 
 # Roles and permissions troubleshooting
 
@@ -183,7 +183,7 @@ By default, Search Guard requires the user to have the required permission(s) fo
 If you want Search Guard to return only data from allowed indices, and discard the security exceptions for the other ones, set do\_not\_fail\_on\_forbidden to true in sg_config.yml:
 
 ```
-searchguard:
+sg_config:
   dynamic:
     kibana:
       do_not_fail_on_forbidden: true

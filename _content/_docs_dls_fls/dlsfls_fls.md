@@ -14,7 +14,7 @@ resources:
 
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Field-level security
@@ -32,17 +32,15 @@ In this mode, only fields listed in the FLS section of the role definition are r
 
 ```yaml
 hr_employee:
-  ...
-  indices:
-    'humanresources':
-      'employees':
-      ...
-      _dls_: ...
-      _fls_:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      fls:
         - 'Designation'
         - 'FirstName'
-        - 'LastName'
-     ...
+        - 'LastName'      
 ```
 
 ## Excluding fields
@@ -51,17 +49,15 @@ If you rather want to exclude than include fields, simply prefix all fields with
 
 ```yaml
 hr_employee:
-  ...
-  indices:
-    'humanresources':
-      'employees':
-      ...
-      _dls_: ...
-      _fls_:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      fls:
         - '~Designation'
         - '~FirstName'
-        - '~LastName'
-     ...
+        - '~LastName'      
 ```
 
 ## Using wildcards

@@ -12,7 +12,7 @@ resources:
   - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Kibana with JWT
@@ -63,11 +63,8 @@ searchguard.jwt.header: <HTTP header name the JWT gets copied to>
 <span class="js-copy-to-clipboard copy-code">copy</span> 
 <pre class="language-yaml">
 <code class=" js-code language-markup">
-# Disable HTTP Basic Authentication and enabe JWT
-searchguard.basicauth.enabled: false
-searchguard.jwt.enabled: true
 
-# v14 and above: Enable JWT authentication
+# Enable JWT authentication
 searchguard.auth.type: "jwt"
 
 # If the token is not in the default 'Authorization' HTTP header, 
@@ -80,7 +77,7 @@ searchguard.jwt.header: 'Authorization'
 searchguard.jwt.url_param: 'jwtparam'
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

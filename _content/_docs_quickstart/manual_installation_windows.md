@@ -78,7 +78,7 @@ searchguard.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=test,C=de
 searchguard.enable_snapshot_restore_privilege: true
 searchguard.check_snapshot_restore_write_privileges: true
-searchguard.restapi.roles_enabled: ["sg_all_access"]
+searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 </code>
 </pre>
 </div>
@@ -139,7 +139,7 @@ If you've used the demo configuration to initializing Search Guard as outlined a
 
 ```yaml
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://localhost:9200"
+elasticsearch.hosts: "https://localhost:9200"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

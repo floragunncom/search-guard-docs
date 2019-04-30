@@ -152,7 +152,7 @@ The `external_configuration` contains the `elasticsearch.yml` settings on node s
 }
 ```
 
-Since the JSON object is stored as String, the quotation marks are escaped in the originl output. Depending on your JSON parser you might need to remove them first.
+Since the JSON object is stored as String, the quotation marks are escaped in the original output. Depending on your JSON parser you might need to remove them first.
 {: .note .js-note .note-warning}
 
 ### Environment variables

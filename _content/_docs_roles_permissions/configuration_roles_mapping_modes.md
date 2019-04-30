@@ -39,9 +39,9 @@ For example, if your LDAP returns a role `ldap_finance`, you can directly define
 
 ```yaml
 ldap_finance:
-  cluster:
+  cluster_permissions:
     - CLUSTER_COMPOSITE_OPS_RO
-  indices:
+  index_permissions:
     ...
 ```
 
@@ -53,7 +53,7 @@ Let's say you've defined a mapping like:
 
 ```yaml
 sg_finance:
-  backendroles:
+  backend_roles:
     - ldap_finance
 ```
 

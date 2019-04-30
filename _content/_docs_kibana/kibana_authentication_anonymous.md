@@ -10,7 +10,7 @@ description: How to configure Kibana to allow anonymous access to indices, dashb
 
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Kibana with anonymous authentication
@@ -46,7 +46,7 @@ Kibana anonymous authentication only works in conjunction with Basic authenticat
 To use anonymous authentication, enable it in sg_config.yml like:
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
     ...
     http:
@@ -56,50 +56,26 @@ searchguard:
 
 ## Kibana access permissions for the anonymous user
 
-Every Kibana user needs a minimum set of permissions to be able to access Kibana. In the Search Guard demo configuration, these permissions are defined in the `sg_kibana_user` role. You can assign these permissions by either:
+Every Kibana user needs a minimum set of permissions to be able to access Kibana. These permissions are defined in the built-in `SGS_KIBANA_USER` role. You can assign these permissions by either:
 
-**Mapping the backend role `sg_anonymous_backendrole` to the `sg_kibana_user` role.**
+**Mapping the backend role `sg_anonymous_backendrole` to the `SGS_KIBANA_USER` role.**
 
 sg\_roles\_mapping.yml:
 
 ```
-sg_kibana_user:
+SGS_KIBANA_USER:
   backendroles:
     - sg_anonymous_backendrole
 ```
 
-**Mapping the `sg_anonymous` user to the sg_kibana_user role.**
+**Mapping the `sg_anonymous` user to the `SGS_KIBANA_USER` role.**
 
 sg\_roles\_mapping.yml:
 
 ```
-sg_kibana_user:
+SGS_KIBANA_USER:
   users:
     - sg_anonymous
-```
-**Adding the permissions to the default `sg_anonymous_backendrole` directly (not recommended due to a lack of flexibility)**
-
-```
-sg_anonymous_backendrole:
-  cluster:
-    - INDICES_MONITOR
-    - CLUSTER_COMPOSITE_OPS
-  indices:
-    '?kibana':
-      '*':
-        - MANAGE
-        - INDEX
-        - READ
-        - DELETE
-    '?kibana-6':
-      '*':
-        - MANAGE
-        - INDEX
-        - READ
-        - DELETE
-    '*':
-      '*':
-        - indices:data/read/field_caps*
 ```
 
 ## Index access permissions for the anonymous user
@@ -110,11 +86,12 @@ sg_roles.yml:
 
 ```
 sg_anonymous_role:
-  cluster:
+  cluster_permissions:
     - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'public-*':
-      '*':
+  index_permissions:
+    - index_patterns:
+      - "public-*"
+      allowed_actions:
         - READ
 ```
 

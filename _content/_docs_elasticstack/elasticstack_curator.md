@@ -31,15 +31,16 @@ First set up a curator role and allow access to all indices that you want to man
 
 ```
 sg_curator:
-  cluster:
-    - CLUSTER_MONITOR  
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'logstash-*':
-      '*':
-        - UNLIMITED
+  cluster_permissions:
+    - SGS_CLUSTER_MONITOR  
+    - SGS_CLUSTER_COMPOSITE_OPS_RO
+  index_permissions:
+    - index_patterns:
+      - 'logstash-*'
+      allowed_actions:
+        - SGS_UNLIMITED
 ```
-
+        
 If you use the Search Guard internal user database, set up a curator user.
 
 **sg\_internal\_users.yml:**
@@ -141,7 +142,6 @@ Curator only supports unencrypted private keys.
 {: .note .js-note .note-warning}
 
 If you use client certificates, you also need to set up a [client certificate authentication domain.](../_docs_auth_auth/auth_auth_clientcert.md){:target="_blank"}
-
 
 ### Full example
 

@@ -9,7 +9,7 @@ edition: compliance
 description: Use the Search Guard Compliance edition to mask and anonymize sensitive fields in any Elasticsearch index.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Field anonymization
@@ -23,7 +23,7 @@ Field masking works well together with field-level security and can be applied t
 
 ## Hash algorithm and salts
 
-Search Guard uses Blake2bDigest to calculate the hash. This alogorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing.
+Search Guard by default uses Blake2bDigest to calculate the hash. This alogorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing.
 
 ## Setting the salt
 
@@ -41,43 +41,44 @@ While setting a salt is optional, it is highly recommended to do so.
 
 ## Configuring field masking
 
-Field masking can be configured per role and per index, very similar to field-level security. You simply list the fields to be masked under the  `_masked_fields_` key in the role definition. Wildcards and nested documents are supported:
+Field masking can be configured per role and index pattern, very similar to field-level security. You simply list the fields to be masked under the  `_masked_fields_` key in the role definition. Wildcards and nested documents are supported:
 
-```
-role_name:
-  cluster:
-  ...
-  indices:
-    indexname:
-      documenttype:
-      _masked_fields_:
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      masked_fields:
         - field1
         - field2*
         - fieldx.fieldy
         - fielda.fieldb.*      
+      
 ```
 
 Field masking plays well together with [field-level security](../_docs_dls_fls/dlsfls_fls.md). You just need to make sure that the fields you want to mask are not excluded from the result by the field-level security configuration.
 
 ## Example
 
-```
-sg_human_resources_masking:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'humanresources':
-      '*':
-        - READ
-      _fls_:
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      fls:
         - 'Designation'
         - 'Salary'
         - 'FirstName'
         - 'LastName'
         - 'Address'
-      _masked_fields_:
+      masked_fields:
         - '*Name'
-        - 'Address'
+        - 'Address'     
+      
 ```
 
 In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName` and `Address` of documents in the index `humanresources` are included in the resulting documents. This is done by whitelisting these fields in the `_fls_` section of the role / index definition. In addition, the `FirstName`, `LastName` and `Address` are masked. A search result might look like:
@@ -99,21 +100,21 @@ In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName`
 ```
 
 ## Custom field masking
-Since Search Guard v24 you can configure alternative hash algorithms (instead of Blake2bDigest) and you also can mask only a part of the field value.
+You can configure alternative hash algorithms (instead of Blake2bDigest) and you also can mask only a part of the field value.
 
 ### Defining an alternative hash algorithm
 
-```
-sg_masking_sha:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'humanresources':
-      '*':
-        - READ
-      _masked_fields_:
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      masked_fields:
         - '*Name::SHA-1'
-        - 'Address::SHA-512'
+        - 'Address::SHA-512'     
+      
 ```
 
 The above example means that all values of all fields ending with `Name` are anonymized with an SHA-1 hash and all values of the field `Address` are anonymized with an SHA-512. All hashing algorithms provided which are provided by your JVM are supported. This typically includes MD5, SHA-1, SHA-384, and SHA-512.
@@ -125,17 +126,18 @@ If you use the REST API to define your roles and masked fields then the validity
 You can apply one or more regex patterns and replacement strings to configure how the value of a particular field will be anonymized.
 The formal definition is `<field-pattern>::/<regex>/::<replacement-string>`. There can be multiple regex/replacement tuples whereas the result from one on the left side is passed as in input to the one on the right side (like piping in a shell). The regex can include `^` and `$`, they are not implicitly assumed. 
 
-```
-sg_pattern_anonymization:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'humanresources':
-      '*':
-        - READ
-      _masked_fields_:
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      masked_fields:
         - 'lastname::/.*/::*'
         - '*ip_source::/[0-9]{1,3}$/::XXX::/^[0-9]{1,3}/::***'
+   
+      
 ```
 
 The above example means that every field value of the field `lastname` is anonymized by replacing all characters with a *.

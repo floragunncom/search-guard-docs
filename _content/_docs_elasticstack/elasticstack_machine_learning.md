@@ -23,7 +23,6 @@ This documentation assumes that you already installed and configured Kibana and 
 
 In `elasticsearch.yml`, disable X-Pack Security and enable X-Pack Machine Learning:
 
-
 ```yaml
 xpack.security.enabled: false
 xpack.ml.enabled: true
@@ -32,31 +31,11 @@ xpack.ml.enabled: true
 
 ## Elasticsearch: Add the machine learning user
 
-For using X-Pack Machine learning, the respective user must have the `sg_xp_machine_learning` and `sg_kibana_user` role assigned.
+For using  X-Pack Machine learning, the respective user must have the built-in `SGS_XP_MACHINE_LEARNINGG` and `SGS_KIBANA_USER` role assigned.
 
-```yaml
-sg_xp_machine_learning:
-  readonly: true
-  cluster:
-    - cluster:admin/persistent*
-    - cluster:internal/xpack/ml*
-    - indices:data/read/scroll*
-    - cluster:admin/xpack/ml*
-    - cluster:monitor/xpack/ml*
-  indices:
-    '*':
-      '*':
-        - READ
-        - indices:admin/get*
-    '?ml-*':
-      '*':
-        - "*"
-```
-      
 ## Kibana: Enable X-Pack Machine Learning
 
 In `kibana.yml`, disable X-Pack Security and enable X-Pack Machine Learning:
-
 
 ```
 xpack.security.enabled: false

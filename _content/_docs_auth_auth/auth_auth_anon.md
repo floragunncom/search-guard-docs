@@ -25,7 +25,7 @@ For example, you can grant unauthenticated users read-only access to certain ind
 To use anonymous authentication, enable it in sg_config.yml like:
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
     ...
     http:

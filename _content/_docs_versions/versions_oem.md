@@ -1,6 +1,6 @@
 ---
 title: OEM Licenses
-slug: search-guard-enterprise-edition
+slug: oem-licenses
 category: versions
 order: 500
 layout: docs

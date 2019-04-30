@@ -50,7 +50,7 @@ play.ws.ssl.loose.acceptAnyCertificate=true
 
 ## Cerebro user
 
-Since Cerebro is an admin tool for Elasticsearch, the user should have full permissions to manage the cluster. If you use the sample configuration Search Guard ships with, you can use the `sg_all_access` role.
+Since Cerebro is an admin tool for Elasticsearch, the user should have full permissions to manage the cluster. If you use the sample configuration Search Guard ships with, you can use the `SGS_ALL_ACCESS` role.
 
 ## Pre-configuring clusters
 

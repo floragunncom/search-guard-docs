@@ -12,7 +12,7 @@ resources:
 
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Kibana with OpenID Connect
@@ -75,7 +75,7 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 <span class="js-copy-to-clipboard copy-code">copy</span> 
 <pre class="language-yaml">
 <code class=" js-code language-markup">
-# v14 and above: Enable OpenID authentication
+# Enable OpenID authentication
 searchguard.auth.type: "openid"
 
 # the IdP metadata endpoint
@@ -100,7 +100,7 @@ searchguard.openid.header: "Authorization"
 searchguard.openid.header: "Authorization"
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

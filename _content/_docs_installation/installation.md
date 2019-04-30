@@ -19,7 +19,7 @@ Copyright 2019 floragunn GmbH
 
 {% include toc.md %}
 
-This chapter describes the steps to install and initialize Search Guard manually or by using tools like Puppet, Ansible or Chef. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](../_docs_quickstart/demo_installer.md)**. 
+This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](../_docs_quickstart/demo_installer.md)**. 
 
 ## Community, Enterprise and Compliance Edition
 
@@ -176,10 +176,10 @@ You can use the same certificates on the transport and on the REST layer. For pr
 
 ## Optional: Enable the REST management API
 
-In order to use the REST management API, configure the Search Guard roles that should have access to the API. The following entry grants full access to the API for the role `sg_all_access`:
+In order to use the REST management API, configure the Search Guard roles that should have access to the API. The following entry grants full access to the API for the role `SGS_ALL_ACCESS`:
 
 ```yaml
-searchguard.restapi.roles_enabled: ["sg_all_access"]
+searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 ```
 
 If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](../_docs_rest_api/restapi_api_access.md).

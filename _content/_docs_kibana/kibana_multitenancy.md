@@ -19,31 +19,10 @@ resources:
 
 {% include toc.md %}
 
-## Overview
-Kibana does not support multi tenancy out of the box. This means that all stored objects, such as dashboards, visualizations and saved searches are stored in a global Kibana index.
-
-This index is configured in `kibana.yml`:
-
-```yaml
-kibana.index: ".kibana"
-```
-
-Kibana uses the Kibana server user to read and write from this index. The Kibana server user is also configured in `kibana.yml`:
-
-```yml
-elasticsearch.username: "kibanaserver"
-elasticsearch.password: "kibanaserver"
-```
-
-This means that regardless of the permissions a user has, he or she will be able to see and modify all dashboards and visualizations.
-
-In case the user does not have permissions to access the underlying index of a visualization, the visualization will simply be blank and a security exception is logged in Elasticsearch.
-
-The Kibana multitenancy module brings true separation of stored objects based on the configured **tenants** of a user's **role**.
-
 ## Tenants: Definition
 
-A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
+A Kibana tenant is a named container for storing saved objects ("space"). A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. 
+A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
 Any Kibana user always has access to two preconfigured tenants: Global and Private.
 
@@ -53,12 +32,12 @@ The Private tenant is not shared.  It is only accessible for the currently logge
 
 ## Installation and configuration
 
-In order for multitenancy to work, you need to configure:
+In order for multi tenancy to work, you need to configure:
 
 * Elasticsearch: Search Guard and the Kibana multitenancy enterprise module (automatically installed).
 * Kibana: the Search Guard Kibana plugin.
 
-Multi tenancy will not work properly if you install only one of the modules or plugins, or if the configuration does not match in Elasticsearch and Kibana.
+Multi tenancy will not work properly if the configuration does not match in Elasticsearch and Kibana.
 
 
 ### Elasticsearch: Configuration
@@ -66,8 +45,9 @@ Multi tenancy will not work properly if you install only one of the modules or p
 Multi tenancy is configured in sg_config.yml:
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
+    do_not\fail_on_forbidden: true 
     kibana:
       multitenancy_enabled: true
       server_username: 'xxx'
@@ -85,26 +65,51 @@ The following configuration keys are available:
 | searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Default: true.|
 | searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
 | searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
-| searchguard.dynamic.kibana.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Default: false.  |
+| searchguard.dynamic.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Should be set to true if you use Kibana. Default: false.  |
 
-### Adding tenants
+### Defining tenants
 
 If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.
 
-You can define an arbitrary number of additional tenants per Search Guard role in `sg_roles.yml`, for example:
+You can define an arbitrary number of additional tenants in `sg_tenants.yml`, for example:
 
 ```yaml
-sg_human_resources:
-  cluster:
-    ...
-  indices:
-    ...
-  tenants:
-    human_resources: RW
-    human_resources_readonly: RO
+_sg_meta:
+  type: "tenants"
+  config_version: 2
+
+admin_tenant:
+  description: "The admin tenant"
+
+human_resources:
+  description: "The human resources tenant"
 ```
 
-In this example, a user that has the role `sg_human_resources` has access to the tenant human_resources with read/write access, and read-only access to the tenant `human_resources_readonly`.
+### Assigning tenants to Search Guard roles:
+
+You can assign one or more tenants to Search Guard roles in `sg_roles.yml`, for example:
+
+```
+sg_human_resources:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - ...
+  tenant_permissions:
+    - tenant_patterns:
+      - human_resources
+      allowed_actions:
+        - SGS_KIBANA_ALL_WRITE
+    - tenant_patterns:
+      - admin_tenant
+      allowed_actions:
+        - SGS_KIBANA_ALL_READ
+```
+In this example, a user that has the role `sg_human_resources` has access to the tenant human_resources with read/write access, and read-only access to the tenant `admin_tenant`.
+
+At the moment the only allowed values for `allowed_actions` are `SGS_KIBANA_ALL_WRITE` and `SGS_KIBANA_ALL_READ`. The option to assign finer-grained permissions will follow soon.
+{: .note .js-note .green}
+
 
 ### Kibana: Plugin Configuration
 
@@ -119,8 +124,6 @@ In addition, Kibana requires you to whitelist all HTTP headers that should be pa
 ```yaml
 elasticsearch.requestHeadersWhitelist: ["sgtenant", "Authorization", ...]
 ```
-
-(If you use Search Guard authentication modules other than Basic Authentication, for example Proxy Authentication, the required HTTP headers may vary.)
 
 Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
 

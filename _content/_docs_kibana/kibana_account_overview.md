@@ -9,7 +9,7 @@ description: How to enable the account overview page in Kibana.
 ---
 
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Account overview page

@@ -9,7 +9,7 @@ edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using logstash with Search Guard
@@ -26,7 +26,7 @@ Logstash connects to Elasticserch on the REST layer, just like a browser or curl
 
 The sample configuration files that ship with Search Guard already contain a `logstash` user with all required permissions. This user is configured in the internal user database and can be used as-is.
 
-The corresponding Search Guard role in `sg_roles.yml` is `sg_logstash`. If you don't use the internal user database, map your logstash user to this role in `sg_roles_mapping.yml`.
+The corresponding built-in Search Guard role is `SGS_LOGSTASH`. You can map any user to this logstash role in `sg_roles_mapping.yml`.
 
 
 The logtsash user is configured in the `elasticsearch` output section of `logstash.conf`:
@@ -79,29 +79,6 @@ output {
 }
 ```
 
-## Permissions for the logstash user
-
-The required permissions for the logstash user are as follows:
-
-```yaml
-sg_logstash:
-  readonly: true
-  cluster:
-    - CLUSTER_MONITOR
-    - CLUSTER_COMPOSITE_OPS
-    - indices:admin/template/get
-    - indices:admin/template/put
-  indices:
-    'logstash-*':
-      '*':
-        - CRUD
-        - CREATE_INDEX
-    '*beat*':
-      '*':
-        - CRUD
-        - CREATE_INDEX
-```
-
 ### Using custom logstash index names
 
 If you are writing to a different index than the default logstash index, you need to give the logstash user access to this index.
@@ -122,17 +99,13 @@ output {
 The logstash user must have permissions to manage this index:
 
 ```yaml
-sg_logstash:
-  readonly: true
-  cluster:
-    - CLUSTER_MONITOR
-    - CLUSTER_COMPOSITE_OPS
-    - indices:admin/template/get
-    - indices:admin/template/put
-  indices:
-    ...
-    'mylogstashindex':
-      '*':
+sg_my_custom_logstash:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - index_patterns:
+      - 'mylogstashindex'
+      allowed_actions:
         - CRUD
         - CREATE_INDEX
 ```

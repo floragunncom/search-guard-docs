@@ -40,10 +40,10 @@ xpack.security.enabled: false
 
 ### Check connection settings
 
-If Kibana cannot connect to Elasticsearch, check the `elasticsearch.url` in  `kibana.yml`:
+If Kibana cannot connect to Elasticsearch, check the `elasticsearch.hosts` in  `kibana.yml`:
 
 ```
-elasticsearch.url: "https://example.com:9200"
+elasticsearch.hosts: "https://example.com:9200"
 ```
 
 Make sure that the hostname and the port are correct.
@@ -57,10 +57,10 @@ searchguard.ssl.http.enabled: true
 ```
 
 If this is the case, you need to use `https://` instead of `http://` in the 
-`elasticsearch.url`:
+`elasticsearch.hosts`:
 
 ```
-elasticsearch.url: "https://example.com:9200"
+elasticsearch.hosts: "https://example.com:9200"
 ```
 
 ### Unable to get local issuer certificate
@@ -209,7 +209,7 @@ If you do not specify any index in the timelion query, it will simply use a wild
 Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
 
 ```
-searchguard:
+sg_config:
   dynamic:
     kibana:
       do_not_fail_on_forbidden: true

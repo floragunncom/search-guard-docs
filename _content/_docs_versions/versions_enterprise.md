@@ -82,7 +82,7 @@ After obtaining a license, you can apply it in two ways.
 Add the license string to sg_config.yml and upload the configuration by using sgadmin. You can either configure the license on a single line, or use YAML multi-line format:
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
     license: LS0tLS1CRUdJTiBQR1A...
     http:
@@ -92,7 +92,7 @@ searchguard:
 ```
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
     license: |-
       LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU

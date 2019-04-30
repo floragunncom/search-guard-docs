@@ -29,6 +29,7 @@ The `configuration type` can be one of:
 * [roles](restapi_api_roles.md)
 * [rolesmapping](restapi_api_rolesmapping.md)
 * [actiongroups](restapi_api_actiongroups.md)
+* [tenants](restapi_api_tenants.md)
 
 The resource name specifies the entry in the `configuration type` you want to operate on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.
 
@@ -44,11 +45,11 @@ The response body has the format:
 ```json
 {
   "status":<HTTP status code>,
-  "message":<message>
-  "invalid_keys": <comma separated keys>
-  "missing_mandatory_keys": <comma separated keys>
-  "specify_one_of": <comma separated keys>
+  "message":<message>,
+  "details": <detailed message in case of an error>,
+  "invalid_keys": <comma separated keys>,
+  "missing_mandatory_keys": <comma separated keys>  
 }
 ```
 
-The last three entries are returned if you `PUT` a new resource but the content is malformed. `invalid_keys` is used when the content contains invalid keys. `missing_mandatory_keys` is used when a mandatory key is missing. And `specify_one_of` is used when the content is missing a key.
+The last two entries are returned if you `PUT` a new resource but the content is malformed. `invalid_keys` is used when the content contains invalid keys. `missing_mandatory_keys` is used when a mandatory key is missing. 

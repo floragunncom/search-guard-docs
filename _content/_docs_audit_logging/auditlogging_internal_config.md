@@ -66,25 +66,19 @@ The `audit_request_body` contains the exact configuration settings the user has 
 
 ```json
 {  
-   "roles":{  
-      "sg_all_access":{  
-         "readonly":true,
-         "cluster":[  
-            "UNLIMITED"
-         ],
-         "indices":{  
-            "*":{  
-               "*":[  
-                  "UNLIMITED"
-               ]
-            }
-         },
-         "tenants":{  
-            "admin_tenant":"RW"
-         }
-      }
-     ...
-   }
+  "SGS_ALL_ACCESS":{  
+     "readonly":true,
+     "cluster_permissions":[  
+        "UNLIMITED"
+     ],
+     "index_permissions": [
+        "index_patterns": ["humanresources", "finance"],
+        "allowed_actions": ["READ"]
+        "fls": ["FirstName", "LastName"]
+     ],
+     "tenant_permissions": [
+        ...
+     ]
 }
 ```
 

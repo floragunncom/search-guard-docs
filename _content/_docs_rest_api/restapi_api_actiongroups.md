@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the action groups REST API endpoints to create, edit and delte Search Guard action groups.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Action groups API
@@ -40,7 +40,7 @@ GET /_searchguard/api/actiongroups/SEARCH
 ```
 ```json
 {
-  "SEARCH" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
+  "allowed_actions" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
 ```
 
@@ -49,7 +49,6 @@ GET /_searchguard/api/actiongroups/SEARCH
 ```
 GET /_searchguard/api/actiongroups/
 ```
-
 
 Returns all action groups in JSON format.
 
@@ -82,10 +81,10 @@ Replaces or creates the action group specified by `actiongroup `.
 ```
 PUT /_searchguard/api/actiongroups/SEARCH
 {
-  "permissions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
+  "allowed_actions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
 }
 ```
-The field permissions is mandatory and contains permissions or references to other action groups.
+The field `allowed_actions` is mandatory and contains permissions or references to other action groups.
 
 ```json
 {
@@ -100,9 +99,6 @@ The PATCH endpoint can be used to change individual attributes of an action grou
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
-{: .note .js-note .note-warning}
-
 ### Patch an action group
 
 ```
@@ -115,7 +111,7 @@ Adds, deletes or changes one or more attributes of a user specified by `actiongr
 PATCH /_searchguard/api/actiongroups/CREATE_INDEX
 [ 
   { 
-    "op": "replace", "path": "/permissions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
+    "op": "replace", "path": "/allowed_actions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
   }
 ]
 ```
@@ -126,7 +122,7 @@ PATCH /_searchguard/api/actiongroups/CREATE_INDEX
 PATCH /_searchguard/api/actiongroups
 [ 
   { 
-    "op": "add", "path": "/CREATE_INDEX", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
+    "op": "add", "path": "/CREATE_INDEX/allowed_actions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
   },
   { 
     "op": "remove", "path": "/CRUD"

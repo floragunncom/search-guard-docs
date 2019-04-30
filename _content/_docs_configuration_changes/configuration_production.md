@@ -1,5 +1,5 @@
 ---
-title: Configuring Backup and Restore
+title: Backup and Restore
 slug: configuration-production
 category: configuration
 order: 400
@@ -9,7 +9,7 @@ description: How you can use sgadmin to quickly transfer your complete configura
 <!---
 Copyright 2019 floragunn GmbH
 -->
-# Configuring Backup and Restore
+# Backup and Restore
 {: .no_toc}
 
 Once you have set up Search Guard on a testing or staging environment, you might want to replicate the exact Search Guard configuration on your production cluster.

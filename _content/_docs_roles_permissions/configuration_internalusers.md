@@ -25,52 +25,70 @@ Internal users are configured in `sg_internal_users.yml`. You can find a templat
 Syntax:
  
 ```yaml
+_sg_meta:
+  type: "internalusers"
+  config_version: 2
+  
 <username>:
   hash: <hashed password>
-  roles:
+  backend_roles:
     - <rolename>
     - <rolename>
+  attributes:
+    key: value
+    key: value
+  description: <String>
 ```
 
-Example:
+## Description
+
+| Name | Description |
+|---|---|
+| username | The name of the user. Can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md).|
+| password | The BCrypt hash of the user's password.|
+| backend_roles | The backend roles of the user. Can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md).|
+| attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries|
+| description | A description of the user. Optional.|
+
+
+## Example
 
 ```yaml
-admin:
-  hash: $2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO
-  roles:
-    - readall
-    - writeall
-
-analyst:
-  hash: $2a$12$ae4ycwzwvLtZxwZ82RmiEunBbIPiAmGZduBAjKN0TXdwQFtCwARz2
-  roles:
-    - readall
+_sg_meta:
+  type: "internalusers"
+  config_version: 2
+  
+hr_employee:
+  hash: $2a$12$7QIoVBGdO41qSCNoecU3L.yyXb9vGrCvEtVlpnC4oWLt/q0AsAN52
+  backend_roles:
+    - kibanauser
+    - humanresources_department
+  attributes:
+    manager: "layne.burton"
+  description: "A user from the HR department"
+  
+finance_employee:
+  - hash: ...
+  ...
 
 ```
 
-**Note that the username cannot contain dots. If you need usernames with dots, use the `username` attribute:**
-
-```yaml
-<username>:
-  username: username.with.dots
-  hash: ...
-```
-
-As `sg_internal_users.yml` needs to exist and not be empty when configuring sg, if you want no internal users put `{}` in the file.
 
 ## Generating hashed passwords
 
-The password hash is a salted BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
+The password is a BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
 
-``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hasher.sh -p mycleartextpassword``
+``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hash.sh -p mycleartextpassword``
 
-## Configuration
+You can also use any offline or [online tool](https://bcrypt-generator.com/){target:_blank} that is able to produce BCrypt hashes, like the 
 
-In order to use the internal user database, set the `authentication_backend` to `internal`. For example, if you want to use HTTP Basic Authentication and the internal user database, the configuration looks like:
+## Activating the internal user database
+
+In order to use the internal user database for authentication, set the `authentication_backend` in `sg_config.yml` to `internal`. For example, if you want to use HTTP Basic Authentication and the internal user database, the configuration looks like:
 
 ```yaml
 basic_internal_auth_domain:
-  enabled: true
+  http_enabled: true
   order: 1
   http_authenticator:
     type: basic
@@ -81,20 +99,20 @@ basic_internal_auth_domain:
 
 ## Authorization
 
-You can also use the internal user database for authorization, means assigning backend roles, only. This is useful when your primary way of authentication does not provide any role information.
+You can also use the internal user database for authorization only. This is useful when your primary way of authentication does not provide any role information.
 
 For example, you can use LDAP or JWT for authentication, and the internal user database for authorization/assigning roles.
 
-Search Guard will use the name of the autenticated user to look up the corresponding entry in the internal user database. If found, the configures roles will be assigned as backen roles to this user.
+Search Guard will use the name of the authenticated user to look up the corresponding entry in the internal user database. If found, the configures roles will be assigned as backend roles to this user.
 
 If you use the internal user database for authorization only, there is no need to set a password hash. The entries are solely used for assigning backend roles.
 
 Configuration:
 
-```
+```yaml
 authz:
   internal_authorization:
-    enabled: true
+    http_enabled: true
     authorization_backend:
       type: internal
 ```      

@@ -101,16 +101,18 @@ For example, if you collect audit events with the [Search Guard audit log](../_d
 
 ```yaml
 sg_elastalert:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
+  cluster_permissions:
+    - SGS_CLUSTER_COMPOSITE_OPS
     - "indices:data/write/bulk"
-  indices:
-    'auditlog':
-      '*':
-        - READ
-    'elastalert_status':
-      '*':
-        - '*'
+  index_permissions:
+    - index_patterns:
+      - 'auditlog'
+      allowed_actions:
+        - SGS_READ
+    - index_patterns:
+      - 'elastalert_status'
+      allowed_actions:
+        - SGS_UNLIMITED
 ```
 
 ## Create the ElastAlert index

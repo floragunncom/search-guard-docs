@@ -10,7 +10,7 @@ description: How to connect to a Search Guard secured Elasticsearch cluster usin
 
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Transport Clients

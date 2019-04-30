@@ -13,7 +13,7 @@ resources:
 
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Kibana with SAML authentication

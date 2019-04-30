@@ -9,7 +9,7 @@ edition: community
 description: How to an authenticating proxy in front of Kibana to implement Single Sign On.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Using Kibana with Proxy authentication
@@ -69,14 +69,11 @@ Note that the Search Guard proxy authenticator requires the `x-forwarded-for`hea
 <pre class="language-yaml">
 <code class=" js-code language-markup">
 
-# v13 and below: Disable HTTP Basic Authentication
-searchguard.basicauth.enabled: false
-
-# v14 and above: Enable Proxy
+# Enable Proxy
 searchguard.auth.type: "proxy"
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"

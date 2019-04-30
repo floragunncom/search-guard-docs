@@ -106,7 +106,7 @@ The default index name for storing the audit trail is `sg6-auditlog-YYYY.MM.dd` 
 Tells Search Guard which Search Guard roles can access the REST Management API to perform changes to the configuration:
 
 ```yaml
-searchguard.restapi.roles_enabled: ["sg_all_access"]
+searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 ```
 
 In the demo setup, this Search Guard role is assigned to the user `admin`. If you have installed the Kibana Configuration GUI, simply login as `admin/admin`.

@@ -13,7 +13,7 @@ resources:
 ---
 
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Search Guard main concepts
@@ -96,26 +96,26 @@ A definition of a permission that allows searching a particular index looks like
 
 Permissions are defined per role and can be applied on a cluster or index level.
 
-Search Guard ships with pre-defined groups of permissions like `READ`, `WRITE`, `SEARCH` etc.
+Search Guard ships with pre-defined groups of permissions like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc.
 
 ## Action groups
 
 An action group is an **alias for a set of permissions**. Action groups can be **nested**. 
 
-For example, the following snippet shows two action groups, where the `SUGGEST` action group is referenced by the `SEARCH` action group:
+For example, the following snippet shows two action groups, where the `SGS_SUGGEST` action group is referenced by the `SGS_SEARCH` action group:
 
 ```yaml
-SEARCH:
+SGS_SEARCH:
   - "indices:data/read/search*"
   - "indices:data/read/msearch*"
-  - SUGGEST
-SUGGEST:
+  - SGS_SUGGEST
+SGS_SUGGEST:
   - "indices:data/read/suggest*"
 ```
 
 Action groups can be used in the role configuration instead of or in combination with fine-grained permissions like `indices:data/read/search*`.
 
-Search Guard ships with a predefined set of useful action groups like `READ`, `WRITE`, `SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the pre-defined action groups**.
+Search Guard ships with a predefined set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the pre-defined action groups**.
 
 ## The Search Guard index
 
@@ -134,5 +134,6 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_roles\_mapping.yml - map backend roles, hosts and users to roles.
 * sg\_internal\_users.yml - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
 * sg\_action\_groups.yml - define named permission groups.
+* sg\_tenants.yml - defines tenants for configuring Kibana access
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md). 

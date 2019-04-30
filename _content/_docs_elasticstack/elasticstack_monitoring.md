@@ -32,20 +32,11 @@ xpack.monitoring.enabled: true
 
 ## Elasticsearch: Add the monitoring user
 
-For the `http` monitoring type, add a user with all permissions to carry out the monitoring calls to your cluster. If you are using the demo configuration files, assign the roles `sg_xp_monitoring` and the `sg_kibana_user` role to this user.
-
-```yaml
-sg_xp_monitoring:
-  readonly: true
-  indices:
-    '?monitor*':
-      '*':
-        - INDICES_ALL
-```
+For using X-Pack Monitoring, the respective user must have the built-in `SGS_XP_MONITORING` and `SGS_KIBANA_USER` role assigned.
 
 ## Elasticsearch: Configure a monitoring exporter
 
-At the moment Search Guard supports exporters of type `http` only. Configure your `http` exporter, and configure the user you have mapped to the `sg_xp_monitoring` and the `sg_kibana_user` role in the last step:
+Configure your `http` exporter, and configure the user you have mapped to the `SGS_XP_MONITORING` and the `SGS_KIBANA_USER` role in the last step:
 
 ```yaml
 xpack.monitoring.exporters:

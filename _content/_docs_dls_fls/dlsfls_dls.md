@@ -14,7 +14,7 @@ resources:
 
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Document-level security
@@ -42,15 +42,16 @@ The respective query to filter these documents in regular query DSL would look l
 }
 ```
 
-You can use this query to define the DLS in `sg_roles.yml`. Note that the `query` key must be omitted:
+You can use this query to define the DLS in `sg_roles.yml`:
 
 ```yaml
 hr_employee:
-  indices:
-    'humanresources':
-      'employees':
-        - '*'
-      _dls_: '{ "bool": { "must_not": { "match": { "department": "Management" }}}}'
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      dls: '{ "bool": { "must_not": { "match": { "department": "Management" }}}}'
 ```
 
 If a user has the role `hr_employee`, Search Guard now filters all documents where the `department` field is set to "Management" from any search result before passing it back to the user.
@@ -70,12 +71,13 @@ You can use the variable `${user.name}` in the DLS query, and Search Guard will 
 Let's imagine that each employee document has a field called `manager`, which contains the username of the employee's manager. Each logged in user should only have access to employees he manages. You can do so by defining:
 
 ```yaml
-management:
-  indices:
-    'humanresources':
-      'employees':
-        - '*'
-      _dls_: '{"term" : {"manager" : "${user.name}"}}'
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      dls: '{"term" : {"manager" : "${user.name}"}}'
 ```
 
 Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
@@ -87,12 +89,13 @@ You can use the variable `${user.roles}` in the DLS query, and Search Guard will
 Let's imagine that each employee document has an array field called `role`, which contains backend role names and at least one of them is needed to access this document. You can do so by defining:
 
 ```yaml
-management:
-  indices:
-    'humanresources':
-      'employees':
-        - '*'
-      _dls_: '{"terms" : { "role" : [${user.roles}]}}'
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      dls: '{"terms" : { "role" : [${user.roles}]}}'
 ```
 
 Before the DLS query is applied to the result set, `${user.roles}` is replaced with a comma-delimited list of the backend roles of the current user. You can use this variable repeatedly in the DLS query if required.
@@ -120,12 +123,13 @@ If the JWT contains a claim `department`:
 You can use it like:
 
 ```yaml
-management:
-  indices:
-    'humanresources':
-      'employees':
-        - '*'
-      _dls_: '{"term" : {"department" : "${attr.jwt.department}"}}'
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      dls: '{"term" : {"department" : "${attr.jwt.department}"}}'
 ```
 
 The DLS query in this case will only return documents where the `department` field equals the `department` claim in the users JWT. In this case, it only returns documents where the `department` field equals `operations`.
@@ -135,16 +139,17 @@ You can also combine multiple variables and username substitution in the same DL
 ### Active Directory / LDAP Example
 
 If the Active Directory / LDAP entry of the current user contains an attribute `department`, you can use it in a DLS query like:
- 
-```yaml
-management:
-  indices:
-    'humanresources':
-      'employees':
-        - '*'
-      _dls_: '{"term" : {"department" : "${attr.ldap.department}"}}'
-```
 
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      dls: '{"term" : {"department" : "${attr.ldap.department}"}}'
+```
+ 
 ## Multiple roles and document-level security
 
 A user can be member of more than one role, and each role can potentially define a different DLS query for the same index. In this case, all DLS queries are collected and combined with `OR`.

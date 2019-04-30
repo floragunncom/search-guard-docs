@@ -39,13 +39,15 @@ indices:admin/shards/search_shards
 
 Example:
 
-```
+```yaml
 sg_ humanresources:
-  cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
-  indices:
-    'humanresources':
-      '*':
-        - READ
-        - indices:admin/shards/search_shards # needed for CCS
+  cluster_permissions:
+    - SGS_CLUSTER_COMPOSITE_OPS
+    - "indices:data/write/bulk"
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - SGS_READ
+        - indices:admin/shards/search_shards # needed for CCS        
 ```

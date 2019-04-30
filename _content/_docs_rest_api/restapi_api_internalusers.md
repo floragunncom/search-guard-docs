@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the internal users REST API endpoints to manage users.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2019 floragunn GmbH
 -->
 
 # Internal Users API
@@ -27,9 +27,6 @@ Used to receive, create, update and delete users. Users are added to the interna
 
 Where `username` is the name of the user.
 
-Note: The `user` endpoint is deprecated in Search Guard 6 and will be removed with Search Guard 7.
-{: .note .js-note .note-warning}
-
 ## GET
 
 ### Get a single user
@@ -46,15 +43,19 @@ GET /_searchguard/api/internalusers/kirk
 ```json
 {
   "kirk": {
-    "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
-    "roles": [ "captains", "starfleet" ],
+    "description": "The captain.",
+    "hash": "",
+    "backend_roles": [ "captains", "starfleet" ],
     "attributes": {
        "attribute1": "value1",
-       "attribute2": "value2",       	
+       "attribute2": "value2"   	
     }
   }
 }
 ```
+
+The password hash is not returned by this API endpoint.
+{: .note .js-note}
 
 ### Get all users
 
@@ -94,9 +95,9 @@ Replaces or creates the user specified by `username`.
 ```json
 PUT /_searchguard/api/internalusers/kirk
 {
-  "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
+  "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO", OR
   "password": "kirk",
-  "roles": ["captains", "starfleet"],
+  "backend_roles": ["captains", "starfleet"],
    "attributes": {
      "attribute1": "value1",
      "attribute2": "value2",       	
@@ -104,25 +105,13 @@ PUT /_searchguard/api/internalusers/kirk
 }
 ```
 
-If `username` contains a dot you need to do
 
-```json
-PUT /_searchguard/api/internalusers/misterkirk
-{
-  "hash": "$2a$12$xZOcnwYPYQ3zIadnlQIJ0eNhX1ngwMkTN.oMwkKxoGvDVPn4/6XtO",
-  "username": "mister.kirk",
-  "password": "kirk",
-  "roles": ["captains", "starfleet"],
-   "attributes": {
-     "attribute1": "value1",
-     "attribute2": "value2",       	
-   }
-}
-```
+You need to specify either `hash` or `password`. 
+{: .note .js-note}
 
-You need to specify either `hash` or `password`. `hash` is the hashed user password. You can either use an already hashed password ("hash" field) or provide it in clear text ("password"). (We never store clear text passwords.) In the latter case it is hashed automatically before storing it. If both are specified,`hash` takes precedence.
+You can either use an already hashed password (`hash field`) or provide it in clear text (`password` field). In the latter case the password hashed automatically before storing it. If both fields are specified, `hash` takes precedence.
 
-`roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
+`backend_roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
 
 ```json
 {
@@ -137,9 +126,6 @@ The PATCH endpoint can be used to change individual attributes of a user, or to 
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
-{: .note .js-note .note-warning}
-
 ### Patch a single user
 
 ```
@@ -152,7 +138,7 @@ Adds, deletes or changes one or more attributes of a user specified by `username
 PATCH /_searchguard/api/internalusers/kirk
 [ 
   { 
-    "op": "replace", "path": "/roles", "value": ["klingons"] 
+    "op": "replace", "path": "/backend_roles", "value": ["klingons"] 
   },
   { 
     "op": "replace", "path": "/attributes", "value": {"newattribute": "newvalue"} 
@@ -166,10 +152,10 @@ PATCH /_searchguard/api/internalusers/kirk
 PATCH /_searchguard/api/internalusers
 [ 
   { 
-    "op": "add", "path": "/spock", "value": { "password": "testpassword1", "roles": ["testrole1"] } 
+    "op": "add", "path": "/spock", "value": { "password": "testpassword1", "backend_roles": ["testrole1"] } 
   },
   { 
-    "op": "add", "path": "/worf", "value": { "password": "testpassword2", "roles": ["testrole2"] } 
+    "op": "add", "path": "/worf", "value": { "password": "testpassword2", "backend_roles": ["testrole2"] } 
   },
   { 
     "op": "remove", "path": "/riker"

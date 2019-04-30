@@ -32,7 +32,7 @@ The main configuration file for authentication and authorization modules  is `sg
 It has three main parts:
 
 ```yaml
-searchguard:
+sg_config:
   dynamic:
     http:
       ...
@@ -55,8 +55,6 @@ xff: # non mandatory section
   proxiesHeader: <string>
   trustedProxies: <string> # Regex pattern
 ```
-
-Note that if you disable anonymous authentication, SG won't initialize if you have not given at least one enabled `authc`.
 
 ## Authentication
 
@@ -99,6 +97,10 @@ Allowed values for `type` are:
   * Kerberos authentication. Additional, [Kerberos-specific configuration](../_docs_auth_auth/auth_auth_kerberos.md) is needed.
 * jwt
   * JSON web token authentication. Additional, [JWT-specific configuration](../_docs_auth_auth/auth_auth_jwt.md) is needed.
+* openid
+  * OpenID / OIDC. Additional, [OpenID-specific configuration](../_docs_auth_auth/auth_auth_openid.md) is needed.
+* saml
+  * SAML. Additional, [SAML-specific configuration](../_docs_auth_auth/auth_auth_saml_authentication.md) is needed.
 * proxy
   * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) for further details.
 * clientcert

@@ -3,7 +3,7 @@ searchguard:
   version: 7.x-35.0.0  
   fullversion: 7.7.0-35.0.0
   nextminorversion: 7.7.0-35.1.0
-  nextmajorversion: 7.7.0-36.0.0
+  nextmajorversion: 7.7.1-36.0.0
   islatestversion: true
   ispreliminaryversion: true
 

@@ -3,7 +3,7 @@ title: Demo users and roles
 html_title: Demo users and role
 slug: demo-users-roles
 category: rolespermissions
-order: 400
+order: 50
 layout: docs
 edition: community
 description: Description of the demo users and roles Search Guard ships with. Use them as blueprint for your own permission schema.

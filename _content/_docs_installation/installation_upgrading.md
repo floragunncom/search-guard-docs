@@ -37,9 +37,8 @@ Before starting the upgrade, check if there are any breaking changes either in E
 
 [Elasticsearch Breaking Changes](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes.html){:target="_blank"}
 
-[Search Guard Change Log](https://github.com/floragunncom/search-guard/wiki/Changelog){:target="_blank"}
+[Search Guard Change Log](../_changelogs/changelog_searchguard_overview.md){:target="_blank"}
 
-If you have a multicluster setup with tribe nodes, upgrade the tribe nodes after all other nodes.
 
 ## Check permission schema
 

@@ -31,7 +31,7 @@ The configuration GUI is an Enterprise feature and not available in the Communit
 The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `elasticsearch.yml` with the following key:
 
 ```
-searchguard.restapi.roles_enabled: ["sg_all_access", ...]
+searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS", ...]
 ```
 
 If you have [restricted certain endpoints](../_docs_rest_api/restapi_api_access.md) for the currently logged in user, the plugin will automatically disable these features.

@@ -49,7 +49,7 @@ Because of this potential security leak, Search Guard detects and treats multipl
 The following entry in sg_config can be used to configure this:
 
 ```yaml
- searchguard:
+ sg_config:
     dynamic:		    
       filtered_alias_mode: <warn|nowarn|disallow>
 ```
