@@ -11,7 +11,7 @@ description: Changelog for the Search Guard Kibana Plugin 7.x-35.0.0-rc1
 Copryight 2010 floragunn GmbH
 -->
 
-# Search Guard Kibana Plugin 7.x-35.0.0-RC1
+# Search Guard Kibana Plugin 7.x-35.0.0-rc1
 
 **Release Date: 30.04.2019**
 
@@ -19,4 +19,4 @@ Copryight 2010 floragunn GmbH
 
 ## Changes
 
-#...
+* This is a compatibility release for 7.0.0 and Search Guard 7.x-35.0.0-rc1 which does not add new features or fixes
