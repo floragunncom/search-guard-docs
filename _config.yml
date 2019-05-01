@@ -70,7 +70,8 @@ labels:
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
-    7x-35: Search Guard 7.x-35-beta1
+    7x-35: Search Guard 7.x-35-rc1
+    6x-25: Search Guard 6.x-25
     6x-24: Search Guard 6.x-24
     6x-23: Search Guard 6.x-23
     6x-22: Search Guard 6.x-22
