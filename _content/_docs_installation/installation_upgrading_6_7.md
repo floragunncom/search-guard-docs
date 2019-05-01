@@ -18,7 +18,6 @@ Copyright 2019 floragunn GmbH
 Upgrading Search Guard from 6.7.x to 7.x.x can be done while you upgrade Elasticsearch from 6.7.x to 7.x.x . You can do this by performing a full cluster restart, or by doing a rolling restart: 
 
 Search Guard supports running a mixed cluster of 6.7.x and 7.x nodes and is thus compatible with the Elasticsearch upgrade path.
-{: .note .js-note .note-warning}
 
 If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
 
@@ -48,7 +47,10 @@ During migration the REST management API will not work properly and should not b
 
 ## Check your Search Guard configuration
 
-Download standalone sgadmin 7 (zip/tar.gz) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run 
+If you miss this step your cluster can become uninitialized which will result in a downtime.
+{: .note .js-note .note-warning}
+
+Download standalone sgadmin 7 ([zip](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.0-35.0.0-rc1/search-guard-7-7.0.0-35.0.0-rc1-sgadmin-standalone.zip)/[tar.gz](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.0-35.0.0-rc1/search-guard-7-7.0.0-35.0.0-rc1-sgadmin-standalone.tar.gz)) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run 
 
 * `./sgadmin7/tools/sgadmin.sh -backup "./sgadmin7" <other parameters like -ks -cert etc>`
 
