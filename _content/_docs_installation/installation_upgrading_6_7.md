@@ -123,4 +123,5 @@ This applies to sgadmin and the REST management API. Configuration changes are p
 
 While running in mixed mode, X-Pack monitoring might return incorrect values or throw Exceptions which you can safely ignore.
 
-
+### Known Issues
+There is a known issue in this release with regards to Kibana multitenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.

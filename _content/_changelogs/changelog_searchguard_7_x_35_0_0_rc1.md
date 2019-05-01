@@ -63,11 +63,13 @@ Notable changes and improvements at a glance:
 
 If you do a migration from Elasticsearch/Search Guard 6.x please refer to the [upgrade instructions](../_docs_installation/installation_upgrading_6_7.md) to learn how to migrate the configuration to it's new format.
 
+If you are using the REST API, you will likely need to change the payload processing of your calls slightly.
+
 For the final release we will also provide a standalone tool to migrate the configuration offline (migrate.sh).
 
 ### BREAKING: Config format validation
 
-Search Guard 6 and before the configuration syntax check were lenient. This can easily lead to misconfiguration. With Search Guard 7 there is now a strict config syntax validation which rejects invalid syntax as well as configuration parameters which do not exist. The REST API and sgadmin will automatically apply this checks. 
+Search Guard 6 and before the configuration syntax check were lenient. This can easily lead to misconfiguration. With Search Guard 7 there is now a strict config syntax validation which rejects invalid syntax as well as configuration parameters which do not exist. The REST API and sgadmin will automatically apply these checks. 
 
 But in case you are upgrading from 6.x you have to do this one time manually. Please refer to the [upgrade instructions](../_docs_installation/installation_upgrading_6_7.md) in this case. If you miss this step your cluster can become uninitialized which will result in a downtime.
 
@@ -106,3 +108,6 @@ sgadmin now has this additional command line options:
 * `-migrate <folder>` to automatically migrate configuration to the new format when upgrading from 6.x to 7.x., see [here for more details](../_docs_installation/installation_upgrading_6_7.md)
 * `-vc <version>` to validate the configuration, see [here for more details](../_docs_configuration_changes/configuration_sgadmin.md)
 * `-backup <folder>` to backup the configuration, see [here for more details](../_docs_configuration_changes/configuration_sgadmin.md)
+
+### Known Issues
+There is a known issue in this release with regards to Kibana multitenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.
