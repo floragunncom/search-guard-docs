@@ -19,8 +19,8 @@ Copryight 2016-2017 floragunn GmbH
 
 <h1 align="center">Search Guard {{site.searchguard.esmajorversion}} Documentation</h1>
 
-* [Installation](installation_versionmatrix.md)
-* [Quick Start](quickstart.md)
+* [Installation](search-guard-versions)
+* [Quick Start](demo-installer)
 
 <h3>Current releases</h3>
 <table>
