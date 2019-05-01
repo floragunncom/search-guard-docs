@@ -26,6 +26,7 @@ searchguard:
   ispreliminaryversion: false
   allversions:
     - 7x-35
+    - 6x-25
     - 6x-24
     - 6x-23
     - 6x-22
@@ -36,6 +37,7 @@ searchguard:
 
 docroots: 
   7x-35: latest
+  6x-25: 6.x-25
   6x-24: 6.x-24
   6x-23: 6.x-23
   6x-22: 6.x-22
