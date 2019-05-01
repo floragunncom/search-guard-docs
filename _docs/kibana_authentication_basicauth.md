@@ -79,7 +79,7 @@ searchguard.auth.type: "basicauth"
 searchguard.cookie.password: &lt;encryption key, min. 32 characters&gt;
 
 # Use HTTPS instead of HTTP
-elasticsearch.url: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: ["https://&lt;hostname&gt;.com:&lt;http port&gt;"]
 
 # Configure the Kibana internal server user
 elasticsearch.username: "kibanaserver"
