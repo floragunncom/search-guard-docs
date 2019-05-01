@@ -25,6 +25,11 @@ For example, you can grant unauthenticated users read-only access to certain ind
 To use anonymous authentication, enable it in sg_config.yml like:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     ...
@@ -46,7 +51,7 @@ sg\_roles\_mapping.yml:
 
 ```
 sg_anonymous:
-  backendroles:
+  backend_roles:
     - sg_anonymous_backendrole
 ```
 

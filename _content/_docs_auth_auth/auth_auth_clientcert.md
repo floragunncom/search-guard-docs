@@ -62,7 +62,7 @@ You would then map the role like so:
 sg_role_starfleet:
   users:
     - kirk
-  backendroles:
+  backend_roles:
     - ...
   hosts:
     - ...

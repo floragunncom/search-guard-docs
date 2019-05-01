@@ -183,6 +183,11 @@ By default, Search Guard requires the user to have the required permission(s) fo
 If you want Search Guard to return only data from allowed indices, and discard the security exceptions for the other ones, set do\_not\_fail\_on\_forbidden to true in sg_config.yml:
 
 ```
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     kibana:

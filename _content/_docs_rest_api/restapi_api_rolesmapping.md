@@ -93,7 +93,7 @@ PUT /_searchguard/api/rolesmapping/sg_role_starfleet
 }
 ```
 
-You need to specify at least one of `backendroles`, `hosts` or `users`.
+You need to specify at least one of `backend_roles`, `hosts` or `users`.
 
 If the call is succesful, a JSON structure is returned, indicating whether the roles mapping was created or updated.
 
@@ -128,7 +128,7 @@ PATCH /_searchguard/api/rolesmapping/sg_human_resources
     "op": "replace", "path": "/users", "value": ["myuser"] 
   },
   { 
-    "op": "replace", "path": "/backendroles", "value": ["mybackendrole"] 
+    "op": "replace", "path": "/backend_roles", "value": ["mybackendrole"] 
   }
 ]
 ```

@@ -45,6 +45,11 @@ Multi tenancy will not work properly if the configuration does not match in Elas
 Multi tenancy is configured in sg_config.yml:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     do_not\fail_on_forbidden: true 

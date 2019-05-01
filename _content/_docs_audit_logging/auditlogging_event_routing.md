@@ -28,7 +28,7 @@ Events can also be routed to multiple storage endpoints at the same time. Combin
 If you are already familiar with audit logging, you know that you can configure the endpoint used for storing the events in elasticsearch.yml like:
 
 <pre>
-sg_config:
+searchguard:
   audit:
     threadpool:
       size: 10
@@ -46,7 +46,7 @@ The event routing module is backwards compatible with this configuration, so the
 You can configure as many endpoints as you need under the `searchguard.audit.endpoints` configuration key:
 
 ```
-sg_config:
+searchguard:
   audit:
     endpoints:
       [endpoint name]:
@@ -70,7 +70,7 @@ The configuration settings are specific for each endpoint. For a reference, plea
 The following example configures the default endpoint and three additional ones:
 
 ```
-sg_config:
+searchguard:
   audit:
     type: internal_elasticsearch
     config:
@@ -102,7 +102,7 @@ If an endpoint is not able to store an audit event, for example due to network c
 If you want to use a different endpoint as fallback, simply register it under the name `fallback`:
 
 ```
-sg_config:
+searchguard:
   audit:
     endpoints:
       fallback:
@@ -120,7 +120,7 @@ sg_config:
 Events can be routed to one or more endpoints by their category. To configure the endpoints for a category, use the following configuration schema:
 
 ```
-sg_config:
+searchguard:
   audit:
     routes:
       [category name]:
@@ -147,7 +147,7 @@ If there is a specific routing configured for a category the events will only be
 ### Example
 
 ```
-sg_config:
+searchguard:
   audit:
     routes:
       FAILED_LOGIN:

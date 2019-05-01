@@ -71,7 +71,7 @@ admin|role1,role2|127.0.0:80|key1,value1,key2,value2|mytenant
 
 ```
 Username: admin,
-backendroles: ["role1", "role2"],
+backend_roles: ["role1", "role2"],
 remoteip: "127.0.0:80",
 custom_attributes: {
    key1: "value1",
@@ -88,7 +88,7 @@ admin|role1,role2|||mytenant
 
 ```
 Username: admin,
-backendroles: ["role1", "role2"],
+backend_roles: ["role1", "role2"],
 remoteip: "(set by Search Guard)",
 custom_attributes: {},
 tenant: "mytenant"
@@ -101,7 +101,7 @@ admin||||
 ```
 ```
 Username: admin,
-backendroles: [],
+backend_roles: [],
 remoteip: "(set by Search Guard)",
 custom_attributes: {},
 tenant: null

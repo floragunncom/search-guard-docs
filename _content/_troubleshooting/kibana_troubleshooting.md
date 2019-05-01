@@ -209,6 +209,11 @@ If you do not specify any index in the timelion query, it will simply use a wild
 Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
 
 ```
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     kibana:

@@ -129,6 +129,11 @@ Typically you set up the Kibana server user in the Search Guard Internal User Da
 
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     http:
@@ -169,6 +174,11 @@ Search Guard can be run in `do not fail on forbidden` mode. With this mode enabl
 Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
 
 ```
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     do_not_fail_on_forbidden: true

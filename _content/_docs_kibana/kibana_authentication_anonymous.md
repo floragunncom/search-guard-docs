@@ -46,6 +46,11 @@ Kibana anonymous authentication only works in conjunction with Basic authenticat
 To use anonymous authentication, enable it in sg_config.yml like:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     ...
@@ -64,7 +69,7 @@ sg\_roles\_mapping.yml:
 
 ```
 SGS_KIBANA_USER:
-  backendroles:
+  backend_roles:
     - sg_anonymous_backendrole
 ```
 
@@ -99,7 +104,7 @@ sg\_roles\_mapping.yml:
 
 ```
 sg_anonymous_role:
-  backendroles:
+  backend_roles:
     - sg_anonymous_backendrole
 ```
 

@@ -32,9 +32,24 @@ The file structure is very simple:
     - ...
 ```
 
-## Pre-defined action groups
+Example:
 
-Search Guard ships with a list of pre-defined action groups that are suitable for most use cases. 
+```yaml
+_sg_meta:
+  type: "actionsgroups"
+  config_version: 2
+  
+MY_ACTION_GROUP:
+  - "indices:data/read/search*"
+  - "indices:data/read/msearch*"
+  - MY_OTHER_ACTION_GROUP
+MY_OTHER_ACTION_GROUP:
+  - "indices:data/read/suggest*"
+```
+
+## Built-in action groups
+
+Search Guard ships with a list of built-in action groups that are suitable for most use cases. 
 
 ### General
 

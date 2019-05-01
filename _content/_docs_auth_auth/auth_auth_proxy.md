@@ -29,6 +29,11 @@ Search Guard can extract these HTTP header fields from the request, and use thes
 To enable proxy detection, configure it in the `xff` section of `sg_config.yml`:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     http:
@@ -109,6 +114,11 @@ http {
 The corresponding minimal sg_config.yml looks like:
 
 ```
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     http:
@@ -151,6 +161,11 @@ Authentication Proxy -> Kibana -> Search Guard
 In this case the remote address of the HTTP call is the IP of Kibana, because it sits directly in front of Search Guard. Therefore you need to add the IP of Kibana to the list of internal proxies:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     http:

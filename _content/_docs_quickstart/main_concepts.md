@@ -96,7 +96,7 @@ A definition of a permission that allows searching a particular index looks like
 
 Permissions are defined per role and can be applied on a cluster or index level.
 
-Search Guard ships with pre-defined groups of permissions like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc.
+Search Guard ships with built-in groups of permissions like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc.
 
 ## Action groups
 
@@ -115,7 +115,7 @@ SGS_SUGGEST:
 
 Action groups can be used in the role configuration instead of or in combination with fine-grained permissions like `indices:data/read/search*`.
 
-Search Guard ships with a predefined set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the pre-defined action groups**.
+Search Guard ships with a built-in set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the built-in action groups**.
 
 ## The Search Guard index
 

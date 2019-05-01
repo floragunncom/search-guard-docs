@@ -125,7 +125,7 @@ With the permissions dialogue you can edit permissions for:
 * Roles on index level
 * Action Groups
 
-The recommended way to manage permissions is to use the pre-defined action groups that ship with Search Guard. If you want to edit permissions on a more fine-grained level, you can click on the "Advanced" checkbox will will let you edit single permissions.
+The recommended way to manage permissions is to use the built-in action groups that ship with Search Guard. If you want to edit permissions on a more fine-grained level, you can click on the "Advanced" checkbox will will let you edit single permissions.
 
 <p align="center">
 <img src="kibana_gui_permissions.png" style="width: 70%" class="md_image"/>

@@ -32,6 +32,11 @@ The main configuration file for authentication and authorization modules  is `sg
 It has three main parts:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     http:

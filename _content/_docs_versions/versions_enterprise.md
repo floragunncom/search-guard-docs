@@ -82,6 +82,11 @@ After obtaining a license, you can apply it in two ways.
 Add the license string to sg_config.yml and upload the configuration by using sgadmin. You can either configure the license on a single line, or use YAML multi-line format:
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     license: LS0tLS1CRUdJTiBQR1A...
@@ -92,6 +97,11 @@ sg_config:
 ```
 
 ```yaml
+---
+_sg_meta:
+  type: "config"
+  config_version: 2
+
 sg_config:
   dynamic:
     license: |-

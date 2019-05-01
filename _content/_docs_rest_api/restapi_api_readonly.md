@@ -18,11 +18,11 @@ Copyright 2019 floragunn GmbH
 
 ## Reserved resources
 
-You can mark any user, role, action group or roles mapping as `reserced` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
+You can mark any user, role, action group or roles mapping as `reserved` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
 
 You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are left untouched.
 
-To mark a resource `readonly`, add the following flag:
+To mark a resource `reserved`, add the following flag:
 
 ```yaml
 sg_my_role:
@@ -58,7 +58,7 @@ sg_my_role:
   ...
 ```  
 
-## Static resources
+## Built-in (static) resources
 
 The Search Guard built-in roles and and action groups are marked `static` and cannot be changed.
 {: .note .js-note}
