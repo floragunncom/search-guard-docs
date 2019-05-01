@@ -24,6 +24,7 @@ searchguard:
   nextmajorversion: 6.2.2-21.0
   islatestversion: false
   allversions:
+    - 7x-35
     - 6x-25
     - 6x-24
     - 6x-23
@@ -34,7 +35,8 @@ searchguard:
     - v2
 
 docroots: 
-  6x-25: latest
+  7x-35: latest
+  6x-25: 6.x-25
   6x-24: 6.x-24
   6x-23: 6.x-23
   6x-22: 6.x-22
@@ -68,6 +70,7 @@ labels:
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
+    7x-35: Search Guard 7.x-35-rc1
     6x-25: Search Guard 6.x-25
     6x-24: Search Guard 6.x-24
     6x-23: Search Guard 6.x-23
