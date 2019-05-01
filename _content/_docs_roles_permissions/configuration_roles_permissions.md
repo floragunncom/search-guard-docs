@@ -30,6 +30,10 @@ Search Guard roles are the central place to configure access permissions on:
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. The syntax to define a role is as follows:
 
 ```yaml
+_sg_meta:
+  type: "roles"
+  config_version: 2
+
 <role_name>:
   cluster_permissions:
     - '<action group or single permission>'
@@ -274,4 +278,20 @@ sg_own_index:
         - SGS_CRUD
 ```
 
+## Built-in Roles
 
+Search Guard ships with the following built-in (static) roles:
+
+| Role name | Description |
+|---|---|
+| SGS\_ALL\_access | All cluster permissions and all index permissions on all indices |
+| SGS\_READALL | Read permissions on all indices, but no write permissions |
+| SGS\_READONLY\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
+| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
+| SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
+| SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
+| SGS\_MANAGE\_SNAPSHOTS | Grants full permissions on snapshot, restore and repositories operations |
+| SGS\_OWN\_INDEX | Grants full permissions on an index named after the authenticated user's username. |
+| SGS\_XP\_MONITORING | Role for X-Pack Monitoring. Users who wish to use X-Pack Monitoring need this role in addition to the sg\_kibana\_user role |
+| SGS\_XP\_ALERTING | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
+| SGS\_XP\_MACHINE\_LEARNING | Role for X-Pack Machine Learning. Users who wish to use X-Pack Machine Learning need this role in addition to the sg\_kibana role |
