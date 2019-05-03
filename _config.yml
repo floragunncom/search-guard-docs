@@ -177,7 +177,7 @@ eol:
   features:
     - 5.6.16
     - 6.6.2
-    - 6.7.1
+    - 6.7.2
   updates:
     - 6.4.3
     - 6.5.4
@@ -185,7 +185,8 @@ eol:
 sgversions:
   enterprise:
       #esv |sgv |kbv |feat|upd|eol
-    - 6.7.1|25.0|18.3|yes|yes|no
+    - 6.7.2|25.0|18.3|yes|yes|no
+    - 6.7.1|25.0|18.3|no|no|yes
     - 6.7.0|24.3|18.3|no|no|yes
     - 6.6.2|25.0|18.3|yes|yes|no
     - 6.6.1|24.3|18.3|no|no|yes
