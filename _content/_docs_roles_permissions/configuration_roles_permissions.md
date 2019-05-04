@@ -284,9 +284,9 @@ Search Guard ships with the following built-in (static) roles:
 
 | Role name | Description |
 |---|---|
-| SGS\_ALL\_access | All cluster permissions and all index permissions on all indices |
+| SGS\_ALL\_ACCESS | All cluster permissions and all index permissions on all indices |
 | SGS\_READALL | Read permissions on all indices, but no write permissions |
-| SGS\_READONLY\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
+| SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
 | SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
 | SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
 | SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
