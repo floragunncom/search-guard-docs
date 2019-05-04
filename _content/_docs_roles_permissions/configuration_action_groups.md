@@ -27,6 +27,10 @@ The file structure is very simple:
 
 ```yaml
 <action group name>:
+  reserved: true|false #optional
+  description: "..." #optional
+  type: "index" #or cluster or kibana, is optional
+  allowed_actions:
     - '<permission or action group>'
     - '<permission or action group>'
     - ...
@@ -40,11 +44,17 @@ _sg_meta:
   config_version: 2
   
 MY_ACTION_GROUP:
-  - "indices:data/read/search*"
-  - "indices:data/read/msearch*"
-  - MY_OTHER_ACTION_GROUP
+  reserved: false
+  allowed_actions:
+    - "indices:data/read/search*"
+    - "indices:data/read/msearch*"
+    - MY_OTHER_ACTION_GROUP
 MY_OTHER_ACTION_GROUP:
-  - "indices:data/read/suggest*"
+  reserved: true
+  description: "my other action group"
+  type: "index"
+  allowed_actions:
+    - "indices:data/read/suggest*"
 ```
 
 ## Built-in action groups
@@ -105,11 +115,13 @@ You can define your own action groups in `sg_action_groups.yml`. You can use any
 
 ```yaml
 MY_ACTION_GROUP:
-  - "indices:data/read/search*"
-  - "indices:data/read/msearch*"
-  - MY_OTHER_ACTION_GROUP
+  allowed_actions:
+    - "indices:data/read/search*"
+    - "indices:data/read/msearch*"
+    - MY_OTHER_ACTION_GROUP
 MY_OTHER_ACTION_GROUP:
-  - "indices:data/read/suggest*"
+  allowed_actions:
+    - "indices:data/read/suggest*"
 ```
 
 In this case, the action group `MY_ACTION_GROUP` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `MY_OTHER_ACTION_GROUP`.
