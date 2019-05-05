@@ -19,7 +19,7 @@ Copryight 2017-2019 floragunn GmbH
 
 ## Changes 
 
-* This version is based on [6.7.x-25.0](https://docs.search-guard.com/latest/changelog-searchguard-6-x-25_0) and contains all features from this version
+* This version is based on [6.7.x-25.0](https://docs.search-guard.com/6.x-25/changelog-searchguard-6-x-25_0) and contains all features from this version
 * The code of the former [standalone SSL Plugin](https://github.com/floragunncom/search-guard-ssl) was merged into the [Search Guard codebase](https://github.com/floragunncom/search-guard). So for Search Guard 7 the `search-guard-ssl` github repository is no longer relevant. 
 
 ### BREAKING: Support for document types and tribe nodes removed
