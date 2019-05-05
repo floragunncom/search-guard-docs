@@ -16,6 +16,4 @@ Copyright 2019 floragunn GmbH
 # OEM License
 {: .no_toc}
 
-{% include toc.md %}
-
 If you're a system integrator or want to ship Search Guard as part of your own product, please [see our partners page](https://search-guard.com/partners/){:target="_blank"} for further information.

@@ -90,7 +90,7 @@ searchguard.cert.oid: <String>
 ```
 ### Custom implementation
 
-You can also provide your own implementation to identify inter-node traffic. Please see chapter [Expert features](tls_expert.md) for details.
+You can also provide your [own implementation to identify inter-node traffic](search-guard-oem-principal-extractor).
 
 ## Extended key usage settings
 
