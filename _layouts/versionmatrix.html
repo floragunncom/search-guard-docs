@@ -30,34 +30,18 @@
 							{% include version.html %}
 							{{ content }}
 							<h2>Search Guard Versions</h2>
-							<table>
-  								<thead>
-							    <tr>
-							      <th>Elasticsearch Version</th>
-							      <th>Search Guard Version</th>
-							      <th>Kibana Plugin Version</th>
-							      <th>Artifact</th>
-							      <th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">Receive new features</a></th>
-										<th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">Receive critical bugfixes</a></th>
-										<th><a href="https://docs.search-guard.com/latest/eol-policy" target="_blank">End of Life</a></th>
-							    </tr>
-							  </thead>
-							  <tbody>
 
-								{% for version in site.sgversions %}
-							    <tr>
-							      {% assign sgversions = version | split: "|" %}							       
-							      <td>{{ sgversions[0] }}</td>
-							      <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-7/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-7-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
-								  <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
-								  <td>com.floragunn:search-guard-7:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
-								  <td>{{ sgversions[3] }}</td>
-									<td>{{ sgversions[4] }}</td>
-									<td>{{ sgversions[5] }}</td>
-							    </tr>
-							    {% endfor %}
-							  </tbody>
-							</table>
+							<h3>Search Guard 7 </h3>
+							
+							If you are upgrading from Elasticsearch 6.7.x to Elasticsearch >= 7.0.0, please read the [upgrade instructions to Elasticsearch 6.7.x](../_docs_installation/installation_upgrading_6_7.md). 
+							{: .note .js-note .note-warning}
+							
+							{% include sgversions.html majorversion="sg7" %}
+
+							<h3>Search Guard 6 </h3>
+							
+							{% include sgversions.html majorversion="sg6" %}
+
 						</div>
 					</div>
 				</div>

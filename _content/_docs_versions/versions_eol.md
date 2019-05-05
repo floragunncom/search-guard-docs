@@ -21,6 +21,8 @@ The Search Guard End of Life policy defines
 * which Elasticsearch version receive critical bugfixes for Search Guard (but no new features)
 * which Elasticsearch version is End of Life (EOL) and will not receive any Search Guard updates
 
+**The Search Guard EOL policy follows the Elasticsearch update policy.**
+
 Please also refer to [Elasticsearch end of life policy](https://www.elastic.co/de/support/eol) to check whether your Elasticsearch version
 has reached End of Life in general. 
 
@@ -49,7 +51,7 @@ where
 
 At the time of writing this is: {% for version in site.eol.features %}
 * {{ version }}{% endfor %}
-{: .note .js-note}
+
 
 ## Which Elasticsearch versions receive critical bugfixes only (but no new features)
 
@@ -58,7 +60,7 @@ At the time of writing this is: {% for version in site.eol.features %}
 
 At the time of writing this is: {% for version in site.eol.updates %}
 * {{ version }}{% endfor %}
-{: .note .js-note}
+
 
 ## Which Elasticsearch versions receive no updates at all any longer
 

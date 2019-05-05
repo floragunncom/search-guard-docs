@@ -67,7 +67,7 @@ The REST API offers an endpoint to retrieve your current license information. To
 curl -Ss --insecure -u admin:admin -XGET https://example.com:9200/_searchguard/license?pretty
 ```
 
-See the [REST management API](restapi_api.md) configuration chapter for further information on how to configure API users.
+See the [REST management API](rest-api) configuration chapter for further information on how to configure API users.
 
 #### Kibana Configuration GUI
 
@@ -124,7 +124,7 @@ When using `sgadmin` to upload the changed `sg_config.yml` with the new license,
 ``` 
 #### REST API
 
-You can use the [REST management API](restapi_api.md) license endpoint to `POST` an Enterprise License to Search Guard.
+You can use the [REST management API](rest-api) license endpoint to `POST` an Enterprise License to Search Guard.
 
 #### Kibana Configuration GUI
 

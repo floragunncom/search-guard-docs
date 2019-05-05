@@ -21,7 +21,7 @@ class AlgoliaSearchRecordExtractor
     return item if collection_name == 'posts'
     item[:collection_name] = @file.site.config["labels"]["collections"][collection_name]
     item[:category_name] = @file.site.config["labels"]["navigation"][item[:category]]
-    item[:unique_hierarchy] = item[:collection_name] + " > " + item[:unique_hierarchy]
+    item[:unique_hierarchy] = item[:collection_name] + " > " + item[:category_name] + " > " + item[:unique_hierarchy]
     item[:text_all_raw] = node_text_all_raw(node)
     item[:text_all] = node_text_all(node)
     item
