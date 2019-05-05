@@ -55,6 +55,8 @@ labels:
     installation: Installing Search Guard
     upgrading: Upgrading Search Guard
     tls: TLS Setup
+    ldap: Active Directory / LDAP
+    generating-certificates: "Generating certificates"
     configuration: "Applying Configuration Changes"
     authauth: Authentication and Authorization
     rolespermissions: "Users, Roles and Permissions"
@@ -65,10 +67,15 @@ labels:
     compliance: Compliance
     restapi: REST API
     elasticstack: Integrating with the Elasticstack
+    elasticstack-alternatives: "Elasticstack alternatives"
+    kibana-authentication: "Kibana Authentication"
     otherintegrations: Other integrations
     systemintegrators: Advanced system integrator features
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    changelogs-kibana: "Kibana Changelogs"
+    changelogs-searchguard: "Search Guard Changelogs"
+    changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
     7x-35: Search Guard 7.x-35-rc1
     6x-25: Search Guard 6.x-25
@@ -80,11 +87,23 @@ labels:
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
-    docs: Documentation
+    docs_quickstart: Documentation
+    docs_versions: Documentation
+    docs_installation: Documentation
+    docs_tls: Documentation
+    docs_configuration_changes: Documentation
+    docs_auth_auth: Documentation
+    docs_roles_permissions: Documentation
+    docs_dls_fls: Documentation
+    docs_audit_logging: Documentation
+    docs_rest_api: Documentation
+    docs_kibana: Documentation
+    docs_elasticstack: Documentation
+    docs_other_integrations: Documentation
+    docs_systemintegrators: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
-
 
 relative_links:
   enabled:     true
