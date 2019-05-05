@@ -55,6 +55,8 @@ labels:
     installation: Installing Search Guard
     upgrading: Upgrading Search Guard
     tls: TLS Setup
+    ldap: Active Directory / LDAP
+    generating-certificates: "Generating certificates"
     configuration: "Applying Configuration Changes"
     authauth: Authentication and Authorization
     rolespermissions: "Users, Roles and Permissions"
@@ -65,10 +67,15 @@ labels:
     compliance: Compliance
     restapi: REST API
     elasticstack: Integrating with the Elasticstack
+    elasticstack-alternatives: "Elasticstack alternatives"
+    kibana-authentication: "Kibana Authentication"
     otherintegrations: Other integrations
     systemintegrators: Advanced system integrator features
     troubleshooting: Troubleshooting
     changelogs: Changelogs
+    changelogs-kibana: "Kibana Changelogs"
+    changelogs-searchguard: "Search Guard Changelogs"
+    changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
     7x-35: Search Guard 7.x-35-rc1
     6x-25: Search Guard 6.x-25
@@ -80,11 +87,23 @@ labels:
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
-    docs: Documentation
+    docs_quickstart: Documentation
+    docs_versions: Documentation
+    docs_installation: Documentation
+    docs_tls: Documentation
+    docs_configuration_changes: Documentation
+    docs_auth_auth: Documentation
+    docs_roles_permissions: Documentation
+    docs_dls_fls: Documentation
+    docs_audit_logging: Documentation
+    docs_rest_api: Documentation
+    docs_kibana: Documentation
+    docs_elasticstack: Documentation
+    docs_other_integrations: Documentation
+    docs_systemintegrators: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
-
 
 relative_links:
   enabled:     true
@@ -216,14 +235,44 @@ algolia:
 
 eol:
   features:
-    - 5.6.16
-    - 6.6.2
+    - 7.0.0
     - 6.7.2
+    - 6.6.2
+    - 5.6.16
   updates:
-    - 6.4.3
     - 6.5.4
+    - 6.4.3
 
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
-  - 7.0.0|35.0.0-rc1|35.0.0-rc1|yes|yes|no
-  - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
+  sg7:
+    - 7.0.0|35.0.0-rc1|35.0.0-rc1|yes|yes|no
+    - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
+  sg6:
+      #esv |sgv |kbv |feat|upd|eol
+    - 6.7.2|25.0|18.3|yes|yes|no
+    - 6.7.1|25.0|18.3|no|no|yes
+    - 6.7.0|24.3|18.3|no|no|yes
+    - 6.6.2|25.0|18.3|yes|yes|no
+    - 6.6.1|24.3|18.3|no|no|yes
+    - 6.6.0|24.3|18.3|no|no|yes
+    - 6.5.4|25.0|18.3|no|yes|no
+    - 6.5.3|24.3|18.3|no|no|yes
+    - 6.5.2|24.3|18.3|no|no|yes
+    - 6.5.1|24.3|18.3|no|no|yes
+    - 6.4.3|25.0|17|no|yes|no
+    - 6.4.2|24.3|17|no|no|yes
+    - 6.4.1|24.3|17|no|no|yes
+    - 6.4.0|24.3|17|no|no|yes
+    - 6.3.2|24.0|17|no|no|yes
+    - 6.3.1|24.0|17|no|no|yes
+    - 6.3.0|24.0|17|no|no|yes
+    - 6.2.4|23.0|14|no|no|yes
+    - 6.2.3|23.0|14|no|no|yes
+    - 6.2.2|23.0|14|no|no|yes
+    - 6.2.1|23.0|14|no|no|yes
+    - 6.1.4|22.3|12|no|no|yes
+    - 6.1.3|22.3|12|no|no|yes
+    - 6.1.2|22.3|12|no|no|yes
+    - 6.1.1|22.3|12|no|no|yes
+    - 6.1.0|22.3|12|no|no|yes  
