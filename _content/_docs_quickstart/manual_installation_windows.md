@@ -50,7 +50,7 @@ For offline installation and more details, see the [Search Guard installation ch
 
 ## Download and install the Search Guard demo certificates
 
-Download the [certificates zip file](https://downloads.search-guard.com/downloads/certificates/certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
+Download the [certificates zip file](https://downloads.search-guard.com/resources/certificates/certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
 
 ```
 <ES installation directory>/config

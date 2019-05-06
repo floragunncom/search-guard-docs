@@ -13,7 +13,7 @@ anchors: # for navigation
   "JSON web tokens": "json-web-tokens"
   "Audit logging": "audit-logging"  
   "Document- and Field-Level Security": "dls-fls"      
-resources: # for sitemap
+sitemap_resources: # for sitemap
   - "/resources/presentations/01_SG_Documents_installation.pdf"      
   - "/resources/presentations/02_SG_Documents_architecture_request_flow.pdf"
   - "/resources/presentations/03_SG_Documents_configuration_basics.pdf"
