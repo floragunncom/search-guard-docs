@@ -15,8 +15,8 @@ Copryight 2019 floragunn GmbH
 
 **Release Date: 24.04.2019**
 
-* [Upgrade Guide from 5.x to 6.x](../_docs/upgrading_5_6.md)
-* [Upgrade Guide to 6.5.x](../_docs/upgrading-6_5_0.md)
+* [Upgrade Guide from 5.x to 6.x](upgrading-5-6)
+* [Upgrade Guide to 6.5.x](upgrading-560)
 
 ## Security Fixes 
 
