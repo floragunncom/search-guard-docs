@@ -15,7 +15,7 @@ Copryight 2010 floragunn GmbH
 
 **Release Date: 20.12.2018**
 
-[Upgrade Guide to 6.5.x](../_docs/upgrading-6_5_0.md)
+[Upgrade Guide to 6.5.x](upgrading-560)
 
 ## Security Fixes
 
