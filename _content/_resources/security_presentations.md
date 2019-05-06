@@ -7,7 +7,7 @@ layout: resources
 description: Search Guard slide decks regarding various topics around networks and security.
 anchors: # for navigation
   "Zero-trusted networks": "zero-trusted-networks"
-resources: # for sitemap
+sitemap_resources: # for sitemap
   - "/resources/presentations/Zero_Trusted_Networks.pdf"      
 
 ---

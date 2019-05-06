@@ -13,8 +13,7 @@ layout: null
             <lastmod>{{ doc.last_modified_at | default: doc.date | date_to_xmlschema }}</lastmod>
           {% endif %}
         </url>
-      {% for resource in doc.resources %}
-        tstau
+      {% for resource in doc.sitemap_resources %}
         <url>
           <loc>https://docs.search-guard.com{{ resource | xml_escape }}</loc>
           <lastmod>{{ doc.last_modified_at | default: doc.date | date_to_xmlschema }}</lastmod>
