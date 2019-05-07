@@ -6,7 +6,7 @@ searchguard:
   nextmajorversion: 6.7.1-26.0
   islatestversion: false
 
-index: true
+index: false
 
 baseurl: /6.x-24
 
