@@ -36,7 +36,6 @@ For generating certificates you have the following options:
 * Use and customize the [example PKI scripts](tls_generate_example_scripts.md) (safe for production)
 * Use OpenSSL directly (safe for production)
   * [Creating Search Guard TLS certificates with OpenSSL](https://search-guard.com/elasticsearch-tls-certificates-openssl/) (blogpost)
-  * [Creating a CA with OpenSSL(](https://www.musingitoutloud.com/creating-a-ca-with-openssl/) (blogpost)
 
 If you have your own PKI infrastructure and are already familiar with TLS certificates, you can jump directly to [TLS certificates for production environments](tls_certificates_production.md).
 
