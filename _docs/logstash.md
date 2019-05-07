@@ -45,7 +45,7 @@ Setting `ssl` to true ensures that logstash uses HTTPS.
 
 If you want logstash to verify the certificate it gets from Elasticsearch / Search Guard (optional, but recommended), set the `ssl_certificate_verification` property to true. Validation here means that logstash verifies the certificate against the certificates configured in a truststore file. In most cases, you will want to put your Root CA that was used to generate the server certificates in the truststore.
 
-This is very similar to configuring the truststore for your Elasticsearch nodes, so if you want to dig deeper into this topic, please refer to the [Search Guard SSL configuration documentation](https://github.com/floragunncom/search-guard-ssl-docs/blob/master/configuration.md).
+This is very similar to configuring the truststore for your Elasticsearch nodes, so if you want to dig deeper into this topic, please refer to the [Search Guard SSL configuration documentation](https://docs.search-guard.com/v5/configuring-tls).
 
 If you enable certificate validation, you need to provide the absolute path to the truststore, and the truststores password as well:
 

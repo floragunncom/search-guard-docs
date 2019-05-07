@@ -103,7 +103,7 @@ searchguard.audit.config.enable_ssl_client_auth: <true|false>
 ```
 Whether or not to enable SSL/TLS client authentication. If you set this to true, the audit log module will send the nodes certificate from the keystore along with the request. The receiving cluster can use this certificate to verify the identity of the caller.
 
-Note: The audit log module will use the key and truststore settings configured in the HTTP/REST layer SSL section of elasticsearch.yml. Please refer to the [Search Guard SSL](https://github.com/floragunncom/search-guard-ssl-docs/blob/master/configuration.md) configuration chapter for more information.
+Note: The audit log module will use the key and truststore settings configured in the HTTP/REST layer SSL section of elasticsearch.yml. Please refer to the [Search Guard SSL](https://docs.search-guard.com/v5/configuring-tls) configuration chapter for more information.
 
 ### Basic auth settings
 
