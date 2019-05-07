@@ -29,7 +29,7 @@ If you have not already done so, make yourself familiar with Elastic's own upgra
 ## Review breaking changes
 
 * [Breaking Changes in Elasticsearch 7](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html)
-* [Breaking Changes in Search Guard 7](../_changelogs/changelog_searchguard_7_x_35_0_0_rc1.md)
+* [Breaking Changes in Search Guard 7](../_changelogs/changelog_searchguard_7_x_35_0_0.md)
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ During migration the REST management API will not work properly and should not b
 If you miss this step your cluster can become uninitialized which will result in a downtime.
 {: .note .js-note .note-warning}
 
-Download standalone sgadmin 7 ([zip](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.0-35.0.0-rc1/search-guard-7-7.0.0-35.0.0-rc1-sgadmin-standalone.zip)/[tar.gz](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.0-35.0.0-rc1/search-guard-7-7.0.0-35.0.0-rc1-sgadmin-standalone.tar.gz)) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run 
+Download standalone sgadmin 7 ([zip](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.1-35.0.0/search-guard-7-7.0.1-35.0.0-sgadmin-standalone.zip)/[tar.gz](https://repo1.maven.org/maven2/com/floragunn/search-guard-7/7.0.1-35.0.0/search-guard-7-7.0.1-35.0.0-sgadmin-standalone.tar.gz)) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run 
 
 * `./sgadmin7/tools/sgadmin.sh -backup "./sgadmin7" <other parameters like -ks -cert etc>`
 
@@ -122,6 +122,3 @@ This applies to sgadmin and the REST management API. Configuration changes are p
 ### Monitoring
 
 While running in mixed mode, X-Pack monitoring might return incorrect values or throw Exceptions which you can safely ignore.
-
-### Known Issues
-There is a known issue in this release with regards to Kibana multitenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.
