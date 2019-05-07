@@ -13,7 +13,7 @@ Copryight 2016-2017 floragunn GmbH
 
 **Note: Tribe nodes are deprecated from Elasticsearch 6.x onwards.**
 
-Search Guard offers support for tribe nodes. A tribe node ["acts as a federated client across multiple clusters"](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-tribe.html) and is commonly used to retrieve information from multiple Elasticsearch clusters making it look like one combined cluster.
+Search Guard offers support for tribe nodes. A tribe node ["acts as a federated client across multiple clusters"](https://www.elastic.co/guide/en/elasticsearch/reference/5.6/modules-tribe.html) and is commonly used to retrieve information from multiple Elasticsearch clusters making it look like one combined cluster.
 
 ## Preconditions
 
