@@ -1,12 +1,12 @@
 ---
 title: Configuration change tracking
-html_title: Configuration change tracking
+html_title: Change tracking
 slug: configuration-integrity
 category: auditlog
 order: 600
 layout: docs
 edition: compliance
-description: How to configure event routing to ship the compliance events to their correct storage destination
+description: Track Search Guard configuration changes by using the advanced audit logging features.
 ---
 <!---
 Copyright 2019 floragunn GmbH

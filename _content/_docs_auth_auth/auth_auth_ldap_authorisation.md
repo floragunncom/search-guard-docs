@@ -1,6 +1,6 @@
 ---
 title: Authorisation
-html_title: Active Directory Authorisation
+html_title: LDAP Authorisation
 slug: active-directory-ldap-authorisation
 category: ldap
 order: 300

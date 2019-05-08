@@ -4,7 +4,7 @@ slug: troubleshooting-kibana
 category: troubleshooting
 order: 500
 layout: troubleshooting
-description: Step-by-step instructions on how to troubleshoot Kibana issues.
+description: Step-by-step instructions on how to troubleshoot Kibana issues with the Search Guard plugin.
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->

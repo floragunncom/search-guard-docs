@@ -1,12 +1,12 @@
 ---
 title: Fluentd
-html_title: Using fluentd with Search Guard
+html_title: Fluentd
 slug: elasticsearch-fluentd-search-guard
 category: otherintegrations
 order: 500
 layout: docs
 edition: community
-description: How to configure and use fluentd with a Search Guard secured cluster.
+description: How to configure and use fluentd with a Search Guard secured Elasticsearch cluster.
 ---
 <!---
 Copryight floragunn GmbH

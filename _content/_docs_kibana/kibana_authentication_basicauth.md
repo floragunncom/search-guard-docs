@@ -6,7 +6,7 @@ category: kibana-authentication
 order: 200
 layout: docs
 edition: community
-description: How to configure Kibana for HTTP Basic Authentication.
+description: How to configure Kibana for HTTP Basic Authentication. Secure Kibana access with a login screen.
 ---
 <!---
 Copyright 2019 floragunn GmbH

@@ -1,6 +1,6 @@
 ---
 title: Managing the Search Guard Index
-html_title: Managing the Search Guard Index
+html_title: Search Guard Index
 slug: search-guard-index
 category: configuration
 order: 1100

@@ -1,6 +1,6 @@
 ---
 title: Configuration
-html_title: Authentication Configuration
+html_title: Authentication
 slug: authentication-authorization
 category: authauth
 order: 100

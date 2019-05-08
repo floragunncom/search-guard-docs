@@ -1,6 +1,6 @@
 ---
 title: Custom Principal Extractor
-html_title: Custom Principal Extractor
+html_title: Principal Extractor
 slug: search-guard-oem-principal-extractor
 category: systemintegrators
 order: 600

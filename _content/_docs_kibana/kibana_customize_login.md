@@ -1,5 +1,6 @@
 ---
 title: Customizing the login page
+html_title: Login Page
 slug: kibana-login-customizing
 category: kibana-authentication
 order: 250
@@ -13,8 +14,6 @@ Copyright 2019 floragunn GmbH
 
 # Customizing the login page
 {: .no_toc}
-
-{% include toc.md %}
 
 You can fully customize the login page to adapt it to your needs. Per default, the login page shows the following elements:
 

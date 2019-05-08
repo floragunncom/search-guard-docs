@@ -1,6 +1,6 @@
 ---
 title: License API
-html_title: License REST API endpoints
+html_title: License API
 slug: rest-api-license
 category: restapi
 order: 480

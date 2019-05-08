@@ -1,5 +1,6 @@
 ---
 title: Mapping Users to Search Guard Roles
+html_title: Mapping Users to Roles
 slug: mapping-users-roles
 category: rolespermissions
 order: 150

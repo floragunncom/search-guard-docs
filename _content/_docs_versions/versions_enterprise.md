@@ -1,11 +1,12 @@
 ---
 title: Enterprise and Compliance Edition
+html_title: Enterprise Edition
 slug: search-guard-enterprise-edition
 category: versions
 order: 300
 layout: docs
 edition: enterprise
-description: The Search Guard Enterprise and Compliance license offers enterprise security for Elasticsearch for unlimited nodes at a steady rate. Scale your cluster, not your cost!  
+description: The Search Guard Enterprise and Compliance license offers enterprise security for Elasticsearch and Kibana.
 resources:
   - "https://search-guard.com/product/|Search Guard editions feature comparison (website)"
 

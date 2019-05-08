@@ -1,5 +1,6 @@
 ---
 title: Academic and Scientific Licensing
+html_title: Academic Licensing
 slug: search-guard-acadmic-scientic-licensing
 category: versions
 order: 400

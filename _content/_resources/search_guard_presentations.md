@@ -1,5 +1,6 @@
 ---
 title: Search Guard Presentations
+html_title: Presentations
 slug: search-guard-presentations
 category: resources
 order: 100

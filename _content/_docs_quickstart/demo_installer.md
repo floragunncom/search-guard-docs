@@ -1,5 +1,6 @@
 ---
 title: Demo Installer (Linux/Mac)
+html_title: Demo Installer
 slug: demo-installer
 category: quickstart
 order: 200

@@ -1,10 +1,11 @@
 ---
 title: Overview
+html_title: Kibana changelogs
 slug: changelogs-kibana
 category: changelogs-kibana
 order: 200
 layout: changelogs
-description: Changelog for the Search Guard Kibana Plugin
+description: Changelog overview for the Search Guard Kibana Plugin
 ---
 
 <!---

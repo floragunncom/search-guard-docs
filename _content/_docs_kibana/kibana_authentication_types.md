@@ -1,6 +1,6 @@
 ---
 title: Authentication Types
-html_title: Kibana Authentication Types
+html_title: Authentication Types
 slug: kibana-authentication-types
 category: kibana-authentication
 order: 100

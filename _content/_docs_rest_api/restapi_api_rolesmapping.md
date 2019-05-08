@@ -1,6 +1,6 @@
 ---
 title: Roles mapping API
-html_title: Roles mapping REST API endpoints
+html_title: Roles mapping API
 slug: rest-api-roles-mapping
 category: restapi
 order: 420

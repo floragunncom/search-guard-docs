@@ -6,7 +6,7 @@ category: auditlog
 order: 700
 layout: docs
 edition: compliance
-description: Use the Search Guard Compliance edition to create immutable indices. Documents created in an immutable index cannot be changed after they have been created.
+description: Use immutable indices to ensure a document cannot be changed once indexed.
 resources:
   - "https://search-guard.com/immutable-indices-gdpr/|
 How Immutable Indices help you to stay GDPR compliant (blog post)"

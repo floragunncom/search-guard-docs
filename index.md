@@ -5,7 +5,6 @@ slug: index
 layout: docs
 description: Official documentation for Search Guard 7, the enterprise security suite for Elasticsearch.
 showsearch: true
-edition: beta
 ---
 <!---
 Copryight 2016-2019 floragunn GmbH

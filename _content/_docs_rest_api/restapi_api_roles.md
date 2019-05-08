@@ -1,6 +1,6 @@
 ---
 title: Roles API
-html_title: Search Guard roles REST API endpoints
+html_title: Roles API
 slug: rest-api-roles
 category: restapi
 order: 410

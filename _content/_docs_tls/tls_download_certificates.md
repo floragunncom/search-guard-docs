@@ -1,5 +1,6 @@
 ---
 title: Download demo certificates
+html_title: Demo certificates
 slug: tls-download-certificates
 category: generating-certificates
 order: 110

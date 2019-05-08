@@ -1,6 +1,6 @@
 ---
 title: Tenants API
-html_title: Tenants REST API endpoints
+html_title: Tenants API
 slug: rest-api-tenants
 category: restapi
 order: 460

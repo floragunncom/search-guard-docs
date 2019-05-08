@@ -1,9 +1,11 @@
 ---
 title: TLS troubleshooting
+html_title: TLS help
 slug: troubleshooting-tls
 category: troubleshooting
 order: 100
 layout: troubleshooting
+description: Step-by-step instructions to troubleshoot Search Guard TLS and certificates issues
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->

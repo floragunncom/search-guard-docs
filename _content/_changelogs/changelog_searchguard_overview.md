@@ -1,10 +1,11 @@
 ---
 title: Overview
+html_title: Search Guard changelogs
 slug: changelogs-searchguard
 category: changelogs-searchguard
 order: 0
 layout: changelogs
-description: Changelog Overview for the Search Guard and Search Guard SSL
+description: Changelog Overview for the Search Guard Elasticsearch Plugin
 ---
 
 <!---
