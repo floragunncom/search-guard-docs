@@ -5,7 +5,7 @@ category: elasticstack
 order: 700
 layout: docs
 edition: community
-description: How to configure Search Guard and X-Pack Alerting for Elasticsearch
+description: How to configure Search Guard to integrate with the X-Pack Alerting for Elasticsearch
 ---
 <!---
 Copyright 2019 floragunn GmbH

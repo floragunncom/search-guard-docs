@@ -1,5 +1,6 @@
 ---
-title: OpenID Integration
+title: OpenID Connect
+html_title: OpenID Connect
 slug: openid-json-web-keys
 category: authauth
 order: 600

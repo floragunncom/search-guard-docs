@@ -1,11 +1,11 @@
 ---
 title: Permissions troubleshooting
+html_title: Permissions help
 slug: troubleshooting-search-guard-permission
 category: troubleshooting
 order: 220
 layout: troubleshooting
-description: How to troubleshoot problems with Search Guard roles and permissions.
-
+description: Step-by-step instructions on how to troubleshoot issues with Search Guard roles and permissions.
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->

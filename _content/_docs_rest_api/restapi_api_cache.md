@@ -1,6 +1,6 @@
 ---
 title: Cache API
-html_title: Search Guard cache REST API endpoints
+html_title: Cache API
 slug: rest-api-cache
 category: restapi
 order: 500

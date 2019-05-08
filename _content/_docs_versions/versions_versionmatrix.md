@@ -1,5 +1,5 @@
 ---
-title: Latest Search Guard Versions
+title: Latest Releases
 slug: search-guard-versions
 category: versions
 order: 100

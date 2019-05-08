@@ -1,6 +1,6 @@
 ---
 title: Grafana
-html_title: Using Grafana with Search Guard
+html_title: Grafana 
 slug: elasticsearch-grafana-search-guard
 category: otherintegrations
 order: 620

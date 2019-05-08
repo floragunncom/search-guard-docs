@@ -6,7 +6,7 @@ subcategory: elasticstack-alternatives
 order: 1000
 layout: docs
 edition: community
-description: Alternatives for X-Pack 
+description: List of free alternatives 
 ---
 <!---
 Copyright 2019 floragunn GmbH

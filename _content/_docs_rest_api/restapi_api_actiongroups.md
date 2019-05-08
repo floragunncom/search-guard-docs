@@ -1,6 +1,6 @@
 ---
 title: Action groups API
-html_title: Action groups REST API endpoints
+html_title: Action groups API
 slug: rest-api-actiongroups
 category: restapi
 order: 440

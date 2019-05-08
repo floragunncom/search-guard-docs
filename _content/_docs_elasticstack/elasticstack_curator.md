@@ -1,6 +1,6 @@
 ---
 title: Curator
-html_title: Using curator with Search Guard
+html_title: Curator
 slug: elasticsearch-curator-search-guard
 category: elasticstack
 order: 300

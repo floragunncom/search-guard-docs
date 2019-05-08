@@ -1,6 +1,6 @@
 ---
 title: Logstash
-html_title: Using logstash with Search Guard
+html_title: Logstash
 slug: elasticsearch-logstash-search-guard
 category: elasticstack
 order: 100

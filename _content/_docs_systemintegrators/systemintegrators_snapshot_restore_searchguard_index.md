@@ -1,6 +1,6 @@
 ---
 title: Search Guard index restore
-html_title: Search Guard index restore
+html_title: Index restore
 slug: search-guard-oem-index-restore
 category: systemintegrators
 order: 300

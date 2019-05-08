@@ -1,6 +1,6 @@
 ---
 title: Authentication API
-html_title: Search Guard Authentication REST API endpoints
+html_title: Authentication API
 slug: rest-api-authentication
 category: restapi
 order: 460

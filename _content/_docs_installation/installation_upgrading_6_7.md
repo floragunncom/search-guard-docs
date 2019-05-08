@@ -4,7 +4,7 @@ slug: upgrading-6-7
 category: installation
 order: 850
 layout: docs
-description: Upgrade instructions from Search Guard 6 to Search Guard 7. 
+description: Step-by-step upgrade instructions from Search Guard 6.x to Search Guard 7.x. 
 ---
 <!---
 Copyright 2019 floragunn GmbH

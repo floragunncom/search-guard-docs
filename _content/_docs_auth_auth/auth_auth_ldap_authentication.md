@@ -1,6 +1,6 @@
 ---
 title: Authentication
-html_title: Active Directory Authentication
+html_title: LDAP Authentication
 slug: active-directory-ldap-authentication
 category: ldap
 order: 200

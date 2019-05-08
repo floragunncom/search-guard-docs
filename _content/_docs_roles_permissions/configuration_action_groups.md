@@ -1,5 +1,6 @@
 ---
 title: Permissions and Action Groups
+html_title: Permissions
 slug: action-groups
 category: rolespermissions
 order: 200

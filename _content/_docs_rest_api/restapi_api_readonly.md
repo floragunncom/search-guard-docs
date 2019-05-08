@@ -1,5 +1,6 @@
 ---
 title: Reserved and hidden resources
+html_title: Reserved resources
 slug: rest-api-reserved-hidden
 category: restapi
 order: 310

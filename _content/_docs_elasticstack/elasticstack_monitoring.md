@@ -5,7 +5,7 @@ category: elasticstack
 order: 600
 layout: docs
 edition: community
-description: How to configure Search Guard and X-Pack Monitoring for Elasticsearch
+description: How to configure Search Guard to integrate with the free X-Pack Monitoring for Elasticsearch
 resources:
   - "https://search-guard.com/elasticsearch-monitoring-searchguard/|Using X-Pack Monitoring with Search Guard (blog post)"
 
