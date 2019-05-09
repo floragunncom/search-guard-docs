@@ -27,7 +27,7 @@ n/a
 ### Search Guard
 
 * Make initialization more robust [#691](https://github.com/floragunncom/search-guard/issues/691){:target="_blank"}
- * There are rare situations where Search Guard was not initialized properly during a full cluster restart. This should now be fixed.
+  * There are rare situations where Search Guard was not initialized properly during a full cluster restart. This should now be fixed.
 
 * Change logstash demo role to include cluster pipeline put+get permissions so that logstash and beats can manage their pipeline
 [#692](https://github.com/floragunncom/search-guard/pull/692)
@@ -35,5 +35,5 @@ n/a
 ## Features
 
 * Expert feature for OEM integrators: Add PUT and PATCH method for sgconfig endpoint [#46](https://github.com/floragunncom/search-guard-enterprise-modules/pull/46){:target="_blank"}
- * Needs to be enabled by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
+  * Needs to be enabled by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
 
