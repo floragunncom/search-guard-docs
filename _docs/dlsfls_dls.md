@@ -24,7 +24,7 @@ Copryight 2016 floragunn GmbH
 
 Document-level security restricts a user's access to certain documents within an index. To enable document-level security you configure an Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
 
-The query supports the full range of the Elasticsearch query DSL, and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
+The query supports almost the full range of the Elasticsearch query DSL (see chapter "Limitations" below), and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
 
 ## Example
 
@@ -148,6 +148,14 @@ management:
 ## Multiple roles and document-level security
 
 A user can be member of more than one role, and each role can potentially define a different DLS query for the same index. In this case, all DLS queries are collected and combined with `OR`.
+
+## Limitations
+
+At the moment you cannot use the following features in the DLS query:
+
+* terms query with terms lookup
+* geo_shape query with indexed shapes
+* percolate query
 
 ## Performance considerations
 
