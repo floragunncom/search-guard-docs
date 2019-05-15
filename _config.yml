@@ -90,6 +90,7 @@ relative_links:
   enabled:     true
   collections: true
 
+domain: https://docs.search-guard.com
 baseurl: /6.x-20
 
 collections:
