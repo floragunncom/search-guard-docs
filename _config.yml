@@ -51,6 +51,7 @@ index: false
 labels:
   navigation:
     quickstart: Quickstart
+    first_steps: First steps
     versions: Search Guard Versions
     installation: Installing Search Guard
     upgrading: Upgrading Search Guard
@@ -88,6 +89,7 @@ labels:
     v2: Search Guard 2
   collections:
     docs_quickstart: Documentation
+    docs_first_steps: First steps
     docs_versions: Documentation
     docs_installation: Documentation
     docs_tls: Documentation
@@ -109,12 +111,16 @@ relative_links:
   enabled:     true
   collections: true
 
+domain: https://docs.search-guard.com
 baseurl: /latest
 
 collections_dir: _content
 
 collections:
   docs_quickstart:
+    output: true
+    permalink: :title
+  docs_first_steps:
     output: true
     permalink: :title
   docs_versions:

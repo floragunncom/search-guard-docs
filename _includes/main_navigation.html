@@ -4,7 +4,7 @@
 				<div class="row">
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<!-- Logo Image -->
-						<a href="index" class="logo-image">
+						<a href="{{site.domain}}{{site.baseurl}}/" class="logo-image">
 							<img src="img/logos/search-guard-logo.png" alt="Search Guard - Enterprise Security for Elasticsearch">
 						</a>
 						<!-- End of Logo Image -->
@@ -19,6 +19,7 @@
 									<ul>
 
 										{% include main_nav_items.html collectionname="docs_quickstart" category="quickstart" %}
+										{% include main_nav_items.html collectionname="docs_first_steps" category="first_steps" %}
 										{% include main_nav_items.html collectionname="docs_versions" category="versions" %}								
 										{% include main_nav_items.html collectionname="docs_installation" category="installation" %}
 										{% include main_nav_items.html collectionname="docs_tls" category="tls" %}										
@@ -69,7 +70,7 @@
 									<ul>
 										{% for version in site.searchguard.allversions %}
 										<li>
-											<a href="/{{site.docroots[version]}}/index">{{site.labels.navigation[version]}}</a>
+											<a href="/{{site.docroots[version]}}/">{{site.labels.navigation[version]}}</a>
 										</li>
 										{% endfor %}
 									</ul>
