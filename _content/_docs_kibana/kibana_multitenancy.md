@@ -52,7 +52,7 @@ _sg_meta:
 
 sg_config:
   dynamic:
-    do_not\fail_on_forbidden: true 
+    do_not_fail_on_forbidden: true 
     kibana:
       multitenancy_enabled: true
       server_username: 'xxx'
