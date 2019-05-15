@@ -42,12 +42,12 @@
 	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-32px.png" sizes="32x32" />
 	<link rel="icon" href="https://search-guard.com/wp-content/uploads/2018/02/SG_Fav-144px.png" sizes="144x144" />
 
-	<link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}{{page.url}}">
+	<link rel="canonical" href="https://docs.search-guard.com/latest{{page.url}}">
 	
 	{%if site.searchguard.islatestversion == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
 	{% else %}
-		<meta name="robots" content="noindex, nofollow">
+		<meta name="robots" content="noindex, follow">
 	{% endif %}
 	
 
