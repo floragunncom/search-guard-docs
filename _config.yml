@@ -171,6 +171,9 @@ collections:
   resources:
     output: true
     permalink: :title
+  common:
+    output: true
+    permalink: :title
 
 algolia:
   application_id: '2ESDTH812Y'
