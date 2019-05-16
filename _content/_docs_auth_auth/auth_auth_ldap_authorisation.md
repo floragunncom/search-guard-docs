@@ -6,7 +6,7 @@ category: ldap
 order: 300
 layout: docs
 edition: enterprise
-description: Use Search Guard's Active Directory and LDAP feature to fetch the backend roles of a user from an Active Directory server.
+description: Use Search Guards Active Directory and LDAP feature to fetch the roles of a user from an Active Directory server.
 resources:
   - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
 

@@ -5,7 +5,7 @@ category: kibana
 order: 150
 layout: docs
 edition: community
-description: How to enable the account overview page in Kibana.
+description: How to enable the account overview page with the Search Guard Kibana.
 ---
 
 <!---

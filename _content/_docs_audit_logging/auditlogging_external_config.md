@@ -6,7 +6,7 @@ category: auditlog
 order: 700
 layout: docs
 edition: compliance
-description: How to configure event routing to ship the compliance events to their correct storage destination
+description: How to use Search Guard to monitor changes in the Elasticsearch configuration.
 ---
 <!---
 Copyright 2019 floragunn GmbH

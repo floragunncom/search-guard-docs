@@ -4,7 +4,7 @@ slug: troubleshooting-openssl
 category: troubleshooting
 order: 150
 layout: troubleshooting
-description: How to troubleshoot Search Guard OpenSSL issues. 
+description: Step-by-step instructions on how to troubleshoot OpenSSL issues for a Search Guard secured Elasticsearch cluster. 
 ---
 
 <!--- Copryight 2017 floragunn GmbH -->

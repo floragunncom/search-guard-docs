@@ -1,6 +1,6 @@
 ---
 title: SAML authentication
-html_title: SAML authentication
+html_title: Kibana SAML
 slug: kibana-authentication-saml
 category: kibana-authentication
 order: 800

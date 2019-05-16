@@ -4,6 +4,7 @@ slug: troubleshooting-saml
 category: troubleshooting
 order: 500
 layout: troubleshooting
+description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML issues
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->

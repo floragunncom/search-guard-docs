@@ -6,7 +6,7 @@ category: kibana-authentication
 order: 100
 layout: docs
 edition: community
-description: Use the Search Guard Kibana plugin to add authentication and session management to Kibana.
+description: A list of all Kibana authentication types supported by Search Guard. Protect Kibana from any unauthorized access.
 ---
 <!---
 Copyright 2019 floragunn GmbH

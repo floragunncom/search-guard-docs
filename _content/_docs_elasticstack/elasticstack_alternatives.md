@@ -6,7 +6,7 @@ subcategory: elasticstack-alternatives
 order: 1000
 layout: docs
 edition: community
-description: List of free alternatives 
+description: A list of free alternatives for the commercial X-Pack Elasricsearch plugins.
 ---
 <!---
 Copyright 2019 floragunn GmbH

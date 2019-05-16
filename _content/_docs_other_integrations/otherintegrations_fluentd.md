@@ -6,7 +6,7 @@ category: otherintegrations
 order: 500
 layout: docs
 edition: community
-description: How to configure and use fluentd with a Search Guard secured Elasticsearch cluster.
+description: How to configure and use fluentd with a Search Guard secured Elasticsearch cluster. Protect your data from any unauthorized access.
 ---
 <!---
 Copryight floragunn GmbH
