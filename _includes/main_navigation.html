@@ -14,9 +14,10 @@
 						<nav class="right helper">
 							<ul class="menu sf-menu js-menu">
 								<li>
-									<a href="index.html" class="main-nav-level-1">Documentation</a>									
+									<a href="#" class="main-nav-level-1">Documentation</a>
 									<ul>
 										{% include main_nav_items.html collectionname="docs" category="quickstart" %}
+										{% include main_nav_items.html collectionname="docs" category="first_steps" %}
 										{% include main_nav_items.html collectionname="docs" category="installation" %}
 										{% include main_nav_items.html collectionname="docs" category="upgrading" %}
 										{% include main_nav_items.html collectionname="docs" category="tls" %}
@@ -34,30 +35,30 @@
 									</ul>
 								</li>
 								<li>
-									<a href="index.html" class="main-nav-level-1">Troubleshooting</a>									
+									<a href="#" class="main-nav-level-1">Troubleshooting</a>
 									<ul>
 										{% include main_nav_items_flat.html collectionname="troubleshooting" category="troubleshooting" %}
 									</ul>
 								</li>
 								<li>
-									<a href="index.html" class="main-nav-level-1">Resources</a>									
+									<a href="#" class="main-nav-level-1">Resources</a>
 									<ul>
 										{% include main_nav_items_flat.html collectionname="resources" category="resources" %}
 									</ul>
 								</li>
 
 								<li>
-									<a href="index.html" class="main-nav-level-1">Changelogs</a>									
+									<a href="#" class="main-nav-level-1">Changelogs</a>
 									<ul>
 										{% include main_nav_items_flat.html collectionname="changelogs" category="changelogs" %}
 									</ul>
 								</li>
 								<li>
-									<a href="index.html" class="main-nav-level-1">Versions</a>									
+									<a href="#" class="main-nav-level-1">Versions</a>
 									<ul>
 										{% for version in site.searchguard.allversions %}
 										<li>
-											<a href="/{{site.docroots[version]}}/index">{{site.labels.navigation[version]}}</a>
+											<a href="/{{site.docroots[version]}}/">{{site.labels.navigation[version]}}</a>
 										</li>
 										{% endfor %}
 									</ul>
