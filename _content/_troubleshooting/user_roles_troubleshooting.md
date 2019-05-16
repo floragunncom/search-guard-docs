@@ -1,5 +1,6 @@
 ---
-title: User and roles help
+title: User and roles troubleshooting
+html_title: User and roles help
 slug: troubleshooting-search-guard-user-roles
 category: troubleshooting
 order: 210
