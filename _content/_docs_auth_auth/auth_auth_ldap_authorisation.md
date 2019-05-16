@@ -249,7 +249,10 @@ authz:
           - '/\S*/'
 ```
 
-or 
+## Configuring multiple role bases
+
+You can also configure multiple role bases. Search Guard will query all role bases to fetch the users LDAP groups:
+
 
 ```yaml
 authz:
@@ -267,18 +270,18 @@ authz:
         bind_dn: cn=admin,dc=example,dc=com
         password: password
         users:
-          people:
+          primary-userbase:
             base: 'ou=people,dc=example,dc=com'
             search: '(uid={0})'
-          other:
+          secondary-userbase:
             base: 'ou=otherpeople,dc=example,dc=com'
             search: '(initials={0})'
         username_attribute: uid
         roles:
-          normalroles:
+          primary-rolebase:
             base: 'ou=groups,dc=example,dc=com'
             search: '(uniqueMember={0})'
-          other:
+          secondary-rolebase:
             base: 'ou=othergroups,dc=example,dc=com'
             search: '(owner={0})'
         userroleattribute: null
@@ -290,3 +293,5 @@ authz:
           - 'cn=Michael Jackson,ou*people,o=TEST'
           - '/\S*/'
 ```
+
+The names of the configuration keys (`primary-rolebase`, `secondary-rolebase`...) are just telling names. You can choose them freely and you can configure as many role bases as you need.

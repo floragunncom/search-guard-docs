@@ -54,7 +54,7 @@ config:
 
 ## Configuring Authentication
 
-Authentication works by issuing an *LDAP query* containing the *username* against the *user subtree* of the *LDAP tree*.
+Authentication works by issuing an *LDAP query* containing the *username* against the *user subtree* of the *LDAP directory*.
 
 Search Guard first takes the configured LDAP query, and replaces the placeholder `{0}` with the username from the user's credentials.
 
@@ -66,18 +66,6 @@ Search Guard then issues this query against the user subtree ("userbase"). Curre
 
 ```yaml
 userbase: 'ou=people,dc=example,dc=com'
-```
-
-Since Search Guard v24 you can alternatively configure multiple user bases (this combines and replaces the `usersearch` and `userbase` attribute): 
-
-```yaml
-users:
-  people:
-    base: 'ou=people,dc=example,dc=com'
-    search: '(uid={0})'
-  other:
-    base: 'ou=otherpeople,dc=example,dc=com'
-    search: '(initials={0})'
 ```
 
 If the query was successful, Search Guard retrieves the username from the LDAP entry. You can specify which attribute from the LDAP entry Search Guard should use as the username:
@@ -121,7 +109,25 @@ ldap:
       username_attribute: uid
 ```
 
-or
+## Multiple user bases
+
+You can also configure multiple user bases. Search Guard will query the user bases one after the other until the user was authenticated successfully:
+
+```yaml
+users:
+  primary-userbase:
+    base: 'ou=people,dc=example,dc=com'
+    search: '(uid={0})'
+  secondary-userbase:
+    base: 'ou=otherpeople,dc=example,dc=com'
+    search: '(initials={0})'
+  tertiary-rolebase:    
+    ...
+```
+
+The names of the configuration keys (`primary-userbase`, `secondary-userbase`...) are just telling names. You can choose them freely and you can configure as many user bases as you need.
+
+### Complete authentication example
 
 ```yaml
 ldap:
@@ -142,10 +148,10 @@ ldap:
       bind_dn: cn=admin,dc=example,dc=com
       password: password
       users:
-        people:
+        primary-userbase:
           base: 'ou=people,dc=example,dc=com'
           search: '(uid={0})'
-        other:
+        secondary-userbase:
           base: 'ou=otherpeople,dc=example,dc=com'
           search: '(initials={0})'
       username_attribute: uid
