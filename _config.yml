@@ -50,6 +50,7 @@ index: false
 labels:
   navigation:
     quickstart: Quickstart
+    first_steps: First Steps
     installation: Installing Search Guard
     upgrading: Upgrading Search Guard
     tls: TLS Setup
