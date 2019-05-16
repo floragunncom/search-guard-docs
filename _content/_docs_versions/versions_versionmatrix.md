@@ -15,6 +15,9 @@ All Search Guard releases, past and present, are available on Maven Central. You
 
 This page lists all available versions for Elasticsearch >= 6.0.0. For previous releases please refer to:
 
+This page lists all available versions for Elasticsearch 6.x. For other releases please refer to:
+
+* [Search Guard 6 for Elasticsearch 6.x](/6.x-25/search-guard-versions)
 * [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
 
 **Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.**
