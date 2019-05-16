@@ -1,6 +1,6 @@
 ---
 title: OpenID Connect authentication
-html_title: OpenID Connect
+html_title: Kibana OpenID
 slug: kibana-authentication-openid
 category: kibana-authentication
 order: 350

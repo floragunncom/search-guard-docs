@@ -5,7 +5,8 @@ category: configuration
 order: 200
 layout: docs
 edition: community
-description: Example sgadmin calls that you can use as template and blueprint.
+description: Example sgadmin calls to manage the Search
+
 ---
 <!---
 Copyright 2019 floragunn GmbH

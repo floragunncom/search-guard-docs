@@ -6,7 +6,7 @@ category: otherintegrations
 order: 600
 layout: docs
 edition: community
-description: How to configure and use Cerebro to a Search Guard secured  Elkasticsearch cluster.
+description: How to configure and use Cerebro with a Search Guard secured  Elkasticsearch cluster. Protect your data from any unauthorized access.
 resources:
   - https://www.playframework.com/documentation/2.6.x/WsSSL|Configuring WS SSL (website)
   - https://www.playframework.com/documentation/2.5.x/ExampleSSLConfig|Example configurations (website)

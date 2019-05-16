@@ -4,7 +4,7 @@ slug: search-guard-versions
 category: versions
 order: 100
 layout: docs
-description: The Search Guard Community Edition provides TLS encryption and index-level permissions on REST and transport for free.
+description: A list of the current Search Guard releases for all Elasticsearch 7 and Kibana 7 versions.
 ---
 <!---
 Copyright 2019 floragunn GmbH

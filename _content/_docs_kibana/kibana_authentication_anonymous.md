@@ -1,6 +1,6 @@
 ---
 title: Anonymous authentication
-html_title: Anonymous authentication
+html_title: Kibana anon authentication
 slug: kibana-authentication-anonymous
 category: kibana-authentication
 order: 220

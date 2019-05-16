@@ -6,7 +6,7 @@ category: ldap
 order: 100
 layout: docs
 edition: enterprise
-description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
+description: How to protect your Elasticsearch cluster by connecting to an LDAP or Active Directory server.
 resources:
   - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
 

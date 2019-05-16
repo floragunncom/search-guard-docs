@@ -1,6 +1,6 @@
 ---
 title: Proxy authentication
-html_title: Proxy authentication
+html_title: Kibana Proxy
 slug: kibana-authentication-proxy
 category: kibana-authentication
 order: 600

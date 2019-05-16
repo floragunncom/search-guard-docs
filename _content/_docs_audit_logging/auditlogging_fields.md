@@ -6,7 +6,7 @@ category: auditlog
 order: 300
 layout: docs
 edition: enterprise
-description: Reference for all fields that are used in audit log events.
+description: Field reference for the Search Guard audit logging module which can be used to track security and compliance related events in an Elasticsearch cluster.
 ---
 <!---
 Copyright 2019 floragunn GmbH

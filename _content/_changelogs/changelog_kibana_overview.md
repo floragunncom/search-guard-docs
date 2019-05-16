@@ -5,7 +5,7 @@ slug: changelogs-kibana
 category: changelogs-kibana
 order: 200
 layout: changelogs
-description: Changelog overview for the Search Guard Kibana Plugin
+description: Changelog overview for all releases of the Search Guard Kibana Plugin that adds access control and session management.
 ---
 
 <!---

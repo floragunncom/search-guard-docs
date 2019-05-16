@@ -5,7 +5,7 @@ slug: eol-policy
 category: versions
 order: 700
 layout: docs
-description: Search Guard End Of Life policy.
+description: The Search Guard End Of Life policy. Use this list to make sure you do not run any unsupported Search Guard or Elasticsearch version in production.
 ---
 
 # Search Guard end of life policy

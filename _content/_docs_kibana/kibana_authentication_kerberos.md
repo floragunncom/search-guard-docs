@@ -6,7 +6,7 @@ category: kibana-authentication
 order: 700
 layout: docs
 edition: enterprise
-description: How to usee Kerberos to implement Kibana Single Sign On.
+description: How to use Kerberos to implement Kibana Single Sign On and  to protect your data from any unauthorized access.
 ---
 <!---
 Copyright 2019 floragunn GmbH

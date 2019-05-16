@@ -5,12 +5,10 @@ slug: changelogs-searchguard
 category: changelogs-searchguard
 order: 0
 layout: changelogs
-description: Changelog Overview for the Search Guard Elasticsearch Plugin
+description: Changelog Overview for the Search Guard Elasticsearch security plugin. Protect your data from any unauthorized access.
 ---
 
-<!---
-Copryight 2010 floragunn GmbH
--->
+<!--- Copryight 2019 floragunn GmbH -->
 
 # Search Guard Changelogs
 
