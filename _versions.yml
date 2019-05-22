@@ -8,9 +8,7 @@ searchguard:
 
 index: false
 
-baseurl: /latest
+baseurl: /6.x-20
 
 algolia:
   index_name: '6x-20'
-
-  
