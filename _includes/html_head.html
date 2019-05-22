@@ -12,10 +12,14 @@
 
 	<!-- Page title -->
 	<title>
-		{%if page.html_title != null %}
-			 Security for Elasticsearch | {{page.html_title}} | Search Guard
+		{%if page.isroot != null %}
+			Search Guard {{site.searchguard.majorversion}} Documentation | Elasticsearch security
 		{% else %}
-			 Security for Elasticsearch | {{page.title}} | Search Guard
+			{%if page.html_title != null %}
+				 {{page.html_title}} | Elasticsearch Security | Search Guard
+			{% else %}
+				 {{page.title}} | Elasticsearch Security | Search Guard
+			{% endif %}
 		{% endif %}
 	</title>
 	<!-- OG and Twitter -->
@@ -47,7 +51,7 @@
 	{%if site.searchguard.islatestversion == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
 	{% else %}
-		<meta name="robots" content="noindex, follow">
+		<meta name="robots" content="index, follow">
 	{% endif %}
 	
 
