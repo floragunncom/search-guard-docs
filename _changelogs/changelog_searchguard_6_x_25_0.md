@@ -2,7 +2,7 @@
 title: Search Guard 6.x-25.0
 slug: changelog-searchguard-6-x-25_0
 category: changelogs-searchguard
-order: 450
+order: 250
 layout: changelogs
 description: Changelog for Search Guard 6.x-25.0
 ---
