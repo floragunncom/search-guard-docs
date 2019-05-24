@@ -13,15 +13,15 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 7.0.1
-  previousversion: 7.0.0
+  currentversion: 7.1.0
+  previousversion: 7.0.1
 
 searchguard:
   esmajorversion: 7
   version: 7.x-35.0.0 
-  fullversion: 7.0.0-35.0.0 
-  nextminorversion: 7.0.0-35.1.0 
-  nextmajorversion: 7.0.0-36.0.0 
+  fullversion: 7.1.0-35.0.0 
+  nextminorversion: 7.1.0-35.1.0 
+  nextmajorversion: 7.1.0-36.0.0 
   islatestversion: true
   ispreliminaryversion: false
   allversions:
@@ -244,18 +244,21 @@ algolia:
 
 eol:
   features:
+    - 7.1.0
     - 7.0.1
   updates:
-    - 6.7.2
+    - 6.8.0
 
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
   search-guard-7:
+    - 7.1.0|35.0.0|35.0.0|yes|yes|no
     - 7.0.1|35.0.0|35.0.0|yes|yes|no
     - 7.0.0|35.0.0-rc1|35.0.0-rc1|yes|yes|no
     - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
   search-guard-6:
       #esv |sgv |kbv |feat|upd|eol
+    - 6.8.0|25.1|18.3|yes|yes|no
     - 6.7.2|25.1|18.3|yes|yes|no
     - 6.7.1|25.1|18.3|no|no|yes
     - 6.7.0|24.3|18.3|no|no|yes
