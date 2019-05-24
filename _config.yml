@@ -13,8 +13,8 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 6.3.0
-  previousversion: 6.2.4
+  currentversion: 6.8.0
+  previousversion: 6.7.2
 
 searchguard:
   esmajorversion: 6
@@ -177,18 +177,21 @@ algolia:
 
 eol:
   features:
+    - 7.1.0
     - 7.0.1
   updates:
-    - 6.7.2
+    - 6.8.0
 
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
   sg7:
+    - 7.1.0|35.0.0|35.0.0|yes|yes|no
     - 7.0.1|35.0.0|35.0.0|yes|yes|no
     - 7.0.0|35.0.0-rc1|35.0.0-rc1|yes|yes|no
     - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
   sg6:
       #esv |sgv |kbv |feat|upd|eol
+    - 6.8.0|25.1|18.3|yes|yes|no
     - 6.7.2|25.1|18.3|yes|yes|no
     - 6.7.1|25.1|18.3|no|no|yes
     - 6.7.0|24.3|18.3|no|no|yes
