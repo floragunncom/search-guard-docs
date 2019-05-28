@@ -2,7 +2,7 @@
 title: Search Guard 7.x-35.0.0
 slug: changelog-searchguard-7-x-35_0_0
 category: changelogs-searchguard
-order: 450
+order: 900
 layout: changelogs
 description: Changelog for Search Guard 7.x-35.0.0
 ---
