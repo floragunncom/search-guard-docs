@@ -16,17 +16,6 @@ Copyright 2019 floragunn GmbH
 
 {% include toc.md %}
 
-## Apply default configuration with Keystore and Truststore files
-```
-./sgadmin.sh \
-   -cd /path/to/sgconfig/ \
-   -ks /path/to/keystore.jks \
-   -kspass changeit \
-   -ts /path/to/truststore.jks \
-   -tspass changeit
-   -nhnv
-   -icl
-```
 
 ## Apply default configuration with PEM certificates
 ```
@@ -39,16 +28,27 @@ Copyright 2019 floragunn GmbH
    -nhnv
    -icl
 ```
+## Apply default configuration with Keystore and Truststore files
+```
+./sgadmin.sh \
+   -cd /path/to/sgconfig/ \
+   -ks /path/to/keystore.jks \
+   -kspass changeit \
+   -ts /path/to/truststore.jks \
+   -tspass changeit
+   -nhnv
+   -icl
+```
 
 ## Apply single file to cluster named "myclustername"
 ```
 ./sgadmin.sh \
    -f /path/to/sg_internal_users.yml \
    -t internalusers \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -cn myclustername \
    -nhnv
 ```
@@ -60,49 +60,49 @@ Copyright 2019 floragunn GmbH
    -p 9301 \
    -f /path/to/updated_internal_users.yml \
    -t internalusers \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -icl
 ```
 ## Retrieving the current active Search Guard configuration from a cluster
 ```
 ./sgadmin.sh \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks  \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -r
 ```
 
-## Reload the current configuration, thus flushing the Search Guard user caches
+## Reload the current configuration and flushing the Search Guard user caches
 
 ```
 ./sgadmin.sh \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -rl
 ```
 
 ## Setting the number of replica shards to 5
 ```
 ./sgadmin.sh \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -us 5
 ```
 
 ## Enabling replica auto expansion
 ```
 ./sgadmin.sh \
-   -ks /path/to/keystore.jks \
-   -kspass changeit
-   -ts /path/to/truststore.jks \
-   -tspass changeit
+   -cacert /path/to/root-ca.pem \
+   -cert /path/to/kirk.crt.pem \
+   -key /path/to/kirk.key.pem  \
+   -keypass changeit
    -era
 ```
