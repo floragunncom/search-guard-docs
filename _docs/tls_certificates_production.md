@@ -75,7 +75,7 @@ This is the default setting of Search Guard when no `searchguard.nodes_dn` is sp
 If you want to learn more about OIDs in TLS certificates, refer to Red Hats [Standard X.509 v3 Certificate Extension Reference](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.0/html/Admin_Guide/Standard_X.509_v3_Certificate_Extensions.html
 ){:target="_blank"}.
 
-The `OID` is defined in the `Subject Alternative Name (SAN)` section of the certificate, and must have the default value `1.2.3.4.5.5` for node certificates. If this value is found, the certificate is considered to be a valid node certificate.
+The `OID` is defined in the `Subject Alternative Name (SAN)` section of the certificate. Unless `searchguard.nodes_dn` is configured it must have the default value `1.2.3.4.5.5` for node certificates (see below how to use a custom value). If this value is found, the certificate is considered to be a valid node certificate.
 
 The OID approach is more flexible than listing the DNs individually: All certificates containing this OID value in the SAN field are considered valid node certificates, so you can add new nodes on the fly without changing the `searchguard.nodes_dn` setting.
 
