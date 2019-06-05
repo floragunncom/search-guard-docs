@@ -207,6 +207,10 @@ Options:
 | reuseTransportCertificatesForHttp | If set to false, individual certificates for REST and Transport are generated. If set to true, the node certificates are also used on the REST layer. Default: false |
 | verifyHostnames | Set this to true to [enable hostname verification](../_docs_tls/tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
 | resolveHostnames | Set this to true to [resolve hostnames against DNS](../_docs_tls/tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
+| signatureAlgorithm | Signature algorithm (for RSA default is SHA256withRSA, for EC its SHA256withECDSA) |
+| useEllipticCurves | If set to true use elliptic curves instead of RSA. Default is false  (since 1.7)|
+| ellipticCurve | The curve to be used. Default is: NIST P-384 (since 1.7)|
+
 
 ### Node certificates
 
