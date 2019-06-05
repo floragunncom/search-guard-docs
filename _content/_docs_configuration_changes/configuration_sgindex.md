@@ -1,27 +1,82 @@
 ---
-title: Managing the Search Guard Index
+title: Search Guard Configuration Index
 html_title: Search Guard Index
 slug: search-guard-index
 category: configuration
-order: 1100
+order: 50
 layout: docs
 edition: community
-description: How to manage the primary and replica shards of the Search Guard configuration index.
+description: Search Guard stores its configuration in an Elasticsearch index. This allows for configuration hot-reloading
 ---
-<!---
-Copyright 2019 floragunn GmbH
--->
+<!--- Copyright 2019 floragunn GmbH -->
 
-# Managing the Search Guard index
+# The Search Guard configuration index
 {: .no_toc}
 
 {% include toc.md %}
 
+## Concepts
+
+All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in the Search Guard configuration index. 
+
+This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `elasticsearch.yml`.
+
+Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can change any of the user, role and permission or authentication settings at runtime, without restarting your nodes. Configuration changes will take effect immediately.
+
+You can load and change the settings from any machine which has access to your Elasticsearch cluster. You do not need to keep any configuration files on the nodes.
+
+The configuration consists of the following files. These are shipped with Search Guard as templates.
+
+* sg\_config.yml - configure authenticators and authorisation backends.
+* sg\_roles.yml - define roles and the associated permissions.
+* sg\_roles\_mapping.yml - map backend roles, hosts and users to roles.
+* sg\_internal\_users.yml - stores users,and hashed passwords in the internal user database.
+* sg\_action\_groups.yml - define named permission groups.
+* sg\_tenants.yml - defines tenants for configuring Kibana access
+
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter sgadmin.
+
+<p align="center">
+<img src="search_guard_index.png" style="width: 70%" class="md_image"/>
+</p>
+
 ## Index name
 
-If nothing else is specified, Search Guard uses `searchguard` as the name of the index where all configuration settings are stored.
+If nothing else is specified, Search Guard uses `searchguard` as index name.  
 
-You can configure the name of the Search Guard index. This is only necessary in special cases. If you have configured a Search Guard index name other than `searchguard`, you must configure this name via the `-i` switch.
+You can configure the name of the Search Guard index in elasticsearch.yml by setting:
+
+```
+searchguard.config_index_name: myindexname 
+```
+
+
+## Backup and Restore
+
+Use `sgadmin` to backup the contents of the Search Guard configuration index
+
+Backup the current configuration from a cluster running on `staging.example.com` and place the files in /etc/sgbackup/:
+
+```
+./sgadmin.sh 
+  -backup /etc/sgbackup/  \
+  -h staging.example.com  \
+  -cacert /path/to/root-ca.pem  \
+  -cert /path/to/admin.pem  \
+  -key /path/to/admin-key.pem    
+```
+
+To upload the dumped files to another cluster, here `production.example.com` listening on port 9301, use:
+
+```
+./sgadmin.sh 
+  -cd /etc/sgbackup/  \
+  -h production.example.com  \
+  -p 9301 \
+  -cacert /path/to/root-ca.pem  \
+  -cert /path/to/admin.pem  \
+  -key /path/to/admin-key.pem    
+```
 
 ## Replica shards
 

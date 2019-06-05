@@ -298,3 +298,17 @@ If you use the logout POST binding, you also need to whitelist the logout endpoi
 ```
 server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
+
+## IdP initated SSO
+
+To use IdP initiated SSO, in your IdP, set the *Assertion Consumer Service* endpoint to:
+
+```
+/searchguard/saml/acs/idpinitiated
+```
+
+Then add this endpoint to the xsrf whitelist in kibana.yml:
+
+```
+server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
+```

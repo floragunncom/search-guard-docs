@@ -14,6 +14,10 @@ Copryight 2010 floragunn GmbH
 
 # TLS Tool Changelogs
 
+### [TLS Tool 1.7](changelog_tlstool_1_7.md)
+
+Release Date: 05.06.2019
+
 ### [TLS Tool 1.6](changelog_tlstool_1_6.md)
 
 Release Date: 30.12.2018

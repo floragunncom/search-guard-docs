@@ -58,7 +58,7 @@ labels:
     tls: TLS Setup
     ldap: Active Directory / LDAP
     generating-certificates: "Generating certificates"
-    configuration: "Applying Configuration Changes"
+    configuration: "Search Guard Configuration"
     authauth: Authentication and Authorization
     rolespermissions: "Users, Roles and Permissions"
     eeadvanced: Advanced Security Features
