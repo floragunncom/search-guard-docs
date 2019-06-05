@@ -17,4 +17,4 @@ Copryight 2010 floragunn GmbH
 
 ## Fixes
 
-* Make TLS work with Java 11
+* Make it work with Java 11
