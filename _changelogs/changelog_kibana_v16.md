@@ -17,8 +17,9 @@ Copryight 2010 floragunn GmbH
 
 ## Security Fixes
 
-* Fixed possible URL injection on login page when basePath is set
-  * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/140](https://github.com/floragunncom/search-guard-kibana-plugin/pull/140){:target="_blank"} 
+* Fixed possible open-redirect on login page when basePath is an empty string
+  * [https://github.com/floragunncom/search-guard-kibana-plugin/pull/140](https://github.com/floragunncom/search-guard-kibana-plugin/pull/140){:target="_blank"}
+  * [CVE-2018-20698](https://nvd.nist.gov/vuln/detail/CVE-2018-20698){:target="_blank"}
 
 ## Fixes
 
