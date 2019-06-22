@@ -4,7 +4,7 @@ slug: elasticsearch-brute-force-attacks
 category: authauth
 order: 1200
 layout: docs
-edition: enterprise
+edition: community
 description: By using the Search Guard login limit feature you can secure your Elasticsearch cluster against brute force attacks.
 ---
 
