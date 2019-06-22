@@ -24,7 +24,6 @@ The following attributes are logged for all event categores, independent of the 
 | Name | Description |
 |---|---|
 | audit\_format\_version | Audit log message format version, current: 3|
-| audit\_utc\_timestamp | (DEPRECATED, will be removed with SG7) UTC timestamp when the event was generated|
 | @timestamp | UTC timestamp when the event was generated|
 | audit_category | Audit log category, one of FAILED\_LOGIN, MISSING\_PRIVILEGES, BAD_HEADERS, SSL\_EXCEPTION, SG\_INDEX\_ATTEMPT, AUTHENTICATED or GRANTED\_PRIVILEGES.|
 | audit\_node\_id  | The ID of the node where the event was generated.|
