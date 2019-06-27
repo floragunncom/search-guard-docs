@@ -29,11 +29,4 @@ If you are upgrading from Elasticsearch 6.7.x to Elasticsearch >= 7.0.0, please 
 
 {% include sgversions.html majorversion="search-guard-7" %}
 
-## Search Guard 6
-
-If you are upgrading from Elasticsearch 5.6.x to Elasticsearch >= 6.0.0, please read the [upgrade instructions to Elasticsearch to 6.x](../_docs_installation/installation_upgrading_5_6.md). 
-{: .note .js-note .note-warning}
-
-{% include sgversions.html majorversion="search-guard-6" %}
-
 
