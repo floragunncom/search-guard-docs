@@ -30,7 +30,7 @@ The basic installation procedure is to:
 
 ## Installing Search Guard
 
-Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the exact version number that matches your Elasticsearch installation. A plugin built for ES 5.4.3 will not run on ES 5.5.0 and vice versa.
+Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the exact version number that matches your Elasticsearch installation. A plugin built for ES 5.6.16 will not run on ES 5.6.15 and vice versa.
 
 Change to the directory of your Elasticsearch installation and type:
 
@@ -188,51 +188,51 @@ or
 After that, restart your nodes for the changes to take effect.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-authbackend-ldap%22){:target="_blank"}
+[LDAP module v5.6-13 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-authbackend-ldap/5.6-13/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-authbackend-ldap](https://github.com/floragunncom/search-guard-authbackend-ldap){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-authbackend-ldap/){:target="_blank"}
 
 [LDAP and Active Directory documentation](ldap.md)
 
 #### Kerberos/SPNEGO Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-kerberos%22){:target="_blank"}
+[Kerberos/SPNEGO module v5.0-4 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-kerberos/5.0-4/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-auth-http-kerberos](https://github.com/floragunncom/search-guard-auth-http-kerberos){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-kerberos/){:target="_blank"}
 
 [Kerberos/SPNEGO documentation](kerberos.md)
 
 #### JWT Authentication/Authorisation:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22){:target="_blank"}
+[JWT module v5.0-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-authbackend-jwt](https://github.com/floragunncom/search-guard-authbackend-jwt){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-jwt/){:target="_blank"}
 
 [JSON Web token documentation](jwt.md)
 
 #### Document- and field level security:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22){:target="_blank"}
+[Document- and field level module v5.3-10 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-dlsfls/5.3-10/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-module-dlsfls](https://github.com/floragunncom/search-guard-module-dlsfls){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-dlsfls/){:target="_blank"}
 
 [Document and field level security documentation](dlsfls.md)
 
 #### Audit logging:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22){:target="_blank"}
+[Audit log module v5.3-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-module-auditlog](https://github.com/floragunncom/search-guard-module-auditlog){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-auditlog/){:target="_blank"}
 
 [Audit Logging documentation](auditlogging.md)
 
 #### REST management API:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-rest-api%22){:target="_blank"}
+[REST management module v5.3-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-rest-api/5.3-7/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-rest-api](https://github.com/floragunncom/search-guard-rest-api){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-rest-api/){:target="_blank"}
 
 [REST management API documentation](managementapi.md)
 
 #### Kibana multi tenancy module:
-[All versions on maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-kibana-multitenancy%22){:target="_blank"}
+[Multi tenancy management module v5.4-5 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.4-5/){:target="_blank"}
 
-[https://github.com/floragunncom/search-guard-module-kibana-multitenancy](https://github.com/floragunncom/search-guard-module-kibana-multitenancy){:target="_blank"}
+[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-kibana-multitenancy/){:target="_blank"}
 
 [Kibana Multitenancy documentation](kibana_multitenancy.md)
 
