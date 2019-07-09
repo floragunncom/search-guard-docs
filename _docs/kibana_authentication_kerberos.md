@@ -74,6 +74,10 @@ Due to the way HTTP requests are handled by the machine learning module internal
 
 It's currently not possible to use the Kibana URL shortener together with Kibana/SPNEGO due to technical limitations of the Kibana architecture.
 
+## Kibana Index Management UI
+
+It's currently not possible to use the Kibana Index Management UI together with Kibana/SPNEGO due to technical limitations of the Kibana architecture.
+
 ## Disabling the replay cache
 
 Kerberos/SPNEGO has a security mechanism called "Replay Cache". The replay cache makes sure that an Kerberos/SPENGO token can be used only once in a certain timeframe. This conflicts with the Kibana request handling, where one browser request to Kibana can result in multiple requests to Elasticsearch.
