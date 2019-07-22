@@ -27,11 +27,11 @@ n/a
 ### Search Guard
 
 * [BREAKING] Align transport impersonation with rest impersonation [#684](https://github.com/floragunncom/search-guard/issues/684){:target="_blank"}
+* [BREAKING] Don't allow anyone to freeze the searchguard index or update mapping, settings or aliases [#683](https://github.com/floragunncom/search-guard/issues/683){:target="_blank"}
 * Fix an issue where user attributes are not populated in case of impersonation [Credits @turettn] [#678](https://github.com/floragunncom/search-guard/issues/678){:target="_blank"}  
 * Fix "X-Opaque-Id header not propagated when using SearchGuard" [#669](https://github.com/floragunncom/search-guard/issues/669){:target="_blank"}
 * Fix an issue where the CCS index patterns could to be created in Kibana [#675](https://github.com/floragunncom/search-guard/issues/675){:target="_blank"}
 * Update Bouncy Castle dependency to 1.61 - For ES 6.5 and higher [#682](https://github.com/floragunncom/search-guard/issues/682){:target="_blank"}
-* Don't allow anyone to freeze the searchguard index or update mapping, settings or aliases [#683](https://github.com/floragunncom/search-guard/issues/683){:target="_blank"}
 * Also fix a bug where "searchguard.unsupported.restore.sgindex.enabled" was not working correctly [#683](https://github.com/floragunncom/search-guard/issues/683){:target="_blank"}
 
 ### sgadmin
