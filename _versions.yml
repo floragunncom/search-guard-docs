@@ -1,15 +1,15 @@
 searchguard:
   esmajorversion: 7
   version: 7.x-35.0.0  
-  fullversion: 7.1.0-35.0.0
-  nextminorversion: 7.1.0-35.1.0
-  nextmajorversion: 7.1.0-36.0.0
-  islatestversion: true
+  fullversion: 7.2.0-35.0.0
+  nextminorversion: 7.2.0-35.1.0
+  nextmajorversion: 7.2.0-36.0.0
+  islatestversion: false
   ispreliminaryversion: false
 
 index: true
 
-baseurl: /latest
+baseurl: /7.x-35
 
 algolia:
-  index_name: 'latest'
+  index_name: '7x-35'
