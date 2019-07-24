@@ -31,9 +31,12 @@ _sg_meta:
   
 <username>:
   hash: <hashed password>
+  search_guard_roles:
+    - <rolename>
+    - <rolename>
   backend_roles:
-    - <rolename>
-    - <rolename>
+    - <backend rolename>
+    - <backend rolename>
   attributes:
     key: value
     key: value
@@ -46,7 +49,8 @@ _sg_meta:
 |---|---|
 | username | The name of the user. Can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md).|
 | password | The BCrypt hash of the user's password.|
-| backend_roles | The backend roles of the user. Can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md).|
+| search\_guard\_roles | The [Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md). this user is assigned to.|
+| backend_roles | The backend roles of the user. Backend roles can be used to group users and them [map the groups to Search Guard roles](../_docs_roles_permissions/configuration_roles_permissions.md). This provides morre flexibility than using Search Guard roles directly, but introduces a level on indirection.|
 | attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries|
 | description | A description of the user. Optional.|
 
@@ -60,6 +64,8 @@ _sg_meta:
   
 hr_employee:
   hash: $2a$12$7QIoVBGdO41qSCNoecU3L.yyXb9vGrCvEtVlpnC4oWLt/q0AsAN52
+  search_guard_role:
+    - SGS_LOGSTASH
   backend_roles:
     - kibanauser
     - humanresources_department
