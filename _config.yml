@@ -13,18 +13,19 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 7.1.0
-  previousversion: 7.0.1
+  currentversion: 7.2.0
+  previousversion: 7.1.1
 
 searchguard:
   esmajorversion: 7
-  version: 7.x-35.0.0 
-  fullversion: 7.1.0-35.0.0 
-  nextminorversion: 7.1.0-35.1.0 
-  nextmajorversion: 7.1.0-36.0.0 
+  version: 7.x-36.0.0 
+  fullversion: 7.2.0-36.0.0 
+  nextminorversion: 7.2.0-36.1.0 
+  nextmajorversion: 7.2.0-37.0.0 
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-36
     - 7x-35
     - 6x-25
     - 6x-24
@@ -36,7 +37,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-35: latest
+  7x-36: latest
+  7x-35: 7.x-35
   6x-25: 6.x-25
   6x-24: 6.x-24
   6x-23: 6.x-23
@@ -78,6 +80,7 @@ labels:
     changelogs-searchguard: "Search Guard Changelogs"
     changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
+    7x-36: Search Guard 7.x-36
     7x-35: Search Guard 7.x-35
     6x-25: Search Guard 6.x-25
     6x-24: Search Guard 6.x-24
@@ -252,11 +255,11 @@ eol:
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
   search-guard-7:
-    - 7.2.0|35.0.0|35.2.0|yes|yes|no
-    - 7.1.1|35.0.0|35.2.0|yes|yes|no
-    - 7.1.0|35.0.0|35.2.0|yes|yes|no
-    - 7.0.1|35.0.0|35.2.0|yes|yes|no
-    - 7.0.0|35.0.0-rc1|35.0.0-rc1|yes|yes|no
+    - 7.2.0|36.0.0|36.0.0|yes|yes|no
+    - 7.1.1|36.0.0|36.0.0|yes|yes|no
+    - 7.1.0|36.0.0|36.0.0|yes|yes|no
+    - 7.0.1|36.0.0|36.0.0|yes|yes|no
+    - 7.0.0|36.0.0-rc1|35.0.0-rc1|yes|yes|no
     - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
   search-guard-6:
       #esv |sgv |kbv |feat|upd|eol
@@ -265,13 +268,13 @@ sgversions:
     - 6.7.2|25.3|18.5|yes|yes|no
     - 6.7.1|25.3|18.5|no|no|yes
     - 6.7.0|25.3|18.5|no|no|yes
-    - 6.6.2|25.1|18.5|yes|yes|no
-    - 6.6.1|24.3|18.5|no|no|yes
-    - 6.6.0|24.3|18.5|no|no|yes
-    - 6.5.4|25.1|18.5|no|yes|no
-    - 6.5.3|24.3|18.5|no|no|yes
-    - 6.5.2|24.3|18.5|no|no|yes
-    - 6.5.1|24.3|18.5|no|no|yes
+    - 6.6.2|25.3|18.5|yes|yes|no
+    - 6.6.1|25.3|18.5|no|no|yes
+    - 6.6.0|25.3|18.5|no|no|yes
+    - 6.5.4|25.3|18.5|no|yes|no
+    - 6.5.3|25.3|18.5|no|no|yes
+    - 6.5.2|25.3|18.5|no|no|yes
+    - 6.5.1|25.3|18.5|no|no|yes
     - 6.4.3|25.1|17|no|yes|no
     - 6.4.2|24.3|17|no|no|yes
     - 6.4.1|24.3|17|no|no|yes

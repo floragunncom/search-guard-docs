@@ -72,7 +72,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 
 | Name | Description |
 |---|---|
-| SGS_INDICES_ALL | Grants all permissions on the index. Equates to `indices:*`| 
+| SGS\_INDICES\_ALL | Grants all permissions on the index. Equates to `indices:*`| 
 | SGS_READ | Grants read permissions to read (but not search) data, and permissions to fetch field mappings. | 
 | SGS_SEARCH | Grants permission to search documents. Includes SUGGEST. |
 | SGS_DELETE | Grants permission to delete documents |
@@ -84,6 +84,8 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_MANAGE_ALIASES | Grants permission to manage aliases | 
 | SGS_INDICES_MONITOR | Grants permission to execute all actions regarding index monitoring, e.g. recovery, segments info, index stats & status |
 | SGS_MANAGE | Grants all monitor and index administration permissions | 
+| SGS_INDICES_MANAGE_ILM | Grants permission to use the index lifecycle management APIs for this index | 
+
 
 ### Cluster-level action groups
 
@@ -94,6 +96,11 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_CLUSTER\_COMPOSITE\_OPS\_RO | Grants read-only permissions to execute multi requests like mget, msearch or mtv, plus permission to query for aliases. |
 | SGS_CLUSTER\_COMPOSITE\_OPS | Same as `CLUSTER_COMPOSITE_OPS_RO`, but also grants bulk write permissions and all aliases permissions. |
 | SGS_MANAGE_SNAPSHOTS | Grants full permissions to manage snapshots and repositories. |
+| SGS_CLUSTER_MANAGE_ILM | Grants the permissions to use the index lifecycle management APIs. |
+| SGS_CLUSTER_READ_ILM | Grants read-only permissions to use the index lifecycle management APIs. |
+| SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | Grants permission to manage index templates. |
+| SGS_CLUSTER_MANAGE_PIPELINES | Grants permissions to manage pipelines. |
+
 
 ### Multi- and bulk requests
 
