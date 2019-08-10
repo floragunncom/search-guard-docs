@@ -177,10 +177,10 @@ algolia:
 
 eol:
   features:
-    - 7.2.0
-    - 7.1.1
+    - 7.3.0
+    - 7.2.1
   updates:
-    - 6.8.1
+    - 6.8.2
 
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
@@ -192,10 +192,10 @@ sgversions:
     - 6.7.2|25.3|18.5|yes|yes|no
     - 6.7.1|25.3|18.5|no|no|yes
     - 6.7.0|25.3|18.5|no|no|yes
-    - 6.6.2|24.3|18.5|yes|yes|no
+    - 6.6.2|25.1|18.5|yes|yes|no
     - 6.6.1|24.3|18.5|no|no|yes
     - 6.6.0|24.3|18.5|no|no|yes
-    - 6.5.4|24.3|18.5|no|yes|no
+    - 6.5.4|25.1|18.5|no|yes|no
     - 6.5.3|24.3|18.5|no|no|yes
     - 6.5.2|24.3|18.5|no|no|yes
     - 6.5.1|24.3|18.5|no|no|yes
