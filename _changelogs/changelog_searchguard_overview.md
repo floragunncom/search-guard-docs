@@ -13,6 +13,10 @@ Copryight 2019 floragunn GmbH
 
 # Search Guard Changelogs
 
+### [Search Guard 6.x-25.4](changelog_searchguard_6_x_25_4.md)
+
+Release Date: 19.08.2019
+
 ### [Search Guard 6.x-25.3](changelog_searchguard_6_x_25_3.md)
 
 Release Date: 19.07.2019
