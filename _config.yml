@@ -72,6 +72,7 @@ labels:
     elasticstack: Integrating with the Elasticstack
     elasticstack-alternatives: "Elasticstack alternatives"
     kibana-authentication: "Kibana Authentication"
+    signals: "Signals Alerting"
     otherintegrations: Other integrations
     systemintegrators: Advanced system integrator features
     troubleshooting: Troubleshooting
@@ -106,6 +107,7 @@ labels:
     docs_elasticstack: Documentation
     docs_other_integrations: Documentation
     docs_systemintegrators: Documentation
+    docs_signals: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
@@ -163,6 +165,9 @@ collections:
     output: true
     permalink: :title
   docs_systemintegrators:
+    output: true
+    permalink: :title
+  docs_signals:
     output: true
     permalink: :title
   troubleshooting:

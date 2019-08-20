@@ -87,7 +87,7 @@ GET /_searchguard/api/roles/sg_human_resources_trainee
 ### Get all roles
 
 ```
-GET /_searchguard/api/roles/{rolename}
+GET /_searchguard/api/roles/
 ```
 
 Returns all roles in JSON format.
