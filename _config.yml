@@ -255,6 +255,7 @@ eol:
 sgversions:
   #esv |sgv |kbv |feat|upd|eol
   search-guard-7:
+    - 7.3.1|36.1.0|36.0.0|yes|yes|no
     - 7.3.0|36.1.0|36.0.0|yes|yes|no
     - 7.2.1|36.1.0|36.0.0|yes|yes|no
     - 7.2.0|36.1.0|36.0.0|yes|yes|no
