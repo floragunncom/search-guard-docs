@@ -1,5 +1,5 @@
 ---
-title: DELETE watch
+title: Delete watch
 html_title: Deleting a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest

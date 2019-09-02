@@ -3,7 +3,7 @@ title: Elasticsearch
 html_title: Creating Elasticsearch inputs for Signals Alerting
 slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
-order: 100
+order: 200
 layout: docs
 edition: preview
 description: 

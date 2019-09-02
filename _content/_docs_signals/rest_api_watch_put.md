@@ -190,7 +190,7 @@ PUT /_signals/watch/really_bad_weather
       "account": "test",
       "throttle_period": "1h",
       "to": "notify@example.com",
-      "subject": "Bad destination weather for {{data.bad_weather_flights.hits.total.value flights over last {{data.constants.window}}!",
+      "subject": "Bad destination weather for {{data.bad_weather_flights.hits.total.value}} flights over last {{data.constants.window}}!",
       "text_body": "Time: {{_source.timestamp}}\n  Flight Number: {{_source.FlightNum}}\n  Origin: {{_source.OriginAirportID}}\n  Destination: {{_source.DestAirportID}}"
     }
   ]
