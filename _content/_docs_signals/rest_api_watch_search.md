@@ -35,7 +35,7 @@ Both the GET and the POST HTTP method can be used with the same effect.
 
 **from:** Specifies an offset into the result list. Starting from this offset, the results will be returned. Optional.
 
-**size:** Specifies the maximum number of watches to be returned. Optional, defaults to 10. If scrolling is enabled, this specified the maximum number of watches to be returned in one scroll iteration. 
+**size:** Specifies the maximum number of watches to be returned. Optional, defaults to 10. If scrolling is enabled, this specifies the maximum number of watches to be returned in one scroll iteration. 
 
 **scroll:** Configures the search to be scrollable. Optional. The value of this parameter must be a time duration value (like `1m` for one minute) during which the scroll will be available. If scrolling is enabled, the response will contain a `_scroll_id`. The value of this attribute must be passed to the standard ES REST endpoint `_search/scroll` to continue scrolling.
 

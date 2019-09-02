@@ -49,11 +49,44 @@ The supported attributes of the JSON document are these:
 
 ### 200 OK
 
-A watch identified by the given id existed before. The watch was successfully updated.
+The watch was successfully executed. 
 
-### 201 Created
+The response body contains the watch log document:
 
-A watch identified by the given id did not exist before. The watch was successfully created.
+**status:** The resulting status of the watch execution. The sub-attribute `status.code` contains of these codes:
+
+* `NO_ACTION`: The watch was successfully executed, but no action was executed.
+* `ACTION_TRIGGERED`: The watch was successfully executed and at least one action was triggered.
+
+Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
+
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+
+**actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
+
+* `NO_ACTION`: The action was not executed because its conditions did not evaluate to true.
+* `ACTION_TRIGGERED`: The action was executed.
+
+### 422 Unprocessable Entity
+
+An error occurred while executing the watch.
+
+The response body contains the watch log document:
+
+**status:** The resulting status of the watch execution. The sub-attribute `status.code` contains of these codes:
+
+* `ACTION_FAILED`: The checks of the watch were successfully executed but at least one action failed.
+* `EXECUTION_FAILED`: An error occured while the checks of a watch were executed.
+
+Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
+
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+
+**actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
+
+* `NO_ACTION`: The action was not executed because its conditions did not evaluate to true.
+* `ACTION_TRIGGERED`: The action was executed.
+* `ACTION_FAILED`: The execution of the action failed.
 
 ### 400 Bad Request
 
@@ -61,14 +94,15 @@ The request was malformed.
 
 If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
 
-### 404 Not found
-
-The tenant specified by the `sg_tenant` request header does not exist.
-
 ### 403 Forbidden
 
-The user does not have the permission to create watches for the currently selected tenant. 
+The user does not have the permission to execute watches for the currently selected tenant. 
 
+### 404 Not found
+
+A watch with the given id does not exist for the selected tenant. 
+
+The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
 
 ### 415 Unsupported Media Type
 
@@ -81,7 +115,7 @@ The watch REST API is tenant-aware. Each Signals tenant has its own separate set
 
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/put` for the currently selected tenant.
+For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/execute` for the currently selected tenant.
 
 
 ## Examples

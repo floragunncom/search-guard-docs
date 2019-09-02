@@ -25,6 +25,7 @@ PUT /_signals/watch/{watch_id}
 
 Stores or updates a watch identified by the `{watch_id}` path parameter. By default, the watch will be active and scheduled for execution.
 
+**Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch.
 
 ## Path Parameters
 
