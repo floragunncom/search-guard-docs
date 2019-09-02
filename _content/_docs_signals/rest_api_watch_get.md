@@ -31,9 +31,15 @@ Retrieves the configuration of a watch identified by the `{watch_id}` path param
 
 ## Responses
 
-**200 OK** The watch exists and the user has sufficient privileges to access it. The return document is structured like an ElasticSearch GetDocument response with the watch configuration in the `_source` element.
+### 200 OK
 
-**404 Not found** A watch with the given Id does not exist for the current tenant.
+The watch exists and the user has sufficient privileges to access it. 
+
+The return document is structured like an ElasticSearch GetDocument response with the watch configuration in the `_source` element. See example below.
+
+### 404 Not found
+
+A watch with the given Id does not exist for the current tenant.
 
 
 
