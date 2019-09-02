@@ -80,6 +80,8 @@ The response body contains the watch log document:
 
 Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
 
+**error:** Detailed information on the error that occurred.
+
 **data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
 
 **actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
