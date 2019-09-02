@@ -27,7 +27,7 @@ Retrieves the configuration of a watch identified by the `{watch_id}` path param
 
 ## Path Parameters
 
-**{watch_id}** The id of the watch to be retrieved.
+**{watch_id}** The id of the watch to be retrieved. Required.
 
 ## Responses
 
@@ -36,6 +36,10 @@ Retrieves the configuration of a watch identified by the `{watch_id}` path param
 The watch exists and the user has sufficient privileges to access it. 
 
 The return document is structured like an ElasticSearch GetDocument response with the watch configuration in the `_source` element. See example below.
+
+### 403 Forbidden
+
+The user does not have the required to access the endpoint for the currently selected tenant.
 
 ### 404 Not found
 
