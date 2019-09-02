@@ -34,6 +34,8 @@ Stores or updates a watch identified by the `{watch_id}` path parameter. By defa
 
 The watch needs to be specified as JSON document in the request body. 
 
+See TODO for details on the structure of watches.
+
 ## Responses
 
 ### 200 OK
@@ -50,6 +52,10 @@ The request was malformed.
 
 If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
 
+### 404 Not found
+
+The tenant specified by the `sg_tenant` request header does not exist.
+
 ### 403 Forbidden
 
 The user does not have the permission to create watches for the currently selected tenant. 
@@ -62,7 +68,7 @@ The watch was not encoded as JSON document. Watches need to be sent using the me
 
 ## Multi Tenancy
 
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used. 
+The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used.  If the header is absent, the default tenant is used.
 
 ## Permissions
 
@@ -139,6 +145,10 @@ PUT /_signals/watch/bad_weather
 
 **Response**
 
+```
+201 Created
+``` 
+
 ```json
 {
     "_id": "bad_weather",
@@ -187,6 +197,10 @@ PUT /_signals/watch/really_bad_weather
 ```
 
 **Response**
+
+```
+400 Bad Request
+``` 
 
 ```json
 {

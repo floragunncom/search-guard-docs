@@ -39,18 +39,17 @@ The return document is structured like an ElasticSearch GetDocument response wit
 
 ### 403 Forbidden
 
-The user does not have the required to access the endpoint for the currently selected tenant.
+The user does not have the required to access the endpoint for the selected tenant.
 
 ### 404 Not found
 
-A watch with the given Id does not exist for the current tenant.
+A watch with the given id does not exist for the selected tenant. 
 
-
-
+The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
 
 ## Multi Tenancy
 
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used. 
+The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used. If the header is absent, the default tenant is used.
 
 ## Permissions
 
@@ -62,6 +61,12 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 ```
 GET /_signals/watch/bad_weather
 ```
+
+**Response**
+
+```
+200 OK
+``` 
 
 ```json
 {
