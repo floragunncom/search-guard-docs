@@ -65,7 +65,7 @@ If you want to index multiple documents by one action execution, you need to pre
 					"type": "transform",
 					"source": "['_doc': [ [ 'x': 1 ], [ 'x': 2 ] ] ]"
 				}
-			]
+			],
 			"index": "testindex"
 		}
 	]
