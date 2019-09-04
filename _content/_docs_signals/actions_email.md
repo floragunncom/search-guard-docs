@@ -22,7 +22,7 @@ Use e-mail actions to send e-mail notifications from watches. You can use Mustac
 
 ## Prerequisites
 
-In order to use e-mail actions, you need to configure an SMTP server using the accounts configuration of Signals. 
+In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](accounts.md) of Signals. 
 
 ## Basic Functionality
 

@@ -21,7 +21,7 @@ Use Slack actions to send notifications via Slack. You can use Mustache template
 
 ## Prerequisites
 
-In order to use Slack actions, you need to configure a Slack webhook using the accounts configuration of Signals. See TODO for more on that.
+In order to use Slack actions, you need to configure a Slack webhook using the accounts registry of Signals. See the [accounts registry documentation](accounts.md) for more on that.
 
 ## Basic Functionality
 
