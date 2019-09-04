@@ -18,8 +18,6 @@ description:
 
 Use index actions to store data in an Elasticsearch index.
 
-% LATER: attachments
-
 ## Basic Functionality
 
 A typical index action looks like this:
