@@ -34,7 +34,7 @@ A typical index action looks like this:
 					"type": "transform",
 					"source": "['flight_num': data.source.FlightNum, 'dest': data.source.DestAirportID]"
 				}
-			]
+			],
 			"index": "testindex"
 		}
 	]
