@@ -54,7 +54,7 @@ The basic configuration attributes are:
 
 **throttle_period:** The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour.
 
-**account:** Identifies the SMTP server and account which shall be used for sending the email. See TODO
+**account:** Identifies the SMTP server and account which shall be used for sending the email. See the [accounts registry documentation](accounts.md).
 
 **to:** Specifies the e-mail address of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration.
 
