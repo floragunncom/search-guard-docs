@@ -16,4 +16,3 @@ description:
 
 {% include toc.md %}
 
-Access control to the Signals API is governed by 
