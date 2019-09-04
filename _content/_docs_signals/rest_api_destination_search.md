@@ -11,18 +11,18 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Search Destination
+# Search Accounts
 {: .no_toc}
 
 {% include toc.md %}
 
 
 ```
-GET /_signals/destination/_search
+GET /_signals/account/_search
 ```
 
 ```
-POST /_signals/destination/_search
+POST /_signals/account/_search
 ```
 
 Searches for accounts. Search criteria and options can be specified in a manner similar to the ElasticSearch document search REST API.
@@ -48,6 +48,7 @@ If no request body is specified, all accounts will be returned; limited to the a
 Important attributes of the request body are:
 
 **query:** An ES document query.
+
 **sort:** Specifies the attributes by which the result shall be sorted. 	
 
 
@@ -71,7 +72,7 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 ### List all accounts
 
 ```
-GET /_signals/destinations/_search?size=1000
+GET /_signals/account/_search?size=1000
 ```
 
 **Response**
@@ -131,7 +132,7 @@ GET /_signals/destinations/_search?size=1000
 ### Search for all E-Mail accounts
 
 ```
-POST /_signals/destination/_search?size=1000
+POST /_signals/account/_search?size=1000
 ```
 
 ```

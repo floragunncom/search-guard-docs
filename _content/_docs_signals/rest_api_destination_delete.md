@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Delete Destination
+# Delete Account
 {: .no_toc}
 
 {% include toc.md %}
@@ -20,17 +20,17 @@ description:
 ## Endpoint
 
 ```
-DELETE /_signals/destination/{destination_id}
+DELETE /_signals/account/{account_id}
 ```
 
-Deletes the account identified by the `{destination_id}` path parameter. 
+Deletes the account identified by the `{account_id}` path parameter. 
 
 **Important:** Right now, it is possible to delete accounts even if they are still used by watches. After deleting an account which is still used by a watch, the watch will fail to execute.
 
 
 ## Path Parameters
 
-**{destination_id}** The id of the account to be deleted. Required.
+**{account_id}** The id of the account to be deleted. Required.
 
 ## Responses
 
@@ -56,7 +56,7 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 ## Examples
 
 ```
-DELETE /_signals/destination/my_destination
+DELETE /_signals/account/my_destination
 ```
 
 

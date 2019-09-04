@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Put Destination API
+# Put Account API
 {: .no_toc}
 
 {% include toc.md %}
@@ -21,14 +21,14 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/destination/{destination_id}
+PUT /_signals/account/{account_id}
 ```
 
-Stores or updates an account identified by the `{destination_id}` path parameter. 
+Stores or updates an account identified by the `{account_id}` path parameter. 
 
 ## Path Parameters
 
-**{destination_id}** The id of the account to be created or updated. Required.
+**{account_id}** The id of the account to be created or updated. Required.
 
 ## Request Body
 
@@ -73,7 +73,7 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 ### E-Mail 
 
 ```
-PUT /_signals/destination/default_email
+PUT /_signals/account/default_email
 ```
 ```json
 {
@@ -96,7 +96,7 @@ PUT /_signals/destination/default_email
 ### Slack
 
 ```
-PUT /_signals/destination/default_slack
+PUT /_signals/account/default_slack
 ```
 ```json
 {
@@ -115,7 +115,7 @@ PUT /_signals/destination/default_slack
 ### Invalid data
 
 ```
-PUT /_signals/destination/my_email
+PUT /_signals/account/my_email
 ```
 ```json
 {

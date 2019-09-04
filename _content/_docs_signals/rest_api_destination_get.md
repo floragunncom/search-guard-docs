@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Get Destination API
+# Get Account API
 {: .no_toc}
 
 {% include toc.md %}
@@ -20,15 +20,15 @@ description:
 ## Endpoint
 
 ```
-GET /_signals/destination/{destination_id}
+GET /_signals/account/{account_id}
 ```
 
-Retrieves the account configuration identified by the `{destination_id}` path parameter. 
+Retrieves the account configuration identified by the `{account_id}` path parameter. 
 
 
 ## Path Parameters
 
-**{destination_id}** The id of the account to be retrieved. Required.
+**{account_id}** The id of the account to be retrieved. Required.
 
 ## Responses
 
@@ -55,7 +55,7 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 ## Examples
 
 ```
-GET /_signals/destination/default_email
+GET /_signals/account/default_email
 ```
 
 **Response**
