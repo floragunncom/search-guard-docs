@@ -20,7 +20,7 @@ To start quickly with Signals, we have prepared sample watched that are based on
 
 All sample watches can be found on GitHub:
 
-## Averaget ticket price
+## Average ticket price
 
 The watch alerts if the average price among all flight tickets is less than the threshold N (default 800).
 
