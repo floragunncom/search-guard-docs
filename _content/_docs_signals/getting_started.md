@@ -16,3 +16,6 @@ description:
 
 {% include toc.md %}
 
+Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to install the Search Guard plugin for Elasticsearch and Kibana.
+
+The Signals technical preview can be do

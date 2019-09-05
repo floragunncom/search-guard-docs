@@ -144,8 +144,7 @@ Actions format their messages by using moustache templates. Moustache templates 
           "Content-type": "application/json"
         }
       }
-    }
-  
+    }  
   ]
 }
 ```
@@ -153,7 +152,9 @@ Actions format their messages by using moustache templates. Moustache templates 
 Format:
 
 ```
+{% raw %}
 {{data.<target name>.path.to.data}}
+{% endraw %}
 ```
 
 ## Top-level context
