@@ -50,36 +50,6 @@ In this example, regardless how often the condition in the watch definition fire
 
 On other words, if you define a throttle period, the action will not fire if the last execution time is in the time window of the throttle period.
 
-You can also access the data in the execution context to define a throttle period:
-
-
-```json
-{% raw %}
- {
-	"checks": [
-	  {
-			"type": "static",
-			"name": "constants",
-			"target": "myconstants",
-			"value": {
-				"throttleperiod": "1h",
-			}
-		}	
-	], 
-	"actions": [
-		{
-			"type": "email",
-			"name": "my_email_action",
-			"throttle_period": "{{data.myconstants.throttleperiod}}",
-			"account": "internal_mail",
-			"to": "notify@example.com",
-			"subject": "...,
-			"text_body": "..."
-		}
-	]
-}
-{% endraw %}
-```
 
 ## Acknowledgement
 

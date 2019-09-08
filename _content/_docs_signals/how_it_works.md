@@ -30,13 +30,13 @@ Assume you are ingesting log files from production systems to Elasticsearch. The
 
 You can use Signals to:
 
-* run an aggregaton periodically on the logs index that counts the amount of errors in the last 5 minutes
+* run an aggregation periodically on the logs index that counts the amount of errors in the last 5 minutes
 * implement a condition that checks whether the error level is above a certain threshold
 * if the condition is met, send out notifications via Email or Slack to inform your DevOps team. 
 
 ## Audit logging example
 
-Asume you use the [Search Guard audit log feature](audit-logging-compliance) and want to be able to detect brute-force attempts to your cluster. 
+Assume you use the [Search Guard audit log feature](audit-logging-compliance) and want to be able to detect brute-force attempts to your cluster. 
 
 You can use Signals to
 
@@ -47,32 +47,34 @@ You can use Signals to
 * send out an email and/or Slack notification
 * send an addition escalation email if the issue persist for more than 1 hour
 
-## Components of a Signals watch
+## Building blocks of a Signals watch
 
-A Signals watch consists of the following components:
+The basic working principle of a watch goes as follows:
 
-* Trigger
-  * A [trigger](triggers.md) defines when a watch will be executed. Each watch needs to have at least on trigger
-* Inputs
-  * An [input](inputs.md) pulls in data from a source. Can be Elasticsearch, HTTP or constants.
-* Execution context payload
-  * Data pulled in by inputs is stored in the runtime execution payload under a unique name. All subsequent steps have access to this payload.
-* Transformations and Calculations
-  * If required you can run painless scripts to [transform data in the payload, or calculate new values](transformations.md)
-* Conditions
-  * [Conditions](conditions.md) control the execution flow. Conditions can be defined for watches and also actions. 
-  * If a watch-level condition is not met, execution of the watch is aborted.     
-  * If an action-level condition is not me, execution of this action is skipped.
-* Actions
-  * [Actions](actions.md) are executed if all conditions are met.
-  * Actions be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md), [Webhooks](actions_webhook.md) or PagerDuty (coming soon).
-  * Actions can be used to write the payload data back to data sinks like [Elasticsearch](actions_index.md).
+After a watch has been *triggered*, it *checks* for certain conditions, and takes *action* if necessary.
 
-## Execution chain: Checks
+These three elements also form the three major building blocks of a Signals watch:
 
-Inputs, transformations and conditions can be configured freely and in any order in the execution chain of the watch. Each step in the execution chain is called a `check`. You can configure as many checks as required.
+* **[Triggers](triggers.md)** define when a watch will be executed. Each watch should have at least on trigger
+* **Checks** are constructs meant for analyzing the situation to be watched. For doing so, Signals offers
+  * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or a HTTP service;
+  * *[Conditions](conditions.md)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
+  * *[Transformations and calculations](transformations.md)* to transform the gathered data into a format that subsequent operations may require. 
+  * Each watch can have several checks, which are executed as a chain. Each action of a watch can have a further chain of checks.
+* **[Actions](actions.md)** are executed if all preceding conditions are met.
+  * Actions be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md), or PagerDuty (coming soon).
+  * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](actions_index.md).
+  * Using the [Webhook action](actions_webhook.md), it is actually possible to invoke any kind of operation as result of a Signals watch.
+  * Each watch can have several actions. The action-specific checks can be used to select which actions are to be executed in which situation. 
+  
+## Watch Runtime Data
 
-In addition, you can also configure `checks` for actions. For example, you can implement a condition for an action, so it is only executed if the condition is met, not affecting other actions. Before the action is executed, you can implement an action-specific transform, which cleans up and formats data prior to using it in a notification.
+All watch operations operate on the so-called watch runtime data. Index inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
+
+The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an Elasticsearch index. 
+
+The checks of a watch subsequently modify the runtime data. If action-specific checks are defined, these will be operating on isolated copies of the runtime data. So, modifications of the runtime data done for one action does have no effect on the runtime data visible for other actions.
+
 
 ## Overview
 
@@ -141,7 +143,7 @@ In addition, you can also configure `checks` for actions. For example, you can i
     {
       "type": "webhook",
       "name": "myslack",
-      "throttle_period": "1s",
+      "throttle_period": "10m",
       "request": {
         "method": "POST",
         "url": "https://hooks.slack.com/services/token",
@@ -151,9 +153,6 @@ In addition, you can also configure `checks` for actions. For example, you can i
         }
       }
     }
-  ],
-  "active": true,
-  "log_runtime_data": false,
-  "_id": "avg_ticket_price"
+  ]
 }
 ```

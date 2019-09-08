@@ -44,7 +44,8 @@ The following condition tests whether the total hits of a search, stored in the 
 |---|---|
 | type | condition.script, defines this conditions as script condition. Mandatory. |
 | name | name of this condition. Can be chosen freely. Mandatory. |
-| source | The painless script to execute. Mandatory |
+| source | The script to execute. Mandatory |
+| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
 
 ## Stored scripts
 
@@ -64,13 +65,15 @@ To run a stored script, refer to it by using it's id:
 | name | name of this condition. Can be chosen freely. Mandatory. |
 | script_id | The ID of the stored script. Mandatory |
 
-## Accessing the execution context data
+**Note:** When using stored scripts, keep in mind that stored scripts are not subject to multi-tenancy or Signals permissions and may be thus changed independently of the watch. Thus, you should review whether the ability to edit scripts is adequately restricted.
 
-All scripts have full access to the data stored in the execution context, for example Elasticsearch or HTTP inputs.
+## Accessing the runtime data
 
-The data in the execution context is available via the `data` prefix, followed by the target name of the data.
+All scripts have full access to the runtime data, gathered for example by Elasticsearch or HTTP inputs.
 
-For example, the following watch runs a query against the serverlogs index to find entries where the statuscodeis 500. The result of the query is stored in the target with name `http_error_500`. The script condition accesses the data by using the  `data.http_error_500` prefix and only continues if the total hits is above 10.
+The runtime data is available via the `data` prefix.
+
+For example, the following watch runs a query against the serverlogs index to find entries where the statuscode is 500. The target property of the input is configured to be `http_error_500`; thus the document read by the input is put under this property name into the runtime data. The script condition accesses the data by using the  `data.http_error_500` prefix and only continues if the total hits is above 10.
 
 ```
 { 

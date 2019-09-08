@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Execution chain and execution context payload
+# Execution chain and execution runtime data
 {: .no_toc}
 
 {% include toc.md %}
@@ -20,7 +20,7 @@ description:
 
 Each watch can define as many inputs, transformations, calculations and conditions as required, in any order.
 
-Each step in  the execution chain is called a `check` and needs to have a unique name. Example:
+Each step in  the execution chain is called a *check*. Example:
 
 ```
 {
@@ -57,11 +57,11 @@ Each step in  the execution chain is called a `check` and needs to have a unique
 }
 ```
 
-## Execution context: Payload
+## Execution runtime data
 
-All `check`s operate on the watch execution context. The execution context stores all runtime data of the watch. 
+All checks and actions operate on the watch runtime data. 
 
-[Input](inputs.md) checks add data to the context under a unique name. [Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
+[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before. [Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
 
 [Actions](actions.md) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like Elasticsearch.
 
@@ -69,9 +69,9 @@ All `check`s operate on the watch execution context. The execution context store
 <img src="runtime_context.png" style="width: 40%" class="md_image"/>
 </p>
 
-### Adding data to the execution context
+### Adding data to the runtime data
 
-An [input](inputs.md) fetches data and places it in the execution context under a name specified by the `target` of the check.  Example:
+[Inputs](inputs.md) and [Transformations](transformations_transformations.md) fetch data and place it in the runtime data under a name specified by the `target` of the check.  Example:
 
 ```
 {
@@ -95,11 +95,11 @@ An [input](inputs.md) fetches data and places it in the execution context under 
 }
 ```
 
-This input executes an Elasticsearch query and stores the result of the query under the name `avg_ticket_price`.
+This input executes an Elasticsearch query and stores the result of the query under the name `avg_ticket_price`. Using the special target name `_top` places the data at the top level of the runtime data. Any data that was present before gets erased.
 
-### Accessing data in the execution context
+### Accessing runtime data
 
-Transformations, calculations and conditions access data in the execution context by using the target name:
+Transformations, calculations and conditions access runtime data by using the prefix `data` followed by the respective property name. The property name is, of course, defined by the target value used in the input before.
 
 ```
 {
@@ -122,9 +122,9 @@ Format:
 data.<target name>.path.to.data
 ```
 
-### Accessing data in moustache templates
+### Accessing data in Mustache templates
 
-Actions format their messages by using moustache templates. Moustache templates have access to the execution context data as well. Example:
+Actions format their messages by using Mustache templates. Mustache templates have access to the runtime data as well. Example:
 
 
 ```
@@ -157,6 +157,3 @@ Format:
 {% endraw %}
 ```
 
-## Top-level context
-
-If an input does not define any target, the data is stored in the top-level of the execution context.

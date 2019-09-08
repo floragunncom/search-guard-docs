@@ -14,7 +14,7 @@ description:
 # Search input
 {: .no_toc}
 
-A search input can be used to pull in data from Elasticsearch.
+A search input can be used to pull in data from an Elasticsearch index.
 
 You can use the full power of the Elasticsearch query syntax to query, filter and aggregate your data. 
 
@@ -68,7 +68,7 @@ Example:
 | target | the name under which the data is available in later execution steps. |
 | request | The search request to execute |
 | request.indices | The indices to execute the `request.query` against. **The user that defines the watch needs to have a role that has access to the specified index / indices.**|
-| request.body | The body of the search request. You can use all features of the Elasticsearch query and aggregation DSL here. |
+| request.body | The body of the search request. You can use all features of the Elasticsearch query and aggregation DSL here. All attributes of the request body can be dynamically defined using Mustache templates.|
 
 
 
