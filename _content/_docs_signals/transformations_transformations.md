@@ -22,7 +22,7 @@ A transformation is a script that
 * performs one or more painless statements
 * replaces the  
 
-As opposed to [Caclulations](transformations_calculations.md), Transformation scripts have a return statement and need to define the target context where the transformed values are written back to.
+As opposed to [Calculations](transformations_calculations.md), Transformation scripts have a return statement and need to define the target context where the transformed values are written back to.
 
 If the target context already exists, it is overwritten. If not, a new one is created.
 
@@ -53,7 +53,8 @@ For example, the next transformation accesses a runtime context that has stored 
 | type | transform, defines this script as transformation. Mandatory. |
 | name | name of this transformation. Can be chosen freely. Mandatory. |
 | target | Under which context name to store the result of the transformation in the runtime data. If the context already exists, it is replaced. If it does not exist, a new contect is created. If omitted, the top-level context will be used. |
-| source | The painless script to execute. Mandatory |
+| source | The script to execute. Mandatory |
+| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
 
 ## Using stored scripts
 
@@ -73,9 +74,9 @@ For example, the next transformation accesses a runtime context that has stored 
 | target | Under which context name to store the result of the transformation in the runtime data. If the context already exists, it is replaced. If it does not exist, a new contect is created. If omitted, the top-level context will be used. |
 | script_id | The ID of the stored script. Mandatory. |
 
-## Accessing the execution context data
+## Accessing the runtime data
 
-All scripts have full access to the data stored in the execution context. The data in the execution context is available via the `data` prefix, followed by the target name of the data.
+All scripts have full access to the runtime data. The data in the execution context is available via the `data` prefix.
 
 ## Using transformations with actions
 

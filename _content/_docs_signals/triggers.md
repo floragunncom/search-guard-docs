@@ -48,7 +48,7 @@ Example:
 
 ## Trigger execution
 
-Each trigger gets registered with the Trigger Execution Engine. The execution engine makes sure thar
+Each trigger gets registered with the Trigger Execution Engine. The execution engine makes sure that
 
 * Each trigger is executed on exactly one node at a time
   * You can specify node filters to define on which nodes Signals Alerting should run

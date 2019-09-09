@@ -15,7 +15,7 @@ description:
 # Inputs
 {: .no_toc}
 
-Each watch can have one or more inputes. Inputs can be freely defined anywhere in the execution chain.
+Each watch can have one or more inputs. Inputs can be freely defined anywhere in the execution chain.
 
 Each input will fetch data from a data source, and place it in the runtime data context under a configurable key for later usage.
 

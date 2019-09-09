@@ -19,7 +19,7 @@ description:
 
 Conditions are used to control the execution flow. A condition can be used anywhere in the execution chain for watches and actions. 
 
-A condition must return a boolean. If the condition returns true, the execution continues. If the condition returns false, the execution is stopped.
+A condition must return a boolean value. If the condition returns true, the execution continues. If the condition returns false, the execution is stopped.
 
 In watches, a condition controls whether a certain value or threshold is reached, to decide whether the watch should continue execution.
 
