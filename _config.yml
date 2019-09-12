@@ -262,5 +262,3 @@ sgversions:
     - 7.1.1|36.1.0|36.0.0|yes|yes|no
     - 7.1.0|36.1.0|36.0.0|yes|yes|no
     - 7.0.1|36.1.0|36.0.0|yes|yes|no
-    - 7.0.0|36.0.0-rc1|35.0.0-rc1|yes|yes|no
-    - 7.0.0|35.0.0-beta1|35.0.0-beta1|yes|yes|no
