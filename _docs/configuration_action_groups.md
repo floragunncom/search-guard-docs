@@ -24,6 +24,7 @@ The file structure is very simple:
 
 ```yaml
 <action group name>:
+  permissions:
     - '<permission or action groups>'
     - '<permission or action group>'
     - ...
@@ -91,11 +92,14 @@ You can define your own action groups in `sg_action_groups.yml`. You can use any
 
 ```yaml
 SEARCH:
-  - "indices:data/read/search*"
-  - "indices:data/read/msearch*"
-  - SUGGEST
+  permissions:
+    - "indices:data/read/search*"
+    - "indices:data/read/msearch*"
+    - SUGGEST
+
 SUGGEST:
-  - "indices:data/read/suggest*"
+  permissions:
+    - "indices:data/read/suggest*"
 ```
 
 In this case, the action group `SEARCH` includes the (wildcarded) `search*` and `msearch*` permissions, and also all permissions defined by the action group `SUGGEST`.
