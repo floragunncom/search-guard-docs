@@ -3,7 +3,7 @@ title: Sample Watches
 html_title: Sample Watches of Signals Alerting
 slug: elasticsearch-alerting-watches-sample
 category: signals
-order: 1100
+order: 210
 layout: docs
 edition: preview
 description: 

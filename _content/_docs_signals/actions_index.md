@@ -85,4 +85,6 @@ Further configuration attributes are:
 
 **timeout:** If the index operation does not complete in the specified time (in seconds), it will be aborted. Optional; default is 60 seconds.
 
+## Technical Preview Limitations
 
+* It's not possible yet to write the data back to a remote Elasticsearch cluster

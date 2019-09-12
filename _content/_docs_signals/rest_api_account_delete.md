@@ -46,12 +46,13 @@ The user does not have the permission to delete accounts.
 
 An account with the given id does not exist.
 
-
-
 ## Permissions
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/delete` .
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ACCOUNT\_MANAGE
 
 ## Examples
 

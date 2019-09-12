@@ -1,5 +1,5 @@
 ---
-title: PUT watch
+title: Put watch
 html_title: Creating a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-put
 category: signals-rest
@@ -25,7 +25,7 @@ PUT /_signals/watch/{watch_id}
 
 Stores or updates a watch identified by the `{watch_id}` path parameter. By default, the watch will be active and scheduled for execution.
 
-**Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch.
+**Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch. See also the chapter on the [security execution context](security_execution_context.md).
 
 ## Path Parameters
 
@@ -34,8 +34,6 @@ Stores or updates a watch identified by the `{watch_id}` path parameter. By defa
 ## Request Body
 
 The watch needs to be specified as JSON document in the request body. 
-
-See TODO for details on the structure of watches.
 
 ## Responses
 
@@ -75,6 +73,10 @@ The watch REST API is tenant-aware. Each Signals tenant has its own separate set
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/put` for the currently selected tenant.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ALL 
+* SGS\_SIGNALS\_WATCH\_MANAGE
 
 ## Examples
 

@@ -1,6 +1,6 @@
 ---
 title: Execution chain and payload
-html_title: Chaining Inputs, Transformations and Conditions
+html_title: Execution chain and execution runtime data
 slug: elasticsearch-alerting-chaining-checks
 category: signals
 order: 250
@@ -20,7 +20,7 @@ description:
 
 Each watch can define as many inputs, transformations, calculations and conditions as required, in any order.
 
-Each step in  the execution chain is called a *check*. Example:
+Each step in the execution chain is called a *check*. Example:
 
 ```
 {
@@ -61,17 +61,19 @@ Each step in  the execution chain is called a *check*. Example:
 
 All checks and actions operate on the watch runtime data. 
 
-[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before. [Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
+[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before. 
+
+[Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
 
 [Actions](actions.md) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like Elasticsearch.
 
 <p align="center">
-<img src="runtime_context.png" style="width: 40%" class="md_image"/>
+<img src="runtime_context.png" style="width: 50%" class="md_image"/>
 </p>
 
 ### Adding data to the runtime data
 
-[Inputs](inputs.md) and [Transformations](transformations_transformations.md) fetch data and place it in the runtime data under a name specified by the `target` of the check.  Example:
+[Inputs](inputs.md) and [Transformations](transformations_transformations.md) fetch data and place it in the runtime data under a name specified by the `target` of the check. Example:
 
 ```
 {

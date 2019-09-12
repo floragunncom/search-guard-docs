@@ -27,5 +27,5 @@ In actions, conditions can be used to control if a certain action should be exec
 
 Currently, the following condition types are supported
 
-* condition.script
+* [condition.script](conditions_script.md)
   * a condition that uses a Painless script 

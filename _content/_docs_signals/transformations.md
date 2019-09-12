@@ -26,4 +26,4 @@ You can use painless scripts to either
 * transform your data in any execution context
 * calculate values and store them in a new execution context
 
-Both transformations and calculations are implemented as inline or stored painless scripts that operate on the execution context data. You can use the full power of painless to massage the data anyway you want.
+Both transformations and calculations are implemented as inline or stored painless scripts that operate on the execution runtime data. You can use the full power of painless to massage the data any way you want.

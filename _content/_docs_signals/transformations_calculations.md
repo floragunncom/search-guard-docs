@@ -24,7 +24,7 @@ A calculation is a script that
 
 As opposed to [Transformations](transformations_transformations.md), Calculation scripts do not have a return statement and do not need to define a target.
 
-Instead, they access and manipulate the watch execution context directly.
+Instead, they access and manipulate the watch runtime data directly.
 
 Calculations can be used
 
@@ -75,7 +75,7 @@ All scripts have full access to the data stored in the execution context. The da
 
 Caclulations can also be used with actions. Each action can define it's own chain of `check`s, including calculations. The following snippets shows how to combine a calculation and a condition specific to an action. The calculation is the same as above, and the condition will execute the action only if the average memory consumption is above a certain threshold.
 
-Note that you can also use the calculated value in the text_body of the email action. Actions use moustache to render the output. Moustache has the same access to the execution context data as scripts and conditions. 
+Note that you can also use the calculated value in the text_body of the email action. Actions use Mustache to render the output. Mustache has the same access to the execution context data as scripts and conditions. 
 
 ```
 { 

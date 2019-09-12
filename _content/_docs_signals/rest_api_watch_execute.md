@@ -30,8 +30,6 @@ POST /_signals/watch/{watch_id}/_execute
 
 Immediately executes a watch and returns status information in the HTTP response. The watch can be specified in the request body. Alternatively, the watch to be executed can be specified by y the `{watch_id}` path parameter.
 
-
-
 ## Path Parameters
 
 **{watch_id}** The id of the watch to be executed. Optional. If not specified, the watch needs to be specified in the request body.
@@ -43,6 +41,7 @@ The request body can contain a JSON document specifying further options for exec
 The supported attributes of the JSON document are these:
 
 **record_execution** If true, the result of the execution is stored in the watch log index just like it happens for a normal scheduled execution. Optional. Default: false
+
 **watch** The watch to be executed as JSON document. Must be specified if no `{watch_id}` path parameter is given.
 
 ## Responses
@@ -119,6 +118,9 @@ The watch REST API is tenant-aware. Each Signals tenant has its own separate set
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/execute` for the currently selected tenant.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_WATCH\_EXECUTE
 
 ## Examples
 

@@ -56,6 +56,10 @@ The watch REST API is tenant-aware. Each Signals tenant has its own separate set
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/delete` for the currently selected tenant.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ALL 
+* SGS\_SIGNALS\_WATCH\_MANAGE
 
 ## Examples
 

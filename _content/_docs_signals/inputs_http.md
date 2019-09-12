@@ -17,9 +17,11 @@ description:
 {% include toc.md %}
 
 
-An HTTP input pulls in data by accessing an HTTP endpoint. Most commonly, this will be a REST API. All data from all inputs can be combined by using [Transformation](transformations_transformations.md) and [Calculations](transformations_calculations.md), used in [Conditions](conditions.md) and pushed to [action endpoints](actions.md).
+An HTTP input pulls in data by accessing an HTTP endpoint. Most commonly, this will be a REST API. 
 
-For example, if you aggregate data from the [Search Guard Audit Log](auditlog), you can  use an HTTP input to retrieve Geo Data information for the logged IP adresses.
+All data from all inputs can be combined by using [Transformation](transformations_transformations.md) and [Calculations](transformations_calculations.md), used in [Conditions](conditions.md) and pushed to [action endpoints](actions.md).
+
+For example, if you aggregate data from the [Search Guard Audit Log](auditlog), you can  use an HTTP input to retrieve Geo Data information for the logged IP adresses and enrich the data from the audit log.
 
 ## Example
 
@@ -46,7 +48,7 @@ For example, if you aggregate data from the [Search Guard Audit Log](auditlog), 
 | target | the name under which the data is available in later execution steps. |
 | request | The HTTP request details |
 | request.url | The URL for this HTTP input |
-| request.method | One of  GET|PUT|POST|DELETE |
+| request.method | One of: GET, PUT, POST, DELETE |
 | request.auth | Optional. The authentication method for the HTTP request. |
 | request.body | The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data. |
 
@@ -87,7 +89,8 @@ The HTTP endpoint in the `request.url` attribute cannot be changed dynamically d
 
 Authentication credentials are configured in the `auth` section if the `request` configuration. At the time of writing, the only authentication method is HTTP Basic Authentication.
 
-**Note:** In the current version of the tech preview, the password is stored unencrypted and returned in verbatim when the watch is retrieved using the REST API. Future versions will provide a more secure way of storing authentication data.
+### Technical Preview Limitations
+In the current version of the tech preview, the password is stored unencrypted and returned in verbatim when the watch is retrieved using the REST API. Future versions will provide a more secure way of storing authentication data.
 
 ## Advanced Functionality
 
@@ -99,4 +102,4 @@ Furthermore, HTTP inputs provide these configuration options:
 
 ## Security Considerations
 
-Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. We are still working on mechanisms to define restrictions on the use of webhook actions and the allowed endpoints.
+Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. We are working on mechanisms to define restrictions on the use of webhook actions and the allowed endpoints.

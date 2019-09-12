@@ -16,7 +16,7 @@ description:
 
 {% include toc.md %}
 
-A script condition is a Painless script that has access to the complete execution context and returns a boolean value.
+A script condition is a Painless script that has access to the complete execution runtime data and returns a boolean value.
 
 If the script returns false, the execution flow is aborted. If it returns true, the execution flow continues.
 
@@ -69,7 +69,7 @@ To run a stored script, refer to it by using it's id:
 
 ## Accessing the runtime data
 
-All scripts have full access to the runtime data, gathered for example by Elasticsearch or HTTP inputs.
+All scripts have full access to the runtime data, gathered for example by [Elasticsearch](inputs_elasticsearch.md) or [HTTP](inputs_http.md) inputs.
 
 The runtime data is available via the `data` prefix.
 

@@ -67,6 +67,9 @@ The destination was not encoded as JSON document. Destinations need to be sent u
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/put`.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ACCOUNT\_MANAGE
 
 ## Examples
 

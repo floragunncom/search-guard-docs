@@ -112,7 +112,7 @@ To create a weekly trigger, you define the weekday and the time:
 		"schedule": {
 			"weekly": {
 				"on": ["thursday", "friday"],
-				"at": ["14:40:00", "17:00:00"]
+				"at": ["14:00:00", "17:00:00"]
 			}
 		}
 	},
@@ -125,7 +125,7 @@ This trigger will fire each Thursday and Friday at 2pm and 5pm.
 
 ### Creating multiple weekly triggers
 
-To create a weekly trigger, you define the weekday and the time:
+To create multiple weekly trigger, you define the weekday and the time like:
 
 ```json
 {
@@ -235,5 +235,3 @@ This trigger will fire every 10 seconds.
 	"actions": [],
 }
 ```
-
-This trigger will fire every 10 seconds.

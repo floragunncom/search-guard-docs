@@ -66,6 +66,10 @@ The user does not have the required to access the endpoint.
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/search`.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ACCOUNT\_MANAGE
+* SGS\_SIGNALS\_ACCOUNT\_READ
 
 ## Examples
 

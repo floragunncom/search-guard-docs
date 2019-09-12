@@ -18,8 +18,6 @@ description:
 
 Use e-mail actions to send e-mail notifications from watches. You can use Mustache templates to define dynamic content for mail subject and content.
 
-% LATER: attachments
-
 ## Prerequisites
 
 In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](accounts.md) of Signals. 
@@ -66,5 +64,8 @@ The basic configuration attributes are:
 
 **text_body:** Defines the content of the mail. Mustache templates can be used to render attributes from the watch runtime data. Optional. 
 
-Note that HTML mails are not supported right now.
+## Technical Preview Limitations
+
+* HTML mails are not supported
+* Attachements are not supported
 

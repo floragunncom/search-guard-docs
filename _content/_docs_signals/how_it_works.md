@@ -26,11 +26,11 @@ Signals can be used to create and execute watches that:
 
 ## Log file analysis example
 
-Assume you are ingesting log files from production systems to Elasticsearch. The most typical usecase is to use Signals to detect an unusual amount of errors.
+Assume you are ingesting log files from production systems to Elasticsearch. The most typical use case is to use Signals to detect an unusual amount of errors.
 
 You can use Signals to:
 
-* run an aggregation periodically on the logs index that counts the amount of errors in the last 5 minutes
+* run an aggregation periodically on the logs index that counts the number of errors in the last 5 minutes
 * implement a condition that checks whether the error level is above a certain threshold
 * if the condition is met, send out notifications via Email or Slack to inform your DevOps team. 
 
@@ -43,43 +43,41 @@ You can use Signals to
 * run an aggregation periodically on the auditlog index that looks for documents where the category is FAILED\_LOGIN\_ATTEMPTS
 * aggregate the documents by username and count the failed login attempts
 * retain all aggregations where the number of login attempts in the last 30 minutes is above a certain threshold
-* Enrich the remaining aggregations by pulling in Geo information from a REST API
+* Enrich the remaining aggregations by pulling in Geoinformation from a REST API
 * send out an email and/or Slack notification
-* send an addition escalation email if the issue persist for more than 1 hour
+* send an addition escalation email if the issue persists for more than 1 hour
 
 ## Building blocks of a Signals watch
 
-The basic working principle of a watch goes as follows:
-
-After a watch has been *triggered*, it *checks* for certain conditions, and takes *action* if necessary.
+After a watch has been *triggered*, it *checks* for specific conditions and takes *action* if necessary.
 
 These three elements also form the three major building blocks of a Signals watch:
 
-* **[Triggers](triggers.md)** define when a watch will be executed. Each watch should have at least on trigger
+* **[Triggers](triggers.md)** define when a watch will be executed. Each watch should have at least one trigger
 * **Checks** are constructs meant for analyzing the situation to be watched. For doing so, Signals offers
-  * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or a HTTP service;
+  * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or an HTTP service;
   * *[Conditions](conditions.md)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
   * *[Transformations and calculations](transformations.md)* to transform the gathered data into a format that subsequent operations may require. 
-  * Each watch can have several checks, which are executed as a chain. Each action of a watch can have a further chain of checks.
+  * Each watch can have several checks, which are executed as a chain. Each action of a watch can also have a chain of checks.
 * **[Actions](actions.md)** are executed if all preceding conditions are met.
-  * Actions be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md), or PagerDuty (coming soon).
+  * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md), or PagerDuty (coming soon).
   * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](actions_index.md).
-  * Using the [Webhook action](actions_webhook.md), it is actually possible to invoke any kind of operation as result of a Signals watch.
-  * Each watch can have several actions. The action-specific checks can be used to select which actions are to be executed in which situation. 
+  * Using the [Webhook action](actions_webhook.md), it is possible to invoke any HTTP service as a result of a Signals watch.
+  * Each watch can have several actions. Action-specific checks can be used to decide which actions are executed in which situation. 
   
 ## Watch Runtime Data
 
-All watch operations operate on the so-called watch runtime data. Index inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
+All watches operate on the so-called watch runtime data. Inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
 
 The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an Elasticsearch index. 
 
-The checks of a watch subsequently modify the runtime data. If action-specific checks are defined, these will be operating on isolated copies of the runtime data. So, modifications of the runtime data done for one action does have no effect on the runtime data visible for other actions.
+The checks of a watch subsequently modify the runtime data. If action-specific checks are defined, these will be operating on isolated copies of the runtime data. So, modifications of the runtime data for one action have no effect on the runtime data visible for other actions.
 
 
 ## Overview
 
 <p align="center">
-<img src="watch_anatomy.png" style="width: 30%" class="md_image"/>
+<img src="watch_anatomy.png" style="width: 40%" class="md_image"/>
 </p>
 
 ## Sample Watch

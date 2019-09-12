@@ -29,7 +29,8 @@ Example:
 			"value": {
 				"threshold": 10,
 				"time_period": "10s",
-				"admin_lastname": "Anderson",				"admin_firstname": "Paul"
+				"admin_lastname": "Anderson",
+				"admin_firstname": "Paul"
 			}
 		}	],
 	"actions": [ ... ]
@@ -44,7 +45,7 @@ Example:
 
 ## Accessing static input data in the execution chain
 
-In this example, the constant values defined in the `value`section can be accessed in later execution steps. Examples:
+In this example, the constant values defined in the `value` section can be accessed in later execution steps. Examples:
 
 Usage in a trigger:
 
@@ -64,7 +65,7 @@ Usage in an action:
     ...
     "email": {
       ...
-      "body": "Dear {{data.myconstants.admin_firstname}}. There are too many error in the system, see attached data",
+      "body": "Dear {{data.myconstants.admin_firstname}}. There are too many errors in the system, see attached data"
     }
   }
 ]

@@ -27,7 +27,7 @@ GET /_signals/watch/_search
 POST /_signals/watch/_search
 ```
 
-Searches for watches. Search criteria and options can be specified in a manner similar to the ElasticSearch document search REST API.
+Searches for watches. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
 
 Both the GET and the POST HTTP method can be used with the same effect.
 
@@ -50,6 +50,7 @@ If no request body is specified, all watches configured for the currently select
 Important attributes of the request body are:
 
 **query:** An ES document query.
+
 **sort:** Specifies the attributes by which the result shall be sorted. 	
 
 
@@ -71,6 +72,11 @@ The watch REST API is tenant-aware. Each Signals tenant has its own separate set
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/search` for the currently selected tenant.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_ALL 
+* SGS\_SIGNALS\_WATCH\_MANAGE
+* SGS\_SIGNALS\_WATCH\_READ
 
 ## Examples
 

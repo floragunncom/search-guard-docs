@@ -21,29 +21,31 @@ description:
 
 When the checks configured in a watch found a situation to be noteworthy, it's time to take action. This is done using the equally named watch building block: Actions.
 
-Actions can be used to send notifications by e-mail or other messaging services such as Slack. Also, actions allow to write data to Elasticsearch indexes. A general purpose mechanism to invoke external services is the webhook action which allows making HTTP requests to configurable endpoints.
+Actions can be used to send notifications by e-mail or other messaging services such as [Slack](actions_slack.md). Also, actions allow to write data to [Elasticsearch indices](actions_index.md). A general purpose mechanism to invoke external services is the [webhook action](actions_webhook.md) which allows making HTTP requests to configurable endpoints.
 
 A watch can have several actions; either for sending notifications via different media, or for acting differently depending on the situation.
 
+## Invoking actions
+
 Actions are generally invoked if all checks configured for a watch ran with a positive result. Thus, if a condition configured in the checks evaluates to false, watch execution is aborted an no actions are invoked. The actions operate on the runtime data collected by these checks.
 
-Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will be only triggered when deemed values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
-
-In order to avoid getting spammed or flooded by automatic notifications caused by actions, Signals provides two mechanisms: Throttling automatically suppresses the repeated execution of actions for a configurable amount of time. Furthermore, users can acknowledge actions which suppresses action execution until the checks of a watch change their state.
+Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will only be triggered when certain values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
 
 ## Action Types
 
-These actions are available right now:
+These actions are available at the moment:
 
-**E-Mail Action:** Sends e-mails to configurable recipients. Mail content can be defined using templating.
+**[E-Mail Action](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
 
-**Slack Action:** Sends Slack messages to configurable recipients. Message content is templateable as well.
+**[Slack Action](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
 
-**Webhook Actions:** Sends HTTP requests to external services.
+**[Webhook Actions](actions_webhook.md):** Sends HTTP requests to external services.
 
-**Index Action:** Writes data to an Elasticsearch index.
+**[Index Action](actions_index.md):** Writes data to an Elasticsearch index.
 
 ## Action Throttling
+
+In order to avoid getting spammed or flooded by automatic notifications caused by actions, Signals provides two mechanisms: Throttling automatically suppresses the repeated execution of actions for a configurable amount of time. Furthermore, users can acknowledge actions which suppresses action execution until the checks of a watch change their state.
 
 For each action, a throttle period can be configured. Throttle periods are time durations during which execution of the particular action will be suppressed after the it was executed. This way, a watch can be configured to be run very frequently in order to get quickly notified about newly commencing situations. Yet, actions would be triggered less frequently – in the frequency configured by the throttle period.
 
@@ -65,8 +67,8 @@ All action types share a set of common configuration properties. Consider the fo
 
 ```json
  {
-     /* ... */ 
- 
+     
+    ...
 	"actions": [
 		{
 			"type": "email",
@@ -78,7 +80,7 @@ All action types share a set of common configuration properties. Consider the fo
 				}
 			],
 			"throttle_period": "1h",
-			/* ... */
+			...
 		}
 	]
 }
@@ -86,11 +88,9 @@ All action types share a set of common configuration properties. Consider the fo
 
 The common configuration attributes are:
 
-**type:** The type of the action. Required. Can be index, email, slack or webhook right now. 
-
-**name:** A name identifying this action. Required.
-
-**checks:** Further checks which can gather or transform data and decide whether to execute the actual action. Optional.
-
-**throttle_period:** The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour.
-
+| Name | Description |
+|---|---|
+| type | The type of the action. Required. Can be index, email, slack or webhook right now. |
+| name | A name identifying this action. Required. |
+| checks | Further checks which can gather or transform data and decide whether to execute the actual action. Optional. |
+| throttle_period | The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour. |

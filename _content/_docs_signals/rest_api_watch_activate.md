@@ -64,6 +64,10 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 
 This permission is distinct for the permission required to create or updated watches. Thus, a user may be allowed to activate or deactivate watches without being allowed to create or update watches.
 
+This permission is included in the following [built-in action groups](security_permissions.md):
+
+* SGS\_SIGNALS\_WATCH\_ACTIVATE
+
 ## Examples
 
 ### Basic 

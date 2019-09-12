@@ -18,9 +18,9 @@ description:
 
 A transformation is a script that 
 
-* has access to the execution context payload data
+* has access to the runtime data
 * performs one or more painless statements
-* replaces the  
+* replaces the runtime data in the `target` context  
 
 As opposed to [Calculations](transformations_calculations.md), Transformation scripts have a return statement and need to define the target context where the transformed values are written back to.
 
@@ -29,9 +29,9 @@ If the target context already exists, it is overwritten. If not, a new one is cr
 Transformations can be used
 
 * in the `check`s section of a watch definition
-  * the transformation is executed before any actions are executed. Changes to the execution context payload data are visible for all subsequent steps and for all actions
+  * the transformation is executed before any actions are executed. Changes to the execution context runtime data are visible for all subsequent steps and for all actions
 * in the `check`s section of any action
-  * the transformation is executed before the action is executed. Changes to the execution context payload data are only applied to the payload for that specific action.
+  * the transformation is executed before the action is executed. Changes to the execution context runtime data are only applied for that specific action.
 
 ## Using inline scripts
 
@@ -82,7 +82,7 @@ All scripts have full access to the runtime data. The data in the execution cont
 
 Transformations can also be used with actions. Each action can define it's own chain of `check`s, including transformation. 
 
-The next example runs a transformation that extract the hits from an Elasticsearch result set prior to writing it back to another Elasticsearch index via an [Index Action](actions_index.md).
+The next example runs a transformation that extracts the hits from an Elasticsearch result set prior to writing it back to another Elasticsearch index via an [Index Action](actions_index.md).
 
 ```
 { 
