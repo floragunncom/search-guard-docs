@@ -36,23 +36,12 @@ To use the (optional) Search Guard Kibana plugin which adds security and configu
 
 Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-Change to the directory of your Elasticsearch installation and type:
+* Download the [Search Guard version](installation_versionmatrix.md) matching your Elasticsearch version
+* Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:<version>
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
 ```
-
-For example:
-
-```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-{{site.searchguard.esmajorversion}}:{{site.searchguard.fullversion}}
-```
-
-**Replace the version number** in the examples above with the exact version number that matches your Elasticsearch installation. A plugin built for Elasticsearch {{site.elasticsearch.currentversion}} will not run on Elasticsearch {{site.elasticsearch.previousversion}} and vice versa.
-
-An overview of all available Search Guard versions can be found on the [Search Guard Version Matrix](installation_versionmatrix.md) page.
-
-For offline installation and more details, see the [Search Guard installation chapter](installation.md)
 
 ## Execute the demo installation script
 
