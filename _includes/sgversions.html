@@ -6,7 +6,6 @@
       <th>Elasticsearch Version</th>
       <th>Search Guard Version</th>
       <th>Kibana Plugin Version</th>
-      <th>Artifact</th>
     </tr>
   </thead>
   <tbody>
@@ -15,9 +14,8 @@
     <tr>
       {% assign sgversions = version | split: "|" %}							       
       <td>{{ sgversions[0] }}</td>
-      <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-6/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-6-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+      <td><a href="https://searchguard-releases.s3.eu-north-1.amazonaws.com/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-6-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
 	  <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
-	  <td>com.floragunn:search-guard-6:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
     </tr>
     {% endfor %}
   </tbody>
