@@ -36,19 +36,24 @@
 							      <th>Elasticsearch</th>
 							      <th>Search Guard</th>
 							      <th>Kibana Plugin</th>
-							      <th>Artifact</th>
 							      <th>Support available</th>
 							    </tr>
 							  </thead>
 							  <tbody>
 
 								{% for version in site.sgversions.v5 %}
-							    <tr>
-							      {% assign sgversions = version | split: "|" %}							       
+							    <tr>							    
+							      {% assign sgversions = version | split: "|" %}		
 							      <td>{{ sgversions[0] }}</td>
-							      <td>{{ sgversions[1] }}</td>
+
+							      {% if sgversions[4] == "link" %}	
+      <td><a href="https://releases.floragunn.com/search-guard-5-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+      							{% else %}
+      								<td>{{ sgversions[1] }}</td>
+								{% endif %}
+
+
 								  <td>{{ sgversions[2] }}</td>
-								  <td>com.floragunn:search-guard-5:{{ sgversions[1] }}</td>
 								  <td>{{ sgversions[3] }}</td>
 							    </tr>
 							    {% endfor %}
@@ -57,12 +62,14 @@
 
 
 							<h2>Search Guard 2: Latest stable versions</h2>
+
+							<b>Elasticsearch and Search Guard 2 are end of life and not supported anymore</b>
+							<br/><br/>
 							<table>
   								<thead>
 							    <tr>
 							      <th>Elasticsearch</th>
 							      <th>Search Guard</th>
-							      <th>Artifact</th>
 							      <th>Support available</th>
 							    </tr>
 							  </thead>
@@ -72,8 +79,7 @@
 							    <tr>
 							      {% assign sgversions = version | split: "|" %}							       
 							      <td>{{ sgversions[0] }}</td>
-							      <td>{{ sgversions[1] }}</td>
-								  <td>com.floragunn:search-guard-2:{{ sgversions[1] }}</td>
+							      <td>{{ sgversions[1] }}</td>								  
 								  <td>{{ sgversions[2] }}</td>
 							    </tr>
 							    {% endfor %}

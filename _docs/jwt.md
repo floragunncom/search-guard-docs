@@ -14,21 +14,13 @@ Copryight 2017 floragunn GmbH
 
 ## Installation
 
-Download the JWT module from Maven Central:
+Download the JWT module:
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-auth-http-jwt%22){:target="_blank"}
+[JWT module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
 
 and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+`<ES installation directory>/plugins/search-guard-5`
 
 After that, restart all nodes to activate the module.
 

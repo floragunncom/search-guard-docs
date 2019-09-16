@@ -23,17 +23,13 @@ As with regular permissions, settings for document and field-level security can 
 
 ## Installation
 
-Download the DLS/FLS module from Maven Central:
+Download the DLS/FLS module:
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-dlsfls%22){:target="_blank"} 
+[DLS/FLS module](https://releases.floragunn.com/dlic-search-guard-module-dlsfls-5.3-10-jar-with-dependencies.jar){:target="_blank"} 
 
 and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+`<ES installation directory>/plugins/search-guard-5`
 
 After that, restart all nodes for to activate the module.
 

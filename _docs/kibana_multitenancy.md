@@ -47,7 +47,7 @@ The Private tenant is not shared.  It is only accessible for the currently logge
 
 In order for multitenancy to work, you need to configure:
 
-* Elasticsearch: Search Guard and the Kibana multitenancy enterprise module (automatically installed).
+* Elasticsearch: Search Guard and the Kibana multitenancy enterprise module 
 * Kibana: the Search Guard Kibana plugin.
 
 Multi tenancy will not work properly if you install only one of the modules or plugins, or if the configuration does not match in Elasticsearch and Kibana.

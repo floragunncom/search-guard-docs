@@ -26,21 +26,14 @@ For security reasons, audit logging has to be configured in `elasticsearch.yml`,
 
 ## Installation
 
-Download the Audit Log enterprise module from Maven Central:
+Download the Audit Log enterprise module:
 
-[Maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22dlic-search-guard-module-auditlog%22){:target="_blank"}
+[Auditlog module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 and place it in the folder
 
-* `<ES installation directory>/plugins/search-guard-2`
 
-or
-
-* `<ES installation directory>/plugins/search-guard-5`
-
-if you are using Search Guard 5.
-
-**Choose the module version matching your Elasticsearch version, and download the jar with dependencies.**
+`<ES installation directory>/plugins/search-guard-5`
 
 After that, restart all nodes to activate the module.
   

@@ -30,62 +30,14 @@ The basic installation procedure is to:
 
 ## Installing Search Guard
 
-Search Guard can be installed like any other Elasticsearch plugin. **Replace the version number** in the following examples with the exact version number that matches your Elasticsearch installation. A plugin built for ES 5.6.16 will not run on ES 5.6.15 and vice versa.
+Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-Change to the directory of your Elasticsearch installation and type:
-
-```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:<version>
-```
-For example:
-
-```bash
-bin/elasticsearch-plugin install -b com.floragunn:search-guard-5:5.5.0-14
-```
-
-Run `bin/elasticsearch-plugin` as the user that owns all of the Elasticsearch files.
-
-In order to find the most recent Search Guard version for your Elasticsearch installation, please refer to our [version matrix](https://github.com/floragunncom/search-guard/wiki){:target="_blank"}. 
-
-After the installation you see a folder called "search-guard-5" in the plugin directory of your Elasticsearch installation.
-
-**If you're running Elasticsearch 2.x:**
-
-For Search Guard 2, you need to install Search Guard SSL first and after that Search Guard. Change to the directory of your Elasticsearch installation and type:
-
-```bash
-bin/plugin install -b com.floragunn/search-guard-ssl/2.4.5.21
-bin/plugin install -b com.floragunn/search-guard-2/2.4.5.14
-```
-
-After the installation you should see a folder called "search-guard-2" in the plugin directory of your Elasticsearch installation.
-
-### Offline installation
-
-If you are behind a firewall and need to perform an offline installation, follow these steps:
-
-* Download the [Search Guard 5 version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki){:target="_blank"} from Maven Central:
-  * [All versions of Search Guard 5](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-5%22){:target="_blank"}
-  * Download the **zip file** of the Search Guard plugin
+* Download the [Search Guard version](installation_versionmatrix.md) matching your Elasticsearch version
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-<version>.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-5.6.16-19.3.zip
 ```
-**If you're running Elasticsearch 2.x:**
-
-* Download the Search Guard SSL and Search Guard plugins [version matching your Elasticsearch version](https://github.com/floragunncom/search-guard/wiki){:target="_blank"} from Maven Central:
-  * [All versions of Search Guard 2 SSL](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22){:target="_blank"} 
-  * [All versions of Search Guard 2](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-2%22){:target="_blank"} 
-
-  * Download the **zip files** of Search Guard plugins
-* Change to the directory of your Elasticsearch installation and type:
-
-```bash
-bin/plugin install -b file:///location/of/search-guard-ssl-<version>.zip
-bin/plugin install -b file:///location/of/search-guard-2-<version>.zip
-```
-
 ## Additional permissions dialogue
 
 
@@ -176,63 +128,44 @@ This will execute ``sgadmin`` and populate the Search Guard configuration index 
  
 ## Installing enterprise modules
 
-If you want to use any of the enterprise modules, simply download the respective module jar file from Maven. When downloading, **choose "jar  with dependencies"** and place it in the folder 
+If you want to use any of the enterprise modules, simply download the respective module jar file and place it in the folder 
 
-* `<ES installation directory>/plugins/search-guard-5`
-
-or
-
-* `<ES installation directory>/plugins/search-guard-2`
-
+`<ES installation directory>/plugins/search-guard-5`
 
 After that, restart your nodes for the changes to take effect.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
-[LDAP module v5.6-13 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-authbackend-ldap/5.6-13/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-authbackend-ldap/){:target="_blank"}
+[LDAP module v5.6-13 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-authbackend-ldap/5.6-13/dlic-search-guard-authbackend-ldap-5.6-13-jar-with-dependencies.jar){:target="_blank"}
 
 [LDAP and Active Directory documentation](ldap.md)
 
 #### Kerberos/SPNEGO Authentication/Authorisation:
-[Kerberos/SPNEGO module v5.0-4 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-kerberos/5.0-4/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-kerberos/){:target="_blank"}
+[Kerberos/SPNEGO module v5.0-4 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-kerberos/5.0-4/dlic-search-guard-auth-http-kerberos-5.0-4-jar-with-dependencies.jar){:target="_blank"}
 
 [Kerberos/SPNEGO documentation](kerberos.md)
 
 #### JWT Authentication/Authorisation:
-[JWT module v5.0-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-auth-http-jwt/){:target="_blank"}
+[JWT module v5.0-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
 
 [JSON Web token documentation](jwt.md)
 
 #### Document- and field level security:
-[Document- and field level module v5.3-10 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-dlsfls/5.3-10/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-dlsfls/){:target="_blank"}
+[Document- and field level module v5.3-10 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-module-dlsfls-5.3-10-jar-with-dependencies.jar){:target="_blank"}
 
 [Document and field level security documentation](dlsfls.md)
 
 #### Audit logging:
-[Audit log module v5.3-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-auditlog/){:target="_blank"}
+[Audit log module v5.3-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 [Audit Logging documentation](auditlogging.md)
 
 #### REST management API:
-[REST management module v5.3-7 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-rest-api/5.3-7/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-rest-api/){:target="_blank"}
+[REST management module v5.3-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-rest-api/5.3-7/dlic-search-guard-rest-api-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 [REST management API documentation](managementapi.md)
 
 #### Kibana multi tenancy module:
-[Multi tenancy management module v5.4-5 for Elasticsearch 5.6.x](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.4-5/){:target="_blank"}
-
-[All versions](https://repo1.maven.org/maven2/com/floragunn/dlic-search-guard-module-kibana-multitenancy/){:target="_blank"}
+[Multi tenancy management module v5.4-5 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.4-5/dlic-search-guard-module-kibana-multitenancy-5.4-5-jar-with-dependencies.jar){:target="_blank"}
 
 [Kibana Multitenancy documentation](kibana_multitenancy.md)
 

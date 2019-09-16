@@ -11,4 +11,7 @@ Copryight 2017 floragunn GmbH
 -->
 # Search Guard Versions
 
-All Search Guard releases, past and present, are available on Maven Central. You can either download the releases from there (offline install) or use the Elasticsearch plugin install command to install Search Guard directly (online install). 
+This page lists the latest Search Guard versions for Elasticsearch 5 and Elasticsearch 2.
+
+Note that both Elasticsearch 5 and Elasticsearch 2 are end of life and thus not supported anymore.
+
