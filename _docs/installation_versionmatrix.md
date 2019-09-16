@@ -2,7 +2,7 @@
 title: Latest Search Guard Versions
 slug: search-guard-versions
 category: installation
-order: 380
+order: 99
 layout: docs
 description: The Search Guard Community Edition provides TLS encryption and index-level permissions on REST and transport for free.
 ---
