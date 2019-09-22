@@ -25,3 +25,13 @@
 		{% endif %}
 	</div>
 </div>
+
+{%if page.edition == "preview"%}
+<div class="row vcenter" style="margin-bottom: 10px;">
+	<div class="col-xs-12">
+		<p class="note js-note note-warning">
+		This is a technical preview. Technical preview features are not fully supported, may not be functionally complete, and are not suitable for deployment in production. We encourage you to try them out and provide your feedback, good and bad, on the <a href="https://forum.search-guard.com" target="_blank">Search Guard forum</a>. This will help us improve and add any features you might be missing.
+	    </p>
+	</div>
+</div>
+{% endif %}
