@@ -24,11 +24,11 @@ The technical preview includes both Signals and Search Guard, and can be install
 
 ## Signals technical preview - Elasticsearch
 
-1. Download the plugin:
+Download the plugin:
 
 * [https://releases.floragunn.com/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip](https://releases.floragunn.com/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip)
 
-2. Install the plugin
+Install the plugin
 
 ```bash
 bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip
@@ -37,11 +37,11 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.1-SIGNALS
 
 ## Signals technical preview - Kibana
 
-1. Download the plugin:
+Download the plugin:
 
 * [https://releases.floragunn.com/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip](https://releases.floragunn.com/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip)
 
-2. Install the plugin
+Install the plugin
 
 ```bash
 bin/kibana-plugin install -b file:///path/to/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip

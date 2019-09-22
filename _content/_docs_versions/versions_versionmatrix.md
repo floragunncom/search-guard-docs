@@ -29,4 +29,6 @@ If you are upgrading from Elasticsearch 6.7.x to Elasticsearch >= 7.0.0, please 
 
 {% include sgversions.html majorversion="search-guard-7" %}
 
+## Signals Alerting technical preview
 
+{% include signalsversions.html %}
