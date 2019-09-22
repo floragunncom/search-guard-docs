@@ -80,6 +80,7 @@ labels:
     changelogs-searchguard: "Search Guard Changelogs"
     changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
+    signals: Signals Alerting
     7x-36: Search Guard 7.x-36
     7x-35: Search Guard 7.x-35
     6x-25: Search Guard 6.x-25
@@ -106,6 +107,7 @@ labels:
     docs_elasticstack: Documentation
     docs_other_integrations: Documentation
     docs_systemintegrators: Documentation
+    docs_signals: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
@@ -163,6 +165,9 @@ collections:
     output: true
     permalink: :title
   docs_systemintegrators:
+    output: true
+    permalink: :title
+  docs_signals:
     output: true
     permalink: :title
   troubleshooting:
