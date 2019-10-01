@@ -38,14 +38,18 @@ Search Guard supports OpenSSL. Using OpenSSL will result in better performance a
   * Windows: `_windows-x86_64.jar_`
   * Alpine: Compile it yourself (or use statically linked version below)
 
-* **Search Guard 7.7.x and higher (Open SSL 1.1.0):**
+* **Search Guard 7.2.x and higher (Open SSL 1.1.1):**
+  * Version: 2.0.25.Final (compiled against Open SSL 1.1.1 which supports hostname validation)
+  * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.1c-dynamic-2.0.25.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
+  * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.1c-dynamic-2.0.25.Final-fedora-linux-x86_64.jar){:target="_blank"}
+  * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
+
+
+* **Search Guard 7.0.x and higher (Open SSL 1.1.0):**
   * Version: 2.0.20.Final (compiled against Open SSL 1.1.0 which supports hostname validation)
   * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.0j-dynamic-2.0.20.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
   * [Download for CentOS/RHEL/Fedora](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.0j-dynamic-2.0.20.Final-fedora-linux-x86_64.jar){:target="_blank"}
   * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
-
-
-
 
 If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 
@@ -53,10 +57,15 @@ If you update the plugin (or re-install it after removal) don't forget to add ne
 
 **(Does not need Open SSL/Apache Portable Runtime (apr) to be installed on the server)**
 
-* **Search Guard 7.7.x and higher:**
+* **Search Guard 7.2.x and higher:**
+  * [Debian/Ubuntu (2.0.25.Final compiled with OpenSSL 1.1.1c)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.1c-static-2.0.25.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
+  * [CentOS/RHEL/Fedora (2.0.25.Final compiled with OpenSSL 1.1.1c)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.1c-static-2.0.25.Final-fedora-linux-x86_64.jar){:target="_blank"}
+  * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
+
+* **Search Guard 7.0.x and higher:**
   * [Debian/Ubuntu (2.0.20.Final compiled with OpenSSL 1.1.0j)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.0j-static-2.0.20.Final-non-fedora-linux-x86_64.jar){:target="_blank"}
   * [CentOS/RHEL/Fedora (2.0.20.Final compiled with OpenSSL 1.1.0j)](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.1.0j-static-2.0.20.Final-fedora-linux-x86_64.jar){:target="_blank"}
-Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
+  * Put it into the elasticsearch `plugins/search-guard-{{site.searchguard.esmajorversion}}/` folder on every node
 
 ## LibreSSL
 
