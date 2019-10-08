@@ -60,7 +60,7 @@ If the installation is succesfull you should see the following in the Terminal:
 
 <!-- here the photo --> 
 
-![](https://photos.app.goo.gl/y6zKYyasxmoceD2b8)
+![](https://photos.app.goo.gl/y6zKYyasxmoceD2b8) 
 
 ## Execute the demo installation script
 
