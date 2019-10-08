@@ -216,3 +216,5 @@ sgversions:
     - 6.1.2|22.3|12|no|no|yes|no
     - 6.1.1|22.3|12|no|no|yes|no
     - 6.1.0|22.3|12|no|no|yes|no
+
+exclude: ['*.sh']
