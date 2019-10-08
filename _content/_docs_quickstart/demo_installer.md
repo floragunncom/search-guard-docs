@@ -60,7 +60,7 @@ If the installation is succesfull you should see the following in the Terminal:
 
 <!-- here the photo --> 
 
-![](/Users/ewa_anna_szyszka/search-guard-docs/_content/_docs_first_steps/install_file.png)
+![](https://photos.app.goo.gl/y6zKYyasxmoceD2b8)
 
 ## Execute the demo installation script
 
