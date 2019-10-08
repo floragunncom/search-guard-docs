@@ -6,7 +6,8 @@
       <th>Elasticsearch</th>
       <th>Search Guard</th>
       <th>Search Guard Admin</th>
-      <th>Kibana Plugin</th>  
+      <th>Kibana Plugin</th>
+      <th>Maven Artifact</th>
     </tr>
   </thead>
   <tbody>
@@ -17,11 +18,13 @@
         
         <td>{{ sgversions[0] }}</td>
         
-        <td><a href="https://releases.floragunn.com/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+        <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
 
-        <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip" target="_blank">{{ sgversions[1] }}</a></td>
+        <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip" target="_blank">{{ sgversions[1] }}</a></td>
                 
-        <td><a href="https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+        <td><a href="https://releases.floragunn.com/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+
+        <td>com.floragunn:{{include.majorversion}}:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
 
     </tr>
     {% endfor %}
