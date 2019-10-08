@@ -21,7 +21,7 @@ resources:
 
 {% include toc.md %}
 
-To quickly set up a Search Guard secured Elasticsearch cluster:
+<!--- To quickly set up a Search Guard secured Elasticsearch cluster: 
 
 1. Install the Search Guard Plugin to Elasticsearch
 2. Execute the Search Guard demo installation script
@@ -33,35 +33,56 @@ To use the (optional) Search Guard Kibana plugin which adds security and configu
 1. Install the Search Guard Kibana plugin to Kibana
 2. Add the minimal Kibana configuration to `kibana.yml`
 
+-->
+
+
 ## Install Search Guard on Elasticsearch
 
-Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your Elasticsearch version
-* Change to the directory of your Elasticsearch installation and type:
+* Make sure you have [Elasticsearch installed] (https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-install.html)
+
+* Download the Search Guard version matching your Elasticsearch version 
+
+{% include sgversions.html majorversion="search-guard-7" %}
+
+* In the Terminal change to the directory of your Elasticsearch installation  
+ 
+```bash
+cd ~/elasticsearch-7.4-1.0
+```
+
+* Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. In the Terminal type:
 
 ```bash
 bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
 ```
+If the installation is succesfull you should see the following in the Terminal:
 
+<!-- here the photo --> 
+
+![](/Users/ewa_anna_szyszka/search-guard-docs/_content/_docs_first_steps/install_file.png)
 
 ## Execute the demo installation script
 
-Search Guard ships with a demo installation script. The script will:
+Search Guard ships with a demo installation script. Note that the script only works with vanilla Elasticsearch installations. If you already made changes to ``elasticsearch.yml``, especially the cluster name and the host entries, you might need to adapt the generated configuration.
 
-* Add demo TLS certificates in PEM format to the `config` directory of Elasticsearch
+
+  
+#### The demo installation script will:
+
+* Add demo [TLS certificates](https://en.wikipedia.org/wiki/Transport_Layer_Security) in [PEM format](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) to the `config` directory of Elasticsearch
 * Add the required TLS configuration to the `elasticsearch.yml` file.
 * Add the auto-initialize option to `elasticsearch.yml`. This option will initialize the Search Guard configuration index automatically if it does not exist.
 * Generate a `sgadmin_demo.sh` script that you can use for applying configuration changes on the command line
 
-Note that the script only works with vanilla Elasticsearch installations. If you already made changes to ``elasticsearch.yml``, especially the cluster name and the host entries, you might need to adapt the generated configuration.
 
-To execute the demo installation:
 
-* ``cd`` into `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
-* Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary.)
+#### To execute the demo installation:
 
-The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
+* Change directory to ` cd ~/<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
+* Execute ``./install_demo_configuration.sh``  (If the scripts does not run succesfully execute ``chmod u=rwx,g=rx,o=r ./install_demo_configuration.sh``)
+
+The demo installer will ask if you would like to install the demo certificates. Answer as follows:
 
 ```bash
 Search Guard {{site.searchguard.esmajorversion}} Demo Installer
@@ -70,6 +91,8 @@ Install demo certificates? [y/N] y
 Initialize Search Guard? [y/N] y
 Enable cluster mode? [y/N] n
 ```
+
+#### Detailed explanation of the questions:
 
 * Install demo certificates
   * Whether to install the self-signed demo TLS certificates or not
