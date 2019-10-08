@@ -39,7 +39,7 @@ To use the (optional) Search Guard Kibana plugin which adds security and configu
 ## Install Search Guard on Elasticsearch
 
 
-* Make sure you have [Elasticsearch installed] (https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-install.html)
+* Make sure you have [Elasticsearch installed](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-install.html)
 
 * Download the Search Guard version matching your Elasticsearch version 
 
