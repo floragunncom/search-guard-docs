@@ -60,7 +60,9 @@ If the installation is succesfull you should see the following in the Terminal:
 
 <!-- here the photo --> 
 
-![Image](https://photos.app.goo.gl/y6zKYyasxmoceD2b8) 
+![Image](https://i.ibb.co/CJ7vz7L/Screenshot-2019-10-04-at-19-19-27.png" alt="Screenshot-2019-10-04-at-19-19-27) 
+
+
 
 ## Execute the demo installation script
 
