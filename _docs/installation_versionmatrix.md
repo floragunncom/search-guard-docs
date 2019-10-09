@@ -26,5 +26,5 @@ This page lists all available versions for Elasticsearch 6.x. For other releases
 If you are upgrading from Elasticsearch 5.6.x to Elasticsearch >= 6.0.0, please read the [upgrade instructions to Elasticsearch to 6.x](upgrading-5-6). 
 {: .note .js-note .note-warning}
 
-{% include sgversions.html majorversion="sg6" %}
+{% include sgversions.html majorversion="search-guard-6" %}
 
