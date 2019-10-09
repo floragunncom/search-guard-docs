@@ -115,23 +115,18 @@ Enable cluster mode? [y/N] n
 
 ## Applying configuration changes
 
-The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch itself, the so-called Search Guard Index. 
+The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch itself, the so-called Search Guard Index. Changes to the Search Guard configuration must be applied to this index by using either Option 1 or Option 2:
 
-Changes to the Search Guard configuration must be applied to this index by either
+####  Option 1: Kibana Configuration GUI (Enterprise feature) 
 
-* Using the Kibana Configuration GUI (Enterprise feature)
-* Using the sgadmin command line tool with the generated admin certificate
+* For using the Kibana Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
 
-For using the Kibana Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
-
-If you want to use the sgadmin tool:
+####  Option 2: Install the Search Guard Kibana Plugin, as described below. 
 
 * Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
-* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/sgadmin_demo.sh`
+* Execute the pre-configured sgadmin call by executing `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/sgadmin_demo.sh` . (This will read the contents of the configuration files in given location and upload the contents to the Search Guard index. )
 
-This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
-
-The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the [Using sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) chapter.
+The sgadmin tool offers other features to manage Search Guard installations. For more information about sgadmin, head over to the [Using sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) chapter.
 
 ## Install Search Guard on Kibana
 
