@@ -269,3 +269,5 @@ sgversions:
     - 7.1.1|37.0.0|36.1.0|yes|yes|no
     - 7.1.0|37.0.0|36.1.0|yes|yes|no
     - 7.0.1|37.0.0|36.1.0|yes|yes|no
+
+tlstoolversion: 1.7

@@ -118,10 +118,10 @@ The sgadmin tool is very powerful and offers a lot of features to manage any Sea
 
 The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana. 
 
-* Download the [Search Guard Kibana plugin zip file](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-kibana-plugin%22) matching your exact Kibana version from Maven
+* Download the [Search Guard Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Kibana version from Maven
 * Stop Kibana
-* cd into your Kibana installaton directory.
-* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`. 
+* cd into your Kibana installaton directory
+* Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip
 
 ## Add the Search Guard Kibana configuration
 
