@@ -7,7 +7,7 @@ layout: docs
 description: Example sgadmin calls that you can use as template and blueprint.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # sgadmin Examples
 

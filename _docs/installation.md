@@ -8,7 +8,7 @@ layout: docs
 description: Step by step instructions for setting up Search Guard on a new or existing Elastcsearch cluster. 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Installation
@@ -36,7 +36,7 @@ Search Guard can be installed like any other Elasticsearch plugin by using the `
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-5.6.16-19.3.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-5-5.6.16-19.4.zip
 ```
 ## Additional permissions dialogue
 
@@ -135,37 +135,37 @@ If you want to use any of the enterprise modules, simply download the respective
 After that, restart your nodes for the changes to take effect.
 
 #### LDAP- and Active Directory Authentication/Authorisation:
-[LDAP module v5.6-13 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-authbackend-ldap/5.6-13/dlic-search-guard-authbackend-ldap-5.6-13-jar-with-dependencies.jar){:target="_blank"}
+[LDAP module v5.6-13 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-authbackend-ldap/5.6-13/dlic-search-guard-authbackend-ldap-5.6-13-jar-with-dependencies.jar){:target="_blank"}
 
 [LDAP and Active Directory documentation](ldap.md)
 
 #### Kerberos/SPNEGO Authentication/Authorisation:
-[Kerberos/SPNEGO module v5.0-4 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-kerberos/5.0-4/dlic-search-guard-auth-http-kerberos-5.0-4-jar-with-dependencies.jar){:target="_blank"}
+[Kerberos/SPNEGO module v5.0-4 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-auth-http-kerberos/5.0-4/dlic-search-guard-auth-http-kerberos-5.0-4-jar-with-dependencies.jar){:target="_blank"}
 
 [Kerberos/SPNEGO documentation](kerberos.md)
 
 #### JWT Authentication/Authorisation:
-[JWT module v5.0-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
+[JWT module v5.0-7 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
 
 [JSON Web token documentation](jwt.md)
 
 #### Document- and field level security:
-[Document- and field level module v5.3-10 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-module-dlsfls-5.3-10-jar-with-dependencies.jar){:target="_blank"}
+[Document- and field level module v5.6-11 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-module-dlsfls/5.6-11/dlic-search-guard-module-dlsfls-5.6-11-jar-with-dependencies.jar){:target="_blank"}
 
 [Document and field level security documentation](dlsfls.md)
 
 #### Audit logging:
-[Audit log module v5.3-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
+[Audit log module v5.3-7 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 [Audit Logging documentation](auditlogging.md)
 
 #### REST management API:
-[REST management module v5.3-7 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-rest-api/5.3-7/dlic-search-guard-rest-api-5.3-7-jar-with-dependencies.jar){:target="_blank"}
+[REST management module v5.3-7 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-rest-api/5.3-7/dlic-search-guard-rest-api-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 [REST management API documentation](managementapi.md)
 
 #### Kibana multi tenancy module:
-[Multi tenancy management module v5.4-5 for Elasticsearch 5.6.x](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-kibana-multitenancy/5.4-5/dlic-search-guard-module-kibana-multitenancy-5.4-5-jar-with-dependencies.jar){:target="_blank"}
+[Multi tenancy management module v5.4-5 for Elasticsearch 5.6.x](https://releases.floragunn.com/dlic-search-guard-module-kibana-multitenancy/5.4-5/dlic-search-guard-module-kibana-multitenancy-5.4-5-jar-with-dependencies.jar){:target="_blank"}
 
 [Kibana Multitenancy documentation](kibana_multitenancy.md)
 

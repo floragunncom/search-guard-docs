@@ -7,7 +7,7 @@ layout: docs
 description: Configure the Search Guard internal caches and adapt them to your needs.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # User cache settings
 

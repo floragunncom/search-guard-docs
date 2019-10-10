@@ -7,7 +7,7 @@ layout: docs
 description: How to map users and backend roles to Search Guard roles to implement flexible access control to an Elasticsearch cluster.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Map users, backend roles and hosts to Search Guard roles
 

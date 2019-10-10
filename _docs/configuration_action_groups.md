@@ -8,7 +8,7 @@ description: How to define and use Search Guard action groups for easy configura
 ---
 
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Using and defining action groups
 

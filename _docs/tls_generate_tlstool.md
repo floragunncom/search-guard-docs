@@ -8,16 +8,14 @@ edition: beta
 description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elasticsearch cluster.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # TLS Tool
 
-**This tool is in beta phase at the moment. If you find any errors or bugs, please report them on the [GitHub repository for this tool](https://github.com/floragunncom/search-guard-tlstool/issues){:target="_blank"}.**
+We provide an [offline TLS tool](https://releases.floragunn.com/search-guard-tlstool/1.7/search-guard-tlstool-1.7.zip){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
 
-We provide an [offline TLS tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-tlstool%22){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
-
-[Search Guard TLS Tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-tlstool%22){:target="_blank"}
+[Search Guard TLS Tool](https://releases.floragunn.com/search-guard-tlstool/1.7/search-guard-tlstool-1.7.zip){:target="_blank"}
 
 Just download the `zip` or `tar.gz` file and unpack it in a directory of your choice.
 

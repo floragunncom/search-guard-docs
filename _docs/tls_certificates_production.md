@@ -7,7 +7,7 @@ layout: docs
 description: We explaing the different certificate types of Search Guard and how to generate them for a production system.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # TLS for production environments
 

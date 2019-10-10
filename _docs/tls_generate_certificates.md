@@ -9,7 +9,7 @@ edition: community
 description: Various options for generating TLS certificates that you can use with Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Generating TLS certificates

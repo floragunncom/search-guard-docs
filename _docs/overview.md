@@ -7,7 +7,7 @@ layout: docs
 description: How Search Guard extracts credentials from a request and how they are mapped to users, roles and permissions.
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Search Guard main concepts

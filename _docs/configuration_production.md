@@ -7,7 +7,7 @@ layout: docs
 description: How you can use sgadmin to quickly transfer your complete configuration from one system to another.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Moving the configuration to production
 

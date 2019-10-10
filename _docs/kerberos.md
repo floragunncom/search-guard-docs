@@ -7,7 +7,7 @@ layout: docs
 description: How to configure Kerberos/SPNEGO with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Kerberos
@@ -16,7 +16,7 @@ Copryight 2017 floragunn GmbH
 
 Download the Kerberos module:
 
-[Kerberos module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-kerberos/5.0-4/dlic-search-guard-auth-http-kerberos-5.0-4-jar-with-dependencies.jar){:target="_blank"} 
+[Kerberos module](https://releases.floragunn.com/dlic-search-guard-auth-http-kerberos/5.0-4/dlic-search-guard-auth-http-kerberos-5.0-4-jar-with-dependencies.jar){:target="_blank"} 
 
 and place it in the folder
 

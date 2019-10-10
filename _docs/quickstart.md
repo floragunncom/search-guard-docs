@@ -7,7 +7,7 @@ layout: docs
 description: Search Guard ships with a demo installer for quickly setting up a working configuration. Use it for PoCs or checking out our features. 
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Quickstart

@@ -7,7 +7,7 @@ layout: docs
 description: How to handle disable Search Guard temporarily without removing the complete installation.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Disabling or Removing Search Guard

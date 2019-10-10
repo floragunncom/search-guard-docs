@@ -7,7 +7,7 @@ layout: docs
 description: How to use a TLS admin certificate to access the Search Guard REST management API.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # REST management API
@@ -18,7 +18,9 @@ This module adds the capability of managing users, roles, roles mapping and acti
 
 Download the REST management API enterprise module:
 
-[REST API module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-rest-api/5.3-7/dlic-search-guard-rest-api-5.3-7-jar-with-dependencies.jar){:target="_blank"} 
+[REST API module](https://releases.floragunn.com/dlic-search-guard-rest-api/5.3-7/dlic-search-guard-rest-api-5.3-7-jar-with-dependencies.jar){:target="_blank"} 
+
+and place it in the directory:
 
 `<ES installation directory>/plugins/search-guard-5`
 

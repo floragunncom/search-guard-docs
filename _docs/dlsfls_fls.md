@@ -8,7 +8,7 @@ layout: docs
 description: Include or exclude individual fields from your documents by using the Field-level security module of Search Guard.
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Field-level security

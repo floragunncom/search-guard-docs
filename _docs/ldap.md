@@ -7,7 +7,7 @@ layout: docs
 description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # LDAP and Active Directory
@@ -16,7 +16,7 @@ Copryight 2017 floragunn GmbH
 
 Download the LDAP enterprise module:
 
-[LDAP module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-authbackend-ldap/5.6-13/dlic-search-guard-authbackend-ldap-5.6-13-jar-with-dependencies.jar){:target="_blank"} 
+[LDAP module](https://releases.floragunn.com/dlic-search-guard-authbackend-ldap/5.6-13/dlic-search-guard-authbackend-ldap-5.6-13-jar-with-dependencies.jar){:target="_blank"} 
 
 and place it in the folder
 

@@ -8,7 +8,7 @@ layout: docs
 description: Control access to the snapshot and restore features of Elasticsearch by using Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Snapshots and Restore

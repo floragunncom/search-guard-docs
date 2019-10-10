@@ -7,7 +7,7 @@ layout: docs
 description: Search Guard supports a range of storage types to ship audit log events to. Store them in Elasticsearch, external SIEM or monitoring systems, or implement a custom storage.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Configuring the storage type
 

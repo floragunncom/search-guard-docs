@@ -7,19 +7,12 @@ layout: docs
 description: Search Guard supports native OpenSSL for superior performance and most modern cipher suites for production systems.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # OpenSSL setup
 
 Search Guard supports OpenSSL. Using OpenSSL will result in better performance and better support for strong and modern cipher suites when compared JCE. We recommend to use OpenSSL for production systems.
-
-If you run into Out Of Memory problems with ES 5, you probably hit an issue in Elasticsearch. This was fixed in Elasticsearch 5.5.1 and onwards.
-
-For more information, see here:
-
-* [Search Guard Issue Tracker](https://github.com/floragunncom/search-guard/issues/343) 
-* [Elasticsearch Fix for 5.5.1](https://github.com/elastic/elasticsearch/pull/25759).
 
 ## Enabling OpenSSL
 
@@ -55,6 +48,7 @@ For more information, see here:
   * [http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.5.Final](http://repo1.maven.org/maven2/io/netty/netty-tcnative/2.0.5.Final)
   * Choose the correct version for you platform, one of `_linux-x86_64.jar_`, `_linux-x86_64-fedora.jar_`, `_osx-x86_64.jar_` or `_windows-x86_64.jar_`
   * Put it into the elasticsearch `plugins/search-guard-5/` folder on every node
+
 * **Search Guard 5.4.0 (Open SSL 1.0.2):** (2.0.0.Final has known bugs and memory leaks!!)  
   * Version: 2.0.0.Final (compiled against Open SSL 1.0.2 which supports hostname validation)
   * [Download for Debian/Ubuntu](https://bintray.com/floragunncom/netty-tcnative/download_file?file_path=netty-tcnative-openssl-1.0.2-dynamic-2.0.0.Final-non-fedora-linux-x86_64.jar)

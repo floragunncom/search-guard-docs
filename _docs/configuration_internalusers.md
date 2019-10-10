@@ -7,7 +7,7 @@ layout: docs
 description: How to store and manage Search Guard users directly in Elasticsearch by using the Internal Users Database.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Configuring internal users and roles

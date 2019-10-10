@@ -8,7 +8,7 @@ edition: community
 description: How to generate TLS certificates by using the demo installation script that ships with Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Using the Search Guard demo installer

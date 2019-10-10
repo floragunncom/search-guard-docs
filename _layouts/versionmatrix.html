@@ -30,6 +30,8 @@
 							{% include version.html %}
 							{{ content }}
 							<h2>Search Guard 5: Latest stable versions</h2>
+							<b>Elasticsearch 5 and Search Guard 5 are end of life and not supported anymore. The last available version for Elasticsearch 5 is v5.6.16-19.4</b>
+							<br/><br/>
 							<table>
   								<thead>
 							    <tr>
@@ -41,19 +43,22 @@
 							  </thead>
 							  <tbody>
 
-								{% for version in site.sgversions.v5 %}
+								{% for version in site.sgversions.search-guard-5 %}
 							    <tr>							    
 							      {% assign sgversions = version | split: "|" %}		
 							      <td>{{ sgversions[0] }}</td>
 
 							      {% if sgversions[4] == "link" %}	
-      <td><a href="https://releases.floragunn.com/search-guard-5-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+
+								    <td><a href="https://releases.floragunn.com/search-guard-5/{{ sgversions[1] }}/search-guard-5-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+
+      								<td><a href="https://github.com/floragunncom/search-guard-kibana-plugin/releases/tag/v{{ sgversions[2] }}">{{ sgversions[2] }}</td>
+
+
       							{% else %}
       								<td>{{ sgversions[1] }}</td>
+									<td>{{ sgversions[2] }}</td>
 								{% endif %}
-
-
-								  <td>{{ sgversions[2] }}</td>
 								  <td>{{ sgversions[3] }}</td>
 							    </tr>
 							    {% endfor %}
@@ -63,7 +68,7 @@
 
 							<h2>Search Guard 2: Latest stable versions</h2>
 
-							<b>Elasticsearch and Search Guard 2 are end of life and not supported anymore</b>
+							<b>Elasticsearch 2 and Search Guard 2 are end of life and not supported anymore</b>
 							<br/><br/>
 							<table>
   								<thead>

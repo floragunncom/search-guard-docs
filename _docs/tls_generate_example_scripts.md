@@ -8,7 +8,7 @@ edition: community
 description: How to generate TLS certificates by customizing and using the example PKI scripts from the Search Guard SSL project.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Using the example PKI scripts

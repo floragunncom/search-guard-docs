@@ -8,7 +8,7 @@ layout: docs
 description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your Elasticsearch cluster.
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Document-Level security
@@ -25,7 +25,7 @@ As with regular permissions, settings for document and field-level security can 
 
 Download the DLS/FLS module:
 
-[DLS/FLS module](https://releases.floragunn.com/dlic-search-guard-module-dlsfls-5.3-10-jar-with-dependencies.jar){:target="_blank"} 
+[DLS/FLS module](https://releases.floragunn.com/dlic-search-guard-module-dlsfls/5.6-11/dlic-search-guard-module-dlsfls-5.6-11-jar-with-dependencies.jar){:target="_blank"} 
 
 and place it in the folder
 

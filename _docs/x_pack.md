@@ -9,5 +9,5 @@ layout: docs
 description: How to configure Search Guard and X-Pack
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->

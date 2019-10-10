@@ -7,7 +7,7 @@ layout: docs
 description: How to configure Search Guard and X-Pack Monitoring for Elasticsearch
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Monitoring
 

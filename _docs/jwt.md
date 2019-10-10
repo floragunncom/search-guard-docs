@@ -7,7 +7,7 @@ layout: docs
 description: How to configure JSON web token (JWT) with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # JSON web tokens
@@ -16,7 +16,7 @@ Copryight 2017 floragunn GmbH
 
 Download the JWT module:
 
-[JWT module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
+[JWT module](https://releases.floragunn.com/dlic-search-guard-auth-http-jwt/5.0-7/dlic-search-guard-auth-http-jwt-5.0-7-jar-with-dependencies.jar){:target="_blank"}
 
 and place it in the folder
 

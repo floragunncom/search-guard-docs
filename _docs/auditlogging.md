@@ -7,7 +7,7 @@ layout: docs
 description: Implement Audit Logging on your Elasticsearch cluster and stay compliant with GDPR, HIPAA, ISO, PCI and SOX.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Audit Logging
 
@@ -28,7 +28,7 @@ For security reasons, audit logging has to be configured in `elasticsearch.yml`,
 
 Download the Audit Log enterprise module:
 
-[Auditlog module](https://oss.sonatype.org/service/local/repositories/releases/content/com/floragunn/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
+[Auditlog module](https://releases.floragunn.com/dlic-search-guard-module-auditlog/5.3-7/dlic-search-guard-module-auditlog-5.3-7-jar-with-dependencies.jar){:target="_blank"}
 
 and place it in the folder
 

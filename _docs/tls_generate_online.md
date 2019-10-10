@@ -8,7 +8,7 @@ edition: community
 description: Use the Search Guard online TLS service to generate all certificates required to run Search Guard. The certificates, key and truststore files are generated in the background and we will send you a download link once the certificates have been created.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Online TLS certificate generator

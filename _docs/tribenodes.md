@@ -7,7 +7,7 @@ layout: docs
 description: How to use Tribe Nodes with Search Guard secured clusters.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 # Tribe nodes
 

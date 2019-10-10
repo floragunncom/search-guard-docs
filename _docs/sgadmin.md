@@ -7,7 +7,7 @@ layout: docs
 description: Use the powerful sgadmin command line tool to manage and configure  everything in Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Using sgadmin to configure Search Guard
@@ -60,13 +60,7 @@ Replace `jdk1.8.0_65` with your installed JDK or JRE version.
 
 You can also download the sgadmin standalone version. It comes with all dependencies included, so you can use it on any machine you want, provided Java is installed.
 
-* [Download for Search Guard 5 and Elasticsearch 5.5.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.5.2-15/search-guard-5-5.5.2-15-sgadmin-standalone.zip){:target="_blank"}
-* [Download for Search Guard 5 and Elasticsearch 5.4.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.4.3-15/search-guard-5-5.4.3-15-sgadmin-standalone.zip){:target="_blank"}
-* [Download for Search Guard 5 and Elasticsearch 5.3.x](https://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.3.3-15/search-guard-5-5.3.3-15-sgadmin-standalone.tar.gz){:target="_blank"}
-* [Download for Search Guard 5 and Elasticsearch 5.2.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.2.2-12/search-guard-5-5.2.2-12-sgadmin-standalone.zip){:target="_blank"}
-* [Download for Search Guard 5 and Elasticsearch 5.1.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.1.2-12/search-guard-5-5.1.2-12-sgadmin-standalone.zip){:target="_blank"}
-* [Download for Search Guard 5 and Elasticsearch 5.0.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-5/5.0.2-12/search-guard-5-5.0.2-12-sgadmin-standalone.zip){:target="_blank"}
-* [Download for Search Guard 2 and Elasticsearch 2.4.x](http://search.maven.org/remotecontent?filepath=com/floragunn/search-guard-2/2.4.5.12/search-guard-2-2.4.5.12-sgadmin-standalone.zip){:target="_blank"}
+* [Download for Search Guard 5 and Elasticsearch 5.6.x](https://releases.floragunn.com/search-guard-5/5.6.16-19.4/search-guard-5-5.6.16-19.4-sgadmin-standalone.zip){:target="_blank"}
 
 ### Print all command line options
 

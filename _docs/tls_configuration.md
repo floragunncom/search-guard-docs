@@ -7,7 +7,7 @@ layout: docs
 description: Search Guard TLS configuration settings for the REST and the transport layer. Extended security options for hostname verification and DNS lookups. 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Configuring TLS
 

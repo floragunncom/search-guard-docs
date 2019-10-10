@@ -8,7 +8,7 @@ layout: docs
 description: How to configure, mix and chain authentication and authorization domains for Search Guard. 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Configuring authentication and authorisation
 
