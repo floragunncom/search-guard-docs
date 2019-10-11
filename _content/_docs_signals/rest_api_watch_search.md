@@ -20,16 +20,20 @@ description:
 ## Endpoint
 
 ```
-GET /_signals/watch/_search
+GET /_signals/watch/{tenant_id}/_search
 ```
 
 ```
-POST /_signals/watch/_search
+POST /_signals/watch/{tenant_id}/_search
 ```
 
-Searches for watches. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
+Searches for watches stored for the specified tenant. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
 
 Both the GET and the POST HTTP method can be used with the same effect.
+
+## Path Parameters
+
+**{tenant_id}** The Signals tenant to be used. Specify `_main` to select the default tenant. If multi tenancy is disabled, `_main` is the only possible value.
 
 ## Query Parameters
 
@@ -64,10 +68,6 @@ The search was successfully executed.
 
 The user does not have the required to access the endpoint for the selected tenant.
 
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used. If the header is absent, the default tenant is used.
-
 ## Permissions
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/search` for the currently selected tenant.
@@ -83,7 +83,7 @@ This permission is included in the following [built-in action groups](security_p
 ### List all watches
 
 ```
-GET /_signals/watch/_search?size=1000
+GET /_signals/watch/_main/_search?size=1000
 ```
 
 **Response**
@@ -110,9 +110,9 @@ GET /_signals/watch/_search?size=1000
         "max_score": 0.13353139,
         "hits": [
             {
-                "_index": ".signals_main_watches",
+                "_index": ".signals_watches",
                 "_type": "_doc",
-                "_id": "bad_weather",
+                "_id": "_main/bad_weather",
                 "_score": 0.13353139,
                 "_source": {
                     "checks": [
@@ -189,7 +189,7 @@ GET /_signals/watch/_search?size=1000
 ### Search for all watches using an email action
 
 ```
-POST /_signals/watch/_search?size=1000
+POST /_signals/watch/_main/_search?size=1000
 ```
 
 ```
@@ -226,9 +226,9 @@ POST /_signals/watch/_search?size=1000
         "max_score": 0.13353139,
         "hits": [
             {
-                "_index": ".signals_main_watches",
+                "_index": ".signals_watches",
                 "_type": "_doc",
-                "_id": "bad_weather",
+                "_id": "_main/bad_weather",
                 "_score": 0.13353139,
                 "_source": {
                     "checks": [

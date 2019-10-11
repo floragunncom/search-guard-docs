@@ -20,14 +20,16 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/watch/{watch_id}
+PUT /_signals/watch/{tenant_id}/{watch_id}
 ```
 
-Stores or updates a watch identified by the `{watch_id}` path parameter. By default, the watch will be active and scheduled for execution.
+Stores or updates a watch identified by the `{watch_id}` path parameter into the tenant specified by the `{tenant_id}` parameter. By default, the watch will be active and scheduled for execution.
 
 **Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch. See also the chapter on the [security execution context](security_execution_context.md).
 
 ## Path Parameters
+
+**{tenant_id}** The Signals tenant to be used. Specify `_main` to select the default tenant. If multi tenancy is disabled, `_main` is the only possible value.
 
 **{watch_id}** The id of the watch to be created or updated. Required.
 
@@ -51,10 +53,6 @@ The request was malformed.
 
 If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
 
-### 404 Not found
-
-The tenant specified by the `sg_tenant` request header does not exist.
-
 ### 403 Forbidden
 
 The user does not have the permission to create watches for the currently selected tenant. 
@@ -64,10 +62,6 @@ The user does not have the permission to create watches for the currently select
 
 The watch was not encoded as JSON document. Watches need to be sent using the media type application/json.
 
-
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used.  If the header is absent, the default tenant is used.
 
 ## Permissions
 
@@ -83,7 +77,7 @@ This permission is included in the following [built-in action groups](security_p
 ### Basic 
 
 ```
-PUT /_signals/watch/bad_weather
+PUT /_signals/watch/_main/bad_weather
 ```
 ```json
 {
@@ -163,7 +157,7 @@ PUT /_signals/watch/bad_weather
 ### Invalid Watch
 
 ```
-PUT /_signals/watch/really_bad_weather
+PUT /_signals/watch/_main/really_bad_weather
 ```
 ```json
 {

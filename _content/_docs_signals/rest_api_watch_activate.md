@@ -20,16 +20,18 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/watch/{watch_id}/_activate
+PUT /_signals/watch/{tenant_id}/{watch_id}/_activate
 ```
 
 ```
-PUT /_signals/watch/{watch_id}/_deactivate
+PUT /_signals/watch/{tenant_id}/{watch_id}/_deactivate
 ```
 
 These endpoints can be used to activate and deactivate watches. Inactive watches are not automatically executed.
 
 ## Path Parameters
+
+**{tenant_id}** The Signals tenant to be used. Specify `_main` to select the default tenant. If multi tenancy is disabled, `_main` is the only possible value.
 
 **{watch_id}** The id of the watch to be activated or deactivated. Required.
 
@@ -51,13 +53,6 @@ The user does not have the permission to activate or deactivate watches for the 
 
 A watch with the given id does not exist for the current tenant.
 
-The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
-
-
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used.  If the header is absent, the default tenant is used.
-
 ## Permissions
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/activate_deactivate` for the currently selected tenant.
@@ -73,7 +68,7 @@ This permission is included in the following [built-in action groups](security_p
 ### Basic 
 
 ```
-PUT /_signals/watch/bad_weather/_deactivate
+PUT /_signals/watch/_main/bad_weather/_deactivate
 ```
 
 **Response**
