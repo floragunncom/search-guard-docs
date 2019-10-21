@@ -21,9 +21,9 @@ Copryight 2017 floragunn GmbH
 
 {% include_relative _includes/toc.md %}
 
-We provide an [offline TLS tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-tlstool%22){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
+We provide an [offline TLS tool](https://releases.floragunn.com/search-guard-tlstool/{{site.tlstoolversion}}/search-guard-tlstool-{{site.tlstoolversion}}.zip){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
 
-[Search Guard TLS Tool](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22search-guard-tlstool%22){:target="_blank"}
+[Search Guard TLS Tool](https://releases.floragunn.com/search-guard-tlstool/{{site.tlstoolversion}}/search-guard-tlstool-{{site.tlstoolversion}}.zip){:target="_blank"}
 
 Just download the `zip` or `tar.gz` file and unpack it in a directory of your choice.
 
