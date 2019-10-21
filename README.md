@@ -2,6 +2,17 @@
 Copryight 2016-2017 floragunn GmbH
 -->
 
+# We moved
+
+We moved from GitHub to GitLab
+
+Please find our repositories here:
+https://git.floragunn.com/explore/projects
+
+This repository is only a mirror.
+
+Pull requests and issues are accepted on GitHub as well as on GitLab (we prefer [Gitlab](https://git.floragunn.com)).
+
 # Search Guard 7.x Documentation
 
 This is the master branch of the official Search Guard 7.x documentation.
