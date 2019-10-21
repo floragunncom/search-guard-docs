@@ -4,12 +4,12 @@ Copryight 2016-2017 floragunn GmbH
 
 # We moved
 
-We moved from GitHub to GitLab
+We moved from GitHub to GitLab.
 
 Please find our repositories here:
 https://git.floragunn.com/explore/projects
 
-This repository is only a mirror.
+This repository is mirrored to GitHub.
 
 Pull requests and issues are accepted on GitHub as well as on GitLab (we prefer [Gitlab](https://git.floragunn.com)).
 
