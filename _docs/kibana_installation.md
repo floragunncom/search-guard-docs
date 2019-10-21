@@ -41,25 +41,18 @@ Since 6.5.0 you need to disable Kibana Spaces because we are not supporting them
 xpack.spaces.enabled: false
 ```
 
-
 ## Installing the Search Guard Plugin
 
-Copy the URL of the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
+The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana. 
 
+* Download the [Kibana plugin version](installation_versionmatrix.md) matching your Elasticsearch version
 * Stop Kibana
-* cd into your Kibana installaton directory
-* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install https://url/to/search-guard-kibana-plugin-<version>.zip`
+* cd into your Kibana installaton directory.
+* Execute: `bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`. 
 
-### Offline installation
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. 
 
-Download the [Search Guard Kibana plugin zip](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-kibana-plugin%22){:target="_blank"} matching your exact Kibana version from Maven:
-
-* Stop Kibana
-* cd into your Kibana installation directory
-* Execute: `NODE_OPTIONS="--max-old-space-size=8192" bin/kibana-plugin install file:///path/to/search-guard-kibana-plugin-<version>.zip`
-
-After the plugin has been installed, Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Kibana internal process required for each installed plugin and cannot be skipped. The Kibana optimization process is shaky and problems are typically not related to Search Guard. Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. If you are on ES 6.5.x or higher you can also try with `--no-optimize` (especially if you install the plugin in a Dockerfile). Kibana also currently [has a bug in the optimization step if you use X-Pack, but disable reporting](https://github.com/elastic/kibana/issues/25728). Please check if your Kibana version is affected and correct your `kibana.yml` accordingly.
-
+If you are on ES 6.5.x or higher you can also try with `--no-optimize` (especially if you install the plugin in a Dockerfile). Kibana also currently [has a bug in the optimization step if you use X-Pack, but disable reporting](https://github.com/elastic/kibana/issues/25728). Please check if your Kibana version is affected and correct your `kibana.yml` accordingly.
 
 ## Configuring the Kibana server user
 
