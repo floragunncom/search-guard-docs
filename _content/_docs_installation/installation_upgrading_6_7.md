@@ -98,6 +98,10 @@ This will retrieve and save all your original Search Guard configuration files t
 
 As long as this migrate step is not completed you can not use the REST management API.
 
+## Demo roles and action groups
+
+If you use any of the Search Guard demo roles and/or actions groups in production, you should migrate them to the new built-in static [roles](#migrating-to-the-new-built-in-roles) and static [action groups](#migrating-to-the-new-built-in-action-groups).
+
 ## Upgrading Kibana
 
 Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](../_docs_versions/versions_versionmatrix.md) the correct version of the Search Guard plugin to Kibana. There are no configuration changes in `kibana.yml`.
@@ -122,3 +126,64 @@ This applies to sgadmin and the REST management API. Configuration changes are p
 ### Monitoring
 
 While running in mixed mode, X-Pack monitoring might return incorrect values or throw Exceptions which you can safely ignore.
+
+## Migrating to the new built-in roles
+
+Search Guard 6 shipped with a couple of demo users, roles and action groups. In Search Guard 7, some of them are now built-in and cannot be changed. This was done so whenever the permission schema changes with a new Elasticsearch version, the built-in roles are also updated in the corresponding Search Guard version. This ensures a smooth and automatic upgrade path.
+
+We encourage you to switch from the demo roles to the new built-in roles. Usually it is sufficient to adapt the `sg_roles_mapping` configuration.
+
+| Static Role name (SG 7) | Demo role name (SG 6) |
+|---|---|
+| SGS\_ALL\_ACCESS | sg\_all\_access |
+| SGS\_READALL | sg\_readall|
+| SGS\_READALL\_AND\_MONITOR | sg\_readall\_and\_monitor |
+| SGS\_KIBANA\_SERVER | sg\_kibana\_server |
+| SGS\_KIBANA\_USER | sg\_kibana\_user|
+| SGS\_LOGSTASH | sg\_logstash |
+| SGS\_MANAGE\_SNAPSHOTS | sg\_manage\_snapshots |
+| SGS\_OWN\_INDEX | sg\_own\_index |
+| SGS\_XP\_MONITORING | sg\_xp\_monitoring |
+| SGS\_XP\_ALERTING | sg\_xp\_alerting|
+| SGS\_XP\_MACHINE\_LEARNING | sg\_xp\_machine\_learning |
+
+## Migrating to the new built-in action groups
+
+### General
+
+| Static action group name (SG 7) | Demo action group name (SG 6) |
+|---|---|
+| SGS_UNLIMITED | UNLIMITED|
+
+### Index-level action groups
+
+| Static action group name (SG 7) | Demo action group name (SG 6) |
+|---|---|
+| SGS\_INDICES\_ALL | INDICES\_ALL | 
+| SGS_READ | READ | 
+| SGS_SEARCH | SEARCH |
+| SGS_DELETE | DELETE |
+| SGS_WRITE | WRITE |
+| SGS_CRUD | CRUD |
+| SGS_GET | GET |
+| SGS_SUGGEST | SUGGEST |
+| SGS_CREATE_INDEX | CREATE_INDEX | 
+| SGS_MANAGE_ALIASES | MANAGE_ALIASES | 
+| SGS_INDICES_MONITOR | INDICES_MONITOR |
+| SGS_MANAGE | MANAGE | 
+| SGS_INDICES_MANAGE_ILM | INDICES_MANAGE_ILM | 
+
+### Cluster-level action groups
+
+| Static action group name (SG 7) | Demo action group name (SG 6) |
+|---|---|
+| SGS_CLUSTER_ALL | CLUSTER_ALL |
+| SGS_CLUSTER_MONITOR | CLUSTER_MONITOR |
+| SGS_CLUSTER\_COMPOSITE\_OPS\_RO | CLUSTER\_COMPOSITE\_OPS\_RO |
+| SGS_CLUSTER\_COMPOSITE\_OPS | CLUSTER\_COMPOSITE\_OPS |
+| SGS_MANAGE_SNAPSHOTS | MANAGE_SNAPSHOTS  |
+| SGS_CLUSTER_MANAGE_ILM | CLUSTER_MANAGE_ILM |
+| SGS_CLUSTER_READ_ILM | CLUSTER_READ_ILM |
+| SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | CLUSTER_MANAGE_INDEX_TEMPLATES |
+| SGS_CLUSTER_MANAGE_PIPELINES | CLUSTER_MANAGE_PIPELINES |
+
