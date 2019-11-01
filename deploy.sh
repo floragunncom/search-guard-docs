@@ -9,7 +9,7 @@ rm -rf ./_site
 bundle install
 bundle exec jekyll build --config _config.yml,_versions.yml
 
-ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /7.x-35 ./_site/*
+ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  /latest ./_site/*
 
 export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 
