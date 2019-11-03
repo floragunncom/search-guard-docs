@@ -5,7 +5,7 @@ docs:
   script: 
     - apt-get update -yqq && apt-get install -yqq ncftp
     - |    
-        apt-get install software-properties-common
+        apt-get install software-properties-common -y 
         apt-get update
         add-apt-repository ppa:rmescandon/yq
         apt-get update
