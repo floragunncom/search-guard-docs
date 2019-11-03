@@ -186,6 +186,7 @@ sgversions:
   #esv |sgv |kbv |feat|upd|eol
   search-guard-6:
       #esv |sgv |kbv |feat|upd|eol|available
+    - 6.8.4|25.5|18.5|yes|yes|no|yes
     - 6.8.3|25.5|18.5|yes|yes|no|yes
     - 6.8.2|25.5|18.5|yes|yes|no|yes
     - 6.8.1|25.5|18.5|yes|yes|no|yes
