@@ -5,9 +5,11 @@ docs:
   script: 
     - apt-get update -yqq && apt-get install -yqq ncftp
     - |    
+        apt-get install software-properties-common
+        apt-get update
         add-apt-repository ppa:rmescandon/yq
-        apt update
-        apt install yq -y    
+        apt-get update
+        apt-get install yq -y    
     - |
         echo "Merge marker sanity check"
         (grep -ri "<<<<<<" * --exclude=deploy.sh || grep -ri ">>>>>>" * --exclude=deploy.sh) && (echo "found some merge conflicts, will abort"; exit -1)
