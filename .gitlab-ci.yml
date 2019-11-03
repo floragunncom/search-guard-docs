@@ -13,15 +13,15 @@ docs:
         echo "Merge marker sanity check"
         (grep -ri "<<<<<<" * --exclude=deploy.sh || grep -ri ">>>>>>" * --exclude=deploy.sh) && (echo "found some merge conflicts, will abort"; exit -1)
 
+        ftp_dir=$(cat ./_version.yml | yq r - baseurl)
+        echo "Upload dir: $ftp_dir"
+
         bundle install
         bundle exec jekyll build --config _config.yml,_versions.yml
 
         if [[ $CI_COMMIT_REF_NAME =~ ^.*x-.*$ ]]; then
 
           echo "Upload for branch $CI_COMMIT_REF_NAME"
-
-          ftp_dir=$(cat ./_version.yml | yq r - baseurl)
-          echo "Upload dir: $ftp_dir"
           
           ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  "$ftp_dir" ./_site/*
           echo "Last commit message: $CI_COMMIT_MESSAGE"
