@@ -8,8 +8,7 @@ docs:
         apt-get install software-properties-common -y 
         apt-get update
         add-apt-repository ppa:rmescandon/yq
-        apt-get update
-        apt-get install yq -y    
+        apt-get -yqq update && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -yqq yq 
     - |
         echo "Merge marker sanity check"
         (grep -ri "<<<<<<" * --exclude=deploy.sh || grep -ri ">>>>>>" * --exclude=deploy.sh) && (echo "found some merge conflicts, will abort"; exit -1)
