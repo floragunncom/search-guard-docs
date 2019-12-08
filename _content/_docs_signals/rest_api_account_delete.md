@@ -1,7 +1,7 @@
 ---
-title: Delete Destination
-html_title: Delete a destination with the REST API
-slug: elasticsearch-alerting-rest-api-destination-delete
+title: Delete Account
+html_title: Delete a account with the REST API
+slug: elasticsearch-alerting-rest-api-account-delete
 category: signals-rest
 order: 1000
 layout: docs
@@ -20,15 +20,15 @@ description:
 ## Endpoint
 
 ```
-DELETE /_signals/account/{account_id}
+DELETE /_signals/account/{account_type}/{account_id}
 ```
 
-Deletes the account identified by the `{account_id}` path parameter. 
-
-**Important:** Right now, it is possible to delete accounts even if they are still used by watches. After deleting an account which is still used by a watch, the watch will fail to execute.
+Deletes the account of type `{account_type}` identified by the `{account_id}` path parameter. 
 
 
 ## Path Parameters
+
+**{account_type}** The type of the account to be deleted. Required.
 
 **{account_id}** The id of the account to be deleted. Required.
 
@@ -46,9 +46,13 @@ The user does not have the permission to delete accounts.
 
 An account with the given id does not exist.
 
+### 409 Conflict
+
+The account is still used by a watch
+
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/delete` .
+For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/delete` .
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 
@@ -57,7 +61,7 @@ This permission is included in the following [built-in action groups](security_p
 ## Examples
 
 ```
-DELETE /_signals/account/my_destination
+DELETE /_signals/account/slack/my_account
 ```
 
 
