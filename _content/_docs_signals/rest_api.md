@@ -48,6 +48,7 @@ This will give this role complete access to all Signals features and indices.
 * [Activate and Deactivate Watch](rest_api_watch_activate.md)
 * [Execute Watch](rest_api_watch_execute.md)
 * [Acknowledge Watch](rest_api_watch_acknowledge.md)
+* [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md)
 
 ## Accounts APIs
 
@@ -55,3 +56,8 @@ This will give this role complete access to all Signals features and indices.
 * [Search Account](rest_api_account_search.md)
 * [Put Account](rest_api_account_put.md)
 * [Delete Account](rest_api_account_delete.md)
+
+## Settings APIs
+
+* [Get Settings](rest_api_settings_get.md)
+* [Put Settings](rest_api_settings_put.md)
