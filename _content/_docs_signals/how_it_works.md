@@ -19,7 +19,7 @@ description:
 Signals can be used to create and execute watches that:
 
 * load data from different sources into a watch execution context
-* perform calculations and transformations of the loaded data
+* perform calculations on the loaded data
 * check whether conditions are met based on the loaded data
 * execute one or more actions if the condition is met
 
@@ -65,8 +65,12 @@ These three elements also form the three major building blocks of a Signals watc
   * Using the [Webhook action](actions_webhook.md), it is possible to invoke any HTTP service as a result of a Signals watch.
   * Each watch can have several actions. Action-specific checks can be used to decide which actions are executed in which situation. 
   
-## Watch Runtime Data
+Optionally, you can use a **[Severity Mapping](severity.md)** in order to map the data gathered by the checks to a simple severity scale (consisting of the levels info, warning, error, critical). If you do so, you can configure actions to be executed only for specific severity levels. This can greatly simplify the definition of conditions for actions if you are modeling escalation schemes or similar structures. 
+Using a severity mapping also enables you to define **Resolve Actions**. These actions can be used to trigger notifications in case the severity determined by a watch decreases - or in other words - the watch finds that a previously discovered situation does not exist any more.  
+ 
+The Signals dashboard also displays the current severity levels determined by the configured watches. Opposed to watches without a severity mapping, this gives you a clearer and quicker way to see what is happening right now.
 
+## Watch Runtime Dataa
 All watches operate on the so-called watch runtime data. Inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
 
 The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an Elasticsearch index. 
@@ -139,18 +143,116 @@ The checks of a watch subsequently modify the runtime data. If action-specific c
   ],
   "actions": [
     {
-      "type": "webhook",
-      "name": "myslack",
+      "type": "slack",
+      "name": "slack_notifcation",
       "throttle_period": "10m",
-      "request": {
-        "method": "POST",
-        "url": "https://hooks.slack.com/services/token",
-        "body": "{\"text\": \"Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}\"}",
-        "headers": {
-          "Content-type": "application/json"
-        }
-      }
+      "channel": "#warnings",
+      "text": "Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}"
     }
   ]
 }
 ```
+
+## Sample Watch with Severity Mapping
+
+```
+{
+    "trigger": {
+        "schedule": {
+            "interval": [
+                "1m"
+            ]
+        }
+    },
+    "checks": [
+        {
+            "type": "static",
+            "name": "constants",
+            "target": "constants",
+            "value": {
+                "window": "1h"
+            }
+        },
+        {
+            "type": "search",
+            "name": "avg_ticket_price",
+            "target": "avg_ticket_price",
+            "request": {
+                "indices": [
+                    "kibana_sample_data_flights"
+                ],
+                "body": {
+                    "size": 0,
+                    "aggregations": {
+                        "when": {
+                            "avg": {
+                                "field": "AvgTicketPrice"
+                            }
+                        }
+                    },
+                    "query": {
+                        "bool": {
+                            "filter": {
+                                "range": {
+                                    "timestamp": {
+                                        "gte": "now-{{data.constants.window}}",
+                                        "lte": "now"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type": "condition.script",
+            "name": "low_price",
+            "source": "data.avg_ticket_price.aggregations.when.value < data.constants.ticket_price"
+        }
+    ],
+    "severity": {
+        "value": "data.avg_ticket_price.aggregations.when.value",
+        "order": "descending",
+        "mapping": [
+            {
+                "threshold": 800,
+                "level": "warning"
+            },
+            {
+                "threshold": 400,
+                "level": "critical"
+            }
+        ]
+    },
+    "actions": [
+        {
+            "type": "slack",
+            "name": "slack_warning",
+            "severity": [
+                "warning",
+                "critical"
+            ],
+            "throttle_period": "10m",
+            "channel": "#warnings",
+            "text": "Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}"
+        },
+        {
+            "type": "webhook",
+            "name": "direct_notification",
+            "severity": [
+                "critical"
+            ],
+            "request": {
+                "method": "POST",
+                "url": "https://my.direct.notification.service.example",
+                "body": "{\"text\": \"Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}\"}",
+                "headers": {
+                    "Content-type": "application/json"
+                }
+            }
+        }
+    ]
+}
+```
+
