@@ -50,6 +50,12 @@ This will give this role complete access to all Signals features and indices.
 * [Acknowledge Watch](rest_api_watch_acknowledge.md)
 * [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md)
 
+## Watch State APIs
+
+* [Get Watch State](rest_api_watch_state.md)
+* [Search Watch State](rest_api_watch_state_search.md)
+
+
 ## Accounts APIs
 
 * [Get Account](rest_api_watch_get.md)
