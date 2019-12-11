@@ -21,11 +21,11 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/watch/{watch_id}/_ack
+PUT /_signals/watch/{tenant_id}/{watch_id}/_ack
 ```
 
 ```
-PUT /_signals/watch/{watch_id}/_ack/{action_id}
+PUT /_signals/watch/{tenant_id}/{watch_id}/_ack/{action_id}
 ```
 
 These endpoints can be used to acknowledge actions performed by watches. By acknowledging actions, you can temporarily suppress further executions of these actions. 
@@ -34,6 +34,8 @@ When an action is acknowledged, its checks will be still executed on schedule. T
 
 
 ## Path Parameters
+
+**{tenant_id}** The Signals tenant to be used. Specify `_main` to select the default tenant. If multi tenancy is disabled, `_main` is the only possible value.
 
 **{watch_id}** The id of the watch containing the action to be acknowledged. Required.
 
@@ -57,15 +59,9 @@ The user does not have the permission to acknowledge watches for the currently s
 
 A watch with the given id does not exist for the current tenant.
 
-The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
-
 ### 412 Precondition Failed
 
 The specified action was not executed during its last scheduled run. Thus, it cannot be acknowledged.
-
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used.  If the header is absent, the default tenant is used.
 
 ## Permissions
 
@@ -79,7 +75,7 @@ This permission is included in the following [built-in action groups](security_p
 
 
 ```
-PUT /_signals/watch/bad_weather/_ack/email
+PUT /_signals/watch/_main/bad_weather/_ack/email
 ```
 
 **Response**

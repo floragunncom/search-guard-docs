@@ -21,16 +21,18 @@ description:
 ## Endpoint
 
 ```
-POST /_signals/watch/_execute
+POST /_signals/watch/{tenant_id}/_execute
 ```
 
 ```
-POST /_signals/watch/{watch_id}/_execute
+POST /_signals/watch/{tenant_id}/{watch_id}/_execute
 ```
 
 Immediately executes a watch and returns status information in the HTTP response. The watch can be specified in the request body. Alternatively, the watch to be executed can be specified by y the `{watch_id}` path parameter.
 
 ## Path Parameters
+
+**{tenant_id}** The Signals tenant to be used. Specify `_main` to select the default tenant. If multi tenancy is disabled, `_main` is the only possible value.
 
 **{watch_id}** The id of the watch to be executed. Optional. If not specified, the watch needs to be specified in the request body.
 
@@ -103,8 +105,6 @@ The user does not have the permission to execute watches for the currently selec
 
 A watch with the given id does not exist for the selected tenant. 
 
-The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
-
 ### 415 Unsupported Media Type
 
 The watch was not encoded as JSON document. Watches need to be sent using the media type application/json.
@@ -127,7 +127,7 @@ This permission is included in the following [built-in action groups](security_p
 ### Basic 
 
 ```
-POST /_signals/watch/bad_weather/_execute
+POST /_signals/watch/_main/bad_weather/_execute
 ```
 
 
@@ -139,7 +139,7 @@ POST /_signals/watch/bad_weather/_execute
 
 ```json
 {
-    "tenant": "main",
+    "tenant": "_main",
     "watch_id": "bad_weather",
     "status": {
         "code": "ACTION_TRIGGERED",
@@ -183,7 +183,7 @@ POST /_signals/watch/bad_weather/_execute
 ### Execution Error
 
 ```
-POST /_signals/watch/bad_weather/_execute
+POST /_signals/_main/watch/bad_weather/_execute
 ```
 
 **Response**
@@ -194,7 +194,7 @@ POST /_signals/watch/bad_weather/_execute
 
 ```json
 {
-    "tenant": "main",
+    "tenant": "_main",
     "watch_id": "bad_weather",
     "status": {
         "code": "EXECUTION_FAILED",
