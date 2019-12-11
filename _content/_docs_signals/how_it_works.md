@@ -70,7 +70,7 @@ Using a severity mapping also enables you to define **Resolve Actions**. These a
  
 The Signals dashboard also displays the current severity levels determined by the configured watches. Opposed to watches without a severity mapping, this gives you a clearer and quicker way to see what is happening right now.
 
-## Watch Runtime Dataa
+## Watch Runtime Data
 All watches operate on the so-called watch runtime data. Inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
 
 The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an Elasticsearch index. 

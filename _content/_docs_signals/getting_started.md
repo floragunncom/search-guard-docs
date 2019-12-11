@@ -18,7 +18,7 @@ description:
 
 Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to install the Search Guard plugin for Elasticsearch and Kibana.
 
-*At the moment, the technical preview is available for Elasticsearch 7.3.1 only.*
+*Signals is right now in Beta state. At the moment, it is only available for Elasticsearch 7.3.2, 7.4.0, 7.4.1, 7.4.2 and 7.5.0.*
 
 The technical preview includes both Signals and Search Guard, and can be installed the same way you would install Search Guard and the Search Guard Kibana plugin.
 
@@ -26,12 +26,17 @@ The technical preview includes both Signals and Search Guard, and can be install
 
 1. Download the plugin:
 
-* [https://releases.floragunn.com/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip](https://releases.floragunn.com/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip)
+* ES 7.3.2: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.3.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.3.2-Signals-1.0-beta1.zip)
+* ES 7.4.0: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.0-Signals-1.0-beta1.zip)
+* ES 7.4.1: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.1-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.1-Signals-1.0-beta1.zip)
+* ES 7.4.2: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.2-Signals-1.0-beta1.zip)
+* ES 7.5.0: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.5.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.5.0-Signals-1.0-beta1.zip)
+
 
 2. Install the plugin
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.1-SIGNALS-PREVIEW-0.2.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.2-Signals-1.0-beta1.zip
 ```
 
 
@@ -39,12 +44,16 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.1-SIGNALS
 
 1. Download the plugin:
 
-* [https://releases.floragunn.com/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip](https://releases.floragunn.com/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip)
+* ES 7.3.2: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip)
+* ES 7.4.0: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.0-Signals-1.0-beta1.zip)
+* ES 7.4.1: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.1-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.1-Signals-1.0-beta1.zip)
+* ES 7.4.2: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.2-Signals-1.0-beta1.zip)
+* ES 7.5.0: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.5.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.5.0-Signals-1.0-beta1.zip)
 
 2. Install the plugin
 
 ```bash
-bin/kibana-plugin install -b file:///path/to/search-guard-kibana-plugin-7.3.1-SIGNALS-PREVIEW-0.2.zip
+bin/kibana-plugin install -b file:///path/to/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip
 ```
 
 ## Sample watches
