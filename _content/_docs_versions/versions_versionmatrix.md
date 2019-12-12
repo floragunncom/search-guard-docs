@@ -11,11 +11,7 @@ description: A list of the current Search Guard releases for all Elasticsearch 7
 
 # Search Guard Versions
 
-All Search Guard releases, past and present, are available on Maven Central. You can either download the releases from there (offline install) or use the Elasticsearch plugin install command to install Search Guard directly (online install). 
-
-This page lists all available versions for Elasticsearch >= 6.0.0. For previous releases please refer to:
-
-This page lists all available versions for Elasticsearch 6.x. For other releases please refer to:
+This page lists all available versions for Elasticsearch >= 7.0.0. For previous releases please refer to:
 
 * [Search Guard 6 for Elasticsearch 6.x](/6.x-25/search-guard-versions)
 * [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
@@ -29,6 +25,6 @@ If you are upgrading from Elasticsearch 6.7.x to Elasticsearch >= 7.0.0, please 
 
 {% include sgversions.html majorversion="search-guard-7" %}
 
-## Signals Alerting technical preview
+## Signals Alerting Beta 1
 
 {% include signalsversions.html %}

@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-triggers-schedule
 category: triggers
 order: 100
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

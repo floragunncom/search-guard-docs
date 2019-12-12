@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-chaining-checks
 category: signals
 order: 250
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

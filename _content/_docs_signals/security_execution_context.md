@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-security-security-context
 category: security
 order: 200
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
