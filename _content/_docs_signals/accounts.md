@@ -38,7 +38,6 @@ A typical e-mail account looks like this:
 
 ```json
 {
-	"type": "email",
 	"host": "smtp.example.com",
 	"port": 465,
 	"user": "signals",
@@ -57,7 +56,7 @@ A typical e-mail account looks like this:
 | password | The password user for authentication. Optional. |
 | enable\_tls | If true, the connection is established by TLS. |
 | enable\_start\_tls | If true, the connection is established using STARTTLS. |
-| trusted_hosts | Only accept server certificates issued to one of the provided hostnames, *and disables certificate issuer validation.* Optional; array of host names. *Security warning: Any certificate matching any of the provided host names will be accepted, regardless of the certificate issuer; attackers can abuse this behavior by serving a matching self-signed certificate during a man-in-the-middle attack.* |
+| trusted_hosts | Only accept server certificates issued to one of the provided host names, *and disables certificate issuer validation.* Optional; array of host names. *Security warning: Any certificate matching any of the provided host names will be accepted, regardless of the certificate issuer; attackers can abuse this behavior by serving a matching self-signed certificate during a man-in-the-middle attack.* |
 | trust_all | If true, trust all hosts and don't validate any SSL keys. Optional. |
 | default_from | Defines the from address used in e-mails when an e-mail action does not configure an explicit from address. Optional. |
 | default\_to, default\_cc, default\_bcc  | Defines the recipient addresses used in e-mails when an e-mail action does not configure an explicit values for the respective recipient types. Optional; array of e-mail addresses |
@@ -73,12 +72,11 @@ A Slack account looks rather simple:
 
 ```json
 {
-	"type": "slack",
 	"url": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
 
-The value for the `url` property must be optained by creating a Slack App inside Slack. See the [Slack docs](https://api.slack.com/incoming-webhooks) for details.
+The value for the `url` property must be obtained by creating a Slack App inside Slack. See the [Slack docs](https://api.slack.com/incoming-webhooks) for details.
 
 ## REST API
 

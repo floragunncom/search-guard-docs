@@ -1,7 +1,7 @@
 ---
-title: Get Destination
-html_title: Get a destination with the REST API
-slug: elasticsearch-alerting-rest-api-destination-get
+title: Get Account
+html_title: Get an account with the REST API
+slug: elasticsearch-alerting-rest-api-account-get
 category: signals-rest
 order: 800
 layout: docs
@@ -20,13 +20,15 @@ description:
 ## Endpoint
 
 ```
-GET /_signals/account/{account_id}
+GET /_signals/account/{account_type}/{account_id}
 ```
 
-Retrieves the account configuration identified by the `{account_id}` path parameter. 
+Retrieves the account of type `{account_type}` identified by the `{account_id}` path parameter. 
 
 
 ## Path Parameters
+
+**{account_type}** The type of the account to be retrieved. Required.
 
 **{account_id}** The id of the account to be retrieved. Required.
 
@@ -48,7 +50,7 @@ An account with the given id does not exist.
 
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/get`.
+For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/get`.
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 

@@ -39,7 +39,7 @@ To throttle the execution of an action, you can set a `throttle_period` in the a
 			"throttle_period": "1h",
 			"account": "internal_mail",
 			"to": "notify@example.com",
-			"subject": "...,
+			"subject": "...",
 			"text_body": "..."
 		}
 	]
