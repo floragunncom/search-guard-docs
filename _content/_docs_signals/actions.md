@@ -31,6 +31,10 @@ Actions are generally invoked if all checks configured for a watch ran with a po
 
 Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will only be triggered when certain values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
 
+**Note:** By using the severity feature, you can configure actions to be executed only if a certain problem severity was determined before. Also, you can configure resolve actions which get executed if the problem severity decreased. See [Severity](severity.md) for details. 
+
+
+
 ## Action Types
 
 These actions are available at the moment:
@@ -60,6 +64,78 @@ If no explicit throttle period is configured, a default throttle period of 10 se
 A manual way of suppressing the execution of actions is acknowledging actions.
 
 If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, the conditions that would lead to the execution of the action are checked. If the conditions remain the same, the action remains acknowledged and thus execution is suppressed. Only if the conditions go away, the acknowledge state of the action is reset. Thus, if the conditions change back again so the action would be executed, the action would be actually executed again.
+
+## Processing Collections of Objects in Actions
+
+Some types of watches can produce several objects at once which then need to be processed by actions.
+
+There are at least two ways of achieving this task:
+
+* Executing an action once which condenses the object collection using scripts or templates
+* Executing an action for each object from the collection.
+
+Especially for notification actions, the first approach is strongly recommended. It is not feasible to have a potentially unbounded number of notifications being sent by one watch.
+
+For achieving this, you can use for example loops in Mustache templates. This might look like this:
+
+```json
+{
+	"checks": [
+        {
+            "type": "search",
+            "name": "errors",
+            "target": "errors",
+            "request": {
+                "indices": ["errors"],
+                "body": {}
+            }
+        }
+    ],
+    "actions": [
+        {
+            "type": "slack",
+            "name": "slack_info",
+            "channel": "#notifications",
+            "text": "Found errors:\n{{#data.errors.hits.hits}}\n* {{_source.message}} {{/data.errors.hits.hits}}"
+        }
+    ]
+}
+```
+
+In some cases, however, it will get necessary to execute the action for each element of a collection. This can be achieved by setting the `foreach` attribute of an action to a Painless expression producing a collection. The action will be then executed for each element of that collection. To access the current element of the collection, use the property called `item`. The `data` property is still providing a view of the complete runtime data. 
+
+In order to avoid actions being accidentially executed on very large collections, the amount of iterations is limited. By default, an action is only executed for the first 100 elements of a collection. This limit can be changed by setting the `foreach_limit` property of an action.
+
+A watch using the `foreach` property might look like this:
+
+```json
+{
+    "checks": [
+        {
+            "type": "search",
+            "name": "errors",
+            "target": "errors",
+            "request": {
+                "indices": ["errors"],
+                "body": {}
+            }
+        }
+    ],
+    "actions": [
+        {
+            "type": "webhook",
+            "name": "post_error_to_webhook",
+            "foreach": "data.errors.hits.hits",
+            "throttle_period": "10m",
+            "request": {
+                "method": "POST",
+                "url": "https://my.test.web.hook/endpoint",
+                "body": "{{item._source.message}}"
+            }
+        }
+    ]
+}
+```
 
 ## Common Action Properties
 
