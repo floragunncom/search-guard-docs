@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-administration
 category: signals
 order: 1100
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

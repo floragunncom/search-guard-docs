@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-how-it-works
 category: signals
 order: 200
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

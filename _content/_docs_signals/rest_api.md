@@ -6,7 +6,7 @@ category: signals
 subcategory: signals-rest
 order: 900
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

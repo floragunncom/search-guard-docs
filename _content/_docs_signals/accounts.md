@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-accounts
 category: actions
 order: 50
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

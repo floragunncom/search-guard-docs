@@ -6,7 +6,7 @@ category: signals
 subcategory: conditions
 order: 600
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

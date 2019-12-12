@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-convert-es
 category: signals-rest
 order: 710
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

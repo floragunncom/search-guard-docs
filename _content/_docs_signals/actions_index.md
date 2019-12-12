@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-actions-index
 category: actions
 order: 100
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

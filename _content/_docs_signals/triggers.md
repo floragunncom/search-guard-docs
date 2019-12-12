@@ -6,7 +6,7 @@ category: signals
 subcategory: triggers
 order: 300
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

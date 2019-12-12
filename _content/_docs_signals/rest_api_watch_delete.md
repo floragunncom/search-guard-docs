@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest
 order: 300
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

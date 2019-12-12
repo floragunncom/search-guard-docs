@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-destination-put
 category: signals-rest
 order: 900
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

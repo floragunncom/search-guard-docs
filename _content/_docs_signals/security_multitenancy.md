@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-security-multi-tenancy
 category: security
 order: 300
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

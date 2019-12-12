@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-actions-webhook
 category: actions
 order: 300
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

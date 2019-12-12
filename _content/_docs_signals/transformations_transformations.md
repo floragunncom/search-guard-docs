@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-transformations
 category: transformations
 order: 100
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

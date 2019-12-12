@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-watches-sample
 category: signals
 order: 210
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 

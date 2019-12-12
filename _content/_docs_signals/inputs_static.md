@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-inputs-static
 category: inputs
 order: 100
 layout: docs
-edition: community
+edition: beta
 description: 
 ---
 
