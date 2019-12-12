@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-calculations
 category: transformations
 order: 200
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

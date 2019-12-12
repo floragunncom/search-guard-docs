@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-getting-started
 category: signals
 order: 100
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

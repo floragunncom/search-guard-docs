@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-security-indices
 category: security
 order: 50
 layout: docs
-edition: Signals Indices
+edition: community
 description: 
 ---
 

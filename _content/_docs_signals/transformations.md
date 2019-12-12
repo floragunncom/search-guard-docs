@@ -6,7 +6,7 @@ category: signals
 subcategory: transformations
 order: 500
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

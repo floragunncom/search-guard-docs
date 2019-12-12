@@ -6,7 +6,7 @@ category: signals
 subcategory: inputs
 order: 400
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-account-delete
 category: signals-rest
 order: 1000
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

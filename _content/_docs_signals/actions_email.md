@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-actions-email
 category: actions
 order: 200
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

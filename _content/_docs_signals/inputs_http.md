@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-inputs-http
 category: inputs
 order: 300
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

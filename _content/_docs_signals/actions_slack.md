@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-actions-slack
 category: actions
 order: 400
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

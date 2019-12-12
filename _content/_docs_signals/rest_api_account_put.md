@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
 order: 900
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

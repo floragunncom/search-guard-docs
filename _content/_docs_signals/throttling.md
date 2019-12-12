@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-throttling
 category: signals
 order: 800
 layout: docs
-edition: preview
+edition: community
 description: 
 ---
 

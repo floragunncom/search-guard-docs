@@ -1,9 +1,9 @@
 ---
-title: Pagerduty Actions
-html_title: Creating Pagerduty Actions for Signals Alerting
-slug: elasticsearch-alerting-actions-pagerduty
+title: JIRA Actions
+html_title: Creating JIRA Actions for Signals Alerting
+slug: elasticsearch-alerting-actions-jira
 category: actions
-order: 500
+order: 600
 layout: docs
 edition: enterprise
 description: 
@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Pagerduty Actions
+# JIRA Actions
 {: .no_toc}
 
 {% include toc.md %}
