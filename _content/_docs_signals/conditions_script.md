@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-conditions-script
 category: conditions
 order: 100
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

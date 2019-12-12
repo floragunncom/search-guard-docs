@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-watch-get
 category: signals-rest
 order: 100
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
@@ -19,13 +19,15 @@ description:
 ## Endpoint
 
 ```
-GET /_signals/watch/{watch_id}
+GET /_signals/watch/{tenant}/{watch_id}
 ```
 
 Retrieves the configuration of a watch identified by the `{watch_id}` path parameter. 
 
 
 ## Path Parameters
+
+**{tenant}:** The name of the tenant which contains the watch to be retrieved. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
 
 **{watch_id}** The id of the watch to be retrieved. Required.
 
@@ -45,12 +47,6 @@ The user does not have the required to access the endpoint for the selected tena
 
 A watch with the given id does not exist for the selected tenant. 
 
-The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
-
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used. If the header is absent, the default tenant is used.
-
 ## Permissions
 
 To access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/get` for the currently selected tenant.
@@ -64,7 +60,7 @@ This permission is included in the following [built-in action groups](security_p
 ## Examples
 
 ```
-GET /_signals/watch/bad_weather
+GET /_signals/watch/_main/bad_weather
 ```
 
 **Response**
@@ -75,7 +71,7 @@ GET /_signals/watch/bad_weather
 
 ```json
 {
-    "_id": "bad_weather",
+    "_id": "_main/bad_weather",
     "_tenant": "main",
     "found": true,
     "_version": 6,

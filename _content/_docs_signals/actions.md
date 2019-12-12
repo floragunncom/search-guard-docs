@@ -6,7 +6,7 @@ category: signals
 subcategory: actions
 order: 700
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

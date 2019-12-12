@@ -6,7 +6,7 @@ category: signals
 subcategory: security
 order: 950
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

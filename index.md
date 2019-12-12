@@ -20,7 +20,7 @@ Copryight 2016-2019 floragunn GmbH
 
 <h1 align="center">Search Guard {{site.searchguard.version}} Documentation</h1>
 
-We are very happy to announce that the first technical preview of Signals, our Alerting solution for Elasticsearch, is officially available now. For an overview, head over to the [Signals docs](elasticsearch-alerting-getting-started).
+The first beta version of Signals, our Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
 {: .note .js-note .green}
 
 ## Quick Links
@@ -29,4 +29,5 @@ We are very happy to announce that the first technical preview of Signals, our A
 * [Latest versions](search-guard-versions)
 * [Installation](search-guard-installation)
 * [Main Concepts](main-concepts)
+* [Alerting](elasticsearch-alerting-getting-started)
 

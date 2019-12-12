@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-rest-api-watch-execute
 category: signals-rest
 order: 600
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
@@ -21,16 +21,18 @@ description:
 ## Endpoint
 
 ```
-POST /_signals/watch/_execute
+POST /_signals/watch/{tenant}/_execute
 ```
 
 ```
-POST /_signals/watch/{watch_id}/_execute
+POST /_signals/watch/{tenant}/{watch_id}/_execute
 ```
 
 Immediately executes a watch and returns status information in the HTTP response. The watch can be specified in the request body. Alternatively, the watch to be executed can be specified by y the `{watch_id}` path parameter.
 
 ## Path Parameters
+
+**{tenant}** The name of the tenant in whose context the watch shall be executed in. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
 
 **{watch_id}** The id of the watch to be executed. Optional. If not specified, the watch needs to be specified in the request body.
 
@@ -40,9 +42,17 @@ The request body can contain a JSON document specifying further options for exec
 
 The supported attributes of the JSON document are these:
 
-**record_execution** If true, the result of the execution is stored in the watch log index just like it happens for a normal scheduled execution. Optional. Default: false
+**watch:** The watch to be executed as JSON document. Must be specified if no `{watch_id}` path parameter is given.
 
-**watch** The watch to be executed as JSON document. Must be specified if no `{watch_id}` path parameter is given.
+**record_execution:** If true, the result of the execution is stored in the watch log index just like it happens for a normal scheduled execution. Optional. Default: false
+
+**input:** If specified, the runtime data will be initialized with the data specified here. This can be for example used to pass parameters to watches. For testing purposes, you can combine this with the attribute `"goto": "_actions"` and thus simulate the data produced by the checks this way. Optional, defaults to no input.
+
+**goto:** With this attribute, you can skip one or more checks. If the value of this attribute is the name of a check, all checks before the specified check will be skipped and execution will start at the specified check. If the attribute contains `_actions`, all checks are skipped and only the actions are executed. Optional, defaults to starting from the beginning.
+
+**skip_actions:** If true, only the checks are executed. The actions are not executed. Optional, defaults to false.
+
+**simulate:** If true, the actions are only partially executed. All preparations for the action are executed, including executing nested checks and scripts, rendering mustache templates, etc. Only the final step for completing the action is not done; the type of the final step depends of course on the type of the action. For example, email actions render the email, but won't send it to the SMTP server. The resulting artifact or request can be viewed in the result returned by the action in the attribute `request`. 
 
 ## Responses
 
@@ -65,6 +75,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 
 * `NO_ACTION`: The action was not executed because its conditions did not evaluate to true.
 * `ACTION_TRIGGERED`: The action was executed.
+* `SIMULATED_ACTION_TRIGGERED`: The action would have been triggered, but was not actually triggered as requested by the attributes `simulate` or `skip_actions`.
 
 ### 422 Unprocessable Entity
 
@@ -88,6 +99,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 * `NO_ACTION`: The action was not executed because its conditions did not evaluate to true.
 * `ACTION_TRIGGERED`: The action was executed.
 * `ACTION_FAILED`: The execution of the action failed.
+* `SIMULATED_ACTION_TRIGGERED`: The action would have been triggered, but was not actually triggered as requested by the attributes `simulate` or `skip_actions`.
 
 ### 400 Bad Request
 
@@ -103,16 +115,10 @@ The user does not have the permission to execute watches for the currently selec
 
 A watch with the given id does not exist for the selected tenant. 
 
-The status 404 is also returned if the tenant specified by the `sg_tenant` request header does not exist.
-
 ### 415 Unsupported Media Type
 
 The watch was not encoded as JSON document. Watches need to be sent using the media type application/json.
 
-
-## Multi Tenancy
-
-The watch REST API is tenant-aware. Each Signals tenant has its own separate set of watches. The HTTP request header `sg_tenant` can be used to specify the tenant to be used.  If the header is absent, the default tenant is used.
 
 ## Permissions
 
@@ -127,7 +133,7 @@ This permission is included in the following [built-in action groups](security_p
 ### Basic 
 
 ```
-POST /_signals/watch/bad_weather/_execute
+POST /_signals/watch/_main/bad_weather/_execute
 ```
 
 
@@ -183,7 +189,7 @@ POST /_signals/watch/bad_weather/_execute
 ### Execution Error
 
 ```
-POST /_signals/watch/bad_weather/_execute
+POST /_signals/watch/_main/bad_weather/_execute
 ```
 
 **Response**

@@ -1,11 +1,11 @@
 ---
-title: Put Destination
-html_title: Put a destination with the REST API
-slug: elasticsearch-alerting-rest-api-destination-put
+title: Put Account
+html_title: Put a account with the REST API
+slug: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
 order: 900
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
@@ -21,20 +21,22 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/account/{account_id}
+PUT /_signals/account/{account_type}/{account_id}
 ```
 
-Stores or updates an account identified by the `{account_id}` path parameter. 
+Stores or updates an account of type `{account_type}`identified by the `{account_id}` path parameter. 
 
 ## Path Parameters
 
-**{account_id}** The id of the account to be created or updated. Required.
+**{account_type}** The type of the account to be stored. Required.
+
+**{account_id}** The id of the account to be stored. Required.
 
 ## Request Body
 
 The account needs to be specified as JSON document in the request body. 
 
-See TODO for details on the structure of accounts.
+See the chapter [accounts](accounts.md) for details on the structure of accounts.
 
 ## Responses
 
@@ -55,17 +57,17 @@ If the account specified in the request body was malformed, a JSON document cont
 
 ### 403 Forbidden
 
-The user does not have the permission to create destinations for the currently selected tenant. 
+The user does not have the permission to create accounts. 
 
 
 ### 415 Unsupported Media Type
 
-The destination was not encoded as JSON document. Destinations need to be sent using the media type application/json.
+The account was not encoded as JSON document. Accounts need to be sent using the media type application/json.
 
 
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/put`.
+For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/put`.
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 
@@ -76,11 +78,10 @@ This permission is included in the following [built-in action groups](security_p
 ### E-Mail 
 
 ```
-PUT /_signals/account/default_email
+PUT /_signals/account/email/default
 ```
 ```json
 {
-    "type": "email",
     "host": "mail.mycompany.example",
     "port": 587,
     "enable_tls": true,
@@ -99,11 +100,10 @@ PUT /_signals/account/default_email
 ### Slack
 
 ```
-PUT /_signals/account/default_slack
+PUT /_signals/account/slack/default
 ```
 ```json
 {
-    "type": "slack",
     "url": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
@@ -118,11 +118,10 @@ PUT /_signals/account/default_slack
 ### Invalid data
 
 ```
-PUT /_signals/account/my_email
+PUT /_signals/account/email/test
 ```
 ```json
 {
-    "type": "email",
     "port": 587,
     "enable_tls": true,
     "default_from": "signals@mycompany.example.com",

@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

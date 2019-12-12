@@ -1,11 +1,11 @@
 ---
-title: Search Destination
-html_title: Search a destination with the REST API
-slug: elasticsearch-alerting-rest-api-destination-search
+title: Search Accounts
+html_title: Search the configured accounts with the REST API
+slug: elasticsearch-alerting-rest-api-account-search
 category: signals-rest
 order: 850
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
@@ -64,7 +64,7 @@ The user does not have the required to access the endpoint.
 
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:destination/search`.
+For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/search`.
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 
@@ -103,22 +103,20 @@ GET /_signals/account/_search?size=1000
         "max_score": 1,
         "hits": [
             {
-                "_index": ".signals_destinations",
+                "_index": ".signals_accounts",
                 "_type": "_doc",
                 "_id": "default_slack",
                 "_score": 1,
                 "_source": {
-                    "type": "slack",
                     "url": "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
                 }
             },
             {
-                "_index": ".signals_destinations",
+                "_index": ".signals_accounts",
                 "_type": "_doc",
-                "_id": "default_mail",
+                "_id": "email/default",
                 "_score": 1,
                 "_source": {
-                    "type": "email",
                     "host": "mail.mycompany.example",
                     "port": 587,
                     "enable_tls": true,
@@ -131,64 +129,4 @@ GET /_signals/account/_search?size=1000
         ]
     }
 }
-```
 
-### Search for all E-Mail accounts
-
-```
-POST /_signals/account/_search?size=1000
-```
-
-```
-{
-    "query": {
-        "match": {
-            "type": "email"
-        }
-    }
-}
-```
-
-**Response**
-
-```
-200 OK
-```
-
-```json
-{
-    "took": 3,
-    "timed_out": false,
-    "_shards": {
-        "total": 1,
-        "successful": 1,
-        "skipped": 0,
-        "failed": 0
-    },
-    "hits": {
-        "total": {
-            "value": 1,
-            "relation": "eq"
-        },
-        "max_score": 0.6931472,
-        "hits": [
-            {
-                "_index": ".signals_destinations",
-                "_type": "_doc",
-                "_id": "default_mail",
-                "_score": 0.6931472,
-                "_source": {
-                    "type": "email",
-                    "host": "mail.mycompany.example",
-                    "port": 587,
-                    "enable_tls": true,
-                    "default_from": "signals@mycompany.example.com",
-                    "default_bcc": [
-                        "signals@mycompany.example.com"
-                    ]
-                }
-            }
-        ]
-    }
-}
-```

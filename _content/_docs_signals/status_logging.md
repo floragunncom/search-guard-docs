@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-status-logging
 category: signals
 order: 1000
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 

@@ -5,7 +5,7 @@ slug: elasticsearch-alerting-triggers-timezones
 category: triggers
 order: 200
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
