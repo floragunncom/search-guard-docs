@@ -3,10 +3,9 @@ title: Severity
 html_title: Using Severity with Signals Watches
 slug: elasticsearch-alerting-severity
 category: signals
-subcategory: severity
 order: 650
 layout: docs
-edition: preview
+edition: beta
 description: 
 ---
 
@@ -38,7 +37,7 @@ The severity feature of Signals consists of these building blocks:
 
 The most important part for using severity is the severity mapping. A watch with a severity mapping may look like this:
 
-```
+```json
 {
     "checks": [
         {
@@ -87,7 +86,7 @@ When a watch is executed, the severity mapping is evaluated after all checks hav
 
 After having defined the severity mapping, you can assign severity levels to actions. You can do so with the `severity` attribute: 
 
-```
+```json
 {
 	"checks": [
         {
@@ -168,7 +167,7 @@ After having defined a severity mapping, you can also use *resolve actions*. A r
 This might look like this:
 
 
-```
+```json
 {
 	"checks": [
         {
