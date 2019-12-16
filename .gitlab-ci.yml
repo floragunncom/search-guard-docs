@@ -23,5 +23,5 @@ docs:
             jekyll algolia push --config _config.yml,_versions.yml              
           fi
         else 
-          echo "No upload for branch $CI_COMMIT_REF_NAME
+          echo "No upload for branch $CI_COMMIT_REF_NAME"
         fi
