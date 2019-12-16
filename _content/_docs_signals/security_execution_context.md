@@ -6,7 +6,7 @@ category: security
 order: 200
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -14,7 +14,7 @@ description:
 # Security execution context
 {: .no_toc}
 
-Signals is fully integrated with all Search Guard security features. 
+Signals is fully integrated with all Search Guard security features.
 
 In particular this means that each watch is executed in a **security context** that controls **to what data on Elasticsearch the watch has access to**:
 
@@ -26,12 +26,6 @@ Each watch is executed with the **Search Guard permissions** the user that creat
 
 The security context is not bound to a Search Guard user or a Search Guard role. This makes sure that even if the user who created watches is deleted, the created watches will continue to work.
 
-The permissions that are stored in the security context of the watch include access permissions to indices, and also all advanced settings like [Document- and Fiel-level security](document-level-security) or [Field anonymization](field-anonymization).
+The permissions that are stored in the security context of the watch include access permissions to indices, and also all advanced settings like [Document- and Field-level security](document-level-security) or [Field anonymization](field-anonymization).
 
 If a user edits a watch has had been created before by a different user, the security context will be replaced with the permissions of the current user.
-
-
-
-
-
-

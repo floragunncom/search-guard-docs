@@ -6,7 +6,7 @@ category: signals
 order: 650
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -29,7 +29,7 @@ The Severity feature of Signals provides you an easy way to map any metric obtai
 
 The severity feature of Signals consists of these building blocks:
 
-* The first building block is the severity mapping. It is automatically evaluated by Signals after all checks of a watch have been executed. The severity mapping maps a numeric value gathered by the checks to one of the severity levels `info`, `warning`, `error`, `critical`. 
+* The first building block is the severity mapping. It is automatically evaluated by Signals after all checks of a watch have been executed. The severity mapping maps a numeric value gathered by the checks to one of the severity levels `info`, `warning`, `error`, `critical`.
 * After having determined the current severity level, Signals executes the actions. An action can be associated with severity levels; if so, the action is only executed if the severity level is right now active.
 * Finally, in case the severity level has decreased, Signals executes the resolve actions. Resolve actions are also associated with severity levels; they are only executed if the configured severity levels were active before but are active not any more.
 
@@ -80,12 +80,13 @@ The `severity` element supports these attributes:
 **mapping:** This is an array of objects; each object maps a numeric `threshold` to a severity `level`. If the specified `order` is `ascending`, the threshold the minimum value necessary to enter the specified severity level. If the specified order is `descending`, the threshold is the maximum value for the specified severity level. The `level` attribute may be one of (in order of increasing severity) `info`, `warning`, `error`, `critical`. If you use a severity mapping, you need to define at least one severity levels. However, you don't need to define thresholds for all levels. Levels without thresholds are not in use for the particular watch.
 
 
-When a watch is executed, the severity mapping is evaluated after all checks have been run, 
+When a watch is executed, the severity mapping is evaluated after all checks have been run,
 
 ## Assigning Actions to Severity Levels
 
-After having defined the severity mapping, you can assign severity levels to actions. You can do so with the `severity` attribute: 
+After having defined the severity mapping, you can assign severity levels to actions. You can do so with the `severity` attribute:
 
+<!-- {% raw %} -->
 ```json
 {
 	"checks": [
@@ -128,19 +129,20 @@ After having defined the severity mapping, you can assign severity levels to act
     ]
 }
 ```
+<!-- {% endraw %} -->
 
 In the `severity` attribute, you can specify one or more severity levels. You can only use the severity levels, which are defined by the severity mapping. Thus, in the example above, you cannot use the severity level `info` in the action, because the severity mapping above does not define it.
 
 An action is only executed if the current severity is equal to one of the configured severities. Thus, if you configure an action *only* for the level `error`, it won't be executed in the higher level `critical`. This way, you can define an alternative action which covers the higher level without having the other action executing at the same time.
 
-If you don't specify a `throttle_period` for the action, it will be executed quite frequently -- just like actions without an assigned severity. You can set the `throttle_period` to a longer time interval to suppress the action execution as long as the severity stays unchanged. If, however, the severity increases to a level which is also configured for the action, the throttling is interrupted and the action will be executed again. 
+If you don't specify a `throttle_period` for the action, it will be executed quite frequently -- just like actions without an assigned severity. You can set the `throttle_period` to a longer time interval to suppress the action execution as long as the severity stays unchanged. If, however, the severity increases to a level which is also configured for the action, the throttling is interrupted and the action will be executed again.
 
 The same holds for the acknowledge function: If an action was acknowledged, its execution is interrupted until:
 
 * The severity increases to a level which is configured for the action as well
 * Or: The severity decreases and afterwards increases again to one of the configured levels
 
-If you use severity levels, you can still configure `checks` for the action. The checks will be evaluated *after* the severity level. 
+If you use severity levels, you can still configure `checks` for the action. The checks will be evaluated *after* the severity level.
 
 If an action does not define a `severity` attribute, it is executed for any severity level.
 
@@ -152,7 +154,7 @@ The property `severity` as these sub-properties:
 
 **level:** The current severity level. The type of this property is `com.floragunn.signals.watch.severity.SeverityLevel`, which is an enum. It has the values `INFO`, `WARNING`, `ERROR`, `FATAL`. There is the further value `NONE`, which however won't be encountered in actions assigned to severity levels. It can be however encountered in actions which are not associated to severity levels, or in resolve actions. The `level` property provides a couple of sub-properties:
 
-* **level.id:** The id of this severity levels as a string. One of `none`, `info`,  `warning`, `error`, `fatal`. 
+* **level.id:** The id of this severity levels as a string. One of `none`, `info`,  `warning`, `error`, `fatal`.
 * **level.name:** A human readable name of the level. Right now, this is the id with the first letter capitalized.
 * **level.level:** A numeric representation of the level. You can use this to determine the order of the levels.
 
@@ -166,7 +168,7 @@ After having defined a severity mapping, you can also use *resolve actions*. A r
 
 This might look like this:
 
-
+<!-- {% raw %} -->
 ```json
 {
 	"checks": [
@@ -209,6 +211,7 @@ This might look like this:
     ]
 }
 ```
+<!-- {% endraw %} -->
 
 In contrast to normal actions, resolve actions are not executed repeatedly. They are executed *only once* when the severity level has dropped below the level configured in `resolves_severity`. For this reason, throttling and acknowledgement is not applicable to resolve actions.
 
@@ -218,7 +221,7 @@ For resolve actions, you can use any action type you can also use for normal act
 
 ## Data Available to Scripts of Resolve Actions
 
-Scripts or templates defined inside resolve actions have access to one further property: The property `resolved` contains a snapshot of all the runtime data during the previous execution of the watch - when the severity level was not resolved yet. 
+Scripts or templates defined inside resolve actions have access to one further property: The property `resolved` contains a snapshot of all the runtime data during the previous execution of the watch - when the severity level was not resolved yet.
 
 So, you can access this information via the `resolved` property:
 
@@ -229,6 +232,4 @@ So, you can access this information via the `resolved` property:
 **resolved.trigger:** The time when the previous execution was scheduled and when it was triggered.
 
 
-When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level` will be `NONE` and `severity.threshold` will be `null`. 
-
- 
+When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level` will be `NONE` and `severity.threshold` will be `null`.

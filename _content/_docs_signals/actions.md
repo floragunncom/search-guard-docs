@@ -7,7 +7,7 @@ subcategory: actions
 order: 700
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -31,7 +31,7 @@ Actions are generally invoked if all checks configured for a watch ran with a po
 
 Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will only be triggered when certain values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
 
-**Note:** By using the severity feature, you can configure actions to be executed only if a certain problem severity was determined before. Also, you can configure resolve actions which get executed if the problem severity decreased. See [Severity](severity.md) for details. 
+**Note:** By using the severity feature, you can configure actions to be executed only if a certain problem severity was determined before. Also, you can configure resolve actions which get executed if the problem severity decreased. See [Severity](severity.md) for details.
 
 
 
@@ -51,13 +51,17 @@ These actions are available at the moment:
 
 In order to avoid getting spammed or flooded by automatic notifications caused by actions, Signals provides two mechanisms: Throttling automatically suppresses the repeated execution of actions for a configurable amount of time. Furthermore, users can acknowledge actions which suppresses action execution until the checks of a watch change their state.
 
-For each action, a throttle period can be configured. Throttle periods are time durations during which execution of the particular action will be suppressed after the it was executed. This way, a watch can be configured to be run very frequently in order to get quickly notified about newly commencing situations. Yet, actions would be triggered less frequently – in the frequency configured by the throttle period.
+For each action, a `throttle_period` can be configured. Throttle periods are time durations during which execution of the particular action will be suppressed after the it was executed. This way, a watch can be configured to be run very frequently in order to get quickly notified about newly commencing situations. Yet, actions would be triggered less frequently – in the frequency configured by the throttle period.
 
 If actions are throttled, the watches are still executed. The watch log will contain information about the execution and list the respective actions as throttled.
 
+Throttle periods can be either constant time values like `1h` (1 hour) or `10m` (10 minutes). Alternatively, you can specify throttle periods which increase while the situation recognized by the watch persists. These throttle periods are called exponential periods. You also use the `throttle_period`  attribute for configuring exponential periods. The initial throttling and the increase is configured using a special syntax of the value.  The syntax is `duration ** basis of exponentiation |  maximum duration`. For example, the value `1m**2|1h` would pause notifications after the initial notification for these durations: 1 minute, 2 minutes, 4 minutes, 8 minutes, 16 minutes, 32 minutes, 60 minutes. Afterwards, notifications are repeated every 60 minutes until the situation which causes the action is resolved. The specification of a maximum duration is optional, so you can also just write `1m**2`. The maximum duration then defaults to one day.
+
+Supported units for simple throttle periods and exponential throttle periods are m (minutes), h (hours), d (days), w (weeks).
+
 A throttle period can be also specified on the level of a watch. This then serves as a default throttle period for all actions. Actions can still define specific throttle periods, though.
 
-If no explicit throttle period is configured, a default throttle period of 10 seconds is used.
+If no explicit throttle period is configured, a default throttle period of 10 seconds is used. This default can be adjusted using the Signals settings. See the section on [Administration](administration.md) for details.
 
 ## Acknowledging Actions
 
@@ -78,6 +82,7 @@ Especially for notification actions, the first approach is strongly recommended.
 
 For achieving this, you can use for example loops in Mustache templates. This might look like this:
 
+<!-- {% raw %} -->
 ```json
 {
 	"checks": [
@@ -101,13 +106,15 @@ For achieving this, you can use for example loops in Mustache templates. This mi
     ]
 }
 ```
+<!-- {% endraw %} -->
 
-In some cases, however, it will get necessary to execute the action for each element of a collection. This can be achieved by setting the `foreach` attribute of an action to a Painless expression producing a collection. The action will be then executed for each element of that collection. To access the current element of the collection, use the property called `item`. The `data` property is still providing a view of the complete runtime data. 
+In some cases, however, it will get necessary to execute the action for each element of a collection. This can be achieved by setting the `foreach` attribute of an action to a Painless expression producing a collection. The action will be then executed for each element of that collection. To access the current element of the collection, use the property called `item`. The `data` property is still providing a view of the complete runtime data.
 
 In order to avoid actions being accidentially executed on very large collections, the amount of iterations is limited. By default, an action is only executed for the first 100 elements of a collection. This limit can be changed by setting the `foreach_limit` property of an action.
 
 A watch using the `foreach` property might look like this:
 
+<!-- {% raw %} -->
 ```json
 {
     "checks": [
@@ -136,6 +143,7 @@ A watch using the `foreach` property might look like this:
     ]
 }
 ```
+<!-- {% endraw %} -->
 
 ## Common Action Properties
 
@@ -143,20 +151,17 @@ All action types share a set of common configuration properties. Consider the fo
 
 ```json
  {
-     
-    ...
 	"actions": [
 		{
 			"type": "email",
 			"name": "my_email_action",
-			"checks": [ 
+			"checks": [
 				{
 					"type": "condition.script",
 					"source": "data.bad_weather_flights.hits.total.value > 100"
 				}
 			],
 			"throttle_period": "1h",
-			...
 		}
 	]
 }
@@ -164,9 +169,23 @@ All action types share a set of common configuration properties. Consider the fo
 
 The common configuration attributes are:
 
-| Name | Description |
-|---|---|
-| type | The type of the action. Required. Can be index, email, slack or webhook right now. |
-| name | A name identifying this action. Required. |
-| checks | Further checks which can gather or transform data and decide whether to execute the actual action. Optional. |
-| throttle_period | The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour. |
+**type:** The type of the action. Required. Can be index, email, slack or webhook right now.
+
+**name:** A name identifying this action. Required.
+
+**checks:** Further checks which can gather or transform data and decide whether to execute the actual action. Optional.
+
+**foreach:** Executes the action for each element of a collection. The collection to use is identified by the Painless expression specified for this attribute. Optional see [Processing Collections of Objects in Actions](#Processing Collections of Objects in Actions) for details.
+
+**foreach_limit:** Specifies the maximum allowed number of iterations performed when using `foreach`. Optional. Defaults to 100.
+
+Alert actions (i.e., non-resolve actions) additionally support  these properties:
+
+**throttle_period:** The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Alternatively, specify an exponential throttle period using the syntax *duration*`**`*basis of exponentiation*`|` *maximum duration*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour.  
+
+**severity:** Selects the severity levels in which this action shall be executed. Optional. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](severity.md) for details.
+
+
+Resolve actions additionally support these properties:
+
+**resolves_severity:** Selects the severity levels which need to be resolved in order to execute this action. Mandatory. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](severity.md) for details.

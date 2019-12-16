@@ -6,7 +6,7 @@ category: actions
 order: 100
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -24,8 +24,6 @@ A typical index action looks like this:
 
 ```json
 {
-	/* ... */
-
 	"actions": [
 		{
 			"type": "index",
@@ -47,7 +45,7 @@ Therefore, as shown in the example above, index actions are typically accompanie
 
 ## Specifying the Document ID
 
-Normally, documents will be indexed with an automatically generated ID. You can however also explicitly define the ID of the document by providing an additional attribute in the runtime data called `_id`. 
+Normally, documents will be indexed with an automatically generated ID. You can however also explicitly define the ID of the document by providing an additional attribute in the runtime data called `_id`.
 
 ## Indexing Multiple Documents
 
@@ -55,8 +53,6 @@ If you want to index multiple documents by one action execution, you need to pre
 
 ```json
 {
-	/* ... */
-
 	"actions": [
 		{
 			"type": "index",
@@ -81,10 +77,6 @@ The index operation will be executed with the privileges the user had when creat
 Further configuration attributes are:
 
 
-**refresh:** The Elasticsearch index [refresh policy](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html). One of `false`, `true` or `wait_for`. Optional; default is `false`. 
+**refresh:** The Elasticsearch index [refresh policy](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html). One of `false`, `true` or `wait_for`. Optional; default is `false`.
 
 **timeout:** If the index operation does not complete in the specified time (in seconds), it will be aborted. Optional; default is 60 seconds.
-
-## Technical Preview Limitations
-
-* It's not possible yet to write the data back to a remote Elasticsearch cluster

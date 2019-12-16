@@ -6,7 +6,7 @@ category: inputs
 order: 100
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -49,16 +49,19 @@ In this example, the constant values defined in the `value` section can be acces
 
 Usage in a trigger:
 
+<!-- {% raw %} -->
 ```
 	"trigger": {
 		"schedule": {
 			"interval": "{{data.myconstants.time_period}}"
 		}
 	}
-```	
+```
+<!-- {% endraw %} -->
 
 Usage in an action:
 
+<!-- {% raw %} -->
 ```
 "actions": [
   {
@@ -70,4 +73,4 @@ Usage in an action:
   }
 ]
 ```
-
+<!-- {% endraw %} -->

@@ -6,7 +6,7 @@ category: signals
 order: 250
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -59,9 +59,9 @@ Each step in the execution chain is called a *check*. Example:
 
 ## Execution runtime data
 
-All checks and actions operate on the watch runtime data. 
+All checks and actions operate on the watch runtime data.
 
-[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before. 
+[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before.
 
 [Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
 
@@ -128,7 +128,7 @@ data.<target name>.path.to.data
 
 Actions format their messages by using Mustache templates. Mustache templates have access to the runtime data as well. Example:
 
-
+<!-- {% raw %} -->
 ```
 {
   "trigger": { ...},
@@ -150,12 +150,14 @@ Actions format their messages by using Mustache templates. Mustache templates ha
   ]
 }
 ```
+<!-- {% endraw %} -->
 
 Format:
 
+<!-- {% raw %} -->
 ```
 {% raw %}
 {{data.<target name>.path.to.data}}
 {% endraw %}
 ```
-
+<!-- {% endraw %} -->

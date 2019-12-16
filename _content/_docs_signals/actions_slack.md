@@ -6,7 +6,7 @@ category: actions
 order: 400
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -27,10 +27,9 @@ In order to use Slack actions, you need to configure a Slack webhook using the a
 
 A basic Slack action looks like this:
 
+<!-- {% raw %} -->
 ```json
  {
-     /* ... */ 
- 
 	"actions": [
 		{
 			"type": "slack",
@@ -42,6 +41,7 @@ A basic Slack action looks like this:
 	]
 }
 ```
+<!-- {% endraw %} -->
 
 The basic configuration attributes are:
 
