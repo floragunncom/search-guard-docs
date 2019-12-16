@@ -20,7 +20,7 @@ docs:
             echo "Skipping Search Index"
           else
             echo "Rebuilding Search Index"
-            jekyll algolia push --config _config.yml,_versions.yml              
+            jekyll algolia push --config _config.yml,_versions.yml || true
           fi
         else 
           echo "No upload for branch $CI_COMMIT_REF_NAME"
