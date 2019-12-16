@@ -3,14 +3,15 @@ image: ruby:2.5
 docs:
   stage: build
   script: 
-    - apt-get update -yqq && apt-get install -yqq ncftp
-    - |    
-        sudo add-apt-repository ppa:rmescandon/yq
-        sudo apt update
-        sudo apt install yq -y    
+    - cat /etc/debian_version || true 
+    - uname -a
+    - apt-get update -yqq && apt-get install -yqq ncftp wget
+    - wget https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64
+    - chmod +x yq_linux_amd64
+    - ./yq_linux_amd64 -V || true 
     - |
         echo "Merge marker sanity check"
-        (grep -ri "<<<<<<" * --exclude=deploy.sh || grep -ri ">>>>>>" * --exclude=deploy.sh) && (echo "found some merge conflicts, will abort"; exit -1)
+        (grep -ri "<<<<<<" * --exclude=deploy.sh --exclude=yq_linux_amd64 || grep -ri ">>>>>>" * --exclude=deploy.sh --exclude=yq_linux_amd64) && (echo "found some merge conflicts, will abort"; exit -1)
 
         bundle install
         bundle exec jekyll build --config _config.yml,_versions.yml
@@ -18,8 +19,7 @@ docs:
         if [[ $CI_COMMIT_REF_NAME =~ ^.*x-.*$ ]]; then
 
           echo "Upload for branch $CI_COMMIT_REF_NAME"
-
-          ftp_dir=$(cat ./_version.yml | yq r - baseurl)
+          ftp_dir=$(cat _versions.yml | ./yq_linux_amd64 r - baseurl)
           echo "Upload dir: $ftp_dir"
           
           ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  "$ftp_dir" ./_site/*
