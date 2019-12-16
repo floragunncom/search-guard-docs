@@ -252,25 +252,25 @@ algolia:
 
 eol:
   features:
-    - 7.3.0
-    - 7.2.1
+    - 7.5.0
+    - 7.4.2
   updates:
-    - 6.8.2
+    - 6.8.5
 
 sgversions:
-  #esv |sgv |kbv | kb incl. artifact id? | feat|upd|eol
+  #esv |sgv |kbv |available|kbn-artifact-id
   search-guard-7:
-    - 7.5.0|37.1.0|37.0.0|yes|yes|yes|no
-    - 7.4.2|37.1.0|36.2.0|no|yes|yes|no
-    - 7.4.1|37.1.0|36.2.0|no|yes|yes|no
-    - 7.4.0|37.1.0|36.2.0|no|yes|yes|no
-    - 7.3.2|37.0.0|36.1.0|no|yes|yes|no
-    - 7.3.1|37.0.0|36.1.0|no|yes|yes|no
-    - 7.3.0|37.0.0|36.1.0|no|yes|yes|no
-    - 7.2.1|37.0.0|36.1.0|no|yes|yes|no
-    - 7.2.0|37.0.0|36.1.0|no|yes|yes|no
-    - 7.1.1|37.0.0|36.1.0|no|yes|yes|no
-    - 7.1.0|37.0.0|36.1.0|no|yes|yes|no
-    - 7.0.1|37.0.0|36.1.0|no|yes|yes|no
+    - 7.5.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.4.2|37.1.0|36.2.0|yes|search-guard-kibana-plugin
+    - 7.4.1|37.1.0|36.2.0|yes|search-guard-kibana-plugin
+    - 7.4.0|37.1.0|36.2.0|yes|search-guard-kibana-plugin
+    - 7.3.2|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.3.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.3.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.2.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.2.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.1.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.1.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.0.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
 
 tlstoolversion: 1.7

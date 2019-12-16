@@ -1,38 +1,50 @@
 {% assign sgversions = site.sgversions[include.majorversion] %}
-<!-- !{{site.sgversions[include.majorversion]}}! -->
+
 <table>
-	<thead>
-    <tr>
-      <th>Elasticsearch</th>
-      <th>Search Guard</th>
-      <th>Search Guard Admin</th>
-      <th>Kibana Plugin</th>
-      <th>Maven Artifact</th>
-    </tr>
+  <thead>
+  <tr>
+    <th>Elasticsearch</th>
+    <th>Search Guard</th>
+    <th>Search Guard Admin</th>
+    <th>Kibana Plugin</th>
+    <th>Status</th>
+  </tr>
   </thead>
   <tbody>
 
-	{% for version in sgversions %}
-    <tr>
-      {% assign sgversions = version | split: "|" %}							       
-        
-        <td>{{ sgversions[0] }}</td>
-        
-        <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+  {% for version in sgversions %}
+  <tr>
+    {% assign sgversions = version | split: "|" %}
 
-        <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip" target="_blank">{{ sgversions[1] }}</a></td>
+    <td>{{ sgversions[0] }} </td>
 
-        {%if sgversions[3] == 'no' %}                
-        <td><a href="https://releases.floragunn.com/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
-        {% endif %}                
+    {% if sgversions[3] == "yes" %}
 
-        {%if sgversions[3] == 'yes' %}                
-        <td><a href="https://releases.floragunn.com/search-guard-kibana-plugin-7/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-7-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
-        {% endif %}                
-        
-        <td>com.floragunn:{{include.majorversion}}:{{ sgversions[0] }}-{{ sgversions[1] }}</td>
+    <!-- available version -->
 
-    </tr>
-    {% endfor %}
+    <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+
+    <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip" target="_blank">{{ sgversions[1] }}</a></td>
+
+    <td><a href="https://releases.floragunn.com/{{ sgversions[4] }}/{{ sgversions[0] }}-{{ sgversions[2] }}/{{ sgversions[4] }}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+
+    <td></td>
+    
+    {% else %}
+
+    <!-- unavailable version -->
+
+    <td>{{ sgversions[1] }}</td>
+
+    <td>{{ sgversions[1] }}</td>
+
+    <td>{{ sgversions[2] }}</td>
+
+    <td>version reached eol and is not supported anymore</td>
+
+    {% endif %}
+
+  </tr>
+  {% endfor %}
   </tbody>
 </table>
