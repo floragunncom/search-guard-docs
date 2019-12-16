@@ -3,23 +3,15 @@ image: ruby:2.5
 docs:
   stage: build
   script: 
-    - lsb_release -a || true 
-    - cat /etc/lsb-release || true 
     - cat /etc/debian_version || true 
     - uname -a
     - apt-get update -yqq && apt-get install -yqq ncftp wget
-    - snap install yq || true 
     - wget https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64
     - chmod +x yq_linux_amd64
-    - ./ yq_linux_amd64 -V || true 
-    - |    
-        apt-get install software-properties-common -y 
-        apt-get update
-        add-apt-repository ppa:rmescandon/yq
-        apt-get -yqq update && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -yqq yq 
+    - ./yq_linux_amd64 -V || true 
     - |
         echo "Merge marker sanity check"
-        (grep -ri "<<<<<<" * --exclude=deploy.sh || grep -ri ">>>>>>" * --exclude=deploy.sh) && (echo "found some merge conflicts, will abort"; exit -1)
+        (grep -ri "<<<<<<" * --exclude=deploy.sh --exclude=yq_linux_amd64 || grep -ri ">>>>>>" * --exclude=deploy.sh --exclude=yq_linux_amd64) && (echo "found some merge conflicts, will abort"; exit -1)
 
         bundle install
         bundle exec jekyll build --config _config.yml,_versions.yml
