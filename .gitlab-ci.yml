@@ -16,11 +16,16 @@ docs:
         bundle install
         bundle exec jekyll build --config _config.yml,_versions.yml
 
+        echo "pwd: $(pwd)"
+        ls -la
+
         if [[ $CI_COMMIT_REF_NAME =~ ^.*x-.*$ ]]; then
 
           echo "Upload for branch $CI_COMMIT_REF_NAME"
           ftp_dir=$(cat _versions.yml | ./yq_linux_amd64 r - baseurl)
           echo "Upload dir: $ftp_dir"
+          rm -rf ./_site/yq_linux_amd64
+          rm -rf ./yq_linux_amd64
           
           ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  "$ftp_dir" ./_site/*
           echo "Last commit message: $CI_COMMIT_MESSAGE"
