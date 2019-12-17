@@ -30,3 +30,5 @@ Copryight 2019 floragunn GmbH
 * Add option for allowed_usernames - whitelist users [#PR 362](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/merge_requests/362){:target="_blank"}
 * Remove invalid cookies after a 401 Unauthorized for basic auth [#PR 357](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/merge_requests/357){:target="_blank"}
 * Consolidate check for null in array values
+* Local error message for internal users
+* Redirect after tenant switch should take base path into account
