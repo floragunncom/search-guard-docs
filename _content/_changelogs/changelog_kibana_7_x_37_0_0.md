@@ -31,5 +31,4 @@ n/a
 
 * Local error message for internal users
 * Redirect after tenant switch should take base path into account
-* allowed_usernames case sensitive
 * Handle an index with undefined mappings correctly while converting mappings into fields
