@@ -156,8 +156,6 @@ Format:
 
 <!-- {% raw %} -->
 ```
-{% raw %}
 {{data.<target name>.path.to.data}}
-{% endraw %}
 ```
 <!-- {% endraw %} -->
