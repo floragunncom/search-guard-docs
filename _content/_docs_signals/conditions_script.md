@@ -6,7 +6,7 @@ category: conditions
 order: 100
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -26,11 +26,7 @@ If used in a watch, depending on the return value of the script, execution of th
 
 If used in an action,  depending on the return value of the script, the action is either executed or skipped. A condition in one action does not affect execution of other actions.
 
-A script can be defined as an line script or as a stored script. Inline scripts are added to the condition definition directly, while stored scripts are stored in Elasticsearch and referred to by their id.
-
-## Inline scripts
-
-The following condition tests whether the total hits of a search, stored in the execution context under the name `mysearch`, is higher than zero: 
+The following condition tests whether the total hits of a search, stored in the execution context under the name `mysearch`, is higher than zero:
 
 ```
 {
@@ -47,25 +43,6 @@ The following condition tests whether the total hits of a search, stored in the 
 | source | The script to execute. Mandatory |
 | lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
 
-## Stored scripts
-
-To run a stored script, refer to it by using it's id:
-
-```
-{
-  "type": "condition.script",
-  "name": "mycondition",
-  "script_id": "mystoredscript"
-}
-```
-
-| Name | Description |
-|---|---|
-| type | condition.script, defines this conditions as script condition. Mandatory. |
-| name | name of this condition. Can be chosen freely. Mandatory. |
-| script_id | The ID of the stored script. Mandatory |
-
-**Note:** When using stored scripts, keep in mind that stored scripts are not subject to multi-tenancy or Signals permissions and may be thus changed independently of the watch. Thus, you should review whether the ability to edit scripts is adequately restricted.
 
 ## Accessing the runtime data
 
@@ -76,7 +53,7 @@ The runtime data is available via the `data` prefix.
 For example, the following watch runs a query against the serverlogs index to find entries where the statuscode is 500. The target property of the input is configured to be `http_error_500`; thus the document read by the input is put under this property name into the runtime data. The script condition accesses the data by using the  `data.http_error_500` prefix and only continues if the total hits is above 10.
 
 ```
-{ 
+{
   "trigger":{},
   "checks":[
     {
@@ -102,17 +79,18 @@ For example, the following watch runs a query against the serverlogs index to fi
 
 ## Using script conditions with actions
 
-A script condition can also be used to control the execution of an action. Each action can define it's own chain of `check`s, including conditions. 
+A script condition can also be used to control the execution of an action. Each action can define it's own chain of `check`s, including conditions.
 
-Continuing on the example above, the following snippet will send an email to the administrator if the watch fires. 
+Continuing on the example above, the following snippet will send an email to the administrator if the watch fires.
 
 A second action will send an additional email to a manager if the total number of hits is above 100. This is controlled by the script condition in the action definition:
 
+<!-- {% raw %} -->
 ```
-{ 
+{
   "trigger":{},
   "checks":[],
-  "actions":[ 
+  "actions":[
     {
          "type":"email",
          "name":"standard_admin",
@@ -139,3 +117,4 @@ A second action will send an additional email to a manager if the total number o
   ]
 }
 ```
+<!-- {% endraw %} -->
