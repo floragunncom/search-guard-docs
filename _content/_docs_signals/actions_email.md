@@ -6,7 +6,7 @@ category: actions
 order: 200
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -20,16 +20,15 @@ Use e-mail actions to send e-mail notifications from watches. You can use Mustac
 
 ## Prerequisites
 
-In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](accounts.md) of Signals. 
+In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](accounts.md) of Signals.
 
 ## Basic Functionality
 
 A basic e-mail action looks like this:
 
+<!-- {% raw %} -->
 ```json
  {
-     /* ... */ 
- 
 	"actions": [
 		{
 			"type": "email",
@@ -43,6 +42,7 @@ A basic e-mail action looks like this:
 	]
 }
 ```
+<!-- {% endraw %} -->
 
 The basic configuration attributes are:
 
@@ -62,10 +62,4 @@ The basic configuration attributes are:
 
 **subject:** Defines the subject of the mail. Mustache templates can be used to render attributes from the watch runtime data. Required.
 
-**text_body:** Defines the content of the mail. Mustache templates can be used to render attributes from the watch runtime data. Optional. 
-
-## Technical Preview Limitations
-
-* HTML mails are not supported
-* Attachements are not supported
-
+**text_body:** Defines the content of the mail. Mustache templates can be used to render attributes from the watch runtime data. Optional.

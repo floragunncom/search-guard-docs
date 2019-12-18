@@ -6,7 +6,7 @@ category: signals-rest
 order: 200
 layout: docs
 edition: beta
-description: 
+description:
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
@@ -35,7 +35,7 @@ Stores or updates a watch identified by the `{watch_id}` path parameter. By defa
 
 ## Request Body
 
-The watch needs to be specified as JSON document in the request body. 
+The watch needs to be specified as JSON document in the request body.
 
 ## Responses
 
@@ -49,14 +49,14 @@ A watch identified by the given id did not exist before. The watch was successfu
 
 ### 400 Bad Request
 
-The request was malformed. 
+The request was malformed.
 
 If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
 
 
 ### 403 Forbidden
 
-The user does not have the permission to create watches for the currently selected tenant. 
+The user does not have the permission to create watches for the currently selected tenant.
 
 
 ### 415 Unsupported Media Type
@@ -69,16 +69,17 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 
-* SGS\_SIGNALS\_ALL 
+* SGS\_SIGNALS\_ALL
 * SGS\_SIGNALS\_WATCH\_MANAGE
 
 ## Examples
 
-### Basic 
+### Basic
 
 ```
 PUT /_signals/watch/_main/bad_weather
 ```
+<!-- {% raw %} -->
 ```json
 {
   "trigger": {
@@ -139,12 +140,13 @@ PUT /_signals/watch/_main/bad_weather
         ]
 }
 ```
+<!-- {% endraw %} -->
 
 **Response**
 
 ```
 201 Created
-``` 
+```
 
 ```json
 {
@@ -159,6 +161,8 @@ PUT /_signals/watch/_main/bad_weather
 ```
 PUT /_signals/watch/_main/really_bad_weather
 ```
+
+<!-- {% raw %} -->
 ```json
 {
   "trigger": {
@@ -192,12 +196,13 @@ PUT /_signals/watch/_main/really_bad_weather
   ]
 }
 ```
+<!-- {% endraw %} -->
 
 **Response**
 
 ```
 400 Bad Request
-``` 
+```
 
 ```json
 {
@@ -237,4 +242,3 @@ PUT /_signals/watch/_main/really_bad_weather
     }
 }
 ```
-
