@@ -8,5 +8,7 @@ docs:
     - apt-get update -yqq && apt-get install -yqq ncftp wget
     - wget https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64
     - chmod +x yq_linux_amd64
-    - ./yq_linux_amd64 -V || true 
+    - ./yq_linux_amd64 -V || true
+    - echo "Merge marker sanity check"
+    - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
     - ./deploy.sh
