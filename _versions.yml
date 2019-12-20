@@ -4,7 +4,7 @@ searchguard:
   fullversion: 7.5.0-37.0.0
   nextminorversion: 7.5.0-37.1.0
   nextmajorversion: 7.5.0-38.0.0
-  islatestversion: true
+  islatestversion: false
   ispreliminaryversion: false
 
 index: true
