@@ -13,8 +13,8 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 7.2.0
-  previousversion: 7.1.1
+  currentversion: 7.5.0
+  previousversion: 7.4.2
 
 searchguard:
   esmajorversion: 7
@@ -25,6 +25,8 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-38
+    - 7x-37
     - 7x-36
     - 7x-35
     - 6x-25
@@ -37,7 +39,9 @@ searchguard:
     - v2
 
 docroots: 
-  7x-36: latest
+  7x-38: latest
+  7x-37: 7.x-35
+  7x-36: 7.x-35
   7x-35: 7.x-35
   6x-25: 6.x-25
   6x-24: 6.x-24
@@ -81,6 +85,8 @@ labels:
     changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
     signals: Signals Alerting
+    7x-38: Search Guard 7.x-38
+    7x-37: Search Guard 7.x-37
     7x-36: Search Guard 7.x-36
     7x-35: Search Guard 7.x-35
     6x-25: Search Guard 6.x-25
