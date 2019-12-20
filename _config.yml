@@ -85,6 +85,13 @@ labels:
     changelogs-tlstool: "TLS Tool Changelogs"
     resources: Resources
     signals: Signals Alerting
+    actions: Alerting Actions
+    conditions: Conditions
+    inputs: Alerting inputs
+    signals-rest: REST API
+    security: Alerting Security
+    transformations: Transformations
+    triggers: Triggers
     7x-38: Search Guard 7.x-38
     7x-37: Search Guard 7.x-37
     7x-36: Search Guard 7.x-36
@@ -266,6 +273,7 @@ eol:
 sgversions:
   #esv |sgv |kbv |available|kbn-artifact-id
   search-guard-7:
+    - 7.5.1|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.5.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.4.2|37.1.0|36.2.0|yes|search-guard-kibana-plugin
     - 7.4.1|37.1.0|36.2.0|yes|search-guard-kibana-plugin
