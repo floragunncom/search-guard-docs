@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# sanity checks
-echo "Merge marker sanity check"
-(grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
-
 rm -rf ./_site
 
 bundle install
