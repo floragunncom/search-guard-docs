@@ -6,35 +6,6 @@ docs:
     - cat /etc/debian_version || true 
     - uname -a
     - apt-get update -yqq && apt-get install -yqq ncftp wget
-    - wget https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64
-    - chmod +x yq_linux_amd64
-    - ./yq_linux_amd64 -V || true 
-    - |
-        echo "Merge marker sanity check"
-        (grep -ri "<<<<<<" * --exclude=deploy.sh --exclude=yq_linux_amd64 || grep -ri ">>>>>>" * --exclude=deploy.sh --exclude=yq_linux_amd64) && (echo "found some merge conflicts, will abort"; exit -1)
-
-        bundle install
-        bundle exec jekyll build --config _config.yml,_versions.yml
-
-        echo "pwd: $(pwd)"
-        ls -la
-
-        if [[ $CI_COMMIT_REF_NAME =~ ^.*x-.*$ ]]; then
-
-          echo "Upload for branch $CI_COMMIT_REF_NAME"
-          ftp_dir=$(cat _versions.yml | ./yq_linux_amd64 r - baseurl)
-          echo "Upload dir: $ftp_dir"
-          rm -rf ./_site/yq_linux_amd64
-          rm -rf ./yq_linux_amd64
-          
-          ncftpput -R -v -u $ftp_username -p $ftp_password docs.search-guard.com  "$ftp_dir" ./_site/*
-          echo "Last commit message: $CI_COMMIT_MESSAGE"
-          if [[ $CI_COMMIT_MESSAGE == *"noindex"* ]]; then
-            echo "Skipping Search Index"
-          else
-            echo "Rebuilding Search Index"
-            jekyll algolia push --config _config.yml,_versions.yml || true
-          fi
-        else 
-          echo "No upload for branch $CI_COMMIT_REF_NAME"
-        fi
+    - echo "Merge marker sanity check"
+    - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
+    - ./deploy.sh
