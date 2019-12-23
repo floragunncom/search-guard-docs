@@ -47,3 +47,11 @@ Marking an index immutable prevents the following actions from being executed:
 ## Using an admin certificate
 
 A configured TLS admin certificate can be used to bypass the immutable index checks.
+
+## Audit Categories
+
+Search Guard tracks attempts to immutable indices in the auditlog:
+
+| Category | Logged on REST | Logged on Transport | Description |
+|---|---|---|---|
+| COMPLIANCE_IMMUTABLE_INDEX_ATTEMPT | yes | yes | Attempt to access and immutable index in a way which is not allowed.|
