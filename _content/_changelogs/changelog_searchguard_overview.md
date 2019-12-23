@@ -12,6 +12,10 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 # Search Guard Changelogs
 
+### [Search Guard 7.x-38.0.0](../_changelogs/changelog_searchguard_7_x_38_0_0.md)
+
+Release Date: 24.12.2019
+
 ### [Search Guard 7.x-37.1.0](../_changelogs/changelog_searchguard_7_x_37_1_0.md)
 
 Release Date: 04.10.2019
