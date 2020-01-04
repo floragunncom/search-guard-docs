@@ -8,6 +8,12 @@ kramdown:
   syntax_highlighter_opts:
     disable: true
 
+sass:
+  style: compressed
+
+exclude:
+  - .idea
+
 plugins:
   - jekyll-relative-links
   - algoliasearch-jekyll
