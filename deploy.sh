@@ -15,5 +15,5 @@ if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
   echo "Skipping Search Index"
 else
   echo "Rebuilding Search Index"
-  bundle exec jekyll algolia push --config _config.yml,_versions.yml
+  bundle exec jekyll algolia push --config _config.yml,_versions.yml || true
 fi
