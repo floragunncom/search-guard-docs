@@ -8,6 +8,12 @@ kramdown:
   syntax_highlighter_opts:
     disable: true
 
+sass:
+  style: compressed
+
+exclude:
+  - .idea
+
 plugins:
   - jekyll-relative-links
   - algoliasearch-jekyll
@@ -275,16 +281,16 @@ sgversions:
   search-guard-7:
     - 7.5.1|38.0.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.5.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.4.2|37.1.0|36.2.0|yes|search-guard-kibana-plugin
-    - 7.4.1|37.1.0|36.2.0|yes|search-guard-kibana-plugin
-    - 7.4.0|37.1.0|36.2.0|yes|search-guard-kibana-plugin
-    - 7.3.2|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.3.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.3.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.2.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.2.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.1.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.1.0|37.0.0|36.1.0|yes|search-guard-kibana-plugin
-    - 7.0.1|37.0.0|36.1.0|yes|search-guard-kibana-plugin
+    - 7.4.2|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.4.1|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.4.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.3.2|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.3.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.3.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.2.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.2.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.1.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.1.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.0.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
 
 tlstoolversion: 1.7
