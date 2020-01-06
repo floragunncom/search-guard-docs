@@ -9,3 +9,6 @@ docs:
     - echo "Merge marker sanity check"
     - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
     - ./deploy.sh
+  only:
+    refs:
+      - /^.\.x-..*$/
