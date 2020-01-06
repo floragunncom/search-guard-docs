@@ -25,3 +25,6 @@ docs:
         else 
           echo "No upload for branch $CI_COMMIT_REF_NAME"
         fi
+  only:
+    refs:
+      - /^.\.x-..*$/
