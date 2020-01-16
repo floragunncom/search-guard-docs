@@ -5,6 +5,9 @@ docs:
   script: 
     - cat /etc/debian_version || true 
     - uname -a
+    - export LC_ALL="C.UTF-8"
+    - export LANG="en_US.UTF-8"
+    - export LANGUAGE="en_US.UTF-8"    
     - apt-get update -yqq && apt-get install -yqq ncftp wget
     - echo "Merge marker sanity check"
     - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
