@@ -1,0 +1,45 @@
+.page-title {
+  font-size: 5em;
+  color: #1a1a1a;
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+.page-info-simple .page-title {
+  font-weight: 300;
+  color: #333333;
+  font-size: 4.5em;
+}
+.header-back-light .page-title {
+  color: white;
+}
+.page-description {
+  color: #1a1a1a;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+.page-info-simple .page-description {
+  text-transform: none;
+  font-size: 1.5em;
+  letter-spacing: 0;
+}
+.header-back-light .page-description {
+  color: white;
+}
+.header-back-app .page-title {
+  margin-bottom: 50px;
+  font-weight: 100;
+}
+.header-back-app .page-description {
+  margin-bottom: 70px;
+  font-weight: 100;
+}
+.morphext > .animated {
+  display: inline-block;
+  color: #2288cc;
+  z-index: 4;
+  position: relative;
+}

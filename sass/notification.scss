@@ -1,0 +1,59 @@
+.notification {
+  padding: 150px 0;
+  position: relative;
+}
+.notification-icon {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.notification-close {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.notification-close:before,
+.notification-close:after {
+  width: 2px;
+  height: 30px;
+  position: absolute;
+  display: block;
+  content: '';
+  background-color: #808488;
+  top: 0;
+  left: 13px;
+}
+.notification-close:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.notification-close:after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.notification-title {
+  font-size: 2.375em;
+  text-align: center;
+}
+.notification-description {
+  font-size: 1.25em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.notification-buttons {
+  text-align: center;
+}
+.notification-buttons .button {
+  margin-right: 10px;
+}
+.notification-buttons .button:last-child {
+  margin-right: 0;
+}

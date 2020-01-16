@@ -31,6 +31,7 @@ This is the default. If the user tries to access Kibana and has no active sessio
 |---|---|
 | [Internal user database](../_docs_roles_permissions/configuration_internalusers.md) | [Basic Authentication](kibana_authentication_basicauth.md) |
 | [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md) | [Basic Authentication](kibana_authentication_basicauth.md) |
+{: .config-table}
 
 ## Single sign on authentication
 
@@ -57,6 +58,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-
 | [JSON web token](../_docs_auth_auth/auth_auth_jwt.md) | [JWT Authentication](kibana_authentication_jwt.md) 
 | [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) | [Proxy Authentication](kibana_authentication_proxy.md) |
 | [Kerberos authentication](../_docs_auth_auth/auth_auth_kerberos.md) | [Kerberos Authentication](kibana_authentication_kerberos.md) |
+{: .config-table}
 
 ## Kibana server user authentication
 

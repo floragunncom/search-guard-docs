@@ -1,0 +1,72 @@
+.page.login-page,
+.page.register-page {
+  height: 100%;
+}
+.login,
+.register {
+  position: relative;
+  display: table;
+  height: 100%;
+  width: 100%;
+  background-color: #404448;
+}
+.login-content,
+.register-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+.login-wrapper,
+.register-wrapper {
+  padding: 45px 60px;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 3px;
+  background-color: #f6f7f8;
+}
+.login-inputs,
+.register-inputs {
+  margin: 50px 0 30px 0;
+}
+.login-inputs input,
+.register-inputs input {
+  padding: 13px 20px;
+  height: 50px;
+  border-radius: 0;
+  border-bottom: 0;
+  line-height: 18px;
+}
+.login-inputs input:first-child,
+.register-inputs input:first-child {
+  border-radius: 3px 3px 0 0;
+}
+.login-inputs input:last-child,
+.register-inputs input:last-child {
+  border-radius: 0 0 3px 3px;
+  border-bottom: 1px solid #cbd3dd;
+}
+.register-inputs {
+  margin-bottom: 20px;
+}
+input.login-checkbox,
+input.register-checkbox {
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+.login-form,
+.register-form {
+  margin-bottom: 30px;
+}
+.login-helpers,
+.register-helpers {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.login-helpers .login-helper-item,
+.register-helpers .login-helper-item,
+.login-helpers .register-helper-item,
+.register-helpers .register-helper-item {
+  text-align: center;
+  font-size: 0.875em;
+  color: #808488;
+}

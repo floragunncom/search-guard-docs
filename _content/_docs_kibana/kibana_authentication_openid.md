@@ -67,7 +67,7 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 | searchguard.openid.header | HTTP header name of the JWT token. Optional. Default: 'Authorization' |
 | searchguard.openid.base\_redirect\_url | The URL where the IdP redirects to after successful authentication. Optional. If not set, the `server.host`, `server.port` and `server.basepath` from `kibana.yml` are used. |
 | searchguard.openid.logout_url | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata. |
-
+{: .config-table}
 
 ## Configuration example
 

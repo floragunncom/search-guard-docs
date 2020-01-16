@@ -33,7 +33,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_layer | The layer on which the event has been generated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_effective\_user\_is\_admin | true if the request was made wit an TLS admin certificate, false otherwise. |
-
+{: .config-table}
 
 ## REST FAILED_LOGIN attributes
 
@@ -46,7 +46,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
-
+{: .config-table}
 
 ## REST AUTHENTICATED attributes
 
@@ -59,13 +59,14 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
 | audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+{: .config-table}
 
 ## REST SSL_EXCEPTION attributes
 
 | Name | Description |
 |---|---|
 | audit\_request\_exception\_stacktrace | The stacktrace of the SSL Exception|
-
+{: .config-table}
 
 ## REST BAD_HEADERS attributes
 
@@ -75,6 +76,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
 | audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+{: .config-table}
 
 ## Transport FAILED_LOGIN attributes
 
@@ -89,6 +91,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ## Transport AUTHENTICATED attributes
 
@@ -103,6 +106,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ## Transport MISSING_PRIVILEGES attributes
 
@@ -119,6 +123,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ## Transport GRANTED_PRIVILEGES attributes
 
@@ -135,13 +140,14 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
-
+{: .config-table}
 
 ## Transport SSL_EXCEPTION attributes
 
 | Name | Description |
 |---|---|
 | audit\_request\_exception\_stacktrace | The stacktrace of the SSL Exception|
+{: .config-table}
 
 ## Transport BAD_HEADERS attributes
 
@@ -157,6 +163,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ## Transport SG\_INDEX\_ATTEMPT attributes
 
@@ -171,3 +178,4 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}

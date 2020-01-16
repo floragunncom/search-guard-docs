@@ -25,7 +25,6 @@ For example, you can grant unauthenticated users read-only access to certain ind
 To use anonymous authentication, enable it in sg_config.yml like:
 
 ```yaml
----
 _sg_meta:
   type: "config"
   config_version: 2
@@ -40,6 +39,7 @@ sg_config:
 | Name | Description |
 |---|---|
 | anonymous\_auth\_enabled | Whether to enable anonymous authentication. Boolean. Default: false|
+{: .config-table}
 
 ## User and role mapping
 

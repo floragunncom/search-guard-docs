@@ -126,6 +126,7 @@ Configuration parameter:
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. |
 | subject_key | The key in the JSON payload that stores the username. If not set, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2){:target="_blank"} registered claim is used.|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
+{: .config-table}
 
 Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
 

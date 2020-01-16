@@ -37,6 +37,7 @@ The elasticsearch configuration monitoring can be switched on an off by the foll
 | Name | Description |
 |---|---|
 | searchguard.compliance.history.external\_config\_enabled | boolean, whether to enable or disable elasticsearch configuration logging. Default: true |
+{: .config-table}
 
 ## Audit log category
 
@@ -51,6 +52,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CO
 | audit\_format\_version | Audit log message format version, current: 3|
 | audit\_utc\_timestamp | UTC timestamp when the event was generated|
 | audit\_category | Audit log category, `COMPLIANCE_EXTERNAL_CONFIG` for all events|
+{: .config-table}
 
 ### Cluster and node attributes
 
@@ -61,6 +63,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CO
 | audit\_node\_name | The name of the node where the event was generated. |
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
+{: .config-table}
 
 ### Configuration attributes
 
@@ -68,6 +71,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CO
 |---|---|
 | audit\_compliance\_file\_infos | All external files referenced in the configuration, with modification date and sha256 checksum.  |
 | audit\_request\_body | Detailed configuration information as JSON string.  |
+{: .config-table}
 
 ## File information
 
@@ -103,6 +107,7 @@ The `audit_compliance_file_infos` key contains an array that lists all files use
 | sha256 | SHA256 checksum of the file  |
 | last_modified | Last modification date of the file  |
 | key | The configuration key in elasticsearch.yml this file is referenced by.  |
+{: .config-table}
 
 ## Configuration information
 
@@ -114,6 +119,7 @@ The detailed configuration settings can be found in the `audit_request_body` fie
 | os_environment | Environment variables on node startup  |
 | java_properties | Java properties on node startup  |
 | sha256_checksum | SHA256 checksum of the combined external_configuration, os_environment and java_properties. Can be used to detect any changes to your Elasticsearch installation.  |
+{: .config-table}
 
 ### External configuration
 

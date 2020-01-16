@@ -24,7 +24,7 @@ If the Search Guard index is inititialized, you can also use the Kibana Configur
 
 ## Configuring the admin certificate
 
-You can configure all certificates that should have admin privileges in ``elasticsearch.yml`` by stating their respective DNs. If you use the [example PKI scripts](https://github.com/floragunncom/search-guard-ssl/tree/master/example-pki-scripts){:target="_blank"} to generate the certificates, you can use the _kirk_ or _spock_ client certificate:
+You can configure all certificates that should have admin privileges in ``elasticsearch.yml`` by stating their respective DNs. If you use the [example PKI scripts](https://git.floragunn.com/search-guard/search-guard-ssl/tree/master/example-pki-scripts){:target="_blank"} to generate the certificates, you can use the _kirk_ or _spock_ client certificate:
 
 ```yaml
 searchguard.authcz.admin_dn:
@@ -108,6 +108,7 @@ All PEM options:
 | -key | The location of the pem file containing the private key of the admin certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin. The key must be in PKCS#8 format.|
 | -keypass | The password of the private key of the admin certificate, if any.|
 | -cacert | The location of the pem file containing the root certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
+{: .config-table}
 
 ## Using sgadmin with Keystore and Truststore files
 
@@ -132,6 +133,7 @@ Use the following options to control the key and truststore settings:
 | -tspass | The password for the truststore.|
 | -tst | The trust store type, either JKS or PKCS12/PFX. If not specified, Search Guard tries to deduct the type from the file extension.|
 | -tsalias | The alias for the root certificate, if any.|
+{: .config-table}
 
 ## Command line options
 
@@ -142,6 +144,7 @@ sgadmin comes with command line options. Execute `./sgadmin.sh` without any opti
 | Name  | Description  |
 |---|---|
 | -ff | fail fast if something goes wrong, no retry |
+{: .config-table}
 
 ### Elasticsearch settings
 
@@ -155,6 +158,7 @@ If you run a default Elasticsearch installation, which listens on transport port
 | -icl | Ignore clustername. |
 | -sniff | Sniff cluster nodes. |
 | -arc,--accept-red-cluster | Execute sgadmin even if the cluster state is red. Default: sgadmin won't execute on red cluster state |
+{: .config-table}
 
 Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).
 
@@ -167,6 +171,7 @@ Use the following options to control certificate validation:
 | -nhnv | disable-host-name-verification, do not validate hostname. Default: false|
 | -nrhn | disable-resolve-hostname, do not resolve hostname (Only relevant if -nhnv is not set.).|
 |-noopenssl| Do not use OpenSSL even if available (default: use OpenSSL if available)|
+{: .config-table}
 
 ### Configuration files settings
 
@@ -178,6 +183,7 @@ The following switches define which configuration file(s) you want to push to Se
 | -f | Single config file (cannot be used together with -cd).  |
 | -t | File type. |
 | -rl | Reload the current configuration and flush the internal cache. |
+{: .config-table}
 
 To upload all configuration files in a directory, use:
 
@@ -213,6 +219,7 @@ Before uploading new configurations to your cluster, you can validate them:
 | Name | Description |
 |---|---|
 | -vc/--validate-configs <version> | Validate configuration files specified by the -cd or -t switch. Version must be 6 for Search Guard 6 and 7 for Search Guard 7|
+{: .config-table}
 
 ### Migrating configuration files
 
@@ -226,6 +233,7 @@ If you upgrade from Search Guard 6 to Search Guard 7, you can automatically migr
 | Name | Description |
 |---|---|
 | -migrate <folder> | Migrate configuration files in <folder> from version 6 to version 7.|
+{: .config-table}
 
 ### Backup and Restore
 
@@ -248,6 +256,7 @@ To upload the dumped files to another cluster use:
 | Name | Description |
 |---|---|
 | -backup <folder> | retrieve the current Search Guard configuration from a running cluster, and dump it to the specified <folder>|
+{: .config-table}
 
 ### Cipher settings
 
@@ -257,7 +266,7 @@ Usually you do not need to change the cipher settings. If you do, use the follow
 |---|---|
 | -ec | enabled-ciphers, comma separated list of enabled TLS ciphers.|
 | -ep | enabled-protocols, comma separated list of enabled TLS protocols.|
-
+{: .config-table}
 
 ### Rescue tools
 
@@ -265,19 +274,21 @@ Usually you do not need to change the cipher settings. If you do, use the follow
 |---|---|
 | -dci | Delete the Search Guard configuration index and exit. May be useful if the cluster state is red due to a corrupt Search Guard index. |
 | -esa | Enable shard allocation and exit. May be useful if you disabled shard allocation while performing a full cluster restart, and you need to recreate the Search Guard index. |
+{: .config-table}
 
 ### License information
 
 | Name | Description |
 |---|---|
 | -si | Displays the currently active Search Guard license |
+{: .config-table}
 
 ### Whoami
 
 | Name | Description |
 |---|---|
 | -w | Displays information about the used admin certificate |
-
+{: .config-table}
 
 ### Cache invalidation 
 
@@ -289,6 +300,7 @@ Search Guard by default caches authenticated users and their roles and permissio
 | Name | Description |
 |---|---|
 | -rl | reload the current Search Guard configuration stored in your cluster, invalidating any cached users, roles and permissions.|
+{: .config-table}
 
 ### Index and replica settings
 
@@ -301,6 +313,7 @@ The following switched control the Search Guard index settings.
 | -era | Enable replica auto-expand.|
 | -dra | Disable replica auto-expand.|
 | -us | Update the replica settings.|
+{: .config-table}
 
 The first time you run sgadmin.sh, the ```-us```, ```-era```, ```dra```, and ```-rl``` (reload configuration), flags can cause the initial setup to fail, as the searchguard index does not yet exist.
 

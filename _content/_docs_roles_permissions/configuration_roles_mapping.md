@@ -101,3 +101,4 @@ Where mode is one of:
 | ip-only | Match IP addresses only. Default. |
 | ip-hostname | Match IP addresses and hostnames |
 | ip-hostname-lookup | Match IP addresses and hostnames, and perform a reverse hostname lookup |
+{: .config-table}

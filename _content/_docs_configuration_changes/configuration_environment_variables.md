@@ -20,7 +20,7 @@ The Search Guard configuration is stored in a secured Elasticsearch index. Witho
 After uploading configuration changes with `sgadmin`, the actual configuration files that may contain sensitive information, can be discarded.
 
 There is no need to place any configuration file physically on your nodes.
-{: .note .js-note .green}
+{: .note .js-note note-info}
 
 If you want to keep the configuration files free from any sensitive data, you can use environment variable substitutions.
 
@@ -29,7 +29,7 @@ If you want to keep the configuration files free from any sensitive data, you ca
 Search Guard supports environment variable substitution for all configuration files. Before uploading the configuration to Search Guard, `sgadmin` will scan the file content and replace all environment variables with their actual values. 
 
 sgadmin replaces environment variables in-memory before uploading the configuration. The actual file contents are not changed.
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 <p align="center">
 <img src="config_environment_variables.png" style="width: 60%" class="md_image"/>

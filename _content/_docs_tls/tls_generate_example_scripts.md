@@ -49,7 +49,7 @@ Which should print a list of available `keytool` commands. If this is not the ca
 
 First download the Search Guard SSL source code onto your machine. You can either clone the repository, or download it as zip file. The repository is located here:
 
-[Search Guard SSL 6.x](https://github.com/floragunncom/search-guard-ssl/tree/es-6.0.0){:target="_blank"}
+[Search Guard SSL 6.x](https://git.floragunn.com/search-guard/search-guard-ssl/tree/master){:target="_blank"}
 
 The script to execute is `./example.sh`, located in the folder `example-pki-scripts.` You might need to `chmod` the file before executing it. 
 

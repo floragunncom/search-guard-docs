@@ -1,0 +1,38 @@
+.menu-vertical {
+  background-color: #e8eced;
+}
+
+.main-nav-level-1 {
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.main-nav-level-2 {
+  font-size: 1.1em !important;
+}
+
+.left-nav-level-1 {
+  font-size: 1.05em !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.left-nav-level-2 {
+  font-size: 1.02em !important;
+}
+
+.left-nav-level-3 {
+  font-size: 1em !important;
+}
+
+.menu ul {
+  border-style: none;
+}
+
+li.selected > a{
+  font-weight: 500 !important;
+}
