@@ -39,19 +39,25 @@ table th{position:static;float:none;display:table-cell;}
 }
 
 .config-table > thead > tr > th:nth-child(2),
-.config-table > tbody > tr > td:nth-child(2) {
+.config-table > tbody > tr > td:nth-child(2),
+.config-table > tbody > tr > td:nth-child(2) a
+{
   background: $darkBlue;
   color: $lightGrey;
 }
 
 .config-table > thead > tr > th:nth-child(3),
-.config-table > tbody > tr > td:nth-child(3) {
+.config-table > tbody > tr > td:nth-child(3),
+.config-table > tbody > tr > td:nth-child(3) a
+{
   background: $darkBlue;
   color: $lightGrey;
 }
 
 .config-table > thead > tr > th:nth-child(4),
-.config-table > tbody > tr > td:nth-child(4) {
+.config-table > tbody > tr > td:nth-child(4),
+.config-table > tbody > tr > td:nth-child(4) a
+{
   background: $darkBlue;
   color: $lightGrey;
 }
