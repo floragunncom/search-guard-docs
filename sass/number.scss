@@ -1,0 +1,30 @@
+.number-box {
+  margin-bottom: 30px;
+  padding-left: 60px;
+  position: relative;
+}
+.numbers > .row > div:last-child .number-box {
+  border: none;
+}
+.number-icon {
+  position: absolute;
+  left: -15px;
+  top: 2px;
+  font-size: 3.4375em;
+  width: 60px;
+  text-align: center;
+  color: #99a3b1;
+}
+.number-wrapper {
+  font-size: 2.1875em;
+  display: block;
+  line-height: 40px;
+  font-weight: 300;
+}
+.number-description {
+  font-size: 0.8125em;
+  display: block;
+  margin-left: 3px;
+  line-height: 1.4;
+  color: #2288cc;
+}

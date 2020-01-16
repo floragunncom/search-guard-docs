@@ -1,0 +1,130 @@
+.file-tree-title {
+  background-color: #f6f7f8;
+  margin: 0;
+  padding: 15px 20px;
+  border-top: 1px solid #cbd3dd;
+  border-left: 1px solid #cbd3dd;
+  border-right: 1px solid #cbd3dd;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  padding-right: 300px;
+  line-height: 1.4;
+}
+.file-tree-title:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.file-tree-description {
+  font-size: 0.8125em;
+  vertical-align: middle;
+  color: #808488;
+}
+.file-tree-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  padding: 0 20px;
+  line-height: 1.4;
+  text-align: right;
+  font-size: 0.875em;
+}
+.file-tree-buttons li {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  cursor: pointer;
+  padding: 15px 0;
+}
+.file-tree-buttons li:first-child {
+  margin-right: 20px;
+}
+.file-tree-buttons li i {
+  font-size: 12px;
+  margin-right: 4px;
+}
+.file-tree-list,
+.file-tree-list ul {
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0;
+}
+.file-tree-list {
+  font-size: 1em;
+  border: 1px solid #cbd3dd;
+  border-radius: 0 0 3px 3px;
+  padding: 20px 25px 25px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+.file-tree-list ul {
+  padding-left: 30px;
+}
+.file-tree-list li {
+  line-height: 1.8;
+}
+.file-tree-list li:before {
+  font: normal normal normal 14px/1 'FontAwesome';
+  margin-right: 8px;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  display: inline-block;
+  vertical-align: 0px;
+  zoom: 1;
+  *display: inline;
+  webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1, 1);
+}
+.file-tree-list li.is-folder:before {
+  width: 16px;
+  content: "\f114";
+  color: #2288cc;
+}
+.file-tree-list li.is-folder.items-expanded:before {
+  width: 16px;
+  content: "\f115";
+  color: #2288cc;
+}
+.file-tree-list li.is-file:before {
+  width: 16px;
+  content: "\f016";
+  color: #3f8c81;
+  font-size: 15px;
+  text-indent: 1px;
+}
+.file-tree-list li.contains-items {
+  cursor: pointer;
+}
+.file-tree-list li.items-expanded {
+  cursor: default;
+}
+.file-tree-text {
+  list-style-type: none;
+  padding: 25px 30px;
+  margin: 0 0 30px 0;
+  background-color: #f6f7f8;
+  border-radius: 3px;
+  border: 1px solid #cbd3dd;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monos;
+  overflow: auto;
+  word-spacing: normal;
+  word-break: normal;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.file-tree-text ul {
+  list-style-type: none;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+}
+.file-tree-text-comment {
+  color: #808488;
+}

@@ -80,7 +80,7 @@ client:
 | use\_ssl | If set to True, curator will connect with HTTPS instead of HTTP |
 | certificate | Absolute path to the root CA |
 | ssl\_no\_validate | If set to True curator will not validate the certificate it receives from Elasticsearch. Enable this if you are using self-signed certificates. |
-
+{: .config-table}
 
 Setting ssl_no_validate to True will likely result in a warning message that your SSL certificates are not trusted. This is expected behavior.
 {: .note .js-note .note-warning}
@@ -100,7 +100,7 @@ client:
 ```
 
 You can also set the credentials via the command line: `curator_cli --http_auth 'user:pass' ...`
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 ### Full example
 
@@ -137,6 +137,7 @@ client:
 |---|---|
 | client\_cert | Absolute path to the client TLS certificate that is sent with each request. |
 | client_key | Absolute path to the private key of the client certificate. |
+{: .config-table}
 
 Curator only supports unencrypted private keys.
 {: .note .js-note .note-warning}

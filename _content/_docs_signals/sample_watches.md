@@ -18,7 +18,7 @@ description:
 
 To start quickly with Signals, we have prepared sample watches that are based on the [Kibana sample data](https://www.elastic.co/guide/en/kibana/current/add-sample-data.html).
 
-All sample watches can be found on GitHub. You can install them either manually via the [REST API](rest_api.md). Or, use the Signals Kibana plugin to install them.
+All sample watches can be found on Gitlab. You can install them either manually via the [REST API](rest_api.md). Or, use the Signals Kibana plugin to install them.
 
 ## Average ticket price
 

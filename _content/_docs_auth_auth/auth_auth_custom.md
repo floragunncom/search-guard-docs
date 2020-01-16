@@ -47,19 +47,19 @@ Where the `${searchguard.version}` and `${elasticsearch.version}` are the Search
 
 A custom HTTPAuthenticator must extend the interface `com.floragunn.searchguard.auth.HTTPAuthenticator`.
 
-The methods to implement are [fully documented in JavaDoc](https://github.com/floragunncom/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/HTTPAuthenticator.java).
+The methods to implement are [fully documented in JavaDoc](https://git.floragunn.com/search-guard/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/HTTPAuthenticator.java).
 
 ## Implementing a custom AuthenticationBackend
 
 A custom AuthenticationBackend must extend the interface `com.floragunn.searchguard.auth.AuthenticationBackend`.
 
-The methods to implement are [fully documented in JavaDoc](https://github.com/floragunncom/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthenticationBackend.java).
+The methods to implement are [fully documented in JavaDoc](https://git.floragunn.com/search-guard/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthenticationBackend.java).
 
 ## Implementing a custom AuthorisationBackend
 
 A custom AuthorisationBackend must extend the interface `com.floragunn.searchguard.auth.AuthorizationBackend`.
 
-The methods to implement are [fully documented in JavaDoc](https://github.com/floragunncom/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthorizationBackend.java).
+The methods to implement are [fully documented in JavaDoc](https://git.floragunn.com/search-guard/search-guard/blob/master/src/main/java/com/floragunn/searchguard/auth/AuthorizationBackend.java).
 
 ## Configuring custom implementations
 

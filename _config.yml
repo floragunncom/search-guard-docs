@@ -10,9 +10,12 @@ kramdown:
 
 sass:
   style: compressed
+  sass_dir: ./sass
+
 
 exclude:
   - .idea
+  - sass
 
 plugins:
   - jekyll-relative-links

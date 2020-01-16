@@ -81,6 +81,7 @@ writeback_index: elastalert_status
 |es_username| String, the username that ElastAlert uses when connecting to Elasticsearch |
 |es_password| String, the password that ElastAlert uses when connecting to Elasticsearch |
 |writeback_index| String, the name of the index in which ElastAlert will store data |
+{: .config-table}
 
 If you're working with self-signed certificates, we recommend to provide ElastAlert with the certificate chain containing the root certificate and all intermediate certificates. You can extract this certificate chain from a `truststore.jks` by using the `keytool` command:
 

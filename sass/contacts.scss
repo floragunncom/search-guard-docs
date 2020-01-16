@@ -1,0 +1,106 @@
+.contacts {
+  margin-bottom: 30px;
+}
+.contacts-inputs {
+  padding: 0 0 15px 0;
+  margin: 0;
+  list-style: none;
+}
+.contacts-item {
+  margin-bottom: 30px;
+}
+.contacts-title {
+  font-size: 2em;
+  margin-bottom: 40px;
+  color: #2288cc;
+}
+.contacts-label {
+  font-size: 0.875em;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #808488;
+  margin-bottom: 15px;
+}
+.contacts-radio,
+.contacts-checkbox {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 300;
+  padding-left: 22px;
+}
+.contacts-input {
+  font-size: 20px;
+  padding-bottom: 10px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  box-shadow: none;
+  padding-left: 0;
+  padding-top: 0;
+  line-height: 1;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+.contacts-input:focus {
+  border-color: #44bb55;
+}
+.contacts-input:-webkit-autofill,
+.contacts-input:-webkit-autofill:hover,
+.contacts-input:-webkit-autofill:focus,
+.contacts-input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+textarea.contacts-input {
+  height: 142px;
+}
+.contacts-success {
+  display: none;
+  position: fixed;
+  background-color: white;
+  font-size: 1.25em;
+  font-weight: 300;
+  border: 1px solid #44bb55;
+  padding: 30px 30px;
+  left: 50%;
+  top: 50%;
+  z-index: 99;
+  border-radius: 3px;
+  line-height: 1.6;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  padding-left: 100px;
+}
+.contacts-success i {
+  display: block;
+  font-size: 45px;
+  color: #44bb55;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  margin-top: -22px;
+}
+.contacts-info {
+  padding: 60px;
+  background-color: #f6f7f8;
+}
+.contacts-info-title {
+  text-transform: uppercase;
+  font-size: 0.9375em;
+  color: #808488;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.contacts-info-description {
+  font-size: 0.8125em;
+  color: #99a3b1;
+  margin: 0 0 5px 0;
+}
+.contacts-info-data {
+  margin-bottom: 20px;
+  font-size: 0.8125em;
+}

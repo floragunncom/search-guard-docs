@@ -74,7 +74,7 @@ _sg_meta:
 | dls | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set. |
 | fls | The [fields that should be exluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
 | tenant_permissions | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana. |
-
+{: .config-table}
 
 ## Cluster-level permissions
 
@@ -295,3 +295,4 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_XP\_MONITORING | Role for X-Pack Monitoring. Users who wish to use X-Pack Monitoring need this role in addition to the sg\_kibana\_user role |
 | SGS\_XP\_ALERTING | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
 | SGS\_XP\_MACHINE\_LEARNING | Role for X-Pack Machine Learning. Users who wish to use X-Pack Machine Learning need this role in addition to the sg\_kibana role |
+{: .config-table}

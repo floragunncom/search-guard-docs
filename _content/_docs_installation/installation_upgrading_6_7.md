@@ -146,6 +146,7 @@ We encourage you to switch from the demo roles to the new built-in roles. Usuall
 | SGS\_XP\_MONITORING | sg\_xp\_monitoring |
 | SGS\_XP\_ALERTING | sg\_xp\_alerting|
 | SGS\_XP\_MACHINE\_LEARNING | sg\_xp\_machine\_learning |
+{: .config-table}
 
 ## Migrating to the new built-in action groups
 
@@ -154,6 +155,7 @@ We encourage you to switch from the demo roles to the new built-in roles. Usuall
 | Static action group name (SG 7) | Demo action group name (SG 6) |
 |---|---|
 | SGS_UNLIMITED | UNLIMITED|
+{: .config-table}
 
 ### Index-level action groups
 
@@ -172,6 +174,7 @@ We encourage you to switch from the demo roles to the new built-in roles. Usuall
 | SGS_INDICES_MONITOR | INDICES_MONITOR |
 | SGS_MANAGE | MANAGE | 
 | SGS_INDICES_MANAGE_ILM | INDICES_MANAGE_ILM | 
+{: .config-table}
 
 ### Cluster-level action groups
 
@@ -186,4 +189,4 @@ We encourage you to switch from the demo roles to the new built-in roles. Usuall
 | SGS_CLUSTER_READ_ILM | CLUSTER_READ_ILM |
 | SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | CLUSTER_MANAGE_INDEX_TEMPLATES |
 | SGS_CLUSTER_MANAGE_PIPELINES | CLUSTER_MANAGE_PIPELINES |
-
+{: .config-table}

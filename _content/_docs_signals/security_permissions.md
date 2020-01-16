@@ -28,6 +28,7 @@ Access control to the Signals API is governed by Search Guard roles. Signals shi
 | SGS\_SIGNALS\_WATCH\_EXECUTE | Grants permissions to manually execute watches using the REST API. |
 | SGS\_SIGNALS\_WATCH\_ACTIVATE | Grants permissions to activate and deactivate watches. |
 | SGS\_SIGNALS\_WATCH\_ACKNOWLEDGE | Grants permissions to acknowledge watches. |
+{: .config-table}
 
 ### Applying Watch permissions to roles
 
@@ -79,6 +80,7 @@ Accounts are managed globally, so permissions are assigned to Search Guard roles
 | SGS\_SIGNALS\_ACCOUNT\_MANAGE | Grants access to all Account APIs. Allows reading, searching, creating, updating and deleting accounts.|
 | SGS\_SIGNALS\_ALL | Equivalent to SGS\_SIGNALS\_ACCOUNT\_MANAGE|
 | SGS\_SIGNALS\_ACCOUNT\_READ | Grants read-only access to the Account APIs.|
+{: .config-table}
 
 ### Applying Account permissions to roles
 

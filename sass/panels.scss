@@ -1,0 +1,26 @@
+#content.panels {
+  padding: 100px 0;
+  background-color: #f6f7f8;
+}
+.panel {
+  background-color: white;
+  padding: 50px;
+  box-shadow: 0 0 6px rgba(153, 153, 153, 0.29);
+  margin-bottom: 50px;
+}
+.panel img {
+  max-width: 100%;
+}
+.panel:last-child {
+  margin-bottom: 0;
+}
+.panel-image {
+  width: 80%;
+}
+.panel-header {
+  font-size: 1.875em;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: 300;
+  margin-bottom: 30px;
+}

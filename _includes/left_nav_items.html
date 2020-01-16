@@ -1,6 +1,6 @@
 {% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
 <li>
-		<a href="#" 
+		<a href="#"
 			{% if include.category == page.category %} class="selected left-nav-level-1" 
 			{% else %} class="left-nav-level-1" 
 			{% endif %}>

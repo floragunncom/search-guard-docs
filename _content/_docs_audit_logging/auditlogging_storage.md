@@ -92,7 +92,7 @@ The parameters depend on what authentication type you configured on the REST lay
 | searchguard.audit.config.pemkey_filepath | The path to the private key of the TLS certificate to send to the external Elasticsearch cluster, **relative to the `config/` directory**.|
 | searchguard.audit.config.pemkey_content | Same as `searchguard.audit.config.pemkey_filepath`, but you can configure the base 64 encoded certificate content directly.|
 | searchguard.audit.config.pemkey_password | The password of the private key|
-
+{: .config-table}
 
 ### Basic auth settings
 
@@ -120,6 +120,7 @@ Ypu can use the following keys to configure the storage type `webhook`:
 | searchguard.audit.config.webhook.ssl.pemtrustedcas_filepath | The path to the trusted certificate against which the webhook's TLS certificate is validated. |
 | searchguard.audit.config.webhook.ssl.pemtrustedcas_content | Same as `searchguard.audit.config.webhook.ssl.pemtrustedcas_content`, but you can configure the base 64 encoded certificate content directly. |
 | searchguard.audit.config.webhook.format | The format in which the audit log message is logged, can be one of URL\_PARAMETER\_GET, URL\_PARAMETER\_POST, TEXT, JSON, SLACK |
+{: .config-table}
 
 Formats:
 

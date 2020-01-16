@@ -1,0 +1,30 @@
+.faq-table-of-contents {
+  border-radius: 3px;
+  margin-bottom: 30px;
+  border: 1px solid $grey;
+  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  background-color: $grey;
+  position: relative;
+  font-size: 1.1em;
+}
+
+.faq-table-of-contents-title{
+  margin-bottom: 5px;
+  font-weight: 400;
+  color: $navyBlueActive;
+  font-size: 1.2em;
+}
+
+.faq-table-of-contents a {
+  color: $navyBlueActive;
+  text-decoration: none;
+}
+
+#markdown-toc {
+  list-style-type: none;
+  margin-bottom: 5px;
+}

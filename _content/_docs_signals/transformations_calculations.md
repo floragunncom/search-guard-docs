@@ -49,6 +49,7 @@ A calculation painless script can be defined as inline script within the calcula
 | type | calc, defines this script as calculation. Mandatory. |
 | name | name of this calculation. Can be chosen freely. Mandatory. |
 | source | The painless script to execute. Mandatory |
+{: .config-table}
 
 ## Accessing the execution context data
 

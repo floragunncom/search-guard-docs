@@ -39,6 +39,7 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | SSL_EXCEPTION | yes | yes | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.|
 | SG\_INDEX\_ATTEMPT | no | yes | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate.|
 | BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.|
+{: .config-table}
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 

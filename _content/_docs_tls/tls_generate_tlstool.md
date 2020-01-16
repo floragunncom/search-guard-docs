@@ -60,6 +60,7 @@ After unpacking the archive, you will find the Linux/OSX or Windows script in:
 | -o,--overwrite  | Overwrite existing node-, client and admin certificates if they are already present. default: false |
 | -ca,--create-ca  | Create new Root and Intermediate CAs |
 | -crt,--create-cert  | Create certificates using an existing or newly created local certificate authority |
+{: .config-table}
 
 ## Example
 
@@ -103,6 +104,7 @@ Options:
 | keysize | The size of the private key. Default: 2048 |
 | pkPassword | Password of the private key. One of: "none", "auto" or a self chosen password. Default: auto |
 | file | File name of the certificate, optional. Default: "root-ca" |
+{: .config-table}
 
 The pkPassword can be one of:
 
@@ -210,7 +212,7 @@ Options:
 | signatureAlgorithm | Signature algorithm (for RSA default is SHA256withRSA, for EC its SHA256withECDSA) |
 | useEllipticCurves | If set to true use elliptic curves instead of RSA. Default is false  (since 1.7)|
 | ellipticCurve | The curve to be used. Default is: NIST P-384 (since 1.7)|
-
+{: .config-table}
 
 ### Node certificates
 
@@ -243,7 +245,7 @@ Options:
 | dn | The Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](../_troubleshooting/tls_troubleshooting.md#checking-for-special-characters-in-dns){:target="_blank"}. Mandatory |
 | dns | The hostname(s) this certificate is valid for. Should match the `hostname` of the node. Optional, but recommended.  |
 | ip | The IP(s) this certificate is valid for. Optional. Prefer hostnames if possible.  |
-
+{: .config-table}
 
 <div class="file-tree">
 	<div class="file-tree-title"> Generated files
@@ -298,6 +300,7 @@ Options:
 | name | Name of the certificate, will become part of the file name |
 | dn | The complete Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](../_troubleshooting/tls_troubleshooting.md#checking-for-special-characters-in-dns){:target="_blank"} |
 | admin  | If set to true, this certificate will be marked as admin certificate in the generated configuration snippet.  |
+{: .config-table}
 
 Note that you need to mark at least one client certificate as admin certificate.
 
@@ -365,6 +368,7 @@ The TLS diagnose tool can be used to verify your certificates and your certifica
 | -crt,--certificates | Path to PEM files containing certificates to be checked |
 | -es,--es-config | Path to the ElasticSearch config file containing the SearchGuard TLS configuration |
 | -v,--verbose | Enable detailed output|
+{: .config-table}
 
 ### Example: Checking PEM certificates directly
 

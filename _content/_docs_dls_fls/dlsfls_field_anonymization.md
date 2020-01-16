@@ -36,6 +36,7 @@ searchguard.compliance.salt: abc123
 | Name | Description |
 |---|---|
 | searchguard.compliance.salt | Salt to use when generating the hash value. Must be at least 32 characters, only ASCII is allowed. Optional.|
+{: .config-table}
 
 While setting a salt is optional, it is highly recommended to do so. 
 

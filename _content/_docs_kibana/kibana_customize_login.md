@@ -32,3 +32,4 @@ Use the following setting in kibana.yml to customize one or more elements:
 | searchguard.basicauth.login.title | String, title of the login page. Can contain HTML tags|
 | searchguard.basicauth.login.subtitle | String, subtitle of the login page. . Can contain HTML tags|
 | searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
+{: .config-table}

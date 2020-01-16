@@ -1,0 +1,59 @@
+.tabs {
+  margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.tabs .content {
+  border-radius: 3px;
+  padding: 30px;
+  border: 1px solid #cbd3dd;
+}
+.tabs .content p:last-child {
+  margin: 0;
+}
+.tabs .steps {
+  margin: 0;
+}
+.tabs .steps ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.tabs .steps ul > li {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  background-color: #f6f7f8;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin-right: 10px;
+  margin-bottom: -1px;
+  border-radius: 3px;
+}
+.tabs .steps ul > li i {
+  margin-left: 2px;
+  margin-right: 8px;
+}
+.tabs .steps ul > li.current {
+  background-color: white;
+  border-bottom: 1px solid white;
+  outline: none;
+}
+.tabs .steps ul > li.current a,
+.tabs .steps ul > li.current a:hover {
+  outline: none;
+}
+.tabs .steps ul > li a {
+  font-size: 0.875em;
+  color: #333333;
+  padding: 10px 15px;
+  display: block;
+}
+.tabs .steps ul > li a:hover {
+  color: #333333;
+  text-decoration: none;
+}
+.tab-title {
+  display: none;
+}

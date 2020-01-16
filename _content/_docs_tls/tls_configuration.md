@@ -22,7 +22,7 @@ Copyright 2019 floragunn GmbH
 
 TLS is configured in the `config/elasticsearch.yml` file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
 
-You can find an example configuration template with all options on [GitHub](https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
+You can find an example configuration template with all options on [GitLab](https://git.floragunn.com/search-guard/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
 {: .note .js-note}
 
 ## Using X.509 PEM certificates and PKCS #8 keys
@@ -37,6 +37,7 @@ Use the following keys to configure the location of your PEM certificates and pr
 | searchguard.ssl.transport.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
 | searchguard.ssl.transport.pemcert_filepath | Path to the X.509 node certificate chain (PEM format), which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.pemtrustedcas_filepath | Path to the root CA(s) (PEM format), which must be under the config/ directory, specified using a relative path (mandatory)|
+{: .config-table}
 
 ### REST layer TLS
 
@@ -46,6 +47,7 @@ Use the following keys to configure the location of your PEM certificates and pr
 | searchguard.ssl.http.pemkey_password |  Key password. Omit this setting if the key has no password. (optional)|
 | searchguard.ssl.http.pemcert_filepath | Path to the X.509 node certificate chain (PEM format), which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.pemtrustedcas_filepath | Path to the root CA(s) (PEM format), which must be under the config/ directory, specified using a relative path (mandatory) |
+{: .config-table}
 
 ## Using Keystore and Truststore files
 As an alternative to certificates and private keys in PEM format, you can also use keystore and truststore files in JKS or PKCS12/PFX format. The following settings configure the location and password of your keystore and truststore files. You can use different keystore and truststore files for the REST and the transport layer if required.
@@ -63,6 +65,7 @@ As an alternative to certificates and private keys in PEM format, you can also u
 | searchguard.ssl.transport.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.transport.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.transport.truststore_password | Truststore password (default: changeit) |
+{: .config-table}
 
 ### REST layer TLS
 
@@ -78,8 +81,7 @@ As an alternative to certificates and private keys in PEM format, you can also u
 | searchguard.ssl.http.truststore_filepath | Path to the truststore file, which must be under the config/ directory, specified using a relative path (mandatory) |
 | searchguard.ssl.http.truststore\_alias | Alias name (optional, default: all certificates) |
 | searchguard.ssl.http.truststore_password | Truststore password (default: changeit) |
-
-
+{: .config-table}
 
 ## Configuring Node certificates
 
@@ -117,6 +119,7 @@ If OpenSSL is enabled, but for one reason or another the installation does not w
 |---|---|
 | searchguard.ssl.transport.enable\_openssl\_if\_available | Enable OpenSSL on the transport layer if avaliable. (Optional, default: true) |
 | searchguard.ssl.http.enable\_openssl\_if\_available | Enable OpenSSL on the REST layer if available. (Optional, default: true) |
+{: .config-table}
 
 See the [OpenSSL](tls_openssl.md) chapter for more information on how to install all required components.
 
@@ -132,6 +135,7 @@ In addition, when **resolve hostnames** is enabled, Search Guard resolves the (v
 |---|---|
 | searchguard.ssl.transport.enforce\_hostname\_verification | Whether or not to verify hostnames on the transport layer. (Optional, default: true) |
 | searchguard.ssl.transport.resolve\_hostname | Whether or not to resolve hostnames against DNS on the transport layer. (Optional, default: true, only works if hostname verification is enabled.) |
+{: .config-table}
 
 ## Advanced: Client authentication
 
@@ -154,6 +158,7 @@ You can configure the client authentication mode by using the following key:
 | Name | Description |
 |---|---|
 | searchguard.ssl.http.clientauth_mode | The TLS client authentication mode to use. Can be one of `NONE`, `OPTIONAL` or `REQUIRE`. (Optional, default: OPTIONAL) |
+{: .config-table}
 
 ## Expert: Enabled ciphers and protocols
 
@@ -167,6 +172,7 @@ If this is not set, the ciphers and TLS versions are negotiated between the brow
 | searchguard.ssl.http.enabled_protocols | Array, enabled TLS protocols for the REST layer. Only Java format is supported. |
 | searchguard.ssl.transport.enabled_ciphers | Array, enabled TLS cipher suites for the transport layer. Only Java format is supported. |
 | searchguard.ssl.transport.enabled_protocols | Array, enabled TLS protocols for the transport layer. Only Java format is supported. |
+{: .config-table}
 
 Example:
 
@@ -193,10 +199,10 @@ searchguard.ssl.http.enabled_protocols:
 
 ## Expert: Disable client initiated renegotiation for Java 8
 
-Set `-Djdk.tls.rejectClientInitiatedRenegotiation=true` to disable secure client initiated renegotiation (which is enabled by default). This can be set via `ES_JAVA_OPTS` in config/jvm.options. See also [#362](https://github.com/floragunncom/search-guard/issues/362) for more details.
+Set `-Djdk.tls.rejectClientInitiatedRenegotiation=true` to disable secure client initiated renegotiation (which is enabled by default). This can be set via `ES_JAVA_OPTS` in config/jvm.options.
 
 ## Configuration example
 
 For an up-to-date, complete configuration example with all features, please refer to the configuration template in the Search Guard SSL repository:
 
-[Search Guard SSL configuration template](https://github.com/floragunncom/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
+[Search Guard SSL configuration template](https://git.floragunn.com/search-guard/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}

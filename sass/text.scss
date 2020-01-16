@@ -1,0 +1,226 @@
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  line-height: 100%;
+}
+h1 {
+  font-size: 3em;
+  margin: 0 0 .5em 0;
+}
+h2 {
+  font-size: 2em;
+  margin: 0 0 .5em 0;
+}
+h3 {
+  font-size: 1.5em;
+  margin: 0 0 .5em 0;
+}
+h4 {
+  font-size: 1.17em;
+  margin: 0 0 .5em 0;
+}
+h5 {
+  font-size: 1.12em;
+  margin: 0 0 .5em 0;
+}
+h6 {
+  font-size: .83em;
+  margin: 0 0 .5em 0;
+}
+/* ==========================================================================
+   Paragraph
+   ========================================================================== */
+p {
+  font-size: 1em;
+  margin: 0 0 1em 0;
+  font-weight: 300;
+  line-height: 1.8;
+}
+/* ==========================================================================
+   Block quote
+   ========================================================================== */
+blockquote {
+  margin: 0 0 1em 0;
+  padding: 0 0 0 30px;
+  color: #808488;
+  font-style: italic;
+  border-left: 5px solid #cbd3dd;
+}
+/* ==========================================================================
+   Link
+   ========================================================================== */
+a {
+  color: #2288cc;
+  text-decoration: none;
+  font-size: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+/* ==========================================================================
+   Mark inside text
+   ========================================================================== */
+.mark {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+.mark.bold {
+  font-weight: 400;
+}
+.mark.bolder {
+  font-weight: 700;
+}
+.mark.italic {
+  font-style: italic;
+}
+.mark.underline {
+  text-decoration: underline;
+}
+.mark.line-through {
+  text-decoration: line-through;
+}
+.mark.sup {
+  vertical-align: super;
+  font-size: 0.8em;
+}
+.mark.sub {
+  vertical-align: sub;
+  font-size: 0.8em;
+}
+.mark.small {
+  font-size: 0.8em;
+}
+.mark.help {
+  border-bottom: 1px dotted #808488;
+  cursor: help;
+}
+.mark.code {
+  font-family: monospace;
+}
+.mark.fill {
+  padding: .3em .6em;
+  border-radius: 4px;
+  vertical-align: baseline;
+  display: inline;
+  font-size: 80%;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+}
+.mark.fill i {
+  font-size: 70%;
+  vertical-align: middle;
+  padding: 0 4px;
+}
+.mark.fill.blue {
+  background-color: #2288cc;
+}
+.mark.fill.blue-light {
+  background-color: #48cacc;
+}
+.mark.fill.purple {
+  background-color: #8d3deb;
+}
+.mark.fill.green {
+  background-color: #44bb55;
+}
+.mark.fill.orange {
+  background-color: #ff530d;
+}
+.mark.fill.red {
+  background-color: #ff3625;
+}
+.mark.fill.grey {
+  background-color: #dae0e7;
+  color: #333333;
+}
+/* ==========================================================================
+   Text colors
+   ========================================================================== */
+a.color.blue,
+p.color.blue,
+h1.color.blue,
+h2.color.blue,
+h3.color.blue,
+h4.color.blue,
+h5.color.blue,
+h6.color.blue,
+span.color.blue {
+  color: #2288cc;
+}
+a.color.blue-light,
+p.color.blue-light,
+h1.color.blue-light,
+h2.color.blue-light,
+h3.color.blue-light,
+h4.color.blue-light,
+h5.color.blue-light,
+h6.color.blue-light,
+span.color.blue-light {
+  color: #48cacc;
+}
+a.color.purple,
+p.color.purple,
+h1.color.purple,
+h2.color.purple,
+h3.color.purple,
+h4.color.purple,
+h5.color.purple,
+h6.color.purple,
+span.color.purple {
+  color: #8d3deb;
+}
+a.color.green,
+p.color.green,
+h1.color.green,
+h2.color.green,
+h3.color.green,
+h4.color.green,
+h5.color.green,
+h6.color.green,
+span.color.green {
+  color: #44bb55;
+}
+a.color.orange,
+p.color.orange,
+h1.color.orange,
+h2.color.orange,
+h3.color.orange,
+h4.color.orange,
+h5.color.orange,
+h6.color.orange,
+span.color.orange {
+  color: #ff530d;
+}
+a.color.red,
+p.color.red,
+h1.color.red,
+h2.color.red,
+h3.color.red,
+h4.color.red,
+h5.color.red,
+h6.color.red,
+span.color.red {
+  color: #ff3625;
+}
+a.color.grey,
+p.color.grey,
+h1.color.grey,
+h2.color.grey,
+h3.color.grey,
+h4.color.grey,
+h5.color.grey,
+h6.color.grey,
+span.color.grey {
+  color: #99a3b1;
+}

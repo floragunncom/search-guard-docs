@@ -155,4 +155,4 @@ Possible vales for `type` are:
 
 ## Examples
 
-The [sg_config.yml](https://github.com/floragunncom/search-guard/blob/master/sgconfig/sg_config.yml){:target="_blank"} that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.
+The [sg_config.yml](https://git.floragunn.com/search-guard/search-guard/blob/master/sgconfig/sg_config.yml){:target="_blank"} that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.

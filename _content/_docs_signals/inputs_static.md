@@ -42,6 +42,7 @@ Example:
 | type | static, defines this input as static input type|
 | target | the name under which the data is available in later execution steps. |
 | value | An object defining the constants. |
+{: .config-table}
 
 ## Accessing static input data in the execution chain
 
