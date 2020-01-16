@@ -15,6 +15,7 @@ sass:
 
 exclude:
   - .idea
+  - sass
 
 plugins:
   - jekyll-relative-links
