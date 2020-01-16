@@ -63,6 +63,7 @@ A typical e-mail account looks like this:
 | session_timeout | Sets the timeout for connecting to and communicating with the SMTP server. Optional; time duration in seconds. |
 | proxy\_host, proxy\_port, proxy\_user, proxy\_password | Allows the specification of a SOCKS proxy to connect to the SMTP server. Optional. |
 | debug | If true, protocol data is logged to the Elasticsearch log when mails are sent. |
+{: .config-table}
 
 ### Slack Accounts
 

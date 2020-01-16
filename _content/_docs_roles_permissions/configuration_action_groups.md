@@ -22,7 +22,7 @@ Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_chan
 An action group is simply a collection of permissions with a telling name. Action groups are defined in the file `sg_action_groups.yml` and can be referred to in `sg_roles.yml`. Action groups can be nested. 
 
 Using action groups is the preferred way of assigning permissions to a role.
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 The file structure is very simple:
 
@@ -67,6 +67,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | Name | Description |
 |---|---|
 | SGS_UNLIMITED | Grants complete access, can be used on index- and cluster-level. Equates to `"*"`.|
+{: .config-table}
 
 ### Index-level action groups
 
@@ -85,7 +86,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_INDICES_MONITOR | Grants permission to execute all actions regarding index monitoring, e.g. recovery, segments info, index stats & status |
 | SGS_MANAGE | Grants all monitor and index administration permissions | 
 | SGS_INDICES_MANAGE_ILM | Grants permission to use the index lifecycle management APIs for this index | 
-
+{: .config-table}
 
 ### Cluster-level action groups
 
@@ -100,7 +101,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_CLUSTER_READ_ILM | Grants read-only permissions to use the index lifecycle management APIs. |
 | SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | Grants permission to manage index templates. |
 | SGS_CLUSTER_MANAGE_PIPELINES | Grants permissions to manage pipelines. |
-
+{: .config-table}
 
 ### Multi- and bulk requests
 

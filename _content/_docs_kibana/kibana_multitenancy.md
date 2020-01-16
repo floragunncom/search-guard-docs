@@ -71,6 +71,7 @@ The following configuration keys are available:
 | searchguard.dynamic.kibana.server_username |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
 | searchguard.dynamic.kibana.index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
 | searchguard.dynamic.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Should be set to true if you use Kibana. Default: false.  |
+{: .config-table}
 
 ### Defining tenants
 
@@ -113,7 +114,7 @@ sg_human_resources:
 In this example, a user that has the role `sg_human_resources` has access to the tenant human_resources with read/write access, and read-only access to the tenant `admin_tenant`.
 
 At the moment the only allowed values for `allowed_actions` are `SGS_KIBANA_ALL_WRITE` and `SGS_KIBANA_ALL_READ`. The option to assign finer-grained permissions will follow soon.
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 
 ### Kibana: Plugin Configuration
@@ -158,6 +159,7 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 |---|---|
 | searchguard.multitenancy.tenants.enable_global  |  boolean, enable or disable the global tenant. Default: true.|
 | searchguard.multitenancy.tenants.enable_private  |  boolean, enable or disable the private tenant. Default: true.|
+{: .config-table}
 
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, login will not be possible.**
 

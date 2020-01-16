@@ -30,6 +30,7 @@ Search Guard ships with the following demo users:
 | logstash | logstash | Logstash and Beats user, has `SGS_CRUD` and `SGS_CREATE_INDEX` permissions on all logstash and beats indices |
 | readall | readall | Has read access to all indices |
 | snapshotrestore | snapshotrestore | Has permissions to perform snapshot and restore operations |
+{: .config-table}
 
 **Note:** By default, all users are mapped to the `SGS_OWN_INDEX` role. You can remove this mapping by deleting the following lines from `sg_roles_mapping.yml`:
 

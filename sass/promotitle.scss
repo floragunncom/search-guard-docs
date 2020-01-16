@@ -1,0 +1,46 @@
+.promo-title-wrapper {
+  margin-bottom: 70px;
+  padding-top: 140px;
+}
+.give-it-try .promo-title-wrapper {
+  margin-bottom: 50px;
+}
+.promo-title-less-space {
+  padding-top: 100px;
+}
+.promo-title-no-icon {
+  padding-top: 80px;
+}
+.promo-title-no-icon .promo-title:before {
+  display: none;
+}
+.promo-title {
+  text-align: center;
+  font-size: 3.25em;
+  font-weight: 100;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  position: relative;
+}
+.promo-title:before {
+  position: absolute;
+  content: attr(data-icon);
+  display: block;
+  font-family: 'Pe-icon-7-stroke';
+  font-size: 29px;
+  opacity: 0.3;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  top: -60px;
+  left: 50%;
+  margin-left: -20px;
+  speak: none;
+}
+.promo-description {
+  text-align: center;
+  font-size: 1.25em;
+  color: #808488;
+  max-width: 80%;
+  margin: 0 auto;
+}

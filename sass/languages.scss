@@ -1,0 +1,87 @@
+.languages {
+  font-weight: 300;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  position: relative;
+  margin-left: 20px;
+}
+.language-active {
+  line-height: 40px;
+  display: block;
+  cursor: pointer;
+  font-size: 15px;
+}
+.language-active .fa {
+  font-size: 12px;
+  margin-left: 3px;
+  top: -1px;
+  position: relative;
+  color: #99a3b1;
+}
+.languages-light {
+  color: white;
+}
+.languages-light .fa {
+  color: #cbd3dd;
+}
+.languages-list {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  position: absolute;
+  font-size: 14px;
+  top: 47px;
+  left: 50%;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.header.header-fixed .languages-list {
+  top: 60px;
+}
+.languages-list:after {
+  content: '\f0d8';
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  font-family: 'FontAwesome';
+  top: -14px;
+  left: 50%;
+  margin-left: -4px;
+  color: white;
+  text-shadow: 0px 0px 1px #bbb;
+  z-index: -1;
+}
+.languages-list li {
+  text-align: center;
+  background-color: white;
+}
+.languages-list li:first-child {
+  border-radius: 3px 3px 0 0;
+}
+.languages-list li:last-child {
+  border-radius: 0 0 3px 3px;
+}
+.languages-list li a {
+  color: #333333;
+  display: block;
+  border-bottom: 1px solid #e4e8ed;
+  padding: 15px 25px;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-transition: color 0.25s ease;
+  -moz-transition: color 0.25s ease;
+  -ms-transition: color 0.25s ease;
+  -o-transition: color 0.25s ease;
+  transition: color 0.25s ease;
+}
+.languages-list li a:hover {
+  color: #2288cc;
+}

@@ -45,6 +45,7 @@ clientcert_auth_domain:
 | Name | Description |
 |---|---|
 | username_attribute | String, the part of the certificate's DN that is used as username. If not specified, the complete DN is used.|
+{: .config-table}
 
 ## Mapping DNs to roles
 

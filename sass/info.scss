@@ -1,0 +1,69 @@
+.info {
+  margin-bottom: 30px;
+}
+.info-content {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 3px 3px;
+}
+.info-title {
+  font-size: 1.5em;
+  line-height: 1.4;
+  color: white;
+  background-color: #2288cc;
+  padding: 16px 50px 16px 30px;
+  margin: 0;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+.info-close {
+  font-size: 20px;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  margin-top: -14px;
+  cursor: pointer;
+}
+.info-content-item {
+  padding: 20px 30px;
+}
+.info-content-item:nth-child(odd) {
+  background-color: #f6f7f8;
+}
+.info-content-item:nth-child(even) {
+  background-color: #e8eaed;
+}
+.info-content-item-title {
+  font-size: 0.875em;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.5;
+}
+.info-content-item-text {
+  font-size: 0.875em;
+  color: #333333;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.info-demiliter {
+  padding: 30px 0;
+  border-bottom: 1px solid #dae0e7;
+  border-top: 1px solid #dae0e7;
+  margin-bottom: 30px;
+}
+.info-delimiter-title {
+  line-height: 42px;
+  font-size: 26px;
+  margin: 0;
+}
+.info-delimiter-button {
+  text-align: right;
+  text-transform: uppercase;
+}
+.info-delimiter-button .button {
+  margin-right: 15px;
+}
+.info-delimiter-button .button:last-child {
+  margin: 0;
+}

@@ -1,0 +1,77 @@
+.accordion {
+  border: 2px solid #f6f7f8;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border: 1px solid #cbd3dd;
+  border-radius: 3px;
+}
+.accordion-item {
+  display: block;
+  border-bottom: 1px solid #cbd3dd;
+  background-color: #f6f7f8;
+  -webkit-transition: background-color 0.25s ease;
+  -moz-transition: background-color 0.25s ease;
+  -ms-transition: background-color 0.25s ease;
+  -o-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+.accordion-item:last-child {
+  margin-bottom: 0;
+  border: none;
+}
+.accordion-item.active {
+  background-color: #fdfdfd;
+}
+.accordion-title {
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 300;
+  padding: 20px 25px 20px 55px;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+}
+.accordion-title:after {
+  display: block;
+  position: absolute;
+  content: "\f105";
+  -webkit-transition: transform 0.25s ease;
+  -moz-transition: transform 0.25s ease;
+  -ms-transition: transform 0.25s ease;
+  -o-transition: transform 0.25s ease;
+  transition: transform 0.25s ease;
+  top: 22px;
+  left: 25px;
+  font-size: 17px;
+  color: #333333;
+  font-family: 'FontAwesome';
+  line-height: 1;
+}
+.accordion-item.active .accordion-title:after {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.accordion-description {
+  font-size: 14px;
+  line-height: 25px;
+  display: none;
+  padding: 0px 25px 20px;
+}
+@media all and (max-width: 480px) {
+  .accordion-title {
+    font-size: 17px;
+    line-height: 24px;
+    padding: 20px 15px 20px 40px;
+  }
+  .accordion-title:after {
+    left: 15px;
+    top: 22px;
+  }
+  .accordion-description {
+    padding: 0px 15px 20px;
+  }
+}

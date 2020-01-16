@@ -53,6 +53,7 @@ These setting limit failed authentication requests by client IP. The limiting is
 | block\_expiry\_second | Blocks will be released again after this time.  |
 | max\_blocked\_clients | Maximum number of blocked clients. Limits heap usage to avoid DOS.  |
 | max\_tracked\_clients| Maximum number of tracked clients with login failures. Limits heap usage to avoid DOS.  |
+{: .config-table}
 
 ## Limit login attempts by username and authentication backend
 
@@ -80,6 +81,7 @@ These setting limit failed authentication requests by username and authenticatio
 | block\_expiry\_second | Blocks will be released again after this time.  |
 | max\_blocked\_clients | Maximum number of blocked clients. Limits heap usage to avoid DOS.  |
 | max\_tracked\_clients| Maximum number of tracked clients with login failures. Limits heap usage to avoid DOS.  |
+{: .config-table}
 
 ### Supporte authentication backends
 
@@ -87,7 +89,7 @@ These setting limit failed authentication requests by username and authenticatio
 |---|---|
 | internal | The internal user database |
 | ldap | LDAP /  Active Directoy |
-
+{: .config-table}
 
 ## Limitations
 

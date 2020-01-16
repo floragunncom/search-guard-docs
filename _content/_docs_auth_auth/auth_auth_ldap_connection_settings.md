@@ -78,6 +78,7 @@ You can configure more than one servers here. If Search Guard cannot connect to 
 | Name | Description |
 |---|---|
 | hosts | Host and port of your LDAP server(s). Hostnames and IPs are allowed, and you can define multiple LDAP servers. |
+{: .config-table}
 
 ### Bind DN and password
 
@@ -96,6 +97,7 @@ These are basically the credential you are using to authenticate against your se
 |---|---|
 | bind_dn | The DN to use when connecting to LDAP. If anonymous auth is allowed, can be set to null |
 | password | The password to use when connecting to LDAP. If anonymous auth is allowed, can be set to null |
+{: .config-table}
 
 ### TLS settings
 
@@ -116,6 +118,7 @@ config:
 | enable\_ssl\_client\_auth | Whether to send the client certificate to the LDAP server or not.  |
 | verify\_hostnames | Whether to verify the hostnames of the server's TLS certificate or not (default: true). If you have a running cluster with hostname verification enabled (the default) and you like to switch it off you need to restart all nodes after you applied the config.|
 | trust\_all | Whether to verify the hostnames and the LDAP server certificate (default false). If you have a running cluster and you like to enable trust all you need to restart all nodes after you applied the config.|
+{: .config-table}
 
 ### Certificate validation
 
@@ -151,6 +154,7 @@ config:
 |---|---|
 | pemtrustedcas\_filepath | Absolute path to the PEM file containing the root CA(s) of your Active Directory / LDAP server |
 | pemtrustedcas\_content | The root CA content of your Active Directory / LDAP server. Cannot be used when `pemtrustedcas\_filepath` is set. |
+{: .config-table}
 
 ### Client authentication
 
@@ -189,6 +193,7 @@ config:
 | pemkey\_password | The password of your private key, if any. |
 | pemcert_filepath | Absolute path to the the client certificate. |
 | pemcert_content | The content of the client certificate. Cannot be used when `pemcert_filepath` is set. |
+{: .config-table}
 
 ### Enabled ciphers and protocols
 
@@ -213,7 +218,7 @@ ldap:
 |---|---|
 | enabled\_ssl\_ciphers | Array, enabled TLS ciphers. Only Java format is supported. |
 | enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
-
+{: .config-table}
 
 By default Search Guard disables `TLSv1` because it is unsecure. 
 {: .note .js-note .note-warning}

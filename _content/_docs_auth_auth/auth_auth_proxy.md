@@ -50,6 +50,7 @@ You can configure the following settings:
 | searchguard.dynamic.http.xff.enabled | Boolean, Enable or disable proxy support. Default: false |
 | searchguard.dynamic.http.xff.internalProxies | A regular expression containing the IP addresses of all trusted proxies. |
 | searchguard.dynamic.http.xff.remoteIpHeader | String, name of the HTTP header field where the chain of hostnames are stored. Default: `x-forwarded-for` |
+{: .config-table}
 
 In order to determine if a request comes from a trusted internal proxy, Search Guard compares the remote address of the HTTP request with the list of configured internal proxies.  If the remote address is not in the list of trusted proxies, it is treated like a client request. Proxy authentication will not work in this case.  
 
@@ -76,7 +77,7 @@ proxy_auth_domain:
 | user_header | String, The HTTP header field containing the authenticated username. Default: `x-proxy-user` |
 | roles_header | String, The HTTP header field containing the comma separated list of authenticated role names. Roles found in this header field will be used as backend roles and can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md). Default: `x-proxy-roles` |
 | roles_separator | String, the separator for roles. Default: ","  |
-
+{: .config-table}
 
 ## Example
 
@@ -114,7 +115,6 @@ http {
 The corresponding minimal sg_config.yml looks like:
 
 ```
----
 _sg_meta:
   type: "config"
   config_version: 2
@@ -161,7 +161,6 @@ Authentication Proxy -> Kibana -> Search Guard
 In this case the remote address of the HTTP call is the IP of Kibana, because it sits directly in front of Search Guard. Therefore you need to add the IP of Kibana to the list of internal proxies:
 
 ```yaml
----
 _sg_meta:
   type: "config"
   config_version: 2

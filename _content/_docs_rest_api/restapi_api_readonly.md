@@ -32,7 +32,7 @@ sg_my_role:
 ```
 
 To change the `reserved` flag you need to use sgadmin.
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 ## Hidden resources
 
@@ -49,7 +49,7 @@ Any resource can be marked *hidden*. As the name implies, a hidden resource
 Hidden resources are most useful if you want to give end users access to the REST API, but you want to hide some of the service users your platform is using. For example, the Kibana server user or the logstash user.
 
 To change the `reserved` flag you need to use sgadmin.
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 Example:
 

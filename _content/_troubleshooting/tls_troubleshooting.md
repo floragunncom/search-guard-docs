@@ -78,6 +78,7 @@ Issuer: CN=Example Com Inc. Signing CA, OU=Example Com Inc. Signing CA, O=Exampl
 | Certificate[n] | Number of the certificate in the chain |
 | Owner | DN of the owner of the certificate |
 | Issue | DN of the issuer / signer of the certificate |
+{: .config-table}
 
 ### Checking the configured alias
 
@@ -323,12 +324,10 @@ curl --insecure --cert ./chain.pem --key ./kirk.key.pem "<API Endpoint>"
 We already had a lot of issues, here are the most relevant ones:
 
 * [Is it possible to configure elasticsearch/search guard to not make curl try to look for NSS certs?](https://groups.google.com/forum/#!topic/search-guard/LNSa6uf_g7Y)
-* [curl -XGET request on elasticsearch integrated with search-guard throws SSLException](https://github.com/floragunncom/search-guard/issues/58)
-* [Curl with admin ssl certificate not working](https://github.com/floragunncom/search-guard/issues/272)
 * [Unable to Use REST API](https://groups.google.com/forum/#!topic/search-guard/lIDWvqebBBA)
 * [enabling kerberos](https://groups.google.com/d/msg/search-guard/RiYnfg_sPgo/tFHzJu25AQAJ)
 
 ## Encrypted PKCS#8 key does not work
 
 When you experience a `File does not contain valid private key` or `data isn't an object ID` exception while using encrypted PKCS#8 keys (pem keys with a password)
-you might have hit a [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8076999) where "SunJCE support of password-based encryption scheme 2 params (PBES2) is not working". There is also an related [issue in the elastic github repo](https://github.com/elastic/elasticsearch/issues/32021). The solution is to use the v1 encryption scheme. With openssl use the `-v1` flag in your command like `openssl pkcs8 -in key.pem -topk8 -out enckey.pem -v1 PBE-SHA1-3DES`. Please also refer to [Search Guard issue #524](https://github.com/floragunncom/search-guard/issues/524) and [OpenSSL pkcs8 documentation](https://www.openssl.org/docs/man1.0.2/man1/openssl-pkcs8.html) for more details.
+you might have hit a [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8076999) where "SunJCE support of password-based encryption scheme 2 params (PBES2) is not working". There is also an related [issue in the elastic GitHub repo](https://github.com/elastic/elasticsearch/issues/32021). The solution is to use the v1 encryption scheme. With openssl use the `-v1` flag in your command like `openssl pkcs8 -in key.pem -topk8 -out enckey.pem -v1 PBE-SHA1-3DES`. Please also refer to [Search Guard issue #524](https://github.com/floragunncom/search-guard/issues/524) and [OpenSSL pkcs8 documentation](https://www.openssl.org/docs/man1.0.2/man1/openssl-pkcs8.html) for more details.

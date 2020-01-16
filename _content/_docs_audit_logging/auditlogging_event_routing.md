@@ -62,6 +62,7 @@ searchguard:
 | endpoint name | A telling name for the endpoint used to reference it in the routing configuration. Must be unique.|
 | endpoint type | Any [supported endpoint type](auditlogging_storage.md) |
 | endpoint configuration | The configuration for the configured endpoint, individual for each type. |
+{: .config-table}
 
 The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](auditlogging_storage.md).
 
@@ -139,6 +140,7 @@ searchguard:
 |---|---|
 | category name | The category for which this routing applies. Must match one of the audit and/or compliance event categories. Must be unique.|
 | endpoint name | Name of the endpoint to use. Must be one of the endpoints under the `searchguard.audit.endpoints configuration` settings, or `default`.|
+{: .config-table}
 
 If there is no specific routing for a category defined the events will be send to the `default` endpoint.
 

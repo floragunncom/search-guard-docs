@@ -20,7 +20,7 @@ resources:
 {% include toc.md %}
 
 This guide assumes that you have already installed Search Guard in your cluster using the [demo installer](demo-installer).
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 ## Roles mapping concept
 
