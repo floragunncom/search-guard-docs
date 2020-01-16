@@ -1,0 +1,53 @@
+.tags {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.75em;
+}
+.tag-item {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+.tag-item a {
+  display: block;
+  color: #333333;
+  margin-right: 20px;
+  margin-bottom: 9px;
+  padding: 2px 12px 2px 11px;
+  border: 1px solid #cbd3dd;
+  border-right: 0;
+  position: relative;
+  border-radius: 3px 0 0 3px;
+}
+.tag-item a:before {
+  position: absolute;
+  content: '';
+  display: block;
+  height: 20px;
+  width: 19px;
+  top: 3px;
+  right: -9px;
+  background-color: white;
+  border-radius: 0 5px 0 0;
+  border-top: 1px solid #cbd3dd;
+  border-right: 1px solid #cbd3dd;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.tag-item a:after {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  display: block;
+  content: '';
+  position: absolute;
+  border: 1px solid #cbd3dd;
+  top: 11px;
+  right: -1px;
+}

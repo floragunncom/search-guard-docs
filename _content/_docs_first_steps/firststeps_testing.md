@@ -21,7 +21,7 @@ Copyright 2019 floragunn GmbH
 {% include toc.md %}
 
 This guide assumes that you have already installed Search Guard in your cluster using the [demo installer](demo-installer).
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 In the last chapters we have:
 

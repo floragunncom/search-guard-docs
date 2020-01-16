@@ -95,7 +95,7 @@ The default name of the audit log index has been changed, and also the format of
 
 ## Upgrading Search Guard
 
-After upgrading a node from ES 5.x to 6.x, simply [install](installation.md) the [correct version of Search Guard](https://github.com/floragunncom/search-guard/wiki){:target="_blank"} on this node. 
+After upgrading a node from ES 5.x to 6.x, simply [install](installation.md) the correct version of Search Guard on this node. 
 
 Search Guard 6 is able to read the Search Guard configuration index created with Search Guard 5.x. You do not need to change any settings during the upgrade process. 
 

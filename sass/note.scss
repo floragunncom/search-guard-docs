@@ -1,0 +1,181 @@
+.note {
+  padding: 20px 20px 20px 25px;
+  border: 1px solid #cbd3dd;
+  border-radius: 3px;
+  box-shadow: inset 5px 0px 0px 0px #3f8c81;
+  margin-bottom: 30px;
+  position: relative;
+}
+.note.green {
+  box-shadow: inset 5px 0px 0px 0px #44bb55;
+}
+.note.green .note-title {
+  color: #44bb55;
+}
+.note.blue {
+  box-shadow: inset 5px 0px 0px 0px #2288cc;
+}
+.note.blue .note-title {
+  color: #2288cc;
+}
+.note.blue-light {
+  box-shadow: inset 5px 0px 0px 0px #48cacc;
+}
+.note.blue-light .note-title {
+  color: #48cacc;
+}
+.note.red {
+  box-shadow: inset 5px 0px 0px 0px #ff3625;
+}
+.note.red .note-title {
+  color: #ff3625;
+}
+.note.purple {
+  box-shadow: inset 5px 0px 0px 0px #8d3deb;
+}
+.note.purple .note-title {
+  color: #8d3deb;
+}
+.note-bounce {
+  -webkit-animation: note-bounce 3s Ease-in-out infinite;
+  -moz-animation: note-bounce 3s Ease-in-out infinite;
+  -ms-animation: note-bounce 3s Ease-in-out infinite;
+  -o-animation: note-bounce 3s Ease-in-out infinite;
+  animation: note-bounce 3s Ease-in-out infinite;
+}
+.note-pulse {
+  -webkit-animation: note-pulse 3s Ease-in-out infinite;
+  -moz-animation: note-pulse 3s Ease-in-out infinite;
+  -ms-animation: note-pulse 3s Ease-in-out infinite;
+  -o-animation: note-pulse 3s Ease-in-out infinite;
+  animation: note-pulse 3s Ease-in-out infinite;
+}
+@-moz-keyframes note-pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes note-pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes note-pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+@-moz-keyframes note-bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -o-transform: translateY(-25px);
+    transform: translateY(-25px);
+  }
+  60% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+@-webkit-keyframes note-bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -o-transform: translateY(-25px);
+    transform: translateY(-25px);
+  }
+  60% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+@keyframes note-bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-25px);
+    -moz-transform: translateY(-25px);
+    -ms-transform: translateY(-25px);
+    -o-transform: translateY(-25px);
+    transform: translateY(-25px);
+  }
+  60% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+.note-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #808488;
+  cursor: pointer;
+  font-size: 18px;
+}
+.note-title {
+  font-size: 1.375em;
+  color: #ff530d;
+}
+.note-description {
+  margin: 0;
+}

@@ -1,0 +1,26 @@
+.edition-button {
+  border-width: 2px !important;
+  font-size: 1.2em !important;
+  vertical-align:middle !important;
+  margin: 0px !important;
+}
+
+.edition-button-community {
+  color: $communityEdition !important;
+  border-color: $communityEdition !important;
+}
+
+.edition-button-enterprise {
+  color: $enterpriseEdition !important;
+  border-color: $enterpriseEdition !important;
+}
+
+.edition-button-compliance {
+  color: $complianceEdition !important;
+  border-color: $complianceEdition !important;
+}
+
+.edition-button-beta {
+  color: $green !important;
+  border-color: $green !important;
+}

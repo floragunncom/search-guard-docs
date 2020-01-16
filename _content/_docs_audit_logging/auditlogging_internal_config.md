@@ -26,6 +26,7 @@ The elasticsearch configuration monitoring can be switched on an off by the foll
 | Name | Description |
 |---|---|
 | searchguard.compliance.history.internal_config_enabled | boolean, whether to enable or disable Search Guard configuration monitoring. Default: true |
+{: .config-table}
 
 ## Audit log category
 
@@ -40,6 +41,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_INTERNAL_CO
 | audit\_format\_version | Audit log message format version, current: 3|
 | audit\_utc\_timestamp | UTC timestamp when the event was generated|
 | audit\_category | Audit log category, `COMPLIANCE_EXTERNAL_CONFIG` for all events|
+{: .config-table}
 
 ### Cluster and node attributes
 
@@ -50,6 +52,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_INTERNAL_CO
 | audit\_node\_name | The name of the node where the event was generated. |
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
+{: .config-table}
 
 ### Configuration attributes
 
@@ -59,6 +62,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_INTERNAL_CO
 | audit\_trace\_resolve\_indices | The index name used to read the config. May contain aliases or wildcards.  |
 | audit\_trace\_doc\_id | The configuration that has been read, one of `internalusers`, `roles`, `rolesmapping`, `actiongroups`, `config`  |
 | audit\_request\_body | The configuration that has been read, as JSON string  |
+{: .config-table}
 
 ### Logged configuration
 
@@ -94,6 +98,7 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 | audit\_format\_version | Audit log message format version, current: 3|
 | audit\_utc\_timestamp | UTC timestamp when the event was generated|
 | audit\_category | Audit log category, `COMPLIANCE_EXTERNAL_CONFIG` for all events|
+{: .config-table}
 
 ### Cluster and node attributes
 
@@ -104,6 +109,7 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 | audit\_node\_name | The name of the node where the event was generated. |
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
+{: .config-table}
 
 ### Request attributes
 
@@ -111,12 +117,14 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_remote\_address | The adress where the request came from.  |
+{: .config-table}
 
 ### User attributes
 
 | Name | Description |
 |---|---|
 | audit\_request\_effective\_user | The username of the user that has changed the configuration |
+{: .config-table}
 
 ### Index attributes
 
@@ -124,6 +132,7 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 |---|---|
 | audit\_trace\_indices | Array, the index name(s) as contained in the request. Can contain wildcards, date patterns and aliases.|
 | audit\_trace\_resolved\_indices | Array, the resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ### Document and fields attributes
 
@@ -131,3 +140,4 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 |---|---|
 | audit\_compliance\_operation | The operation on the configuration, can be one of `CREATE`, `UPDATE` or `DELETE`.  |
 | audit\_trace\_doc\_id | Name of the configuration that has changed, one of `internalusers`, `roles`, `rolesmapping`, `actiongroups`, `config` |
+{: .config-table}

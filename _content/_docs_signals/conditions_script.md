@@ -42,7 +42,7 @@ The following condition tests whether the total hits of a search, stored in the 
 | name | name of this condition. Can be chosen freely. Mandatory. |
 | source | The script to execute. Mandatory |
 | lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
-
+{: .config-table}
 
 ## Accessing the runtime data
 

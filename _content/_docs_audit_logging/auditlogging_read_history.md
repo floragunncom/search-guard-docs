@@ -79,6 +79,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 | audit\_format\_version | Audit log message format version, current: 3|
 | audit\_utc\_timestamp | UTC timestamp when the event was generated|
 | audit\_category | Audit log category, `COMPLIANCE_DOC_READ` for all events|
+{: .config-table}
 
 ### Cluster and node attributes
 
@@ -89,6 +90,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 | audit\_node\_name | The name of the node where the event was generated. |
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
+{: .config-table}
 
 ### Request attributes
 
@@ -96,12 +98,14 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_remote\_address | The adress where the request came from.  |
+{: .config-table}
 
 ### User attributes
 
 | Name | Description |
 |---|---|
 | audit\_request\_effective\_user | The username of the user that has accessed watched fields |
+{: .config-table}
 
 ### Index attributes
 
@@ -109,6 +113,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 |---|---|
 | audit\_trace\_indices | Array, the index name(s) as contained in the request. Can contain wildcards, date patterns and aliases.|
 | audit\_trace\_resolved\_indices | Array, the resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ### Accessed document and fields attributes
 
@@ -116,7 +121,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 |---|---|
 | audit\_trace\_doc\_id | Id of the document containing the watched fields. |
 | audit\_request\_body | The fields and their value as seen by the user, in JSON format. |
-
+{: .config-table}
 
 ## Example
 

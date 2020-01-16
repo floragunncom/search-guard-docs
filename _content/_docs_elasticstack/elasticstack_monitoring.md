@@ -57,6 +57,7 @@ xpack.monitoring.exporters:
 | auth.password  |  The password of the user mapped to the monitor role|
 | truststore.path | the truststore that contains the Root CA and intermediate certificates used to sign the certificates of the cluster to monitor |
 | truststore.password | the password for the truststore |
+{: .config-table}
 
 ## Kibana: Enable X-Pack Monitoring
 

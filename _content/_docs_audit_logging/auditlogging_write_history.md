@@ -104,6 +104,7 @@ You can control the level of detail by the following configuration settings in e
 |---|---|
 | searchguard.compliance.history.write.metadata_only | boolean, if set to true Search Guard will not log any document content, only meta data. Enable this if you need to know when a document was created, changed or delete, but you are not interested in the actual content. Default is false. |
 | searchguard.compliance.history.write.log_diffs | boolean, if set to true Search Guard will log diffs for document updates. Default is false. |
+{: .config-table}
 
 ## Field reference
 
@@ -116,6 +117,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 | audit\_format\_version | Audit log message format version, current: 3|
 | audit\_utc\_timestamp | UTC timestamp when the event was generated|
 | audit\_category | Audit log category, `COMPLIANCE_DOC_WRITE` for all events|
+{: .config-table}
 
 ### Cluster and node attributes
 
@@ -127,6 +129,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
 | audit\_trace\_shard\_id | id of the shard |
+{: .config-table}
 
 ### Request attributes
 
@@ -134,12 +137,14 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_remote\_address | The adress where the request came from.  |
+{: .config-table}
 
 ### User attributes
 
 | Name | Description |
 |---|---|
 | audit\_request\_effective\_user | The username of the user that has accessed watched fields |
+{: .config-table}
 
 ### Index attributes
 
@@ -147,6 +152,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 |---|---|
 | audit\_trace\_indices | Array, the index name(s) as contained in the request. Can contain wildcards, date patterns and aliases.|
 | audit\_trace\_resolved\_indices | Array, the resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
 
 ### Document and fields attributes
 
@@ -157,6 +163,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 | audit\_trace\_doc\_version | The version of the document that has been inserted, changed or deleted. |
 | audit\_request\_body | The diff of the old and new version of the document in JSON patch format. Only logged for `UPDATE`. |
 | audit\_request\_body | The content of newly created documents. Only logged for   `CREATE`, and only if `searchguard.compliance.history.write.diffs_only` is `false`.|
+{: .config-table}
 
 ## Example
 

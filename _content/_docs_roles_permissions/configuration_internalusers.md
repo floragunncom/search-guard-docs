@@ -53,7 +53,7 @@ _sg_meta:
 | backend_roles | The backend roles of the user. Backend roles can be used to group users and them [map the groups to Search Guard roles](../_docs_roles_permissions/configuration_roles_permissions.md). This provides morre flexibility than using Search Guard roles directly, but introduces a level on indirection.|
 | attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries|
 | description | A description of the user. Optional.|
-
+{: .config-table}
 
 ## Example
 
