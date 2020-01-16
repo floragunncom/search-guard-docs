@@ -1,0 +1,57 @@
+/*
+  Regular table definition
+ */
+table{width:100%;max-width:100%;margin-bottom:20px;background-color:#ffffff;border:1px solid #cbd3dd;}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td{padding:12px;font-weight:300;line-height:1.42857143;vertical-align:top;border-top:1px solid #cbd3dd;border-left:1px solid #cbd3dd;}
+table > thead > tr > th{vertical-align:bottom;font-weight:500;font-size:1.125em;border-bottom:1px solid #cbd3dd;}
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td{border-top:0;}
+table > tbody + tbody{border-top:2px solid #cbd3dd;}
+table > tbody > tr:nth-of-type(even){background-color:#f6f7f8;}
+table col{position:static;float:none;display:table-column;}
+table td,
+table th{position:static;float:none;display:table-cell;}
+
+/*
+  Table for configuration keys and values
+ */
+
+.config-table {
+  border-collapse: separate;
+  border-spacing: 5px;
+  border-style: none;
+}
+
+.config-table > thead > tr > th:nth-child(1),
+.config-table > tbody > tr > td:nth-child(1) {
+  background: $editionText;
+  color: $lightGrey;
+}
+
+.config-table > thead > tr > th:nth-child(2),
+.config-table > tbody > tr > td:nth-child(2) {
+  background: $darkBlue;
+  color: $lightGrey;
+}
+
+.config-table > thead > tr > th:nth-child(3),
+.config-table > tbody > tr > td:nth-child(3) {
+  background: $darkBlue;
+  color: $lightGrey;
+}
+
+.config-table > thead > tr > th:nth-child(4),
+.config-table > tbody > tr > td:nth-child(4) {
+  background: $darkBlue;
+  color: $lightGrey;
+}

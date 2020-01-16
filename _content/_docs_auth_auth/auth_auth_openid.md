@@ -61,6 +61,7 @@ Configuration parameters:
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. Optional.|
 | subject_key | The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional.|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. Mandatory only if you want to use roles in the JWT.|
+{: .config-table}
 
 ## OpenID connect URL
 
@@ -151,6 +152,7 @@ config:
 |---|---|
 | enable_ssl | Whether to use TLS or not. Default: false |
 | verify\_hostnames | Whether to verify the hostnames of the IdP's TLS certificate or not. Default: true  |
+{: .config-table}
 
 ### Certificate validation
 
@@ -172,11 +174,11 @@ config:
     ...
 ```
 
-
 | Name | Description |
 |---|---|
 | pemtrustedcas\_filepath | Absolute path to the PEM file containing the root CA(s) of your IdP |
 | pemtrustedcas\_content | The root CA content of your IdP. Cannot be used when `pemtrustedcas_filepath` is set. |
+{: .config-table}
 
 ### TLS client authentication
 
@@ -214,6 +216,7 @@ config:
 | pemkey\_filepath | Absolute path to the file containing the private key of the client certificate. |
 | pemkey\_content | The content of the private key of your client certificate. Cannot be used when `pemkey_filepath` is set. |
 | pemkey\_password | The password of your private key, if any. |
+{: .config-table}
 
 ### Enabled ciphers and protocols
 
@@ -223,7 +226,7 @@ You can limit the allowed ciphers and TLS protocols by using the following keys:
 |---|---|
 | enabled\_ssl\_ciphers | Array, enabled TLS cipher suites. Only Java format is supported. |
 | enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
-
+{: .config-table}
 
 ## Expert: DOS protection
 
@@ -233,6 +236,7 @@ In theory it is possible to DOS attack an OpenID based infrastructure by sending
 |---|---|
 | refresh\_rate\_limit\_count | The maximum number of unknown key ids in the time window. Default: 10  |
 | refresh\_rate\_limit\_time\_window\_ms | The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000 |
+{: .config-table}
 
 ## Kibana Single Sign On
 

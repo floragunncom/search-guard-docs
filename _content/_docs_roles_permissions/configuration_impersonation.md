@@ -84,3 +84,4 @@ When using impersonation, the audit and compliance events will track both the in
 |---|---|
 | audit\_request\_initiating\_user | The user that initiated the request |
 |audit\_request\_effective\_user | The impersonated user |
+{: .config-table}

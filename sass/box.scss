@@ -1,0 +1,59 @@
+.box {
+  margin-bottom: 30px;
+  position: relative;
+}
+.box.box-small-icon {
+  padding-left: 40px;
+}
+.box.box-small-icon .box-title {
+  font-size: 1.5625em;
+}
+.box-small-icon-alt {
+  padding-left: 150px;
+  padding-right: 60px;
+  padding-top: 20px;
+}
+.box-small-icon-alt .box-title {
+  font-size: 1.5625em;
+}
+.box-small-icon-alt .box-icon {
+  position: absolute;
+  left: 40px;
+  top: 1px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #cbd3dd;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 32px;
+  line-height: 80px;
+}
+.box-icon {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+}
+.box-icon-large {
+  color: #2288cc;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  border-radius: 50%;
+  background-color: #f6f7f8;
+}
+.box-title {
+  font-size: 2.1875em;
+  font-weight: 300;
+}
+.box-image .box-title {
+  font-size: 1.5625em;
+}
+.box-description {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #808488;
+}

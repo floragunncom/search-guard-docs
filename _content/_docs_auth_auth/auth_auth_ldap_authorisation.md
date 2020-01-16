@@ -129,6 +129,7 @@ If your LDAP entries have a lot of attributes, you may want to control which att
 |---|---|
 | custom\_attr\_whitelist  | String array, specifies the LDAP attributes that should be made available for variable substitution. |
 | custom\_attr\_maxval\_len  | Integer, specifies the maximum allowed length of each attribute. All attributes longer than this value will be discarded. A value of `0` will disable custom attributes altogether. Default: 36 |
+{: .config-table}
 
 Example:
 
@@ -216,6 +217,7 @@ For more details refer to https://technet.microsoft.com/en-us/library/cc978012.a
 | rolesearch_enabled  | Boolean, enable or disable the role search, default: true.  |
 | custom\_attr\_whitelist  | String array, specifies the LDAP attributes that should be made available for variable substitution. |
 | custom\_attr\_maxval\_len  | Integer, specifies the maximum allowed length of each attribute. All attributes longer than this value will be discarded. A value of `0` will disable custom attributes altogether. Default: 36 |
+{: .config-table}
 
 ### Complete authorization example
 

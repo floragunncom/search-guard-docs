@@ -83,6 +83,7 @@ A SAML IdP provides a SAML 2.0 metadata file describing the IdPs capabilities an
 |---|---|
 | idp.metadata_file | The path to the SAML 2.0 metadata file of your IdP. Place the metadata file in the `config` directory of Elasticsearch. The path has to be specified relative to the `config` directory. Mandatory if `idp.metadata_url` is not set.|
 | idp.metadata_url | The SAML 2.0 metadata URL of your IdP. Mandatory if `idp.metadata_file` is not set. |
+{: .config-table}
 
 ## Idp and service provider entity ID
 
@@ -92,6 +93,7 @@ An entity ID is a globally unique name for a SAML entity, either an IdP or a Ser
 |---|---|
 | idp.entity_id | The entity ID of your IdP. Mandatory.|
 | sp.entity_id | The entity ID of the service provider. Mandatory.|
+{: .config-table}
 
 ## Kibana settings
 
@@ -100,6 +102,7 @@ The Web Browser SSO profile works by exchanging information via HTTP GET or POST
 | Name | Description |
 |---|---|
 | kibana_url | The Kibana base URL. Mandatory.|
+{: .config-table}
 
 ## Username and Role attributes
 
@@ -129,6 +132,7 @@ If you want to extract roles from the SAML response, you need to specify the ele
 |---|---|
 | subject_key | The attribute in the SAML response where the subject is stored. Optional. If not configured, the NameID attribute is used.|
 | roles_key | The attribute in the SAML response where the roles are stored. Optional. If not configured, no roles will be used.|
+ {: .config-table}
  
 ## Request signing
 
@@ -138,6 +142,7 @@ Requests from Search Guard to the IdP can optionally be signed. Use the followin
 |---|---|
 | sp.signature\_private\_key | The private key used to sign the requests. Optional. If not provided, requests are not signed.|
 | sp.signature\_algorithm | The algorithm used to sign the requests. See below for possible values. |
+{: .config-table}
 
 Search Guard supports the following signature algorithms:
 
@@ -148,7 +153,7 @@ Search Guard supports the following signature algorithms:
 | RSA\_SHA256 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;|
 | RSA\_SHA384 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;|
 | RSA\_SHA512 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;|
-
+{: .config-table}
 
 ## Logout
 
@@ -157,6 +162,7 @@ Usually, IdPs provide information about their individual logout URL in their SAM
 | Name | Description |
 |---|---|
 | sp.forceAuthn | Force a re-login even if the user has an active session with the IdP |
+{: .config-table}
 
 At the moment Search Guard only supports the `HTTP-Redirect` logout binding. Please make sure this is configured correctly in your IdP.
 
@@ -167,6 +173,7 @@ SAML, unlike other protocols like JWT or Basic Authentication, is not meant to b
 | Name | Description |
 |---|---|
 | exchange_key | The key to sign the token. The algorithm is HMAC256, so it should have at least 32 characters. |
+{: .config-table}
 
 ## TLS settings
 
@@ -176,6 +183,7 @@ If you are loading the IdP metadata from a URL, it is recommended to use SSL/TLS
 |---|---|
 | idp.enable_ssl | Whether to enable the custom TLS configuration or not. Default: false (JDK settings are used)|
 | idp.verify\_hostnames | Whether to verify the hostnames of the server's TLS certificate or not  |
+{: .config-table}
 
 Example:
 
@@ -223,6 +231,7 @@ config:
 |---|---|
 | idp.pemtrustedcas\_filepath | Path to the PEM file containing the root CA(s) of your IdP. The files must be placed under the Elasticsearch `config` directory and the path must be specified relative to the `config` directory. |
 | idp.pemtrustedcas\_content | The root CA content of your IdP server. Cannot be used when `pemtrustedcas_filepath` is set. |
+{: .config-table}
 
 ### Client authentication
 
@@ -236,6 +245,7 @@ Search Guard can use TLS client authentication when fetching the IdP metadata. I
 | idp.pemkey\_filepath | Path to the private key of the client certificate. The file must be placed under the Elasticsearch `config` directory and the path must be specified relative to the `config` directory. |
 | idp.pemkey\_content | The content of the private key of your certificate. Cannot be used when `pemkey_filepath` is set. |
 | idp.pemkey\_password | The password of your private key, if any. |
+{: .config-table}
 
 ### Enabled ciphers and protocols
 
@@ -245,7 +255,7 @@ You can limit the allowed ciphers and TLS protocols for the IdP connection. For 
 |---|---|
 | idp.enabled\_ssl\_ciphers | Array, enabled TLS ciphers. Only Java format is supported. |
 | idp.enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
-
+{: .config-table}
 
 **Note: By default, Search Guard disables `TLSv1` because it is insecure. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it like:**
 

@@ -20,7 +20,7 @@ resources:
 {% include toc.md %}
 
 This guide assumes that you have already installed Search Guard in your cluster using the [demo installer](demo-installer).
-{: .note .js-note .green}
+{: .note .js-note .note-info}
 
 In the last chapter we have successfully set up users, roles and permissions that control access to Elasticsearch. We now want to apply the same level of security to Kibana.
 

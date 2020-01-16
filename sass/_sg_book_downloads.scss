@@ -1,0 +1,82 @@
+.book {
+  margin-bottom: 30px;
+}
+.book-image {
+  max-width: 100%;
+}
+.book-title {
+  font-size: 2.75em;
+  margin-top: 60px;
+}
+.book-description {
+  font-size: 1.25em;
+  color: #333;
+  margin-bottom: 30px;
+}
+.book-download-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.book-download-item {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.book-download-item a {
+  padding: 10px 20px;
+  background-color: $navyBlueActive;
+  color: white;
+  display: block;
+  line-height: 1.4;
+  border-radius: 3px;
+  font-weight: 300;
+  -webkit-transition: opacity 0.25s ease, background-color 0.25s ease;
+  -moz-transition: opacity 0.25s ease, background-color 0.25s ease;
+  -ms-transition: opacity 0.25s ease, background-color 0.25s ease;
+  -o-transition: opacity 0.25s ease, background-color 0.25s ease;
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+}
+.book-download-item a i {
+  margin-right: 5px;
+}
+.book-download-item a:hover {
+  text-decoration: none;
+  background-color: $navyBlueHover;
+}
+.book-grid-item {
+  margin-bottom: 30px;
+}
+.book-grid-item:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+.book-grid-cover {
+  max-width: 40%;
+  float: left;
+  margin-right: 30px;
+}
+.book-grid-meta {
+  float: left;
+  max-width: 50%;
+}
+.book-grid-title {
+  font-size: 1.25em;
+  line-height: 1.2;
+}
+.book-grid-title a {
+  text-decoration: none;
+}
+.book-grid-details {
+  font-size: 1em;
+  border-bottom: 1px solid #dae0e7;
+  line-height: 2.8;
+  margin: 0;
+}
+.book-grid-details:last-child {
+  border: 0;
+}

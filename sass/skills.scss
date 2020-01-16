@@ -1,0 +1,43 @@
+.skill {
+  margin-bottom: 30px;
+}
+.skill.inline .skill-title,
+.skill.inline .skill-level {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  line-height: 50px;
+  margin: 0;
+}
+.skill.inline .skill-title {
+  margin-right: 15px;
+}
+.skill.inline.small .skill-title {
+  margin-right: 10px;
+}
+.skill.large .skill-title {
+  font-size: 2.1875em;
+}
+.skill.large .skill-level {
+  font-size: 1.25em;
+}
+.skill.small .skill-title {
+  font-size: 1em;
+}
+.skill.small .skill-level {
+  font-size: 0.625em;
+}
+.skill-level {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.skill-level > li {
+  color: #fdc441;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+  font-size: 1.25em;
+}
