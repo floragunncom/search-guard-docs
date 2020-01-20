@@ -61,7 +61,7 @@ These settings can be set using the Signals settings REST API:
 
 The following configuration options can be made in the elasticsearch.yml configuration file. A restart of the respective node is necessary to bring these options into effect.
 
-**signals.enabled:** Can be used to enable or disable Signals on the respective node. Optional, boolean, defaults to true.
+**signals.enabled:** Can be used to enable or disable Signals. Optional, boolean, defaults to true. Take care that the value of this setting is consistent for all nodes in a cluster. It is not supported to enable Signals only on a subset of a cluster using this setting. Use the `node_filter` settings for this purpose instead.
 
 **signals.index_names.log:** Specifies the name of the watch log index. Optional, defaults to `<.signals_log_{now/d}>`.
 
