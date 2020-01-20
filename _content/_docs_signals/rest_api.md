@@ -72,3 +72,7 @@ This will give this role complete access to all Signals features and indices.
 
 * [Activate and Deactivate Execution for Tenant](rest_api_tenant_activate.md)
 * [Activate and Deactivate Execution Globally](rest_api_admin_activate.md)
+
+## Other APIs
+
+* [Convert Watch](rest_api_convert_es.md)
