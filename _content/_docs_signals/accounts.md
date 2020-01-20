@@ -79,6 +79,20 @@ A Slack account looks rather simple:
 
 The value for the `url` property must be obtained by creating a Slack App inside Slack. See the [Slack docs](https://api.slack.com/incoming-webhooks) for details.
 
+### PagerDuty Accounts
+
+PagerDuty accounts represent integration keys for PagerDuty services.
+
+A PagerDuty account in Signals looks like this:
+
+```json
+{
+	"integration_key": "XXXXXXXXXXXXXXXXXXXXXXXX"
+}
+```
+
+The value for `integration_key` needs to be obtained from PagerDuty. 	See the [PagerDuty documentation](https://support.pagerduty.com/docs/services-and-integrations#section-create-a-generic-events-api-integration) for details. You have to create an integration for the Events API v2.
+
 ## REST API
 
 Accounts may be managed using these REST API endpoints:
