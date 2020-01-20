@@ -37,15 +37,21 @@ Still, it is possible to configure further action-specific checks. This way, it 
 
 ## Action Types
 
-These actions are available at the moment:
+These action types are available at the moment:
 
-**[E-Mail Action](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
+**[E-Mail Action Type](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
 
-**[Slack Action](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
+**[Slack Action Type](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
 
-**[Webhook Actions](actions_webhook.md):** Sends HTTP requests to external services.
+**[Webhook Action Type](actions_webhook.md):** Sends HTTP requests to external services.
 
-**[Index Action](actions_index.md):** Writes data to an Elasticsearch index.
+**[Index Action Type](actions_index.md):** Writes data to an Elasticsearch index.
+
+These action types are only available in the Enterprise Edition:
+
+**[Pager Duty Action Type](actions_pagerduty.md):** Triggers and resolves incidents in PagerDuty.
+
+**[Jira Action Type](actions_jira.md):** Creates issues in Jira.
 
 ## Action Throttling
 
