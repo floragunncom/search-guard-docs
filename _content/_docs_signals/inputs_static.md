@@ -1,5 +1,5 @@
 ---
-title: Static
+title: Static Input
 html_title: Creating static inputs for Signals Alerting
 slug: elasticsearch-alerting-inputs-static
 category: inputs

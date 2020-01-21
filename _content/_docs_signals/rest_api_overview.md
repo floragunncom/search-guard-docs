@@ -1,13 +1,11 @@
 ---
-title: REST API
+title: REST API Overview
 html_title: Managing Signals Alerting with the REST API
-slug: elasticsearch-alerting-rest-api
-category: signals
-subcategory: signals-rest
-order: 900
+slug: elasticsearch-alerting-rest-api-overview
+category: signals-rest
+order: 0
 layout: docs
 edition: beta
-canonical: elasticsearch-alerting-rest-api-overview
 description: 
 ---
 
@@ -50,6 +48,7 @@ This will give this role complete access to all Signals features and indices.
 * [Execute Watch](rest_api_watch_execute.md)
 * [Acknowledge Watch](rest_api_watch_acknowledge.md)
 * [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md)
+* [Convert Watch](rest_api_convert_es.md)
 
 ## Watch State APIs
 

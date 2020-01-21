@@ -1,19 +1,17 @@
 ---
-title: Triggers
-html_title: Triggers for Signals Alerting
-slug: elasticsearch-alerting-triggers
-category: signals
-subcategory: triggers
-order: 300
+title: Triggers Overview
+html_title: Triggers for Signals Alerting Overview
+slug: elasticsearch-alerting-triggers-overview
+category: triggers
+order: 0
 layout: docs
 edition: beta
-canonical: triggers-overview
 description: 
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Creating triggers
+# Triggers overview
 {: .no_toc}
 
 {% include toc.md %}

@@ -1,13 +1,11 @@
 ---
-title: Actions
+title: Actions Overview
 html_title: Creating Actions for Signals Alerting
-slug: elasticsearch-alerting-actions
-category: signals
-subcategory: actions
-order: 700
+slug: elasticsearch-alerting-actions-overview
+category: actions
+order: 0
 layout: docs
 edition: beta
-canonical: elasticsearch-alerting-actions-overview
 description:
 ---
 
@@ -40,13 +38,17 @@ Still, it is possible to configure further action-specific checks. This way, it 
 
 These actions are available at the moment:
 
-**[E-Mail Action](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
+**[Index Action](actions_index.md):** Writes data to an Elasticsearch index.
 
-**[Slack Action](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
+**[E-Mail Action](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
 
 **[Webhook Actions](actions_webhook.md):** Sends HTTP requests to external services.
 
-**[Index Action](actions_index.md):** Writes data to an Elasticsearch index.
+**[Slack Action](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
+
+**[PagerDuty Actions](actions_pagerduty.md):** Sends notifications to PagerDuty (Enterprise Feature).
+
+**[JIRA Actions](actions_jira.md):** Sends notifications to JIRA, for example to create a new issue (Enterprise Feature).
 
 ## Action Throttling
 

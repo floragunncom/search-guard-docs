@@ -47,8 +47,12 @@
 	<link rel="icon" href="img/logos/SG_Fav-32px.png" sizes="32x32" />
 	<link rel="icon" href="img/logos/SG_Fav-144px.png" sizes="144x144" />
 
-	<link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}{{page.url}}">
-	
+	{%if page.canonical == null %}
+	  <link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}{{page.url}}">
+	{% else %}
+	  <link rel="canonical" href="https://docs.search-guard.com{{site.baseurl}}/{{page.canonical}}">
+	{% endif %}
+
 	{%if site.searchguard.islatestversion == true && item.subcategory == null %}
 		<meta name="robots" content="index, follow">
 	{% else %}

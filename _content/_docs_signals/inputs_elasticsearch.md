@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch
+title: Elasticsearch Input
 html_title: Creating Elasticsearch inputs for Signals Alerting
 slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs

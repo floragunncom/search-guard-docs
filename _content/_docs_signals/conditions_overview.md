@@ -1,19 +1,17 @@
 ---
-title: Conditions
+title: Conditions Overview
 html_title: Creating Conditions for Signals Alerting
-slug: elasticsearch-alerting-conditions
-category: signals
-subcategory: conditions
-order: 600
+slug: elasticsearch-alerting-conditions-overview
+category: conditions
+order: 0
 layout: docs
 edition: beta
-canonical: elasticsearch-alerting-conditions-overview
 description: 
 ---
 
 <!--- Copyright 2019 floragunn GmbH -->
 
-# Conditions
+# Conditions Overview
 {: .no_toc}
 
 Conditions are used to control the execution flow. A condition can be used anywhere in the execution chain for watches and actions. 

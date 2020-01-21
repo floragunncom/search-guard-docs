@@ -1,13 +1,11 @@
 ---
-title: Inputs
-html_title: Creating inputs for Signals Alerting
-slug: elasticsearch-alerting-inputs
-category: signals
-subcategory: inputs
-order: 400
+title: Inputs Overview
+html_title: Creating inputs for Signals Alerting Overview
+slug: elasticsearch-alerting-inputs-overview
+category: inputs
+order: 0
 layout: docs
 edition: beta
-canonical: elasticsearch-alerting-inputs-overview
 description: 
 ---
 
@@ -22,7 +20,7 @@ Each input will fetch data from a data source, and place it in the runtime data 
 
 At the moment, Signals supports the following input types:
 
-* [Constants](inputs_static.md)
+* [Static](inputs_static.md)
   * Define constants you can then use at multiple places in the execution chain
 * [Elasticsearch](inputs_elasticsearch.md)
   * Use the full power of Elasticsearch queries and aggregations
