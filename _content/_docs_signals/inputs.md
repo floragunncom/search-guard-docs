@@ -6,12 +6,12 @@ category: signals
 subcategory: inputs
 order: 400
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-inputs-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Inputs
 {: .no_toc}

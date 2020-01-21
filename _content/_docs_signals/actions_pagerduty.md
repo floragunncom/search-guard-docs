@@ -9,7 +9,7 @@ edition: enterprise
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # PagerDuty Actions
 {: .no_toc}

@@ -7,7 +7,7 @@ layout: troubleshooting
 description: How to troubleshoot problems and issues with the Search Guard sgadmin command line tool.
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # sgadmin Troubleshooting
 
@@ -114,7 +114,7 @@ If you cannot find out why sgadmin is not executing, add the `--diagnose` switch
 sgadmin will print the location of the generated diagnostic file:
 
 ```
-Diagnostic trace written to: /../../sgadmin_diag_trace_2017-<DATE>.txt
+Diagnostic trace written to: /../../sgadmin_diag_trace_2020-<DATE>.txt
 ```
 
 ### Search Guard Community Forum

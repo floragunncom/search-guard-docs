@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-transformations-calculations-overview
 category: transformations
 order: 0
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Transformations and Calculations
 {: .no_toc}

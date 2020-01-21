@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-actions-slack
 category: actions
 order: 400
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Slack Action
 {: .no_toc}

@@ -6,12 +6,12 @@ category: signals
 subcategory: conditions
 order: 600
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-conditions-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Conditions
 {: .no_toc}

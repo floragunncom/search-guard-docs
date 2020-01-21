@@ -6,12 +6,12 @@ category: signals
 subcategory: signals-rest
 order: 900
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-rest-api-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # REST API
 {: .no_toc}

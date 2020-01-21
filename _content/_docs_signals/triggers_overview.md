@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-triggers-overview
 category: triggers
 order: 0
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Triggers overview
 {: .no_toc}

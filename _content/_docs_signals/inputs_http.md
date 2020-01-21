@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-inputs-http
 category: inputs
 order: 300
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # HTTP input
 {: .no_toc}

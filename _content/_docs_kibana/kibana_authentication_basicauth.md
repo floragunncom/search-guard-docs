@@ -9,7 +9,7 @@ edition: community
 description: How to configure Kibana for HTTP Basic Authentication. Secure Kibana access with a login screen.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # HTTP Basic Authentication

@@ -6,12 +6,12 @@ category: signals
 subcategory: security
 order: 950
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-security-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Security Integration
 {: .no_toc}

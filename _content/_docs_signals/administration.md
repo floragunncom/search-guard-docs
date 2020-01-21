@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-administration
 category: signals
 order: 1100
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Signals Administration
 {: .no_toc}

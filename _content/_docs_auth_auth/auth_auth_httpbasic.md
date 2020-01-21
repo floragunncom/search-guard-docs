@@ -8,7 +8,7 @@ edition: community
 description: How to set up HTTP Basic Authentication on the REST layer of Elasticsearch with Search Guard.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # HTTP Basic Authentication

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-convert-es
 category: signals-rest
 order: 710
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Convert Watch API
 {: .no_toc}

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-overview
 category: signals-rest
 order: 0
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # REST API
 {: .no_toc}

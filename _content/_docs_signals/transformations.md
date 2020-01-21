@@ -6,12 +6,12 @@ category: signals
 subcategory: transformations
 order: 500
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-transformations-calculations-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Transformations and Calculations
 {: .no_toc}

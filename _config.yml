@@ -34,6 +34,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-40
     - 7x-38
     - 7x-37
     - 7x-36
@@ -48,7 +49,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-38: latest
+  7x-40: latest
+  7x-38: 7.x-38
   7x-37: 7.x-37
   7x-36: 7.x-36
   7x-35: 7.x-35
@@ -101,6 +103,7 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    7x-40: Search Guard 7.x-40
     7x-38: Search Guard 7.x-38
     7x-37: Search Guard 7.x-37
     7x-36: Search Guard 7.x-36
@@ -282,8 +285,8 @@ eol:
 sgversions:
   #esv |sgv |kbv |available|kbn-artifact-id
   search-guard-7:
-    - 7.5.1|38.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.5.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
+    - 7.5.1|40.0.0|40.0.0|yes|search-guard-kibana-plugin-7
+    - 7.5.0|40.0.0|40.0.0|yes|search-guard-kibana-plugin-7
     - 7.4.2|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.4.1|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.4.0|37.1.0|37.0.0|yes|search-guard-kibana-plugin-7

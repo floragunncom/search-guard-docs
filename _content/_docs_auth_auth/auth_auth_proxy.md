@@ -8,7 +8,7 @@ edition: community
 description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # HTTP-header/Proxy based authentication

@@ -6,12 +6,12 @@ category: signals
 subcategory: actions
 order: 700
 layout: docs
-edition: beta
+edition: community
 canonical: elasticsearch-alerting-actions-overview
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Actions
 {: .no_toc}

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-accounts
 category: actions
 order: 50
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Accounts Registry
 {: .no_toc}

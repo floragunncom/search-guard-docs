@@ -8,7 +8,7 @@ edition: community
 description: How to use environment variables to remove sensitive information like passwords from the Search Guard configuration.
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Handling sensitive data in configuration files
 {: .no_toc}

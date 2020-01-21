@@ -6,12 +6,12 @@ category: signals
 subcategory: triggers
 order: 300
 layout: docs
-edition: beta
+edition: community
 canonical: triggers-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Creating triggers
 {: .no_toc}

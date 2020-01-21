@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-watch-activate
 category: signals-rest
 order: 500
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Activate/Deactivate Signals API
 {: .no_toc}

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-throttling
 category: signals
 order: 800
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Throttling and Acknowledgement
 {: .no_toc}
