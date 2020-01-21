@@ -79,6 +79,36 @@ A Slack account looks rather simple:
 
 The value for the `url` property must be obtained by creating a Slack App inside Slack. See the [Slack docs](https://api.slack.com/incoming-webhooks) for details.
 
+### PagerDuty Accounts
+
+PagerDuty accounts represent integration keys for PagerDuty services.
+
+A PagerDuty account in Signals looks like this:
+
+```json
+{
+	"integration_key": "XXXXXXXXXXXXXXXXXXXXXXXX"
+}
+```
+
+The value for `integration_key` needs to be obtained from PagerDuty. 	See the [PagerDuty documentation](https://support.pagerduty.com/docs/services-and-integrations#section-create-a-generic-events-api-integration) for details. You have to create an integration for the Events API v2.
+
+### Jira Accounts
+
+Jira accounts represent auth tokens for Jira instances. Jira auth tokens are always accompanied by the login email address of the respective user.
+
+A Jira account in Signals looks like this:
+
+```json
+{
+    "url": "https://examplejira.atlassian.net/",
+	"user_name": "example.user@example.com",
+	"auth_token": "...."
+}
+```
+
+The attribute `url` references the base URL of your Jira instance. The attribute `user_name` is the login email address of a user. `auth_token` is an API token obtained from Jira for the user. See the [Jira docs](https://confluence.atlassian.com/cloud/api-tokens-938839638.html) for details on obtaining auth tokens.
+
 ## REST API
 
 Accounts may be managed using these REST API endpoints:

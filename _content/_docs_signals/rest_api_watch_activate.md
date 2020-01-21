@@ -20,14 +20,16 @@ description:
 ## Endpoint
 
 ```
-PUT /_signals/watch/{tenant}/{watch_id}/_activate
+PUT /_signals/watch/{tenant}/{watch_id}/_active
 ```
 
 ```
-PUT /_signals/watch/{tenant}/{watch_id}/_deactivate
+DELETE /_signals/watch/{tenant}/{watch_id}/_active
 ```
 
 These endpoints can be used to activate and deactivate watches. Inactive watches are not automatically executed.
+
+Using the PUT verb activates a watch, using the DELETE verb deactivates a watch.
 
 ## Path Parameters
 
@@ -66,10 +68,10 @@ This permission is included in the following [built-in action groups](security_p
 
 ## Examples
 
-### Basic 
+### Deactivate a Watch 
 
 ```
-PUT /_signals/watch/_main/bad_weather/_deactivate
+DELETE /_signals/watch/_main/bad_weather/_active
 ```
 
 **Response**
