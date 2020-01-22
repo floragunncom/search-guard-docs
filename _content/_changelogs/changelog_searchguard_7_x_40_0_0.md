@@ -58,19 +58,7 @@ signals.enabled: false
 
 ### Signals configuration indices
 
-As Search Guard, Signals stores all configuration settings in protected Elasticsearch   indices. 
-
-If you do not use multi tenancy, Signals will create one index:
-
-```
-.signals_watches
-```
-
-If you use multi tenancy, Signals will create one index per tenant:
-
-```
-.signals_<tenantname>_watches
-```
+As Search Guard, Signals stores all configuration settings in protected Elasticsearch   indices.  Upon startup, Signals will create five indexes, all starting with the prefix `.signals_`.
 
 Since those indices store confidential information, for regular users they are only accessible by using the [REST API](elasticsearch-alerting-rest-api-overview). In order to fully access the indices, please use an Admin TLS certificate with tools like curl or [sgamin](sgadmin).
 
@@ -98,15 +86,15 @@ To enable add the following line to elasticsearch.yml:
 searchguard.filter_sgindex_from_all_requests: true
 ```
 
-To disable Signals completely, including index creation, add the following line to `elasticsearch.yml`:
+To disable Signals completely, including index creation, add the following line to `elasticsearch.yml` before starting ES with Search Guard 40 installed:
 
 ```
 signals.enabled: false
 ```
 
-### Other Signals indices
+### Configuring index names
 
-Signals will create further indices to store the state of the watches and to log their execution. The index names Signals uses can be controlled by the following settings in elasticsearch.yml:
+Even though, it should be rarely needed, it is possible to configure the names of the indexes created by Signals. The index names Signals uses can be controlled by the following settings in elasticsearch.yml:
 
 ```
 signals.index_names.watches: "<indexname>"
@@ -115,8 +103,4 @@ signals.index_names.watches_trigger_state: "<indexname>"
 signals.index_names.accounts: "<indexname>"
 ```
 
-To disable Signals completely, including index creation, add the following line to `elasticsearch.yml`:
-
-```
-signals.enabled: false
-```
+Please note that changing index names after having started to use Signals is not supported and may lead to failing watches.
