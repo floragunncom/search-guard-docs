@@ -12,7 +12,7 @@ resources:
 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Kibana access control
 {: .no_toc}

@@ -5,16 +5,14 @@ slug: elasticsearch-alerting-security-indices
 category: security
 order: 50
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Signals Indices
 {: .no_toc}
-
-{% include toc.md %}
 
 The Signals configuration index, as the Search Guard configuration index, may contain sensitive data.
 

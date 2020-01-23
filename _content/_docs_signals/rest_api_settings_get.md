@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-destination-put
 category: signals-rest
 order: 900
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Get Settings API
 {: .no_toc}
@@ -38,7 +38,7 @@ Retries all Signals settings or a single setting item.
 
 ### 200 OK
 
-The setting could be successfully retrieved. The value of the settings is returned in the response body.
+The setting could be successfully retrieved. The value of the settings is returned in the response body. The response format is JSON. This means, that if a setting as a simple textual value, the value will be returned in double quotes. If you specify the header `Accept: text/plain` in the request, you will get a plain text response with unquoted textual values.
 
 ### 403 Forbidden
 
@@ -65,8 +65,31 @@ GET /_signals/settings
 **Response**
 
 ```
-TODO
+{
+  "active": "true",
+  "http": {
+    "allowed_endpoints": [
+      "https://www.example.com/*",
+      "https://intra.example.com/*"
+    ]
+  },
+  "tenant": {
+    "_main": {
+      "active": "true",
+      "node_filter": "node.attr.signals: true"
+    }
+  }
+}
 ```
 
+```
+GET /_signals/settings/watchlog.index
+```
+
+**Response**
+
+```
+"<.signals_log_{now/d}>"
+```
 
 

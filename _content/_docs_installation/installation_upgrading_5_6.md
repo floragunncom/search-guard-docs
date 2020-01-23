@@ -7,7 +7,7 @@ layout: docs
 description: Upgrade instructions from Search Guard 5 to Search Guard 6. 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Upgrading from 5.x to 6.x

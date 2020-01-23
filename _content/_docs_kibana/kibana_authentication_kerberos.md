@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use Kerberos to implement Kibana Single Sign On and  to protect your data from any unauthorized access.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Using Kibana with Kerberos

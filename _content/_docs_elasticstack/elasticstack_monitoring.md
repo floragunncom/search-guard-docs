@@ -11,7 +11,7 @@ resources:
 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Monitoring
 {: .no_toc}

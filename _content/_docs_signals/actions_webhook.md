@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-actions-webhook
 category: actions
 order: 300
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Webhook Action
 {: .no_toc}

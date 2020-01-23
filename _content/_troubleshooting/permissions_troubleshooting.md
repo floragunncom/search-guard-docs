@@ -8,7 +8,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot issues with Search Guard roles and permissions.
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Roles and permissions troubleshooting
 

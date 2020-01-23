@@ -9,7 +9,7 @@ description: How to enable the account overview page with the Search Guard Kiban
 ---
 
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Account overview page

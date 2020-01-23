@@ -8,7 +8,7 @@ edition: community
 description: By using the Search Guard login limit feature you can secure your Elasticsearch cluster against brute force attacks.
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 
 # Preventing brute force attacks

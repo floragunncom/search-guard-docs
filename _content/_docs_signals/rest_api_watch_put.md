@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-watch-put
 category: signals-rest
 order: 200
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Put Watch API
 {: .no_toc}

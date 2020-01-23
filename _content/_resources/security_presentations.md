@@ -13,7 +13,7 @@ sitemap_resources: # for sitemap
 ---
 
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Security Presentations
 

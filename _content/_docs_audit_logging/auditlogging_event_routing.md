@@ -9,7 +9,7 @@ edition: compliance
 description: How to configure event routing to ship the compliance events to their correct storage destination
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Event routing and multiple endpoints

@@ -13,7 +13,7 @@ resources:
 
 ---
 <!---
-Copryight floragunn GmbH
+Copyright floragunn GmbH
 -->
 
 # Using Cerebro with Search Guard

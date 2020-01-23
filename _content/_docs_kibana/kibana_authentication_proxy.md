@@ -9,7 +9,7 @@ edition: community
 description: How to an authenticating proxy in front of Kibana to implement Single Sign On.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Using Kibana with Proxy authentication

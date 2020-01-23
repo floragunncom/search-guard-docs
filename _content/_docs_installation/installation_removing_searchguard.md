@@ -9,7 +9,7 @@ edition: community
 description: How to handle disable Search Guard temporarily without removing the complete installation.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Disabling or Removing Search Guard
 {: .no_toc}

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-watch-acknowledge
 category: signals-rest
 order: 700
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Acknowledge Watch API
 {: .no_toc}

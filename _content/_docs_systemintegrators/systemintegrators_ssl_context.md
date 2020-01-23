@@ -9,7 +9,7 @@ edition: community
 description: How to inject an SSL context into a Search Guard secured Elasticsearch cluster. This can be used to integrate with 
 ---
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Injecting an SSLContext

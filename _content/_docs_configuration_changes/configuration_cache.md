@@ -8,7 +8,7 @@ edition: community
 description: Configure the Search Guard internal caches and adapt them to your needs.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # User cache settings
 {: .no_toc}

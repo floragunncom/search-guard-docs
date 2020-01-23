@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-actions-slack
 category: actions
 order: 400
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Slack Action
 {: .no_toc}
@@ -54,5 +54,3 @@ The basic configuration attributes are:
 **account:** Identifies the Slack application which shall be used for sending the message. See the [accounts registry documentation](accounts.md).
 
 **text:** Defines the content of the message. Mustache templates can be used to render attributes from the watch runtime data. Optional. See the [Slack documentation](https://api.slack.com/messaging/composing/formatting) for details on how to format the message.
-
-*Slack blocks or attachments are not yet supported, but will be coming up soon.*

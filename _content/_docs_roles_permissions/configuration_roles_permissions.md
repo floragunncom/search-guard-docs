@@ -9,7 +9,7 @@ edition: community
 description: How to define role based access to Elasticsearch on index level with Search Guard.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Defining Search Guard Roles

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-account-delete
 category: signals-rest
 order: 1000
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Delete Account
 {: .no_toc}

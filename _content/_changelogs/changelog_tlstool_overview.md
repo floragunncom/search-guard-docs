@@ -9,7 +9,7 @@ description: Changelog for the Search Guard TLS Tool which can be used to genera
 ---
 
 <!---
-Copryight 2010 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # TLS Tool Changelogs

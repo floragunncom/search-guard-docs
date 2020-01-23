@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-transformations
 category: transformations
 order: 100
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Transformations
 {: .no_toc}
