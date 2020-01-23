@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the tenants REST API endpoints to create, edit and delete Search Guard tenants.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Tenants API

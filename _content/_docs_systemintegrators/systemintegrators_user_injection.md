@@ -9,7 +9,7 @@ edition: community
 description: How to integrate Search Guard with other products and plugins to inject a Search Guard user directly
 ---
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Injecting a Search Guard user

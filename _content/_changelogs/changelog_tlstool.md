@@ -9,5 +9,5 @@ description: Changelog for the Search Guard TLS Tool
 ---
 
 <!---
-Copryight 2010 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->

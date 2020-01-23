@@ -11,7 +11,7 @@ resources:
   - "https://kubernetes.io/docs/setup/minikube/|Minikube documentation (website)"
 ---
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard Helm Charts for Kubernetes

@@ -13,7 +13,7 @@ resources:
 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Online TLS certificate generator

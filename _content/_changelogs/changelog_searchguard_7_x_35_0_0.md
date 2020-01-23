@@ -8,7 +8,7 @@ description: Changelog for Search Guard 7.x-35.0.0
 ---
 
 <!---
-Copryight 2017-2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard 7.x-35.0.0

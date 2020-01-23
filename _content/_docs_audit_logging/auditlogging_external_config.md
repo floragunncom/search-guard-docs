@@ -9,7 +9,7 @@ edition: compliance
 description: How to use Search Guard to monitor changes in the Elasticsearch configuration.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Elasticsearch configuration tracking

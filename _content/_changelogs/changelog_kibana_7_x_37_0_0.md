@@ -8,7 +8,7 @@ description: Changelog for the Search Guard Kibana Plugin 7.x-37.0.0
 ---
 
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard Kibana Plugin 7.x-37.0.0

@@ -6,16 +6,15 @@ category: signals
 subcategory: conditions
 order: 600
 layout: docs
-edition: beta
+edition: community
+canonical: elasticsearch-alerting-conditions-overview
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Conditions
 {: .no_toc}
-
-{% include toc.md %}
 
 Conditions are used to control the execution flow. A condition can be used anywhere in the execution chain for watches and actions. 
 

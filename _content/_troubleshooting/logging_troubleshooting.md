@@ -9,7 +9,7 @@ resources:
   - https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|Elasticsearch logging configuration (website)
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search Guard logging
 

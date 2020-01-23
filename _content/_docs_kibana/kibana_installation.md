@@ -9,7 +9,7 @@ edition: community
 description: How to install the Search Guard Kibana plugin which adds authentication, multi tenany and the configuration GUI.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Installing the Search Guard Kibana plugin

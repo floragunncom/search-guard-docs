@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest
 order: 300
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 
 # Delete Watch API

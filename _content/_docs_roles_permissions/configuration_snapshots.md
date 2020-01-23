@@ -9,7 +9,7 @@ edition: community
 description: Control access to the snapshot and restore features of Elasticsearch by using Search Guard.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Aliases, snapshots and restore
 {: .no_toc}

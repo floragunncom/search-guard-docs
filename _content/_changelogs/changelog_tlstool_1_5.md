@@ -8,7 +8,7 @@ description: Changelog for the Search Guard TLS Tool 1.5
 ---
 
 <!---
-Copryight 2010 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard TLS Tool 1.5

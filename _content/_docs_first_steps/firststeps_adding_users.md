@@ -11,7 +11,7 @@ resources:
   - sgadmin|Using sgadmin (docs)  
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Adding Search Guard users

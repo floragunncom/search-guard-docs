@@ -10,7 +10,7 @@ description: How to use the roles REST API endpoints to manage roles and permiss
 ---
 
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 

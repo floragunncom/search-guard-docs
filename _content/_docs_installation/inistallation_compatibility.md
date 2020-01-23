@@ -8,7 +8,7 @@ layout: docs
 description: Compatibility of Search Guard with other plugins and tools like Kibana, logstash, Beats, Grafana or Cerebro. 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Compatibility
 {: .no_toc}

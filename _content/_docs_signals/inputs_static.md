@@ -1,15 +1,15 @@
 ---
-title: Static
+title: Static Input
 html_title: Creating static inputs for Signals Alerting
 slug: elasticsearch-alerting-inputs-static
 category: inputs
 order: 100
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Static inputs
 {: .no_toc}

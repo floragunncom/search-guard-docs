@@ -10,7 +10,7 @@ description: How implement a custom TLS principal extractor for a Seaerch Guard 
 ---
 
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Custom Principal Extractor

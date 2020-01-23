@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-security-security-context
 category: security
 order: 200
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Security execution context
 {: .no_toc}

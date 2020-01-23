@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-destination-put
 category: signals-rest
 order: 900
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Put Settings API
 {: .no_toc}
@@ -32,7 +32,7 @@ Updates a Signals configuration setting.
 
 ## Request Body
 
-The value of the setting.
+The value of the setting as JSON. This means that if a setting is a simple textual value, you need to specify the value within quotes.
 
 ## Responses
 
@@ -67,7 +67,7 @@ This permission is included in the following [built-in action groups](security_p
 PUT /_signals/tenant._main.node_filter
 ```
 ```
-signals:true
+"signals:true"
 ```
 
 **Response**
@@ -76,5 +76,19 @@ signals:true
 200 OK
 ```
 
+### Active
+
+```
+PUT /_signals/active
+```
+```
+true
+```
+
+**Response**
+
+```
+200 OK
+```
 
 

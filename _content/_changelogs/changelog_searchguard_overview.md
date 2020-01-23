@@ -8,9 +8,13 @@ layout: changelogs
 description: Changelog Overview for the Search Guard Elasticsearch security plugin. Protect your data from any unauthorized access.
 ---
 
-<!--- Copryight 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search Guard Changelogs
+
+### [Search Guard 7.x-40.0.0](../_changelogs/changelog_searchguard_7_x_40_0_0.md)
+
+Release Date: 22.01.2020
 
 ### [Search Guard 7.x-38.0.0](../_changelogs/changelog_searchguard_7_x_38_0_0.md)
 

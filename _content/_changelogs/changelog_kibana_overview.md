@@ -9,7 +9,7 @@ description: Changelog overview for all releases of the Search Guard Kibana Plug
 ---
 
 <!---
-Copryight 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard Kibana Plugin Changelogs

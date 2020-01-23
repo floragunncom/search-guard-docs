@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
 order: 900
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Put Account API
 {: .no_toc}
