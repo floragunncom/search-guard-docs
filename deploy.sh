@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# sanity checks
-echo "Merge marker sanity check"
-(grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
-
 rm -rf ./_site
 
 bundle install
@@ -19,5 +15,5 @@ if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
   echo "Skipping Search Index"
 else
   echo "Rebuilding Search Index"
-  jekyll algolia push --config _config.yml,_versions.yml
+  bundle exec jekyll algolia push --config _config.yml,_versions.yml
 fi
