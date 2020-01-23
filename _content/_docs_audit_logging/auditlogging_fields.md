@@ -9,7 +9,7 @@ edition: enterprise
 description: Field reference for the Search Guard audit logging module which can be used to track security and compliance related events in an Elasticsearch cluster.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Audit Log Field Reference

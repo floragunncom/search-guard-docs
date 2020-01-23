@@ -8,7 +8,7 @@ edition: community
 description: How to configure Search Guard to integrate with the X-Pack Alerting for Elasticsearch
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Alerting
 {: .no_toc}

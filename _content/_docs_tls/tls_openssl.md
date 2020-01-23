@@ -8,7 +8,7 @@ edition: community
 description: Search Guard supports native OpenSSL for superior performance and most modern cipher suites for production systems.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # OpenSSL setup

@@ -8,7 +8,7 @@ layout: resources
 description: Download the Search Guard TLS demo certificates for setting up a working PoC in no time. Works on Linux, Mac and Windows.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # TLS demo certificates

@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-security-permissions
 category: security
 order: 100
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Permissions
 {: .no_toc}

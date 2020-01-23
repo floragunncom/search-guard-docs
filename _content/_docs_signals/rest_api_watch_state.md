@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-watch-get
 category: signals-rest
 order: 750
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Get Watch State API
 {: .no_toc}

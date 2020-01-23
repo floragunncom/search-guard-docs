@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-status-logging
 category: signals
 order: 1000
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Status and Logging
 {: .no_toc}

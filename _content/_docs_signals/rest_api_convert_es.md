@@ -9,7 +9,7 @@ edition: beta
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Convert Watch API
 {: .no_toc}

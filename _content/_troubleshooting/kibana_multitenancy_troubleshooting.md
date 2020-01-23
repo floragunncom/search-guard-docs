@@ -8,7 +8,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot Multi Tenancy issues.
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Troubleshooting Multitenancy
 

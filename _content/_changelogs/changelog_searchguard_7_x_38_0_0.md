@@ -2,12 +2,12 @@
 title: Search Guard 7.x-38.0.0
 slug: changelog-searchguard-7.x-38_0_0
 category: changelogs-searchguard
-order: 850
+order: 700
 layout: changelogs
 description: Changelog for Search Guard 7.x-38.0.0
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search Guard 7.x-38.0.0
 

@@ -12,7 +12,7 @@ resources:
 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Mapping users to Search Guard roles
 {: .no_toc}

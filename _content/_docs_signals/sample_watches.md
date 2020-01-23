@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-watches-sample
 category: signals
 order: 210
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Sample Watches
 {: .no_toc}

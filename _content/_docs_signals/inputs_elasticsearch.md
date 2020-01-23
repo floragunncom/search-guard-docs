@@ -1,15 +1,15 @@
 ---
-title: Elasticsearch
+title: Elasticsearch Input
 html_title: Creating Elasticsearch inputs for Signals Alerting
 slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search input
 {: .no_toc}

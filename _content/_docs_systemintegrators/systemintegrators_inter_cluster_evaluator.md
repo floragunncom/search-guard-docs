@@ -10,7 +10,7 @@ description: How implement a custom inter-node traffic evaluator for Seaerch Gua
 
 ---
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Custom inter-node traffic evaluator

@@ -7,7 +7,7 @@ layout: changelogs
 description: Changelog for Search Guard 7.x-36.0.0
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search Guard 7.x-36.0.0
 
