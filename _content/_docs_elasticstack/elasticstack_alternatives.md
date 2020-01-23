@@ -9,6 +9,6 @@ edition: community
 description: A list of free alternatives for the commercial X-Pack Elasricsearch plugins.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # X-Pack Alternatives

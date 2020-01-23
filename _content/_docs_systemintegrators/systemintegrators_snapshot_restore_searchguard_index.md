@@ -10,7 +10,7 @@ description: How to enable snapshot and restore of the Search Guard index for re
 ---
 
 <!---
-Copyright 2018 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 ## Snapshot and restore access to the Search Guard index

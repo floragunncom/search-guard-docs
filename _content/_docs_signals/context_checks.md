@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-chaining-checks
 category: signals
 order: 250
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Execution chain and execution runtime data
 {: .no_toc}

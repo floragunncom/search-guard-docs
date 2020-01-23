@@ -1,5 +1,5 @@
 <!---
-Copryight 2017 floragunn UG (haftungsbeschränkt)
+Copyright 2020 floragunn GmbH
 -->
 
 ## Reasons for using TLS

@@ -9,7 +9,7 @@ edition: enterprise
 description: General usage instructions for the Search Guard REST API which can be used to manage users, roles and permissions.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 ## General usage and return values

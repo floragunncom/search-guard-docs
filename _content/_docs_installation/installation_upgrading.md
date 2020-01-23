@@ -7,7 +7,7 @@ layout: docs
 description: How to upgrade Search Guard and Elasticsearch by rolling restarts or a full cluster restart. 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Upgrading Search Guard

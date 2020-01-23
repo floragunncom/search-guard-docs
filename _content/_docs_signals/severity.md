@@ -5,13 +5,13 @@ slug: elasticsearch-alerting-severity
 category: signals
 order: 650
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
-# Using Severity with Signals Watches
+## Using Severity with Signals Watches
 
 {: .no_toc}
 

@@ -14,7 +14,7 @@ resources:
 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Demo Installer 
 {: .no_toc}

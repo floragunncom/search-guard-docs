@@ -8,7 +8,7 @@ layout: troubleshooting
 description: Step-by-step instructions to troubleshoot Search Guard TLS and certificates issues
 ---
 
-<!--- Copryight 2017 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # TLS troubleshooting
 

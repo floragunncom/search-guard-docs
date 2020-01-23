@@ -11,7 +11,7 @@ resources:
 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 # Search Guard Community Edition
 {: .no_toc}

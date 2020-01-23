@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-actions-email
 category: actions
 order: 200
 layout: docs
-edition: beta
+edition: community
 description:
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Email Action
 {: .no_toc}

@@ -8,7 +8,7 @@ edition: enterprise
 description: How to write your own authentication and authorization modules for Search Guard.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 

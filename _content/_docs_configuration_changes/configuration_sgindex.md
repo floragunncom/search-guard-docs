@@ -8,7 +8,7 @@ layout: docs
 edition: community
 description: Search Guard stores its configuration in an Elasticsearch index. This allows for configuration hot-reloading
 ---
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # The Search Guard configuration index
 {: .no_toc}

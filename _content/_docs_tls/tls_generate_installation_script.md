@@ -9,7 +9,7 @@ description: How to generate TLS certificates by using the demo installation scr
 
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
 # Using the Search Guard demo installer

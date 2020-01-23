@@ -16,8 +16,8 @@ table > thead:first-child > tr:first-child > th,
 table > caption + thead > tr:first-child > td,
 table > colgroup + thead > tr:first-child > td,
 table > thead:first-child > tr:first-child > td{border-top:0;}
-table > tbody + tbody{border-top:2px solid #cbd3dd;}
-table > tbody > tr:nth-of-type(even){background-color:#f6f7f8;}
+//table > tbody + tbody{border-top:2px solid #cbd3dd;}
+//table > tbody > tr:nth-of-type(even){background-color:#f6f7f8;}
 table col{position:static;float:none;display:table-column;}
 table td,
 table th{position:static;float:none;display:table-cell;}
@@ -61,3 +61,29 @@ table th{position:static;float:none;display:table-cell;}
   background: $darkBlue;
   color: $lightGrey;
 }
+
+/*
+  2-column table equal column width
+ */
+.equalwidth-table {
+  border-collapse: separate;
+  border-spacing: 5px;
+  border-style: none !important;
+}
+
+.equalwidth-table  > thead > tr > th:nth-child(1),
+.equalwidth-table  > tbody > tr > td:nth-child(1) {
+  width: 50%;
+  border-style: none !important;
+  background-color:#fff;
+}
+
+.equalwidth-table  > thead > tr > th:nth-child(2),
+.equalwidth-table  > tbody > tr > td:nth-child(2) {
+  width: 50%;
+  border-style: none !important;
+  background-color:#fff;
+}
+
+//.equalwidth-table > tbody + tbody{border-top:0px solid #cbd3dd;}
+//.equalwidth-table > tbody > tr:nth-of-type(even){background-color:#fff;}

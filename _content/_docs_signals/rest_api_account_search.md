@@ -5,11 +5,11 @@ slug: elasticsearch-alerting-rest-api-account-search
 category: signals-rest
 order: 850
 layout: docs
-edition: beta
+edition: community
 description: 
 ---
 
-<!--- Copyright 2019 floragunn GmbH -->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Search Accounts
 {: .no_toc}
