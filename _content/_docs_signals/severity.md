@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Using Severity with Signals Watches
+## Using Severity with Signals Watches
 
 {: .no_toc}
 

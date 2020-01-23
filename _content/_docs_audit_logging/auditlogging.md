@@ -210,7 +210,7 @@ If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in
 Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
 
 
-# Configuring retries
+## Configuring retries
 
 In case your audit log sinks fail occasionally you can configure a retry mechanism. Please note that the messages for which a retry is needed are only held in memory. So this is not reliable in case of an expected or unexpected node shutdown. If you need reliable audit logs you need to have a performant and high available sink like Apache Kafka.
 

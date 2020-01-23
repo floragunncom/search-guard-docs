@@ -3,12 +3,12 @@ title: Search Guard Documentation
 html_title: Documentation
 slug: index
 layout: docs
-description: Official documentation for Search Guard 7, the enterprise security suite for Elasticsearch.
+description: Official documentation for Search Guard 7, the enterprise security and alerting suite for Elasticsearch.
 showsearch: true
 isroot: true
 ---
 <!---
-Copryight 2016-2019 floragunn GmbH
+Copryight 2020 floragunn GmbH
 -->
 
 
@@ -20,14 +20,19 @@ Copryight 2016-2019 floragunn GmbH
 
 <h1 align="center">Search Guard {{site.searchguard.version}} Documentation</h1>
 
-The first beta version of Signals, our Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
-{: .note .js-note .green}
+Signals, our free Enterprise Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
+{: .note .js-note}
 
 ## Quick Links
 
-* [Quick Start](demo-installer)
-* [Latest versions](search-guard-versions)
-* [Installation](search-guard-installation)
-* [Main Concepts](main-concepts)
-* [Alerting](elasticsearch-alerting-getting-started)
+| Security | Alerting |
+|---|---|
+| [Latest versions](search-guard-versions) |[Getting started](elasticsearch-alerting-getting-started) |
+| [Quick Start](demo-installer) | [How Signals Works](elasticsearch-alerting-how-it-works) |
+| [First steps: Adding users](first-steps-user-configuration) |[Sample Watches](elasticsearch-alerting-watches-sample)|
+| [First steps: Configuring roles](first-steps-roles-configuration) |[REST API](elasticsearch-alerting-rest-api-overview)|
+| [First steps: Assign users to roles](first-steps-mapping-users-roles) | [Severity Levels](elasticsearch-alerting-severity)|
+| [Main Concepts](main-concepts) | [Actions](elasticsearch-alerting-actions-overview)| 
+{: .equalwidth-table}
+
 

@@ -27,10 +27,10 @@ elasticsearch:
 
 searchguard:
   esmajorversion: 7
-  version: 7.x-36.0.0 
-  fullversion: 7.2.0-36.0.0 
-  nextminorversion: 7.2.0-36.1.0 
-  nextmajorversion: 7.2.0-37.0.0 
+  version: 7.x-40.0.0 
+  fullversion: 7.5.1-40.0.0 
+  nextminorversion: 7.5.1-40.1.0 
+  nextmajorversion: 7.5.1-41.0.0 
   islatestversion: true
   ispreliminaryversion: false
   allversions:

@@ -16,46 +16,50 @@ description:
 
 {% include toc.md %}
 
-Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to install the Search Guard plugin for Elasticsearch and Kibana.
+Since v40, Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to [install the Search Guard plugin for Elasticsearch and  (optional) Kibana](search-guard-versions) version 40 and above.
 
-*Signals is right now in Beta state. At the moment, it is only available for Elasticsearch 7.3.2, 7.4.0, 7.4.1, 7.4.2 and 7.5.0.*
+At the time of writing, Signals is available for Elasticsearch **7.5.0** and above. However, we will release Signals versions for Elasticsearch **7.4.x and 7.3.x** shortly.
 
-The technical preview includes both Signals and Search Guard, and can be installed the same way you would install Search Guard and the Search Guard Kibana plugin.
+Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Kibana app to create your first watch.
 
-## Signals technical preview - Elasticsearch
+If you need to disable it, add the following setting to your `elasticsearch.yml`:
 
-1. Download the plugin:
-
-* ES 7.3.2: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.3.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.3.2-Signals-1.0-beta1.zip)
-* ES 7.4.0: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.0-Signals-1.0-beta1.zip)
-* ES 7.4.1: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.1-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.1-Signals-1.0-beta1.zip)
-* ES 7.4.2: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.4.2-Signals-1.0-beta1.zip)
-* ES 7.5.0: [https://releases.floragunn.com/signals_beta_1/search-guard-7-7.5.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-7-7.5.0-Signals-1.0-beta1.zip)
-
-
-2. Install the plugin
-
-```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-7-7.3.2-Signals-1.0-beta1.zip
+```
+signals.enabled: false
 ```
 
+## Users and permissions
 
-## Signals technical preview - Kibana
+Signals integrates perfectly with the Search Guard role-based access control features, so you can define what Search Guard roles should be permitted to use Signals. Signals ships with [pre-defined alerting action groups](elasticsearch-alerting-security-permissions) that can be assigned to any Search Guard role.
 
-1. Download the plugin:
+A role with full access to all Signals features looks like:
 
-* ES 7.3.2: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip)
-* ES 7.4.0: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.0-Signals-1.0-beta1.zip)
-* ES 7.4.1: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.1-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.1-Signals-1.0-beta1.zip)
-* ES 7.4.2: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.2-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.4.2-Signals-1.0-beta1.zip)
-* ES 7.5.0: [https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.5.0-Signals-1.0-beta1.zip](https://releases.floragunn.com/signals_beta_1/search-guard-kibana-plugin-7-7.5.0-Signals-1.0-beta1.zip)
-
-2. Install the plugin
-
-```bash
-bin/kibana-plugin install -b file:///path/to/search-guard-kibana-plugin-7.3.2-Signals-1.0-beta1.zip
 ```
+sg_signals_manager:
+  cluster_permissions:
+    - SGS_SIGNALS_ACCOUNT_MANAGE
+    - SGS_CLUSTER_COMPOSITE
+  index_permissions:
+    ...
+  tenant_permissions:
+    - tenant_patterns:
+        - 'SGS_GLOBAL_TENANT'
+      allowed_actions:
+        - 'SGS_SIGNALS_ALL'
+```
+
+Note that Signals is fully compatible with [Search Guard multi-tenancy](kibana-multi-tenancy), which means watches and watch execution can be separated by tenants.
 
 ## Sample watches
 
 To start quickly with Signals, we have [prepared sample watches](sample_watches.md) that can be either installed by using the REST API, or the Kibana plugin.
+
+The examples are based on the [Kibana sample data](https://www.elastic.co/guide/en/kibana/current/add-sample-data.html), so you need to import it first.
+
+## First steps
+
+In order to get to speed with Signals quickly, we recommend following our [Signals Alerting: First Steps](https://search-guard.com/signals-elasticsearch-alerting/) blog post. We will release a series of articles describing all Signals features in detail.
+
+## Community support
+
+If you have any questions, please refer to our [Signals Community forum](https://forum.search-guard.com/c/alerting-signals/12).

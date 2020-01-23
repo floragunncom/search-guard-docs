@@ -14,8 +14,6 @@ description:
 # Signals Indices
 {: .no_toc}
 
-{% include toc.md %}
-
 The Signals configuration index, as the Search Guard configuration index, may contain sensitive data.
 
 Access to the Signals configuration index is thus protected. In particular, you cannot access the index data directly by any of the Elasticsearch APIs.
