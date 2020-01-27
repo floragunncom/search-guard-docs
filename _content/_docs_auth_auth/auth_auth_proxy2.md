@@ -2,16 +2,16 @@
 title: Enhanced Proxy Authentication 2
 slug: proxy-authentication-2
 category: authauth
-order: 800
+order: 810
 layout: docs
 edition: community
 description: Use Search Guard's enhanced Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
 ---
 <!---
-Copyright 2019 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
-# Enhanced HTTP-header/Proxy based authentication with additional features
+## Enhanced HTTP-header/Proxy based authentication
 
 {: .no_toc}
 {% include toc.md %}
@@ -48,6 +48,7 @@ sg_config:
 |`user_header`|"x-proxy-user"|Sets the name of the header containing the username|
 |`roles_header`|"x-proxy-roles"|Sets the name of the header containing the user roles|
 |`roles_separator`|","|Sets the separator that separates roles in the roles header content|
+{: .config-table}
 
 | Possible `auth_mode` values | Description |
 |---|---|
@@ -55,6 +56,7 @@ sg_config:
 |"cert"|Authenticates the request if a valid client certificate is given|
 |"both"|Authenticates the request if both a correct x-forwarded-for header and a valid client certificate is given|
 |"either"|Authenticates the request if either a correct x-forwarded-for header or a valid client certificate is given|
+{: .config-table}
 
 ### Using 'ip' mode: Hostname validation
 
@@ -92,6 +94,7 @@ sg_config:
 |`enabled`|true|Enables or disables x-forwarded-for|
 |`internalProxies`||Ip-addresses of all trusted proxies|
 |`remoteIpHeader`|"x-forwarded-for"|Name of the header where the chain of hostnames is stored|
+{: .config-table}
 
 ### Using 'client' mode: Client certificate validation
 
@@ -123,6 +126,7 @@ sg_config:
 | Config name | Default value | Description |
 |---|---|---|
 |`allowed_dn_s`||List of trusted DNs|
+{: .config-table}
 
 ### Using 'both' mode: Client certificate *and* hostname validation
 
@@ -163,10 +167,12 @@ sg_config:
 |`enabled`|true|Enables or disables x-forwarded-for|
 |`internalProxies`||Ip-addresses of all trusted proxies|
 |`remoteIpHeader`|"x-forwarded-for"|Name of the header where the chain of hostnames is stored|
+{: .config-table}
 
 | Config name | Default value | Description |
 |---|---|---|
 |`allowed_dn_s`||List of trusted DNs|
+{: .config-table}
 
 ### Using 'either' mode: Client certificate *or* hostname validation
 
@@ -205,10 +211,12 @@ sg_config:
 |`enabled`|true|Enables or disables x-forwarded-for|
 |`internalProxies`||Ip-addresses of all trusted proxies|
 |`remoteIpHeader`|"x-forwarded-for"|Name of the header where the chain of hostnames is stored|
+{: .config-table}
 
 | Config name | Default value | Description |
 |---|---|---|
 |`allowed_dn_s`||List of trusted DNs|
+{: .config-table}
 
 ## Additional attributes
 
@@ -236,6 +244,7 @@ sg_config:
 | Config name | Default value | Description |
 |---|---|---|
 |`attribute_headers`||List of additional attribute header names|
+{: .config-table}
 
 You can then refer to them `attr_proxy2_additional-attribute-2` like described [here](roles-permissions.md). There is also an attribute `attr_proxy2_username` available containing the username like it was submitted by the proxy.
 
