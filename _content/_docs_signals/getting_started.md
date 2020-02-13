@@ -18,7 +18,7 @@ description:
 
 Since v40, Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to [install the Search Guard plugin for Elasticsearch and  (optional) Kibana](search-guard-versions) version 40 and above.
 
-At the time of writing, Signals is available for Elasticsearch **7.5.0** and above. However, we will release Signals versions for Elasticsearch **7.4.x and 7.3.x** shortly.
+At the time of writing, Signals is available for Elasticsearch **7.4.0** and above.
 
 Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Kibana app to create your first watch.
 
