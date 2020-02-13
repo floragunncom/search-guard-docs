@@ -22,7 +22,7 @@ If you are upgrading from Elasticsearch 6.8.x to Elasticsearch >= 7.0.0, please 
 
 ## Search Guard 7
 
-Signals, our [Enterprise Alerting](elasticsearch-alerting-getting-started) solution for Elasticsearch, has been officially released and is bundled with any Search Guard download >= v40. Support for Elasticsearch 7.4.x and 7.3.x will follow shortly.
+Signals, our [Enterprise Alerting](elasticsearch-alerting-getting-started) solution for Elasticsearch, has been officially released and is bundled with any Search Guard download >= v40.
 {: .note .js-note .note-warning}
 
 {% include sgversions.html majorversion="search-guard-7" %}
