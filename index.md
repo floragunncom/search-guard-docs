@@ -23,6 +23,24 @@ Copryight 2020 floragunn GmbH
 Signals, our free Enterprise Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
 {: .note .js-note}
 
+## Docker Demo
+
+To try out Search Guard and Signals quickly, you can use the Search Guard Demo Docker image:
+
+```
+docker run -ti -p 9200:9200 -p 5601:5601 floragunncom/sgdemo
+```
+
+After the container is up, open
+
+```
+http://localhost:5601 to access Kibana
+```
+
+to access Kibana. For login, use `admin/admin`.
+
+<hr  />
+
 ## Quick Links
 
 | Security | Alerting |
