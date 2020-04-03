@@ -163,6 +163,19 @@ PATCH /_searchguard/api/internalusers
 ]
 ```
 
+## Changing the internal user's password
+
+The password of internal users can easily be updated either via the Kibana dashboard in `Home -> Internal Users -> Update User` or via REST
+
+```
+PUT /_searchguard/api/internalusers/<user name>
+{
+  "password": "<new password>"
+}
+```
+
+Please note that the password is immediately changed and you might need to update your `Basic Authorization` header (user name:password) in subsequent requests.
+
 ## Password rules
 
 In order to enforce password rules (e.g. mixed letters and digits, minimum length), you can configure a regular expression in `elasticsearch.yml`:
