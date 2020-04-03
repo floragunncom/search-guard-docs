@@ -174,7 +174,7 @@ PUT /_searchguard/api/internalusers/<user name>
 }
 ```
 
-Please note that the password is immediately changed and you might need to update your `Basic Authorization` header (user name:password) in subsequent requests.
+Please note that the password is immediately changed and you might need to update your `Basic Authorization` header (username:password) in subsequent requests.
 
 ## Password rules
 
