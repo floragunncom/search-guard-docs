@@ -163,7 +163,7 @@ PATCH /_searchguard/api/internalusers
 ]
 ```
 
-## Changing the internal user's password
+## Changing the internal user password
 
 The password of internal users can easily be updated either via the Kibana dashboard in `Home -> Internal Users -> Update User` or via REST
 
