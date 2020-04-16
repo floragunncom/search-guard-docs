@@ -189,6 +189,8 @@ nested_role_filter: <true|false>
   - ...
 ```
 
+For more information on how to exclude users from lookups see the page [Exclude certain users from authentication/authorization](../_docs_auth_auth/auth_auth_configuration.md).
+
 ### Advanced: Active Directory Global Catalog (DSID-0C0906DC)
 
 Depending on your configuration you may need to use port 3268 instead of 389 so that the LDAP module is able to query the global catalog. Changing the port can help to avoid warnings like
