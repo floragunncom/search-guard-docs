@@ -27,7 +27,7 @@ To use Active Directory / LDAP for authentication first configure a respective a
 ```yaml
 authc:
   ldap:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: basic
@@ -156,4 +156,15 @@ ldap:
           base: 'ou=otherpeople,dc=example,dc=com'
           search: '(initials={0})'
       username_attribute: uid
+```
+
+### Advanced: Exclude certain users from role lookup
+
+It is possible to exclude users from LDAP authentication by specifying a 'skip_users' section inside the domain configuration. **Wildcards** and **regular expressions** are exported.
+
+```yaml
+skip_users:
+  - kibanaserver
+  - 'cn=Michael Jackson,ou*people,o=TEST'
+  - '/\S*/'
 ```
