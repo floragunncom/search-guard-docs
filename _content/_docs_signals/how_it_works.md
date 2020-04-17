@@ -60,7 +60,7 @@ These three elements also form the three major building blocks of a Signals watc
   * *[Transformations and calculations](transformations.md)* to transform the gathered data into a format that subsequent operations may require.
   * Each watch can have several checks, which are executed as a chain. Each action of a watch can also have a chain of checks.
 * **[Actions](actions.md)** are executed if all preceding conditions are met.
-  * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md), or PagerDuty (coming soon).
+  * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md) or [PagerDuty](actions_pagerduty.md).
   * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](actions_index.md).
   * Using the [Webhook action](actions_webhook.md), it is possible to invoke any HTTP service as a result of a Signals watch.
   * Each watch can have several actions. Action-specific checks can be used to decide which actions are executed in which situation.
