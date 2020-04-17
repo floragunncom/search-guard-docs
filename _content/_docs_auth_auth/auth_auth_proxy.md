@@ -16,6 +16,9 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
+This module is deprecated and will be replaced by the new [Proxy Authentication 2](proxy-authentication-2) module in Search Guard 8. The new proxy module is fully backwards-compatible but offers a broader range of features.
+{: .note .js-note .note-warning}
+
 You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Search Guard authentication backend.
 
 Most of these solutions work as a proxy in front of Elasticsearch/Search Guard. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependant on the SSO solution you have in place.

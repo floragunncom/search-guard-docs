@@ -27,7 +27,7 @@ To use Active Directory / LDAP for authentication first configure a respective a
 ```yaml
 authc:
   ldap:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: basic
