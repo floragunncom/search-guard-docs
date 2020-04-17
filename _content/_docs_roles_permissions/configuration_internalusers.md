@@ -86,7 +86,7 @@ The password is a BCrypt hash of the cleartext password. You can use the `hash.s
 
 ``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hash.sh -p mycleartextpassword``
 
-You can also use any offline or [online tool](https://bcrypt-generator.com/){target:_blank} that is able to produce BCrypt hashes, like the 
+You can also use any offline or [online tool](https://bcrypt-generator.com/) that is able to produce BCrypt hashes, like the 
 
 ## Activating the internal user database
 
