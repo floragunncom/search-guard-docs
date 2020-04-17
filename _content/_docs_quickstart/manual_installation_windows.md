@@ -140,6 +140,9 @@ elasticsearch.ssl.verificationMode: none
 
 # Whitelist the Search Guard Multi Tenancy Header
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
+
+# X-Pack security needs to be disabled for Search Guard to work properly
+xpack.security.enabled: false
 ```
 
 ## Start Kibana
