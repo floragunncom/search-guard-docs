@@ -69,7 +69,7 @@ jdoe:
 
 Because we do not want to store any cleartext passsords anywhere, the password of the user must be hashed before we can add it to the configuration.
 
-Search Guard uses a BCrypt hash for the passwords, so you can use [any tool that is capable of producing a BCrypt hash](https://bcrypt-generator.com/){target:_blank}.
+Search Guard uses a BCrypt hash for the passwords, so you can use [any tool that is capable of producing a BCrypt hash](https://bcrypt-generator.com/).
 
 Search Guard ships with a `hash.sh` script which you can use as well to generate the password hash. The script is located in:
 

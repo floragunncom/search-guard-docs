@@ -97,7 +97,7 @@ searchguard.openid.header: "Authorization"
 # optional: the logout URL of your IdP
 # Only necessary if your IdP does not publish the logout url
 # in the metadata
-searchguard.openid.header: "Authorization"
+searchguard.openid.logout_url: "https://keycloak.example.com:8080/auth/realms/master/protocol/openid-connect/logout"
 
 # Use HTTPS instead of HTTP
 elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"

@@ -97,7 +97,7 @@ A second action will send an additional email to a manager if the total number o
          "account":"it_smtp",
          "to": ["admin@example.com"],
          "subject": "Too many errors detected.",
-         "text_body":"Found more that {{data.http_error_500.hits.total.value}} hits."
+         "text_body":"Found more than {{data.http_error_500.hits.total.value}} hits."
     },
     {
          "type":"email",
@@ -105,7 +105,7 @@ A second action will send an additional email to a manager if the total number o
          "account":"it_smtp",
          "to": ["management@example.com"],
          "subject": "Warning: Critical amount of errors found",
-         "text_body":"Found more that {{data.http_error_500.hits.total.value}} hits.",
+         "text_body":"Found more than {{data.http_error_500.hits.total.value}} hits.",
          "checks": [
            {
                "type": "condition.script",
