@@ -123,7 +123,7 @@ All configuration settings for Search Guard, such as users, roles and permission
 
 Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. 
 
-Also the authenticator configuration is hot reloadable, so you can add, remove or change atuthenticators at runtime as well.
+Also the authenticator configuration is hot reloadable, so you can add, remove or change authenticators at runtime as well.
 
 You can load and change the settings from any machine which has access to your Elasticsearch cluster.  You do not need to keep any configuration files on the nodes themselves. 
 
