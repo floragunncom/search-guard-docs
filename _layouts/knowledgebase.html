@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ {% include html_head.html %}
+
+<body class="">
+
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+
+		{% include main_navigation.html %}
+
+		<div id="content">
+			<div class="container-fluid container-spaced">
+				<div class="layout with-left-sidebar js-layout">
+					<div class="row">
+						<div class="col-md-3 hidden-sm hidden-xs">
+							<div class="sidebar">
+
+								{% include left_nav_search.html %}
+								
+								{% include left_nav_knowledgebase.html %}
+
+							</div>
+						</div>
+						<div class="col-md-9">
+							{% include version.html %}							
+							<div class="kb">
+								{{ content }}
+							</div>
+							{% include additional_resources.html %}
+							{% include additional_resources_search.html %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include footer.html %}
+
+	</div>
+		
+	{% include scripts.html %}</body>
+
+	<script type="application/ld+json">
+	{
+  		"@context": "http://schema.org",
+  		"@type": "WebSite",
+  		"url": "https://docs.search-guard.com{{site.baseurl}}",
+  		"potentialAction": {
+    		"@type": "SearchAction",
+    		"target": "https://docs.search-guard.com/latest/search.html?q={search_term_string}",
+    		"query-input": "required name=search_term_string"
+  		}
+	}
+	</script>
+	<script type="application/ld+json">
+ 	{ 
+ 		"@context": "http://schema.org",
+ 		"@type": "Organization",
+ 		"name": "Search Guard",
+ 		"legalName" : "floragunn GmbH",
+ 		"url": "https://search-guard.com",
+ 		"logo": "https://docs.search-guard.com/img/logos/search-guard-logo.png",
+ 		"foundingDate": "2013",
+ 		"founders": 
+ 		[
+	 		{
+	 			"@type": "Person",
+	 			"name": "Jochen Kressin"
+	 		},
+	 		{
+	 			"@type": "Person",
+	 			"name": "Claudia Kressin"
+	 		}
+ 		],
+		 "address": {
+		 "@type": "PostalAddress",
+		 "streetAddress": "Tempelhofer Ufer 16",
+		 "addressLocality": "Berlin",
+		 "postalCode": "10963",
+		 "addressCountry": "Germany"
+		 },
+		 "contactPoint" : [
+			 {
+				 "@type": "ContactPoint",
+				 "contactType": "sales",
+				 "telephone": "[+49-30–89379249]",
+				 "email": "sales@search-guard.com"
+			 },
+			 {
+				 "@type": "ContactPoint",
+				 "contactType": "customer support",
+				 "url": "https://forum.search-guard.com/"
+			 }
+		 ],
+		 "sameAs": [ 
+			 "https://twitter.com/searchguard",
+			 "https://www.facebook.com/searchguard/",
+			 "https://www.linkedin.com/company/search-guard/",
+			 "https://www.youtube.com/channel/UCUw93I0DHMvoA8HNQ31AeJw"
+		 ]
+	}
+</script>	
+</html>

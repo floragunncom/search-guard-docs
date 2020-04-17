@@ -1,0 +1,10 @@
+<!-- Vertical Menu -->
+<nav class="menu-vertical-wrapper">
+	<ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
+	{% for item in site.kb.navigation %}
+		<li>
+			<a href="{{site.baseurl}}/{{ item[1] }}-overview-kb" class="main-nav-level-2">{{ item[0] }}</a>
+		</li>	
+	{% endfor %}
+	</ul>
+</nav>

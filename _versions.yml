@@ -7,9 +7,9 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
 
-index: true
+index: false
 
-baseurl: /none
+baseurl: /latest
 
 algolia:
-  index_name: 'none'
+  index_name: 'latest'

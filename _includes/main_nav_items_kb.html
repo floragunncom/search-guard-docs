@@ -1,0 +1,5 @@
+<li>
+	{% for item in site.kb.navigation %}
+	<a href="{{site.baseurl}}/{{ item[1] }}-overview-kb" class="main-nav-level-2">{{ item[0] }}</a>
+	{% endfor %}											
+</li>

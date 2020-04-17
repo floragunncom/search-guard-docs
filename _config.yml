@@ -207,6 +207,9 @@ collections:
   common:
     output: true
     permalink: :title
+  knowledgebase:
+    output: true
+    permalink: :title
 
 algolia:
   application_id: '2ESDTH812Y'

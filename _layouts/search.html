@@ -49,10 +49,14 @@
 	</div>
 		
 	{% include scripts.html %}
-	
+
+<!--	
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch-theme-algolia.min.css">	
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/algolia-min.css" integrity="sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8=" crossorigin="anonymous">
+
+-->
 	<style>
 		.algolia__result-highlight{background-color:#f6f7f8;font-weight:500;padding:2px 4px;border-radius:3px;font-weight:500;}
 		.ais-search-box{position:relative;max-width:100%;width:100%;}
@@ -64,17 +68,22 @@
 
 </body>
 	
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js" integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js" integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
+
+
 <script>
-	const search = instantsearch({
-	    appId: '2ESDTH812Y',
-	    apiKey: '0047035979f052146a69e1d0300cd332',
+
+	const searchClient = algoliasearch('2ESDTH812Y', '0047035979f052146a69e1d0300cd332');
+
+
+	const search = instantsearch({		
 	    indexName: '{{site.algolia.index_name}}',
-	    urlSync: true,
 	    searchParameters: {
 	        facetingAfterDistinct: true,
 	        snippetEllipsisText: "..."
-	    }
+	    },
+	    searchClient
 	});
 	
 	search.addWidget(
@@ -97,19 +106,19 @@
 	);
 	
 	// initialize RefinementLists	
-	search.addWidget(
-	    instantsearch.widgets.refinementList({
-	        container: '#refinement-list-category',
-	        attributeName: 'category_name'
-	    })
-	);
-	
-	search.addWidget(
-	    instantsearch.widgets.refinementList({
-	        container: '#refinement-list-h1',
-	        attributeName: 'h1'
-	    })
-	);
+//	search.addWidget(
+//	    instantsearch.widgets.refinementList({
+//	        container: '#refinement-list-category',
+//	        attributeName: 'category_name'
+//	    })
+//	);
+//	
+//	search.addWidget(
+//	    instantsearch.widgets.refinementList({
+//	        container: '#refinement-list-h1',
+//	        attributeName: 'h1'
+//	    })
+//	);
 	
 	search.start();
 	
