@@ -178,7 +178,7 @@ The common configuration attributes are:
 
 **checks:** Further checks which can gather or transform data and decide whether to execute the actual action. Optional.
 
-**foreach:** Executes the action for each element of a collection. The collection to use is identified by the Painless expression specified for this attribute. Optional see [Processing Collections of Objects in Actions](#Processing Collections of Objects in Actions) for details.
+**foreach:** Executes the action for each element of a collection. The collection to use is identified by the Painless expression specified for this attribute. Optional see [Processing Collections of Objects in Actions](#processing-collections-of-objects-in-actions) for details.
 
 **foreach_limit:** Specifies the maximum allowed number of iterations performed when using `foreach`. Optional. Defaults to 100.
 

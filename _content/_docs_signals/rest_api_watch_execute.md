@@ -105,7 +105,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 
 The request was malformed. 
 
-If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
+If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See the [invalid watch example](#invalid-watch) for details.
 
 ### 403 Forbidden
 
@@ -224,3 +224,92 @@ POST /_signals/watch/_main/bad_weather/_execute
 }
 ```
 
+
+### Invalid Watch
+
+```
+POST /_signals/watch/_main/_execute
+```
+
+<!-- {% raw %} -->
+```json
+{
+    "watch": {
+        "trigger": {
+            "schedule": {
+                "cron": "after lunch :-?"
+            }
+        },
+        "checks": [
+            {
+                "type": "sörch",
+                "request": {
+                    "indices": [
+                        "kibana_sample_data_flights"
+                    ]
+                }
+            },
+            {
+                "type": "condition",
+                "source": "data.bad_weather_flights.hits.hits.length > "
+            }
+        ],
+        "actions": [
+            {
+                "type": "email",
+                "account": "test",
+                "throttle_period": "1h",
+                "to": "notify@example.com",
+                "subject": "Bad destination weather for {{data.bad_weather_flights.hits.total.value}} flights over last {{data.constants.window}}!",
+                "text_body": "Time: {{_source.timestamp}}\n  Flight Number: {{_source.FlightNum}}\n  Origin: {{_source.OriginAirportID}}\n  Destination: {{_source.DestAirportID}}"
+            }
+        ]
+    }
+}
+```
+<!-- {% endraw %} -->
+
+**Response**
+
+```
+400 Bad Request
+```
+
+```json
+{
+    "status": 400,
+    "error": "5 errors; see detail.",
+    "detail": {
+        "watch.checks[].source": [
+            {
+                "error": "unexpected end of script.",
+                "context": "... ights.hits.hits.length > \n                             ^---- HERE"
+            }
+        ],
+        "watch.actions[].account": [
+            {
+                "error": "Account does not exist: test"
+            }
+        ],
+        "watch.triggers.schedule.cron": [
+            {
+                "error": "Invalid cron expression: Illegal characters for this position: 'AFT'",
+                "value": "after lunch :-?",
+                "expected": "Quartz Cron Expression: <Seconds: 0-59|*> <Minutes: 0-59|*> <Hours: 0-23|*> <Day-of-Month: 1-31|?|*> <Month: JAN-DEC|*> <Day-of-Week: SUN-SAT|?|*> <Year: 1970-2199|*>?. Numeric ranges: 1-2; Several distinct values: 1,2; Increments: 0/15"
+            }
+        ],
+        "watch.actions[].name": [
+            {
+                "error": "Required attribute is missing"
+            }
+        ],
+        "watch.checks[].type": [
+            {
+                "error": "Invalid value",
+                "value": "sörch",
+                "expected": "search|static|http|condition|calc|transform"
+            }
+        ]
+    }
+}
+```
