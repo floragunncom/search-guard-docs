@@ -54,6 +54,8 @@ The supported attributes of the JSON document are these:
 
 **simulate:** If true, the actions are only partially executed. All preparations for the action are executed, including executing nested checks and scripts, rendering mustache templates, etc. Only the final step for completing the action is not done; the type of the final step depends of course on the type of the action. For example, email actions render the email, but won't send it to the SMTP server. The resulting artifact or request can be viewed in the result returned by the action in the attribute `request`. 
 
+**show_all_runtime_attributes:** If true, the API response will contain the attribute `runtime_attributes`. This attribute will reflect the complete set of attributes that are available to scripts and templates after all checks have been finished. This includes the `data` attribute, but also the `severity` and `trigger` attribute. Please note that all attributes under the `trigger` attribute will be null, because they don't apply for watches executed via API. If an action has further checks, which modify the runtime attributes, these will be made available separately at `actions.action_name.runtime_attributes`. 
+
 ## Responses
 
 ### 200 OK
@@ -69,7 +71,7 @@ The response body contains the watch log document:
 
 Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
 
-**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run. If `show_all_runtime_attributes` was specified in the body, this attribute will be replaced by `runtime_attributes`.
 
 **actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
 
@@ -92,7 +94,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 
 **error:** Detailed information on the error that occurred.
 
-**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run. If `show_all_runtime_attributes` was specified in the body, this attribute will be replaced by `runtime_attributes`.
 
 **actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
 
