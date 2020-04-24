@@ -1,5 +1,5 @@
 ---
-title: Acknowledge watch
+title: Acknowledge Watch
 html_title: Acknowledge a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-acknowledge
 category: signals-rest

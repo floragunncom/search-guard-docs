@@ -1,9 +1,9 @@
 ---
-title: Put watch
+title: Put Watch
 html_title: Creating a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-put
 category: signals-rest
-order: 200
+order: 110
 layout: docs
 edition: community
 description:

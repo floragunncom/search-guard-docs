@@ -1,7 +1,7 @@
 ---
-title: Put Destination
-html_title: Put a destination with the REST API
-slug: elasticsearch-alerting-rest-api-destination-put
+title: Get Settings
+html_title: Get settings with the REST API
+slug: elasticsearch-alerting-rest-api-settings-get
 category: signals-rest
 order: 900
 layout: docs
