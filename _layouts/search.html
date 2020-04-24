@@ -59,7 +59,7 @@
 -->
 	<style>
 		.algolia__result-highlight{background-color:#f6f7f8;font-weight:500;padding:2px 4px;border-radius:3px;font-weight:500;}
-		.ais-search-box{position:relative;max-width:100%;width:100%;}
+		.ais-SearchBox-input{position:relative;max-width:100%;width:100%;}
 		.ais-refinement-list--label{padding:0 10px 0 10px;line-height:40px;color:rgb(51, 51, 51);}
 		.ais-refinement-list--item{background-color:#f6f7f8;border-bottom:1px solid #eaedf1;}
 		.ais-refinement-list--count{color:rgb(51, 51, 51);}
@@ -78,32 +78,71 @@
 
 
 	const search = instantsearch({		
+	    searchClient,
 	    indexName: '{{site.algolia.index_name}}',
-	    searchParameters: {
-	        facetingAfterDistinct: true,
-	        snippetEllipsisText: "..."
-	    },
-	    searchClient
+	    routing: true
 	});
-	
-	search.addWidget(
-	    instantsearch.widgets.hits({
-	        container: '#hits',
-	        templates: {
-	            empty: '<h2>No results found, please refine your search.</h2>',
-	            item(data) {
-	                return formatHit(data)
-	            }
+
+	search.addWidgets([
+  		instantsearch.widgets.searchBox({
+    	container: '#search-box',
+  	}),
+
+	instantsearch.widgets.hits({
+	    container: '#hits',
+	    templates: {
+	        empty: '<h2>No results found, please refine your search.</h2>',
+	        item(data) {
+	            return formatHit(data)
 	        }
-	    })
-	);
-	
-	search.addWidget(
-	    instantsearch.widgets.searchBox({
-	        container: '#search-box',
-	        placeholder: 'Search ...'
-	    })
-	);
+	    }
+	}),
+
+  instantsearch.widgets
+    .index({ indexName: 'post' })
+    .addWidgets([
+      instantsearch.widgets.hits({
+        container: '#hits',
+        templates: {
+          item:
+            'item._snippetResult.text_all.value',
+        },
+      }),
+    ])
+]);
+
+//	instantsearch.widgets.configure({
+//	  hitsPerPage: 8,
+//	  distinct: true,
+//	  clickAnalytics: true,
+//	  enablePersonalization: true,
+//	  facetingAfterDistinct: true,
+//	  snippetEllipsisText: "..."
+//	});
+//
+//	search.addWidget(
+//	    instantsearch.widgets.hits({
+//	        container: '#hits',
+//	        templates: {
+//	            empty: '<h2>No results found, please refine your search.</h2>',
+//	            item(data) {
+//	                return formatHit(data)
+//	            }
+//	        }
+//	    })
+//	);
+//	
+//	search.addWidget(
+//	    instantsearch.widgets.searchBox({
+//	        container: '#search-box',
+//	        placeholder: 'Search ...',
+//  			autofocus: true,
+//  			searchAsYouType: true,
+//  			showReset: true,
+//  			showSubmit: false,
+//  			showLoadingIndicator: true 	        
+//	    })
+//	);
 	
 	// initialize RefinementLists	
 //	search.addWidget(
@@ -132,5 +171,11 @@
 	}
 
 </script>
+
+
+
+
+search.start();
+
 
 </html>

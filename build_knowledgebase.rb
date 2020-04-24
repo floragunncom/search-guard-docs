@@ -75,7 +75,7 @@ class Knowledgebase
 
 	def process_subcategory (maincategory, subcategory)
 		
-		articles = @client.entries(content_type: 'knowledge-base-article', 'fields.subcategory.sys.contentType.sys.id' => "subcategory", 'fields.subcategory.fields.id' => subcategory.id)  #add sorting   		
+		articles = @client.entries(content_type: 'knowledge-base-article', 'fields.subcategory.sys.contentType.sys.id' => "subcategory", 'fields.subcategory.fields.id' => subcategory.id, order: 'fields.question')  #add sorting   		
 	
 		# append subcategory and all articles to main category overview
 		maincategoryoverview = File.open('_content/_knowledgebase/' + maincategory.id + "-overview-kb.md", 'a')
@@ -101,8 +101,9 @@ class Knowledgebase
 		subcategoryoverview.write("[#{maincategory.title}](#{maincategory.id}-overview-kb) > #{subcategory.title}\n")
 		subcategoryoverview.write("{: .breadcrumb}\n\n")
 
-		articles.each { |article|
-   			generate_article(maincategory, subcategory, article)
+		i = 1
+		articles.each { |article|			
+   			generate_article(maincategory, subcategory, article, i+=1)
    			maincategoryoverview.write("* [#{article.question}](#{article.slug}-kb)\n")	 
    			subcategoryoverview.write("* [#{article.question}](#{article.slug}-kb)\n")	 
 		}
@@ -112,7 +113,7 @@ class Knowledgebase
 
 
 	
-	def generate_article (maincategory, subcategory, article)
+	def generate_article (maincategory, subcategory, article, order)
 
 		puts "Generating article: #{article.question}"
 
@@ -123,7 +124,7 @@ class Knowledgebase
 		f.write("slug: #{article.slug}-kb\n")
 		f.write("category: #{maincategory.id}\n")
 		f.write("subcategory: #{subcategory.id}\n")
-		f.write("order: 50\n")
+		f.write("order: #{order}\n")
 		f.write("layout: knowledgebase\n")
 		f.write("description: \n")
 		f.write("---\n\n")
