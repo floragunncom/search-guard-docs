@@ -20,11 +20,11 @@ description:
 
 Every watch has to define a trigger. A trigger specifies when a watch gets executed ("triggered"). Currently the following trigger types are supported:
 
-* Date and time
+* Date and time using [hourly](triggers_schedule.md#hourly-triggers), [daily](triggers_schedule.md#daily-triggers), [weekly](triggers_schedule.md#weekly-triggers) or [monthly](triggers_schedule.md#monthly-triggers) triggers
   * for example, every Wednesday at 2pm 
-* Interval
+* [Interval triggers](triggers_schedule.md#interval-triggers)
   * for example, every 10 minutes 
-* cron
+* [cron triggers](triggers_schedule.md#cron-triggers)
   * gives you the full power of cron expressions
 
 Example:

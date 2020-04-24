@@ -57,7 +57,7 @@ These three elements also form the three major building blocks of a Signals watc
 * **Checks** are constructs meant for analyzing the situation to be watched. For doing so, Signals offers
   * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or an HTTP service;
   * *[Conditions](conditions.md)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
-  * *[Transformations and calculations](transformations.md)* to transform the gathered data into a format that subsequent operations may require.
+  * *[Transformations and calculations](transformations_overview.md)* to transform the gathered data into a format that subsequent operations may require.
   * Each watch can have several checks, which are executed as a chain. Each action of a watch can also have a chain of checks.
 * **[Actions](actions.md)** are executed if all preceding conditions are met.
   * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md) or [PagerDuty](actions_pagerduty.md).
