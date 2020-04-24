@@ -1,5 +1,5 @@
 ---
-title: Execute watch
+title: Execute Watch
 html_title: Execute a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-execute
 category: signals-rest

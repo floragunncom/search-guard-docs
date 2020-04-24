@@ -1,5 +1,5 @@
 ---
-title: Un-acknowledge watch
+title: Un-acknowledge Watch
 html_title: Un-acknowledge a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-unacknowledge
 category: signals-rest

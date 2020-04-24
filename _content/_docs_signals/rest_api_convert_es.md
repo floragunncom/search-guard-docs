@@ -1,5 +1,5 @@
 ---
-title: Convert ES watch
+title: Convert ES Watch
 html_title: Converting an ES watch with the REST API to Signals format
 slug: elasticsearch-alerting-rest-api-convert-es
 category: signals-rest
