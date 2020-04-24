@@ -1,5 +1,5 @@
 ---
-title: Search watch states
+title: Search Watch States
 html_title: Searching for watch states with the REST API
 slug: elasticsearch-alerting-rest-api-watch-state-search
 category: signals-rest

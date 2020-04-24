@@ -1,5 +1,5 @@
 ---
-title: Get watch
+title: Get Watch
 html_title: Getting a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-get
 category: signals-rest

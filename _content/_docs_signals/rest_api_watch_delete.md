@@ -1,9 +1,9 @@
 ---
-title: Delete watch
+title: Delete Watch
 html_title: Deleting a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest
-order: 300
+order: 120
 layout: docs
 edition: community
 description: 
