@@ -22,13 +22,54 @@ Triggers support different [time zones](triggers_timezones.md). If no time zone 
 
 At the moment, the following schedule types are supported:
 
-* daily
-* weekly
-* monthly
-* interval
-* cron
+* [hourly](#hourly-triggers)
+* [daily](#daily-triggers)
+* [weekly](#weekly-triggers)
+* [monthly](#monthly-triggers)
+* [interval](#interval-triggers)
+* [cron](#cron-triggers)
 
 Each watch must at least define one trigger, and can define as many triggers as necessary:
+
+## Hourly triggers
+
+### Creating an hourly trigger
+
+To create an hourly trigger, you specify the minute of the hour when the trigger will fire by using the  `minute` attribute:
+
+```json
+{
+	"trigger": {
+		"schedule": {
+			"hourly": {
+				"minute": 30
+			}
+		}
+	},
+	"checks": [],
+	"actions": []
+}
+```
+
+This trigger will fire each hour at minute 30.
+
+You also can specify an array for the `minute` attribute. The trigger will then fire several times the hour, on the respective minutes:
+
+```json
+{
+	"trigger": {
+		"schedule": {
+			"hourly": {
+				"minute": [0, 30]
+			}
+		}
+	},
+	"checks": [],
+	"actions": []
+}
+```
+
+This trigger will fire two times each hour; first at minute 0; then at minute 30.
 
 ## Daily triggers
 
@@ -72,7 +113,7 @@ You can create a daily trigger which will fire at multiple times. Add the respec
 
 This trigger will fire each day at 2pm and 5pm.
 
-## Weekly trigger
+## Weekly triggers
 
 To create a weekly trigger, you define the weekday and the time.
 
@@ -150,9 +191,50 @@ To create multiple weekly trigger, you define the weekday and the time like:
 
 This trigger will fire on Thursday at 2pm and on Friday at 5pm.
 
-## Monthly trigger
+## Monthly triggers
 
-Coming soon.
+### Creating a monthly trigger
+
+
+For monthly triggers, you need to specify the day of month using the `on` attribute and the time of the day using the `at` attribute:
+
+```json
+{
+	"trigger": {
+		"schedule": {
+			"monthly": {
+			    "on": 15,
+				"at": "14:00:00"
+			}
+		}
+	},
+	"checks": [],
+	"actions": []
+}
+```
+
+This trigger will fire once a month on the 15th at 2pm.
+
+You can also specify arrays for the `on` and `at` attributes. Then, the trigger will fire on several days per month, or on several hours of the day, respectively:
+
+```json
+{
+	"trigger": {
+		"schedule": {
+			"monthly": {
+			    "on": [1, 15],
+				"at": ["8:00:00, "14:00:00"]
+			}
+		}
+	},
+	"checks": [],
+	"actions": []
+}
+```
+
+This trigger will fire four times a month: on the 1st, it will fire at 8am and 2pm. On the 15th, it will fire at the same times.
+
+This trigger will fire on Thursday at 2pm and on Friday at 5pm.
 
 ## Interval triggers
 
