@@ -2,8 +2,8 @@
 title: Accounts
 html_title: Using Accounts for Signals Alerting
 slug: elasticsearch-alerting-accounts
-category: actions
-order: 50
+category: signals
+order: 710
 layout: docs
 edition: community
 description: 

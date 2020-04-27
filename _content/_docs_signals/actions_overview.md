@@ -1,5 +1,5 @@
 ---
-title: Actions Overview
+title: Overview
 html_title: Creating Actions for Signals Alerting
 slug: elasticsearch-alerting-actions-overview
 category: actions
@@ -36,25 +36,29 @@ Still, it is possible to configure further action-specific checks. This way, it 
 
 ## Action Types
 
-These actions are available at the moment:
+These action types are available at the moment:
 
-**[Index Action](actions_index.md):** Writes data to an Elasticsearch index.
+**[E-Mail Action Type](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
 
-**[E-Mail Action](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
+**[Slack Action Type](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
 
-**[Webhook Actions](actions_webhook.md):** Sends HTTP requests to external services.
+**[Webhook Action Type](actions_webhook.md):** Sends HTTP requests to external services.
 
-**[Slack Action](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
+**[Index Action Type](actions_index.md):** Writes data to an Elasticsearch index.
 
-**[PagerDuty Actions](actions_pagerduty.md):** Sends notifications to PagerDuty (Enterprise Feature).
+These action types are only available in the Enterprise Edition:
 
-**[JIRA Actions](actions_jira.md):** Sends notifications to JIRA, for example to create a new issue (Enterprise Feature).
+**[Pager Duty Action Type](actions_pagerduty.md):** Triggers and resolves incidents in PagerDuty.
 
-## Action Throttling
+**[Jira Action Type](actions_jira.md):** Creates issues in Jira.
 
-In order to avoid getting spammed or flooded by automatic notifications caused by actions, Signals provides two mechanisms: Throttling automatically suppresses the repeated execution of actions for a configurable amount of time. Furthermore, users can acknowledge actions which suppresses action execution until the checks of a watch change their state.
+## Suppressing Execution of Actions
 
-For each action, a `throttle_period` can be configured. Throttle periods are time durations during which execution of the particular action will be suppressed after the it was executed. This way, a watch can be configured to be run very frequently in order to get quickly notified about newly commencing situations. Yet, actions would be triggered less frequently – in the frequency configured by the throttle period.
+In order to avoid getting spammed or flooded by automatic notifications caused by actions, Signals provides two mechanisms: [Throttling](#action-throttling) automatically suppresses the repeated execution of actions for a configurable amount of time. Furthermore, users can [acknowledge](#acknowledging-actions) actions which suppresses action execution until the checks of a watch change their state.
+
+### Action Throttling
+
+For each action, a `throttle_period` can be configured. Throttle periods are time durations during which execution of the particular action will be suppressed after it was executed. This way, a watch can be configured to be run very frequently in order to get quickly notified about newly commencing situations. Yet, actions would be triggered less frequently – in the frequency configured by the throttle period.
 
 If actions are throttled, the watches are still executed. The watch log will contain information about the execution and list the respective actions as throttled.
 
@@ -66,11 +70,14 @@ A throttle period can be also specified on the level of a watch. This then serve
 
 If no explicit throttle period is configured, a default throttle period of 10 seconds is used. This default can be adjusted using the Signals settings. See the section on [Administration](administration.md) for details.
 
-## Acknowledging Actions
+### Acknowledging Actions
 
 A manual way of suppressing the execution of actions is acknowledging actions.
 
-If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, the conditions that would lead to the execution of the action are checked. If the conditions remain the same, the action remains acknowledged and thus execution is suppressed. Only if the conditions go away, the acknowledge state of the action is reset. Thus, if the conditions change back again so the action would be executed, the action would be actually executed again.
+If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, all checks are executed to determine if a watch is still in alert state. If the watch remains in alert state, the action remains acknowledged and thus execution is suppressed. Only if the watch leaves alert state, the acknowledge state of the action is reset. Thus, if the situation changes again that the watch reaches alert state, the action would be actually executed again.
+
+A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
+
 
 ## Processing Collections of Objects in Actions
 
@@ -178,7 +185,7 @@ The common configuration attributes are:
 
 **checks:** Further checks which can gather or transform data and decide whether to execute the actual action. Optional.
 
-**foreach:** Executes the action for each element of a collection. The collection to use is identified by the Painless expression specified for this attribute. Optional see [Processing Collections of Objects in Actions](#Processing Collections of Objects in Actions) for details.
+**foreach:** Executes the action for each element of a collection. The collection to use is identified by the Painless expression specified for this attribute. Optional see [Processing Collections of Objects in Actions](#processing-collections-of-objects-in-actions) for details.
 
 **foreach_limit:** Specifies the maximum allowed number of iterations performed when using `foreach`. Optional. Defaults to 100.
 
