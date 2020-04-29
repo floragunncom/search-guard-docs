@@ -30,6 +30,7 @@ The `configuration type` can be one of:
 * [rolesmapping](restapi_api_rolesmapping.md)
 * [actiongroups](restapi_api_actiongroups.md)
 * [tenants](restapi_api_tenants.md)
+* [blocks](restapi_api_blocks.md)
 
 The resource name specifies the entry in the `configuration type` you want to operate on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.
 
