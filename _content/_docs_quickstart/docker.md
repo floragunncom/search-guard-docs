@@ -39,3 +39,8 @@ The container uses self-signed certificates, so your browser might issue a warni
 
 The container comes with some pre-installed demo users. For full access and to configure new roles and permissions, use ```admin/admin``` for login. 
 
+## Troubleshooting
+
+Please note that it might be necessary to set the following host configuration:
+
+`sysctl -w vm.max_map_count=262144`
