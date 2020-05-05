@@ -1,5 +1,5 @@
 ---
-title: Activate and deactivate watch
+title: Activate and Deactivate Watch
 html_title: Activating and deactivating a watch with the REST API
 slug: elasticsearch-alerting-rest-api-watch-activate
 category: signals-rest
