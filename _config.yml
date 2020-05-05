@@ -303,4 +303,4 @@ sgversions:
     - 7.1.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.0.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
 
-tlstoolversion: 1.7
+tlstoolversion: 1.8
