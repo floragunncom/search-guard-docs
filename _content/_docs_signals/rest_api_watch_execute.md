@@ -54,6 +54,8 @@ The supported attributes of the JSON document are these:
 
 **simulate:** If true, the actions are only partially executed. All preparations for the action are executed, including executing nested checks and scripts, rendering mustache templates, etc. Only the final step for completing the action is not done; the type of the final step depends of course on the type of the action. For example, email actions render the email, but won't send it to the SMTP server. The resulting artifact or request can be viewed in the result returned by the action in the attribute `request`. 
 
+**show_all_runtime_attributes:** If true, the API response will contain the attribute `runtime_attributes`. This attribute will reflect the complete set of attributes that are available to scripts and templates after all checks have been finished. This includes the `data` attribute, but also the `severity` and `trigger` attribute. Please note that all attributes under the `trigger` attribute will be null, because they don't apply for watches executed via API. If an action has further checks, which modify the runtime attributes, these will be made available separately at `actions.action_name.runtime_attributes`. 
+
 ## Responses
 
 ### 200 OK
@@ -69,7 +71,7 @@ The response body contains the watch log document:
 
 Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
 
-**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run. If `show_all_runtime_attributes` was specified in the body, this attribute will be replaced by `runtime_attributes`.
 
 **actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
 
@@ -92,7 +94,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 
 **error:** Detailed information on the error that occurred.
 
-**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run.
+**data:** A copy of the watch runtime data. This represents the runtime data after the checks have completed and before the actions are run. If `show_all_runtime_attributes` was specified in the body, this attribute will be replaced by `runtime_attributes`.
 
 **actions:** The status of the single actions, identified by their name.  The sub-attribute `actions.status.code` contains of these codes:
 
@@ -105,7 +107,7 @@ Details can be found in the attribute `status.message`. Also, the status of the 
 
 The request was malformed. 
 
-If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
+If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See the [invalid watch example](#invalid-watch) for details.
 
 ### 403 Forbidden
 
@@ -224,3 +226,92 @@ POST /_signals/watch/_main/bad_weather/_execute
 }
 ```
 
+
+### Invalid Watch
+
+```
+POST /_signals/watch/_main/_execute
+```
+
+<!-- {% raw %} -->
+```json
+{
+    "watch": {
+        "trigger": {
+            "schedule": {
+                "cron": "after lunch :-?"
+            }
+        },
+        "checks": [
+            {
+                "type": "sörch",
+                "request": {
+                    "indices": [
+                        "kibana_sample_data_flights"
+                    ]
+                }
+            },
+            {
+                "type": "condition",
+                "source": "data.bad_weather_flights.hits.hits.length > "
+            }
+        ],
+        "actions": [
+            {
+                "type": "email",
+                "account": "test",
+                "throttle_period": "1h",
+                "to": "notify@example.com",
+                "subject": "Bad destination weather for {{data.bad_weather_flights.hits.total.value}} flights over last {{data.constants.window}}!",
+                "text_body": "Time: {{_source.timestamp}}\n  Flight Number: {{_source.FlightNum}}\n  Origin: {{_source.OriginAirportID}}\n  Destination: {{_source.DestAirportID}}"
+            }
+        ]
+    }
+}
+```
+<!-- {% endraw %} -->
+
+**Response**
+
+```
+400 Bad Request
+```
+
+```json
+{
+    "status": 400,
+    "error": "5 errors; see detail.",
+    "detail": {
+        "watch.checks[].source": [
+            {
+                "error": "unexpected end of script.",
+                "context": "... ights.hits.hits.length > \n                             ^---- HERE"
+            }
+        ],
+        "watch.actions[].account": [
+            {
+                "error": "Account does not exist: test"
+            }
+        ],
+        "watch.triggers.schedule.cron": [
+            {
+                "error": "Invalid cron expression: Illegal characters for this position: 'AFT'",
+                "value": "after lunch :-?",
+                "expected": "Quartz Cron Expression: <Seconds: 0-59|*> <Minutes: 0-59|*> <Hours: 0-23|*> <Day-of-Month: 1-31|?|*> <Month: JAN-DEC|*> <Day-of-Week: SUN-SAT|?|*> <Year: 1970-2199|*>?. Numeric ranges: 1-2; Several distinct values: 1,2; Increments: 0/15"
+            }
+        ],
+        "watch.actions[].name": [
+            {
+                "error": "Required attribute is missing"
+            }
+        ],
+        "watch.checks[].type": [
+            {
+                "error": "Invalid value",
+                "value": "sörch",
+                "expected": "search|static|http|condition|calc|transform"
+            }
+        ]
+    }
+}
+```
