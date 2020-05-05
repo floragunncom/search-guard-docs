@@ -2,7 +2,7 @@
 title: Kibana 7.x-37.0.0
 slug: changelog-kibana-7.x-37_0_0
 category: changelogs-kibana
-order: 800
+order: 720
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin 7.x-37.0.0
 ---
