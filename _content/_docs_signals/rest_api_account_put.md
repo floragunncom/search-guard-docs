@@ -3,7 +3,7 @@ title: Put Account
 html_title: Put a account with the REST API
 slug: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
-order: 900
+order: 810
 layout: docs
 edition: community
 description: 

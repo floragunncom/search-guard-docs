@@ -1,9 +1,9 @@
 ---
-title: Activate and deactivate watch
-html_title: Activating and deactivating a watch with the REST API
-slug: elasticsearch-alerting-rest-api-watch-activate
+title: Activate and Deactivate Signals
+html_title: Activating and deactivating Signals with the REST API
+slug: elasticsearch-alerting-rest-api-admin-activate
 category: signals-rest
-order: 500
+order: 960
 layout: docs
 edition: community
 description: 

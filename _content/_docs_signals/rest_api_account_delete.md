@@ -3,7 +3,7 @@ title: Delete Account
 html_title: Delete a account with the REST API
 slug: elasticsearch-alerting-rest-api-account-delete
 category: signals-rest
-order: 1000
+order: 820
 layout: docs
 edition: community
 description: 

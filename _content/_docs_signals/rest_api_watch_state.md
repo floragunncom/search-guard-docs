@@ -1,7 +1,7 @@
 ---
-title: Get watch
+title: Get Watch State
 html_title: Getting a watch with the REST API
-slug: elasticsearch-alerting-rest-api-watch-get
+slug: elasticsearch-alerting-rest-api-watch-state
 category: signals-rest
 order: 750
 layout: docs
