@@ -34,6 +34,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-41
     - 7x-40
     - 7x-38
     - 7x-37
@@ -49,7 +50,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-40: latest
+  7x-41: latest
+  7x-40: 7.x-40
   7x-38: 7.x-38
   7x-37: 7.x-37
   7x-36: 7.x-36
@@ -103,6 +105,7 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    7x-41: Search Guard 7.x-41
     7x-40: Search Guard 7.x-40
     7x-38: Search Guard 7.x-38
     7x-37: Search Guard 7.x-37
