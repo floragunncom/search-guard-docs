@@ -51,7 +51,7 @@ A watch identified by the given id did not exist before. The watch was successfu
 
 The request was malformed.
 
-If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See TODO for details.
+If the watch specified in the request body was malformed, a JSON document containing detailed validation errors will be returned in the response body. See the [invalid watch example](#invalid-watch) for details.
 
 
 ### 403 Forbidden
@@ -180,7 +180,7 @@ PUT /_signals/watch/_main/really_bad_weather
       }
     },
     {
-      "type": "condition.script",
+      "type": "condition",
       "source": "data.bad_weather_flights.hits.hits.length > "
     }
   ],
@@ -236,7 +236,7 @@ PUT /_signals/watch/_main/really_bad_weather
             {
                 "error": "Invalid value",
                 "value": "sörch",
-                "expected": "search|static|http|condition.script|calc|transform"
+                "expected": "search|static|http|condition|calc|transform"
             }
         ]
     }
