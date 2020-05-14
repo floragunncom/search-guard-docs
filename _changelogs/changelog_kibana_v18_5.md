@@ -2,7 +2,7 @@
 title: Kibana 6.x-18.5
 slug: changelog-kibana-6.x-18.5
 category: changelogs-kibana
-order: 460
+order: 300
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin 6.x-18.5
 ---
