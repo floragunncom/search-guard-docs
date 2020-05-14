@@ -2,8 +2,11 @@
 
 rm -rf ./_site
 
+bundle update
 bundle install
-bundle exec jekyll build --config _config.yml,_versions.yml
+ruby ./build_knowledgebase.rb 
+
+bundle exec jekyll build --config _config.yml,_versions.yml,_kb.yml
 
 ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  /7.x ./_site/*
 

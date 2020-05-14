@@ -17,14 +17,14 @@
 			Search Guard {{site.searchguard.version}} Documentation | Elasticsearch security
 		{% else %}
 			{%if page.html_title != null %}
-				 {{page.html_title}} | Elasticsearch Security | Search Guard
+				 {{page.html_title}} | Security for Elasticsearch | Search Guard
 			{% else %}
-				 {{page.title}} | Elasticsearch Security | Search Guard
+				 {{page.title}} | Security for Elasticsearch | Search Guard
 			{% endif %}
 		{% endif %}
 	</title>
 	<!-- OG and Twitter -->
-	<meta property="og:title" content="{%if page.html_title != null %} Security for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
+	<meta property="og:title" content="{%if page.html_title != null %} {{page.html_title}} | Security for Elasticsearch |  Search Guard {% else %} {{page.title}} | Security for Elasticsearch | Search Guard {% endif %}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
 	<meta property="og:description" content="{{page.description}}" />

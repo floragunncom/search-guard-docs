@@ -17,7 +17,14 @@
 						<div class="col-md-3 hidden-sm hidden-xs">
 							<div class="sidebar">
 
-								{% include left_nav_search.html %}
+								<div class="widget">
+									<div class="search">
+										<form action="{{site.baseurl}}/search-knowledgebase" method="GET">
+											<input type="text" name="query" class="search-input form-control" placeholder="search" id="search-box">
+											<i class="fa fa-search search-icon"></i>
+										</form>
+									</div>
+								</div>
 								
 								{% include left_nav_knowledgebase.html %}
 
@@ -29,7 +36,7 @@
 								{{ content }}
 							</div>
 							{% include additional_resources.html %}
-							{% include additional_resources_search.html %}
+							{% include additional_resources_search_kb.html %}
 						</div>
 					</div>
 				</div>

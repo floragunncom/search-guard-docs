@@ -23,16 +23,15 @@
 								<div id="refinement-list-category" class="refinement-list">
 								</div>
 
-								<h4>Topic</h4>
+								<h4>Subcategory</h4>
 								<div id="refinement-list-h1" class="refinement-list">
 								</div>
 							</div>
 						</div>
 						<div class="col-md-9">
 							{% include version.html %}
-
-							<h1>Search Documentation</h1>
-
+							
+							<h1>Search Knowledgebase</h1>
 							<div id="search-box">
 							  <!-- SearchBox widget will appear here -->
 							</div>
@@ -71,7 +70,7 @@
 	const search = instantsearch({
 	    appId: '2ESDTH812Y',
 	    apiKey: '0047035979f052146a69e1d0300cd332',
-	    indexName: '{{site.algolia.index_name}}',
+	    indexName: 'knowledgebase',
 	    urlSync: true,
 	    searchParameters: {
 	        facetingAfterDistinct: true,
@@ -102,25 +101,27 @@
 	search.addWidget(
 	    instantsearch.widgets.refinementList({
 	        container: '#refinement-list-category',
-	        attributeName: 'category_name'
+	        attributeName: 'maincategory'
 	    })
 	);
 
 	search.addWidget(
 	    instantsearch.widgets.refinementList({
 	        container: '#refinement-list-h1',
-	        attributeName: 'h1'
+	        attributeName: 'subcategory'
 	    })
 	);
 	
 	search.start();
 	
 	function formatHit(item) {
-	    var unique_hierarchy = item.unique_hierarchy;
-	    var headline = item._highlightResult.text ? item._highlightResult.text.value : item.text;
-	    var text = item._snippetResult.text_all.value;
-	    return "<div class='sr_headline'><h2>" + headline + "</h2></div>" +
-	        "<div class='sr_hierarchy'><a alt='" + headline + "' href='{{site.baseurl}}" + item.url + item.css_selector + "'><h5>" + unique_hierarchy + "</h5></a></div>" +
+		console.log(item)
+	    var unique_hierarchy = item.maincategory +" > " + item.subcategory
+		var headline = item.question
+		var categoryLink = item.maincategory_id + "-overview-kb#" + item.subcategory_id;
+	    var text = item._snippetResult.answer.value;
+	    return "<div class='sr_headline'><a href='{{site.baseurl}}/" + item.slug + "'><h2>" + headline + "</h2></a></div>" +
+	        "<div class='sr_hierarchy'><a alt='" + headline + "' href='{{site.baseurl}}/" + categoryLink + "'><h5>" + unique_hierarchy + "</h5></a></div>" +
 	        "<div class='sr_text'>" + text + "</div>";
 	}
 

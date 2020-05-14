@@ -3,6 +3,7 @@ require 'fileutils'
 require 'getoptlong'
 require 'rubygems'
 require 'algoliasearch'
+require 'kramdown'
 
 class Knowledgebase
 
@@ -57,7 +58,7 @@ class Knowledgebase
 		f.write("category: #{maincategory.id}\n")
 		f.write("order: #{maincategory.order}\n")
 		f.write("layout: knowledgebase\n")
-		f.write("description: \n")
+		f.write("description: \"#{maincategory.title} - Security for Elasticsearch\"\n")
 		f.write("---\n\n")
 
 		f.write("# #{maincategory.title}\n\n")
@@ -91,7 +92,7 @@ class Knowledgebase
 		subcategoryoverview.write("subcategory: #{subcategory.id}\n")
 		subcategoryoverview.write("order: #{subcategory.order}\n")
 		subcategoryoverview.write("layout: knowledgebase\n")
-		subcategoryoverview.write("description: \n")
+		subcategoryoverview.write("description: \"#{subcategory.title} - Security for Elasticsearch\"\n")
 		subcategoryoverview.write("---\n\n")
 
 
@@ -126,7 +127,7 @@ class Knowledgebase
 		f.write("subcategory: #{subcategory.id}\n")
 		f.write("order: #{order}\n")
 		f.write("layout: knowledgebase\n")
-		f.write("description: \n")
+		f.write("description: \"#{article.question} - Security for Elasticsearch\"\n")
 		f.write("---\n\n")
 
 		f.write("Search Guard Knowledgebase\n")
@@ -210,19 +211,22 @@ class Knowledgebase
 		rescue
 		end
 		
-		obj = {
+		id = article.sys[:id]
+		answer_html = Kramdown::Document.new(article.answer).to_html
+
+		obj = {			
+			objectID:  id,
   			question: "#{article.question}",
   			alternativequestions:  alternativequestions,
-  			answer:  "#{article.answer}",
+  			answer:  answer_html,
 			slug:  "#{article.slug}-kb",
   			maincategory:  "#{maincategory.title}",
   			maincategory_id:  "#{maincategory.id}",
   			subcategory:  "#{subcategory.title}",
   			subcategory_id:  "#{subcategory.id}"
 		}
-
-#		puts obj
-		res = @index.add_object(obj ,"#{article.sys['id']}")
+		#puts obj
+		res = @index.add_object(obj ,id)
 	end
 end
 
