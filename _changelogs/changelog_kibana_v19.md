@@ -2,7 +2,7 @@
 title: Kibana 6.x-19
 slug: changelog-kibana-6.x-19
 category: changelogs-kibana
-order: 550
+order: 250
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin 6.x-19
 ---

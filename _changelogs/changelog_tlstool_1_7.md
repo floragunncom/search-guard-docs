@@ -2,7 +2,7 @@
 title: TLS Tool 1.7
 slug: changelog-tlstool_1_7
 category: changelogs-tlstool
-order: 500
+order: 400
 layout: changelogs
 description: Changelog for the Search Guard TLS Tool 1.7
 ---
