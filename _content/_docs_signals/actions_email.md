@@ -38,6 +38,7 @@ A basic e-mail action looks like this:
 			"to": "notify@example.com",
 			"subject": "Bad destination weather for {{data.bad_weather_flights.hits.total.value}} flights over last {{data.constants.window}}!",
 			"text_body": "Flight Number: {{data.source.FlightNum}}\n  Route: {{data.source.OriginAirportID}} -> {{data.source.DestAirportID}}"
+			"html_body": "<p>Flight Number: {{data.source.FlightNum}}\n  Route: {{data.source.OriginAirportID}} -> {{data.source.DestAirportID}}</p>"
 		}
 	]
 }
@@ -62,4 +63,9 @@ The basic configuration attributes are:
 
 **subject:** Defines the subject of the mail. Mustache templates can be used to render attributes from the watch runtime data. Required.
 
-**text_body:** Defines the content of the mail. Mustache templates can be used to render attributes from the watch runtime data. Optional.
+**text_body:** Defines the content of the mail as plain text. Mustache templates can be used to render attributes from the watch runtime data.
+
+**html_body:** Defines the content of the mail as HTML. Mustache templates can be used to render attributes from the watch runtime data.
+
+
+Please note that it is mandatory to specify at least one `text_body` or a `html_body`. You can of course provide both, a`text_body` and a `html_body` inside an email action.
