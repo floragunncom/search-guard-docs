@@ -11,7 +11,7 @@ docs:
     - apt-get update -yqq && apt-get install -yqq ncftp wget
     - echo "Merge marker sanity check"
     - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
-    - ./deploy.sh
+    # - ./deploy.sh
   only:
     refs:
       - /^.\.x-..*$/
