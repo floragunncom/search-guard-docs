@@ -94,6 +94,14 @@ As with document-level security, if a user is member of multiple roles it is imp
 
 In case of FLS, the FLS field definitions of the roles are combined with `AND`. If you use FLS `include` (whitelisting) and `exclude` (blacklisting) definitions for different roles, you need to make sure that for each user and its roles the combination of the FLS field is either include only, or exclude only.
 
+If a user has a role that defines FLS restrictions on an index, and another role that does not place any FLS restrictions on the same index, the restrictions defined in the first role still apply.
+
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `elasticsearch.yml`: 
+
+```
+searchguard.dfm_empty_overrides_all: true
+```
+
 ## DLS/FLS Execution Order
 
 If you use both DLS and FLS, all fields that you are basing the DLS query on must be visible, i.e. not filtered by FLS. Otherwise, your DLS query will not work properly. 

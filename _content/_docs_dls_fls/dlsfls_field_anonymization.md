@@ -25,7 +25,7 @@ Field masking works well together with field-level security and can be applied t
 
 Search Guard by default uses Blake2bDigest to calculate the hash. This alogorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing.
 
-## Setting the salt
+## Setting a static salt
 
 You can set the salt in elasticsearch.yml like: 
 
@@ -35,12 +35,24 @@ searchguard.compliance.salt: abc123
 
 | Name | Description |
 |---|---|
-| searchguard.compliance.salt | Salt to use when generating the hash value. Must be at least 32 characters, only ASCII is allowed. Optional.|
+| searchguard.compliance.salt | Optional. Salt to use when generating the hash value. Must be at least 32 characters, only ASCII is allowed. Optional.|
 {: .config-table}
 
-While setting a salt is optional, it is highly recommended to do so. 
+While setting a salt is optional, it is highly recommended to do so. The salt you set in `elasticsearch.yml` cannot be changed without restarting Elasticsearch. This provides a high level of security and performance, but limits flexibility. Depending on your use case and security requirements you can also use a dynamic salt.
 
-## Configuring field masking
+## Setting a dynamic salt
+
+You can also configure the salt in `sg_config.yml`. This makes it possible to change the salt at runtime without the need to restart Elasticsearch. Please note that changing the salt at runtime will invalidate any query cache, so you might see a small degradation in performance for a brief period of time.
+
+Enable dynamic salts in elasticsearch.yml by setting:
+
+```
+searchguard.compliance.local_hashing_enabled: true
+```
+
+The dynamic salt can be configure in `sg_config.yml`and thus updated at runtime with either [sgadmin](sgadmin) or the [REST API](rest-api-access-control).
+
+## Configuring fields to anonymize
 
 Field masking can be configured per role and index pattern, very similar to field-level security. You simply list the fields to be masked under the  `_masked_fields_` key in the role definition. Wildcards and nested documents are supported:
 
@@ -100,7 +112,8 @@ In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName`
 }
 ```
 
-## Custom field masking
+## Custom hash algorithms
+
 You can configure alternative hash algorithms (instead of Blake2bDigest) and you also can mask only a part of the field value.
 
 ### Defining an alternative hash algorithm
@@ -122,7 +135,7 @@ The above example means that all values of all fields ending with `Name` are ano
 
 If you use the REST API to define your roles and masked fields then the validity or your alternative hash algorithm is checked.
 
-### Pattern-based field anonymization
+### Using regular expressions
 
 You can apply one or more regex patterns and replacement strings to configure how the value of a particular field will be anonymized.
 The formal definition is `<field-pattern>::/<regex>/::<replacement-string>`. There can be multiple regex/replacement tuples whereas the result from one on the left side is passed as in input to the one on the right side (like piping in a shell). The regex can include `^` and `$`, they are not implicitly assumed. 
@@ -146,6 +159,30 @@ All values of all fields ending with `ip_source` are anonymized by replacing the
 by replacing the last three numbers with ***. So an example IP address of `100.200.121.212` will result in `100.200.***.XXX`.
 
 If you use the REST API to define your roles and masked fields then the syntax of your patterns is checked.
+
+## Prefixing anonymized fields
+
+In order to make it easier for the end user to understand which fields are anonymized, you can configure a prefix for anonymized fields. The prefix has no impact on search or aggregations.
+
+Set the prefix in elasticsearch.yml:
+
+```
+searchguard.compliance.mask_prefix: "<prefix>"
+```
+
+## Multiple roles and field anonymization
+
+As with document-level security, if a user is member of multiple roles it is important to understand how the field anonymization (FA) settings for these roles are combined.
+
+In case of FA, the FA field definitions of the roles are combined with `AND`. 
+
+If a user has a role that defines FA restrictions on an index, and another role that does not place any FA restrictions on the same index, the restrictions defined in the first role still apply.
+
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `elasticsearch.yml`: 
+
+```
+searchguard.dfm_empty_overrides_all: true
+```
 
 ## Effects on the compliance read history
 
