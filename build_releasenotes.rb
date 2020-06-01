@@ -144,16 +144,17 @@ class Releasenotes
 			file.write("### #{epicName}\n\n")
 
 			issues.each do |issue|
-				file.write("* #{issue.fields['summary']}\n")
 				
+				level = 0
 				# RN field, honor new lines
 				rnotes = issue.fields['customfield_11326']
 				unless rnotes.nil?					
-					rnotes.split("\n").each do |linernote|
-						file.write("  * #{linernote}\n") unless linernote.blank?
+					    rnotes.split("\n").each do |linernote|
+                            indentation = level == 0 ? "* " : "  * "
+                            file.write("#{indentation}#{linernote}\n") unless linernote.blank?
+                            level += 1
 					end
 				end
-				file.write ("  * Issue number #{issue.key}\n")
 				file.write ("<p />\n")
 			end
 		} 

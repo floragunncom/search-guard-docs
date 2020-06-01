@@ -18,6 +18,10 @@ Copyright 2020 floragunn GmbH
 
 Release Date: 01.06.2020
 
+### [Search Guard Kibana Plugin 7.x-41.1.0](changelog_kibana_7_x_41_1_0.md)
+
+Release Date: 01.06.2020
+
 ### [Search Guard Kibana Plugin 7.x-41.0.0](changelog_kibana_7_x_41_0_0.md)
 
 Release Date: 11.05.2020
