@@ -12,10 +12,7 @@ sass:
   style: compressed
   sass_dir: ./sass
 
-
-exclude:
-  - .idea
-  - sass
+exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache']
 
 plugins:
   - jekyll-relative-links
@@ -34,6 +31,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-42
     - 7x-41
     - 7x-40
     - 7x-38
@@ -50,7 +48,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-41: latest
+  7x-42: latest
+  7x-41: 7.x-41
   7x-40: 7.x-40
   7x-38: 7.x-38
   7x-37: 7.x-37
@@ -105,6 +104,7 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    7x-42: Search Guard 7.x-42
     7x-41: Search Guard 7.x-41
     7x-40: Search Guard 7.x-40
     7x-38: Search Guard 7.x-38
@@ -280,24 +280,24 @@ algolia:
 
 eol:
   features:
-    - 7.5.1
-    - 7.4.2
+    - 7.7.0
+    - 7.6.2
   updates:
-    - 6.8.6
+    - 6.8.9
 
 sgversions:
   #esv |sgv |kbv |available|kbn-artifact-id
   search-guard-7:
-    - 7.7.0|41.0.0|41.0.0|yes|search-guard-kibana-plugin-7
-    - 7.6.2|41.0.0|41.0.0|yes|search-guard-kibana-plugin-7
-    - 7.6.1|41.0.0|41.0.0|yes|search-guard-kibana-plugin-7
-    - 7.6.0|41.0.0|41.0.0|yes|search-guard-kibana-plugin-7
-    - 7.5.2|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
-    - 7.5.1|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
-    - 7.5.0|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.2|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.1|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.0|40.0.0|40.1.0|yes|search-guard-kibana-plugin-7
+    - 7.7.0|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
+    - 7.6.2|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.6.1|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.6.0|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.5.2|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.5.1|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.5.0|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.4.2|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.4.1|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
+    - 7.4.0|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
     - 7.3.2|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.3.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
     - 7.3.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
