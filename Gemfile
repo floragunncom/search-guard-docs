@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '~> 3.7.0'
+gem 'jekyll'
 gem 'jekyll-relative-links'
 gem 'html-proofer'
 
