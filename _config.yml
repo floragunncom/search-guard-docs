@@ -288,6 +288,7 @@ eol:
 sgversions:
   #esv |sgv |kbv |available|kbn-artifact-id
   search-guard-7:
+    - 7.7.1|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
     - 7.7.0|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
     - 7.6.2|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
     - 7.6.1|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
