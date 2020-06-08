@@ -206,3 +206,12 @@ Set `-Djdk.tls.rejectClientInitiatedRenegotiation=true` to disable secure client
 For an up-to-date, complete configuration example with all features, please refer to the configuration template in the Search Guard SSL repository:
 
 [Search Guard SSL configuration template](https://git.floragunn.com/search-guard/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
+
+## TLS Certificate Hot-Reload
+
+You can renew TLS certificates via the following steps:
+
+1. Copy the new certs onto the Elasticsearch node under the same configured path as specified in `elasticsearch.yml`
+2. HTTP POST `_searchguard/api/ssl/{certType}/reloadcerts/` where `{certType}` can be either `http` or `transport`
+
+Please note that the renewed certificate must be issued by the same Issuer and Subject DN and SAN with expiry dates after the existing certificate.
