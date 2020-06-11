@@ -2,7 +2,7 @@
 title: Overview
 slug: changelogs-kibana
 category: changelogs-kibana
-order: 200
+order: 0
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin
 ---
@@ -12,6 +12,10 @@ Copryight 2010 floragunn GmbH
 -->
 
 # Search Guard Kibana Plugin Changelogs
+
+### [Search Guard Kibana Plugin 6.x-19.2](changelog-kibana-6.x-19.2)
+
+Release Date: 10.05.2020
 
 ### [Search Guard Kibana Plugin 6.x-19.1](changelog-kibana-6.x-19.1)
 
