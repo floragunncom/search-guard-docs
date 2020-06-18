@@ -1,15 +1,29 @@
 image: ruby:2.5
- 
+
+
+before_script:
+  - cat /etc/debian_version || true
+  - uname -a
+  - export LC_ALL="C.UTF-8"
+  - export LANG="en_US.UTF-8"
+  - export LANGUAGE="en_US.UTF-8"
+  - apt-get update -yqq && apt-get install -yqq wget rsync
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  ## Use ssh-keyscan to scan the keys of your private server.
+  ##
+  - ssh-keyscan git.floragunn.com >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
 docs:
   stage: build
-  script: 
-    - cat /etc/debian_version || true 
-    - uname -a
-    - export LC_ALL="C.UTF-8"
-    - export LANG="en_US.UTF-8"
-    - export LANGUAGE="en_US.UTF-8"    
-    - apt-get update -yqq && apt-get install -yqq ncftp wget
+  script:
     - echo "Merge marker sanity check"
+    - export VERSION=$(echo $CI_COMMIT_REF_NAME | cut -d_ -f1)
+    - echo "Documentation is deployed for version $VERSION"
     - (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
     - ./deploy.sh
   only:
