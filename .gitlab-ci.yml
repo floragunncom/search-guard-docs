@@ -12,6 +12,8 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
+  - ssh-keyscan 185.233.188.50 >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
 
   ## Use ssh-keyscan to scan the keys of your private server.
   ##
