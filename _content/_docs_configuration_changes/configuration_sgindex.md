@@ -97,3 +97,13 @@ There are several situations where the auto-expand feature is not suitable inclu
 
 To solve this disable the auto-expand replicas feature of the searchguard index and set the number of replicas manually.
 You can also keep the auto-expand replicas feature and set it to "0-n" where n is the number of datanodes-2.
+
+
+## Index Recovery Prioritization
+
+You can configure the index recovery prioritization of Searchguard indices via `searchguard.index.recovery_prioritization`, e.g.
+
+elasticsearch.yml
+```
+searchguard.index.recovery_prioritization: 99
+```
