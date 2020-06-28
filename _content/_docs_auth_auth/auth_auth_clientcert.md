@@ -31,7 +31,7 @@ The configuration for the client certificate authenticator is very minimal:
 
 ```yaml
 clientcert_auth_domain:
-  enabled: true
+  http_enabled: true
   order: 1
   http_authenticator:
     type: clientcert

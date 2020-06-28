@@ -89,7 +89,7 @@ If this key is not set, or null, then the DN of the LDAP entry is used.
 
 ```yaml
 ldap:
-  enabled: true
+  http_enabled: true
   order: 1
   http_authenticator:
     type: basic
@@ -132,7 +132,7 @@ The names of the configuration keys (`primary-userbase`, `secondary-userbase`...
 
 ```yaml
 ldap:
-  enabled: false
+  http_enabled: false
   order: 1
   http_authenticator:
     type: basic
