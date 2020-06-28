@@ -35,7 +35,7 @@ To enable LDAP authentication and authorization, add the following lines to sg_c
 ```yaml
 authc:
   ldap:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: basic
@@ -51,7 +51,7 @@ authc:
 ```yaml
 authz:
   ldap:
-    enabled: true
+    http_enabled: true
   authorization_backend:
     type: ldap
     config:

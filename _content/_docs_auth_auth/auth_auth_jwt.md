@@ -102,7 +102,7 @@ Example:
 
 ```yaml
 jwt_auth_domain:
-  enabled: true
+  http_enabled: true
   order: 0
   http_authenticator:
     type: jwt
