@@ -63,7 +63,7 @@ The names of the respective HTTP header fields which carry the authenticated use
 
 ```yaml
 proxy_auth_domain:
-  enabled: true
+  http_enabled: true
   order: 1
   http_authenticator:
     type: proxy
