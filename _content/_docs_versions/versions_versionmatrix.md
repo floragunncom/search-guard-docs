@@ -15,13 +15,17 @@ This page lists all available versions for Elasticsearch >= 6.0.0. For previous 
 
 * [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
 
+All versions are available on the Search Guard Maven repository:
+
+* [Search Guard Maven Repository](https://maven.search-guard.com){:target="_blank"}
+
 If you are upgrading from Elasticsearch 6.8.x to Elasticsearch >= 7.0.0, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
 
 **Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.**
 
 ## Search Guard 7
 
-Signals, our [Enterprise Alerting](elasticsearch-alerting-getting-started) solution for Elasticsearch, has been officially released and is bundled with any Search Guard download >= v40.
+Signals, our [Enterprise Alerting](elasticsearch-alerting-getting-started) solution, has been officially released and is bundled with any Search Guard download for Elasticsearch > 7.4.0.
 {: .note .js-note .note-warning}
 
 {% include sgversions.html versions="search-guard-suite-7" majorversion="7" issuite=true title="Search Guard Suite 7, including Security and Alerting"%}
