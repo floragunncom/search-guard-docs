@@ -99,6 +99,8 @@ POST /_searchguard/api/ssl/http/reloadcerts/
 POST /_searchguard/api/ssl/transport/reloadcerts/	
 ```
 
+Note: These endpoints take only effect on the node they have been called on. If you want to trigger a reload for the whole cluster, you need to call the endpoint on each node of the cluster.
+
 The endpoints expect an empty request body.
 
 The endpoints are only available when authenticating by TLS client authentication using an admin certificate.
