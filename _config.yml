@@ -280,33 +280,71 @@ algolia:
 
 eol:
   features:
-    - 7.7.0
-    - 7.6.2
+    - 7.8.0
+    - 7.7.2
   updates:
-    - 6.8.9
+    - 6.8.10
 
 sgversions:
-  #esv |sgv |kbv |available|kbn-artifact-id
+  # esv |sgv |kbv |available|kbn-artifact-id
+  search-guard-suite-7:
+    - 7.8.0|43.0.0|43.0.0|yes
+    - 7.7.1|42.0.0|42.0.0|yes
+    - 7.7.0|42.0.0|42.0.0|yes
+    - 7.6.2|41.0.0|41.1.0|yes
+    - 7.6.1|41.0.0|41.1.0|yes
+    - 7.6.0|41.0.0|41.1.0|yes
+    - 7.5.2|41.0.0|41.1.0|yes
+    - 7.5.1|41.0.0|41.1.0|yes
+    - 7.5.0|41.0.0|41.1.0|yes
+    - 7.4.2|41.0.0|41.1.0|yes
+    - 7.4.1|41.0.0|41.1.0|yes
+    - 7.4.0|41.0.0|41.1.0|yes
   search-guard-7:
-    - 7.8.0|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
-    - 7.7.1|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
-    - 7.7.0|42.0.0|42.0.0|yes|search-guard-kibana-plugin-7
-    - 7.6.2|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.6.1|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.6.0|41.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.5.2|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.5.1|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.5.0|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.2|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.1|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.4.0|40.0.0|41.1.0|yes|search-guard-kibana-plugin-7
-    - 7.3.2|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.3.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.3.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.2.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.2.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.1.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.1.0|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-    - 7.0.1|37.0.0|37.0.0|yes|search-guard-kibana-plugin-7
-
-tlstoolversion: 1.8
+    - 7.3.2|37.0.0|37.0.0|yes
+    - 7.3.1|37.0.0|37.0.0|yes
+    - 7.3.0|37.0.0|37.0.0|yes
+    - 7.2.1|37.0.0|37.0.0|yes
+    - 7.2.0|37.0.0|37.0.0|yes
+    - 7.1.1|37.0.0|37.0.0|yes
+    - 7.1.0|37.0.0|37.0.0|yes
+    - 7.0.1|37.0.0|37.0.0|yes
+  search-guard-6:
+      #esv |sgv |kbv |available|kbn-artifact-id
+    - 6.8.10|25.6|19.2|yes
+    - 6.8.9|25.6|19.1|yes
+    - 6.8.8|25.6|19.1|yes
+    - 6.8.6|25.5|19.0|yes
+    - 6.8.5|25.5|19.0|yes
+    - 6.8.4|25.5|19.0|yes
+    - 6.8.3|25.5|19.0|yes
+    - 6.8.2|25.5|19.0|yes
+    - 6.8.1|25.5|19.0|yes
+    - 6.8.0|25.5|19.0|yes
+    - 6.7.2|25.5|19.0|yes
+    - 6.7.1|25.5|19.0|yes
+    - 6.7.0|25.5|19.0|yes
+    - 6.6.2|25.5|19.0|yes
+    - 6.6.1|25.5|19.0|yes
+    - 6.6.0|25.5|19.0|yes
+    - 6.5.4|25.5|19.0|yes
+    - 6.5.3|25.5|19.0|yes
+    - 6.5.2|25.5|19.0|yes
+    - 6.5.1|25.5|19.0|yes
+    - 6.4.3|25.5|19.0|yes
+    - 6.4.2|25.5|19.0|yes
+    - 6.4.1|25.5|19.0|yes
+    - 6.4.0|25.5|19.0|yes
+    - 6.3.2|25.5|17|no
+    - 6.3.1|25.5|17|no
+    - 6.3.0|25.5|17|no
+    - 6.2.4|23.0|14|no
+    - 6.2.3|23.0|14|no
+    - 6.2.2|23.0|14|no
+    - 6.2.1|23.0|14|no
+    - 6.1.4|22.3|12|no
+    - 6.1.3|22.3|12|no
+    - 6.1.2|22.3|12|no
+    - 6.1.1|22.3|12|no
+    - 6.1.0|22.3|12|no
+  tlstool: 1.8
