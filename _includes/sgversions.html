@@ -1,5 +1,6 @@
-{% assign sgversions = site.sgversions[include.majorversion] %}
+{% assign sgversions = site.sgversions[include.versions] %}
 
+<h2>{{include.title}}</h2>
 <table>
   <thead>
   <tr>
@@ -13,8 +14,36 @@
   <tbody>
 
   {% for version in sgversions %}
-  <tr>
+
     {% assign sgversions = version | split: "|" %}
+
+    {% if include.issuite %}
+
+      {% capture sg_url %}
+        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}.zip
+      {% endcapture %}
+      {% capture sgadmin_url %}
+        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip
+      {% endcapture %}
+      {% capture kibana_url %}
+        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip
+      {% endcapture %}
+
+    {% else %}
+      {% capture sg_url %}
+        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip
+      {% endcapture %}
+      {% capture sgadmin_url %}
+        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip
+      {% endcapture %}
+      {% capture kibana_url %}
+        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip
+      {% endcapture %}
+
+
+    {% endif %}
+
+  <tr>
 
     <td>{{ sgversions[0] }} </td>
 
@@ -22,13 +51,13 @@
 
     <!-- available version -->
 
-    <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip" target="_blank">{{ sgversions[1] }}</a></td>
+    <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
-    <td><a href="https://releases.floragunn.com/{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip" target="_blank">{{ sgversions[1] }}</a></td>
+    <td><a href="{{ sgadmin_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
-    <td><a href="https://releases.floragunn.com/{{ sgversions[4] }}/{{ sgversions[0] }}-{{ sgversions[2] }}/{{ sgversions[4] }}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip" target="_blank">{{ sgversions[2] }}</a></td>
+    <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
 
-    <td>available</td>
+    <td>Active</td>
     
     {% else %}
 
@@ -40,7 +69,7 @@
 
     <td>{{ sgversions[2] }}</td>
 
-    <td>version reached eol and is not supported anymore</td>
+    <td>EOL</td>
 
     {% endif %}
 
