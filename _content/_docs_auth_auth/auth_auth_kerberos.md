@@ -44,7 +44,7 @@ A typical Kerberos authentication domain in sgconfig.yml looks like this:
 ```yaml
     authc:
       kerberos_auth_domain:
-        enabled: true
+        http_enabled: true
         order: 1
         http_authenticator:
           type: kerberos
