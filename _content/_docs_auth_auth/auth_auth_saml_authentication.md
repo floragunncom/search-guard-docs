@@ -33,7 +33,7 @@ To use SAML for authentication, you need to configure a respective authenticatio
 ```yaml
 authc:
   saml:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: saml
@@ -55,7 +55,7 @@ We recommend adding at least one other authentication domain, such as LDAP or th
 ```yaml
 authc:
   basic_internal_auth_domain:
-    enabled: true
+    http_enabled: true
     order: 0
     http_authenticator:
       type: basic
@@ -63,7 +63,7 @@ authc:
     authentication_backend:
       type: internal
   saml_auth_domain:
-     enabled: true
+     http_enabled: true
      order: 1
      http_authenticator:
         type: 'saml'
@@ -190,7 +190,7 @@ Example:
 ```yaml
 authc:
   saml:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: saml
@@ -271,7 +271,7 @@ enabled_ssl_protocols:
 ```yaml
 authc:
   saml:
-    enabled: true
+    http_enabled: true
     order: 1
     http_authenticator:
       type: saml
