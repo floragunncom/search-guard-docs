@@ -68,7 +68,7 @@ Custom implementations can be configured in `sg_config.yml` by simply providing 
 ```yaml
 authz:
   custom_authc_domain:
-    enabled: true
+    http_enabled: true
     order: 0
     http_authenticator:
       type: com.floragunn.custom.CustomHttpAuthenticator
@@ -82,7 +82,7 @@ authz:
         ...
 authz:
   custom_authz_domain:
-    enabled: true
+    http_enabled: true
     authorization_backend:
       type: com.floragunn.custom.CustomAuthorizationBackend
       config:

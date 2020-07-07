@@ -27,7 +27,7 @@ To use Active Directory / LDAP for authorisation first configure a respective au
 ```yaml
 authz:
   ldap:
-    enabled: true
+    http_enabled: true
   authorization_backend:
     type: ldap
     config:
@@ -136,7 +136,7 @@ Example:
 ```yaml
 authz:
   ldap:
-    enabled: true
+    http_enabled: true
   authorization_backend:
     type: ldap
     config:
@@ -224,7 +224,7 @@ For more details refer to https://technet.microsoft.com/en-us/library/cc978012.a
 ```yaml
 authz:
   ldap:
-    enabled: true
+    http_enabled: true
     authorization_backend:
       type: ldap
       config:
@@ -259,7 +259,7 @@ You can also configure multiple role bases. Search Guard will query all role bas
 ```yaml
 authz:
   ldap:
-    enabled: true
+    http_enabled: true
     authorization_backend:
       type: ldap
       config:
