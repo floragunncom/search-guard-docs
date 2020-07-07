@@ -23,8 +23,7 @@ class Releasenotes
 					:password => ENV['JIRA_API_KEY'],
 					:site     => 'https://floragunn.atlassian.net/', 
 					:context_path => '', 
-					:auth_type => :basic,
-					:read_timeout => 120
+					:auth_type => :basic
 				  }
 		
 		@client = JIRA::Client.new(options)
@@ -162,7 +161,7 @@ class Releasenotes
 	end
 
 	def fetchIssues(version, epicKey, epicName, issueType)
-		query = "fixVersion=\"#{version}\" AND project=\"SGD\" AND status=Done AND \"Epic Link\" = \"#{epicKey}\" AND type = \"#{issueType}\" ORDER BY issuekey DESC "		
+		query = "fixVersion=\"#{version}\" AND project=\"SGD\" AND status=Done AND \"Epic Link\" = \"#{epicKey}\" AND type = \"#{issueType}\" AND \"Release Notes\" IS NOT EMPTY ORDER BY issuekey DESC "		
 		issues = @client.Issue.jql(query, max_results: 500)
 		return issues
 	end
