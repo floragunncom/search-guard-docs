@@ -80,7 +80,7 @@ An entry in the `authc` section is called an `authentication domain`. It specifi
 
 You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins".
 
-You can enable or disable an authentication domain for HTTP/REST and transport independantly. This is for example useful if you want to use differen autehentication methods for `TransportClients`.
+You can enable or disable an authentication domain for HTTP/REST and transport independently. This is for example useful if you want to use different authentication methods for `TransportClients`.
 
 The `http_authenticator` specifies which authentication method you want to use on the HTTP layer.
 

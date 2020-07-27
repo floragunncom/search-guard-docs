@@ -9,10 +9,11 @@ echo "Checking access to webserver"
 ssh -T cirunner@185.233.188.50 || exit 1
 
 echo "Copying files to webserver"
-rsync -r ./_site/* "cirunner@185.233.188.50:/usr/share/nginx/html/_site/docs/$VERSION" || exit 1
+rsync -r ./_site/* "cirunner@185.233.188.50:/data/www/docs/$VERSION" || exit 1
 
-echo "Relinking the current latest version as the latest link"
-ssh cirunner@185.233.188.50 'cd /usr/share/nginx/html/_site/docs/; latest_version=`ls -l ./|grep -v latest|grep -v total|cut -f9 -d" "|sort|uniq|tail -n 1`; ln -s $latest_version latest' || exit 1
+echo "Adding the current version as the latest to /docs root directory"
+rsync -r ./_site/* "cirunner@185.233.188.50:/data/www/docs/" || exit 1
+#ssh cirunner@185.233.188.50 'cd /usr/share/nginx/html/_site/docs/; latest_version=`ls -l ./|grep -v latest|grep -v total|cut -f9 -d" "|sort|uniq|tail -n 1`; ln -s $latest_version latest' || exit 1
 
 export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 echo "Last commit message: $GIT_COMMIT_DESC"
