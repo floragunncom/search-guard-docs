@@ -16,7 +16,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with SAML authentication
+# Kibana SAML authentication
 {: .no_toc}
 
 {% include toc.md %}
