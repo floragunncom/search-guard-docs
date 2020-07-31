@@ -7,7 +7,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
 
-index: true
+index: false
 
 baseurl: /7.x-42
 
