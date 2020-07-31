@@ -12,7 +12,7 @@ description: How to an authenticating proxy in front of Kibana to implement Sing
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with Proxy authentication
+# Kibana Proxy authentication
 {: .no_toc}
 
 {% include toc.md %}

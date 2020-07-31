@@ -11,7 +11,7 @@ description: How to set up HTTP Basic Authentication on the REST layer of Elasti
 Copyright 2020 floragunn GmbH
 -->
 
-# HTTP Basic Authentication
+# Elasticsearch HTTP Basic Authentication
 {: .no_toc}
 
 In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:

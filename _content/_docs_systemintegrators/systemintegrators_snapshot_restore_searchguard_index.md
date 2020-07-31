@@ -13,7 +13,7 @@ description: How to enable snapshot and restore of the Search Guard index for re
 Copyright 2020 floragunn GmbH
 -->
 
-## Snapshot and restore access to the Search Guard index
+# Snapshot and restore access to the Search Guard index
 
 By default, Search Guard does not allow to take a snapshot and restore the Search Guard index. This limitation can be lifted by explicitly allowing access to the Search Guard index in elasticsearch.yml:
 

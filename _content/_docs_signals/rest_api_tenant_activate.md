@@ -11,7 +11,7 @@ description:
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Activate/Deactivate Signals API
+# Activate/Deactivate Watches by Tenant API
 {: .no_toc}
 
 {% include toc.md %}

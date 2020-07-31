@@ -6,12 +6,12 @@ category: signals
 order: 650
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch can be configured using severity levels, making it simple to implement an escalation schema
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-## Using Severity with Signals Watches
+# Using Severity with Signals Watches
 
 {: .no_toc}
 
