@@ -15,7 +15,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with OpenID Connect
+# Kibana OpenID Connect Authentication
 {: .no_toc}
 
 {% include toc.md %}

@@ -7,6 +7,8 @@ layout: changelogs
 description: Changelog for Search Guard 7.x-42.0.0	
 ---
 
+# Changelog for Search Guard 7.x-42.0.0
+
 <!--- Copyright 2020 floragunn GmbH -->
 
 **Release Date: 01.06.2020**
