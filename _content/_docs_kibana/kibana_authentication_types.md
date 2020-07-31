@@ -12,7 +12,7 @@ description: A list of all Kibana authentication types supported by Search Guard
 Copyright 2020 floragunn GmbH
 -->
 
-# Authentication Types
+# Kibana Authentication Types
 {: .no_toc}
 
 {% include toc.md %}

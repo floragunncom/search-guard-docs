@@ -12,7 +12,7 @@ description: How to use the Kibana saved objects API when authentication is conf
 Copyright 2020 floragunn GmbH
 -->
 
-# Using the Kibana API
+# Kibana REST API
 {: .no_toc}
 
 {% include toc.md %}

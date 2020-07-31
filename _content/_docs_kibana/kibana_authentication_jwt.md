@@ -15,7 +15,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with JWT
+# Kibana JWT authetication
 {: .no_toc}
 
 {% include toc.md %}

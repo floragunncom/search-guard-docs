@@ -13,7 +13,7 @@ description: How to configure Kibana to allow anonymous access to indices, dashb
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with anonymous authentication
+# Kibana Anonymous Authentication
 {: .no_toc}
 
 {% include toc.md %}

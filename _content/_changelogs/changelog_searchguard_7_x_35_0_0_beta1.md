@@ -11,7 +11,7 @@ description: Changelog for Search Guard 7.x-35.0.0-beta1
 Copyright 2020 floragunn GmbH
 -->
 
-# Search Guard 7.x-35.0.0-beta1
+# Changelog for Search Guard 7.x-35.0.0-beta1
 
 **Release Date: 15.04.2019**
 

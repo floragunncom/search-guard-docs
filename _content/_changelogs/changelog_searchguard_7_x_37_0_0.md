@@ -9,7 +9,7 @@ description: Changelog for Search Guard 7.x-37.0.0
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Search Guard 7.x-37.0.0
+# Changelog for Search Guard 7.x-37.0.0
 
 **Release Date: 25.09.2019**
 
