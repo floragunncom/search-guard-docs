@@ -12,7 +12,7 @@ description: How to configure Kibana for HTTP Basic Authentication. Secure Kiban
 Copyright 2020 floragunn GmbH
 -->
 
-# HTTP Basic Authentication
+# Kibana HTTP Basic Authentication
 {: .no_toc}
 
 {% include toc.md %}

@@ -14,12 +14,12 @@
 	<!-- Page title -->
 	<title>
 		{%if page.isroot != null %}
-			Search Guard {{site.searchguard.version}} Documentation | Elasticsearch security
+			Security for Elasticsearch | Search Guard Documentation
 		{% else %}
 			{%if page.html_title != null %}
-				 {{page.html_title}} | Elasticsearch Security | Search Guard
+				  Security for Elasticsearch  | {{page.html_title}}
 			{% else %}
-				 {{page.title}} | Elasticsearch Security | Search Guard
+				 Security for Elasticsearch | {{page.html_title}}
 			{% endif %}
 		{% endif %}
 	</title>

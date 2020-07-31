@@ -12,7 +12,7 @@ description: How to enable the account overview page with the Search Guard Kiban
 Copyright 2020 floragunn GmbH
 -->
 
-# Account overview page
+# Kibana account overview page
 {: .no_toc}
 
 Search Guard can display an optional account overview page in Kibana, which lists:
