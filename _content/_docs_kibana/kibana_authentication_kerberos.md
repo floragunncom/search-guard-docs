@@ -12,7 +12,7 @@ description: How to use Kerberos to implement Kibana Single Sign On and  to prot
 Copyright 2020 floragunn GmbH
 -->
 
-# Using Kibana with Kerberos
+# Kibana Kerberos Authentication
 {: .no_toc}
 
 {% include toc.md %}
