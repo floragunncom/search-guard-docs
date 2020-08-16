@@ -1,12 +1,12 @@
 ---
 title: Activate and Deactivate Tenant
-html_title: Activating and deactivating a tenant with the REST API
+html_title: Activating Watch by tenant
 slug: elasticsearch-alerting-rest-api-tenant-activate
 category: signals-rest
 order: 950
 layout: docs
 edition: community
-description: 
+description: These endpoints can be used to activate and deactivate the execution of all watches configured for a Signals tenant.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

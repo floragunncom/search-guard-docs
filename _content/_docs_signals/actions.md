@@ -1,6 +1,6 @@
 ---
 title: Actions
-html_title: Creating Actions for Signals Alerting
+html_title: Actions
 slug: elasticsearch-alerting-actions
 category: signals
 subcategory: actions
@@ -8,7 +8,7 @@ order: 700
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-actions-overview
-description:
+description: Actions are used to send notifications by Email or other services like Slack, PagerDurym JIRA or webhooks.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

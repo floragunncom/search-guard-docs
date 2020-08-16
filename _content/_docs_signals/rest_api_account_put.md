@@ -1,12 +1,12 @@
 ---
 title: Put Account
-html_title: Put a account with the REST API
+html_title: Put Account
 slug: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
 order: 810
 layout: docs
 edition: community
-description: 
+description: Use the Signals for Alerting API to create PagerDuty, Email, Slack and Webhook connectors.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
