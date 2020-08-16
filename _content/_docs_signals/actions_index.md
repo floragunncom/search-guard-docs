@@ -1,12 +1,13 @@
 ---
 title: Index Actions
-html_title: Creating Index  Actions for Signals Alerting
+html_title: Index Actions
 slug: elasticsearch-alerting-actions-index
 category: actions
 order: 100
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch can write data back to an Elasticsearch  index if a watch is executed.
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

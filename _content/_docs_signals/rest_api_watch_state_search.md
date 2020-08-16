@@ -1,12 +1,12 @@
 ---
 title: Search Watch States
-html_title: Searching for watch states with the REST API
+html_title: Search Watch State
 slug: elasticsearch-alerting-rest-api-watch-state-search
 category: signals-rest
 order: 760
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Search API to search for watch state documents
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

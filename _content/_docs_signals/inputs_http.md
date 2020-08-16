@@ -1,12 +1,13 @@
 ---
 title: HTTP Input
-html_title: Creating HTTP inputs for Signals Alerting
+html_title: HTTP Data Input
 slug: elasticsearch-alerting-inputs-http
 category: inputs
 order: 300
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch can pull in data from any REST HTTP endpoint make it available to watches and conditions.
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

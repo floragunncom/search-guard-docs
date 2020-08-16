@@ -1,6 +1,6 @@
 ---
 title: REST API
-html_title: Managing Signals Alerting with the REST API
+html_title: REST API
 slug: elasticsearch-alerting-rest-api
 category: signals
 subcategory: signals-rest
@@ -8,7 +8,7 @@ order: 900
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-rest-api-overview
-description: 
+description: Overview of the Elasticsearch Alerting REST API
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

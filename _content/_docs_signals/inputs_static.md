@@ -1,12 +1,12 @@
 ---
 title: Static Input
-html_title: Creating static inputs for Signals Alerting
+html_title: Static Data Input
 slug: elasticsearch-alerting-inputs-static
 category: inputs
 order: 100
 layout: docs
 edition: community
-description:
+description: A static input can be used to define global constant values that can be used anywhere in the Alerting execution chain
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -1,12 +1,12 @@
 ---
 title: Getting started with Signals Alerting
-html_title: Getting started with Signals Alerting
+html_title: Getting started 
 slug: elasticsearch-alerting-getting-started
 category: signals
 order: 100
 layout: docs
 edition: community
-description: 
+description: How to get started with Signals Alerting for Elasticsearch to find anomalies in your data and send alerts
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -18,7 +18,7 @@ description:
 
 Since v40, Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to [install the Search Guard plugin for Elasticsearch and  (optional) Kibana](search-guard-versions) version 40 and above.
 
-At the time of writing, Signals is available for Elasticsearch **7.4.0** and above.
+Signals is available for Elasticsearch **7.4.0** and above.
 
 Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Kibana app to create your first watch.
 
