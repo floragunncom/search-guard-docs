@@ -1,17 +1,17 @@
 ---
 title: Permissions
-html_title: Configure permissions for Signals Alerting users
+html_title: API Permissions
 slug: elasticsearch-alerting-security-permissions
 category: security
 order: 100
 layout: docs
 edition: community
-description: 
+description: Configure access permissions for the Alerting API running on Elasticsearch, including Watches and Accounts.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Permissions
+# Setting permissions for Alerting API
 {: .no_toc}
 
 {% include toc.md %}

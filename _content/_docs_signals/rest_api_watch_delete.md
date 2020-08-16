@@ -1,12 +1,12 @@
 ---
 title: Delete Watch
-html_title: Deleting a watch with the REST API
+html_title: Deleting Watch
 slug: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest
 order: 120
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Delete Watch API to delete watches by their watch ID.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -1,12 +1,12 @@
 ---
 title: Activate and Deactivate Signals
-html_title: Activating and deactivating Signals with the REST API
+html_title: Activate / Deactivate Signals
 slug: elasticsearch-alerting-rest-api-admin-activate
 category: signals-rest
 order: 960
 layout: docs
 edition: community
-description: 
+description: How to globally activate and deactivate all alerting watches for Elasticsearch.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

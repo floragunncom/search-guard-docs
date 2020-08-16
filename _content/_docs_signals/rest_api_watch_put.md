@@ -1,12 +1,12 @@
 ---
 title: Put Watch
-html_title: Creating a watch with the REST API
+html_title:  Put Watch
 slug: elasticsearch-alerting-rest-api-watch-put
 category: signals-rest
 order: 110
 layout: docs
 edition: community
-description:
+description: Use the Alerting for Elasticsearch Put Watch API to create new watches in JSON format.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

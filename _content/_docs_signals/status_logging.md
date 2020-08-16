@@ -7,6 +7,7 @@ order: 1000
 layout: docs
 edition: community
 description: 
+index: false
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
