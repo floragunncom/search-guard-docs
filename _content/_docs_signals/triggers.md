@@ -1,6 +1,6 @@
 ---
-title: Triggers
-html_title: Triggers for Signals Alerting
+title: Alerting Triggers
+html_title: Triggers
 slug: elasticsearch-alerting-triggers
 category: signals
 subcategory: triggers
@@ -8,12 +8,12 @@ order: 300
 layout: docs
 edition: community
 canonical: triggers-overview
-description: 
+description: How to create triggers for Signals Alerting for Elasticsearch that control the execution of watches
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Creating triggers
+# Creating triggers for Elasticsearch watches
 {: .no_toc}
 
 {% include toc.md %}

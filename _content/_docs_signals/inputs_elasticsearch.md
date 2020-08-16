@@ -1,12 +1,12 @@
 ---
 title: Elasticsearch Input
-html_title: Creating Elasticsearch inputs for Signals Alerting
+html_title: Elasticsearch Input
 slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs
 edition: community
-description: 
+description: Signals Alerting executes Elasticsearch queries and use the query result to check for anomalies.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
