@@ -6,7 +6,7 @@ category: actions
 order: 0
 layout: docs
 edition: community
-description:
+description: The Alerting for Elasticsearch plugin supports multiple connectors like email, Slack, PagerDuty, JIRA or webhooks for sending notifications.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

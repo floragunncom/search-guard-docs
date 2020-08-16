@@ -1,12 +1,12 @@
 ---
 title: Get Watch
-html_title: Getting a watch with the REST API
+html_title: Get Watch
 slug: elasticsearch-alerting-rest-api-watch-get
 category: signals-rest
 order: 100
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Get Watch API to retrieve configured watches by watch ID
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

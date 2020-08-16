@@ -1,12 +1,13 @@
 ---
 title: Transformations
-html_title: Creating Transformations and Calculations for Signals Alerting
+html_title: Data Transformations
 slug: elasticsearch-alerting-transformations-calculations
 category: signals
 subcategory: transformations
 order: 500
 layout: docs
 edition: community
+description: Signals Alerting for Elasticsearch uses Painless scripting for data manipulation and control flow.
 canonical: elasticsearch-alerting-transformations-calculations-overview
 description: 
 ---

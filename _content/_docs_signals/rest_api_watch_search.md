@@ -1,12 +1,12 @@
 ---
 title: Search Watch
-html_title: Searching a watch with the REST API
+html_title: Search Watch
 slug: elasticsearch-alerting-rest-api-watch-search
 category: signals-rest
 order: 150
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Search REST API to search for configured watches
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

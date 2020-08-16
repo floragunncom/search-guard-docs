@@ -15,7 +15,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# SAML Authentication
+# SAML Authentication for Elasticsearch
 {: .no_toc}
 
 {% include toc.md %}

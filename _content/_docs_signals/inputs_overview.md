@@ -1,12 +1,12 @@
 ---
 title: Inputs Overview
-html_title: Creating inputs for Signals Alerting Overview
+html_title: Inputs Overview
 slug: elasticsearch-alerting-inputs-overview
 category: inputs
 order: 0
 layout: docs
 edition: community
-description: 
+description: In Signals Alerting for Elasticsearch, each watch can have one or more data inputs that collect data for further processing.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

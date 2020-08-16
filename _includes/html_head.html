@@ -13,18 +13,24 @@
 
 	<!-- Page title -->
 	<title>
+		{% assign productname = "Security" %}
+
+		{% if page.collection == "docs_signals" %}
+			{% assign productname = "Alerting" %}
+		{% endif %}
+
 		{%if page.isroot != null %}
 			Security for Elasticsearch | Search Guard Documentation
 		{% else %}
 			{%if page.html_title != null %}
-				  Security for Elasticsearch  | {{page.html_title}}
+				{{productname}} for Elasticsearch  | {{page.html_title}}
 			{% else %}
-				 Security for Elasticsearch | {{page.html_title}}
+				{{productname}} for Elasticsearch | {{page.title}}
 			{% endif %}
 		{% endif %}
 	</title>
 	<!-- OG and Twitter -->
-	<meta property="og:title" content="{%if page.html_title != null %} Security for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
+	<meta property="og:title" content="{%if page.html_title != null %} {{productname}} for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
 	<meta property="og:description" content="{{page.description}}" />
