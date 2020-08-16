@@ -1,12 +1,13 @@
 ---
 title: Calculations
-html_title: Creating Calculations Signals Alerting
+html_title: Data Calculations
 slug: elasticsearch-alerting-calculations
 category: transformations
 order: 200
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch uses Painless scripting for performing calculations on the data used by watches
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -1,12 +1,12 @@
 ---
 title: Multi tenancy
-html_title: Using multi-tenancy with Signals Alerting
+html_title: Multi-Tenancy
 slug: elasticsearch-alerting-security-multi-tenancy
 category: security
 order: 300
 layout: docs
 edition: community
-description: 
+description: Signals Alerting is fully compatible with Search Guard multi tenancy so you can separate watch access by tenants.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

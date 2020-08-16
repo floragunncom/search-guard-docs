@@ -1,12 +1,13 @@
 ---
 title: Transformations Overview
-html_title: Creating Transformations and Calculations for Signals Alerting
+html_title: Transformations / Calculations
 slug: elasticsearch-alerting-transformations-calculations-overview
 category: transformations
 order: 0
 layout: docs
 edition: community
 description: 
+index: false
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
