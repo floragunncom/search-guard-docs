@@ -1,12 +1,12 @@
 ---
-title: Overview
-html_title: Creating Actions for Signals Alerting
+title: Actions Overview
+html_title: Actions Overview
 slug: elasticsearch-alerting-actions-overview
 category: actions
 order: 0
 layout: docs
 edition: community
-description:
+description: The Alerting for Elasticsearch plugin supports multiple connectors like email, Slack, PagerDuty, JIRA or webhooks for sending notifications.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

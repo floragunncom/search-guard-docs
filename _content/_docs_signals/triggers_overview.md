@@ -1,12 +1,12 @@
 ---
 title: Triggers Overview
-html_title: Triggers for Signals Alerting Overview
+html_title: Triggers Overview
 slug: elasticsearch-alerting-triggers-overview
 category: triggers
 order: 0
 layout: docs
 edition: community
-description: 
+description: A trigger specfies when and how often a watch for Elasticsearch Alerting i executed.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

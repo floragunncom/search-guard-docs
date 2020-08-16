@@ -1,12 +1,12 @@
 ---
 title: How Signals Alerting works
-html_title: How Signals Alerting works
+html_title: How Alerting works
 slug: elasticsearch-alerting-how-it-works
 category: signals
 order: 200
 layout: docs
 edition: community
-description:
+description: How Signals Alerting for Elasticsearch works and how to use it for log file analysis and audit logging notifications
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

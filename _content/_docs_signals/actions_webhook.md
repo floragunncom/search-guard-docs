@@ -1,12 +1,13 @@
 ---
 title: Webhook Actions
-html_title: Creating Webhook Actions for Signals Alerting
+html_title: Webhook Actions
 slug: elasticsearch-alerting-actions-webhook
 category: actions
 order: 300
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch can send notifications to webhooks in case it detects anomalies in your data
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

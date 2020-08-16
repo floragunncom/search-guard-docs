@@ -1,12 +1,13 @@
 ---
 title: Un-acknowledge Watch
-html_title: Un-acknowledge a watch with the REST API
+html_title: Un-acknowledge Watch
 slug: elasticsearch-alerting-rest-api-watch-unacknowledge
 category: signals-rest
 order: 700
 layout: docs
 edition: community
-description: 
+description: The Signals Alerting for Elasticsearch API provides an endpoint for un-acknowledging a watch to move it back to the initial state
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

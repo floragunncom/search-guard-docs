@@ -6,13 +6,13 @@ category: dlsfls
 order: 300
 layout: docs
 edition: compliance
-description: Use the Search Guard Compliance edition to mask and anonymize sensitive fields in any Elasticsearch index.
+description: How to anonymize fields in Elasticsearch documents by using hashes or regular expressions.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Field anonymization
+# Anonymize fields in Elasticsearch documents
 {: .no_toc}
 
 {% include toc.md %}

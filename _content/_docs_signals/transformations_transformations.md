@@ -1,12 +1,12 @@
 ---
 title: Transformations
-html_title: Creating Transformationsfor Signals Alerting
+html_title: Transformation Scripts
 slug: elasticsearch-alerting-transformations
 category: transformations
 order: 100
 layout: docs
 edition: community
-description:
+description: Signals Alerting uses the Elasticsearch Painless scripting language for transforming data.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

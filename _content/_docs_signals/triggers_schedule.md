@@ -1,12 +1,12 @@
 ---
 title: Schedule Triggers
-html_title: Creating schedule triggers for Signals Alerting
+html_title: Schedule Triggers
 slug: elasticsearch-alerting-triggers-schedule
 category: triggers
 order: 100
 layout: docs
 edition: community
-description: 
+description: Configure how often an Alerting watch is executed that scans data in Elasticsearch for anomalies.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
