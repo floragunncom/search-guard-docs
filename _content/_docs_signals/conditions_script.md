@@ -1,12 +1,12 @@
 ---
 title: Script Conditions
-html_title: Creating Script Conditions for Signals Alerting
+html_title: Script Conditions
 slug: elasticsearch-alerting-conditions-script
 category: conditions
 order: 100
 layout: docs
 edition: community
-description:
+description: In Signals Alerting for Elasticsearch, script conditions use Painless scripts to check for thresholds and to trigger notifications.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

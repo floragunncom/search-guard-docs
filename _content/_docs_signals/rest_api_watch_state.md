@@ -1,12 +1,12 @@
 ---
 title: Get Watch State
-html_title: Getting a watch with the REST API
+html_title: Get Watch State
 slug: elasticsearch-alerting-rest-api-watch-state
 category: signals-rest
 order: 750
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Get Watch API to retrieve a watch in JSON format.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

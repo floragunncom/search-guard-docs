@@ -14,7 +14,7 @@ resources:
 
 ---
 
-# Multitenancy
+# Kibana Multitenancy
 {: .no_toc}
 
 {% include toc.md %}

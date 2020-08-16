@@ -1,12 +1,13 @@
 ---
 title: Email Actions
-html_title: Creating Email Actions for Signals Alerting
+html_title: Email Actions
 slug: elasticsearch-alerting-actions-email
 category: actions
 order: 200
 layout: docs
 edition: community
-description:
+description: Signals Alerting for Elasticsearch can send notifications via email in case it detects anomalies in your data.
+
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

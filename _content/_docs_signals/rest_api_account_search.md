@@ -1,12 +1,12 @@
 ---
 title: Search Accounts
-html_title: Search the configured accounts with the REST API
+html_title: Search Accounts
 slug: elasticsearch-alerting-rest-api-account-search
 category: signals-rest
 order: 850
 layout: docs
 edition: community
-description: 
+description: Use the Signals for Alerting Search Accounts REST API to search for email, PagerDuty, Slack and webhook accounts.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

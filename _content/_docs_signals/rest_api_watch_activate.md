@@ -1,12 +1,12 @@
 ---
 title: Activate and Deactivate Watch
-html_title: Activating and deactivating a watch with the REST API
+html_title: Activate Watch
 slug: elasticsearch-alerting-rest-api-watch-activate
 category: signals-rest
 order: 500
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Activate Watch API activate and deactivate watches.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

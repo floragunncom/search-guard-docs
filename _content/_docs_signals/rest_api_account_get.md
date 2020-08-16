@@ -1,12 +1,12 @@
 ---
 title: Get Account
-html_title: Get an account with the REST API
+html_title: Get Account
 slug: elasticsearch-alerting-rest-api-account-get
 category: signals-rest
 order: 800
 layout: docs
 edition: community
-description: 
+description:  Use the Signals for Alerting API to retrieve PagerDuty, Email, Slack and Webhook connectors by ID.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

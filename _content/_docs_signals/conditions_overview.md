@@ -1,12 +1,13 @@
 ---
 title: Conditions Overview
-html_title: Creating Conditions for Signals Alerting
+html_title: Conditions Overview
 slug: elasticsearch-alerting-conditions-overview
 category: conditions
 order: 0
 layout: docs
 edition: community
 description: 
+index: false
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
