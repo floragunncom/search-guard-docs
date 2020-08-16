@@ -1,12 +1,12 @@
 ---
 title: Signals Indices
-html_title: How sensitive data in the Signals indices are used
+html_title: Alerting Indices
 slug: elasticsearch-alerting-security-indices
 category: security
 order: 50
 layout: docs
 edition: community
-description: 
+description: How Signals for Elasticsearch uses a protected confguration index to protect sensitive data
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -1,12 +1,12 @@
 ---
 title: Put Settings
-html_title: Put settings with the REST API
+html_title: Put Settings
 slug: elasticsearch-alerting-rest-api-settings-put
 category: signals-rest
 order: 910
 layout: docs
 edition: community
-description: 
+description: Use the Alerting for Elasticsearch Put Settings API to update the Signals Settings
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

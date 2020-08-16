@@ -1,6 +1,6 @@
 ---
-title: Severity
-html_title: Using Severity with Signals Watches
+title: Severity Levels
+html_title: Severity Levels
 slug: elasticsearch-alerting-severity
 category: signals
 order: 650
