@@ -15,7 +15,7 @@ description: How to use environment variables to remove sensitive information li
 
 {% include toc.md %}
 
-The Search Guard configuration is stored in a secured Elasticsearch index. Without an admin certificate, it is not possible to acces its content. Therefore storing sensitive data in this index, like passwords or other access credentials, is safe. 
+The Search Guard configuration is stored in a secured Elasticsearch index. Without an admin certificate, it is not possible to acces it's content. Therefore storing sensitive data in this index, like passwords or other access credentials, is safe. 
 
 After uploading configuration changes with `sgadmin`, the actual configuration files that may contain sensitive information, can be discarded.
 
@@ -26,7 +26,22 @@ If you want to keep the configuration files free from any sensitive data, you ca
 
 ## Using environment variables
 
-Search Guard supports environment variable substitution for all configuration files. Before uploading the configuration to Search Guard, `sgadmin` will scan the file content and replace all environment variables with their actual values. 
+Search Guard supports environment variable substitution for all configuration files. The substitution will take place either by using sgadmin or directly on your nodes.
+
+### Substitution by sgadmin
+
+Before uploading the configuration to Search Guard, `sgadmin` will scan the file content and replace all environment variables with their actual values. This means the variables will have the same values on all nodes.
+
+To activate environment variable substitution, use the `-rev` switch like:
+
+```bash
+./sgadmin.sh \
+    -cd ../sgconfig/ \
+    -rev \
+    -cacert ../../../root-ca.pem \
+    -cert ../../../kirk.pem \
+    -key ../../../kirk.key.pem    
+```
 
 sgadmin replaces environment variables in-memory before uploading the configuration. The actual file contents are not changed.
 {: .note .js-note .note-info}
@@ -34,6 +49,10 @@ sgadmin replaces environment variables in-memory before uploading the configurat
 <p align="center">
 <img src="config_environment_variables.png" style="width: 60%" class="md_image"/>
 </p>
+
+### Substitution on Elasticsearch nodes
+
+Before loading and activating the configuration, Search Guard will scan the configuration for environment variables and replace them by using the values configured on the machine the Elasticsearch node is running on. This means the values can differ from node to node. 
 
 ## Plain value substitution
 
