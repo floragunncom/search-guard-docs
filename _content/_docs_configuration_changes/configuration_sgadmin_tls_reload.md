@@ -15,8 +15,6 @@ Copyright 2020 floragunn GmbH
 # TLS reload
 {: .no_toc}
 
-{% include toc.md %}
-
 The sgadmin tool can be used to trigger a reload of the TLS certificates on a running cluster. You can use this feature to change certificates, including the root CA without the need for a cluster restart.
 
 Please read the TLS reload instruction guide before changing the certificates on a production Elasticsearch cluster
