@@ -1,11 +1,12 @@
 ---
-title: sgadmin Examples
+title: Examples
+html:title: sgaddmin Examples
 slug: sgadmin-examples
-category: configuration
-order: 200
+category: sgadmin
+order: 800
 layout: docs
 edition: community
-description: Example sgadmin calls to manage the Search
+description: Example sgadmin calls to manage the Search Guard configuration and Elasticsearch settings
 
 ---
 <!---
@@ -44,7 +45,6 @@ Copyright 2020 floragunn GmbH
 ```
 ./sgadmin.sh \
    -f /path/to/sg_internal_users.yml \
-   -t internalusers \
    -cacert /path/to/root-ca.pem \
    -cert /path/to/kirk.crt.pem \
    -key /path/to/kirk.key.pem  \
@@ -59,7 +59,6 @@ Copyright 2020 floragunn GmbH
    -h esnode1.mycompany.com \
    -p 9301 \
    -f /path/to/updated_internal_users.yml \
-   -t internalusers \
    -cacert /path/to/root-ca.pem \
    -cert /path/to/kirk.crt.pem \
    -key /path/to/kirk.key.pem  \

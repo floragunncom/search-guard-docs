@@ -69,6 +69,14 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 | searchguard.openid.logout_url | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata. |
 {: .config-table}
 
+### TLS Settings
+
+| Name | Description |
+|---|---|
+| searchguard.openid.root_ca | Path to the root CA of your IdP |
+| searchguard.openid.verify_hostnames | Whether to very the hostname of the IdP certificate. Default: true |
+{: .config-table}
+
 ## Configuration example
 
 <div class="code-highlight " data-label="">

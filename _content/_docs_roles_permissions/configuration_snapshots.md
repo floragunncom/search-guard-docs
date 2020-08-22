@@ -40,11 +40,14 @@ In detail, for every request Search Guard
 * resolves any index name(s) in the user's role definitions to the concrete index name(s)
 * applies permission checks based on the concrete index name(s)
 
-## Handling multiple filtered index aliases
+## Handling filtered index aliases
+
+Filtered index aliases currently do not work if the `do_not_fail_on_forbidden` flag is set to true in `sg_config.yml`.
+{: .note .js-note .note-warning}
 
 Filtered index aliases can be used to filter documents from the underlying concrete index. However, **using filteres aliases is not a secure way to restrict access to certain documents**. In order to do that, please use the [Document Level Security](../_docs_dls_fls/dlsfls_dls.md) feature of Search Guard.
 
-Because of this potential security leak, Search Guard detects and treats multiple filtered index aliases in a special way: You can either disallow them completely, or issue a warning message on `WARN` or `DEBUG` level.
+Because of this potential security leak, Search Guard detects and treats filtered index aliases in a special way: You can either disallow them completely, or issue a warning message on `WARN` or `DEBUG` level.
 
 The following entry in sg_config can be used to configure this:
 
