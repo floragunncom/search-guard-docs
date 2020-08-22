@@ -174,6 +174,12 @@ sg_config:
         internalProxies: '<Kibana IP>'
 ```
 
+To activate proxy authentication in Kibana, add the following line to `kibana.yml`:
+
+```
+searchguard.auth.type: "proxy"
+```
+
 To pass the user and role headers that the authenticating proxy adds from Kibana to Search Guard, you need to add them to the HTTP header whitelist in `kibana.yml`:
 
 ```
