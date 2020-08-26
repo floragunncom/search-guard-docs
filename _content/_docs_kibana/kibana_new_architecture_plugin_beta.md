@@ -19,7 +19,7 @@ It is the first beta version of the SG Kibana plugin based on the new Kibana arc
 
 The current SG Kibana plugin version still uses the legacy core API. We work to convert our plugin to use the new core. And we are ready to present the beta version of the plugin. Look for it in our [maven repository](https://maven.search-guard.com/artifactory/webapp/#/artifacts/browse/tree/General/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin).
 
-**Important:** To make the plugin work in Kibana, one must execute a patch after the installation.
+**Important:** To make the plugin work in Kibana, you must execute a patch after the installation.
 
 ## Patch
 
