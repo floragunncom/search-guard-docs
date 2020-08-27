@@ -33,6 +33,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_layer | The layer on which the event has been generated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
 | audit\_request\_effective\_user\_is\_admin | true if the request was made wit an TLS admin certificate, false otherwise. |
+| audit\_request\_remote\_address | The IP this request originated from. |
 {: .config-table}
 
 ## REST FAILED_LOGIN attributes
@@ -40,7 +41,7 @@ The following attributes are logged for all event categores, independent of the 
 
 | Name | Description |
 |---|---|
-| audit\_request\_effective\_user | The username tthat failed authentication. |
+| audit\_request\_effective\_user | The username that failed authentication. |
 | audit\_rest\_request\_path | The REST endpoint URI |
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
@@ -76,6 +77,27 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
 | audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+{: .config-table}
+
+## REST BLOCKED_USER attributes
+
+| Name | Description |
+|---|---|
+| audit\_request\_effective\_user | The username that was being blocked. |
+| audit\_rest\_request\_path | The REST endpoint URI |
+| audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
+| audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
+| audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+{: .config-table}
+
+## REST BLOCKED_IP attributes
+
+| Name | Description |
+|---|---|
+| audit\_rest\_request\_path | The REST endpoint URI |
+| audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
+| audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
+| audit\_request\_remote\_address | The IP that was being blocked. |
 {: .config-table}
 
 ## Transport FAILED_LOGIN attributes
@@ -158,6 +180,35 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
+| audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
+| audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
+| audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
+
+## Transport BLOCKED_USER attributes
+
+| Name | Description |
+|---|---|
+| audit\_trace\_task\_id | The ID of this request |
+| audit\_transport\_headers | The headers of the request, if any. Optional. |
+| audit\_request\_effective\_user | The username / principal was being blocked. |
+| audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
+| audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
+| audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+{: .config-table}
+
+## Transport BLOCKED_IP attributes
+
+| Name | Description |
+|---|---|
+| audit\_request\_remote\_address | The IP that was being blocked. |
+| audit\_trace\_task\_id | The ID of this request |
+| audit\_trace\_task\_parent\_id | The parent ID of this request, if any. Optional. |
+| audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
