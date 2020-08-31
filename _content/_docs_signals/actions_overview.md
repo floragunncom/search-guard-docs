@@ -1,6 +1,11 @@
 ---
+<<<<<<< HEAD
 title: Overview
 html_title: Creating Actions for Signals Alerting
+=======
+title: Actions Overview
+html_title: Actions Overview
+>>>>>>> 7.x
 slug: elasticsearch-alerting-actions-overview
 category: actions
 order: 0
