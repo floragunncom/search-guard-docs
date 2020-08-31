@@ -162,6 +162,14 @@ At the moment you cannot use the following features in the DLS query:
 * geo_shape query with indexed shapes
 * percolate query
 
+If a user has a role that defines DLS restrictions on an index, and another role that does not place any DLS restrictions on the same index, the restrictions defined in the first role still apply.
+
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `elasticsearch.yml`: 
+
+```
+searchguard.dfm_empty_overrides_all: true
+```
+
 ## Performance considerations
 
 A DLS query can be as simple or complex as necessary, and you can use the full range of Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
