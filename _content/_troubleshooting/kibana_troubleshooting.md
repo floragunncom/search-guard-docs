@@ -109,6 +109,16 @@ Either access Kibana with HTTPS instead of HTTP, or set:
 searchguard.cookie.secure: false
 ```
 
+## Debugging the authentication flow with extra logging
+
+In order to debug the authentication flow, you can enable authentication logging in `kibana.yml`.
+
+**Caution: the logged information may contain sensitive authentication information.**
+
+```yaml
+searchguard.auth.debug: true
+```
+
 ## Cookies not readable
 
 In case the Search Guard cookies are not readable anymore, e.g. if you changed the encryption key, simply delete them. The plugin uses these cookies:

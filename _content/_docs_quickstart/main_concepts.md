@@ -149,6 +149,11 @@ demo_netmask_v6_allow:
   verdict: "allow"
 ```
 
+### Allow vs Block
+
+You can think of `allow` as a white list while `disallow` serves as a black list, i.e. with `allow` only client IPs which are either in the specified net or have an expected IP are allowed to perform requests. All other IPs are unauthorized.
+`disallow` enables you to selectively block IPs (or IPs from certain networks).
+
 ## The Search Guard index
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, in elasticsearch.yml.
