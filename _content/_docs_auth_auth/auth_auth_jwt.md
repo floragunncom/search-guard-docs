@@ -111,8 +111,8 @@ jwt_auth_domain:
       signing_key: "base64 encoded key"
       jwt_header: "Authorization"
       jwt_url_parameter: null
-      subject_key: null
-      roles_key: null
+      <subject_key|subject_path>: null
+      <roles_key|roles_path> : null
   authentication_backend:
 I    type: noop
 ```
@@ -125,8 +125,12 @@ Configuration parameter:
 | jwt\_header | The HTTP header in which the token is transmitted. This is typically the `Authorization` header with the `Bearer` schema: `Authorization: Bearer <token>`. Default is `Authorization`.|
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. |
 | subject_key | The key in the JSON payload that stores the username. If not set, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2){:target="_blank"} registered claim is used.|
+| subject_path | A JSON path expression in the payload that stores the username, for example ```$["foo"]["user"]["name"]```  where `foo` is the claim name|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
+| roles_path | A JSON path expression to the payload that stores the user's roles, for example ```$["foo"]["user"]["roles"]``` where `foo` is the claim name |
 {: .config-table}
+
+It is recommend to use the bracket-notation in JSON path expressions in order to avoid ambiguity, for example a key could be called `user.id` and thus wouldn't be the same as `$["user"]["id"]`.
 
 Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
 
