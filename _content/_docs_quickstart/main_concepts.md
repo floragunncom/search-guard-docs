@@ -117,6 +117,43 @@ Action groups can be used in the role configuration instead of or in combination
 
 Search Guard ships with a built-in set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the built-in action groups**.
 
+## Block User / IP address/net mask
+
+Search Guard allows to block users/IP addresses. See the following snippet for three examples of blocks, block by user name and by IP address/net masks.
+Please note that it is possible to block IP (v4/v6) addresses and users at runtime, either via the `sgadmin` tool or via the REST API. 
+
+```yaml
+demo_user_blocked:
+  type: "name"
+  value: ["John Doe"] # you can also use regular expressions and wildcards, e.g. '* Doe'
+  verdict: "disallow"
+
+demo_ip_blocked:
+  type: "ip"
+  value: ["8.8.8.8"]
+  verdict: "disallow"
+
+demo_ip_v6_blocked:
+  type: "ip"
+  value: ["0:0:0:0:0:ffff:808:808"]
+  verdict: "disallow"
+
+demo_netmask_allow:
+  type: "net_mask"
+  value: ["127.0.0.0/8"]
+  verdict: "allow"
+
+demo_netmask_v6_allow:
+  type: "net_mask"
+  value: ["1::/64"]
+  verdict: "allow"
+```
+
+### Allow vs Block
+
+You can think of `allow` as a white list while `disallow` serves as a black list, i.e. with `allow` only client IPs which are either in the specified net or have an expected IP are allowed to perform requests. All other IPs are unauthorized.
+`disallow` enables you to selectively block IPs (or IPs from certain networks).
+
 ## The Search Guard index
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, in elasticsearch.yml.
@@ -135,5 +172,6 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_internal\_users.yml - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
 * sg\_action\_groups.yml - define named permission groups.
 * sg\_tenants.yml - defines tenants for configuring Kibana access
+* sg\_blocks.yml - defines blocked users and IP addresses
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md). 
