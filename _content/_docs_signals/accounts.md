@@ -2,8 +2,8 @@
 title: Accounts
 html_title: Accounts
 slug: elasticsearch-alerting-accounts
-category: actions
-order: 50
+category: signals
+order: 710
 layout: docs
 edition: community
 description: Signals Alerting for Elasticsearch can use accounts like email, Slack, PagerDuty, JIRA or webhooks to send notifications to.
