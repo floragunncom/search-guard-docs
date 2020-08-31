@@ -127,7 +127,7 @@ You can configure both the trusted certificates and client certificates that sha
 
 If you do not provide an explicit configuration, the defaults configured for the JVM in which ES is running will be used.
 
-**Note:** Right now, certificates have to be specfied in PEM format in-line in the watch configuration. Future versions will provide a more secure way of storing certificates.
+**Note:** Right now, certificates have to be specified in PEM format in-line in the watch configuration. Future versions will provide a more secure way of storing certificates.
 
 A TLS configuration might look like this:
 
