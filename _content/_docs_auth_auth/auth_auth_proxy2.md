@@ -218,11 +218,17 @@ sg_config:
 |`allowed_dn_s`||List of trusted DNs|
 {: .config-table}
 
-## Additional attributes
 
-If you want to pass additional attributes via header you can do that by simply adding your `attribute_headers` in your existing configuration as in the following example.
+## Using Further Headers as Search Guard User Attributes 
 
-```yml
+Search Guard allows to use further HTTP header values to construct [dynamic index patterns](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-patterns-user-name-substitution) and [dynamic queries for document and field level security](../docs_dls_fls/_dlsfls_dls.md#dynamic-queries-variable-subtitution). In order to use these header values, you need to use the configuration attribute `map_headers_to_user_attrs` to provide a mapping from HTTP header values to Search Guard user attributes inside the authenticator configuration.
+
+As the other proxy authenticator configuration, the `map_headers_to_user_attrs` attribute needs to be placed in the `config` section of the `http_authenticator` configuration. As value, you need to provide a map of the form `search_guard_user_attribute: http_header_name`. 
+
+This might look like this:
+
+
+```yaml
 sg_config:
     dynamic:
         authc:
@@ -234,17 +240,28 @@ sg_config:
                     type: "proxy2"
                     challenge: false
                     config:
-                        attribute_headers:
-                            - "additional-attribute-1"
-                            - "additional-attribute-2"
+                      map_ldap_attrs_to_user_attrs:
+                        department: "x-user-dept"
+                        email_address: "x-user-mail"
                 authentication_backend:
                     type: "noop"
 ```
 
-| Config name | Default value | Description |
-|---|---|---|
-|`attribute_headers`||List of additional attribute header names|
-{: .config-table}
+This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from the HTTP headers. 
 
-You can then refer to them `attr_proxy2_additional-attribute-2` like described [here](roles-permissions.md). There is also an attribute `attr_proxy2_username` available containing the username like it was submitted by the proxy.
+In the Search Guard role configuration, the attributes can be then used like this:
 
+```yaml
+my_dls_role:
+  index_permissions:
+  - index_patterns:
+    - "dls_test"
+    dls: '{"terms" : {"filter_attr": ${user.attrs.department|toList|toJson}}}'
+    allowed_actions:
+    - "READ"
+```
+
+
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+
+**Note:** This method of providing attributes supersedes the old way which provided the headers listed in the `attribute_headers`  configuration as Search Guard user attributes with the prefix `attr.proxy2`. These attributes are still supported, but are now deprecated.

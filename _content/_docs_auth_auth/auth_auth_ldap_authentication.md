@@ -158,6 +158,49 @@ ldap:
       username_attribute: uid
 ```
 
+## Using Further Active Directory Attributes 
+
+Search Guard allows to use further user attributes to construct [dynamic index patterns](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-patterns-user-name-substitution) and [dynamic queries for document and field level security](../docs_dls_fls/_dlsfls_dls.md#dynamic-queries-variable-subtitution). In order to use these attributes, you need to use the configuration attribute `map_ldap_attrs_to_user_attrs` to provide a mapping from LDAP attributes to Search Guard user attributes inside the LDAP configuration.
+
+As the other LDAP configuration, the `map_ldap_attrs_to_user_attrs` attribute needs to be placed in the `config` section of the LDAP authentication backend configuration. As value, you need to provide a map of the form `search_guard_user_attribute: ldap_attribute`. 
+
+This might look like this:
+
+
+```yaml
+ldap:
+  http_enabled: true
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: ldap
+    config:
+      map_ldap_attrs_to_user_attrs:
+        department: departmentNumber
+        email_address: mail
+```
+
+This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from LDAP. Multi-value attributes from LDAP are supported. Actually, attributes will be always stored as arrays in the Search Guard user attributes, even if the attribute has only a single value.
+
+In the Search Guard role configuration, the attributes can be then used like this:
+
+```yaml
+my_dls_role:
+  index_permissions:
+  - index_patterns:
+    - "dls_test"
+    dls: '{"terms" : {"filter_attr": ${user.attrs.department|toList|toJson}}}'
+    allowed_actions:
+    - "READ"
+```
+
+
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+
+**Note:** This method of providing attributes supersedes the old way which provided all LDAP attributes as Search Guard user attributes with the prefix `attr.ldap`. These attributes are still supported, but are now deprecated.
+
 ### Advanced: Exclude certain users from role lookup
 
 It is possible to exclude users from LDAP authentication by specifying a 'skip_users' section inside the domain configuration. **Wildcards** and **regular expressions** are exported.
