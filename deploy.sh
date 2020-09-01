@@ -10,7 +10,16 @@ bundle exec jekyll build --config _config.yml,_versions.yml
 ftp_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
 
 # Sanity check, do not upload feature branches etc.
-git_branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ -z "$CI_JOB_ID" ] ; then
+    echo "CI_JOB_ID not set, seems we run locally, fetch branch name from git"
+    git_branch=$(git rev-parse --abbrev-ref HEAD)
+else
+    echo "CI_JOB_ID set, seems we run om CI, fetch branch name from environment"
+    git_branch=$CI_COMMIT_BRANCH
+fi
+
+echo "Building branch $git_branch"
 
 if [[ ! $git_branch =~ ^7.x-[1-9]{2}$ ]]; then
     echo "Branch $git_branch does not seem to be a release branch, exiting gracefully"
