@@ -23,7 +23,7 @@ If you are upgrading from Elasticsearch 6.8.x to Elasticsearch >= 7.0.0, please 
 
 Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
 
-We need your help: We started to release the first beta versions of our  refactored Kibana plugin that is compatibel with the Kibana "New Platform" architecture. [Give it a spin](kibana-new-platform-plugin-beta) and tell us what you think.
+We need your help: We started to release the first beta versions of our  refactored Kibana plugin that is compatible with the Kibana "New Platform" architecture. [Give it a spin](kibana-new-platform-plugin-beta) and tell us what you think.
 {: .note .js-note .note-warning}
 
 {% include sgversions.html versions="search-guard-suite-7" majorversion="7" issuite=true title="Search Guard Suite 7, including Security and Alerting"%}
