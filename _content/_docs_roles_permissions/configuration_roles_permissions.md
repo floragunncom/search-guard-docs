@@ -172,26 +172,115 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
     - ...
   index_permissions:
     - index_patterns:
-      - "index-${user_name}"
+      - "index-${user.name}"
       allowed_actions:
         - CRUD
 ```
 
 ### Dynamic index patterns: User attributes
 
-Any authentication and authorization backend can add additional user attributes that you can use for variable substitution.
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns. 
 
-For Active Directory and LDAP, these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, these are all claims from the JWT token. For the internal user database, they are configured in sg_internalusers.yml.
+For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
-You can use these attributes in index patterns to implement index-level access control based on user attributes: 
+- [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
+- [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
+- [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
 
-* for internal users, the attributes start with `attr_internal_*`
-* for JWT, the attributes start with `attr_jwt_*`
-* for LDAP they start with `attr_ldap_*`.
 
-If you're unsure, what attributes are accessible for the current user you can always check the `/_searchguard/authinfo` endpoint. This endpoint will list all attribute names for the currently logged in user.
+If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
-### Internal users Example:
+**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from the authentication domain under the prefix `${attr....}`. The old mechanism is now deprecated but still supported. However, attributes from the internal user database are **not yet supported** using the new mechanism.  For now, you need to stick to the old mechanism (`${attr.internal...}`) for these attributes.
+
+
+
+### JWT Example:
+
+
+Suppose a JWT which contains a claim `department`:
+
+```json
+{
+  "name": "John Doe",
+  "roles": "admin, devops",
+  "department": 
+  {
+    "name": "operations",
+    "number": "17"
+  }
+}
+```
+
+Then, you need to map it to a Search Guard user attribute in the JWT authenticator configuration:
+
+```yaml
+jwt_auth_domain:
+  http_enabled: true
+  order: 0
+  http_authenticator:
+    type: jwt
+    challenge: false
+    config:
+      map_claims_to_user_attrs:
+        department: department.number
+```
+
+Afterwards, you can use this `department` claim to control index access like this:
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - CLUSTER_COMPOSITE_OPS
+  index_permissions:
+    - index_patterns:  
+      - 'dept_${user.attrs.dept}':
+      allowed_actions:
+        - SGS_CRUD
+```
+
+
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_17` for the user `jdoe`.
+
+### Active Directory / LDAP Example
+
+Suppose the  LDAP entry of the current user contains an attribute `departmentNumber` with value `49`; furthermore, you configured LDAP like this:
+
+```yaml
+ldap:
+  http_enabled: true
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: ldap
+    config:
+      map_ldap_attrs_to_user_attrs:
+        department: departmentNumber
+```
+
+
+Then, you can control index access like this:
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - CLUSTER_COMPOSITE_OPS
+  index_permissions:
+    - index_patterns:  
+      - 'dept_${user.attrs.department}':
+      allowed_actions:
+        - SGS_CRUD
+```
+
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_49`.
+
+
+
+### Internal users Example
+
+**Note:** As the new mechanism for user attributes is not yet available for the internal user database, this example still shows the old mechanism.
+
 
 If the internal users entry contains an attribute `department`:
 
@@ -218,51 +307,39 @@ sg_own_index:
 In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
 
 
-### JWT Example:
+### Subtitution Variable Functionality
 
-If the JWT contains a claim `department`:
+Substitution variables are always enclosed in the characters `${` and `}`. Inside the brackets, you specify the attribute name, optionally followed by a chain of operations on the attribute value.
 
-```json
-{
-  "sub": "jdoe"
-  "name": "John Doe",
-  "roles": "admin, devops",
-  "department": "operations"
-}
-```
+The pipe character `|` followed by a function name causes the attribute value to be processed by the function. You can arbitrarily chain functions.
 
-You can use this `department` claim to control index access like:
+Available functions are:
 
-```yaml
-sg_own_index:
-  cluster_permissions:
-    - CLUSTER_COMPOSITE_OPS
-  index_permissions:
-    - index_patterns:  
-      - '${attr_jwt_department}':
-      allowed_actions:
-        - SGS_CRUD
-```
+**`|toJson`:** Converts the value to a string in JSON format. If the value is a string, it will be properly quoted and escaped. If the value is a number, it will be left untouched. If the value is an object or array, it will be converted into the corresponding JSON syntax.
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
+**`|toString`:** Converts the value to a simple string format. If the value is a string, it will be left without quotes. 
 
-### Active Directory / LDAP Example
+**`|toList`:** Makes sure that the value is a list (or, in JSON terms, an array). If the value is already a list, it will be left unchanged. If the value is a single value, it will be converted to a list containing the single value. You can use this function to ensure that the substituted value is always a list.
 
-If the Active Directory / LDAP entry of the current user contains an attribute `department`, you can use it in the same way as as a JWT claim, but with the `ldap.` prefix:
+**`|head`:** Extracts the first element of a list. If the current value is not a list, the current value is left unchanged. If the current value is an empty list, the current value will be changed to `null`.  You can use this function to ensure that the substituted value is always a scalar value.
 
-```yaml
-sg_own_index:
-  cluster_permissions:
-    - CLUSTER_COMPOSITE_OPS
-  index_permissions:
-    - index_patterns:  
-      - '${attr_ldap_department}':
-      allowed_actions:
-        - SGS_CRUD
-```
+**`|tail`:** Extracts all but the first element of a list. If the current value is not a list, the current value will be set to an empty list.
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations`.
 
+Additionally, you can use the `?:` operator to provide a value in case the current value is unset, resp. `null`. The value to be used in this case is specified after the `?:` in JSON syntax. You can use the `?:` operator at any place between other operations. 
+
+It is recommended to use the `?:` operator for all cases where it is not absolutely sure that a value is always present. If an attribute is unset and no fallback is provided by `?:`, the ES operation triggering the DLS query will be aborted with an error.
+
+**Examples:**
+
+`${user.attr.department?:["17"]|toList|toJson}`: Provides a list/array of departments in JSON format. If the attribute `user.attr.department` is not defined, an array containing the string `"17"` is provided. 
+
+`${user.attr.email|head?:"nobody@nowhere"|toJson}`: Extracts the first element from the list stored by the attribute `user.attr.email`. If the attribute is unset, `nobody@nowhere` will be used as fallback value. Additionally, if the attribute `user.attr.email` contains an empty list, the `|head` function will change the current value to `null`; thus, also in this case the `?:` operator will provide `"nobody@nowhere"` as a fallback.
+  
+`${user.attr.xyz|tail|head?:0|toJson}`: Extracts the second element of a list and converts it to JSON format. If there is no second element, 0 is returned.
+
+
+ 
 ### Multiple Variables
 
 You can use as many variables, wildcards and regular expressions as needed, for example:

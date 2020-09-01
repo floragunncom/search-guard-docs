@@ -134,6 +134,47 @@ It is recommend to use the bracket-notation in JSON path expressions in order to
 
 Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
 
+### Using Further Attributes from the JWT Claims
+
+Search Guard allows to use any attribute available in the JWT claims to construct [dynamic index patterns](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-patterns-user-name-substitution) and [dynamic queries for document and field level security](../_docs_dls_fls/dlsfls_dls.md#dynamic-queries-variable-subtitution). In order to use these attributes, you need to use the configuration attribute `map_claims_to_user_attrs` to provide a mapping from JWT claim attributes to Search Guard user attributes inside the LDAP configuration.
+
+As the other JWT configuration, the `map_claims_to_user_attrs` attribute needs to be placed in the `config` section of the JWT `http_authenticator`  configuration. As value, you need to provide a map of the form `search_guard_user_attribute: json_path_to_jwt_claim_attribute`. You can use JSON path expressions to specify what part of the claims you want to extract exactly.
+
+This might look like this:
+
+
+```yaml
+jwt_auth_domain:
+  http_enabled: true
+  order: 0
+  http_authenticator:
+    type: jwt
+    challenge: false
+    config:
+      map_claims_to_user_attrs:
+        department: department.number
+        email_address: user.email
+```
+
+This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from the JWT claims. The types from the JSON claim structure are preserved, i.e., arrays remain arrays and objects remain objects, etc.
+
+In the Search Guard role configuration, the attributes can be then used like this:
+
+```yaml
+my_dls_role:
+  index_permissions:
+  - index_patterns:
+    - "dls_test"
+    dls: '{"terms" : {"filter_attr": ${user.attrs.department|toList|toJson}}}'
+    allowed_actions:
+    - "READ"
+```
+
+
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+
+**Note:** This method of providing attributes supersedes the old way which provided all JWT attributes as Search Guard user attributes with the prefix `attr.jwt`. These attributes are still supported, but are now deprecated.
+
 ## Symmetric key algorithms: HMAC 
 
 *Hash-Based Message Authentication Codes* (HMACs) are a group of algorithms that provide a way of signing messages by means of a shared key. The key is shared between the authentication server and Search Guard. It must be configured as **base64-encoded** value of the `signing_key` configuration key:

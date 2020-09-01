@@ -64,7 +64,7 @@ This means that you can make the DSL query as complex as you want, but since it 
 
 Search Guard supports variables in the DLS query. With this feature, you can write dynamic queries based on the current users's attributes. 
 
-## Username
+### Username
 
 You can use the variable `${user.name}` in the DLS query, and Search Guard will replace it with the username of the currently logged in user.
 
@@ -77,12 +77,13 @@ hr_employee:
       - 'humanresources'
       allowed_actions:
         - ...
-      dls: '{"term" : {"manager" : "${user.name}"}}'
+      dls: '{"term" : {"manager" : ${user.name|toJson}}}'
 ```
 
-Before the DLS query is applied to the result set, `${user.name}` is replaced by the currently logged in user. You can use this variable repeatedly in the DLS query if required.
+Before the DLS query is applied to the result set, `${user.name|toJson}` is replaced by the currently logged in user. The pipe character introduces a function 
+which processes the value of the user name. The function `toJson` converts the user name string to JSON format. This ensures that the user name is quoted and properly escaped. You can use this variable repeatedly in the DLS query if required.
 
-## User Roles
+### User Roles
 
 You can use the variable `${user.roles}` in the DLS query, and Search Guard will replace it with a comma-delimited list of the backend roles of the current user.
 
@@ -95,32 +96,57 @@ hr_employee:
       - 'humanresources'
       allowed_actions:
         - ...
-      dls: '{"terms" : { "role" : [${user.roles}]}}'
+      dls: '{"terms" : { "role" : ${user.roles|toJson}}}'
 ```
 
-Before the DLS query is applied to the result set, `${user.roles}` is replaced with a comma-delimited list of the backend roles of the current user. You can use this variable repeatedly in the DLS query if required.
+Before the DLS query is applied to the result set, `${user.roles|toJson}` is replaced the JSON representation of the array containing the backend roles of the current user. You can use this variable repeatedly in the DLS query if required.
 
-## LDAP and JWT user attributes
+### User Attributes
 
-Any authentication and authorization backend can add additional user attributes that you can then use for variable substitution.
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in DLS queries. 
 
-For JWT, these are the claims from your JWT token. For Active Directory and LDAP these are all attributes stored in the user's Active Directory / LDAP record.  For JWT, the attributes start with `attr.jwt.*`, for LDAP they start with `attr.ldap.*`. 
+For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
-If you're unsure, what attributes are accessible you can always access the `/_searchguard/authinfo` endpoint to check. The endpoint will list all attribute names for the currently logged in user.
+- [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
+- [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
+- [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
 
-### JWT Example
 
-If the JWT contains a claim `department`:
+If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
+
+**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from the authentication domain under the prefix `${attr....}`. The old mechanism is now deprecated but still supported. However, attributes from the internal user database are **not yet supported** using the new mechanism.  For now, you need to stick to the old mechanism (`${attr.internal...}`) for these attributes.
+
+#### JWT Example
+
+Suppose a JWT which contains a claim `department`:
 
 ```json
 {
   "name": "John Doe",
   "roles": "admin, devops",
-  "department": "operations"
+  "department": 
+  {
+    "name": "operations",
+    "number": "17"
+  }
 }
 ```
 
-You can use it like:
+Then, you need to map it to a Search Guard user attribute in the JWT authenticator configuration:
+
+```yaml
+jwt_auth_domain:
+  http_enabled: true
+  order: 0
+  http_authenticator:
+    type: jwt
+    challenge: false
+    config:
+      map_claims_to_user_attrs:
+        department: department.number
+```
+
+Afterwards, you can use it like this in a DLS query:
 
 ```yaml
 hr_employee:
@@ -129,26 +155,45 @@ hr_employee:
       - 'humanresources'
       allowed_actions:
         - ...
-      dls: '{"term" : {"department" : "${attr.jwt.department}"}}'
+      dls: '{"term" : {"department" : ${user.attr.department|toJson}}}'
 ```
 
-The DLS query in this case will only return documents where the `department` field equals the `department` claim in the users JWT. In this case, it only returns documents where the `department` field equals `operations`.
+The DLS query in this case will only return documents where the `department` field equals the `department.number` claim in the users JWT. In this case, it only returns documents where the `department` field equals `17`.
 
 You can also combine multiple variables and username substitution in the same DLS query.
 
-### Active Directory / LDAP Example
+### Subtitution Variable Functionality
 
-If the Active Directory / LDAP entry of the current user contains an attribute `department`, you can use it in a DLS query like:
+Substitution variables are always enclosed in the characters `${` and `}`. Inside the brackets, you specify the attribute name, optionally followed by a chain of operations on the attribute value.
 
-```yaml
-hr_employee:
-  index_permissions:
-    - index_patterns:
-      - 'humanresources'
-      allowed_actions:
-        - ...
-      dls: '{"term" : {"department" : "${attr.ldap.department}"}}'
-```
+The pipe character `|` followed by a function name causes the attribute value to be processed by the function. You can arbitrarily chain functions.
+
+Available functions are:
+
+**`|toJson`:** Converts the value to a string in JSON format. If the value is a string, it will be properly quoted and escaped. If the value is a number, it will be left untouched. If the value is an object or array, it will be converted into the corresponding JSON syntax.
+
+**`|toString`:** Converts the value to a simple string format. If the value is a string, it will be left without quotes. 
+
+**`|toList`:** Makes sure that the value is a list (or, in JSON terms, an array). If the value is already a list, it will be left unchanged. If the value is a single value, it will be converted to a list containing the single value. You can use this function to ensure that the substituted value is always a list.
+
+**`|head`:** Extracts the first element of a list. If the current value is not a list, the current value is left unchanged. If the current value is an empty list, the current value will be changed to `null`.  You can use this function to ensure that the substituted value is always a scalar value.
+
+**`|tail`:** Extracts all but the first element of a list. If the current value is not a list, the current value will be set to an empty list.
+
+
+Additionally, you can use the `?:` operator to provide a value in case the current value is unset, resp. `null`. The value to be used in this case is specified after the `?:` in JSON syntax. You can use the `?:` operator at any place between other operations. 
+
+It is recommended to use the `?:` operator for all cases where it is not absolutely sure that a value is always present. If an attribute is unset and no fallback is provided by `?:`, the ES operation triggering the DLS query will be aborted with an error.
+
+**Examples:**
+
+`${user.attr.department?:["17"]|toList|toJson}`: Provides a list/array of departments in JSON format. If the attribute `user.attr.department` is not defined, an array containing the string `"17"` is provided. 
+
+`${user.attr.email|head?:"nobody@nowhere"|toJson}`: Extracts the first element from the list stored by the attribute `user.attr.email`. If the attribute is unset, `nobody@nowhere` will be used as fallback value. Additionally, if the attribute `user.attr.email` contains an empty list, the `|head` function will change the current value to `null`; thus, also in this case the `?:` operator will provide `"nobody@nowhere"` as a fallback.
+  
+`${user.attr.xyz|tail|head?:0|toJson}`: Extracts the second element of a list and converts it to JSON format. If there is no second element, 0 is returned.
+
+
  
 ## Multiple roles and document-level security
 
