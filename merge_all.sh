@@ -1,0 +1,10 @@
+#!/bin/bash
+
+versions=( "7.x-45" "7.x-43" "7.x-42" "7.x-41" "7.x-40" "7.x-38" "7.x-37" "7.x-36" "7.x-35" )
+for i in "${versions[@]}"
+do
+    git checkout "$i" && git pull && git merge 7.x --no-edit && git pushed
+	echo "Merged 7.x in $i"
+done
+git checkout 7.x
+
