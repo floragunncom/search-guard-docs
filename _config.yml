@@ -108,6 +108,7 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    sgadmin: sgadmin
     7x-45: Search Guard 7.x-45    
     7x-43: Search Guard 7.x-43
     7x-42: Search Guard 7.x-42
