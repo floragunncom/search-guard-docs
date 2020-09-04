@@ -4,11 +4,16 @@ body {
   margin: 0 !important;
 }
 body {
-  font-size: 1em;
+  font-size: $font-size_base;
   line-height: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: $font_primary;
   color: #333333;
 }
+
+// font sizes devices
+body{font-size:125%;}
+@media(min-width:60em){body{font-size: 100%}}
+
 #content {
   padding: 60px 0;
 }
