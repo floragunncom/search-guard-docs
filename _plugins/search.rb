@@ -14,7 +14,12 @@ class AlgoliaSearchRecordExtractor
     
     # Just return `nil` instead of `item` if you want to discard this record
     return nil unless @file.respond_to?(:collection)
-    
+
+    # excluded documents
+    if !item[:index_algolia].nil? && !item[:index_algolia]
+      return nil
+    end
+
     collection_name = @file.collection.label
 
     # In Jekyll v3, posts are actually a collection
