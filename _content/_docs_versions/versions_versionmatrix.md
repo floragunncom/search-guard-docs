@@ -5,6 +5,7 @@ category: versions
 order: 100
 layout: docs
 description: A list of the current Search Guard releases for all Elasticsearch 7 and Kibana 7 versions.
+index_algolia: false
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
