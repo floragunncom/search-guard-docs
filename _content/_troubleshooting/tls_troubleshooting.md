@@ -22,22 +22,6 @@ Just copy and paste the content of your yaml file there and check for any errors
 
 *Note: You can of course use [http://www.yamllint.com/](http://www.yamllint.com/) to also validate any other Search Guard configuration file.*
 
-## Viewing the contents of your Key- and Truststore
-
-In order to view information about the certificates stored in your keystore or truststore, use the `keytool` command like:
-
-```
-keytool -list -v -keystore keystore.jks
-``` 
-
-The `keytool` will prompt for the password of the keystore and list all entries with detailed information. For example you can use this output to check for the correctness of the SAN and EKU settings.
-
-If you rather like to work with a GUI, we recommend [KeyStore Explorer](http://keystore-explorer.org/):
-
-> KeyStore Explorer is an open source GUI replacement for the Java command-line utilities keytool and jarsigner. KeyStore Explorer presents their functionality, and more, via an intuitive graphical user interface. 
-
-You can use it to examine the contents of locally stored files, but you can also retrieve and inspect certificates from a server (or Elasticsearch cluster) directly.
-
 ## Viewing the contents of PEM certificates
 
 The content of PEM certificates can either be displayed by using OpenSSL or by the [diagnose function of the Search Guard TLS tool](../_docs_tls/tls_generate_tlstool.md#validating-certificates){:target="_blank"}.
@@ -55,6 +39,22 @@ TLS diagnose tool:
 ```
 
 The [TLS diagnose tool](../_docs_tls/tls_generate_tlstool.md#validating-certificates){:target="_blank"} will also check the validity of the certificate chain.
+
+## Viewing the contents of your Key- and Truststore
+
+In order to view information about the certificates stored in your keystore or truststore, use the `keytool` command like:
+
+```
+keytool -list -v -keystore keystore.jks
+``` 
+
+The `keytool` will prompt for the password of the keystore and list all entries with detailed information. For example you can use this output to check for the correctness of the SAN and EKU settings.
+
+If you rather like to work with a GUI, we recommend [KeyStore Explorer](http://keystore-explorer.org/):
+
+> KeyStore Explorer is an open source GUI replacement for the Java command-line utilities keytool and jarsigner. KeyStore Explorer presents their functionality, and more, via an intuitive graphical user interface. 
+
+You can use it to examine the contents of locally stored files, but you can also retrieve and inspect certificates from a server (or Elasticsearch cluster) directly.
 
 ## Checking the main attributes of a certificate
 
@@ -292,6 +292,42 @@ JDK with ciphers [TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AE
 TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, ...]
 ```
 
+## Encrypted PKCS#8 key does not work
+
+When you experience a `File does not contain valid private key` or `data isn't an object ID` exception while using encrypted PKCS#8 keys (pem keys with a password)
+you might have hit a [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8076999) where "SunJCE support of password-based encryption scheme 2 params (PBES2) is not working". There is also an related [issue in the elastic GitHub repo](https://github.com/elastic/elasticsearch/issues/32021). The solution is to use the v1 encryption scheme. With openssl use the `-v1` flag in your command like `openssl pkcs8 -in key.pem -topk8 -out enckey.pem -v1 PBE-SHA1-3DES`. Please also refer to [Search Guard issue #524](https://github.com/floragunncom/search-guard/issues/524) and [OpenSSL pkcs8 documentation](https://www.openssl.org/docs/man1.0.2/man1/openssl-pkcs8.html) for more details.
+
+## "Your keystore or PEM does not contain a key"
+
+This error can have two reasons:
+
+### Password not correct
+
+If your key file is password protected, you need to specify the password in elasticsearch.yml like:
+
+```
+searchguard.ssl.transport.pemkey_password: ...
+searchguard.ssl.http.pemkey_password: ...
+```
+
+Vice versa, if your key file is not password protected, be sure to omit those lines.
+
+### Key is in PKCS#1 format
+
+Search Guard supports private keys in PKCS#8 format. If your key is in PKCS#1 format, you will also see the "Your keystore or PEM does not contain a key" error message.
+
+To check whether your key is in PKCS#1 format, open the key file with a text editor. The key is in PKCS#1 format if the file begins with:
+
+```
+-----BEGIN RSA PRIVATE KEY-----
+```
+
+Use OpenSSL to convert it to PKCS#8 format like:
+
+```
+openssl pkcs8 -topk8 -inform pem -in pkcs1-key.pem -outform pem -nocrypt -out pkcs8-key.pem
+```
+
 ## Fixing curl
 
 curl is not always curl when it comes to SSL/TLS. Sometimes it depends against which SSL/TLS implementation your curl version was compiled against. And there are a few including OpenSSL, GnuTLS and NSS. We made the experience that NSS and GnuTLS are very often problematic and so we assume (in our docs and scripts) your curl version is compiled against OpenSSL. You can check your curl version with
@@ -327,7 +363,3 @@ We already had a lot of issues, here are the most relevant ones:
 * [Unable to Use REST API](https://groups.google.com/forum/#!topic/search-guard/lIDWvqebBBA)
 * [enabling kerberos](https://groups.google.com/d/msg/search-guard/RiYnfg_sPgo/tFHzJu25AQAJ)
 
-## Encrypted PKCS#8 key does not work
-
-When you experience a `File does not contain valid private key` or `data isn't an object ID` exception while using encrypted PKCS#8 keys (pem keys with a password)
-you might have hit a [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8076999) where "SunJCE support of password-based encryption scheme 2 params (PBES2) is not working". There is also an related [issue in the elastic GitHub repo](https://github.com/elastic/elasticsearch/issues/32021). The solution is to use the v1 encryption scheme. With openssl use the `-v1` flag in your command like `openssl pkcs8 -in key.pem -topk8 -out enckey.pem -v1 PBE-SHA1-3DES`. Please also refer to [Search Guard issue #524](https://github.com/floragunncom/search-guard/issues/524) and [OpenSSL pkcs8 documentation](https://www.openssl.org/docs/man1.0.2/man1/openssl-pkcs8.html) for more details.
