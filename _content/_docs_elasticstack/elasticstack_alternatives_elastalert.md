@@ -1,5 +1,5 @@
 ---
-title: ElastAlert
+title: Elastalert
 slug: search-guard-elastalert
 category: elasticstack-alternatives
 order: 100
@@ -14,15 +14,15 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-As an alternative to X-Pack Alerting, we recommend ElastAlert.
+Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerting-getting-started), perfectly integrated with all our security features.
+Signals Alerting comes bundled with Search Guard as a single install. You do not need to maintain a separate service for Alerting, as with ElastAlert.
+{: .note .js-note .note-info}
 
 ElastAlert, under active development by Yelp
 
 > is a simple framework for alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch. ElastAlert works with all versions of Elasticsearch. [...] It works by combining Elasticsearch with two types of components, rule types and alerts. Elasticsearch is periodically queried and the data is passed to the rule type, which determines when a match is found. When a match occurs, it is given to one or more alerts, which take action based on the match.
 
 ([https://github.com/Yelp/elastalert](https://github.com/Yelp/elastalert){:target="_blank"})
-
-It's completely free, Open Source, compatible with Search Guard, and a perfect alternative to X-Pack Alerting.
 
 In the following description, we assume that you have already installed Elasticsearch and Search Guard.
 
