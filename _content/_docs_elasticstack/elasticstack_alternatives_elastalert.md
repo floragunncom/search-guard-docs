@@ -9,7 +9,7 @@ description: How to configure and use Search Guard and ElastAlert for Elasticsea
 <!---
 Copyright 2020 floragunn GmbH
 -->
-# Using Search Guard with ElastAlert
+# Using Search Guard with ElastAlert for Elasticsearch
 {: .no_toc}
 
 {% include toc.md %}
@@ -17,6 +17,8 @@ Copyright 2020 floragunn GmbH
 Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerting-getting-started), perfectly integrated with all our security features.
 Signals Alerting comes bundled with Search Guard as a single install. You do not need to maintain a separate service for Alerting, as with ElastAlert.
 {: .note .js-note .note-info}
+
+## What is ElastAlert?
 
 ElastAlert, under active development by Yelp
 
@@ -26,9 +28,9 @@ ElastAlert, under active development by Yelp
 
 In the following description, we assume that you have already installed Elasticsearch and Search Guard.
 
-## Installing ElastAlert
+## How do you set up ElastAlert?
 
-ElastAlert is a Python application and is platform independant. For an in-depth description on installing and configuring ElastAlert, please follow the official [documentation](http://elastalert.readthedocs.io/en/latest/index.html){:target="_blank"}. In this document, we mainly show how to configure ElastAlert for Search Guard.
+ElastAlert is a Python application and is platform independent. For an in-depth description on installing and configuring ElastAlert, please follow the official [documentation](http://elastalert.readthedocs.io/en/latest/index.html){:target="_blank"}. In this document, we mainly show how to configure ElastAlert for Search Guard.
 
 ### Requirements
 
@@ -53,6 +55,12 @@ Elasticsearch 5.0+:
 ```bash
 $ pip install "elasticsearch>=5.0.0"
 ```
+
+## Is Elasticsearch alerting free?
+
+ElastAlert is free and licensed under the Apache2 license. Since ElastAlert is a Python application that runs outside Elasticsearch, you need to
+maintain and monitor ElastAlert seperately. Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerting-getting-started) as well
+which runs as an Elasticsearch plugin and is automatically installed when you install Search Guard. 
 
 ## Configuring ElastAlert for Search Guard
 
@@ -197,3 +205,36 @@ You can test your rules without actually firing an alert by executing:
 ```
 elastalert-test-rule rules/bute_force_login.yaml
 ```
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ElastAlert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": is a simple framework for alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch. ElastAlert works with all versions of Elasticsearch."
+         }
+       }, 
+       {
+        "@type": "Question",
+        "name": "How do you set up ElastAlert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ElastAlert is a Python application and is platform independent. To install ElastAlert, simply run 'pip install elastalert'. Depending on the version of Elasticsearch, you may need to manually install the correct version of elasticsearch-py."
+          }
+       }, 
+       {
+        "@type": "Question",
+        "name": "Is Elasticsearch alerting free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "X-Pack Alerting is not free, you need a license to run it. <a href=https://search-guard.com/alerting/>Search Guard Alerting</a> and also <a href=https://github.com/Yelp/elastalert>ElastAlert</a> are free products which you can use at no cost. ElastAlert is a Python application that runs outside Elasticsearch. Search Guard Alerting runs as an Elasticsearch plugin."
+         }
+       }
+     ]
+    }
+</script>
