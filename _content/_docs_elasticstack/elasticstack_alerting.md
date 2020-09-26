@@ -15,6 +15,10 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
+Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerting-getting-started), perfectly integrated with all security features.
+{: .note .js-note .note-info}
+
+
 Search Guard is compatible with the X-Pack Alerting component. 
 
 This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](../_docs_kibana/kibana_installation.md) plugin.
