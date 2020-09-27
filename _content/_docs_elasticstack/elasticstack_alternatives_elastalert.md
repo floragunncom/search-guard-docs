@@ -216,7 +216,7 @@ elastalert-test-rule rules/bute_force_login.yaml
         "name": "What is ElastAlert?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": is a simple framework for alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch. ElastAlert works with all versions of Elasticsearch."
+          "text": "ElastAlert is a simple framework for alerting on anomalies, spikes, or other patterns of interest from data in Elasticsearch. ElastAlert works with all versions of Elasticsearch."
          }
        }, 
        {
