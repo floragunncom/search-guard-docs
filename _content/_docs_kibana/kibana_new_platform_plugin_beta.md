@@ -24,7 +24,7 @@ The current Search Guard Kibana plugin version still uses the legacy core API. W
 
 Downloads:
 
-* [7.9.0-43.0.0-beta-new-platform](https://maven.search-guard.co/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin/7.9.0-43.0.0-beta-new-platform/search-guard-kibana-plugin-7.9.0-43.0.0-beta-new-platform.zip)
+* [7.9.0-43.0.0-beta-new-platform](https://maven.search-guard.com//search-guard-kibana-plugin-snapshot/com/floragunn/search-guard-kibana-plugin/7.9.0-43.0.0-beta-new-platform-SNAPSHOT/search-guard-kibana-plugin-7.9.0-43.0.0-beta-new-platform-20200828.105155-1.zip)
 
 **Important:** To make the plugin work in Kibana, you must execute a patch after the installation.
 
