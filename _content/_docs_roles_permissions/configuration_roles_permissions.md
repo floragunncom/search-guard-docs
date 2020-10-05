@@ -307,7 +307,7 @@ sg_own_index:
 In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
 
 
-### Subtitution Variable Functionality
+### Substitution Variable Functionality
 
 Substitution variables are always enclosed in the characters `${` and `}`. Inside the brackets, you specify the attribute name, optionally followed by a chain of operations on the attribute value.
 
@@ -354,6 +354,55 @@ sg_own_index:
       allowed_actions:
         - SGS_CRUD
 ```
+
+## Permission Exclusions
+
+Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly define permissions a user may not have.
+
+For this purpose, you can add the entries `exclude_cluster_permissions` and `exclude_index_permissions` to your role definitions. Permissions defined here are **not** granted to the user, even if there are `cluster_permissions` or `index_permissions` properties which would grant these permissions.
+
+This means, that you can use  `cluster_permissions` and `index_permissions` entries to define a broader set of permissions and then use `exclude_cluster_permissions` and `exclude_index_permissions` to selectively subtract permissions a user is not allowed to have.
+
+For example, a role definition might now look like this:
+
+```
+my_role_using_exclusions:
+  cluster_permissions:
+    - *
+  exclude_cluster_permissions:
+    - SGS_MANAGE_SNAPSHOTS
+  index_permissions:
+    - index_patterns:
+        - "*"
+      allowed_actions:
+        - SGS_CRUD
+  exclude_index_permissions:
+    - index_patterns:
+       - "secret"
+      actions:
+       - "*"
+```
+
+A user with this role gets granted all cluster permission except permissions for managing snapshots. Furthermore, the user gets access to all indexes except the index `secret`. 
+
+Permission exclusions do not only affect the permissions granted in the same role. Rather, permission exclusions also affect permissions granted by other roles. Thus, you can grant permissions in one role and use an additional role to selectively remove some of these permissions.
+
+### Cluster Permission Exclusions
+
+Cluster permission exclusions are defined using an entry with the key `exclude_cluster_permissions`. Just like it is the case for `cluster_permissions` entries, you can provide a list of permissions here. The list entries can contain wildcards or action groups.
+
+### Index Permission Exclusions
+
+Index permission exclusions are listed under the key `exclude_index_permissions`. For defining such an exclusion, you need to define an `index_pattern` and the excluded `actions`. 
+
+For the `index_pattern` entries, you can use variable substitution as described above. It is however important to note that any errors during variable substitution are more critical for permission exclusions. Such an error would be for example trying to use a user attribute which does not exist or using. If such an error occurs while checking the permissions for an action, Search Guard will fail into the safe direction and immediately deny the execution of the action. Search Guard will also write a warning to the Elasticsearch logs about this error. 
+
+Note: In `index_pattern`  entries for `exclude_index_permissions`, the deprecated user attribute syntax `${attr.internal...}` is not supported any more. You need to use the new-style user attributes as described above.
+
+The `action` key takes a list of actions to be excluded. The list entries can contain wildcards or action groups. Note that this entry is named `actions` - in contrast to the entry `allowed_actions` in the normal `index_permissions` entry.
+
+
+
 
 ## Built-in Roles
 
