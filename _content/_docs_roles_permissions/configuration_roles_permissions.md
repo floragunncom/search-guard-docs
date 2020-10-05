@@ -279,17 +279,32 @@ In this example, Search Guard grants the `SGS_CRUD` permissions to the index `de
 
 ### Internal users Example
 
-**Note:** As the new mechanism for user attributes is not yet available for the internal user database, this example still shows the old mechanism.
-
-
-If the internal users entry contains an attribute `department`:
+Suppose the internal users entry contains an attribute `department`:
 
 ```yaml
 jdoe:
   hash: ...
   attributes:
-    department: "operations"
+    departmentNumber: "17"
 ```
+
+
+In order to use this attribute, you need map it in the `authentication_backend` configuration inside `sg_config.yml`: 
+
+```yaml
+basic:
+  http_enabled: true
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: internal
+    config:
+      map_db_attrs_to_user_attrs:
+        department: departmentNumber
+```
+
 
 You can use this `department` attribute to control index access like:
 
@@ -299,12 +314,12 @@ sg_own_index:
     - CLUSTER_COMPOSITE_OPS
   index_permissions:
     - index_patterns:  
-      - '${attr_internal_department}':
+      - 'dept_${user.attrs.department}':
       allowed_actions:
         - SGS_CRUD
 ```
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `operations` for the user `jdoe`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_17` for the user `jdoe`.
 
 
 ### Substitution Variable Functionality

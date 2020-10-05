@@ -51,7 +51,7 @@ _sg_meta:
 | password | The BCrypt hash of the user's password.|
 | search\_guard\_roles | The [Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md). this user is assigned to.|
 | backend_roles | The backend roles of the user. Backend roles can be used to group users and them [map the groups to Search Guard roles](../_docs_roles_permissions/configuration_roles_permissions.md). This provides morre flexibility than using Search Guard roles directly, but introduces a level on indirection.|
-| attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries|
+| attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries. You can also use arrays and nested objects here.|
 | description | A description of the user. Optional.|
 {: .config-table}
 
@@ -71,6 +71,10 @@ hr_employee:
     - humanresources_department
   attributes:
     manager: "layne.burton"
+    departmentNumber:
+      - 5
+      - 17
+      - 42
   description: "A user from the HR department"
   
 finance_employee:
@@ -102,6 +106,32 @@ basic_internal_auth_domain:
   authentication_backend:
     type: internal
 ```
+
+## Using attributes from the internal user database
+
+If you want to use attributes from the internal user database for the new-style  [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries, you need to provide a mapping in the `authentication_backend` entry in `sg_config.yml`. This might look like this:
+
+```yaml
+basic_internal_auth_domain:
+  http_enabled: true
+  order: 1
+  http_authenticator:
+    type: basic
+    challenge: true
+  authentication_backend:
+    type: internal
+    config:
+      map_db_attrs_to_user_attrs:
+        department: departmentNumber      
+```
+
+This makes the value of the attribute `departmentNumber` in the internal user database available under the name `department`. Besides using a plain attribute name, you can also use JSON path expressions to extract values from complex attribute values.
+
+For details, refer to:
+
+- [Index name variable substitution](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes)
+- [DLS query variable substitution](../_docs_dls_fls/dlsfls_dls.md)
+
 
 ## Authorization
 

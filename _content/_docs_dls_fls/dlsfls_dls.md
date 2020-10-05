@@ -110,11 +110,12 @@ For this, the auth domains need to configure a mapping from attributes specific 
 - [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
 - [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
 - [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
+- [Internal User Database](../_docs_roles_permissions/configuration_roles_permissions.md)
 
 
 If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
-**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from the authentication domain under the prefix `${attr....}`. The old mechanism is now deprecated but still supported. However, attributes from the internal user database are **not yet supported** using the new mechanism.  For now, you need to stick to the old mechanism (`${attr.internal...}`) for these attributes.
+**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from the authentication domain under the prefix `${attr....}`. The old mechanism is now deprecated but still supported. 
 
 #### JWT Example
 
