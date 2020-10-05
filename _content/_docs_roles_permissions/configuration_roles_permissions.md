@@ -332,6 +332,8 @@ Available functions are:
 
 **`|toJson`:** Converts the value to a string in JSON format. If the value is a string, it will be properly quoted and escaped. If the value is a number, it will be left untouched. If the value is an object or array, it will be converted into the corresponding JSON syntax.
 
+**`|toRegexFragment`:** Converts the current value to a regular expression fragment. If the current value is a single string, this function just returns the string. However, any characters that would have a special meaning in regular expressions (such as the period `.`) will be escaped in order to be interpreted literally. If the current value is an array, this function returns the values of the array as an regex "or" expression in the form `(value1|value2|value3|...)`.  The values themselves are also escaped as described before. Use this function inside an index pattern of the form `'/dept_${user.attrs.department|toRegexFragment}/'`. 
+
 **`|toString`:** Converts the value to a simple string format. If the value is a string, it will be left without quotes. 
 
 **`|toList`:** Makes sure that the value is a list (or, in JSON terms, an array). If the value is already a list, it will be left unchanged. If the value is a single value, it will be converted to a list containing the single value. You can use this function to ensure that the substituted value is always a list.
