@@ -15,6 +15,10 @@ Copyright 2020 floragunn GmbH
 # Search Guard Kibana Plugin Changelogs
 
 
+### [Search Guard Kibana Plugin 7.x-46.0.0](changelog_kibana_7_x_46_0_0.md)
+
+Release Date: 06.10.2020
+
 ### [Search Guard Kibana Plugin 7.x-45.0.0](changelog_kibana_7_x_45_0_0.md)
 
 Release Date: 01.09.2020
