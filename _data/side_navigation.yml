@@ -1,0 +1,86 @@
+side_navigation:
+  - entry:
+      title: "Quickstart"
+      slug: "quickstart"
+      subentries:
+        - entry
+            title: "Docker Demo"
+            slug: "docker"
+        - entry
+            title: "Demo Installer (Linux / Mac)"
+            slug: "demo-installer"
+        - entry
+            title: "Docker Installer Artefacts"
+            slug: "demo-installer-generated-artefacts"
+        - entry
+            title: "Manual Installaton (Windows)"
+            slug: "installation-windows"
+        - entry
+            title: "Main Concepts"
+            slug: "main-concepts"
+
+  - entry:
+      title: "First steps"
+      slug: "firststeps"
+      subentries:
+        - entry
+          title: "Adding Users"
+          slug: "first-steps-user-configuration"
+        - entry
+          title: "Configuring roles and permissions"
+          slug: "first-steps-roles-configuration"
+        - entry
+          title: "Mapping users to Search Guard roles"
+          slug: "first-steps-mapping-users-roles"
+        - entry
+          title: "Testing the configuration"
+          slug: "first-steps-testing-configuration"
+        - entry
+          title: "Kibana access control"
+          slug: "first-steps-kibana-access-control"
+
+  - entry:
+      title: "Search Guard Versions"
+      slug: "searchguardversions"
+      subentries:
+        - entry
+          title: "Latest Releases"
+          slug: "search-guard-versions"
+        - entry
+          title: "Search Guard Community Edition"
+          slug: "search-guard-community-edition"
+        - entry
+          title: "Enterprise and Compliance Edition"
+          slug: "search-guard-enterprise-edition"
+        - entry
+          title: "Academic and Scientific Licensing"
+          slug: "search-guard-acadmic-scientic-licensing"
+        - entry
+          title: "OEM Licenses"
+          slug: "oem-licenses"
+        - entry
+          title: "Search Guard end of life policy"
+          slug: "eol-policy"
+
+  - entry:
+      title: "Installing Search Guard"
+      slug: "searchguardversions"
+      subentries:
+        - entry
+          title: "Search Guard Installation"
+          slug: "search-guard-installation"
+        - entry
+          title: "Search Guard Community Edition"
+          slug: "search-guard-community-edition"
+        - entry
+          title: "Enterprise and Compliance Edition"
+          slug: "search-guard-enterprise-edition"
+        - entry
+          title: "Academic and Scientific Licensing"
+          slug: "search-guard-acadmic-scientic-licensing"
+        - entry
+          title: "OEM Licenses"
+          slug: "oem-licenses"
+        - entry
+          title: "Search Guard end of life policy"
+          slug: "eol-policy"
