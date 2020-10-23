@@ -290,13 +290,14 @@ algolia:
 
 eol:
   features:
-    - 7.9.2
+    - 7.9.3
   updates:
     - 6.8.10
 
 sgversions:
   # esv |sgv |kbv |available|kbn-artifact-id
   search-guard-suite-7:
+    - 7.9.3|46.2.0|46.2.0|yes
     - 7.9.2|46.2.0|46.2.0|yes
     - 7.9.1|45.1.0|45.0.0|yes
     - 7.9.0|45.0.0|45.0.0|yes
