@@ -56,9 +56,21 @@ sg_config:
 
 When using the `jwt_signing_key_hs512` and `jwt_encryption_key_a256kw` configuration keys, the generated JWKs will be signed using a HMAC 512 hash and AES 256 encryption. Thus, the value for `jwt_signing_key_hs512` must be a random value with 512 bits in Base64URL encoding. Likewise, the value for `jwt_encryption_key_a256kw` must be a random value with 256 bits in Base64URL encoding. 
 
-In a shell you can generate such values for example using the command `openssl rand -base64 512 | tr '/+' '_-'`. Replace 512 by the desired bit length. 
+In a shell you can generate such values for example using the command `openssl rand -base64 <bytes> | tr '/+' '_-'`. Replace `<bytes>` by the desired byte length. 
 
-In order to use other signature or encryption methods available for JWTs, you can use the options `jwt_signing_key` and `jwt_encryption_key` to specify the configuration using the [JSON Web Key](https://tools.ietf.org/html/rfc7517) (JWK) standard. For example, you can use Elliptic Curve based signatures like this:
+To generate 512 bit keys use:
+
+```
+openssl rand -base64 64 | tr '/+' '_-'
+```
+
+To generate 256 bit keys use:
+
+```
+openssl rand -base64 32 | tr '/+' '_-'
+```
+
+In order to use other signature or encryption methods available for JWTs, you can use the options `jwt_signing_key` and `jwt_encryption_key` to specify the complete key configuration using the [JSON Web Key](https://tools.ietf.org/html/rfc7517) (JWK) standard. For example, you can use Elliptic Curve based signatures like this:
 
 ```yaml
 sg_config:
@@ -75,8 +87,6 @@ sg_config:
         	x: "..."
         	y: "..."
 ```
-
-You can generate JWK for example using the website [mkjwk.org](https://mkjwk.org/) or offline using the tool [json-web-key-generator](https://github.com/mitreid-connect/json-web-key-generator).
 
 For the authentication domain configured below `authc` in the `sg_config` file, not much needs to be configured. The `order` attribute should be chosen in a way that this authentication domain is checked before any domain which sends authentication challenges. For example, if you have Basic Auth sending challenges at `order` 1, you should have the auth token domain at `order` 0. Otherwise, the configuration must stay the same as shown above. The keys for verifying the JWTs are automatically obtained from the `auth_token_provider` section.
 
@@ -139,17 +149,38 @@ This is an overview over all attributes Search Guard supports in requests sent t
 
 **requested.cluster_permissions:** An array of pattern strings that match on Elasticsearch cluster actions. Optional.
 
-**requested.tenant_permissions:** An array of objects with the attributes `tenant_patterns` and `allowed_actions`. The `tenant_patterns` attribute specifies an array of patterns which define the tenants the privilges in `allowed_actions` apply to. Optional.
+**requested.tenant_permissions:** An array of objects with the attributes `tenant_patterns` and `allowed_actions`. The `tenant_patterns` attribute specifies an array of patterns which define the tenants the privileges in `allowed_actions` apply to. Optional.
 
 **requested.roles:** It is also possible to specify the requested permissions by roles. If one or more role names are specified here, the created token will only have the privileges the roles have in the Search Guard configuration. Optional.
 
 
 ## Using Auth Tokens
 
-Search Guard auth tokens must be specified as bearer tokens in the `Authorization` header of REST requests. Such a header might look like this:
+Search Guard auth tokens must be specified as `Bearer` tokens in the `Authorization` header of REST requests. Such a header might look like this:
 
 ```
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJuYmYiOj...
+```
+
+### Curl
+
+When you are using `curl` to make requests to Elasticsearch, you can specify the access token like this:
+
+```
+curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9..." -X GET "$ES_HOST/kibana_sample_data_flights/_search"
+```
+
+### Java RestHighLevelClient
+
+When using the Java `RestHighLevelClient` to make requests to Elasticsearch, you can use the `setDefaultHeaders()` method in the `RestClientBuilder` class to
+specify the access token:
+
+```
+Header header = new BasicHeader("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9...");
+
+RestClientBuilder builder = RestClient.builder(new HttpHost(host, port, "https")).setDefaultHeaders(header);
+
+RestHighLevelClient client = new RestHighLevelClient(builder);
 ```
 
 ## Managing and Revoking Auth Tokens
