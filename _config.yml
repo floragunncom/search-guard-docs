@@ -16,7 +16,7 @@ exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache']
 
 plugins:
   - jekyll-relative-links
-  - algoliasearch-jekyll
+  - jekyll-algolia
 
 elasticsearch:
   currentversion: 7.6.0
@@ -106,7 +106,7 @@ labels:
     actions: Alerting Actions
     conditions: Conditions
     inputs: Alerting inputs
-    signals-rest: REST API
+    signals-rest: Signals REST API
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
@@ -130,22 +130,22 @@ labels:
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
-    docs_quickstart: Documentation
+    docs_quickstart: Quickstart
     docs_first_steps: First steps
-    docs_versions: Documentation
-    docs_installation: Documentation
-    docs_tls: Documentation
-    docs_configuration_changes: Documentation
-    docs_auth_auth: Documentation
-    docs_roles_permissions: Documentation
-    docs_dls_fls: Documentation
-    docs_audit_logging: Documentation
-    docs_rest_api: Documentation
-    docs_kibana: Documentation
-    docs_elasticstack: Documentation
-    docs_other_integrations: Documentation
-    docs_systemintegrators: Documentation
-    docs_signals: Documentation
+    docs_versions: Search Guard Versions
+    docs_installation: Installing Search Guard
+    docs_tls: TLS Setup
+    docs_configuration_changes: Search Guard Configuration
+    docs_auth_auth: Authentication and Authorization
+    docs_roles_permissions: Users, Roles and Permissions
+    docs_dls_fls:  Document- and Field-Level Security
+    docs_audit_logging: Audit And Compliance Logging
+    docs_rest_api: REST API
+    docs_kibana: Kibana
+    docs_elasticstack: Integrating with the Elasticstack
+    docs_other_integrations: Other integrations
+    docs_systemintegrators: Advanced system integrator features
+    docs_signals: Signals Alerting
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
@@ -223,7 +223,7 @@ collections:
 
 algolia:
   application_id: '2ESDTH812Y'
-  index_name:     '6x-20'
+  index_name:     'sg_all'
   record_css_selector: 'h1, h2, h3, h4, h5'
   allowed_extensions:
     - html
@@ -242,24 +242,9 @@ algolia:
       - h5
       - h6
       - text_all
-    attributesToRetrieve: 
-      - collection_name
-      - text_all
-      - unique_hierarchy
-      - css_selector
-      - url
-      - tags
     ignorePlurals: true
     removeStopWords: true
     distinct: true
-    attributesForFaceting:
-      - category_name
-      - h1
-    attributesToSnippet: 
-      - "text_all:150"
-    attributesToHighlight:
-      - text
-      - text_all
     paginationLimitedTo: 1000
     attributeForDistinct: unique_hierarchy
     exactOnSingleWordQuery: attribute

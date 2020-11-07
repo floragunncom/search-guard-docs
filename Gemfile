@@ -5,5 +5,5 @@ gem 'jekyll-relative-links'
 gem 'html-proofer'
 
 group :jekyll_plugins do
-  gem 'algoliasearch-jekyll', '~> 0.9.0'
+  gem 'jekyll-algolia', '~> 1.0'
 end

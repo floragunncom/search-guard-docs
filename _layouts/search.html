@@ -49,13 +49,12 @@
 	</div>
 		
 	{% include scripts.html %}
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch-theme-algolia.min.css">	
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous">
 
 	<style>
 		.algolia__result-highlight{background-color:#f6f7f8;font-weight:500;padding:2px 4px;border-radius:3px;font-weight:500;}
-		.ais-search-box{position:relative;max-width:100%;width:100%;}
+		.ais-SearchBox-input{position:relative;max-width:90%;width:90%;}
 		.ais-refinement-list--label{padding:0 10px 0 10px;line-height:40px;color:rgb(51, 51, 51);}
 		.ais-refinement-list--item{background-color:#f6f7f8;border-bottom:1px solid #eaedf1;}
 		.ais-refinement-list--count{color:rgb(51, 51, 51);}
@@ -63,13 +62,24 @@
 	</style>
 
 </body>
-	
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.2/dist/instantsearch.min.js"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+
+
 <script>
+
+
+	const searchClient = algoliasearch(
+			'2ESDTH812Y',
+			'0047035979f052146a69e1d0300cd332'
+	);
+
 	const search = instantsearch({
 	    appId: '2ESDTH812Y',
 	    apiKey: '0047035979f052146a69e1d0300cd332',
-	    indexName: '{{site.algolia.index_name}}',
+	    indexName: 'latest',
+		searchClient: searchClient,
 	    urlSync: true,
 	    searchParameters: {
 	        facetingAfterDistinct: true,
@@ -100,14 +110,14 @@
 	search.addWidget(
 	    instantsearch.widgets.refinementList({
 	        container: '#refinement-list-category',
-	        attributeName: 'category_name'
+	        attribute: 'category_name'
 	    })
 	);
 	
 	search.addWidget(
 	    instantsearch.widgets.refinementList({
 	        container: '#refinement-list-h1',
-	        attributeName: 'h1'
+	        attribute: 'h1'
 	    })
 	);
 	
@@ -115,6 +125,7 @@
 	
 	function formatHit(item) {
 	    var unique_hierarchy = item.unique_hierarchy;
+	    console.log(item.unique_hierarchy);
 	    var headline = item._highlightResult.text ? item._highlightResult.text.value : item.text;
 	    var text = item._snippetResult.text_all.value;
 	    return "<div class='sr_headline'><h2>" + headline + "</h2></div>" +
