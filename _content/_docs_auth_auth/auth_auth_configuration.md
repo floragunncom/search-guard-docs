@@ -188,7 +188,7 @@ authc:
 
 ### Limiting authentication domains to certain sub-nets only
 
-Using the `enabled_only_for_hosts` attribute you are able to restrict usage of the auth domain only to certain IPs or subnets.  The option expects a list which can contain any of these values:
+Using the `enabled_only_for_ips` attribute you are able to restrict usage of the auth domain only to certain IPs or subnets.  The option expects a list which can contain any of these values:
 
 * Single IPv4 addresses, e.g. `192.168.123.123`
 * Single IPv6 addresses, e.g. `2001:db8::8a2e:370:7334`
@@ -204,6 +204,6 @@ authc:
   my_auth_domain_using_only_for_internal_hosts:
     type: ...
     http_enabled: true
-    enabled_only_for_hosts:
+    enabled_only_for_ips:
     - '192.0.2.0/24'
 ```
