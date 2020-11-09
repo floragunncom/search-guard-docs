@@ -17,6 +17,9 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
+The auth token feature is so far only available in the special beta release. It is not available in the normal Search Guard 47.0.0 release.
+{: .note .js-note .note-warning}
+
 Search Guard provides a built-in functionality to create and manage API auth tokens that can be used to access Elasticsearch.
 
 Such an auth token is always associated with the user that has created it. The auth token inherits the privileges of the user and freezes them. Thus, even if the user later gains or loses privileges, the privileges available to a token remain unchanged. 
