@@ -69,6 +69,7 @@ The `authc` section has the following format:
 <name>:
   http_enabled: <true|false>
   transport_enabled: <true|false>
+  enabled_only_for_hosts: <array of netmasks>
   order: <integer>
     http_authenticator:
       ...
@@ -81,6 +82,10 @@ An entry in the `authc` section is called an `authentication domain`. It specifi
 You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins".
 
 You can enable or disable an authentication domain for HTTP/REST and transport independently. This is for example useful if you want to use different authentication methods for `TransportClients`.
+
+
+
+### HTTP Authenticator
 
 The `http_authenticator` specifies which authentication method you want to use on the HTTP layer.
 
@@ -110,6 +115,8 @@ Allowed values for `type` are:
   * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) for further details.
 * clientcert
   * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes.
+
+### Authentication Backend
 
 After the HTTP authenticator was executed, you need to specify against which backend system you want to authenticate the user. This is specified in the `authentication_backend` section and has the following format:
 
@@ -153,6 +160,14 @@ Possible vales for `type` are:
 * ldap
   * Fetch additional roles from an LDAP server. This requires [additional, LDAP specific](../_docs_auth_auth/auth_auth_ldap.md) configuration settings.
 
+
+## Examples
+
+The [sg_config.yml](https://git.floragunn.com/search-guard/search-guard/blob/master/sgconfig/sg_config.yml){:target="_blank"} that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.
+
+## Advanced Configuration
+
+
 ### Exclude certain users from authentication/authorization
 
 It is possible to exclude users from authentication and/or authorization by specifying a 'skip_users' section inside the domain (root-level) configuration. **Wildcards** and **regular expressions** are supported.
@@ -161,12 +176,34 @@ This could be useful if fetching roles, let's say from a LDAP server, for a spec
 unnecessary network round trips and reducing request latency. 
 
 ```yaml
-skip_users:
-  - kibanaserver
-  - 'cn=Michael Jackson,ou*people,o=TEST'
-  - '/\S*/'
+authc:
+  my_auth_domain_using_skip_users:
+    type: ...
+    http_enabled: true
+    skip_users:
+    - kibanaserver
+    - 'cn=Michael Jackson,ou*people,o=TEST'
+    - '/\S*/'
 ```
 
-## Examples
+### Limiting authentication domains to certain sub-nets only
 
-The [sg_config.yml](https://git.floragunn.com/search-guard/search-guard/blob/master/sgconfig/sg_config.yml){:target="_blank"} that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.
+Using the `enabled_only_for_ips` attribute you are able to restrict usage of the auth domain only to certain IPs or subnets.  The option expects a list which can contain any of these values:
+
+* Single IPv4 addresses, e.g. `192.168.123.123`
+* Single IPv6 addresses, e.g. `2001:db8::8a2e:370:7334`
+* IPv4 subnets in CIDR notation, e.g. `192.0.2.0/24`
+* IPv6 subnets in CIDR notation, e.g. `2001:db8::/32`
+
+This can be for example useful if the only reason to enable HTTP basic authentication is your Kibana installation. Then, you can limit the auth domain to the IPs used by Kibana.
+
+Example:
+
+```yaml
+authc:
+  my_auth_domain_using_only_for_internal_hosts:
+    type: ...
+    http_enabled: true
+    enabled_only_for_ips:
+    - '192.0.2.0/24'
+```
