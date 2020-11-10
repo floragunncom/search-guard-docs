@@ -12,23 +12,27 @@ index_algolia: false
 
 # Search Guard Versions
 
-This page lists all available versions for Elasticsearch >= 6.0.0. For previous releases please refer to:
-
-* [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
-
-All versions are available on the Search Guard Maven repository:
-
-* [Search Guard Maven Repository](https://maven.search-guard.com){:target="_blank"}
-
-If you are upgrading from Elasticsearch 6.8.x to Elasticsearch >= 7.0.0, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
+This page lists all available versions of Search Guard. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
 
 Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
 
-We need your help: We started to release the first beta versions of our  refactored Kibana plugin that is compatibel with the Kibana "New Platform" architecture. [Give it a spin](kibana-new-platform-plugin-beta) and tell us what you think.
+**Feature Preview:**<br>We are offering beta versions of important new features.<br><br>**[Search Guard Auth Tokens:](../_docs_auth_auth/auth_auth_sg_auth_token.md)**<br>This new feature allows Search Guard users to create auth tokens. Such tokens can be used to give authentication credentials to external applications, scripts, etc., without having to use a password. Auth tokens can have a limited set of permissions, a limited lifetime and can be revoked by the user.<br>Download: [Search Guard Plugin for ES 7.9.3](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.9.3-authtoken.beta1/)<br>Docs: [Search Guard Auth Tokens](../_docs_auth_auth/auth_auth_sg_auth_token.md)<br><br>
+**[Search Guard Plugin for Kibana New Platform:](kibana-new-platform-plugin-beta)**<br>We started to release the first beta versions of our  refactored Kibana plugin that is compatible with the Kibana "New Platform" architecture. [Give it a spin](kibana-new-platform-plugin-beta) and tell us what you think.
 {: .note .js-note .note-warning}
+
 
 {% include sgversions.html versions="search-guard-suite-7" majorversion="7" issuite=true title="Search Guard Suite 7, including Security and Alerting"%}
 
 {% include sgversions.html versions="search-guard-7" majorversion="7" issuite=false title="Search Guard 7"%}
 
 {% include sgversions.html versions="search-guard-6" majorversion="6" issuite=false title="Search Guard 6"%}
+
+## Older Releases
+
+For previous releases please refer to:
+
+* [Search Guard 5 for Elasticsearch 5.x](/v5/search-guard-versions)
+
+All versions are available on the Search Guard Maven repository:
+
+* [Search Guard Maven Repository](https://maven.search-guard.com){:target="_blank"}
