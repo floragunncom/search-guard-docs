@@ -17,8 +17,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-The auth token feature is so far only available in the special beta release. It is not available in the normal Search Guard 47.0.0 release. See [here](../_docs_versions/versions_versionmatrix.md) for the download.<br><br>
-The auth token feature will be Search Guard Enterprise feature. You will need a license to use it after the trial period.
+The auth token feature is so far only available in the special beta release. It is not available in the normal Search Guard 47.0.0 release. See [here](../_docs_versions/versions_versionmatrix.md) for the download.<br><br>The auth token feature will be Search Guard Enterprise feature. You will need a license to use it after the trial period.
 {: .note .js-note .note-warning}
 
 Search Guard provides a built-in functionality to create and manage API auth tokens that can be used to access Elasticsearch.
