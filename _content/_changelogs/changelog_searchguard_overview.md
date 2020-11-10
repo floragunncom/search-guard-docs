@@ -3,7 +3,7 @@ title: Overview
 html_title: Search Guard changelogs
 slug: changelogs-searchguard
 category: changelogs-searchguard
-order: 0
+order: -10000
 layout: changelogs
 description: Changelog Overview for the Search Guard Elasticsearch security plugin. Protect your data from any unauthorized access.
 ---
