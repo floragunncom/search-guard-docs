@@ -113,7 +113,7 @@ labels:
     transformations: Transformations
     triggers: Triggers
     sgadmin: sgadmin
-    7x-46: Search Guard 7.x-47
+    7x-47: Search Guard 7.x-47
     7x-46: Search Guard 7.x-46    
     7x-45: Search Guard 7.x-45    
     7x-43: Search Guard 7.x-43
