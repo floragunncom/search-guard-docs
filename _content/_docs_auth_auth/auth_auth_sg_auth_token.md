@@ -24,9 +24,9 @@ Search Guard provides a built-in functionality to create and manage API auth tok
 
 Such an auth token is always associated with the user that has created it. The auth token inherits the privileges of the user and freezes them. Thus, even if the user later gains or loses privileges, the privileges available to a token remain unchanged. 
 
-When creating auth tokens, it is possible to limit the privileges available to the token to a subset of the user's privileges. Also, it is possible limit the life time of an auth token. 
+When creating auth tokens, it is possible to limit the privileges available to the token to a subset of the user's privileges. Also, it is possible to limit the lifetime of an auth token. 
 
-Additionally, tokens can be revoked. A revoked token won't be accepted by Search Guard anymore, even though its expiry time has not been reached yet. Management and revocation of auth tokens is available to the users who created the tokens. Furthermore, administrators with special privileges can manage and revoke auth tokens of any user.
+Additionally, tokens can be revoked. A revoked token won't be accepted by Search Guard anymore, even though its expiry time has not been reached yet. Management and revocation of auth tokens are available to the users who created the tokens. Furthermore, administrators with special privileges can manage and revoke auth tokens of any user.
 
 Auth tokens issued by Search Guard are based on the JSON Web Token (JWT) standard and are cryptographically signed. However, in order to allow management and revocation of tokens, Search Guard also keeps an internal list of issued auth tokens. In addition to verifying the JWT signature, Search Guard also uses this internal list to ensure that a token has not been revoked yet. 
 
@@ -62,7 +62,7 @@ sg_config:
 
 When using the `jwt_signing_key_hs512` and `jwt_encryption_key_a256kw` configuration keys, the generated JWKs will be signed using a HMAC 512 hash and AES 256 encryption. Thus, the value for `jwt_signing_key_hs512` must be a random value with 512 bits in Base64URL encoding. Likewise, the value for `jwt_encryption_key_a256kw` must be a random value with 256 bits in Base64URL encoding. 
 
-In a shell you can generate such values for example using the command `openssl rand -base64 <bytes> | tr '/+' '_-'`. Replace `<bytes>` by the desired byte length. 
+In a shell, you can generate such values using the command `openssl rand -base64 <bytes> | tr '/+' '_-'`. Replace `<bytes>` by the desired byte length. 
 
 To generate 512 bit keys use:
 
@@ -155,13 +155,13 @@ This returns a response like this:
 }
 ```
 
-The value of the `token` attribute is the JWT token that can be now used to send authenticated requests to Elasticsearch. The token provides a subset of the privileges the user had at the point in time the token was created. The token allows only actions on indices mathing the pattern `my_index_*`. Because the `allowed_actions` attribute is `*`, the token provides all index permissions the user has. The cluster permissions are also identical to the user's cluster permissions.
+The value of the `token` attribute is the JWT token that can now be used to send authenticated requests to Elasticsearch. The token provides a subset of the privileges the user had at the point in time the token was created. The token allows only actions on indices matching the pattern `my_index_*`. Because the `allowed_actions` attribute is `*`, the token provides all index permissions the user has. The cluster permissions are also identical to the user's cluster permissions.
 
 In a request to create an auth token, it is possible to specify privileges that exceed the actual privileges the user has. Search Guard will only grant the intersection of the requested and the available privileges.
 
 ### Supported Attributes
 
-This is an overview over all attributes Search Guard supports in requests sent to the `POST /_searchguard/authtoken` REST API.
+This is an overview of all attributes Search Guard supports in requests sent to the `POST /_searchguard/authtoken` REST API.
 
 **name:** A name giving a human-readable description of the token. Required.
 
@@ -263,7 +263,7 @@ The result is formed like a standard Elasticsearch search response:
 }
 ```
 
-You can specify search criteria by issuing POST requests to the same endpoint. This works like other Elasticsearch searches. The following query searches for all auth tokens that have index patterns which match `*my_index*`.
+You can specify search criteria by issuing POST requests to the same endpoint. This works like other Elasticsearch searches. The following query searches for all auth tokens that have index patterns that match `*my_index*`.
 
 
 ```
