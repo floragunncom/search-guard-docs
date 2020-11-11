@@ -102,7 +102,7 @@ sg_config:
 
 **max_tokens_per_user:** This setting limits the number of valid tokens a user can have at the same time. For performance reasons, Search Guard keeps all auth tokens in heap. Thus, it is not possible to have an arbitrarily large number of auth tokens. This settings defaults to 100. 
 
-**exclude_cluster_permissions:** You can specify cluster permissions here, which an auth token may never grant. This option defaults to `cluster:admin:searchguard:authtoken/_own/create`, which means that auth tokens cannot grant the permission to create new auth tokens. The format of this option is a list of action names; like in [role definitions(../_docs_roles_permissions/configuration_roles_permissions.md)], wildcards are supported as well. 
+**exclude_cluster_permissions:** You can specify cluster permissions here, which an auth token may never grant. This option defaults to `cluster:admin:searchguard:authtoken/_own/create`, which means that auth tokens cannot grant the permission to create new auth tokens. The format of this option is a list of action names; like in [role definitions](../_docs_roles_permissions/configuration_roles_permissions.md), wildcards are supported as well. 
 
 **exclude_index_permissions:** You can specify index permissions here, which an auth token may never grant. This option is empty by default. The format of this option is identical to the `exclude_index_permissions` setting in  in [role definitions](../_docs_roles_permissions/configuration_roles_permissions.md).
 
