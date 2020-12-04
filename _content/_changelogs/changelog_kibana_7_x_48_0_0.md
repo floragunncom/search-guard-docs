@@ -19,7 +19,7 @@ description: Changelog for Kibana 7.x-48.0.0
 
 The Search Guard Kibana plugin is now based on Kibana's [New Platform Architecture](https://www.elastic.co/blog/introducing-a-new-architecture-for-kibana).
 
-The New Platform especially allows for a tighter integration of Kibana plugins. In Search Guard,  however, not many changes are visible from a user's point of view for now. Most prominently, the loading screen when switching to and from the Search Guard configuration UI is gone.
+The New Platform especially allows for a tighter integration of Kibana plugins. While this meant fundamental changes to the Search Guard plugin under the hood, not many changes are visible from a user's point of view for now. Most prominently, the loading screen when switching to and from the Search Guard configuration UI is gone.
 
 In the future, this might allow tighter integration between Search Guard or Signals and other plugins.
 
