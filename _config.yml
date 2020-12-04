@@ -31,6 +31,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-48  
     - 7x-47
     - 7x-46
     - 7x-45
@@ -52,7 +53,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-47: latest
+  7x-48: latest
+  7x-47: 7.x-47  
   7x-46: 7.x-46
   7x-45: 7.x-45
   7x-43: 7.x-43
@@ -113,6 +115,7 @@ labels:
     transformations: Transformations
     triggers: Triggers
     sgadmin: sgadmin
+    7x-48: Search Guard 7.x-48    
     7x-47: Search Guard 7.x-47
     7x-46: Search Guard 7.x-46    
     7x-45: Search Guard 7.x-45    
@@ -293,13 +296,14 @@ algolia:
 
 eol:
   features:
-    - 7.9.3
+    - 7.10.0
   updates:
     - 6.8.10
 
 sgversions:
   # esv |sgv |kbv |available|kbn-artifact-id
   search-guard-suite-7:
+    - 7.10.0|48.0.0|48.0.0|yes  
     - 7.9.3|47.0.0|46.2.0|yes
     - 7.9.2|46.2.0|46.2.0|yes
     - 7.9.1|45.1.0|45.0.0|yes
