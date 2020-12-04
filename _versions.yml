@@ -1,9 +1,9 @@
 searchguard:
   esmajorversion: 7
-  version: 7.x-47.0.0
-  fullversion: 7.9.3-47.0.0
-  nextminorversion: 7.9.3-47.1.0
-  nextmajorversion: 7.9.3-48.0.0
+  version: 7.x-48.0.0
+  fullversion: 7.10.0-48.0.0
+  nextminorversion: 7.10.0-48.1.0
+  nextmajorversion: 7.10.0-49.0.0
   islatestversion: true
   ispreliminaryversion: false
 
