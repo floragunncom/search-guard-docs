@@ -3,7 +3,7 @@ title: Overview
 html_title: Kibana changelogs
 slug: changelogs-kibana
 category: changelogs-kibana
-order: 10
+order: -10000
 layout: changelogs
 description: Changelog overview for all releases of the Search Guard Kibana Plugin that adds access control and session management.
 ---
@@ -14,6 +14,9 @@ Copyright 2020 floragunn GmbH
 
 # Search Guard Kibana Plugin Changelogs
 
+### [Search Guard Kibana Plugin 7.x-48.0.0](changelog_kibana_7_x_48_0_0.md)
+
+Release Date: 04.12.2020
 
 ### [Search Guard Kibana Plugin 7.x-46.0.0](changelog_kibana_7_x_46_0_0.md)
 
