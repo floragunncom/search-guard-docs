@@ -16,7 +16,7 @@ This page lists all available versions of Search Guard. If you are upgrading fro
 
 Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
 
-**Feature Preview:**<br>We are offering beta versions of important new features.<br><br>**[Search Guard Auth Tokens:](../_docs_auth_auth/auth_auth_sg_auth_token.md)**<br>This new feature allows Search Guard users to create auth tokens. Such tokens can be used to give authentication credentials to external applications, scripts, etc., without having to use a password. Auth tokens can have a limited set of permissions, a limited lifetime and can be revoked by the user.<br>Download: [Search Guard Plugin for ES 7.9.3](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.9.3-authtoken.beta1/)<br>Docs: [Search Guard Auth Tokens](../_docs_auth_auth/auth_auth_sg_auth_token.md)
+**Feature Preview:**<br>We are offering beta versions of important new features.<br><br>**[Search Guard Auth Tokens:](../_docs_auth_auth/auth_auth_sg_auth_token.md)**<br>This new feature allows Search Guard users to create auth tokens. Such tokens can be used to give authentication credentials to external applications, scripts, etc., without having to use a password. Auth tokens can have a limited set of permissions, a limited lifetime and can be revoked by the user.<br>Download: [Search Guard Plugin for ES 7.10.1 (Beta 2)](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.10.1-authtoken.beta2/)<br>Docs: [Search Guard Auth Tokens](../_docs_auth_auth/auth_auth_sg_auth_token.md)
 {: .note .js-note .note-warning}
 
 
