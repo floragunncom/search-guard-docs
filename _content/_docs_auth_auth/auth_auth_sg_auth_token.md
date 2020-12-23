@@ -106,6 +106,9 @@ sg_config:
 
 **exclude_index_permissions:** You can specify index permissions here, which an auth token may never grant. This option is empty by default. The format of this option is identical to the `exclude_index_permissions` setting in  in [role definitions](../_docs_roles_permissions/configuration_roles_permissions.md).
 
+**freeze_privileges:** This option controls how users can use the `freeze_privileges` attribute in create auth token request bodies. This defaults to `user_chooses` which allows users to choose whether they want to create a config snapshot or not. If you specify `always`, all auth token creation requests will create a snapshot the role configuration; the user won't be able to choose. If you specify `never`, no auth token creation requests will create such a snapshot. Note that changes to this config option won't affect auth tokens which have been already created.
+
+
 ### Authentication Domain
 
 In addition to the `auth_token_provider` config, you have to configure a separate [authentication domain](../_docs_auth_auth/auth_auth_configuration.md#authentication) in the `authc` section.
@@ -177,6 +180,8 @@ This is an overview of all attributes Search Guard supports in requests sent to 
 
 
 **requested.roles:** It is also possible to specify the requested permissions by roles. If one or more role names are specified here, the created token will only have the privileges the roles have in the Search Guard configuration. Optional.
+
+**freeze_privileges:** You can choose whether Search Guard will create a snapshot of the current role configuration which will be used by the auth token. This ensures that an auth token will continue to work, even if you redesign your role configuration. By default, (or by setting this to true) Search Guard will create a configuration snapshot; setting this to false will always use the current role configuration. Note: Administrators can use the `sg_config.yml` configuration option `sg_config.dynamic.auth_token_provider.freeze_privileges` to prevent normal users from choosing this option while creating new auth tokens. See [Other Configuration Options](#other-configuration-options) for details.
 
 
 ## Using Auth Tokens
