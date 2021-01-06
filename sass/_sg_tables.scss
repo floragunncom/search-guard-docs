@@ -33,7 +33,9 @@ table th{position:static;float:none;display:table-cell;}
 }
 
 .config-table > thead > tr > th:nth-child(1),
-.config-table > tbody > tr > td:nth-child(1) {
+.config-table > tbody > tr > td:nth-child(1),
+.config-table > tbody > tr > td:nth-child(1) a
+{
   background: $editionText;
   color: $lightGrey;
 }
