@@ -175,6 +175,48 @@ SAML, unlike other protocols like JWT or Basic Authentication, is not meant to b
 | exchange_key | The key to sign the token. The algorithm is HMAC256, so it should have at least 32 characters. |
 {: .config-table}
 
+
+## Using only certain sections of a SAML user name
+
+In some cases, the user name in a SAML assertion might be more complex than needed or wanted. For example, a SAML user name could be specified as an email address like `exampleuser@example.com`. The `subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
+
+With `subject_pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a certain part of the name supplied by the SAML assertion as the Search Guard user name.
+
+For example:
+
+```yaml
+authc:
+  saml:
+    http_enabled: true
+    order: 1
+    http_authenticator:
+      type: saml
+      challenge: true
+      config:
+        subject_pattern: "^(.+)@example\.com$"
+      ...
+```
+
+In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
+
+You can use all the pattern features which the Java `Pattern` class supports. See the [official documentation](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) for details. 
+
+Keep in mind that all capturing groups are used for constructing the user name. If you need grouping only because you want to apply a pattern quantifier or operator, you should use non-capturing groups: `(?:...)`. 
+
+Example for using capturing groups and non-capturing groups:
+
+```yaml
+      subject_pattern: "^(.+)@example\.(?:com|org)$"
+```
+
+In this example, the group around `com` and `org` is required to use the alternative operator `|`. But it must be non-capturing, because otherwise it would show up in the user name.
+
+You can however also use several capturing groups if you want to use these groups for the user name:
+
+```yaml
+      subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
+```
+
 ## TLS settings
 
 If you are loading the IdP metadata from a URL, it is recommended to use SSL/TLS. If you use an external IdP like Okta or Auth0 that uses a trusted certificate, you usually do not need to configure anything. If you host the IdP yourself and use your own root CA, you can customize the TLS settings as follows. These settings are only used for loading SAML metadata over https.

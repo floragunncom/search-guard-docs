@@ -128,6 +128,7 @@ Configuration parameter:
 | subject_path | A JSON path expression in the payload that stores the username, for example ```$["foo"]["user"]["name"]```  where `foo` is the claim name|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
 | roles_path | A JSON path expression to the payload that stores the user's roles, for example ```$["foo"]["user"]["roles"]``` where `foo` is the claim name |
+| subject_pattern | A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the JWT as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. |
 {: .config-table}
 
 It is recommend to use the bracket-notation in JSON path expressions in order to avoid ambiguity, for example a key could be called `user.id` and thus wouldn't be the same as `$["user"]["id"]`.
@@ -174,6 +175,47 @@ my_dls_role:
 **Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
 
 **Note:** This method of providing attributes supersedes the old way which provided all JWT attributes as Search Guard user attributes with the prefix `attr.jwt`. These attributes are still supported, but are now deprecated.
+
+### Using only certain sections of a JWT subject claim as user name
+
+In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
+
+With `subject_pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a certain part of the subject supplied by the JWT as the Search Guard user name.
+
+For example:
+
+```yaml
+jwt_auth_domain:
+  http_enabled: true
+  order: 0
+  http_authenticator:
+    type: jwt
+    challenge: false
+    config:
+      subject_pattern: "^(.+)@example\.com$"
+```
+
+In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
+
+You can use all the pattern features which the Java `Pattern` class supports. See the [official documentation](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) for details. 
+
+Keep in mind that all capturing groups are used for constructing the user name. If you need grouping only because you want to apply a pattern quantifier or operator, you should use non-capturing groups: `(?:...)`. 
+
+Example for using capturing groups and non-capturing groups:
+
+```yaml
+      subject_pattern: "^(.+)@example\.(?:com|org)$"
+```
+
+In this example, the group around `com` and `org` is required to use the alternative operator `|`. But it must be non-capturing, because otherwise it would show up in the user name.
+
+You can however also use several capturing groups if you want to use these groups for the user name:
+
+```yaml
+      subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
+```
+
+ 
 
 ## Symmetric key algorithms: HMAC 
 

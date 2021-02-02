@@ -61,6 +61,7 @@ Configuration parameters:
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. Optional.|
 | subject_key | The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional.|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. Mandatory only if you want to use roles in the JWT.|
+| subject_pattern | A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the JWT as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. |
 | proxy | If the IdP is only reachable via an HTTP proxy, you can use the `proxy` option to define the URI of the proxy. Optional, defaults to no proxy.
 {: .config-table}
 
@@ -134,6 +135,46 @@ If you want to roll over a key in your IdP, it is good practice to:
 * The old key can be removed from your IdP when the last JWT signed with this key has timed out
 
 If you have to immediately change your public key, because the currently used key has been comprised, you can also delete the old key first and then create a new one. In this case, all JWTs signed with the old key will become invalid immediately.
+
+
+### Using only certain sections of a JWT subject claim as user name
+
+In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
+
+With `subject_pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a certain part of the subject supplied by the JWT as the Search Guard user name.
+
+For example:
+
+```yaml
+jwt_auth_domain:
+  http_enabled: true
+  order: 0
+  http_authenticator:
+    type: openid
+    challenge: false
+    config:
+      subject_pattern: "^(.+)@example\.com$"
+```
+
+In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
+
+You can use all the pattern features which the Java `Pattern` class supports. See the [official documentation](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) for details. 
+
+Keep in mind that all capturing groups are used for constructing the user name. If you need grouping only because you want to apply a pattern quantifier or operator, you should use non-capturing groups: `(?:...)`. 
+
+Example for using capturing groups and non-capturing groups:
+
+```yaml
+      subject_pattern: "^(.+)@example\.(?:com|org)$"
+```
+
+In this example, the group around `com` and `org` is required to use the alternative operator `|`. But it must be non-capturing, because otherwise it would show up in the user name.
+
+You can however also use several capturing groups if you want to use these groups for the user name:
+
+```yaml
+      subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
+```
 
 ## TLS settings
 
@@ -237,6 +278,8 @@ You can limit the allowed ciphers and TLS protocols by using the following keys:
 | enabled\_ssl\_ciphers | Array, enabled TLS cipher suites. Only Java format is supported. |
 | enabled\_ssl\_protocols | Array, enabled TLS protocols. Only Java format is supported. |
 {: .config-table}
+
+
 
 ## Expert: DOS protection
 

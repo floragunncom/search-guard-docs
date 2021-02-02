@@ -85,9 +85,9 @@ For example, this can be used if your IdP provides user names in the format of e
 
 More information:
 
-* [Docs for JWT](https://docs.search-guard.com/latest/json-web-tokens)
-* [Docs for OIDC](https://docs.search-guard.com/latest/openid-json-web-keys)
-* [Docs for SAML](https://docs.search-guard.com/latest/saml-authentication)
+* [Docs for JWT](https://docs.search-guard.com/latest/json-web-tokens#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name)
+* [Docs for OIDC](https://docs.search-guard.com/latest/openid-json-web-keys#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name)
+* [Docs for SAML](https://docs.search-guard.com/latest/saml-authentication#using-only-certain-sections-of-a-saml-user-name)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/44)
 
 
