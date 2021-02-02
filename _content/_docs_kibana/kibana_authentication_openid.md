@@ -69,13 +69,6 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 | searchguard.openid.logout_url | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata. |
 {: .config-table}
 
-### TLS Settings
-
-| Name | Description |
-|---|---|
-| searchguard.openid.root_ca | Path to the root CA of your IdP |
-| searchguard.openid.verify_hostnames | Whether to very the hostname of the IdP certificate. Default: true |
-{: .config-table}
 
 ## Configuration example
 
@@ -85,9 +78,6 @@ Besides the ID, each client also has a client secret assigned. This is usually g
 <code class=" js-code language-markup">
 # Enable OpenID authentication
 searchguard.auth.type: "openid"
-
-# the IdP metadata endpoint
-searchguard.openid.connect_url: "http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration"
 
 # the ID of the OpenID Connect client in your IdP
 searchguard.openid.client_id: "kibana-sso"
