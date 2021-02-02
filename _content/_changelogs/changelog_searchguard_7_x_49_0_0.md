@@ -33,8 +33,7 @@ More details:
 * [Documentation](https://docs.search-guard.com/latest/search-guard-auth-tokens)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/35)
 <p />
-
-
+ 
 ## Improvements
 
 ### Faster Bulk Actions
@@ -78,7 +77,18 @@ More information:
 * [Merge request for frontend](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/646)
 <p />
 
+### Using only a specific sub-string of a JWT, OIDC or SAML user as the Search Guard user
 
+This release introduces the new configuration option `subject_pattern` for the JWT, OIDC and SAML authenticators. You can use this option to configure a regular expression which defines the expected format of the user name obtained from JWT tokens or SAML responses. If the user name does not match the pattern, authentication will fail. You can use capturing groups inside the regular expression to mark only certain parts to be used as the user name inside Search Guard.
+
+For example, this can be used if your IdP provides user names in the format of email addresses. Using a `subject_pattern` with the value `^(.+)@example.com$` will then only use the local part of the email address as user name.
+
+More information:
+
+* [Docs for JWT](https://docs.search-guard.com/latest/json-web-tokens)
+* [Docs for OIDC](https://docs.search-guard.com/latest/openid-json-web-keys)
+* [Docs for SAML](https://docs.search-guard.com/latest/saml-authentication)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/44)
 
 
 ## Bugfixes
