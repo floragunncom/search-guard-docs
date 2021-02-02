@@ -26,13 +26,7 @@ This will print out a lot of helpful information in your log file. If this infor
 
 ## Failed when trying to obtain the endpoints from your IdP
 
-This indicates that the metadata endpoint of your IdP is not reachable. In Kibana, check the following setting:
-
-```
-searchguard.openid.connect_url: "http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration"
-```
-
-If it happens on Elasticsearch, check the following setting:
+This indicates that the metadata endpoint of your IdP is not reachable. Please check the following setting in sg_config.yml:
 
 ```
 openid_auth_domain:
@@ -53,7 +47,6 @@ This indicates that one or more of the Kibana configuration settings are missing
 Check your kibana.yml file and make sure you have set the following minimal configuration:
 
 ```
-searchguard.openid.connect_url: "..."
 searchguard.openid.client_id: "..."
 searchguard.openid.client_secret: "..."
 ```
