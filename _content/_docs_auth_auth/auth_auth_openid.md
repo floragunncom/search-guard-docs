@@ -61,6 +61,7 @@ Configuration parameters:
 | jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. Optional.|
 | subject_key | The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional.|
 | roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. Mandatory only if you want to use roles in the JWT.|
+| proxy | If the IdP is only reachable via an HTTP proxy, you can use the `proxy` option to define the URI of the proxy. Optional, defaults to no proxy.
 {: .config-table}
 
 ## OpenID connect URL
@@ -144,13 +145,14 @@ Use the following parameters to enable TLS for connecting to your IdP:
 
 ```yaml
 config:
-  enable_ssl: <true|false>
-  verify_hostnames: <true|false>
+  openid_connect_idp:
+    enable_ssl: <true|false>
+    verify_hostnames: <true|false>
 ```
 
 | Name | Description |
 |---|---|
-| enable_ssl | Whether to use TLS or not. Default: false |
+| enable_ssl | Whether to use a custom TLS configuration. Defaults to false which indicates that the certificate specified in the configuration `searchguard.ssl.transport.pemtrustedcas_filepath` is used.  |
 | verify\_hostnames | Whether to verify the hostnames of the IdP's TLS certificate or not. Default: true  |
 {: .config-table}
 
@@ -160,17 +162,21 @@ To validate the TLS certificate of your IdP, configure either the path to the Id
 
 ```yaml
 config:
-  pemtrustedcas_filepath: /path/to/trusted_cas.pem
+  openid_connect_idp:
+    enable_ssl: true
+    pemtrustedcas_filepath: /path/to/trusted_cas.pem
 ```
 
 or
 
 ```yaml
 config:
-  pemtrustedcas_content: |-
-    MIID/jCCAuagAwIBAgIBATANBgkqhkiG9w0BAQUFADCBjzETMBEGCgmSJomT8ixk
-    ARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1w
-    bGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEh
+  openid_connect_idp:
+    enable_ssl: true
+    pemtrustedcas_content: |-
+      MIID/jCCAuagAwIBAgIBATANBgkqhkiG9w0BAQUFADCBjzETMBEGCgmSJomT8ixk
+      ARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1w
+      bGUgQ29tIEluYy4xITAfBgNVBAsMGEV4YW1wbGUgQ29tIEluYy4gUm9vdCBDQTEh
     ...
 ```
 
@@ -186,25 +192,29 @@ To use TLS client authentication, configure the PEM certificate and private key 
 
 ```yaml
 config:
-  pemkey_filepath: /path/to/private.key.pem
-  pemkey_password: private_key_password
-  pemcert_filepath: /path/to/certificate.pem
+  openid_connect_idp:
+    enable_ssl: true
+    pemkey_filepath: /path/to/private.key.pem
+    pemkey_password: private_key_password
+    pemcert_filepath: /path/to/certificate.pem
 ```
 
 or
 
 ```yaml
 config:
-  pemkey_content: |-
-    MIID2jCCAsKgAwIBAgIBBTANBgkqhkiG9w0BAQUFADCBlTETMBEGCgmSJomT8ixk
-    ARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1w
-    bGUgQ29tIEluYy4xJDAiBgNVBAsMG0V4YW1wbGUgQ29tIEluYy4gU2lnbmluZyBD
+  openid_connect_idp:
+    enable_ssl: true
+    pemkey_content: |-
+      MIID2jCCAsKgAwIBAgIBBTANBgkqhkiG9w0BAQUFADCBlTETMBEGCgmSJomT8ixk
+      ARkWA2NvbTEXMBUGCgmSJomT8ixkARkWB2V4YW1wbGUxGTAXBgNVBAoMEEV4YW1w
+      bGUgQ29tIEluYy4xJDAiBgNVBAsMG0V4YW1wbGUgQ29tIEluYy4gU2lnbmluZyBD
     ...
-  pemkey_password: private_key_password
-  pemcert_content: |-
-    MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCHRZwzwGlP2FvL
-    oEzNeDu2XnOF+ram7rWPT6fxI+JJr3SDz1mSzixTeHq82P5A7RLdMULfQFMfQPfr
-    WXgB4qfisuDSt+CPocZRfUqqhGlMG2l8LgJMr58tn0AHvauvNTeiGlyXy0ShxHbD
+    pemkey_password: private_key_password
+    pemcert_content: |-
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCHRZwzwGlP2FvL
+      oEzNeDu2XnOF+ram7rWPT6fxI+JJr3SDz1mSzixTeHq82P5A7RLdMULfQFMfQPfr
+      WXgB4qfisuDSt+CPocZRfUqqhGlMG2l8LgJMr58tn0AHvauvNTeiGlyXy0ShxHbD
     ...
 ```
 
