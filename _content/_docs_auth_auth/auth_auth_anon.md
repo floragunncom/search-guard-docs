@@ -60,9 +60,9 @@ sg\_roles.yml:
 ```
 sg_anonymous:
   cluster:
-    - CLUSTER_COMPOSITE_OPS_RO
+    - SGS_CLUSTER_COMPOSITE_OPS_RO
   indices:
     'public':
       '*':
-        - READ
+        - SGS_READ
 ```
