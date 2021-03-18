@@ -2,7 +2,7 @@
 title: Kibana 7.x-50.0.0
 slug: changelog-kibana-7.x-50_0_0
 category: changelogs-kibana
-order: -200
+order: -300
 layout: changelogs
 description: Changelog for Kibana 7.x-50.0.0	
 ---
