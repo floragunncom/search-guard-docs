@@ -9,95 +9,178 @@ description: Changelog for Search Guard 7.x-49.0.0
 
 <!--- Copyright 2021 floragunn GmbH -->
 
-**Release Date: 02.02.2021**
+# Search Guard Suite 50.0
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+**Release Date: 2021-03-18**
 
-## New Features
+The new release of Search Guard brings support for Elasticsearch 7.11. Please note that we can only support Elasticsearch 7.11.1 and 7.11.2. Elasticsearch 7.11.0 is unsupported due to a [problem in the artifacts publication](https://github.com/elastic/elasticsearch/pull/68926) at Elastic.
+
+Other highlights in this release include:
+
+* [Support for user attributes in tenant patterns](#support-for-user-attributes-in-tenant-patterns)
+* [Additional details for audit logging](#audit-logging)
+* [Improvements regarding Signals stability and footprint](#signals)
+* A couple of further minor improvements and bugfixes
+
+See below for details.
+
+## Breaking Changes
+
+This release brings one breaking change for users of [OCSP](#ocsp-configuration-changes) for TLS certificate revocation. See [below](#ocsp-configuration-changes) for details. 
+
+Furthermore, with 7.11.x onwards, we won't build new versions of the `sgadmin-standalone` archive. This is because of Elastic license restrictions. It is however perfectly possible to use older versions of `sgadmin-standalone` with Search Guard on ES 7.11+.
+
+## TLS
+
+### OCSP Configuration Changes
+
+Due to changes in Elasticsearch 7.11, the configuration format for OCSP (Online Certificate Status Protocol) needed to be changed. OCSP is no longer active by default, if CRL validation is enabled.
+
+If you are not using CRL validation (`searchguard.ssl.http.crl.validate` is not set to true in `elasticsearch.yml`), you can skip this.
+
+If you are using CRL validation and want to continue using OCSP for CRL validation, you additionally need to edit the file `jdk/conf/security` in your ES installation on every node and add:
+
+```
+ocsp.enable=true
+```
+
+If you have disabled OCSP using `searchguard.ssl.http.crl.disable_ocsp: true` in `elasticsearch.yml`, you must remove this option as it is no longer supported. OCSP support is now disabled by default.
+
+Details:
+
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/103)
+
+## Elasticsearch Privileges
+
+### Support for User Attributes in Tenant Patterns
+
+It is now possible to use user attributes in tenant pattern like this:
+
+```
+sg_tenant_user_attrs:
+  tenant_permissions:
+  - tenant_patterns:
+    - "dept_${user.attrs.dept_no}"
+    allowed_actions:
+    - "SGS_KIBANA_ALL_WRITE"
+```
+
+Note: Only the "new style" user attributes are supported here; "old style" attributes (`attr.internal....`) are not supported here.
+
+Details:
+
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/116)
+* [Documentation](https://docs.search-guard.com/latest/roles-permissions)
+
+### Support for Composable Templates
+
+The [composable templates feature](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-template.html) introduced by Elastichsearch 7.8 was not yet supported by Search Guard. Now, the necessary privileges are included in the action group `SGS_CLUSTER_MANAGE_INDEX_TEMPLATES`. 
+
+Details:
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/12)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/108)
+
+## Signals
+
+Search Guard 50 brings significant improvements regarding stability and the resource footprint of Signals Alerting.
+
+### Inclusion of Responsible Node in Watch State API
+
+The [watch state API](https://docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state) now always includes the name of the node that is responsible for executing the node. This can be useful for debugging watch execution problems. 
+
+Details:
+
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/113)
+* [Documentation](https://docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state)
+
+### Signals Stability
+
+A number of improvements and bug fixes regarding node fail-over and general stability of Signals watch execution have been implemented:
+
+* [Recovery fails if a watch was executing while the executing node shut down](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/38)
+* [When waiting for a yellow index state, don't give up after 1 hour](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/110)
+* [Signals state update bugfixes](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/118)
+
+### Signals Footprint
+
+On Search Guard setups with lots of (100+) tenants, Signals could cause problems by starting a large number of threads. Search Guard 50 addresses this problem on several levels:
+
+* Thread pools are no longer filled initially, but only on demand. Thus, active tenants without any watches will not initially use 4 threads, but only one thread - the scheduler thread. Also, idle threads are terminated after a timeout period.
+
+* Originally, Signals would start a scheduler for every configured tenant. This might be however not necessary. Thus, Signals has now a second operation mode which makes explicit activation of a tenant within Signals necessary. This can be controlled with the config option `signals.all_tenants_active_by_default` in  `elasticsearch.yml`.
+
+* Additionally, Signals provides now a number of additional [config options](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/109) for fine-tuning its thread pools.
+
+Details:
+
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/109)
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/10)
 
 
+### Bugfix for E-Mail Action Runtime Data Attachments
 
-### API Auth Token Service
+Trying to use e-mail actions with attachments of `type: runtime` caused exceptions. This is now fixed.
 
-Search Guard 49 brings you the first general available version of the API Auth Token Service. This functionality allows you to create and manage API auth tokens that can be used to access Elasticsearch.
+Details:
 
-This is especially useful if you have applications which need authenticated access to Elasticsearch. Before the auth token service, you would have to give the application your full credentials, i.e., username and password. Now, you can create an auth token and just use this for authentication; it is also possible to limit the permissions the auth token is granted. Search Guard makes it easy to revoke the auth token at any time.
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/36)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/106)
+* [Documentation](https://docs.search-guard.com/latest/elasticsearch-alerting-actions-email)
 
-The auth token service is available in the Search Guard Kibana plugin and via a dedicated [REST API](https://docs.search-guard.com/latest/search-guard-auth-tokens#creating-auth-tokens).
+## Audit Logging
 
-The auth token service is disabled by default. To use it, you need to [enable and configure](https://docs.search-guard.com/latest/search-guard-auth-tokens#configuring-the-search-guard-auth-token-service) it inside `sg_config.yml`.
-
-The service is an enterprise feature. You can try it with the trial license that comes with a new Search Guard installation. If you want to use it for production purposes, you need an enterprise license.
-
-More details:
-* [Documentation](https://docs.search-guard.com/latest/search-guard-auth-tokens)
-* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/35)
-<p />
+### Logging of Authentication Domain Used for Logging In
  
-## Improvements
+Audit Logging now also logs information about the ways a user used for logging in at Search Guard. This information is logged for every audit message which also logs the user name of the logged in user. The new information is now available in the attributes `audit_request_effective_user_auth_domain` and `audit_request_initiating_user_auth_domain`. The attributes contain a value like `basic/ldap` which indicates that the user used basic authentication and was authenticated by the LDAP authentication backend.
 
-### Faster Bulk Actions
+The new attributes are available by default.
 
-The privilege evaluation for bulk actions has been optimized. This yields a significant performance improvement for bulk actions; in some of our tests, we could double the throughput.
+Details:
 
-More information:
-* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/89)
-<p />
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/3)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/58)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/117)
+* [Documentation](https://docs.search-guard.com/latest/audit-logging-reference)
 
-### OIDC Authenticator Improvements
+### OutOfMemoryErrors when logging write history for large documents
 
-This release brings minor improvements to the OIDC auth functionality.
-
-In some environments, ES can connect to IdP servers only via a proxy. For these scenarios, Search Guard introduces the new `proxy` option for `http_authenticators` of type `oidc` inside `sg_config.yml`.
-
-This may look like this:
-
-```
-openid_auth_domain:
-  http_enabled: true
-  order: 0
-  http_authenticator:
-    type: openid
-    challenge: false
-    config:
-      subject_key: preferred_username
-      roles_key: roles
-      openid_connect_url: https://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration
-      proxy: "https://proxy.example.com:9999"
-  authentication_backend:
-    type: noop
-```
-
-Furthermore, with this release, the Kibana server will perform any communication with the IdP also via the Search Guard plugin. Thus, the Kibana configuration options `searchguard.openid.connect_url`,  `searchguard.openid.root_ca` and `searchguard.openid.verify_hostnames` inside  `kibana.yml` are no longer required and can be removed.
-
-More information:
-* [Documentation for backend configuration](https://docs.search-guard.com/latest/openid-json-web-keys)
-* [Documentation for frontent configuration](https://docs.search-guard.com/latest/kibana-authentication-openid)
-* [Merge request for backend](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/39)
-* [Merge request for frontend](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/646)
-<p />
-
-### Using only a specific sub-string of a JWT, OIDC or SAML user as the Search Guard user
-
-This release introduces the new configuration option `subject_pattern` for the JWT, OIDC and SAML authenticators. You can use this option to configure a regular expression which defines the expected format of the user name obtained from JWT tokens or SAML responses. If the user name does not match the pattern, authentication will fail. You can use capturing groups inside the regular expression to mark only certain parts to be used as the user name inside Search Guard.
-
-For example, this can be used if your IdP provides user names in the format of email addresses. Using a `subject_pattern` with the value `^(.+)@example.com$` will then only use the local part of the email address as user name.
-
-More information:
-
-* [Docs for JWT](https://docs.search-guard.com/latest/json-web-tokens#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name)
-* [Docs for OIDC](https://docs.search-guard.com/latest/openid-json-web-keys#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name)
-* [Docs for SAML](https://docs.search-guard.com/latest/saml-authentication#using-only-certain-sections-of-a-saml-user-name)
-* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/44)
+The `zjsonpatch` library has an issue which could cause OutOfMemoryErrors  when logging write history for large documents.
 
 
-## Bugfixes
+Details:
 
-### Blocked IPs and X-Forward-For addresses from proxies
-
-The feature for blocking IPs did not work correctly when ES is only reachable by a proxy. While Search Guard can use IPs obtained from a `X-Forward-For` header for IP-based authentication (if `xff` is configured in `sg_config.yml`; see the [documentation](https://docs.search-guard.com/latest/authentication-authorization#http) for details), IP blocking did not take such IPs into account.
-
-This is now fixed; IPs considered for blocking are now the same IPs which are used for authentication.
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/18)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/55)
 
 
+## Search Guard Health API
 
+Search Guard 50 also introduces a new health API which gives administrator a powerful tool to find out about issues in the setup of Search Guard and its components. 
+
+The API is available by `GET` at `/_searchguard/component/_all/_health` and yields a large JSON document containing information about the state of various Search Guard components broken down by nodes.
+
+In order to access the endpoint, users need to have the `cluster:admin/searchguard/components/state/get` privilege. Only admin users should have the privilege.
+
+Details: 
+
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/104)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/53)
+ 
+## Auth Token Service
+
+Revocation of auth tokens did not work where tokens were created with `freeze_privileges: false` and fully requested privileges (i.e. `cluster_permissions: *` and `index_permissions: */*`. This is a non-standard setup, which can be only achieved by modification of the default confguration in `sg_config.yml`: `exclude_cluster_permissions` in the `auth_token_provider` would need to be `[]` in order to introduce this issue. This is a non-recommended setup.
+
+Details:
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/16)
+* [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/60)
+
+ 
+ 
+## sgadmin
+
+With 7.11.x onwards, we won't build new versions of the `sgadmin-standalone` archive. This is because of ES license restrictions. It is however perfectly possible to use older versions of `sgadmin-standalone` with Search Guard on ES 7.11+
+
+In the medium term, we will replace `sgadmin` by a new REST-based tool which makes distribution of `sgadmin-standalone` completely unnecessary.
+ 
