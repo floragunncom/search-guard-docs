@@ -26,7 +26,7 @@ The default value for the Kibana session cookie timeout was changed; originally,
 
 ## `kibana.yml` Configuration 
 
-We fixed multiple issues with the Kibana configuration which were introduced in ES 49.0. They are:
+We fixed multiple issues with the Kibana configuration which were introduced in SG 49.0. They are:
 
 - Read the config if the path is declared in the environment variable.
 - Read the config if the path is declared in the CLI arguments (-c/--config)
