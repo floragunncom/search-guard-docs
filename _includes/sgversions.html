@@ -47,7 +47,17 @@
     
     <td>{{ sgversions[0] }} </td>
 
-    {% if sgversions[3] == "yes" %}
+    {% if sgversions[3] == "yes_no_sgadmin" %}
+
+    <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
+
+    <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
+
+    <td><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.10.2-49.0.0/search-guard-suite-plugin-7.10.2-49.0.0-sgadmin-standalone.zip" target="_blank">49.0.0</a></td>
+
+    <td>Active</td>
+
+    {% elsif sgversions[3] == "yes" %}
 
     <!-- available version -->
 
