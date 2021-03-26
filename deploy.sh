@@ -21,7 +21,7 @@ fi
 
 echo "Building branch $git_branch"
 
-if [[ ! $git_branch =~ ^7.x-[1-9]{2}$ ]]; then
+if [[ ! $git_branch =~ ^7.x-[0-9]{2}$ ]]; then
     echo "Branch $git_branch does not seem to be a release branch, exiting gracefully"
     exit 0
 fi
