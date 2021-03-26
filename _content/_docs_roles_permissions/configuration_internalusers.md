@@ -64,7 +64,7 @@ _sg_meta:
   
 hr_employee:
   hash: $2a$12$7QIoVBGdO41qSCNoecU3L.yyXb9vGrCvEtVlpnC4oWLt/q0AsAN52
-  search_guard_role:
+  search_guard_roles:
     - SGS_LOGSTASH
   backend_roles:
     - kibanauser
