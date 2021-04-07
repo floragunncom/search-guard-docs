@@ -116,6 +116,10 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    aim: Automated Index Management
+    aim-rest: REST API
+    aim-conditions: Conditions
+    aim-actions: Actions
     sgadmin: sgadmin
     7x-49: Search Guard 7.x-49    
     7x-48: Search Guard 7.x-48    
@@ -155,6 +159,7 @@ labels:
     docs_other_integrations: Documentation
     docs_systemintegrators: Documentation
     docs_signals: Documentation
+    docs_aim: Documentation
     troubleshooting: Troubleshooting
     changelogs: Changelogs
     resources: Resources
@@ -215,6 +220,9 @@ collections:
     output: true
     permalink: :title
   docs_signals:
+    output: true
+    permalink: :title
+  docs_aim:
     output: true
     permalink: :title
   troubleshooting:
