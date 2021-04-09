@@ -71,11 +71,8 @@ hr_employee:
     - humanresources_department
   attributes:
     manager: "layne.burton"
-    departmentNumber:
-      - 5
-      - 17
-      - 42
-  description: "A user from the HR department"
+    departmentName: "operations"
+  description: "A user from the Ops department"
   
 finance_employee:
   - hash: ...
@@ -108,8 +105,9 @@ basic_internal_auth_domain:
 ```
 
 ## Using attributes from the internal user database
+{: #user-attributes }
 
-If you want to use attributes from the internal user database for the new-style  [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries, you need to provide a mapping in the `authentication_backend` entry in `sg_config.yml`. This might look like this:
+If you want to use attributes from the internal user database for the new-style [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries, you need to provide a mapping in the `authentication_backend` entry in `sg_config.yml`. This might look like this:
 
 ```yaml
 basic_internal_auth_domain:
@@ -122,10 +120,10 @@ basic_internal_auth_domain:
     type: internal
     config:
       map_db_attrs_to_user_attrs:
-        department: departmentNumber      
+        department: departmentName      
 ```
 
-This makes the value of the attribute `departmentNumber` in the internal user database available under the name `department`. Besides using a plain attribute name, you can also use JSON path expressions to extract values from complex attribute values.
+This makes the value of the attribute `departmentName` from the internal user database available under the name `department`. Besides using a plain attribute name, you can also use JSON path expressions to extract values from complex attribute values.
 
 For details, refer to:
 

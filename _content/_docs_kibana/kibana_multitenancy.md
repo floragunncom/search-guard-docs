@@ -30,26 +30,12 @@ The Global tenant is shared with every user. This is the default tenant if no ot
 
 The Private tenant is not shared.  It is only accessible for the currently logged in user.
 
-## Installation and configuration
-
-In order for multi tenancy to work, you need to configure:
-
-* Elasticsearch: Search Guard and the Kibana multitenancy enterprise module (automatically installed).
-* Kibana: the Search Guard Kibana plugin.
-
-Multi tenancy will not work properly if the configuration does not match in Elasticsearch and Kibana.
-
 
 ### Elasticsearch: Configuration
 
 Multi tenancy is configured in sg_config.yml:
 
 ```yaml
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
 sg_config:
   dynamic:
     do_not_fail_on_forbidden: true 
@@ -63,6 +49,7 @@ sg_config:
         enabled: false
         ...
 ```
+
 The following configuration keys are available:
 
 | Name | Description |
@@ -91,7 +78,7 @@ human_resources:
   description: "The human resources tenant"
 ```
 
-### Assigning tenants to Search Guard roles:
+### Assigning tenants to Search Guard roles
 
 You can assign one or more tenants to Search Guard roles in `sg_roles.yml`, for example:
 
@@ -115,6 +102,54 @@ In this example, a user that has the role `sg_human_resources` has access to the
 
 At the moment the only allowed values for `allowed_actions` are `SGS_KIBANA_ALL_WRITE` and `SGS_KIBANA_ALL_READ`. The option to assign finer-grained permissions will follow soon.
 {: .note .js-note .note-info}
+
+### Widcards and regular expressions in tenant patterns
+
+You can use wildcards and regular expression in tenant names to make them more dynamic.
+
+* An asterisk (`*`) will match any character sequence (or an empty sequence)
+  * `*my*index` will match `my_first_index` as well as `myindex` but not `myindex1`. 
+* A question mark (`?`) will match any single character (but NOT empty character)
+  * `?kibana` will match `.kibana` but not `kibana` 
+* Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
+  * `'/\S*/'` will match any non whitespace characters
+
+Example: 
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - ... 
+  tenant_permissions:
+    - tenant_patterns:
+      - 'dept_*'
+      - '/logstash-[1-9]{2}/'
+      allowed_actions:
+      - "SGS_KIBANA_ALL_WRITE"
+```      
+
+### User attributes in tenant patterns
+{: #user-attributes }
+
+You can use [user attributes](../_docs_roles_permissions/configuration_roles_permissions.md#user-attributes) when defining tenant patterns to make them more dynamic.
+
+For example, if the user has an attribute `department`, you can define a tenant pattern like:
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - ...
+  index_permissions:
+    - ... 
+  tenant_permissions:
+    - tenant_patterns:
+      - 'dept_${user.attrs.department}'
+      allowed_actions:
+      - "SGS_KIBANA_ALL_WRITE"
+```
+
 
 
 ### Kibana: Plugin Configuration
