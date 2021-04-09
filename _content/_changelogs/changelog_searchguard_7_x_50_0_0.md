@@ -87,7 +87,7 @@ Search Guard 50 brings significant improvements regarding stability and the reso
 
 ### Inclusion of Responsible Node in Watch State API
 
-The [watch state API](https://docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state) now always includes the name of the node that is responsible for executing the node. This can be useful for debugging watch execution problems. 
+The [watch state API](https://docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state) now always includes the name of the node that is responsible for executing the watch. This can be useful for debugging watch execution problems. 
 
 Details:
 

@@ -177,27 +177,28 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
         - CRUD
 ```
 
-### Dynamic index patterns: User attributes
+### Dynamic index and tenant patterns: User attributes
+{: #user-attributes }
 
-Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns. 
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
+- [Internal User Database](../_docs_roles_permissions/configuration_internalusers.md#user-attributes)
 - [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
 - [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
 - [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
 
-
 If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
-**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from the authentication domain under the prefix `${attr....}`. The old mechanism is now deprecated but still supported. However, attributes from the internal user database are **not yet supported** using the new mechanism.  For now, you need to stick to the old mechanism (`${attr.internal...}`) for these attributes.
-
-
+**Note:** The attribute mapping mechanism described here supersedes the old mechanism which would automatically provide all attributes from 
+the authentication domain under the prefix `${attr....}`. The old mechanism is deprecated but still supported. Please migrate to the new
+syntax to ensure compatibility with future Search Guard releases.  
 
 ### JWT Example:
 
 
-Suppose a JWT which contains a claim `department`:
+Suppose a Json Web Token contains a claim `department`:
 
 ```json
 {
@@ -211,56 +212,22 @@ Suppose a JWT which contains a claim `department`:
 }
 ```
 
-Then, you need to map it to a Search Guard user attribute in the JWT authenticator configuration:
+To use it as variable in index patterns and tenant patterns, map it to a Search Guard user attribute in the JWT authenticator configuration:
 
 ```yaml
 jwt_auth_domain:
-  http_enabled: true
-  order: 0
+  ...
   http_authenticator:
     type: jwt
-    challenge: false
+    ...
     config:
       map_claims_to_user_attrs:
-        department: department.number
+        `department`: department.name
 ```
 
-Afterwards, you can use this `department` claim to control index access like this:
+This maps the `department.name` JWT claim to the user attribute `department`.
 
-```yaml
-sg_own_index:
-  cluster_permissions:
-    - CLUSTER_COMPOSITE_OPS
-  index_permissions:
-    - index_patterns:  
-      - 'dept_${user.attrs.dept}':
-      allowed_actions:
-        - SGS_CRUD
-```
-
-
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_17` for the user `jdoe`.
-
-### Active Directory / LDAP Example
-
-Suppose the  LDAP entry of the current user contains an attribute `departmentNumber` with value `49`; furthermore, you configured LDAP like this:
-
-```yaml
-ldap:
-  http_enabled: true
-  order: 1
-  http_authenticator:
-    type: basic
-    challenge: true
-  authentication_backend:
-    type: ldap
-    config:
-      map_ldap_attrs_to_user_attrs:
-        department: departmentNumber
-```
-
-
-Then, you can control index access like this:
+You can then use the `department` attribute in index patterns and tenant patterns like:
 
 ```yaml
 sg_own_index:
@@ -271,11 +238,57 @@ sg_own_index:
       - 'dept_${user.attrs.department}':
       allowed_actions:
         - SGS_CRUD
+  tenant_permissions:
+    - tenant_patterns:
+      - 'dept_${user.attrs.department}'
+      allowed_actions:
+      - "SGS_KIBANA_ALL_WRITE"
 ```
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_49`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_operations`, and `SGS_KIBANA_ALL_WRITE` to the tenant named `dept_operations`.
+
+### Active Directory / LDAP Example
+
+Suppose the LDAP record of the current user contains an attribute `departmentName` with value `operations`.
+To use it as variable in index patterns and tenant patterns, map it to a Search Guard user attribute in the LDAP authenticator configuration like:
 
 
+```yaml
+ldap:
+  ...
+  http_authenticator:
+    ...
+  authentication_backend:
+    type: ldap
+    config:
+      map_ldap_attrs_to_user_attrs:
+        department: departmentName
+```
+
+This maps the `departmentName` LDAP attribute to the user attribute `department`.
+
+You can then use the `department` attribute in index patterns and tenant patterns like:
+
+
+```yaml
+sg_own_index:
+  cluster_permissions:
+    - CLUSTER_COMPOSITE_OPS
+  index_permissions:
+    - index_patterns:  
+      - 'dept_${user.attrs.department}':
+      allowed_actions:
+        - SGS_CRUD
+  tenant_permissions:
+    - tenant_patterns:
+      - 'dept_${user.attrs.department}'
+      allowed_actions:
+      - "SGS_KIBANA_ALL_WRITE"
+```
+
+Suppose the LDAP attribute has the value `operations`. 
+In this case, Search Guard grants the `SGS_CRUD` permissions to the index `dept_operations`, 
+and `SGS_KIBANA_ALL_WRITE` to the tenant named `dept_operations`.
 
 ### Internal users Example
 
@@ -285,28 +298,24 @@ Suppose the internal users entry contains an attribute `department`:
 jdoe:
   hash: ...
   attributes:
-    departmentNumber: "17"
+    departmentName: "operations"
 ```
-
 
 In order to use this attribute, you need map it in the `authentication_backend` configuration inside `sg_config.yml`: 
 
 ```yaml
 basic:
-  http_enabled: true
-  order: 1
+  ...
   http_authenticator:
-    type: basic
-    challenge: true
+    ...
   authentication_backend:
     type: internal
     config:
       map_db_attrs_to_user_attrs:
-        department: departmentNumber
+        department: departmentName
 ```
 
-
-You can use this `department` attribute to control index access like:
+You can then use the `department` attribute in index patterns and tenant patterns like:
 
 ```yaml
 sg_own_index:
@@ -317,9 +326,14 @@ sg_own_index:
       - 'dept_${user.attrs.department}':
       allowed_actions:
         - SGS_CRUD
+  tenant_permissions:
+    - tenant_patterns:
+      - 'dept_${user.attrs.department}'
+      allowed_actions:
+      - "SGS_KIBANA_ALL_WRITE"
 ```
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_17` for the user `jdoe`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_operations`, and `SGS_KIBANA_ALL_WRITE` permissions to the Kibana tenant `dept_operations`.
 
 
 ### Substitution Variable Functionality
@@ -417,9 +431,6 @@ For the `index_pattern` entries, you can use variable substitution as described 
 Note: In `index_pattern`  entries for `exclude_index_permissions`, the deprecated user attribute syntax `${attr.internal...}` is not supported any more. You need to use the new-style user attributes as described above.
 
 The `action` key takes a list of actions to be excluded. The list entries can contain wildcards or action groups. Note that this entry is named `actions` - in contrast to the entry `allowed_actions` in the normal `index_permissions` entry.
-
-
-
 
 ## Built-in Roles
 
