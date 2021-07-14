@@ -55,7 +55,12 @@
 
     <td><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.10.2-49.0.0/search-guard-suite-plugin-7.10.2-49.0.0-sgadmin-standalone.zip" target="_blank">49.0.0</a></td>
 
+    <!-- is EOL switch -->
+    {% if sgversions[4] == "no" %}
     <td>Active</td>
+    {% else %}
+    <td>EOL</td>
+    {% endif %}
 
     {% elsif sgversions[3] == "yes" %}
 
@@ -67,7 +72,12 @@
 
     <td><a href="{{ sgadmin_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
+    <!-- is EOL switch -->
+    {% if sgversions[4] == "no" %}
     <td>Active</td>
+    {% else %}
+    <td>EOL</td>
+    {% endif %}
     
     {% else %}
 
