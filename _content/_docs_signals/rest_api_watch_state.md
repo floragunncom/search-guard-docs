@@ -133,8 +133,6 @@ The attributes have the following meaning:
 **last_status:** The status of the last execution summarized for the whole watch. The same status can be also found in the watch log. 
 **node:** The name of the node which is right now responsible for exeucting the watch.
 
-
-
 ### 403 Forbidden
 
 The user does not have the required to access the endpoint for the selected tenant.

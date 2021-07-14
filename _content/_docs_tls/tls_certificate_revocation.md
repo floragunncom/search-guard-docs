@@ -47,9 +47,9 @@ Each CA is required to keep track of revoked certificates. After the CA has revo
 
 Instead of downloading a potentially large CRL file periodically, one can also query the CA's *OCSP server* to validate a certificate. The certificates serial number is transmitted to the OSCP server, and validation is based on the server's response. As with CRLs, the OCSP endpoint is part of each certificate *Extensions* section.
 
-## Configuration
+## CRL Configuration
 
-To enable CRL and OCSP support, add the following to `elasticsearch.yml`:
+To enable CRL support, add the following to `elasticsearch.yml`:
 
 ```
 searchguard.ssl.http.crl.validate: true
@@ -60,17 +60,32 @@ If CRL validation is enabled, Search Guard can use:
 * A local CRL file accessible on each node
 * A remote CRL file, as configured in the *Distribution Points* field of the certificate
 * An OSCP server file, as configured in the *Authority Information Access* field of the certificate
+  * This requires additional configuration, see below
 
 ### Configuration options
 
 | Name | Description |
 |---|---|
 | searchguard.ssl.http.crl.validate | Enable CRL validation. Default: false |
-| searchguard.ssl.http.crl.file_path |  Absolute path to a local CRL file. The file must be present on all nodes and is reloaded automatically if it changes. Optional, usually CRL or OCSP endpoints in the certificate are preferred.|
-| searchguard.ssl.http.crl.prefer\_crlfile\_over\_ocsp | If set to true, the CRL certificate entry is preferred over the OCSP entry if the certificate contains both. Default: false |
-| searchguard.ssl.http.crl.disable_crldp | Disable CRL endpoints in certificates. Default: false|
-| searchguard.ssl.http.crl.disable_ocsp | Disable OCSP endpoints in certificates. Default: false|
+| searchguard.ssl.http.crl.file_path |  Absolute path to a local CRL file. The file must be present on all nodes and is reloaded automatically if it changes. Optional, usually CRL endpoints in the certificate are preferred.|
 | searchguard.ssl.http.crl.check\_only\_end\_entities | If set to true, only end entities (leaf certificates) are validated. Default: true|
 {: .config-table}
 
 
+## OCSP Configuration
+
+Due to limitations in the Elasticsearch security model, enabling OCSP requires changes to the `jdk/conf/security` file in your ES installation directory on every node.
+
+To enable OCSP, add the following line to this file:
+
+```
+ocsp.enable=true
+```  
+
+You can use the following configuration options in `elasticsearch.yml` to control whether CRL, OCSP or both are being used:
+
+| Name | Description |
+|---|---|
+| searchguard.ssl.http.crl.prefer\_crlfile\_over\_ocsp | If set to true, the CRL certificate entry is preferred over the OCSP entry if the certificate contains both. Default: false |
+| searchguard.ssl.http.crl.disable_crldp | Disable CRL endpoints in certificates. Default: false|
+{: .config-table}
