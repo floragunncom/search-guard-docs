@@ -194,11 +194,23 @@ It is recommended to use the `?:` operator for all cases where it is not absolut
   
 `${user.attr.xyz|tail|head?:0|toJson}`: Extracts the second element of a list and converts it to JSON format. If there is no second element, 0 is returned.
 
+## Document-level security in complex role and privilege configurations
 
- 
-## Multiple roles and document-level security
+A user can be member of more than one role, and each role can potentially define a different DLS query and different privileges for the same index. This has the potential to produce quite confusing security configuration structures. 
 
-A user can be member of more than one role, and each role can potentially define a different DLS query for the same index. In this case, all DLS queries are collected and combined with `OR`.
+Thus, we are recommending to follow a number of rules to keep the security configuration as clear as possible:
+
+* Do not define roles in a way that one user has more than one DLS queries per index.
+* To achieve this, it helps to keep the scope of roles using DLS limited to a single index (or only a set of related indices).
+
+Also, be sure that a user with DLS/FLS-restricted access to an index does not have write access to the same index. Otherwise, this user could modify, delete or update documents they are not allowed to view. To achieve this, take care to obey the following rules:
+
+* Do not mix roles which grant write access with roles which use DLS. 
+* If necessary, use `exclude_index_permissions` (see [Permission Exclusions](../docs_roles_permissions/configuration_roles_permissions.md#permission-exclusions) for the `actions` `SGS_WRITE`. 
+
+### Multiple roles and document-level security
+
+If Search Guard encounters users which have more than one role with a DLS query for the same index, all DLS queries are collected and combined with the logical `OR` operator.
 
 If a user has a role that defines DLS restrictions on an index, and another role that does not place any DLS restrictions on the same index, the restrictions defined in the first role still apply.
 
@@ -208,7 +220,6 @@ You can change that behaviour so that a role that places no restrictions on an i
 searchguard.dfm_empty_overrides_all: true
 ```
 
-
 ## Performance considerations
 
 A DLS query can be as simple or complex as necessary, and you can use the full range of Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
@@ -216,3 +227,25 @@ A DLS query can be as simple or complex as necessary, and you can use the full r
 ## DLS/FLS Execution Order
 
 If you use both DLS and FLS, all fields that you are basing the DLS query on must be visible, i.e. not filtered by FLS. Otherwise, your DLS query will not work properly. 
+
+## Advanced Topics
+
+### DLS Execution Modes
+
+Since Search Guard 52, there are two execution modes for DLS:
+
+- Lucene-level DLS, which is the default, is performed by modifying Lucene queries and data structures. This is the most efficient mode. However, it is unable to support certain advanced constructs used in DLS queries; most importantly, this includes term lookup queries.
+- Filter-level DLS is performed at the top level of the Elastic stack by modifying queries directly after they have been received by Elasticsearch. This allows the use of term lookup queries (TLQ) inside of DLS queries, but limits the set of operations that can be used to retrieve data from the protected index to `get`, `search`, `mget`, `msearch`. Also, the use of Cross Cluster Searches is limited in this mode.
+
+By default, Search Guard switches automatically between the modes depending on the DLS queries configured for the index. If a term-lookup query is present, DLS will be performed in filter-level mode. Otherwise, lucene-level mode will be used.
+
+It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `searchguard.dls.mode` which must be configured in `elasticsearch.yml` on each node of the Elasticsearch cluster.
+
+The setting `searchguard.dls.mode` has three possible values:
+
+* `adaptive` (default): DLS queries without TLQ queries will be executed on the Lucene level. This corresponds to the behaviour in previous Search Guard versions. If a term lookup query is configured as DLS query, Search Guard will automatically switch to filter-level DLS for operations involving the particular index. If there are other non-TLQ DLS queries configured for the same index, these queries will be also enforced on the filter level. Actions operating exclusively on indexes with non-TLQ DLS queries will however still use Lucene level DLS.
+* `lucene_level`: Forces all DLS queries to be enforced on Lucene level. This completely corresponds to the DLS operation of Search Guard versions before 52. DLS queries using TLQ will fail using this mode.
+* `filter_level`: Forces all DLS queries to be enforced on filter level.  
+
+
+
