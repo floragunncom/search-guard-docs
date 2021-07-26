@@ -315,11 +315,12 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-suite-7:
-    - 7.13.3|52.0.0|51.0.0|yes_no_sgadmin|no
-    - 7.13.2|52.0.0|51.0.0|yes_no_sgadmin|no
-    - 7.13.1|52.0.0|51.0.0|yes_no_sgadmin|no
-    - 7.13.0|52.0.0|51.0.0|yes_no_sgadmin|no    
-    - 7.10.2|52.0.0|51.0.0|yes_no_sgadmin|no
+    - 7.13.4|52.1.0|51.0.0|yes_no_sgadmin|no
+    - 7.13.3|52.1.0|51.0.0|yes_no_sgadmin|no
+    - 7.13.2|52.1.0|51.0.0|yes_no_sgadmin|no
+    - 7.13.1|52.1.0|51.0.0|yes_no_sgadmin|no
+    - 7.13.0|52.1.0|51.0.0|yes_no_sgadmin|no    
+    - 7.10.2|52.1.0|51.0.0|yes_no_sgadmin|no
     - 7.12.1|51.2.0|51.0.0|yes_no_sgadmin|no
     - 7.12.0|51.2.0|51.0.0|yes_no_sgadmin|no
     - 7.11.2|50.3.0|50.1.0|yes_no_sgadmin|no
