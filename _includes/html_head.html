@@ -29,15 +29,43 @@
 			{% endif %}
 		{% endif %}
 	</title>
-	<!-- OG and Twitter -->
-	<meta property="og:title" content="{%if page.html_title != null %} {{productname}} for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
-	<meta property="og:description" content="{{page.description}}" />
-	<meta property="og:locale" content="en_US" />
-	<meta name="twitter:card" content="summary" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@searchguard" />
 	<meta name="twitter:creator" content="@searchguard" />
-	
+	<meta name="twitter:title" content="{%if page.html_title != null %} {{productname}} for Elasticsearch | {{page.html_title}} | Search Guard {% else %} Security for Elasticsearch | {{page.title}} | Search Guard {% endif %}" />
+	<meta name="twitter:description" content="{{page.description}}" />
+
+	{% if page.twitterimage %}
+	<meta name="twitter:image" content="{{page.twitterimage}}" />
+	<meta name="twitter:image:src" content="{{page.twitterimage}}" />
+	<meta name="twitter:image:alt" content="{{page.title}}" />
+	{% else %}
+	<meta name="twitter:image" content="https://docs.search-guard.com/latest/img/logos/search-guard-frontmatter.png" />
+	<meta name="twitter:image:src" content="https://docs.search-guard.com/latest/img/logos/search-guard-frontmatter.png" />
+	<meta name="twitter:image:alt" content="{{page.title}}" />
+	{% endif %}
+
+	<!-- facebook -->
+
+	<meta property="og:title" content="{{page.title}}" />
+	<meta property="og:description" content="{{page.description}}" />
+
+	{% if page.facebookimage %}
+	<meta property="og:image" content="{{page.facebookimage}}" />
+	{% else %}
+	<meta property="og:image" content="https://docs.search-guard.com/latest/img/logos/search-guard-frontmatter.png" />
+	{% endif %}
+
+	{%if page.canonical == null %}
+	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}{{page.url}}" />
+	{% else %}
+	<meta property="og:url" content="https://docs.search-guard.com{{site.baseurl}}/{{page.canonical}}" />
+	{% endif %}
+
+	<meta property="og:type" content="website" />
+
 	<!-- Page description -->
 	<meta name="description" content="{{page.description}}">
 
@@ -45,8 +73,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Favicon  -->
 
+	<!-- Favicon  -->
 	<link rel="apple-touch-icon" href="img/logos/SG_Fav-57px.png" />        
 	<link rel="apple-touch-icon" href="img/logos/SG_Fav-114px.png" sizes="114x114" />        
 	<link rel="apple-touch-icon" href="img/logos/SG_Fav-172px.png" sizes="72x72" />                
@@ -71,7 +99,5 @@
 	<!-- Lazy loaded StyleSheets -->
 	<link rel="preload" href="css/prism.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<noscript><link rel="stylesheet" href="css/prism.css"></noscript>
-
-
 
 </head>
