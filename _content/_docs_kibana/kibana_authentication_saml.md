@@ -1,9 +1,9 @@
 ---
-title: SAML authentication
-html_title: Kibana SAML
+title: Quick Start
+html_title: Kibana SAML Quick Start
 slug: kibana-authentication-saml
-category: kibana-authentication
-order: 220
+category: kibana-authentication-saml-overview
+order: 100
 layout: docs
 edition: enterprise
 description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
@@ -16,46 +16,119 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Kibana SAML authentication
+# Kibana SAML Quick Start
 {: .no_toc}
 
 {% include toc.md %}
 
-Since most of the SAML specific configuration is done in Search Guard, just activate SAML in your `kibana.yml` by adding:
+Search Guard supports user authentication via SAML Single Sign-On. Search Guard implements the Web Browser SSO profile of the SAML 2.0 protocol.
+
+This chapter describes the basic setup of SAML with Search Guard. This will work in many cases; some setups however require special configurations for TLS, proxies or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_saml_advanced_config.md) for this.
+
+## Prerequisites
+
+In order to use SAML, you need to have an Identity Provider (IdP) supporting SAML.
+
+Furthermore, it is necessary that HTTPS is configured for Kibana.
+
+## IdP Setup
+
+First, create a new application integration representing your Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the integration, you must make sure that the following settings are configured like this:
+
+* Assertion Consumer Service URL or Single Sign On URL: The IdP will send authentication information to this URL. This must be the publicly visible URL of Kibana followed by the path `/searchguard/saml/acs`. For example, `https://kibana.example.com:5601/searchguard/saml/acs`
+
+Additionally, you need to make sure that the roles of a user are mapped to a SAML assertion.
+
+You need to keep a couple of values from the IdP setup ready for the next step. These values are:
+
+* The SP Entity Id
+* The name of the SAML assertion to which you mapped the roles
+* The URL of the SAML metadata endpoint at your IdP or a metadata file.
+* The IdP Entity Id. You can get this Id by looking into the metadata file for an `IDOSSODescriptor` element and using the `entityID` of its parent element. 
+
+## Search Guard Setup
+
+Now you need to edit the `sg_frontend_config.yml` file. 
+
+The default version of this file contains an entry for password-based authentication:
 
 ```
-searchguard.auth.type: "saml"
+default:
+  authcz:
+  - type: basic
 ```
 
-It is also required to set the isSameSite=None to enable Kibana to send the cookie in a third-party context. [Read more.](https://docs.search-guard.com/latest/kibana-in-iframe)
-The setting requires HTTPS.
+If you don't want to use password-based authentication, replace the entry`- type: basic` by the new configuration. If you want to continue to use password-based authentication besides SAML, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
+
+The minimal `sg_frontend_config.yml` configuration for SAML looks like this:
+
+```
+default:
+  authcz:
+  - type: saml
+    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    idp.entity_id: "IdP entity id from the IdP"
+    sp.entity_id: "SP entity id from the IdP"
+    roles_key: "roles"
+```
+
+You need to replace the values for `idp.metadata_url`, `idp.entity_id`, `sp.entity_id` and `roles_key` by the values configured in the IdP. 
+
+If your IdP does not provide the metadata by an URL, you can to download the metadata from the IdP and specify it inline in the configuration:
+
+```
+default:
+  authcz:
+  - type: saml
+    idp.metadata_xml: |
+            <EntityDescriptor entityID="IdP entity id from the IdP" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+              <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+				  [...]
+              </IDPSSODescriptor>
+            </EntityDescriptor>  
+    idp.entity_id: "IdP entity id from the IdP"
+    sp.entity_id: "SP entity id from the IdP"
+    roles_key: "roles"
+```
+ 
+## Kibana Setup
+
+In order to use SAML with Kibana, it is necessary to configure the external URL of Kibana in the file `config/kibana.yml` in your Kibana installation. 
+
+For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
+
+```
+server.publicBaseUrl: "https://kibana.example.com:5601"
+```
+
+For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`: 
+
+```
+searchguard.frontend_base_url: "https://kibana.example.com:5601"
+```
+
+Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `kibana.yml`:
+
 ```
 searchguard.cookie.isSameSite: None
 searchguard.cookie.secure: true
 ```
 
-In addition the Kibana endpoint for validating the SAML assertions must be whitelisted:
-
-```
-server.xsrf.whitelist: ["/searchguard/saml/acs"]
-```
-
-If you use the logout POST binding, you also need to whitelist the logout endpoint:
+Finally, you need to excempt the Kibana endpoints with which the IdP interacts from the Kibana XSRF protection. If your `kibana.yml` does not contain yet the key
+`server.xsrf.whitelist`, please add this:
 
 ```
 server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 
-## IdP initated SSO
+If `kibana.yml`  already contains the key, make sure that the array contains the values `"/searchguard/saml/acs", "/searchguard/saml/logout"`. 
 
-To use IdP initiated SSO, in your IdP, set the *Assertion Consumer Service* endpoint to:
+## Activate the Setup
 
-```
-/searchguard/saml/acs/idpinitiated
-```
+In order to activate the setup, do the following:
 
-Then add this endpoint to the xsrf whitelist in kibana.yml:
+- If you needed to edit `kibana.yml`, make sure that you restart the Kibana instance. 
+- Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
-```
-server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
-```
+That's it. If you navigate in a browser to your Kibana instance, you should be directed to the IdP login page.
+

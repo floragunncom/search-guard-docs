@@ -1,5 +1,5 @@
 ---
-title: OpenID Connect
+title: OIDC
 html_title: Kibana OpenID
 slug: kibana-authentication-openid-overview
 category: kibana-authentication

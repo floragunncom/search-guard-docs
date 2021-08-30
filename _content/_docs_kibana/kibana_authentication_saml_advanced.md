@@ -1,36 +1,40 @@
 ---
 title: Advanced Configuration
-html_title: Kibana OIDC Advanced Configuration
-slug: kibana-authentication-openid-advanced-config
-category: kibana-authentication-openid-overview
+html_title: Kibana SAML Advanced Configuration
+slug: kibana-authentication-saml-advanced
+category: kibana-authentication-saml-overview
 order: 200
 layout: docs
 edition: enterprise
-description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
+description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
+
 
 ---
 <!---
-Copyright 2021 floragunn GmbH
+Copyright 2020 floragunn GmbH
 -->
 
-# Kibana OpenID Connect Advanced Configuration
+# Kibana SAML Advanced Configuration
 {: .no_toc}
 
 {% include toc.md %}
 
 
-This chapter lists all advanced configuration options for OIDC. Most of them are only needed for special setups.
+
+This chapter lists all advanced configuration options for SAML. Most of them are only needed for special setups.
 
 
-## Mapping of JWT Claims to User Data
+## Mapping of SAML Assertions to User Data
 
-The name of the users and their roles are determined by so called claims stored in the JWTs which are provided by the IdP to Search Guard. You can control the mapping of these claims to user data using the following options:
+The name of the users and their roles are determined by so called assertions stored in the SAML responses which are provided by the IdP to Search Guard. You can control the mapping of these assertions to user data using the following options:
 
-**subject_key:** The key in the JSON payload that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional.
+**subject_key:** The name of the SAML assertion that stores the user's name. Optional. If not configured, the `NameID` attribute is used.
 
-**roles_key:** The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. 
+**roles_key:**  The name of the SAML assertion that stores the user's roles. If this assertion is multi-valued, Search Guard interprets each value as single role.
 
-**subject_pattern:**  A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the JWT as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. 
+**roles_separator:** For the case that some IdPs do not support multi-valued assertions for roles, Search Guard can also split a single value at a certain separator. Use this option to specify the separator to split the roles.
+
+**subject_pattern:**  A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the SAML Response as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. 
 
 ## TLS Settings
 
@@ -53,15 +57,16 @@ If you need special TLS settings to create connections from Search Guard to the 
 default:
   authcz:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+  - type: saml
+    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    idp.entity_id: "IdP entity id from the IdP"
     idp.tls.trusted_cas: |
       -----BEGIN CERTIFICATE-----
       MIIEZjCCA06gAwIBAgIGAWTBHiXPMA0GCSqGSIb3DQEBCwUAMHgxEzARBgoJkiaJ
       [...]
       1k4enV7iJWXE8009a6Z0Ouwm2Bg68Wj7TAQ=
       -----END CERTIFICATE-----
+    sp.entity_id: "SP entity id from the IdP"      
     roles_key: "roles"
 ```
 
@@ -76,23 +81,6 @@ If you need to use TLS client authentication to connect from Search Guard to the
 **idp.tls.client_auth.private_key_password:** If the private key is encrypted, you need to specify the key password using this option. 
 
 
-## Proxy Settings
-
-If the IdP is only reachable from Search Guard via an HTTP proxy, you can use the `idp.proxy` option to define the URI of the proxy. Optional, defaults to no proxy.
-
-### Example
-
-```
-default:
-  authcz:
-  - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    idp.proxy: "https://your.outbreaking.proxy:8080"
-    roles_key: "roles"
-```
-
 
 ## Using only certain sections of a JWT subject claim as user name
 
@@ -105,11 +93,11 @@ For example:
 ```yaml
 default:
   authcz:
-  - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    subject_pattern: "^(.+)@example\.com$"
+    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    idp.entity_id: "IdP entity id from the IdP"
+    sp.entity_id: "SP entity id from the IdP"
     roles_key: "roles"
+    subject_pattern: "^(.+)@example\.com$"
 ```
 
 In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
@@ -132,25 +120,52 @@ You can however also use several capturing groups if you want to use these group
       subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
 ```
 
-## Logout URL
+## Force a re-login even if the user has an active session with the IdP
 
-If you want to customize the URL which Kibana will navigate to when the user selects the "Logout" menu item, use the `logout` option.
+TODO
 
-```
+```yaml
 default:
   authcz:
-  - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    logout_url: "https://your.idp/logout"
+    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    idp.entity_id: "IdP entity id from the IdP"
+    sp.entity_id: "SP entity id from the IdP"
+    sp.forceAuthn: false
     roles_key: "roles"
+    subject_pattern: "^(.+)@example\.com$"
 ```
 
-## Rate-limiting connections to the IdP
+## IdP initated SSO
 
-In theory it is possible to DOS attack an OpenID based infrastructure by sending tokens with randomly generated, non-existing key ids at a high frequency. In order to mitigate this, Search Guard will only allow a maximum number of new key ids in a certain time frame. If more unknown key ids are receievd, Search Guard will return a HTTP status code 503 (Service not available) and refuse to query the IdP. By defaut, Search Guard does not allow for more than 10 unknown key ids in a time window of 10 seconds. You can control these settings by the following configuration keys:
+IdP initiated SSO allows you to open Kibana directly from your IdP, without having navigated to Kibana first.
 
-**refresh_rate_limit_count:**  The maximum number of unknown key ids in the time window. Default: 10
+To use IdP initiated SSO, you need to complete the following steps:
 
-**refresh_rate_limit_time_window_ms:** The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000
+* Edit the application settings in your IdP and set the *Assertion Consumer Service* endpoint to `/searchguard/saml/acs/idpinitiated
+`.
+
+Then add this endpoint to the xsrf whitelist in `kibana.yml`:
+
+```
+server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
+```
+
+
+## Request signing
+
+Requests from Search Guard to the IdP can optionally be signed. Use the following settings to configure request signing:
+
+**sp.signature\_private\_key:** The private key used to sign the requests. Optional. If not provided, requests are not signed.
+
+**sp.signature\_algorithm:** The algorithm used to sign the requests. See below for possible values. 
+
+Search Guard supports the following signature algorithms:
+
+| Algorithm | Value |
+|---|---|
+| DSA\_SHA1 | http://www.w3.org/2000/09/xmldsig#dsa-sha1;|
+| RSA\_SHA1 | http://www.w3.org/2000/09/xmldsig#rsa-sha1;|
+| RSA\_SHA256 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha256;|
+| RSA\_SHA384 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha384;|
+| RSA\_SHA512 | http://www.w3.org/2001/04/xmldsig-more#rsa-sha512;|
+{: .config-table}

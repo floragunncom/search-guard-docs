@@ -1,9 +1,9 @@
 ---
-title: Iframe
-html_title: Kibana in iframe
+title: Kibana in IFrame
+html_title: Kibana in IFrame
 slug: kibana-in-iframe
-category: kibana
-order: 500
+category: kibana-advanced
+order: 200
 layout: docs
 edition: community
 description: How to run Kibana powered by SearchGuard in an iframe on a third party website.
@@ -12,7 +12,7 @@ description: How to run Kibana powered by SearchGuard in an iframe on a third pa
 Copyright 2020 floragunn GmbH
 -->
 
-# Kibana in iframe
+# Kibana in IFrame
 {: .no_toc}
 
 {% include toc.md %}

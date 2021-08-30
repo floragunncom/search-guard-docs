@@ -1,9 +1,9 @@
 ---
-title: Proxy authentication
-html_title: Kibana Proxy
+title: Proxy
+html_title: Kibana Proxy Authentication
 slug: kibana-authentication-proxy
 category: kibana-authentication
-order: 600
+order: 300
 layout: docs
 edition: community
 description: How to an authenticating proxy in front of Kibana to implement Single Sign On.
@@ -17,69 +17,33 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Activate proxy authentication by adding the following to `kibana.yml`:
+Proxy authentication depends on a proxy running in front of Kibana and adding the necessary authentication and authorization information to the headers of the HTTP requests. 
 
-```
-searchguard.auth.type: "proxy"
-```
+In order to securely use proxy authentication with Kibana, you must make sure that Kibana is only available via the proxy and not via direct connections. If Kibana was available via direct connections, users could spoof authentication or authorization information.
+{: .note .js-note .note-warning}
 
-## Whitelist the proxy headers
+## Prerequisites
 
-Make sure to whitelist all HTTP headers set by your proxy in the header whitelist in kibana.yml, leaving `Authorization`intact:
+In order to use proxy authentication, you need a proxy in front of Kibana which adds authentication information to the HTTP requests.
+
+## Search Guard Backend Setup
+
+In order to use proxy authentication with Kibana, you have to also set up a suitable authentication mechanism in the Search Guard backend configuration `sg_config.yml`.
+
+The type of the setup depends on the information provided by the proxy in the HTTP headers:
+
+- If the proxy transmits username and role information as plain headers, go for a [proxy](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend.
+- If the proxy transmits authorization as a JWT in a header, go for a  [JWT](../_docs_auth_auth/auth_auth_jwt.md) authenticator in the backend.
+
+## Kibana Setup
+
+Additionally, you need to edit the file `config/kibana.yml` in your Kibana installation:
+
+* Add the line `searchguard.auth.type: "proxy"`
+* Make sure to whitelist all HTTP headers set by your proxy in the header whitelist in kibana.yml:
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-forwarded-for", "x-proxy-user", "x-proxy-roles" ]
 ```
 
 Note that the Search Guard proxy authenticator requires the `x-forwarded-for`header to function properly.
-
-## Configuration example
-
-<div class="code-highlight " data-label="">
-<span class="js-copy-to-clipboard copy-code">copy</span> 
-<pre class="language-yaml">
-<code class=" js-code language-markup">
-
-# Enable Proxy
-searchguard.auth.type: "proxy"
-
-# Use HTTPS instead of HTTP
-elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
-
-# Configure the Kibana internal server user
-elasticsearch.username: "kibanaserver"
-elasticsearch.password: "kibanaserver"
-
-# Disable SSL verification when using self-signed demo certificates
-elasticsearch.ssl.verificationMode: none
-
-# Whitelist basic headers and multi tenancy header
-elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-forwarded-for", "x-proxy-user", "x-proxy-roles" ]
-</code>
-</pre>
-</div>
-
-## Elasticsearch configuration
-
-If you're using HTTP Basic Authentication and the internal user database for the Kibana server user, make sure that both authentication domains are active in `sg_config.yml`:
-
-```yaml
-proxy_auth_domain:
-  enabled: true
-  order: 0
-  http_authenticator:
-    type: proxy
-    challenge: false
-    config:
-      user_header: "x-proxy-user"
-      roles_header: "x-proxy-roles"
-  authentication_backend:
-    type: noop
-basic_internal_auth_domain: 
-  enabled: true
-  order: 1
-  http_authenticator:
-    type: basic
-    challenge: false
-    ...
-```

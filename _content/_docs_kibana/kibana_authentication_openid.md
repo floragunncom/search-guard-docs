@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-html_title: Kibana OpenID Quick Start
+html_title: Kibana OIDC Quick Start
 slug: kibana-authentication-openid
 category: kibana-authentication-openid-overview
 order: 100
@@ -24,7 +24,11 @@ With Search Guard, you can use the OpenID Connect (OIDC) protocol to authenticat
 
 This chapter describes the basic setup of OIDC with Search Guard. This will work in many cases; some setups however require special configurations for TLS, proxies or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
 
-Prerequisites: In order to use OIDC, you need to have an Identity Provider (IdP) supporting OIDC.
+## Prerequisites
+
+In order to use OIDC, you need to have an Identity Provider (IdP) supporting OIDC.
+
+Furthermore, it is necessary that HTTPS is configured for Kibana.
 
 ## IdP Setup
 
@@ -41,8 +45,6 @@ You need to keep a couple of values from the IdP setup ready for the next step. 
 * The client secret
 * The name of the JWT claim to which you mapped the roles
 * The URL of the OIDC configuration endpoint. This URL generally looks like this: `https://your.idp/.../.well-known/openid-configuration`
-
-Activate OpenID Connect by adding the following to `kibana.yml`:
 
 ## Search Guard Setup
 
@@ -87,6 +89,13 @@ For older versions of Kibaba, please use the setting `searchguard.frontend_base_
 
 ```
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
+```
+
+Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `kibana.yml`:
+
+```
+searchguard.cookie.isSameSite: None
+searchguard.cookie.secure: true
 ```
 
 ## Activate the Setup

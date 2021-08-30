@@ -1,8 +1,8 @@
 ---
 title: Customizing the login page
-html_title: Login Page
+html_title: Customizing the Search Guard Kibana Plugin login page
 slug: kibana-login-customizing
-category: kibana-authentication
+category: kibana-authentication-basic-overview
 order: 250
 layout: docs
 edition: community
@@ -22,14 +22,24 @@ You can fully customize the login page to adapt it to your needs. Per default, t
 kibana_customize_login.jpg" style="width: 40%" class="md_image"/>
 </p>
 
-Use the following setting in kibana.yml to customize one or more elements:
+You can use `sg_frontend_config` to customize the login page. Such a configuration can look like this:
 
-| Name | Description |
-|---|---|
-| searchguard.basicauth.login.showbrandimage | boolean, show or hide the brand image, Default: true|
-| searchguard.basicauth.login.brandimage | String, `src` of the brand image. Should be an absolute URL to your brand image, e.g. `http://mycompany.com/mylogo.jpg`.|
-| searchguard.cookie.name | String, name of the cookie. Default: 'searchguard_authentication' |
-| searchguard.basicauth.login.title | String, title of the login page. Can contain HTML tags|
-| searchguard.basicauth.login.subtitle | String, subtitle of the login page. . Can contain HTML tags|
-| searchguard.basicauth.login.buttonstyle | String, style attribute of the login button. |
-{: .config-table}
+```
+default:
+  login_page:
+    brand_image: "https://mycompany.example.com/mylogo.png"
+    title: "<blink>Hello!</blink>"
+    button_style: "background-color: green"
+  authcz:
+  - type: basic
+```
+
+These options are available:
+
+**login_page.brand_image:** An absolute URL to your brand image.
+
+**login_page.show_brand_image:** Set this to `false` when you want to have no brand image at all on the login page.
+
+**login_page.title:** Title of the login page. Can contain HTML tags.
+
+**login_page.button_style:** Style attribute of the login button.
