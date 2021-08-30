@@ -27,6 +27,10 @@ Search Guard comes with pluggable authentication and authorization modules. Depe
 * [JSON Web token](../_docs_auth_auth/auth_auth_jwt.md)
 * [Proxy Authentication](../_docs_auth_auth/auth_auth_proxy.md)
 
+**Note:** OIDC and SAML based authentication is only available for Kibana. See the documentation on [Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
+
+## sg_config.yml
+
 The main configuration file for authentication and authorization modules  is `sg_config.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user roles are fetched from backend systems (optional).
 
 It has three main parts:
@@ -107,10 +111,6 @@ Allowed values for `type` are:
   * Kerberos authentication. Additional, [Kerberos-specific configuration](../_docs_auth_auth/auth_auth_kerberos.md) is needed.
 * jwt
   * JSON web token authentication. Additional, [JWT-specific configuration](../_docs_auth_auth/auth_auth_jwt.md) is needed.
-* openid
-  * OpenID / OIDC. Additional, [OpenID-specific configuration](../_docs_auth_auth/auth_auth_openid.md) is needed.
-* saml
-  * SAML. Additional, [SAML-specific configuration](../_docs_auth_auth/auth_auth_saml_authentication.md) is needed.
 * proxy
   * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) for further details.
 * clientcert

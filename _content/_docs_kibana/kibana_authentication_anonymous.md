@@ -3,7 +3,7 @@ title: Anonymous authentication
 html_title: Kibana anon authentication
 slug: kibana-authentication-anonymous
 category: kibana-authentication
-order: 220
+order: 800
 layout: docs
 edition: community
 description: How to configure Kibana to allow anonymous access to indices, dashboards, and visualization

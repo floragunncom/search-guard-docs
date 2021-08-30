@@ -1,5 +1,5 @@
 ---
-title: Authentication Types
+title: Overview
 html_title: Authentication Types
 slug: kibana-authentication-types
 category: kibana-authentication
@@ -15,57 +15,33 @@ Copyright 2020 floragunn GmbH
 # Kibana Authentication Types
 {: .no_toc}
 
-{% include toc.md %}
+With Search Guard, you can choose from a number of different modes of authenticating users in Kibana. 
 
-The Search Guard Kibana plugin offers several ways of authenticating users. Regardless of which method you choose, please make sure it matches the configured authentication type configured in Search Guard. 
+There are a number of general authentication approaches:
 
-There are two general authentication approaches:
+**Username/password-based authentication:** When using this approach, Search Guard displays a login-form where the user enters a username and a password. These credentials are then validated against all Search Guard authentication domains (configured in `sg_config.yml`). Thus, you can both use the [Search Guard internal user database](../_docs_roles_permissions/configuration_internalusers.md) and [LDAP](../_docs_auth_auth/auth_auth_ldap.md) to authenticate such users.  
+[More details](kibana_authentication_basicauth.md)
 
-## HTTP Basic authentication
+**Browser-based Single Sign On authentication:** In this mode, the user is authenticated by a third party web site, like an Identity Provider (IdP) supporting the OIDC or SAML protocol. When an unauthenticated user tries to open Kibana in their web browser, Search Guard will redirect the user to the Identity Provider web site, where the user is requested to log in. After successful authentication, the IdP will direct the user back to Kibana and provide cryptographically protected authorization information to Search Guard. As this approach requires web browser interactions, it is  only available for Kibana, but not available for direct connections to Elasticsearch.  
+More details: [OIDC](kibana_authentication_openid.md), [SAML](kibana_authentication_saml.md)
 
-This is the default. If the user tries to access Kibana and has no active session, a login page is displayed. The credentials the user enters on this page are validated against Search Guard by adding them as HTTP Basic Authentication headers. Once authenticated the credentials are stored in an encrypted cookie on the user's browser. Make sure you use TLS on the REST layer of Elasticsearch so the transmitted credentials cannot be sniffed.
+**Header-based authentication:** This approach is only applicable in very special setups where authentication information is provided as HTTP headers in requests to Kibana. This requires special browser configurations or an additional proxy in front of the Kibana application.  
+More details: [Proxy Authentication](kibana_authentication_proxy.md) (including authentication via JWT Authorization headers), [Kerberos](kibana_authentication_kerberos.md)
 
-**Elasticsearch and Kibana configuration:**
+**Combining several approaches:** All of the approaches can be also used in combination. If several way of authentication are configured, the Search Guard Kibana plugin will present the user a form in order to choose the desired authentication mode. It is also possible to run several Kibana instances in front of one Elasticsearch/Search Guard setup using different authentication configurations.
 
-| Elasticsearch Configuration | Kibana Configuration |
-|---|---|
-| [Internal user database](../_docs_roles_permissions/configuration_internalusers.md) | [Basic Authentication](kibana_authentication_basicauth.md) |
-| [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md) | [Basic Authentication](kibana_authentication_basicauth.md) |
-{: .config-table}
+## Advanced Topics
 
-## Single sign on authentication
+Search Guard offers a number of advanced authentication mechanisms for special setups and requirements:
 
-In this mode, the user is authenticated by a third party system, like an identity provider that issues JSON web tokens, a Kerberos realm or an authenticating proxy. The Kibana plugin will forward any HTTP headers containing user crendentials to Search Guard. As with Basic Authentication, Search Guard uses these credentials for assigning roles and permissions.
+**Anonymous Authentication:** Allowing access to Kibana without having to provide credentials.  
+[More details](kibana_authentication_anonymous.md)
 
-*Hint: You cannot have the Basic Authentication login page and SSO authentication together.*
+**Customized Login Page:** Add your own branding to the Search Guard login page.
+[More details](kibana_customize_login.md)
 
-### Whitelisting HTTP headers
+**JWT URL parameters:** For embedding read-only Kibana views in dashboard websites, Search Guard provides authentication via JWT URL parameters.   
+[More details](kibana_authentication_jwt.md)
 
-By default, Kibana does not pass any HTTP header other than `Authorization` to Elasticsearch. If you try to transmit any other header, it is silently discarded.
 
-In order for SSO to work, make sure that any HTTP header that is required for your configured authentication type is added to the `elasticsearch.requestHeadersWhitelist` configuration entry in `kibana.yml`.
 
-Example:
-
-```yaml
-elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-forwarded-by", "x-proxy-user", "x-proxy-roles" ]
-```
-
-**Elasticsearch and Kibana configuration:**
-
-| Elasticsearch Configuration | Kibana Configuration |
-|---|---|
-| [JSON web token](../_docs_auth_auth/auth_auth_jwt.md) | [JWT Authentication](kibana_authentication_jwt.md) 
-| [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) | [Proxy Authentication](kibana_authentication_proxy.md) |
-| [Kerberos authentication](../_docs_auth_auth/auth_auth_kerberos.md) | [Kerberos Authentication](kibana_authentication_kerberos.md) |
-{: .config-table}
-
-## Kibana server user authentication
-
-Regardless which authentication method you choose for your users, the internal Kibana server user will always pass its credentials as base64-encoded HTTP Basic Authentication header. You need to configure at least one Search Guard authentication domain on Elasticsearch side that supports HTTP Basic authentication.
-
-This does not mean that you need to enable Basic Authentication for regular users. The Kibana server user operates under the hood and is independant from user authentication.
-
-## About certificate based authentication
-
-We do not yet provide support for certificate-based (two-way SSL) authentication against Kibana due to technical limitations of the Kibana architecture.

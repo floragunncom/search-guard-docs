@@ -1,9 +1,9 @@
 ---
-title: OpenID Connect authentication
-html_title: Kibana OpenID
+title: Quick Start
+html_title: Kibana OpenID Quick Start
 slug: kibana-authentication-openid
-category: kibana-authentication
-order: 350
+category: kibana-authentication-openid-overview
+order: 100
 layout: docs
 edition: enterprise
 description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
@@ -12,138 +12,88 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2020 floragunn GmbH 
 -->
 
-# Kibana OpenID Connect Authentication
+# Kibana OpenID Connect Quick Start
 {: .no_toc}
 
 {% include toc.md %}
 
+With Search Guard, you can use the OpenID Connect (OIDC) protocol to authenticate users in Kibana using external Identity Providers (IdP).
+
+This chapter describes the basic setup of OIDC with Search Guard. This will work in many cases; some setups however require special configurations for TLS, proxies or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
+
+Prerequisites: In order to use OIDC, you need to have an Identity Provider (IdP) supporting OIDC.
+
+## IdP Setup
+
+First, create a new client representing your Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the client, you must make sure that the following settings are configured like this:
+
+* Root URL: The base URL of the Kibana instance. For example, `https://kibana.example.com:5601/`
+* Valid Redirect URLs: The base URL of Kibana plus a `*` wildcard for paths. For example, `https://kibana.example.com:5601/*`
+
+Additionally, you need to make sure that the roles of a user are mapped to a JWT claim.
+
+You need to keep a couple of values from the IdP setup ready for the next step. These values are:
+
+* The client id
+* The client secret
+* The name of the JWT claim to which you mapped the roles
+* The URL of the OIDC configuration endpoint. This URL generally looks like this: `https://your.idp/.../.well-known/openid-configuration`
+
 Activate OpenID Connect by adding the following to `kibana.yml`:
 
-```
-searchguard.auth.type: "openid"
-```
+## Search Guard Setup
 
-## Configuration
+Now you need to edit the `sg_frontend_config.yml` file. 
 
-OpenID providers usually publish their configuration in JSON format under the *metadata url*. Therefore most settings can be pulled in automatically, so the Kibana configuration becomes minimal.
-
-The most important settings are:
-
-**Metadata Connect URL**
-
-The metadata URL, sometimes also called connect URL or discovery URL, is the URL under which your IdP published its metadata. This URL varies from IdP to IdP. For example, Keycloak uses:
+The default version of this file contains an entry for password-based authentication:
 
 ```
-http://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration
+default:
+  authcz:
+  - type: basic
 ```
 
-While Auth0 uses:
+If you don't want to use password-based authentication, replace the entry`- type: basic` by the new configuration. If you want to continue to use password-based authentication besides OIDC, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
+
+The minimal `sg_frontend_config.yml` configuration for OIDC looks like this:
 
 ```
-https://YOUR_AUTH0_DOMAIN/.well-known/openid-configuration
+default:
+  authcz:
+  - type: oidc
+    client_id: "my-kibana-client"
+    client_secret: "client-secret-from-idp"
+    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    roles_key: "roles"
 ```
 
-Please consult the documentation of your IdP for details.
+You need to replace the values for `client_id`, `client_secret`, `idp.openid_configuration_url` and `roles_key` by the values configured in the IdP. 
 
-**Client ID**
+ 
+## Kibana Setup
 
-Every IdP can host multiple clients (sometimes also called applications) with different settings and authentication protocols. When enabling OpenID, you usually create a new client for Kibana in your IdP. The client id uniquely identifies this client. 
+In order to use OIDC with Kibana, it is necessary to configure the external URL of Kibana in the file `config/kibana.yml` in your Kibana installation. 
 
-**Client secret**
+For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
-Besides the ID, each client also has a client secret assigned. This is usually generated when the client is created. It adds an extra layer of security: An application can only obtain an identity token when it provides the client secret. You should find this secret in the settings of the client on your IdP. 
+```
+server.publicBaseUrl: "https://kibana.example.com:5601"
+```
 
-### Configuration parameters
+For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`: 
 
-| Name | Description |
-|---|---|
-| searchguard.openid.connect_url | The URL where the IdP publishes the OpenID metadata. Mandatory. |
-| searchguard.openid.client_id | The ID of the OpenID client configured in your IdP. Mandatory. |
-| searchguard.openid.client_secret | The [client secret](https://auth0.com/docs/applications/how-to-rotate-client-secret){:target="_blank"} of the OpenID client configured in your IdP. Mandatory. |
-| searchguard.openid.scope | The [scope of the identity token](https://auth0.com/docs/scopes/current){:target="_blank"} issued by the IdP. Option. Default: 'openid profile email address phone'.|
-| searchguard.openid.header | HTTP header name of the JWT token. Optional. Default: 'Authorization' |
-| searchguard.openid.base\_redirect\_url | The URL where the IdP redirects to after successful authentication. Optional. If not set, the `server.host`, `server.port` and `server.basepath` from `kibana.yml` are used. |
-| searchguard.openid.logout_url | The logout URL of your IdP. Optional. Only necessary if your IdP does not publish the logout URL in its metadata. |
-{: .config-table}
+```
+searchguard.frontend_base_url: "https://kibana.example.com:5601"
+```
 
+## Activate the Setup
 
-## Configuration example
+In order to activate the setup, do the following:
 
-<div class="code-highlight " data-label="">
-<span class="js-copy-to-clipboard copy-code">copy</span> 
-<pre class="language-yaml">
-<code class=" js-code language-markup">
-# Enable OpenID authentication
-searchguard.auth.type: "openid"
+- If you needed to edit `kibana.yml`, make sure that you restart the Kibana instance. 
+- Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
-# the ID of the OpenID Connect client in your IdP
-searchguard.openid.client_id: "kibana-sso"
-
-# the client secret of the OpenID Connect client
-searchguard.openid.client_secret: "a59c51f5-f052-4740-a3b0-e14ba355b520"
-
-# optional: the scope of the identity token
-# default: 'openid profile email address phone'
-searchguard.openid.scope: "profile email"
-
-# optional: the HTTP header name of the JWT. Default: 'Authorization'
-searchguard.openid.header: "Authorization"
-
-# optional: the logout URL of your IdP
-# Only necessary if your IdP does not publish the logout url
-# in the metadata
-searchguard.openid.logout_url: "https://keycloak.example.com:8080/auth/realms/master/protocol/openid-connect/logout"
-
-# Use HTTPS instead of HTTP
-elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
-
-# Configure the Kibana internal server user
-elasticsearch.username: "kibanaserver"
-elasticsearch.password: "kibanaserver"
-
-# Disable SSL verification when using self-signed demo certificates
-elasticsearch.ssl.verificationMode: none
-
-# Whitelist basic headers and multi tenancy header
-elasticsearch.requestHeadersWhitelist: ["Authorization", "sgtenant"]
-</code>
-</pre>
-</div>
-
-  
-## Elasticsearch configuration
-
-Since Kibana requires that the internal Kibana server user can authenticate via HTTP Basic Authentication, you need to configure two authentication domains. For OpenID Connect, the HTTP Basic domain has to be placed first in the chain. Make sure you set the challenge flag to `false`.
-
-<div class="code-highlight " data-label="">
-<span class="js-copy-to-clipboard copy-code">copy</span> 
-<pre class="language-yaml">
-<code class=" js-code language-markup">
-basic_internal_auth_domain: 
-  enabled: true
-  order: 0
-  http_authenticator:
-    type: basic
-    <b>challenge: false</b>
-  authentication_backend:
-    type: internal
-openid_auth_domain:
-  enabled: true
-  order: 1
-  http_authenticator:
-    type: openid
-    challenge: false
-    config:
-      subject_key: preferred_username
-      roles_key: roles
-      openid_connect_url: https://keycloak.example.com:8080/auth/realms/master/.well-known/openid-configuration
-  authentication_backend:
-    type: noop
-</code>
-</pre>
-</div>
-
-For a more detailed description of the Elasticsearch configuration please see [Elasticsearch OpenID configuration](../_docs_auth_auth/auth_auth_openid.md).
+That's it. If you navigate in a browser to your Kibana instance, you should be directed to the IdP login page.

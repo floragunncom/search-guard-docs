@@ -29,6 +29,24 @@
 							{% endif %}>
 							{{ subitem.title }}
 						</a>
+						
+						{% if subitem.subcategory != null %}
+				
+							{% assign subsubitems = site[include.collectionname] | where:'category', subitem.subcategory | sort: 'order' %}
+
+							<ul style="display:block;">
+							{% for subsubitem in subsubitems %}
+								<li>
+									<a href="{{site.baseurl}}{{ subsubitem.url }}"
+										{% if subsubitem.title == page.title and subsubitem.category == page.category%} class="selected left-nav-level-4" 
+										{% else %} class="left-nav-level-4" 
+										{% endif %}>
+										{{ subsubitem.title }}
+									</a>
+								</li>
+							{% endfor %}
+							</ul>
+							{% endif %}
 					</li>
 				{% endfor %}
 				</ul>

@@ -3,7 +3,7 @@ title: SAML authentication
 html_title: Kibana SAML
 slug: kibana-authentication-saml
 category: kibana-authentication
-order: 800
+order: 220
 layout: docs
 edition: enterprise
 description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
