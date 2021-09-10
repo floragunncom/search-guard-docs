@@ -156,25 +156,6 @@ This role has the minimum permissions to access Kibana.
 
 In addition, the users need to have READ permissions to all indices they should be allowed to use with Kibana. Typically you will want to set up different roles for different users, and give them the `SGS_KIBANA_USER` role in additions.
 
-## Configuring Elasticsearch: Enable "do not fail on forbidden"
-
-In some cases, Kibana will use a wildcard as index name if no index name is given. For example, if you access timelion. If the user does not have `READ` permissions on all indices, a security exception will be generated.
-
-Search Guard can be run in `do not fail on forbidden` mode. With this mode enabled Search Guard filters all indices from a query a user does not have access to. Thus not security exception is raised.
-
-Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
-
-```
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    do_not_fail_on_forbidden: true
-    ...
-```
 
 ## Client certificates: elasticsearch.ssl.certificate
 

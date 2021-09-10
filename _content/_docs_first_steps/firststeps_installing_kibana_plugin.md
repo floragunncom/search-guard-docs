@@ -44,11 +44,9 @@ To configure the Search Guard Kibana plugin we add the following minimal configu
 <span class="js-copy-to-clipboard copy-code">copy</span> 
 <pre class="language-yaml">
 <code class=" js-code language-markup">
-searchguard.auth.type: "basicauth"
-
 searchguard.cookie.password: &lt;encryption key, min. 32 characters&gt;
 
-elasticsearch.hosts: "https://&lt;hostname&gt;.com:&lt;http port&gt;"
+elasticsearch.hosts: "https://&lt;hostname&gt;:&lt;http port&gt;"
 
 elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
@@ -60,9 +58,6 @@ elasticsearch.requestHeadersWhitelist: ["Authorization", "sgtenant"]
 </pre>
 </div>
 
-**searchguard.auth.type: "basicauth"**
-
-This tells Search Guard to use HTTP Basic authentication.
 
 **searchguard.cookie.password**
 
