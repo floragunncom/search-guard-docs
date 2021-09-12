@@ -186,6 +186,6 @@ searchguard.allow_client_certificates: true
 
 ## Where to go next
 
-* [Set up Kibana authentication](../_docs_kibana/kibana_multitenancy.md)
+* [Set up Kibana authentication](../_docs_kibana/kibana_authentication.md)
 * [Use the config GUI for administering Search Guard](../_docs_configuration_changes/configuration_config_gui.md)
 * [Set up Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
