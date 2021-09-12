@@ -173,7 +173,7 @@ relative_links:
   collections: true
 
 domain: https://docs.search-guard.com
-baseurl: /latest
+baseurl: /tech-preview
 
 collections_dir: _content
 
