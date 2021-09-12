@@ -64,7 +64,7 @@ default:
       [...]
       1k4enV7iJWXE8009a6Z0Ouwm2Bg68Wj7TAQ=
       -----END CERTIFICATE-----
-    user_maping.roles: roles
+    user_mapping.roles: roles
 ```
 
 ## TLS Client Authentication
@@ -92,7 +92,7 @@ default:
     client_secret: "client-secret-from-idp"
     idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
     idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_maping.roles: roles
+    user_mapping.roles: roles
 ```
 
 ## Mapping user attributes
@@ -112,7 +112,7 @@ default:
     client_secret: "client-secret-from-idp"
     idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
     idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_maping.roles: roles
+    user_mapping.roles: roles
     user_mapping.attrs: 
       department: department.number
       email_address: user.email
@@ -150,7 +150,7 @@ default:
     client_id: "my-kibana-client"
     client_secret: "client-secret-from-idp"
     user_mapping.subject_pattern: "^(.+)@example\.com$"
-    user_maping.roles: roles
+    user_mapping.roles: roles
 ```
 
 In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
@@ -185,7 +185,7 @@ default:
     client_secret: "client-secret-from-idp"
     idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
     logout_url: "https://your.idp/logout"
-    roles_key: "roles"
+    user_mapping.roles: roles
 ```
 
 ## Rate-limiting connections to the IdP
