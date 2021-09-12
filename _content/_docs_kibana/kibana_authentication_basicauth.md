@@ -23,7 +23,7 @@ This approach is the most simple and most commonly used authentication type. If 
 
 This approach can be used to authenticate users using the [Search Guard internal user database](../_docs_roles_permissions/configuration_internalusers.md)  or using [LDAP](../_docs_auth_auth/auth_auth_ldap.md).
 
-If the Search Guard Elasticsearch backend has been already configured with username/password based authentication, this should also work out of the box for Kibana.
+If the Search Guard Elasticsearch backend has been already configured with username/password based authentication, this should also work out of the box for Kibana.<br>You only have to make sure that users that are supposed to be able to log into Kibana have the role `SGS_KIBANA_USER`. 
 {: .note .js-note .note-warning}
 
 In order to verify the configuration for this approach, follow the steps described in the following sections.

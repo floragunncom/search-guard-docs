@@ -37,7 +37,9 @@ First, create a new client representing your Kibana installation in your Identit
 * Root URL: The base URL of the Kibana instance. For example, `https://kibana.example.com:5601/`
 * Valid Redirect URLs: The base URL of Kibana plus a `*` wildcard for paths. For example, `https://kibana.example.com:5601/*`
 
-Additionally, you need to make sure that the roles of a user are mapped to a JWT claim.
+* Also, you need to make sure that the roles of a user are mapped to a JWT claim.
+
+* All users which are supposed to be able to log in to Kibana, must have certain privileges. If you are using the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to all wanted users. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.  
 
 You need to keep a couple of values from the IdP setup ready for the next step. These values are:
 
