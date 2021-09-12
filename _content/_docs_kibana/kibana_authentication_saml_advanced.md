@@ -53,7 +53,7 @@ If you need special TLS settings to create connections from Search Guard to the 
 
 ### Example
 
-```
+```yaml
 default:
   authcz:
   - type: oidc
@@ -146,7 +146,7 @@ To use IdP initiated SSO, you need to complete the following steps:
 
 Then add this endpoint to the xsrf whitelist in `kibana.yml`:
 
-```
+```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 

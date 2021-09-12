@@ -52,7 +52,7 @@ Now you need to edit the `sg_frontend_config.yml` file.
 
 The default version of this file contains an entry for password-based authentication:
 
-```
+```yaml
 default:
   authcz:
   - type: basic
@@ -62,7 +62,7 @@ If you don't want to use password-based authentication, replace the entry`- type
 
 The minimal `sg_frontend_config.yml` configuration for OIDC looks like this:
 
-```
+```yaml
 default:
   authcz:
   - type: oidc
@@ -81,19 +81,19 @@ In order to use OIDC with Kibana, it is necessary to configure the external URL 
 
 For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
-```
+```yaml
 server.publicBaseUrl: "https://kibana.example.com:5601"
 ```
 
 For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`: 
 
-```
+```yaml
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
 Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `kibana.yml`:
 
-```
+```yaml
 searchguard.cookie.isSameSite: None
 searchguard.cookie.secure: true
 ```

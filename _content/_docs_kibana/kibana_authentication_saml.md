@@ -52,7 +52,7 @@ Now you need to edit the `sg_frontend_config.yml` file.
 
 The default version of this file contains an entry for password-based authentication:
 
-```
+```yaml
 default:
   authcz:
   - type: basic
@@ -62,7 +62,7 @@ If you don't want to use password-based authentication, replace the entry`- type
 
 The minimal `sg_frontend_config.yml` configuration for SAML looks like this:
 
-```
+```yaml
 default:
   authcz:
   - type: saml
@@ -76,14 +76,14 @@ You need to replace the values for `idp.metadata_url`, `idp.entity_id`, `sp.enti
 
 If your IdP does not provide the metadata by an URL, you can to download the metadata from the IdP and specify it inline in the configuration:
 
-```
+```yaml
 default:
   authcz:
   - type: saml
     idp.metadata_xml: |
             <EntityDescriptor entityID="IdP entity id from the IdP" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
               <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
-				  [...]
+                 ...
               </IDPSSODescriptor>
             </EntityDescriptor>  
     idp.entity_id: "IdP entity id from the IdP"
@@ -97,19 +97,19 @@ In order to use SAML with Kibana, it is necessary to configure the external URL 
 
 For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
-```
+```yaml
 server.publicBaseUrl: "https://kibana.example.com:5601"
 ```
 
 For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`: 
 
-```
+```yaml
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
 Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `kibana.yml`:
 
-```
+```yaml
 searchguard.cookie.isSameSite: None
 searchguard.cookie.secure: true
 ```
@@ -117,7 +117,7 @@ searchguard.cookie.secure: true
 Finally, you need to excempt the Kibana endpoints with which the IdP interacts from the Kibana XSRF protection. If your `kibana.yml` does not contain yet the key
 `server.xsrf.whitelist`, please add this:
 
-```
+```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 

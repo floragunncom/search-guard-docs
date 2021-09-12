@@ -28,7 +28,7 @@ Configuring more than one authentication method for Kibana is straight forward: 
 
 This might then look like this:
 
-```
+```yaml
 default:
   authcz:
   - type: basic
@@ -51,7 +51,7 @@ To achieve this, the `sg_frontend_config.yml` configuration file allows you to s
 
 So, you can have your `sg_frontend_config.yml` like this:
 
-```
+```yaml
 default:
   authcz:
   - type: basic
@@ -66,7 +66,7 @@ another_instance:
 
 On the Kibana instance, which is supposed to use SAML authentication, edit the file `config/kibana.yml` and add this line:
 
-```
+```yaml
 searchguard.sg_frontend_config_id: another_instance
 ```
 

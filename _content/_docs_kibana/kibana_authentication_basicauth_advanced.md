@@ -20,6 +20,6 @@ Copyright 2020 floragunn GmbH
 
 You can prevent users from logging in to Kibana by listing them in `kibana.yml`. This is useful if you don't want system users like the Kibana server user or the logstash user to log in. In `kibana.yml`, set:
 
-```
+```yaml
 searchguard.basicauth.forbidden_usernames: ["kibanaserver", "logstash"]
 ```

@@ -24,7 +24,7 @@ kibana_customize_login.jpg" style="width: 40%" class="md_image"/>
 
 You can use `sg_frontend_config` to customize the login page. Such a configuration can look like this:
 
-```
+```yaml
 default:
   login_page:
     brand_image: "https://mycompany.example.com/mylogo.png"

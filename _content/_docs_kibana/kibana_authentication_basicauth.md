@@ -52,7 +52,7 @@ See the chapters on the [Search Guard internal user database](../_docs_roles_per
 
 The Kibana-specific part of the authentication configuration is done in the file `sg_frontend_config.yml`. By default, this file contains this:
 
-```
+```yaml
 default:
   authcz:
   - type: basic

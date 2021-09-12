@@ -19,7 +19,7 @@ In case you encounter problems with authentication in Kibana, you can use a spec
 
 To do so, edit `sg_config.yml` and add `debug: true` in the `dynamic` section:
 
-```
+```yaml
 sg_config:
   dynamic:
     debug: true

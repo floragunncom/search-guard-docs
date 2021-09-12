@@ -49,7 +49,7 @@ If you need special TLS settings to create connections from Search Guard to the 
 
 ### Example
 
-```
+```yaml
 default:
   authcz:
   - type: oidc
@@ -82,7 +82,7 @@ If the IdP is only reachable from Search Guard via an HTTP proxy, you can use th
 
 ### Example
 
-```
+```yaml
 default:
   authcz:
   - type: oidc
@@ -136,7 +136,7 @@ You can however also use several capturing groups if you want to use these group
 
 If you want to customize the URL which Kibana will navigate to when the user selects the "Logout" menu item, use the `logout` option.
 
-```
+```yaml
 default:
   authcz:
   - type: oidc
