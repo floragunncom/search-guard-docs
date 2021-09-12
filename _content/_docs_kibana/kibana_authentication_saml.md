@@ -71,10 +71,10 @@ default:
     idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
     idp.entity_id: "IdP entity id from the IdP"
     sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"
+    user_mapping.roles: roles
 ```
 
-You need to replace the values for `idp.metadata_url`, `idp.entity_id`, `sp.entity_id` and `roles_key` by the values configured in the IdP. 
+You need to replace the values for `idp.metadata_url`, `idp.entity_id`, `sp.entity_id` and `user_mapping.roles` by the values configured in the IdP. 
 
 If your IdP does not provide the metadata by an URL, you can to download the metadata from the IdP and specify it inline in the configuration:
 
@@ -90,7 +90,7 @@ default:
             </EntityDescriptor>  
     idp.entity_id: "IdP entity id from the IdP"
     sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"
+    user_mapping.roles: roles
 ```
  
 ## Kibana Setup

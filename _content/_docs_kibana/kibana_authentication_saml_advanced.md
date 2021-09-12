@@ -28,13 +28,13 @@ This chapter lists all advanced configuration options for SAML. Most of them are
 
 The name of the users and their roles are determined by so called assertions stored in the SAML responses which are provided by the IdP to Search Guard. You can control the mapping of these assertions to user data using the following options:
 
-**subject_key:** The name of the SAML assertion that stores the user's name. Optional. If not configured, the `NameID` attribute is used.
+**user_mapping.subject:** The name of the SAML assertion that stores the user's name. Optional. If not configured, the `NameID` attribute is used.
 
-**roles_key:**  The name of the SAML assertion that stores the user's roles. If this assertion is multi-valued, Search Guard interprets each value as single role.
+**user_mapping.roles:**  The name of the SAML assertion that stores the user's roles. If this assertion is multi-valued, Search Guard interprets each value as single role. Required.
 
-**roles_separator:** For the case that some IdPs do not support multi-valued assertions for roles, Search Guard can also split a single value at a certain separator. Use this option to specify the separator to split the roles.
+**user_mapping.roles_separator:** For the case that some IdPs do not support multi-valued assertions for roles, Search Guard can also split a single value at a certain separator. Use this option to specify the separator to split the roles.
 
-**subject_pattern:**  A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the SAML Response as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. 
+**user_mapping.subject_pattern:**  A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the SAML Response as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. 
 
 ## TLS Settings
 
@@ -56,7 +56,6 @@ If you need special TLS settings to create connections from Search Guard to the 
 ```yaml
 default:
   authcz:
-  - type: oidc
   - type: saml
     idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
     idp.entity_id: "IdP entity id from the IdP"
@@ -67,7 +66,7 @@ default:
       1k4enV7iJWXE8009a6Z0Ouwm2Bg68Wj7TAQ=
       -----END CERTIFICATE-----
     sp.entity_id: "SP entity id from the IdP"      
-    roles_key: "roles"
+    user_mapping.roles: roles
 ```
 
 ## TLS Client Authentication
@@ -84,7 +83,7 @@ If you need to use TLS client authentication to connect from Search Guard to the
 
 ## Using only certain sections of a JWT subject claim as user name
 
-In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
+In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `user_mapping.subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
 
 With `subject_pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a certain part of the subject supplied by the JWT as the Search Guard user name.
 
@@ -96,8 +95,8 @@ default:
     idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
     idp.entity_id: "IdP entity id from the IdP"
     sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"
-    subject_pattern: "^(.+)@example\.com$"
+    user_mapping.roles: roles
+    user_mapping.subject_pattern: "^(.+)@example\.com$"
 ```
 
 In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
@@ -109,7 +108,7 @@ Keep in mind that all capturing groups are used for constructing the user name. 
 Example for using capturing groups and non-capturing groups:
 
 ```yaml
-      subject_pattern: "^(.+)@example\.(?:com|org)$"
+      user_mapping.subject_pattern: "^(.+)@example\.(?:com|org)$"
 ```
 
 In this example, the group around `com` and `org` is required to use the alternative operator `|`. But it must be non-capturing, because otherwise it would show up in the user name.
@@ -117,7 +116,7 @@ In this example, the group around `com` and `org` is required to use the alterna
 You can however also use several capturing groups if you want to use these groups for the user name:
 
 ```yaml
-      subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
+      user_mapping.subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
 ```
 
 ## Force a re-login even if the user has an active session with the IdP
@@ -131,8 +130,8 @@ default:
     idp.entity_id: "IdP entity id from the IdP"
     sp.entity_id: "SP entity id from the IdP"
     sp.forceAuthn: false
-    roles_key: "roles"
-    subject_pattern: "^(.+)@example\.com$"
+    user_mapping.roles: "roles"
+    user_mapping.subject_pattern: "^(.+)@example\.com$"
 ```
 
 ## IdP initated SSO

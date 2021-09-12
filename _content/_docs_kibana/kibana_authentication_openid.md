@@ -71,10 +71,10 @@ default:
     client_id: "my-kibana-client"
     client_secret: "client-secret-from-idp"
     idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    roles_key: "roles"
+    user_mapping.roles: "roles"
 ```
 
-You need to replace the values for `client_id`, `client_secret`, `idp.openid_configuration_url` and `roles_key` by the values configured in the IdP. 
+You need to replace the values for `client_id`, `client_secret`, `idp.openid_configuration_url` and `user_mapping.roles` by the values configured in the IdP. 
 
  
 ## Kibana Setup
