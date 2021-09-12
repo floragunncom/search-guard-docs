@@ -33,15 +33,18 @@ default:
   authcz:
   - type: basic
   - type: saml
+    label: "SAML Login"
     idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
     idp.entity_id: "IdP entity id from the IdP"
     sp.entity_id: "SP entity id from the IdP"
     roles_key: "roles"    
 ```
 
-<!-- todo: example screenshot -->
+The resulting login screen will then look like this:
 
-You can also configure several `authcz` entries using the same type. So, you can support several IdPs at once.
+![Kibana login page with password based authentication and SAML authentication link](kibana_multi_login.png)
+
+You can also configure several `authcz` entries using the same type. So, you can support several IdPs at once. Use the `label` attribute of each entry to give the user a short hint what authentication method is configured here. The value of the `label` attribute will be displayed on the button that links to the IdP.
 
 ## Running Several Kibana Instances
 
