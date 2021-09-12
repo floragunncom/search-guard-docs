@@ -28,7 +28,7 @@ More details: [OIDC](kibana_authentication_openid.md), [SAML](kibana_authenticat
 **Header-based authentication:** This approach is only applicable in very special setups where authentication information is provided as HTTP headers in requests to Kibana. This requires special browser configurations or an additional proxy in front of the Kibana application.  
 More details: [Proxy Authentication](kibana_authentication_proxy.md) (including authentication via JWT Authorization headers), [Kerberos](kibana_authentication_kerberos.md)
 
-**Combining several approaches:** All of the approaches can be also used in combination. If several way of authentication are configured, the Search Guard Kibana plugin will present the user a form in order to choose the desired authentication mode. It is also possible to run several Kibana instances in front of one Elasticsearch/Search Guard setup using different authentication configurations.
+**Combining several approaches:** All of the approaches can be also used in combination. If several way of authentication are configured, the Search Guard Kibana plugin will present the user a form in order to choose the desired authentication mode. It is also possible to run several Kibana instances in front of one Elasticsearch/Search Guard setup using different authentication configurations. [More details](kibana_authentication_multi_auth.md)
 
 ## Advanced Topics
 
