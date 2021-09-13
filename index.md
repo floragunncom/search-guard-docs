@@ -18,39 +18,57 @@ Copryight 2020 floragunn GmbH
 
 <h2 align="center">Security and Alerting for Elasticsearch</h2>
 
-<h1 align="center">Search Guard {{site.searchguard.version}} Documentation</h1>
+<h1 align="center">Search Guard Tech Preview Documentation</h1>
 
-Signals, our free Enterprise Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
-{: .note .js-note}
+Welcome to the preview of the next generation of Search Guard! We provide you this preview in order to give you an impression of the changes and an opportunity to test it and give feedback.
 
-## Docker Demo
+Please note that this preview is not yet ready for use in production systems. It might have bugs. Also, we might decide to introduce further breaking changes before the release.
 
-To try out Search Guard and Signals quickly, you can use the Search Guard Demo Docker image:
+## What's New
 
-```
-docker run -ti -p 9200:9200 -p 5601:5601 floragunncom/sgdemo
-```
+This technical preview brings a number of fundamental improvements and updates to Search Guard. These require breaking changes in the configuration format.
 
-After the container is up, open
+Major changes include:
 
-```
-http://localhost:5601 to access Kibana
-```
+- The first version of Search Guard which brings support for **OpenSearch** and **OpenSearch Dashboards**.
+- Completely new approach for logging into Kibana. **Logged in users now get an actual server-side session.** This fixes a number of issues, such as:
+  - Issues with cookies exceeding the browser size limit.
+  - The "logout" menu item is able to invalidate the session. Thus, session cookies cannot be re-used any more.
+  - Configuration of SSO using OIDC or SAML for Kibana no longer interfers with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Kibana.
+  - The configuration format is now more streamlined and consistent.  
+  - Kibana authentication configuration can be changed without having to restart the node.
+- **New administration tool** `sgctl` which shall replace `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
 
-to access Kibana. For login, use `admin/admin`.
 
-<hr  />
 
-## Quick Links
+## Download
 
-| Security | Alerting |
-|---|---|
-| [Latest versions](search-guard-versions) |[Getting started](elasticsearch-alerting-getting-started) |
-| [Quick Start](demo-installer) | [How Signals Works](elasticsearch-alerting-how-it-works) |
-| [First steps: Adding users](first-steps-user-configuration) |[Sample Watches](elasticsearch-alerting-watches-sample)|
-| [First steps: Configuring roles](first-steps-roles-configuration) |[REST API](elasticsearch-alerting-rest-api-overview)|
-| [First steps: Assign users to roles](first-steps-mapping-users-roles) | [Severity Levels](elasticsearch-alerting-severity)|
-| [Main Concepts](main-concepts) | [Actions](elasticsearch-alerting-actions-overview)| 
-{: .equalwidth-table}
+You can get the current snapshot of the Search Guard Tech Preview here:
+
+|Target Environment|Backend Plugin|Frontend Plugin|
+|---|---|---|---|
+|OpenSearch 1.0.0|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
+|Elasticsearch 7.14.1|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
+|Elasticsearch 7.10.2|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
+
+## Getting Started
+
+You have several options to try the Search Guard Tech Preview:
+
+- If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](_content/_docs_quickstart/demo_installer.md).
+
+- If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [kibana-authentication-migration-quick](kibana-authentication-migration) of `sgctl`. 
+
+See the documentation on [Kibana Authentication](kibana-authentication-types) for an comprehensive overview over the new possibilities Search Guard offers.
+
+Documentation on how to use the `sgctl` command can be found in the [README](https://git.floragunn.com/search-guard/sgctl/-/blob/main/README.md).
+
+
+## Feedback
+
+Your feedback is welcome! You can use the [Search Guard Forum](https://forum.search-guard.com/) for questions and general feedback. You can also report issues at the Search Guard Gitlab repository.
+
+ 
+
 
 
