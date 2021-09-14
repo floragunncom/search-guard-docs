@@ -21,7 +21,7 @@ If you upgrade from Search Guard 6 to Search Guard 7, you can automatically migr
 
 ## Offline migration
 
-sgadmin can migrate existing files offline, for example after you run a [configuration backup](configuration_sgadmin_configuration_changes.md) on an OpenSearch/Elasticsearch 6.x cluster. After the files have been migrated, you can upload them to an OpenSearch/Elasticsearch 7.x cluster. 
+sgadmin can migrate existing files offline, for example after you run a [configuration backup](configuration_sgadmin_configuration_changes.md) on an Elasticsearch 6.x cluster. After the files have been migrated, you can upload them to an Elasticsearch 7.x cluster. 
 
 ```bash
 ./sgadmin.sh \

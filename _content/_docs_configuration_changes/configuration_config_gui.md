@@ -139,9 +139,6 @@ To edit index-level permissions, you need to first select the index and the docu
 <img src="kibana_index_level_permissions.png" style="width: 70%" class="md_image"/>
 </p>
 
-Since document types are deprecated in OpenSearch/Elasticsearch 6, document type level permissions will be removed in Search Guard 7.
-{: .note .js-note .note-warning}
-
 ### Index- and Document-Type Permissions
 
 If you want to add new index- and document-type permissions, click on the "Add new index and document Type" button. You need to enter and save the indexname and document-type name before you can configure the permissions.

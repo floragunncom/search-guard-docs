@@ -16,7 +16,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard supports [Cross Cluster Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cross-cluster-search.html){:target="_blank"} out of the box, so there is nothing special to configure to make it work. Cross Cluster Search will replace Tribe nodes which are deprecated in OpenSearch/Elasticsearch 6.x.
+Search Guard supports [Cross Cluster Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cross-cluster-search.html){:target="_blank"} out of the box, so there is nothing special to configure to make it work. Cross Cluster Search will replace Tribe nodes which are deprecated in Elasticsearch 6.x.
 
 ## Authentication Flow
 
