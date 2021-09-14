@@ -6,7 +6,7 @@ category: signals-rest
 order: 750
 layout: docs
 edition: community
-description: Use the Alerting for Elasticsearch Get Watch API to retrieve a watch in JSON format.
+description: Use the Alerting for OpenSearch/Elasticsearch Get Watch API to retrieve a watch in JSON format.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

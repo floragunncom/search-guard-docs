@@ -6,7 +6,7 @@ category: signals-rest
 order: 910
 layout: docs
 edition: community
-description: Use the Alerting for Elasticsearch Put Settings API to update the Signals Settings
+description: Use the Alerting for OpenSearch/Elasticsearch Put Settings API to update the Signals Settings
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -6,7 +6,7 @@ category: versions
 order: 300
 layout: docs
 edition: enterprise
-description: The Search Guard Enterprise and Compliance license offers enterprise security for Elasticsearch and Kibana.
+description: The Search Guard Enterprise and Compliance license offers enterprise security for OpenSearch/Elasticsearch and Dashboards/Kibana.
 resources:
   - "https://search-guard.com/product/|Search Guard editions feature comparison (website)"
 
@@ -42,14 +42,14 @@ You have several ways to check the validity of your current license.
 
 #### Logfile
 
-On startup, Search Guard will print license information to the Elasticsearch logfile on `INFO` level. If your license is about to expire, a message on `WARN` level is printed. Running Search Guard with an expired license will result in `ERROR` message in the logfile.
+On startup, Search Guard will print license information to the OpenSearch/Elasticsearch logfile on `INFO` level. If your license is about to expire, a message on `WARN` level is printed. Running Search Guard with an expired license will result in `ERROR` message in the logfile.
 
 #### HTTP license endpoint
 
 The following endpoint will return your current license and information about the active Search Guard modules in JSON format:
 
 ```
-https://<Elasticsearch Host>:<HTTP Port>/_searchguard/license
+https://<OpenSearch/Elasticsearch Host>:<HTTP Port>/_searchguard/license
 ```
 
 For example:
@@ -70,9 +70,9 @@ curl -Ss --insecure -u admin:admin -XGET https://example.com:9200/_searchguard/l
 
 See the [REST management API](rest-api) configuration chapter for further information on how to configure API users.
 
-#### Kibana Configuration GUI
+#### Search Guard Configuration GUI
 
-If you're using the Search Guard Kibana plugin, you can display your license and system information by clicking on "Search Guard" / "License & System Info".
+If you're using the Search Guard Dashboards/Kibana plugin, you can display your license and system information by clicking on "Search Guard" / "License & System Info".
 
 ### Applying an Enterprise or Compliance License
 
@@ -127,6 +127,6 @@ When using `sgadmin` to upload the changed `sg_config.yml` with the new license,
 
 You can use the [REST management API](rest-api) license endpoint to `POST` an Enterprise License to Search Guard.
 
-#### Kibana Configuration GUI
+#### Search Guard Configuration GUI
 
-If you're using the Search Guard Kibana plugin, you upload a new license by clicking on "Search Guard" / "License & System Info" / "Upload new license". Paste the complete license string in the input field and click on "Upload".
+If you're using the Search Guard Dashboards/Kibana plugin, you upload a new license by clicking on "Search Guard" / "License & System Info" / "Upload new license". Paste the complete license string in the input field and click on "Upload".

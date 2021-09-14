@@ -8,7 +8,7 @@ order: 900
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-rest-api-overview
-description: Overview of the Elasticsearch Alerting REST API
+description: Overview of the OpenSearch/Elasticsearch Alerting REST API
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

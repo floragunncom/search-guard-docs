@@ -6,7 +6,7 @@ category: signals-rest
 order: 960
 layout: docs
 edition: community
-description: How to globally activate and deactivate all alerting watches for Elasticsearch.
+description: How to globally activate and deactivate all alerting watches for OpenSearch/Elasticsearch.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

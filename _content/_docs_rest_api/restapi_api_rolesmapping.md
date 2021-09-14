@@ -110,7 +110,7 @@ The PATCH endpoint can be used to change individual attributes of a roles mappin
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
+The PATCH endpoint is only available for OpenSearch/Elasticsearch 6.4.0 and above.
 {: .note .js-note .note-warning}
 
 ### Patch a roles mapping

@@ -8,7 +8,7 @@ layout: docs
 edition: enterprise
 description: How to connect Search Guard with an OpenID provider like Keycloak and how to use JSON web keys to automatially fetch encryption keys
 resources:
-  - "https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID and Keycloak"
+  - "https://search-guard.com/kibana-openid-keycloak/|Dashboards/Kibana Single Sign-On with OpenID and Keycloak"
 
 ---
 <!---
@@ -28,7 +28,7 @@ Search Guard can integrate with *identity providers* (IdP) that are compatible w
   * Search Guard will retrieve the public key for validating the JSON web tokens automatically from the JWKS endpoint of your IdP. There is no need to configure keys or shared secrets in `sg_config.yml`.
 * Key rollover
   * You can change the keys used for signing the JWTs directly in your IdP. If Search Guard detects an unknown key, it tries to retrieve it from the IdP, transparent to the user.
-* [Kibana Single Sign On](../_docs_kibana/kibana_authentication_openid.md)
+* [Dashboards/Kibana Single Sign On](../_docs_kibana/kibana_authentication_openid.md)
    
 ## Configuring OpenID integration
 
@@ -291,6 +291,6 @@ In theory it is possible to DOS attack an OpenID based infrastructure by sending
 | refresh\_rate\_limit\_time\_window\_ms | The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000 |
 {: .config-table}
 
-## Kibana Single Sign On
+## Dashboards/Kibana Single Sign On
 
-The Kibana Plugin has OpenID support built in since version 14. Please refer to the [Kibana OpenID configuration](../_docs_kibana/kibana_authentication_openid.md) for details.
+The Dashboards/Kibana Plugin has OpenID support built in since version 14. Please refer to the [Dashboards/Kibana OpenID configuration](../_docs_kibana/kibana_authentication_openid.md) for details.

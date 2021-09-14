@@ -6,22 +6,22 @@ category: auditlog
 order: 700
 layout: docs
 edition: compliance
-description: How to use Search Guard to monitor changes in the Elasticsearch configuration.
+description: How to use Search Guard to monitor changes in the OpenSearch/Elasticsearch configuration.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Elasticsearch configuration tracking
+# System Configuration Change Tracking
 {: .no_toc}
 
 {% include toc.md %}
 
-Search Guard is able to monitor the integrity of your Elasticsearch installation and emit events describing your current configuration.
+Search Guard is able to monitor the integrity of your OpenSearch/Elasticsearch installation and emit events describing your current configuration.
 
-These features help to detect any changes to your Elasticsearch or Search Guard installation and for proofing that you applied critical fixes and upgrades in time.
+These features help to detect any changes to your OpenSearch/Elasticsearch or Search Guard installation and for proofing that you applied critical fixes and upgrades in time.
 
-The way Elasticsearch can be configured includes
+The way OpenSearch/Elasticsearch can be configured includes
 
 * Setting in elasticsearch.yml
 * Environment variables used in elasticsearch.yml
@@ -41,7 +41,7 @@ The elasticsearch configuration monitoring can be switched on an off by the foll
 
 ## Audit log category
 
-The Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CONFIG`category. 
+The OpenSearch/Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CONFIG`category. 
 
 ## Field reference
 
@@ -118,12 +118,12 @@ The detailed configuration settings can be found in the `audit_request_body` fie
 | external_configuration | The content of the elasticsearch.yml on node startup |
 | os_environment | Environment variables on node startup  |
 | java_properties | Java properties on node startup  |
-| sha256_checksum | SHA256 checksum of the combined external_configuration, os_environment and java_properties. Can be used to detect any changes to your Elasticsearch installation.  |
+| sha256_checksum | SHA256 checksum of the combined external_configuration, os_environment and java_properties. Can be used to detect any changes to your OpenSearch/Elasticsearch installation.  |
 {: .config-table}
 
 ### External configuration
 
-The `external_configuration` contains the `elasticsearch.yml` settings on node startup as JSON String. Example:
+The `external_configuration` contains the `openearch.yml`/`elasticsearch.yml` settings on node startup as JSON String. Example:
 
 ```json
 {

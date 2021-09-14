@@ -6,7 +6,7 @@ category: security
 order: 50
 layout: docs
 edition: community
-description: How Signals for Elasticsearch uses a protected confguration index to protect sensitive data
+description: How Signals for OpenSearch/Elasticsearch uses a protected confguration index to protect sensitive data
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -16,7 +16,7 @@ description: How Signals for Elasticsearch uses a protected confguration index t
 
 The Signals configuration index, as the Search Guard configuration index, may contain sensitive data.
 
-Access to the Signals configuration index is thus protected. In particular, you cannot access the index data directly by any of the Elasticsearch APIs.
+Access to the Signals configuration index is thus protected. In particular, you cannot access the index data directly by any of the OpenSearch/Elasticsearch APIs.
 
 To access and change configuration data, use the [Signals REST API](rest_api.md).
 

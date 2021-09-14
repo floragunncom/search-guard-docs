@@ -65,7 +65,7 @@ All checks and actions operate on the watch runtime data.
 
 [Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
 
-[Actions](actions.md) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like Elasticsearch.
+[Actions](actions.md) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like OpenSearch/Elasticsearch.
 
 <p align="center">
 <img src="runtime_context.png" style="width: 50%" class="md_image"/>
@@ -97,7 +97,7 @@ All checks and actions operate on the watch runtime data.
 }
 ```
 
-This input executes an Elasticsearch query and stores the result of the query under the name `avg_ticket_price`. Using the special target name `_top` places the data at the top level of the runtime data. Any data that was present before gets erased.
+This input executes an OpenSearch/Elasticsearch query and stores the result of the query under the name `avg_ticket_price`. Using the special target name `_top` places the data at the top level of the runtime data. Any data that was present before gets erased.
 
 ### Accessing runtime data
 

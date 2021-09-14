@@ -197,7 +197,7 @@ my_dls_role:
 ```
 
 
-**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the OpenSearch/Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
 
 **Note:** This method of providing attributes supersedes the old way which provided all LDAP attributes as Search Guard user attributes with the prefix `attr.ldap`. These attributes are still supported, but are now deprecated.
 

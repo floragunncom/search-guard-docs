@@ -5,7 +5,7 @@ category: tls
 order: 350
 layout: docs
 edition: community
-description: How to use certificate revocation lists to revoce TLS certificates used in your Elasticsearch cluster.
+description: How to use certificate revocation lists to revoce TLS certificates used in your OpenSearch/Elasticsearch cluster.
 resources:
   - troubleshooting-tls|Troubleshooting TLS problems (docs)  
   - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
@@ -49,7 +49,7 @@ Instead of downloading a potentially large CRL file periodically, one can also q
 
 ## CRL Configuration
 
-To enable CRL support, add the following to `elasticsearch.yml`:
+To enable CRL support, add the following to `openearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.ssl.http.crl.validate: true
@@ -74,7 +74,7 @@ If CRL validation is enabled, Search Guard can use:
 
 ## OCSP Configuration
 
-Due to limitations in the Elasticsearch security model, enabling OCSP requires changes to the `jdk/conf/security` file in your ES installation directory on every node.
+Due to limitations in the OpenSearch/Elasticsearch security model, enabling OCSP requires changes to the `jdk/conf/security` file in your ES installation directory on every node.
 
 To enable OCSP, add the following line to this file:
 
@@ -82,7 +82,7 @@ To enable OCSP, add the following line to this file:
 ocsp.enable=true
 ```  
 
-You can use the following configuration options in `elasticsearch.yml` to control whether CRL, OCSP or both are being used:
+You can use the following configuration options in `openearch.yml`/`elasticsearch.yml` to control whether CRL, OCSP or both are being used:
 
 | Name | Description |
 |---|---|

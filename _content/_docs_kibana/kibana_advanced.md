@@ -1,6 +1,6 @@
 ---
 title: Advanced Topics
-html_title: Kibana Advanced Topics
+html_title: Dashboards/Kibana Advanced Topics
 slug: kibana-advanced
 category: kibana
 subcategory: kibana-advanced

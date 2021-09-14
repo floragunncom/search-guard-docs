@@ -5,13 +5,13 @@ category: authauth
 order: 200
 layout: docs
 edition: community
-description: How to set up HTTP Basic Authentication on the REST layer of Elasticsearch with Search Guard.
+description: How to set up HTTP Basic Authentication on the REST layer of OpenSearch/Elasticsearch with Search Guard.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Elasticsearch HTTP Basic Authentication
+# HTTP Basic Authentication
 {: .no_toc}
 
 In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:

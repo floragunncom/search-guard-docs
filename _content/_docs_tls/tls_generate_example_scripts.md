@@ -77,7 +77,7 @@ searchguard.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=Test,C=DE
 ```
 
-The script also generates certificates for Kibana, logstash and Beats. These can be used to secure the connection between said tools and Elasticsearch. This is optional but more secure.
+The script also generates certificates for Dashboards/Kibana, logstash and Beats. These can be used to secure the connection between said tools and OpenSearch/Elasticsearch. This is optional but more secure.
 
 **The password for all private keys and keystore files is `changeit`.**
 

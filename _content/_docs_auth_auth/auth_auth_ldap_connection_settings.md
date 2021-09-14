@@ -6,7 +6,7 @@ category: ldap
 order: 100
 layout: docs
 edition: enterprise
-description: How to protect your Elasticsearch cluster by connecting to an LDAP or Active Directory server.
+description: How to protect your OpenSearch/Elasticsearch cluster by connecting to an LDAP or Active Directory server.
 resources:
   - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
 
@@ -158,7 +158,7 @@ config:
 
 ### Client authentication
 
-If you use TLS client authentication, Search Guard sends the PEM certificate of the node, as configured in `elasticsearch.yml`.
+If you use TLS client authentication, Search Guard sends the PEM certificate of the node, as configured in `openearch.yml`/`elasticsearch.yml`.
 
 by setting **one of** the following configuration options::
 

@@ -6,7 +6,7 @@ category: signals-rest
 order: 760
 layout: docs
 edition: community
-description: Use the Alerting for Elasticsearch Search API to search for watch state documents
+description: Use the Alerting for OpenSearch/Elasticsearch Search API to search for watch state documents
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -27,7 +27,7 @@ GET /_signals/watch/{tenant}/_search/_state
 POST /_signals/watch/{tenant}/_search/_state
 ```
 
-Searches for watch state documents. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
+Searches for watch state documents. Search criteria and options can be specified in a manner similar to the OpenSearch/Elasticsearch document search REST API.
 
 Both the GET and the POST HTTP method can be used with the same effect.
 

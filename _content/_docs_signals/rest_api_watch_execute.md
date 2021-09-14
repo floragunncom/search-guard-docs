@@ -6,7 +6,7 @@ category: signals-rest
 order: 600
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch REST API provides an endpoint to manually execute watches.
+description: The Signals Alerting for OpenSearch/Elasticsearch REST API provides an endpoint to manually execute watches.
 
 ---
 

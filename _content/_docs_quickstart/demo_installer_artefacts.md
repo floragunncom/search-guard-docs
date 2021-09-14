@@ -17,7 +17,7 @@ description: Description of the generated artefacts of the demo installer, what 
 
 ## Generated certificates
 
-After executing the demo installer, you will find the following generated certificates in the config directory of your Elasticsearch installation:
+After executing the demo installer, you will find the following generated certificates in the config directory of your OpenSearch/Elasticsearch installation:
 
 * ``root-ca.pem``— the root CA used for signing all other certificates
 * ``esnode.pem``— the node certificate used on the transport- and REST-layer. 
@@ -25,11 +25,11 @@ After executing the demo installer, you will find the following generated certif
 * ``kirk.pem``— the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API
 * ``kirk-key.pem``— the private key for the admin certificate
 
-These certificates are used for TLS encryption on the REST- and the transport layer of Elasticsearch, and for granting admin access to the Search Guard configuration index. For a detailed description on the types of certificates Search Guard uses, please see [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
+These certificates are used for TLS encryption on the REST- and the transport layer of OpenSearch/Elasticsearch, and for granting admin access to the Search Guard configuration index. For a detailed description on the types of certificates Search Guard uses, please see [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
 
 ## Generated configuration
 
-The demo installer automatically appends mandatory and useful configuration settings for Search Guard to `elasticsearch.yml`. These additions are enclosed by the following lines:
+The demo installer automatically appends mandatory and useful configuration settings for Search Guard to `openearch.yml`/`elasticsearch.yml`. These additions are enclosed by the following lines:
 
 ```yaml
 ######## Start Search Guard Demo Configuration ########
@@ -37,7 +37,7 @@ The demo installer automatically appends mandatory and useful configuration sett
 ######## End Search Guard Demo Configuration ########
 ```
 
-If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `elasticsearch.yml`.
+If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `openearch.yml`/`elasticsearch.yml`.
 
 ### TLS settings
 
@@ -70,7 +70,7 @@ searchguard.authcz.admin_dn:
 
 ### Allow demo certificates and auto-initialization
 
-By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory. 
+By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory. 
 
 ```yaml
 searchguard.allow_unsafe_democertificates: true
@@ -92,7 +92,7 @@ Details can be found in the [Snapshot & Restore](../_docs_roles_permissions/conf
 
 ### Audit logging
 
-This line tells Search Guard to enable audit logging and to store the generated audit trail directly in Elasticsearch:
+This line tells Search Guard to enable audit logging and to store the generated audit trail directly in OpenSearch/Elasticsearch:
 
 ```yaml
 searchguard.audit.type: internal_elasticsearch
@@ -109,7 +109,7 @@ Tells Search Guard which Search Guard roles can access the REST Management API t
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 ```
 
-In the demo setup, this Search Guard role is assigned to the user `admin`. If you have installed the Kibana Configuration GUI, simply login as `admin/admin`.
+In the demo setup, this Search Guard role is assigned to the user `admin`. If you have installed the Dashboards/Kibana Configuration GUI, simply login as `admin/admin`.
 
 ### Default cluster name and host
 

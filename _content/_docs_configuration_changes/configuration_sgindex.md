@@ -6,7 +6,7 @@ category: configuration
 order: 50
 layout: docs
 edition: community
-description: Search Guard stores its configuration in an Elasticsearch index. This allows for configuration hot-reloading
+description: Search Guard stores its configuration in an OpenSearch/Elasticsearch index. This allows for configuration hot-reloading
 ---
 <!--- Copyright 2020 floragunn GmbH -->
 
@@ -19,11 +19,11 @@ description: Search Guard stores its configuration in an Elasticsearch index. Th
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in the Search Guard configuration index. 
 
-This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `elasticsearch.yml`.
+This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `openearch.yml`/`elasticsearch.yml`.
 
-Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can change any of the user, role and permission or authentication settings at runtime, without restarting your nodes. Configuration changes will take effect immediately.
+Keeping the configuration settings in an OpenSearch/Elasticsearch index enables hot config reloading. This means that you can change any of the user, role and permission or authentication settings at runtime, without restarting your nodes. Configuration changes will take effect immediately.
 
-You can load and change the settings from any machine which has access to your Elasticsearch cluster. You do not need to keep any configuration files on the nodes.
+You can load and change the settings from any machine which has access to your OpenSearch/Elasticsearch cluster. You do not need to keep any configuration files on the nodes.
 
 The configuration consists of the following files. These are shipped with Search Guard as templates.
 
@@ -32,7 +32,7 @@ The configuration consists of the following files. These are shipped with Search
 * sg\_roles\_mapping.yml - map backend roles, hosts and users to roles.
 * sg\_internal\_users.yml - stores users,and hashed passwords in the internal user database.
 * sg\_action\_groups.yml - define named permission groups.
-* sg\_tenants.yml - defines tenants for configuring Kibana access
+* sg\_tenants.yml - defines tenants for configuring Dashboards/Kibana access
 
 Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter sgadmin.
 
@@ -91,7 +91,7 @@ Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search
 There are several situations where the auto-expand feature is not suitable including:
 
 * When using a Hot/Warm Architecture
-* Running multiple instances of Elasticsearch on the same host machine
+* Running multiple instances of OpenSearch/Elasticsearch on the same host machine
 * When `cluster.routing.allocation.same_shard.host` is set to `false`, see also [elastic/elasticsearch#29933](https://github.com/elastic/elasticsearch/issues/29933)
 * The searchguard index stays constantly yellow
 

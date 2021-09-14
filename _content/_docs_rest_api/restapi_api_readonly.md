@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 ## Reserved resources
 
-You can mark any user, role, action group or roles mapping as `reserved` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Kibana Configuration GUI.
+You can mark any user, role, action group or roles mapping as `reserved` in their respective configuration files. Resources that have this flag set to true can not be changed via the REST API and are marked as `reserved` in the Dashboards/Kibana Configuration GUI.
 
 You can use this feature to give users or customers permission to add and edit their own users and roles, while making sure your own built-in resources are left untouched.
 
@@ -46,7 +46,7 @@ Any resource can be marked *hidden*. As the name implies, a hidden resource
 * cannot be changed
   * a `403` is returned instead 
 
-Hidden resources are most useful if you want to give end users access to the REST API, but you want to hide some of the service users your platform is using. For example, the Kibana server user or the logstash user.
+Hidden resources are most useful if you want to give end users access to the REST API, but you want to hide some of the service users your platform is using. For example, the Dashboards/Kibana server user or the logstash user.
 
 To change the `reserved` flag you need to use sgadmin.
 {: .note .js-note .note-info}

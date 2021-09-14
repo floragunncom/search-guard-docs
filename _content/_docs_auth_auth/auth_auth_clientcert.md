@@ -6,7 +6,7 @@ category: authauth
 order: 900
 layout: docs
 edition: community
-description: How to use client side TLS certificates to protect Elasticsearch against unauthorized access.
+description: How to use client side TLS certificates to protect OpenSearch/Elasticsearch against unauthorized access.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -21,7 +21,7 @@ Search Guard can use a client TLS certificate in the HTTP request to authenticat
 
 ## Configuration
 
-In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
+In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `openearch.yml`/`elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```yaml
 searchguard.ssl.http.clientauth_mode: OPTIONAL

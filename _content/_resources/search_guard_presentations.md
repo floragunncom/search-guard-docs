@@ -39,7 +39,7 @@ Copyright 2020 floragunn GmbH
 			</a>
 		</div>
 		<div class="col-md-6">
-			<p class="book-description">How to use the Demo Installer to quickly set up a Search Guard PoC for Elasticsearch and Kibana. Use the Kibana config GUI to add users, roles and permissions. </p>
+			<p class="book-description">How to use the Demo Installer to quickly set up a Search Guard PoC for OpenSearch/Elasticsearch and Dashboards/Kibana. Use the Search Guard config GUI to add users, roles and permissions. </p>
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/01_SG_Documents_installation.pdf" target="_blank">
@@ -120,7 +120,7 @@ Copyright 2020 floragunn GmbH
 			</a>		
 		</div>
 		<div class="col-md-6">
-			<p class="book-description">How to use JSON web tokens for Elasticsearch single sign on authentication</p>
+			<p class="book-description">How to use JSON web tokens for OpenSearch/Elasticsearch single sign on authentication</p>
 			<ul class="book-download-list">
 				<li class="book-download-item">
 					<a href="/resources/presentations/05_SG_Documents_json_web_tokens.pdf" target="_blank">

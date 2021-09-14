@@ -6,7 +6,7 @@ category: signals
 order: 200
 layout: docs
 edition: community
-description: How Signals Alerting for Elasticsearch works and how to use it for log file analysis and audit logging notifications
+description: How Signals Alerting for OpenSearch/Elasticsearch works and how to use it for log file analysis and audit logging notifications
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -26,7 +26,7 @@ Signals can be used to create and execute watches that:
 
 ## Log file analysis example
 
-Assume you are ingesting log files from production systems to Elasticsearch. The most typical use case is to use Signals to detect an unusual amount of errors.
+Assume you are ingesting log files from production systems to OpenSearch/Elasticsearch. The most typical use case is to use Signals to detect an unusual amount of errors.
 
 You can use Signals to:
 
@@ -55,13 +55,13 @@ These three elements also form the three major building blocks of a Signals watc
 
 * **[Triggers](triggers.md)** define when a watch will be executed. Each watch should have at least one trigger
 * **Checks** are constructs meant for analyzing the situation to be watched. For doing so, Signals offers
-  * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or an HTTP service;
+  * *[Inputs](inputs.md)* which pull in data from a source such as an OpenSearch/Elasticsearch index or an HTTP service;
   * *[Conditions](conditions.md)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
   * *[Transformations and calculations](transformations_overview.md)* to transform the gathered data into a format that subsequent operations may require.
   * Each watch can have several checks, which are executed as a chain. Each action of a watch can also have a chain of checks.
 * **[Actions](actions.md)** are executed if all preceding conditions are met.
   * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md) or [PagerDuty](actions_pagerduty.md).
-  * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](actions_index.md).
+  * Actions can be used to write the runtime data back to data sinks like an [OpenSearch/Elasticsearch index](actions_index.md).
   * Using the [Webhook action](actions_webhook.md), it is possible to invoke any HTTP service as a result of a Signals watch.
   * Each watch can have several actions. Action-specific checks can be used to decide which actions are executed in which situation.
 
@@ -73,7 +73,7 @@ The Signals dashboard also displays the current severity levels determined by th
 ## Watch Runtime Data
 All watches operate on the so-called watch runtime data. Inputs put the gathered data into the runtime data; conditions can read it and transforms can modify it. Actions read from the runtime data as well.
 
-The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an Elasticsearch index.
+The runtime data is formed like a hierarchical key/value document, quite similar to a document stored in an OpenSearch/Elasticsearch index.
 
 The checks of a watch subsequently modify the runtime data. If action-specific checks are defined, these will be operating on isolated copies of the runtime data. So, modifications of the runtime data for one action have no effect on the runtime data visible for other actions.
 

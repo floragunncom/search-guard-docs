@@ -1,12 +1,12 @@
 ---
 title: Advanced Configuration
-html_title: Kibana SAML Advanced Configuration
+html_title: Dashboards/Kibana SAML Advanced Configuration
 slug: kibana-authentication-saml-advanced
 category: kibana-authentication-saml-overview
 order: 200
 layout: docs
 edition: enterprise
-description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
+description: How to configure Dashboards/Kibana for SAML Single Sign On authentication and IdP integrations.
 
 
 ---
@@ -14,7 +14,7 @@ description: How to configure Kibana for SAML Single Sign On authentication and 
 Copyright 2020 floragunn GmbH
 -->
 
-# Kibana SAML Advanced Configuration
+# Dashboards/Kibana SAML Advanced Configuration
 {: .no_toc}
 
 {% include toc.md %}
@@ -136,14 +136,14 @@ default:
 
 ## IdP initated SSO
 
-IdP initiated SSO allows you to open Kibana directly from your IdP, without having navigated to Kibana first.
+IdP initiated SSO allows you to open Dashboards/Kibana directly from your IdP, without having navigated to Dashboards/Kibana first.
 
 To use IdP initiated SSO, you need to complete the following steps:
 
 * Edit the application settings in your IdP and set the *Assertion Consumer Service* endpoint to `/searchguard/saml/acs/idpinitiated
 `.
 
-Then add this endpoint to the xsrf whitelist in `kibana.yml`:
+Then add this endpoint to the xsrf whitelist in `openearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]

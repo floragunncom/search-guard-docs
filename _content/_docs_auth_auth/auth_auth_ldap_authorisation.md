@@ -151,13 +151,13 @@ authz:
 
 If you are using multiple authentication methods, it can make sense to exclude certain users from the LDAP role lookup.
 
-Consider the following scenario for a typical Kibana setup:
+Consider the following scenario for a typical Dashboards/Kibana setup:
 
-All Kibana users are stored in an LDAP/Active Directory server.
+All Dashboards/Kibana users are stored in an LDAP/Active Directory server.
 
-However, you also need a Kibana server user. This is used by Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Kibana-internal user to your Active Directory installation, but store it in the Search Guard internal user database.
+However, you also need a Dashboards/Kibana server user. This is used by Dashboards/Kibana internally to manage stored objects and perform monitoring and maintenance tasks. You do not want to add this Dashboards/Kibana-internal user to your Active Directory installation, but store it in the Search Guard internal user database.
 
-In this case, it makes sense to exclude the Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
+In this case, it makes sense to exclude the Dashboards/Kibana server user from the LDAP authorisation, since we already know that there is no corresponding entry. You can use the `skip_users` configuration setting to define which users should be skipped. **Wildcards** and **regular expressions** are supported.
 
 ```yaml
 skip_users:
@@ -175,11 +175,11 @@ If the users in your LDAP installation have a large amount of roles, and you hav
 * If a user has many roles, and these roles are deeply nested, this results in a lot of additional LDAP queries
 * This means more network roundtrips and thus, depending on your network latency and LDAP response times, a performance penalty.
 
-However, in most cases not all roles a user has are related to Elasticsearch / Kibana / Search Guard. You might need just one or two roles, and all other roles are irrelevant. If this is the case, you can use the nested role filter feature.
+However, in most cases not all roles a user has are related to OpenSearch/Elasticsearch / Dashboards/Kibana / Search Guard. You might need just one or two roles, and all other roles are irrelevant. If this is the case, you can use the nested role filter feature.
 
 With this feature, you can define a list of roles which are filtered out from the list of the user's roles, **before** nested roles are resolved. **Wildcards** and **regular expressions** are supported.
 
-So if you already know which roles are relevant for your Elasticsearch cluster and which aren't, simply list the irrelevant roles and enjoy improved performance.
+So if you already know which roles are relevant for your OpenSearch/Elasticsearch cluster and which aren't, simply list the irrelevant roles and enjoy improved performance.
 
 This only has an effect if `resolve_nested_roles` is `true`.
 

@@ -27,7 +27,7 @@ Search Guard comes with pluggable authentication and authorization modules. Depe
 * [JSON Web token](../_docs_auth_auth/auth_auth_jwt.md)
 * [Proxy Authentication](../_docs_auth_auth/auth_auth_proxy.md)
 
-**Note:** OIDC and SAML based authentication is only available for Kibana. See the documentation on [Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
+**Note:** OIDC and SAML based authentication is only available for Dashboards/Kibana. See the documentation on [Dashboards/Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
 
 ## sg_config.yml
 
@@ -172,7 +172,7 @@ The [sg_config.yml](https://git.floragunn.com/search-guard/search-guard/blob/mas
 
 It is possible to exclude users from authentication and/or authorization by specifying a 'skip_users' section inside the domain (root-level) configuration. **Wildcards** and **regular expressions** are supported.
 
-This could be useful if fetching roles, let's say from a LDAP server, for a specific user wouldn't make sense since we know in advance that a user might not have any roles defined, e.g. Kibana user, thus saving
+This could be useful if fetching roles, let's say from a LDAP server, for a specific user wouldn't make sense since we know in advance that a user might not have any roles defined, e.g. Dashboards/Kibana user, thus saving
 unnecessary network round trips and reducing request latency. 
 
 ```yaml
@@ -195,7 +195,7 @@ Using the `enabled_only_for_ips` attribute you are able to restrict usage of the
 * IPv4 subnets in CIDR notation, e.g. `192.0.2.0/24`
 * IPv6 subnets in CIDR notation, e.g. `2001:db8::/32`
 
-This can be for example useful if the only reason to enable HTTP basic authentication is your Kibana installation. Then, you can limit the auth domain to the IPs used by Kibana.
+This can be for example useful if the only reason to enable HTTP basic authentication is your Dashboards/Kibana installation. Then, you can limit the auth domain to the IPs used by Dashboards/Kibana.
 
 Example:
 

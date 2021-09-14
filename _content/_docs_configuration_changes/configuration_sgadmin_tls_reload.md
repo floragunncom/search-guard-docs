@@ -6,7 +6,7 @@ category: sgadmin
 order: 350
 layout: docs
 edition: community
-description: How to use sgadmin to reload TLS certificates on a running Elasticsearch cluster
+description: How to use sgadmin to reload TLS certificates on a running OpenSearch/Elasticsearch cluster
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 The sgadmin tool can be used to trigger a reload of the TLS certificates on a running cluster. You can use this feature to change certificates, including the root CA without the need for a cluster restart.
 
-Please read the TLS reload instruction guide before changing the certificates on a production Elasticsearch cluster
+Please read the TLS reload instruction guide before changing the certificates on a production OpenSearch/Elasticsearch cluster
 {: .note .js-note note-info}
 
 | Name | Description |

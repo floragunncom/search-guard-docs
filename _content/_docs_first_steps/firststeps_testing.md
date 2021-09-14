@@ -78,9 +78,9 @@ This is backend role we assigned to the user `jdoe` in `sg_internal_users.yml`
 
 This is the assigned Search Guard role for the user `jdoe`. This means the mapping from the user to the Search Guard role works as expected.
 
-## Accessing Elasticsearch
+## Accessing OpenSearch/Elasticsearch
 
-Now that we are sure that our user `jdoe` is correctly mapped to the `sg_human_resources` Search Guard role, we can try to access some data in Elasticsearch.
+Now that we are sure that our user `jdoe` is correctly mapped to the `sg_human_resources` Search Guard role, we can try to access some data in OpenSearch/Elasticsearch.
 
 The definition of the role looks like:
 
@@ -103,7 +103,7 @@ We try to access data in the `humanresources` first:
 curl -k -u jdoe:jdoe -XGET "https://sgssl-0.example.com:9200/humanresources/_search?pretty"
 ```
 
-As expected, access is allowed and Elasticsearch returns data from the index:
+As expected, access is allowed and OpenSearch/Elasticsearch returns data from the index:
 
 ```
 {

@@ -5,7 +5,7 @@ category: generating-certificates
 order: 300
 layout: docs
 edition: community
-description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elasticsearch cluster.
+description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your OpenSearch/Elasticsearch cluster.
 resources:
   - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
   - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
@@ -38,7 +38,7 @@ The TLS Tool is platform independent and can be used for
 * Generating CSRs 
 * Validating certificates
 
-Besides the actual certificates the tool also generated configuration snippets which you can directly copy and paste into your `elasticsearch.yml`.
+Besides the actual certificates the tool also generated configuration snippets which you can directly copy and paste into your `openearch.yml`/`elasticsearch.yml`.
 
 ## General usage
 

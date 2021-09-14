@@ -1,12 +1,12 @@
 ---
-title: Elasticsearch Input
-html_title: Elasticsearch Input
+title: Search Input
+html_title: Signals Search Input
 slug: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs
 edition: community
-description: Signals Alerting executes Elasticsearch queries and use the query result to check for anomalies.
+description: Signals Alerting executes OpenSearch/Elasticsearch queries and use the query result to check for anomalies.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -14,9 +14,9 @@ description: Signals Alerting executes Elasticsearch queries and use the query r
 # Search input
 {: .no_toc}
 
-A search input can be used to pull in data from an Elasticsearch index.
+A search input can be used to pull in data from an OpenSearch/Elasticsearch index.
 
-You can use the full power of the Elasticsearch query syntax to query, filter and aggregate your data. 
+You can use the full power of the OpenSearch/Elasticsearch query syntax to query, filter and aggregate your data. 
 
 Example:
 
@@ -68,5 +68,5 @@ Example:
 | target | the name under which the data is available in later execution steps. |
 | request | The search request to execute |
 | request.indices | The indices to execute the `request.query` against. **The user that defines the watch needs to have a role that has access to the specified index / indices.**|
-| request.body | The body of the search request. You can use all features of the Elasticsearch query and aggregation DSL here. **All attributes of the request body can be dynamically defined using Mustache templates**.|
+| request.body | The body of the search request. You can use all features of the OpenSearch/Elasticsearch query and aggregation DSL here. **All attributes of the request body can be dynamically defined using Mustache templates**.|
 {: .config-table}

@@ -16,26 +16,32 @@ description: How to download and install Search Guard and all required TLS certi
 
 {% include toc.md %}
 
-To quickly set up a Search Guard secured Elasticsearch cluster on Windows:
+To quickly set up a Search Guard secured OpenSearch/Elasticsearch cluster on Windows:
 
-1. Install the Search Guard Plugin to Elasticsearch
-2. Download and unzip the demo certificates to the config directory of Elasticsearch
+1. Install the Search Guard Plugin to OpenSearch/Elasticsearch
+2. Download and unzip the demo certificates to the config directory of OpenSearch/Elasticsearch
 3. Add the Search Guard minimal configuration to elasticsearch.yml
 
-To use the (optional) Search Guard Kibana plugin which adds security and configuration features to Kibana:
+To use the (optional) Search Guard Dashboards/Kibana plugin which adds security and configuration features to Dashboards/Kibana:
 
-1. Install the Search Guard Kibana plugin to Kibana
-2. Add the minimal Kibana configuration to `kibana.yml`
+1. Install the Search Guard Dashboards/Kibana plugin to Dashboards/Kibana
+2. Add the minimal Dashboards/Kibana configuration to `kibana.yml`
 
-## Install Search Guard on Elasticsearch
+## Install Search Guard on OpenSearch/Elasticsearch
 
-Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
+Search Guard can be installed like any other OpenSearch/Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your Elasticsearch version
-* Change to the directory of your Elasticsearch installation and type:
+* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your OpenSearch/Elasticsearch version
+* Change to the directory of your OpenSearch/Elasticsearch installation.
+* For OpenSearch, execute:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
+bin/opensearch-plugin install -b file:///path/to/search-guard-<version>.zip
+```
+* For Elasticsearch, execute:
+
+```bash
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-<version>.zip
 ```
 
 ## Download and install the Search Guard demo certificates
@@ -43,12 +49,12 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchgu
 Download the [certificates zip file](https://downloads.search-guard.com/resources/certificates/certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
 
 ```
-<ES installation directory>/config
+<installation directory>/config
 ```
 
 ## Add the minimal Search Guard configuration
 
-Add the following minimal Search Guard configuration to `elasticsearch.yml`:
+Add the following minimal Search Guard configuration to `openearch.yml`/`elasticsearch.yml`:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 
@@ -75,7 +81,7 @@ searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 
 Restart your node(s) for the changes to take effect.
 
-## Testing the Elasticsearch installation
+## Testing the OpenSearch/Elasticsearch installation
 
 * Open ``https://localhost:9200/_searchguard/authinfo``.
 * Accept the self-signed demo TLS certificate.
@@ -84,24 +90,24 @@ Restart your node(s) for the changes to take effect.
 
 ## Applying configuration changes
 
-The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch, the *Search Guard Index*. 
+The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in OpenSearch/Elasticsearch, the *Search Guard Index*. 
 
 Changes to the Search Guard configuration must be applied to this index by either
 
-* Using the Kibana Configuration GUI (Enterprise feature)
+* Using the Search Guard Configuration GUI (Enterprise feature)
 * Using the sgadmin command line tool with the generated admin certificate
 
-For using the Kibana Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
+For using the Search Guard Configuration GUI you need to install the Search Guard Dashboards/Kibana Plugin, as described below. 
 
 If you want to use the sgadmin tool:
 
-* Apply your changes to the demo configuration files located in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
+* Apply your changes to the demo configuration files located in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
 * Execute sgadmin to upload the changed configuration to Search Guard
 
 To execute sgadmin, first cd into 
 
 ```
-<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools
+<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools
 ```
 
 And execute:
@@ -110,28 +116,28 @@ And execute:
 sgadmin.bat -cd ..\sgconfig -key ..\..\..\config\kirk-key.pem -cert ..\..\..\config\kirk.pem -cacert ..\..\..\config\root-ca.pem -nhnv -icl
 ```
 
-This will read the contents of the configuration files in `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
+This will read the contents of the configuration files in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
 
 The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the [Using sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) chapter.
 
-## Install Search Guard on Kibana
+## Install Search Guard on Dashboards/Kibana
 
-The Search Guard Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Kibana. 
+The Search Guard Dashboards/Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Dashboards/Kibana. 
 
-* Download the [Search Guard Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Kibana version from Maven
-* Stop Kibana
-* cd into your Kibana installaton directory
+* Download the [Search Guard Dashboards/Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Dashboards/Kibana version from Maven
+* Stop Dashboards/Kibana
+* cd into your Dashboards/Kibana installaton directory
 * Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip
 
-## Add the Search Guard Kibana configuration
+## Add the Search Guard Dashboards/Kibana configuration
 
-If you've used the demo configuration to initializing Search Guard as outlined above, add the following lines to your `kibana.yml` and restart Kibana:
+If you've used the demo configuration to initializing Search Guard as outlined above, add the following lines to your `kibana.yml` and restart Dashboards/Kibana:
 
 ```yaml
 # Use HTTPS instead of HTTP
 elasticsearch.hosts: "https://localhost:9200"
 
-# Configure the Kibana internal server user
+# Configure the Dashboards/Kibana internal server user
 elasticsearch.username: "kibanaserver"
 elasticsearch.password: "kibanaserver"
 
@@ -145,20 +151,20 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 xpack.security.enabled: false
 ```
 
-## Start Kibana
+## Start Dashboards/Kibana
 
-After Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Kibana will continue to start.
+After Dashboards/Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Dashboards/Kibana will continue to start.
 
-## Testing the Kibana installation
+## Testing the Dashboards/Kibana installation
 
 * Open `http://localhost:5601/`.
-* You should be redirected to the Kibana login page
+* You should be redirected to the Dashboards/Kibana login page
 * On the login dialogue, use `admin` as username and `admin` as password.
 
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
 * Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
+* Tenants - to select a tenant for [Dashboards/Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -168,7 +174,7 @@ The Search Guard configuration GUI allows you to edit
 * Search Guard Roles - define access permissions to indices and types
 * Action Groups - define groups of access permissions
 * Role Mappings - Assign users by username or their backend roles to Search Guard roles
-* Internal User Database - An authentication backend that stores users directly in Elasticsearch
+* Internal User Database - An authentication backend that stores users directly in OpenSearch/Elasticsearch
 
 Furthermore you can view your currently active license, upload a new license if it has expired, and display the Search Guard system status.
 
@@ -176,7 +182,7 @@ Furthermore you can view your currently active license, upload a new license if 
 
 If you have not already done so, make yourself familiar with the [Search Guard Main Concepts](../_docs_quickstart/main_concepts.md). 
 
-After that, configure roles and access permissions by either modifying the configuration files and uploading them via `sgadmin`, or use the Kibana configuration GUI to change them directly. 
+After that, configure roles and access permissions by either modifying the configuration files and uploading them via `sgadmin`, or use the Dashboards/Kibana configuration GUI to change them directly. 
 
 * [Using and defining action groups](../_docs_roles_permissions/configuration_action_groups.md)
 * [Defining roles and permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
@@ -189,4 +195,4 @@ For fine-grained access control on document- and field level, use the Search Gua
 
 If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
 
-And if you need to support multiple tenants in Kibana, use [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.
+And if you need to support multiple tenants in Dashboards/Kibana, use [Dashboards/Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.

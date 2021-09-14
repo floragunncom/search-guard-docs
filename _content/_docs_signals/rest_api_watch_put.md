@@ -6,7 +6,7 @@ category: signals-rest
 order: 110
 layout: docs
 edition: community
-description: Use the Alerting for Elasticsearch Put Watch API to create new watches in JSON format.
+description: Use the Alerting for OpenSearch/Elasticsearch Put Watch API to create new watches in JSON format.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

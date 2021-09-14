@@ -4,7 +4,7 @@ slug: upgrading
 category: installation
 order: 800
 layout: docs
-description: How to upgrade Search Guard and Elasticsearch by rolling restarts or a full cluster restart. 
+description: How to upgrade Search Guard and OpenSearch/Elasticsearch by rolling restarts or a full cluster restart. 
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -22,18 +22,18 @@ The following instructions assume that Search Guard has been installed on your c
 
 There are two types of upgrades to distinguish:
 
-* Upgrading Search Guard for your current Elasticsearch version
+* Upgrading Search Guard for your current OpenSearch/Elasticsearch version
   * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextminorversion}}
-* Upgrading Search Guard and Elasticsearch
+* Upgrading Search Guard and OpenSearch/Elasticsearch
   * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextmajorversion}}
 
-In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your Elasticsearch nodes, without any downtime.
+In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your OpenSearch/Elasticsearch nodes, without any downtime.
 
-In the latter case, you need to first upgrade your Elasticsearch installation, and after that install the correct Search Guard version. If you need to perform a full cluster restart or not depends on the Elasticsearch version you are upgrading from and to. Please consult the official Elasticsearch documentation:
+In the latter case, you need to first upgrade your OpenSearch/Elasticsearch installation, and after that install the correct Search Guard version. If you need to perform a full cluster restart or not depends on the OpenSearch/Elasticsearch version you are upgrading from and to. Please consult the official Elasticsearch documentation:
 
 [https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html){:target="_blank"}
 
-Before starting the upgrade, check if there are any breaking changes either in Elasticsearch or Search Guard:
+Before starting the upgrade, check if there are any breaking changes either in OpenSearch/Elasticsearch or Search Guard:
 
 [Elasticsearch Breaking Changes](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes.html){:target="_blank"}
 
@@ -42,9 +42,9 @@ Before starting the upgrade, check if there are any breaking changes either in E
 
 ## Check permission schema
 
-The permission schema can change from Elasticsearch version to Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](../_docs_roles_permissions/configuration_action_groups.md)  instead of assigning single permissions to roles directly.
+The permission schema can change from OpenSearch/Elasticsearch version to OpenSearch/Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](../_docs_roles_permissions/configuration_action_groups.md)  instead of assigning single permissions to roles directly.
 
-This applies for all Elasticsearch upgrades.
+This applies for all OpenSearch/Elasticsearch upgrades.
 
 ## Upgrading Search Guard Only
 
@@ -52,29 +52,29 @@ Upgrades from one version of Search Guard to another can be done with a rolling 
 
 Given there are no breaking changes, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:
 
-* Stop your Elasticsearch node
+* Stop your OpenSearch/Elasticsearch node
 * Remove the old version of Search Guard
   * `bin/elasticsearch-plugin remove search-guard-{{site.searchguard.esmajorversion}}`
 * Install the new version of Search Guard
   * See the chapter [Installing Search Guard](../_docs_installation/installation.md)
  for instructions
 
-After that, restart your node and check that Elasticsearch and Search Guard are starting without errors.
+After that, restart your node and check that OpenSearch/Elasticsearch and Search Guard are starting without errors.
 
 Then, repeat this process for all other nodes in the cluster.  
 
-## Upgrading Elasticsearch and Search Guard
+## Upgrading OpenSearch/Elasticsearch and Search Guard
 
 If you're looking for specific upgrade instructions from 6.x to 7.x, please follow the [steps described here](../_docs_installation/installation_upgrading_6_7.md).
 {: .note .js-note .note-warning}
 
-First check with the official Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
+First check with the official OpenSearch/Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
 
-[Upgrading Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html){:target="_blank"}
+[Upgrading OpenSearch/Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-upgrade.html){:target="_blank"}
 
 ### Minor Upgrades - Rolling restart
 
-Follow the official Elasticsearch guideline for rolling upgrades for your Elasticsearch version:
+Follow the official Elasticsearch guideline for rolling upgrades:
 
 [Rolling upgrades](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html){:target="_blank"}
 
@@ -108,7 +108,7 @@ curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
   }
 }
 '    
-```    
+```
 
 #### Steps
 
@@ -126,7 +126,7 @@ Steps from the [Rolling upgrades guide](https://www.elastic.co/guide/en/elastics
   
 ### Major Upgrades - Full cluster restart
 
-Follow the official Elasticsearch guideline for full cluster restart upgrades for your Elasticsearch version:
+Follow the official OpenSearch/Elasticsearch guideline for full cluster restart upgrades for your OpenSearch/Elasticsearch version:
 
 [Full cluster restart upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html){:target="_blank"}
 
@@ -141,7 +141,7 @@ In case you do not have acces to your original Search Guard configuration files 
   -ks kirk.jks -kspass changeit \  
   -ts truststore.jks -tspass changeit \ 
   -icl -nhnv -r
-``` 
+```
 
 This will retrieve and save all Search Guard configuration files to your working directory. You can later use these files to initialize Search Guard after the upgrade. 
 

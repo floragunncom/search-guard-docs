@@ -5,7 +5,7 @@ slug: troubleshooting-search-guard-user-roles
 category: troubleshooting
 order: 210
 layout: troubleshooting
-description: How to troubleshoot problems with users and roles in an Search Guard secured Elasticsearch cluster.
+description: How to troubleshoot problems with users and roles in an Search Guard secured OpenSearch/Elasticsearch cluster.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -92,9 +92,9 @@ A user can have one or more custom attributes, which can be used in index names 
 For security reasons, only the attribute names are listed, not their actual values.
 {: .note .js-note .note-warning}
 
-## Kibana tenants
+## Dashboards/Kibana tenants
 
-If you are using Kibana multi tenancy, the `sg_tenants` section lists all available tenants:
+If you are using Dashboards/Kibana multi tenancy, the `sg_tenants` section lists all available tenants:
 
 ```
 "sg_tenants" : {

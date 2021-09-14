@@ -5,9 +5,9 @@ category: authauth
 order: 500
 layout: docs
 edition: enterprise
-description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access to your Elasticsearch cluster.
+description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access to your OpenSearch/Elasticsearch cluster.
 resources:
-  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure Elasticsearch (blog post)"
+  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure OpenSearch/Elasticsearch (blog post)"
   - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 
 ---
@@ -15,7 +15,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Using JSON web tokens for Elasticsearch access control
+# Using JSON web tokens for OpenSearch/Elasticsearch access control
 {: .no_toc}
 
 {% include toc.md %}
@@ -172,7 +172,7 @@ my_dls_role:
 ```
 
 
-**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the OpenSearch/Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
 
 **Note:** This method of providing attributes supersedes the old way which provided all JWT attributes as Search Guard user attributes with the prefix `attr.jwt`. These attributes are still supported, but are now deprecated.
 

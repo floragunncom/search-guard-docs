@@ -36,7 +36,7 @@ Search Guard roles define what access permissions a user with this role has. Thi
 * Permissions on field level (Enterprise)
   * e.g. what fields in documents a user is allowed to see
 
-As with users, you can configure roles by using sgadmin, the [REST API](rest-api-internalusers) or the [Kibana Config GUI](configuration-gui).
+As with users, you can configure roles by using sgadmin, the [REST API](rest-api-internalusers) or the [Dashboards/Kibana Config GUI](configuration-gui).
      
 Users are assigned to Search Guard roles by using the roles mapping. We will first define our roles, and then map users to them in the next chapter.
      

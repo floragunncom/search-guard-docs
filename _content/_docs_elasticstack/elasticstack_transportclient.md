@@ -6,7 +6,7 @@ category: elasticstack
 order: 400
 layout: docs
 edition: community
-description: How to connect to a Search Guard secured Elasticsearch cluster using a Transport Client.
+description: How to connect to a Search Guard secured OpenSearch/Elasticsearch cluster using a Transport Client.
 
 ---
 <!---
@@ -18,7 +18,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-For a Transport Client to talk to a Search Guard secured Elasticsearch cluster, the following requirements must be met:
+For a Transport Client to talk to a Search Guard secured OpenSearch/Elasticsearch cluster, the following requirements must be met:
 
 * The Transport Client needs to authenticate itself against the cluster by sending a trusted TLS certificate
 * A role with appropriate permissions has to be configured in Search Guard, either based on the hostname of the client, or the DN of the certificate
@@ -36,7 +36,7 @@ First add Search Guard as a dependency to your project. If you are using Maven, 
 </dependency>
 ```     
 
-The Search Guard version must match the version of your Elasticsearch cluster. 
+The Search Guard version must match the version of your OpenSearch/Elasticsearch cluster. 
 {: .note .js-note .note-warning}
     
 ## Configuring the Transport Client

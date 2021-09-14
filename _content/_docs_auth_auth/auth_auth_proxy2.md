@@ -5,7 +5,7 @@ category: authauth
 order: 810
 layout: docs
 edition: community
-description: Use Search Guard's enhanced Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
+description: Use Search Guard's enhanced Proxy authentication feature to connect OpenSearch/Elasticsearch to any third-party identity provider.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -262,6 +262,6 @@ my_dls_role:
 ```
 
 
-**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
+**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the OpenSearch/Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
 
 **Note:** This method of providing attributes supersedes the old way which provided the headers listed in the `attribute_headers`  configuration as Search Guard user attributes with the prefix `attr.proxy2`. These attributes are still supported, but are now deprecated.

@@ -1,14 +1,14 @@
 ---
 title: Quick Start
-html_title: Kibana SAML Quick Start
+html_title: Dashboards/Kibana SAML Quick Start
 slug: kibana-authentication-saml
 category: kibana-authentication-saml-overview
 order: 100
 layout: docs
 edition: enterprise
-description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
+description: How to configure Dashboards/Kibana for SAML Single Sign On authentication and IdP integrations.
 resources:
-  - "https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single Sign-On (blogpost)"
+  - "https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Dashboards/Kibana Single Sign-On (blogpost)"
 
 
 ---
@@ -16,7 +16,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Kibana SAML Quick Start
+# Dashboards/Kibana SAML Quick Start
 {: .no_toc}
 
 {% include toc.md %}
@@ -29,17 +29,17 @@ This chapter describes the basic setup of SAML with Search Guard. This will work
 
 In order to use SAML, you need to have an Identity Provider (IdP) supporting SAML.
 
-Furthermore, it is necessary that HTTPS is configured for Kibana.
+Furthermore, it is necessary that HTTPS is configured for Dashboards/Kibana.
 
 ## IdP Setup
 
-First, create a new application integration representing your Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the integration, you must make sure that the following settings are configured like this:
+First, create a new application integration representing your Dashboards/Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the integration, you must make sure that the following settings are configured like this:
 
-* Assertion Consumer Service URL or Single Sign On URL: The IdP will send authentication information to this URL. This must be the publicly visible URL of Kibana followed by the path `/searchguard/saml/acs`. For example, `https://kibana.example.com:5601/searchguard/saml/acs`
+* Assertion Consumer Service URL or Single Sign On URL: The IdP will send authentication information to this URL. This must be the publicly visible URL of Dashboards/Kibana followed by the path `/searchguard/saml/acs`. For example, `https://kibana.example.com:5601/searchguard/saml/acs`
 
 * Make sure that the roles of a user are mapped to a SAML assertion.
 
-* All users which are supposed to be able to log in to Kibana, must have certain privileges. If you are using the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to all wanted users. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.  
+* All users which are supposed to be able to log in to Dashboards/Kibana, must have certain privileges. If you are using the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to all wanted users. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.  
 
 You need to keep a couple of values from the IdP setup ready for the next step. These values are:
 
@@ -93,11 +93,11 @@ default:
     user_mapping.roles: roles
 ```
  
-## Kibana Setup
+## Dashboards/Kibana Setup
 
-In order to use SAML with Kibana, it is necessary to configure the external URL of Kibana in the file `config/kibana.yml` in your Kibana installation. 
+In order to use SAML with Dashboards/Kibana, it is necessary to configure the external URL of Dashboards/Kibana in the file `config/kibana.yml` in your Dashboards/Kibana installation. 
 
-For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
+For Dashboards/Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
 ```yaml
 server.publicBaseUrl: "https://kibana.example.com:5601"
@@ -109,28 +109,28 @@ For older versions of Kibaba, please use the setting `searchguard.frontend_base_
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
-Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `kibana.yml`:
+Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `openearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.cookie.isSameSite: None
 searchguard.cookie.secure: true
 ```
 
-Finally, you need to excempt the Kibana endpoints with which the IdP interacts from the Kibana XSRF protection. If your `kibana.yml` does not contain yet the key
+Finally, you need to excempt the Dashboards/Kibana endpoints with which the IdP interacts from the Dashboards/Kibana XSRF protection. If your `openearch_dashboards.yml`/`kibana.yml` does not contain yet the key
 `server.xsrf.whitelist`, please add this:
 
 ```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 
-If `kibana.yml`  already contains the key, make sure that the array contains the values `"/searchguard/saml/acs", "/searchguard/saml/logout"`. 
+If `openearch_dashboards.yml`/`kibana.yml`  already contains the key, make sure that the array contains the values `"/searchguard/saml/acs", "/searchguard/saml/logout"`. 
 
 ## Activate the Setup
 
 In order to activate the setup, do the following:
 
-- If you needed to edit `kibana.yml`, make sure that you restart the Kibana instance. 
+- If you needed to edit `openearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance. 
 - Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
-That's it. If you navigate in a browser to your Kibana instance, you should be directed to the IdP login page.
+That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
 

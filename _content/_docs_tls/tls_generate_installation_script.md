@@ -24,7 +24,7 @@ Since the demo certificates are the same for each Search Guard installation, do 
 
 To execute the demo installation:
 
-* ``cd`` into `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
+* ``cd`` into `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
 The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
@@ -39,7 +39,7 @@ Enable cluster mode? [y/N] n
 
 ## Generated certificates
 
-The demo installer will place the following files in the `config` directory of your Elasticsearch installation:
+The demo installer will place the following files in the `config` directory of your OpenSearch/Elasticsearch installation:
 
 <div class="file-tree">
 	<div class="file-tree-title"> Files

@@ -6,7 +6,7 @@ category: signals
 order: 1100
 layout: docs
 edition: community
-description: How to configure and administer Signals Alerting for Elasticsearch and adapt it to your use cases.
+description: How to configure and administer Signals Alerting for OpenSearch/Elasticsearch and adapt it to your use cases.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -20,15 +20,15 @@ This chapter describes the admin's point of view of a Signals installation.
 
 ## Nodes on which Signals watches are executed
 
-By default, Signals uniformly distributes its watches over all nodes of an Elasticsearch cluster. While a cluster is unchanged, a watch is pinned to exactly one node. The node a watch executes on can be found out using the `_state` REST API.
+By default, Signals uniformly distributes its watches over all nodes of a cluster. While a cluster is unchanged, a watch is pinned to exactly one node. The node a watch executes on can be found out using the `_state` REST API.
 
 If a cluster changes, for example because a node joins the cluster, all watches are automatically redistributed to ensure a uniform distribution.
 
 If you want to have a closer control over the distribution of the watches, you can use the Signals configuration setting `tenant.{tenant_name}.node_filter`. You can configure this setting using the settings REST API.
 
-A node filter specifies the nodes on which the watches of a tenant shall be distributed. It uses the same node specification syntax as the Nodes Stats and Nodes Info REST APIs of Elasticsearch. The syntax is documented in detail in the chapter [No specification](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html) of the Elasticsearch docs.
+A node filter specifies the nodes on which the watches of a tenant shall be distributed. It uses the same node specification syntax as the Nodes Stats and Nodes Info REST APIs of OpenSearch/Elasticsearch. The syntax is documented in detail in the chapter [No specification](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html) of the OpenSearch/Elasticsearch docs.
 
-For example, using the node filter `signals:true` limits the watch execution to nodes which have `node.attr.signals: true` set in their `elasticsearch.yml`. You can also list node names like `node1,node2,node3`. 
+For example, using the node filter `signals:true` limits the watch execution to nodes which have `node.attr.signals: true` set in their `openearch.yml`/`elasticsearch.yml`. You can also list node names like `node1,node2,node3`. 
 
 The setting is tenant-specific. So, you can do assign different nodes to each tenant.
 

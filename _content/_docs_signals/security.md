@@ -8,7 +8,7 @@ order: 950
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-security-overview
-description: Signals Alerting for Elasticsearch is fully integrated with all Search Guard Security features
+description: Signals Alerting for OpenSearch/Elasticsearch is fully integrated with all Search Guard Security features
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -18,7 +18,7 @@ description: Signals Alerting for Elasticsearch is fully integrated with all Sea
 
 {% include toc.md %}
 
-Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying Elasticsearch indices is governed by Search Guard roles.
+Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying OpenSearch/Elasticsearch indices is governed by Search Guard roles.
 
 
 ## Signals Indices
@@ -33,7 +33,7 @@ Signals ships with [pre-defined action groups](security_permissions.md) that you
 
 ## Security execution context
 
-Each watch is executed in a security context that governs access to the Elasticsearch indices. A watch is always executed with the set of permissions the user that created or updated the watch has at the time of creation / update.
+Each watch is executed in a security context that governs access to the OpenSearch/Elasticsearch indices. A watch is always executed with the set of permissions the user that created or updated the watch has at the time of creation / update.
 
 ## Multi tenancy
 

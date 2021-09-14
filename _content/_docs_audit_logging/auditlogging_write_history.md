@@ -21,7 +21,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard can monitor write access to sensitive data in Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
+Search Guard can monitor write access to sensitive data in OpenSearch/Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard tracks 
 
@@ -57,7 +57,7 @@ The write history can be used to track changes to PII or otherwise sensitive dat
 
 By tracking the insertion and the deletion of documens you can prove when PII data was created and also deleted. This makes it extremely easy to implement GDPR, HIPAA, PCI or SOX compliance.
 
-Audit logging and also the compliance features are statically configured in `elasticsearch.yml` and cannot be changed at runtime.
+Audit logging and also the compliance features are statically configured in `openearch.yml`/`elasticsearch.yml` and cannot be changed at runtime.
 
 ## Audit Log Category
 
@@ -84,7 +84,7 @@ In the example above, any write or delete operation by any user to the `finance`
 
 ## Excluding users
 
-You can exclude users from the write history by listing them in `elasticsearch.yml`: 
+You can exclude users from the write history by listing them in `openearch.yml`/`elasticsearch.yml`: 
 
 ```yaml
 searchguard.compliance.history.read.ignore_users:
@@ -202,7 +202,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 
 ### Use diffs only on relevant indices
 
-Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. Performance will improve by leveraging new features in the upcoming Elasticsearch 6.3 release.
+Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. Performance will improve by leveraging new features in the upcoming OpenSearch/Elasticsearch 6.3 release.
 
 ### Keeping the watched indices at a minumum
 

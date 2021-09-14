@@ -6,7 +6,7 @@ category: actions
 order: 500
 layout: docs
 edition: enterprise
-description: How to create PagerDuty incidents from Signals Alerting for Elasticsearch if anomalies are detected.
+description: How to create PagerDuty incidents from Signals Alerting for OpenSearch/Elasticsearch if anomalies are detected.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

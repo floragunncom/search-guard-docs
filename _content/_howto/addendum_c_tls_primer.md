@@ -4,7 +4,7 @@ Copyright 2020 floragunn GmbH
 
 ## Reasons for using TLS
 
-While Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box.
+While OpenSearch/Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box.
 
 In order to secure your sensitive data, the first step is to encrypt the entire traffic from and to your ES cluster via TLS.
 

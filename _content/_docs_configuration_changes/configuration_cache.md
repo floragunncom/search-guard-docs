@@ -25,7 +25,7 @@ Setting the value to `0` will completely disable the cache.
 
 **It is recommended to leave the cache settings untouched for LDAP and Internal User Database. Disabling the cache can severely reduce the performance of these authentication domains.**
 
-The cache can be flushed manually by `sgadmin` in conjunction with the `-rl/--reload` switch, or by using the Kibana Config Gui.
+The cache can be flushed manually by `sgadmin` in conjunction with the `-rl/--reload` switch, or by using the Search Guard Config GUI.
 
 Example:
 

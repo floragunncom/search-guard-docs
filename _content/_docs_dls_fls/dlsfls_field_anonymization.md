@@ -6,13 +6,13 @@ category: dlsfls
 order: 300
 layout: docs
 edition: compliance
-description: How to anonymize fields in Elasticsearch documents by using hashes or regular expressions.
+description: How to anonymize fields in OpenSearch/Elasticsearch documents by using hashes or regular expressions.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Anonymize fields in Elasticsearch documents
+# Anonymize fields in OpenSearch/Elasticsearch documents
 {: .no_toc}
 
 {% include toc.md %}
@@ -38,11 +38,11 @@ searchguard.compliance.salt: abc123
 | searchguard.compliance.salt | Optional. Salt to use when generating the hash value. Must be at least 32 characters, only ASCII is allowed. Optional.|
 {: .config-table}
 
-While setting a salt is optional, it is highly recommended to do so. The salt you set in `elasticsearch.yml` cannot be changed without restarting Elasticsearch. This provides a high level of security and performance, but limits flexibility. Depending on your use case and security requirements you can also use a dynamic salt.
+While setting a salt is optional, it is highly recommended to do so. The salt you set in `openearch.yml`/`elasticsearch.yml` cannot be changed without restarting OpenSearch/Elasticsearch. This provides a high level of security and performance, but limits flexibility. Depending on your use case and security requirements you can also use a dynamic salt.
 
 ## Setting a dynamic salt
 
-You can also configure the salt in `sg_config.yml`. This makes it possible to change the salt at runtime without the need to restart Elasticsearch. Please note that changing the salt at runtime will invalidate any query cache, so you might see a small degradation in performance for a brief period of time.
+You can also configure the salt in `sg_config.yml`. This makes it possible to change the salt at runtime without the need to restart OpenSearch/Elasticsearch. Please note that changing the salt at runtime will invalidate any query cache, so you might see a small degradation in performance for a brief period of time.
 
 Enable dynamic salts in elasticsearch.yml by setting:
 
@@ -178,7 +178,7 @@ In case of FA, the FA field definitions of the roles are combined with `AND`.
 
 If a user has a role that defines FA restrictions on an index, and another role that does not place any FA restrictions on the same index, the restrictions defined in the first role still apply.
 
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `elasticsearch.yml`: 
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `openearch.yml`/`elasticsearch.yml`: 
 
 ```
 searchguard.dfm_empty_overrides_all: true

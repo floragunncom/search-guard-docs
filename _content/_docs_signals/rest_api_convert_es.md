@@ -6,7 +6,7 @@ category: signals-rest
 order: 710
 layout: docs
 edition: beta
-description: How to automatically convert an existing Elasticsearch Alerting watch to the Signals format and import it.
+description: How to automatically convert an existing OpenSearch/Elasticsearch Alerting watch to the Signals format and import it.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

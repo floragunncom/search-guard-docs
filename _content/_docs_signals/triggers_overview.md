@@ -6,7 +6,7 @@ category: triggers
 order: 0
 layout: docs
 edition: community
-description: A trigger specfies when and how often a watch for Elasticsearch Alerting i executed.
+description: A trigger specfies when and how often a watch for OpenSearch/Elasticsearch Alerting i executed.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

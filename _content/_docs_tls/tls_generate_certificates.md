@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 # Generating TLS certificates
 {: .no_toc}
 
-Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
+Search Guard relies heavily on the use of TLS, both for the REST and the transport layer of OpenSearch/Elasticsearch. While TLS on the REST layer is optional (but recommended), TLS on the transport layer is mandatory.
 
 By using TLS:
 
@@ -30,7 +30,7 @@ By using TLS:
 
 Search Guard also supports OpenSSL for improved performance and modern cipher suites.
 
-The first step after installing Search Guard is to generate the necessary TLS certificates and to configure them on each node in the `elasticsearch.yml` configuration file.
+The first step after installing Search Guard is to generate the necessary TLS certificates and to configure them on each node in the `openearch.yml`/`elasticsearch.yml` configuration file.
 
 Note that each change to this file requires a node restart.
 

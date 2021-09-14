@@ -5,7 +5,7 @@ category: authauth
 order: 800
 layout: docs
 edition: community
-description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
+description: Use Search Guard's Proxy authentication feature to connect OpenSearch/Elasticsearch to any third-party identity provider.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -21,7 +21,7 @@ This module is deprecated and will be replaced by the new [Proxy Authentication 
 
 You might already have a single sign on (SSO) authentication solution in place, and you want to use this instead of the Search Guard authentication backend.
 
-Most of these solutions work as a proxy in front of Elasticsearch/Search Guard. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependant on the SSO solution you have in place.
+Most of these solutions work as a proxy in front of OpenSearch/Elasticsearch/Search Guard. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependant on the SSO solution you have in place.
 
 Search Guard can extract these HTTP header fields from the request, and use these values to determine the permissions a user has.
 
@@ -84,7 +84,7 @@ proxy_auth_domain:
 
 ## Example
 
-In the following example we run an nginx proxy in front of a 3-node Elasticsearch cluster. For the sake of simplicity we use hardcoded values for `x-proxy-user` and `x-proxy-roles`. In a real world example you would set these headers dynamically.
+In the following example we run an nginx proxy in front of a 3-node OpenSearch/Elasticsearch cluster. For the sake of simplicity we use hardcoded values for `x-proxy-user` and `x-proxy-roles`. In a real world example you would set these headers dynamically.
 
 ```
 events {
@@ -153,15 +153,15 @@ In our case, `nginx.example.com` runs on `172.16.0.203`, so we need to  add this
 
 **Make sure to set the `internalProxies` correctly, so only requests  from trusted IPs are accepted.**
 
-## Kibana proxy authentication
+## Dashboards/Kibana proxy authentication
 
-If you plan to use proxy authentication with Kibana, the most common setup is to place an authenticating proxy in front of Kibana, and let Kibana pass the user and role header to Search Guard:
+If you plan to use proxy authentication with Dashboards/Kibana, the most common setup is to place an authenticating proxy in front of Dashboards/Kibana, and let Dashboards/Kibana pass the user and role header to Search Guard:
 
 ```
-Authentication Proxy -> Kibana -> Search Guard
+Authentication Proxy -> Dashboards/Kibana -> Search Guard
 ```
 
-In this case the remote address of the HTTP call is the IP of Kibana, because it sits directly in front of Search Guard. Therefore you need to add the IP of Kibana to the list of internal proxies:
+In this case the remote address of the HTTP call is the IP of Dashboards/Kibana, because it sits directly in front of Search Guard. Therefore you need to add the IP of Dashboards/Kibana to the list of internal proxies:
 
 ```yaml
 _sg_meta:
@@ -174,16 +174,16 @@ sg_config:
       xff:
         enabled: true
         remoteIpHeader: 'x-forwarded-for'
-        internalProxies: '<Kibana IP>'
+        internalProxies: '<Dashboards/Kibana IP>'
 ```
 
-To activate proxy authentication in Kibana, add the following line to `kibana.yml`:
+To activate proxy authentication in Dashboards/Kibana, add the following line to `openearch_dashboards.yml`/`kibana.yml`:
 
 ```
 searchguard.auth.type: "proxy"
 ```
 
-To pass the user and role headers that the authenticating proxy adds from Kibana to Search Guard, you need to add them to the HTTP header whitelist in `kibana.yml`:
+To pass the user and role headers that the authenticating proxy adds from Dashboards/Kibana to Search Guard, you need to add them to the HTTP header whitelist in `openearch_dashboards.yml`/`kibana.yml`:
 
 ```
 elasticsearch.requestHeadersWhitelist: ["authorization", "sgtenant", "x-proxy-user", "x-proxy-roles"]

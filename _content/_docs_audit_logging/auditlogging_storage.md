@@ -6,7 +6,7 @@ category: auditlog
 order: 200
 layout: docs
 edition: enterprise
-description: How to store audit events in Elasticsearch, external SIEM or monitoring systems, or a custom storage.
+description: How to store audit events in OpenSearch/Elasticsearch, external SIEM or monitoring systems, or a custom storage.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -20,12 +20,12 @@ Copyright 2020 floragunn GmbH
 Search guard comes with multiple audit log storage types. This specifies where you want to store the tracked events. You can choose from:
 
 * debug — outputs the events to stdout.
-* internal_elasticsearch — writes the events to an audit index on the same Elasticsearch cluster.
-* external_elasticsearch — writes the events to an audit index on a remote Elasticsearch cluster.
+* internal_elasticsearch — writes the events to an audit index on the same OpenSearch/Elasticsearch cluster.
+* external_elasticsearch — writes the events to an audit index on a remote OpenSearch/Elasticsearch cluster.
 * webhook - writes the events to an arbitrary HTTP endpoint.
 * log4j - writes the events to a log4j logger. You can use any log4j appender like SNMP, JDBC, Cassandra, Kafka etc.
  
-You configure the type of audit logging in the `elasticsearch.yml` file:
+You configure the type of audit logging in the `openearch.yml`/`elasticsearch.yml` file:
 
 ```
 searchguard.audit.type: <debug|internal_elasticsearch|external_elasticsearch|webhook|log4j>
@@ -35,7 +35,7 @@ You can also use your own, custom implementation of an audit log storage in case
 
 ## Storage type 'debug'
 
-There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `openearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.audit.type: debug
@@ -45,7 +45,7 @@ This will output tracked events to stdout, and is mainly useful when debugging o
 
 ## Storage type 'internal_elasticsearch'
 
-There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `openearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 searchguard.audit.type: internal_elasticsearch
@@ -55,7 +55,7 @@ In addition, you can also specify the index name for the audit events as descibe
 
 ## Storage type 'external_elasticsearch'
 
-If you want to store the tracked events in a different Elasticsearch cluster than the cluster producing the events, you use `external_elasticsearch` as audit type, configure the Elasticsearch endpoints with hostname/IP and port and optionally the index name and document type:
+If you want to store the tracked events in a different OpenSearch/Elasticsearch cluster than the cluster producing the events, you use `external_elasticsearch` as audit type, configure the OpenSearch/Elasticsearch endpoints with hostname/IP and port and optionally the index name and document type:
 
 ```yaml
 searchguard.audit.type: internal_elasticsearch
@@ -66,7 +66,7 @@ searchguard.audit.config.type: <typename>
 
 Since v5, you can use date/time pattern in the index name as well, as described for storage type `internal_elasticsearch`.
 
-SearchGuard uses the Elasticsearch REST API to send the tracked events. So, for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
+SearchGuard uses the OpenSearch/Elasticsearch REST API to send the tracked events. So, for `searchguard.audit.config.http_endpoints`, use a comma-delimited list of hostname/IP and the REST port (default 9200). For example:
 
 ```
 searchguard.audit.config.http_endpoints: [192.168.178.1:9200,192.168.178.2:9200]
@@ -84,12 +84,12 @@ The parameters depend on what authentication type you configured on the REST lay
 |---|---|
 | searchguard.audit.config.enable_ssl | Boolean, whether or not to use SSL/TLS. If you enabled SSL/TLS on the REST-layer of the receiving cluster, set this to true. Default is false.|
 | searchguard.audit.config.verify_hostnames |  Boolean, whether or not to verify the hostname of the SSL/TLS certificate of the receiving cluster. Default is true.|
-| searchguard.audit.config.pemtrustedcas_filepath | The trusted Root CA of the external Elasticsearch cluster, **relative to the `config/` directory**. Used to verify the TLS certificate of this cluster|
+| searchguard.audit.config.pemtrustedcas_filepath | The trusted Root CA of the external OpenSearch/Elasticsearch cluster, **relative to the `config/` directory**. Used to verify the TLS certificate of this cluster|
 | searchguard.audit.config.pemtrustedcas_content | Same as `searchguard.audit.config.pemtrustedcas_filepath`, but you can configure the base 64 encoded certificate content directly.|
 | searchguard.audit.config.enable\_ssl\_client\_auth | Boolean,  Whether or not to enable SSL/TLS client authentication. If you set this to true, the audit log module will send the node's certificate along with the request. The receiving cluster can use this certificate to verify the identity of the caller.|
-| searchguard.audit.config.pemcert_filepath | The path to the TLS certificate to send to the external Elasticsearch cluster, **relative to the `config/` directory**.|
+| searchguard.audit.config.pemcert_filepath | The path to the TLS certificate to send to the external OpenSearch/Elasticsearch cluster, **relative to the `config/` directory**.|
 | searchguard.audit.config.pemcert_content | Same as `searchguard.audit.config.pemcert_filepath`, but you can configure the base 64 encoded certificate content directly.|
-| searchguard.audit.config.pemkey_filepath | The path to the private key of the TLS certificate to send to the external Elasticsearch cluster, **relative to the `config/` directory**.|
+| searchguard.audit.config.pemkey_filepath | The path to the private key of the TLS certificate to send to the external OpenSearch/Elasticsearch cluster, **relative to the `config/` directory**.|
 | searchguard.audit.config.pemkey_content | Same as `searchguard.audit.config.pemkey_filepath`, but you can configure the base 64 encoded certificate content directly.|
 | searchguard.audit.config.pemkey_password | The password of the private key|
 {: .config-table}
@@ -217,7 +217,7 @@ Make sure that the class is accessible by Search Guard by putting the respective
 
 ## Expert: Finetuning the thread pool
 
-All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:
+All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `openearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 # Tune threadpool size, default is 10 and 0 means disabled

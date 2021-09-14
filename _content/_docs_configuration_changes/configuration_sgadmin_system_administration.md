@@ -5,7 +5,7 @@ category: sgadmin
 order: 300
 layout: docs
 edition: community
-description: sgadmin offers some handy and powerful tools for administering a Search Guard secured Elasticsearch custer
+description: sgadmin offers some handy and powerful tools for administering a Search Guard secured OpenSearch/Elasticsearch custer
 ---
 
 <!---
@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-sgadmin offers some handy and powerful switches for administering a Search Guard secured Elasticsearch custer.
+sgadmin offers some handy and powerful switches for administering a Search Guard secured OpenSearch/Elasticsearch custer.
 
 ## Index and replica settings
 

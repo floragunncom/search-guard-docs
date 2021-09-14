@@ -15,7 +15,7 @@ description: How to use environment variables to remove sensitive information li
 
 {% include toc.md %}
 
-The Search Guard configuration is stored in a secured Elasticsearch index. Without an admin certificate, it is not possible to acces it's content. Therefore storing sensitive data in this index, like passwords or other access credentials, is safe. 
+The Search Guard configuration is stored in a secured OpenSearch/Elasticsearch index. Without an admin certificate, it is not possible to acces it's content. Therefore storing sensitive data in this index, like passwords or other access credentials, is safe. 
 
 After uploading configuration changes with `sgadmin`, the actual configuration files that may contain sensitive information, can be discarded.
 
@@ -50,9 +50,9 @@ sgadmin replaces environment variables in-memory before uploading the configurat
 <img src="config_environment_variables.png" style="width: 60%" class="md_image"/>
 </p>
 
-### Substitution on Elasticsearch nodes
+### Substitution on OpenSearch/Elasticsearch nodes
 
-Before loading and activating the configuration, Search Guard will scan the configuration for environment variables and replace them by using the values configured on the machine the Elasticsearch node is running on. This means the values can differ from node to node. 
+Before loading and activating the configuration, Search Guard will scan the configuration for environment variables and replace them by using the values configured on the machine the OpenSearch/Elasticsearch node is running on. This means the values can differ from node to node. 
 
 ## Plain value substitution
 

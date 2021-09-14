@@ -8,7 +8,7 @@ order: 400
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-inputs-overview
-description: Signals Alerting for Elasticsearch offers multiple data inputs like Elasticsearch queries and HTTP endpoints.
+description: Signals Alerting offers multiple data inputs like OpenSearch/Elasticsearch queries and HTTP endpoints.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -24,8 +24,8 @@ At the moment, Signals supports the following input types:
 
 * [Constants](inputs_static.md)
   * Define constants you can then use at multiple places in the execution chain
-* [Elasticsearch](inputs_elasticsearch.md)
-  * Use the full power of Elasticsearch queries and aggregations
+* [Search](inputs_elasticsearch.md)
+  * Use the full power of OpenSearch/Elasticsearch queries and aggregations
 * [HTTP](inputs_http.md)
   * Pull in data from a REST endpoint
 

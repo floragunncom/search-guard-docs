@@ -6,7 +6,7 @@ category: dlsfls
 order: 100
 layout: docs
 edition: enterprise
-description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your Elasticsearch cluster.
+description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your OpenSearch/Elasticsearch cluster.
 resources:
   - "search-guard-presentations#dls-fls|Document- and Field-level security (presentation)"
   - https://search-guard.com/document-field-level-security-search-guard/|Document- and field-level security with Search Guard (blog post)
@@ -22,9 +22,9 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Document-level security restricts a user's access to certain documents within an index. To enable document-level security you configure an Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
+Document-level security restricts a user's access to certain documents within an index. To enable document-level security you configure an OpenSearch/Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
 
-The query supports the full range of the Elasticsearch query DSL, and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
+The query supports the full range of the OpenSearch/Elasticsearch query DSL, and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
 
 ## Example
 
@@ -214,7 +214,7 @@ If Search Guard encounters users which have more than one role with a DLS query 
 
 If a user has a role that defines DLS restrictions on an index, and another role that does not place any DLS restrictions on the same index, the restrictions defined in the first role still apply.
 
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `elasticsearch.yml`: 
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `openearch.yml`/`elasticsearch.yml`: 
 
 ```
 searchguard.dfm_empty_overrides_all: true
@@ -222,7 +222,7 @@ searchguard.dfm_empty_overrides_all: true
 
 ## Performance considerations
 
-A DLS query can be as simple or complex as necessary, and you can use the full range of Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
+A DLS query can be as simple or complex as necessary, and you can use the full range of OpenSearch/Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
 
 ## DLS/FLS Execution Order
 
@@ -235,11 +235,11 @@ If you use both DLS and FLS, all fields that you are basing the DLS query on mus
 Since Search Guard 52, there are two execution modes for DLS:
 
 - Lucene-level DLS, which is the default, is performed by modifying Lucene queries and data structures. This is the most efficient mode. However, it is unable to support certain advanced constructs used in DLS queries; most importantly, this includes term lookup queries.
-- Filter-level DLS is performed at the top level of the Elastic stack by modifying queries directly after they have been received by Elasticsearch. This allows the use of term lookup queries (TLQ) inside of DLS queries, but limits the set of operations that can be used to retrieve data from the protected index to `get`, `search`, `mget`, `msearch`. Also, the use of Cross Cluster Searches is limited in this mode.
+- Filter-level DLS is performed at the top level of the Elastic stack by modifying queries directly after they have been received by OpenSearch/Elasticsearch. This allows the use of term lookup queries (TLQ) inside of DLS queries, but limits the set of operations that can be used to retrieve data from the protected index to `get`, `search`, `mget`, `msearch`. Also, the use of Cross Cluster Searches is limited in this mode.
 
 By default, Search Guard switches automatically between the modes depending on the DLS queries configured for the index. If a term-lookup query is present, DLS will be performed in filter-level mode. Otherwise, lucene-level mode will be used.
 
-It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `searchguard.dls.mode` which must be configured in `elasticsearch.yml` on each node of the Elasticsearch cluster.
+It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `searchguard.dls.mode` which must be configured in `openearch.yml`/`elasticsearch.yml` on each node of the OpenSearch/Elasticsearch cluster.
 
 The setting `searchguard.dls.mode` has three possible values:
 

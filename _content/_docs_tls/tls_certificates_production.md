@@ -37,24 +37,24 @@ Search Guard distinguishes between the following types of certificates
 * Client certificates
 * Admin certificates
 
-**Node certificates** are used to identify and secure traffic between Elasticsearch nodes on the transport layer (inter-node traffic). For this kind of traffic, no permission checks are applied, i.e. every request is allowed. Therefore, these certificates must meet some special requirements. See below for details and options. 
+**Node certificates** are used to identify and secure traffic between OpenSearch/Elasticsearch nodes on the transport layer (inter-node traffic). For this kind of traffic, no permission checks are applied, i.e. every request is allowed. Therefore, these certificates must meet some special requirements. See below for details and options. 
 
-**Client certificates** are regular TLS certificates without any special requirements. They are used to identify Elasticsearch clients on the REST and transport layer. They can be used for HTTP client certificate authentication or when using a Java Transport Client on transport layer. 
+**Client certificates** are regular TLS certificates without any special requirements. They are used to identify OpenSearch/Elasticsearch clients on the REST and transport layer. They can be used for HTTP client certificate authentication or when using a Java Transport Client on transport layer. 
 
-**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as an admin certificate.  
+**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `openearch.yml`/`elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as an admin certificate.  
 
 Note: Do not use a node certificate as admin certificate! Node and admin certificates must always be kept separate.
 {: .note .js-note .note-warning}
 
 ## Node certificates
 
-Search Guard needs to securely and reliably identify internal communication between Elasticsearch nodes (inter-node traffic). This communication happens for example if one node receives a GET request on the HTTP layer, but needs to forward it to another node that holds the actual data. 
+Search Guard needs to securely and reliably identify internal communication between OpenSearch/Elasticsearch nodes (inter-node traffic). This communication happens for example if one node receives a GET request on the HTTP layer, but needs to forward it to another node that holds the actual data. 
 
 Search Guard offers several ways of identifying inter-node traffic. Depending on your PKI setup and capabilities, you can choose from one of the following methods.
 
 ### Listing DNs of node certificates
 
-The simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`. Wildcards and regular expressions are supported:
+The simplest way of configuring node certificates is to list the DNs of these certificates in `openearch.yml`/`elasticsearch.yml`. Wildcards and regular expressions are supported:
 
 ```yaml
 searchguard.nodes_dn:
@@ -83,7 +83,7 @@ If you want to use this approach, make sure that your CSR includes `oid:1.2.3.4.
  
 #### Using a custom OID value
 
-If you cannot set the `OID` to the default value `1.2.3.4.5.5`, but you are able to use a different value, you can configure this value in `elasticsearch.yml` by setting:
+If you cannot set the `OID` to the default value `1.2.3.4.5.5`, but you are able to use a different value, you can configure this value in `openearch.yml`/`elasticsearch.yml` by setting:
 
 ```
 searchguard.cert.oid: <String>
@@ -162,7 +162,7 @@ searchguard.ssl.transport.keystore_alias: myalias
 
 There are no special requirements for client and admin certificates. So any certificate signed by the Root CA or intermediate CA can be used.
 
-Admin certificates have elevated permissions, including the permission to change the Search Guard index. To assign these elevated permissions to a certificate, simply list them in `elasticsearch.yml`:
+Admin certificates have elevated permissions, including the permission to change the Search Guard index. To assign these elevated permissions to a certificate, simply list them in `openearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 searchguard.authcz.admin_dn:
@@ -182,7 +182,7 @@ Secure Client-Initiated Renegotiation is disabled by default, because it could b
 
 ## Disable TLS versions and weak ciphers
 
-You can control the enabled ciphers and TLS protocols by the following configuration keys in `elasticsearch.yml`:
+You can control the enabled ciphers and TLS protocols by the following configuration keys in `openearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 searchguard.ssl.http.enabled_ciphers:

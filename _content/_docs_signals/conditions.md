@@ -38,12 +38,12 @@ The following condition tests whether the total hits of a search, stored in the 
 | type | condition, defines this check as condition. Mandatory. |
 | name | name of this condition. Can be chosen freely. Mandatory. |
 | source | The script to execute. Mandatory |
-| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
+| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by OpenSearch/Elasticsearch plugins. |
 {: .config-table}
 
 ## Accessing the runtime data
 
-All scripts have full access to the runtime data, gathered for example by [Elasticsearch](inputs_elasticsearch.md) or [HTTP](inputs_http.md) inputs.
+All scripts have full access to the runtime data, gathered for example by [search](inputs_elasticsearch.md) or [HTTP](inputs_http.md) inputs.
 
 The runtime data is available via the `data` prefix.
 

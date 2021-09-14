@@ -6,7 +6,7 @@ category: rolespermissions
 order: 400
 layout: docs
 edition: community
-description: How to define role based access to Elasticsearch on index level with Search Guard.
+description: How to define role based access to OpenSearch/Elasticsearch on index level with Search Guard.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
+Hint: You can also use the [Search Guard Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
 
 Search Guard roles are the central place to configure access permissions on:
 
@@ -25,7 +25,7 @@ Search Guard roles are the central place to configure access permissions on:
 * Index level
 * Document level
 * Field level
-* Kibana level
+* Dashboards/Kibana level
 
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. The syntax to define a role is as follows:
 
@@ -73,7 +73,7 @@ _sg_meta:
 | allowed_actions | The actions that are allowed for the index or tenant patterns |
 | dls | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set. |
 | fls | The [fields that should be exluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
-| tenant_permissions | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana. |
+| tenant_permissions | Permissions that apply to [Dashboards/Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Dashboards/Kibana. |
 {: .config-table}
 
 ## Cluster-level permissions
@@ -180,7 +180,7 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
 ### Dynamic index and tenant patterns: User attributes
 {: #user-attributes }
 
-Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Dashboards/Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
@@ -333,7 +333,7 @@ sg_own_index:
       - "SGS_KIBANA_ALL_WRITE"
 ```
 
-In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_operations`, and `SGS_KIBANA_ALL_WRITE` permissions to the Kibana tenant `dept_operations`.
+In this example, Search Guard grants the `SGS_CRUD` permissions to the index `dept_operations`, and `SGS_KIBANA_ALL_WRITE` permissions to the Dashboards/Kibana tenant `dept_operations`.
 
 
 ### Substitution Variable Functionality
@@ -426,7 +426,7 @@ Cluster permission exclusions are defined using an entry with the key `exclude_c
 
 Index permission exclusions are listed under the key `exclude_index_permissions`. For defining such an exclusion, you need to define an `index_pattern` and the excluded `actions`. 
 
-For the `index_pattern` entries, you can use variable substitution as described above. It is however important to note that any errors during variable substitution are more critical for permission exclusions. Such an error would be for example trying to use a user attribute which does not exist. If such an error occurs while checking the permissions for an action, Search Guard will fail into the safe direction and immediately deny the execution of the action. Search Guard will also write a warning to the Elasticsearch logs about this error. 
+For the `index_pattern` entries, you can use variable substitution as described above. It is however important to note that any errors during variable substitution are more critical for permission exclusions. Such an error would be for example trying to use a user attribute which does not exist. If such an error occurs while checking the permissions for an action, Search Guard will fail into the safe direction and immediately deny the execution of the action. Search Guard will also write a warning to the OpenSearch/Elasticsearch logs about this error. 
 
 Note: In `index_pattern`  entries for `exclude_index_permissions`, the deprecated user attribute syntax `${attr.internal...}` is not supported any more. You need to use the new-style user attributes as described above.
 
@@ -441,8 +441,8 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_ALL\_ACCESS | All cluster permissions and all index permissions on all indices |
 | SGS\_READALL | Read permissions on all indices, but no write permissions |
 | SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
-| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
-| SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
+| SGS\_KIBANA\_SERVER | Role for the internal Dashboards/Kibana server user, please refer to the [Dashboards/Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
+| SGS\_KIBANA\_USER | Minimum permission set for regular Dashboards/Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Dashboards/Kibana.|
 | SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
 | SGS\_MANAGE\_SNAPSHOTS | Grants full permissions on snapshot, restore and repositories operations |
 | SGS\_OWN\_INDEX | Grants full permissions on an index named after the authenticated user's username. |

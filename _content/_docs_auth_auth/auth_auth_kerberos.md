@@ -5,7 +5,7 @@ category: authauth
 order: 400
 layout: docs
 edition: enterprise
-description: How to configure Kerberos/SPNEGO with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
+description: How to configure Kerberos/SPNEGO with Search Guard to implement Single Sign On access to your OpenSearch/Elasticsearch cluster.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -18,9 +18,9 @@ Copyright 2020 floragunn GmbH
 
 ## Static configuration in elasticsearch.yml
 
-Due to the nature of Kerberos, you need to define some (static) settings in `elasticsearch.yml`, and some in `sgconfig.yml`.
+Due to the nature of Kerberos, you need to define some (static) settings in `openearch.yml`/`elasticsearch.yml`, and some in `sgconfig.yml`.
 
-In `elasticsearch.yml`, you need to define:
+In `openearch.yml`/`elasticsearch.yml`, you need to define:
 
 ```yaml
 searchguard.kerberos.krb5_filepath: '/etc/krb5.conf'
@@ -35,7 +35,7 @@ searchguard.kerberos.acceptor_keytab_filepath: 'eskeytab.tab'
 
 The `acceptor_principal` defines the acceptor/server principal name Search Guard uses to issue requests against Kerberos/KDC. This must be present in the keytab file.
 
-**Due to security restrictions the keytab file must be placed in the `<ES installation directory>/conf` directory or a subdirectory, and the path in `elasticsearch.yml` must be configured relative, not absolute.**
+**Due to security restrictions the keytab file must be placed in the `<ES installation directory>/conf` directory or a subdirectory, and the path in `openearch.yml`/`elasticsearch.yml` must be configured relative, not absolute.**
 
 ## Dynamic configuration in sgconfig.yml
 

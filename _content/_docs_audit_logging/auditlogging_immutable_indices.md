@@ -22,7 +22,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-You can mark any index in Elasticsearch as immutable. Documents in immutable indices follow the write-once, read-many paradigm. This means that you can create documents, but once created, they cannot be changed anymore, thus making them immutable.
+You can mark any index as immutable. Documents in immutable indices follow the write-once, read-many paradigm. This means that you can create documents, but once created, they cannot be changed anymore, thus making them immutable.
 
 To mark an index immutable, list the index name in elasticsearch.yml like:
 

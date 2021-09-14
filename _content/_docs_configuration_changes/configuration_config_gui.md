@@ -6,20 +6,20 @@ category: configuration
 order: 200
 layout: docs
 edition: enterprise
-description: Use the Kibana configuration GUI to quickly and easily setup and configure Search Guard.
+description: Use the Dashboards/Kibana configuration GUI to quickly and easily setup and configure Search Guard.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Using the Search Guard configuration GUI
+# Using the Search Guard Configuration GUI
 {: .no_toc}
 
 {% include toc.md %}
 
 The Search Guard configuration GUI provides an intuitive way to manage users, roles and permissions, the Search Guard system status and the Search Guard license.
 
-The configuration GUI is part of the [Search Guard Kibana plugin](../_docs_kibana/kibana_installation.md) and installed by default.
+The configuration GUI is part of the [Search Guard Dashboards/Kibana plugin](../_docs_kibana/kibana_installation.md) and installed by default.
 
 It uses the Search Guard [REST management API](../_docs_rest_api/restapi_api_access.md) under the hood, and detects automatically if this module is installed and if the current user has access to the API. In other words, there is nothing to configure in kibana.yml to use the GUI.
 
@@ -28,7 +28,7 @@ The configuration GUI is an Enterprise feature and not available in the Communit
 
 ## Access control
 
-The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `elasticsearch.yml` with the following key:
+The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `openearch.yml`/`elasticsearch.yml` with the following key:
 
 ```
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS", ...]
@@ -139,7 +139,7 @@ To edit index-level permissions, you need to first select the index and the docu
 <img src="kibana_index_level_permissions.png" style="width: 70%" class="md_image"/>
 </p>
 
-Since document types are deprecated in Elasticsearch 6, document type level permissions will be removed in Search Guard 7.
+Since document types are deprecated in OpenSearch/Elasticsearch 6, document type level permissions will be removed in Search Guard 7.
 {: .note .js-note .note-warning}
 
 ### Index- and Document-Type Permissions

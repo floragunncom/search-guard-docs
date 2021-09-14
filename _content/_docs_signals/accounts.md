@@ -6,7 +6,7 @@ category: signals
 order: 710
 layout: docs
 edition: community
-description: Signals Alerting for Elasticsearch can use accounts like email, Slack, PagerDuty, JIRA or webhooks to send notifications to.
+description: Signals Alerting for OpenSearch/Elasticsearch can use accounts like email, Slack, PagerDuty, JIRA or webhooks to send notifications to.
 
 ---
 
@@ -63,7 +63,7 @@ A typical e-mail account looks like this:
 | default\_to, default\_cc, default\_bcc  | Defines the recipient addresses used in e-mails when an e-mail action does not configure an explicit values for the respective recipient types. Optional; array of e-mail addresses |
 | session_timeout | Sets the timeout for connecting to and communicating with the SMTP server. Optional; time duration in seconds. |
 | proxy\_host, proxy\_port, proxy\_user, proxy\_password | Allows the specification of a SOCKS proxy to connect to the SMTP server. Optional. |
-| debug | If true, protocol data is logged to the Elasticsearch log when mails are sent. |
+| debug | If true, protocol data is logged to the OpenSearch/Elasticsearch log when mails are sent. |
 {: .config-table}
 
 ### Slack Accounts

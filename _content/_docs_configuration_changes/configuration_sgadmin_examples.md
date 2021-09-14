@@ -6,7 +6,7 @@ category: sgadmin
 order: 800
 layout: docs
 edition: community
-description: Example sgadmin calls to manage the Search Guard configuration and Elasticsearch settings
+description: Example sgadmin calls to manage the Search Guard configuration and OpenSearch/Elasticsearch settings
 
 ---
 <!---

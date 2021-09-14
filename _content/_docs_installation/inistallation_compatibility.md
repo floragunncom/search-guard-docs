@@ -5,7 +5,7 @@ slug: search-guard-compatibility
 category: installation
 order: 1000
 layout: docs
-description: Compatibility of Search Guard with other plugins and tools like Kibana, logstash, Beats, Grafana or Cerebro. 
+description: Compatibility of Search Guard with other plugins and tools like Dashboards/Kibana, logstash, Beats, Grafana or Cerebro. 
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -21,9 +21,9 @@ If you have other plugins installed, please check the compatibility with Search 
 
 As a rule of thumb, if a plugin is compatible with Elasticstack Security, it is also compatible with Search Guard. Specifically:
 
-If the plugin talks to Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS and HTTP Basic Authentication.
+If the plugin talks to OpenSearch/Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS and HTTP Basic Authentication.
 
-If the plugin talks to Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://search-guard.com/searchguard-elasicsearch-transport-clients/){:target="_blank"}.
+If the plugin talks to OpenSearch/Elasticsearch on the transport layer, you need to be able to add the Search Guard SSL plugin and its configuration settings to the transport client. You can read more about using transport clients with a Search Guard secured cluster [in this blog post](https://search-guard.com/searchguard-elasicsearch-transport-clients/){:target="_blank"}.
 
 ## Compatible plugins and tools
 

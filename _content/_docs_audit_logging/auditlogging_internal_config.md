@@ -30,7 +30,7 @@ The elasticsearch configuration monitoring can be switched on an off by the foll
 
 ## Audit log category
 
-The Elasticsearch configuration events are logged in the `COMPLIANCE_INTERNAL_CONFIG_READ` and `COMPLIANCE_INTERNAL_CONFIG_WRITE` category. 
+The configuration events are logged in the `COMPLIANCE_INTERNAL_CONFIG_READ` and `COMPLIANCE_INTERNAL_CONFIG_WRITE` category. 
 
 ## Read Field reference
 

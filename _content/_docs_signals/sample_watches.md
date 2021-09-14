@@ -6,7 +6,7 @@ category: signals
 order: 210
 layout: docs
 edition: community
-description: Signals Alerting for Elasticsearch ships with several sample watches that you can use for a quickstart or proof of concept.
+description: Signals Alerting for OpenSearch/Elasticsearch ships with several sample watches that you can use for a quickstart or proof of concept.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -16,9 +16,9 @@ description: Signals Alerting for Elasticsearch ships with several sample watche
 
 {% include toc.md %}
 
-To start quickly with Signals, we have prepared sample watches that are based on the [Kibana sample data](https://www.elastic.co/guide/en/kibana/current/get-started.html).
+To start quickly with Signals, we have prepared sample watches that are based on the [Dashboards/Kibana sample data](https://www.elastic.co/guide/en/kibana/current/get-started.html).
 
-All sample watches can be found on Gitlab. You can install them either manually via the [REST API](rest_api.md). Or, use the Signals Kibana plugin to install them.
+All sample watches can be found on Gitlab. You can install them either manually via the [REST API](rest_api.md). Or, use the Signals Dashboards/Kibana plugin to install them.
 
 ## Average ticket price
 

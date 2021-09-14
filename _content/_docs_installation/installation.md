@@ -23,7 +23,7 @@ This chapter describes the steps to install and initialize Search Guard manually
 
 ## Community, Enterprise and Compliance Edition
 
-Search Guard ships with all Enterprise and Compliance features already installed and enabled by default. Just install the [Enterprise Edition matching the version of your Elasticsearch installation](../_docs_versions/versions_versionmatrix.md) and you are good to go.
+Search Guard ships with all Enterprise and Compliance features already installed and enabled by default. Just install the [Enterprise Edition matching the version of your OpenSearch/Elasticsearch installation](../_docs_versions/versions_versionmatrix.md) and you are good to go.
 
 If you just want to use the free Community Edition, install Search Guard Enterprise and then [disable all commercial features](../_docs_versions/versions_community.md). 
 
@@ -57,7 +57,7 @@ It's possible to use the same certificate on each node, however this is less sec
 
 ## First time installation: Full cluster restart
 
-A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our [upgrade instructions](../_docs_installation/installation_upgrading.md).
+A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of OpenSearch/Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our [upgrade instructions](../_docs_installation/installation_upgrading.md).
 
 ## General
 
@@ -66,12 +66,12 @@ The first time installation procedure on a production cluster is to:
 1. Disable shard allocation
 2. Stop all nodes
 3. Install the Search Guard plugin on all nodes
-4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `elasticsearch.yml`
-5. Restart Elasticsearch and check that the nodes come up
+4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `openearch.yml`/`elasticsearch.yml`
+5. Restart OpenSearch/Elasticsearch and check that the nodes come up
 6. Re-enable shard allocation by using [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
 7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
 
-While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
+While for an already configured Search Guard plugin you can also use the Dashboards/Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
 
 ## Disable shard allocation
 
@@ -92,13 +92,20 @@ curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
 
 ## Installing Search Guard
 
-Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
+Search Guard can be installed like any other OpenSearch/Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your Elasticsearch version
-* Change to the directory of your Elasticsearch installation and type:
+* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your OpenSearch/Elasticsearch version
+* Change to the directory of your OpenSearch/Elasticsearch installation:
+* For OpenSearch, execute:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
+bin/opensearch-plugin install -b file:///path/to/search-guard-<version>.zip
+```
+
+* For Elasticsearch, execute:
+
+```bash
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-<version>.zip
 ```
 
 ### Additional permissions dialogue
@@ -122,7 +129,7 @@ for descriptions of what these permissions allow and the associated risks.
 
 ## Adding the TLS configuration
 
-The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates must be specified relative to the Elasticsearch `config` directory:
+The bare minimum Search Guard configuration consists of the TLS settings on transport layer and at least one admin certificate for initializing the Search Guard index. This is configured in elasticsearch.yml, all paths to certificates must be specified relative to the OpenSearch/Elasticsearch `config` directory:
 
 ```yaml
 searchguard.ssl.transport.pemcert_filepath: <path_to_node_certificate>
@@ -135,11 +142,11 @@ searchguard.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=test, C=de
 ```
 
-The `searchguard.ssl.transport.pem*` keys define the paths to the node certificate, relative to the Elasticsearch `config` directory.
+The `searchguard.ssl.transport.pem*` keys define the paths to the node certificate, relative to the OpenSearch/Elasticsearch `config` directory.
 
 The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
 
-If you want to use TLS also on the REST layer (HTTPS), add the following lines to `elasticsearch.yml`
+If you want to use TLS also on the REST layer (HTTPS), add the following lines to `openearch.yml`/`elasticsearch.yml`
 
 ```yaml
 searchguard.ssl.http.enabled: true
@@ -176,7 +183,7 @@ After the cluster is up again, re-enable shard allocation so that the Search Gua
 
 ## Initializing Search Guard
 
-All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
+All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on OpenSearch/Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
 
 You intialize Search Guard by using the [sgadmin command line tool](../_docs_configuration_changes/configuration_sgadmin.md) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication and authorisation modules](../_docs_auth_auth/auth_auth_configuration.md) to use.
 

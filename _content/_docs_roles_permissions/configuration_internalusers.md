@@ -5,7 +5,7 @@ category: rolespermissions
 order: 100
 layout: docs
 edition: community
-description: How to store and manage Search Guard users directly in Elasticsearch by using the Internal Users Database.
+description: How to store and manage Search Guard users directly in OpenSearch/Elasticsearch by using the Internal Users Database.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -16,7 +16,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Internal Users Database.
+Hint: You can also use the [Search Guard Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Internal Users Database.
 
 Search Guard ships with an internal user database. You can use this user database if you do not have any external authentication system like LDAP or Active Directory in place. Users, their hashed passwords and roles are stored in the internal Search Guard configuration index on your cluster.
 

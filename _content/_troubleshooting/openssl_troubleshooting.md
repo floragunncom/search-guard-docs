@@ -4,14 +4,14 @@ slug: troubleshooting-openssl
 category: troubleshooting
 order: 150
 layout: troubleshooting
-description: Step-by-step instructions on how to troubleshoot OpenSSL issues for a Search Guard secured Elasticsearch cluster. 
+description: Step-by-step instructions on how to troubleshoot OpenSSL issues for a Search Guard secured OpenSearch/Elasticsearch cluster. 
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
 # OpenSSL Troubleshooting
 
-Check that you have enabled OpenSSL in `elasticsearch.yml` (which is the default)
+Check that you have enabled OpenSSL in `openearch.yml`/`elasticsearch.yml` (which is the default)
   * `searchguard.ssl.transport.enable_openssl_if_available: true`
   * `searchguard.ssl.http.enable_openssl_if_available: true`
 

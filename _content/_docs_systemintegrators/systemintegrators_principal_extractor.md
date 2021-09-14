@@ -6,7 +6,7 @@ category: systemintegrators
 order: 600
 layout: docs
 edition: community
-description: How implement a custom TLS principal extractor for a Seaerch Guard secured Elasticsearch cluster.
+description: How implement a custom TLS principal extractor for a Seaerch Guard secured OpenSearch/Elasticsearch cluster.
 ---
 
 <!---
@@ -51,7 +51,7 @@ public interface PrincipalExtractor {
 }
 ```
 
-You can then define the Principal Extractor to use in `elasticsearch.yml` like:
+You can then define the Principal Extractor to use in `openearch.yml`/`elasticsearch.yml` like:
 
 ```yaml
 searchguard.ssl.transport.principal_extractor_class: com.example.MyPrincipalExtractor
