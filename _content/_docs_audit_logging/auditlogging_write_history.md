@@ -202,7 +202,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 
 ### Use diffs only on relevant indices
 
-Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. Performance will improve by leveraging new features in the upcoming Elasticsearch 6.3 release.
+Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. 
 
 ### Keeping the watched indices at a minumum
 
