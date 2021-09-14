@@ -14,7 +14,7 @@ description: Step-by-step instructions on how to troubleshoot Multi Tenancy issu
 
 ## Headers not whitelisted
 
-During Dashboards/Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `openearch_dashboards.yml`/`kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Dashboards/Kibana. Make sure you have whitelisted this header:
+During Dashboards/Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `opensearch_dashboards.yml`/`kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Dashboards/Kibana. Make sure you have whitelisted this header:
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
@@ -38,6 +38,6 @@ If either the configured Dashboards/Kibana server username or the configured Das
 <img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
 </p>
 
-Make sure the respective settings match in `sg_config.yml` (OpenSearch/Elasticsearch) and `openearch_dashboards.yml`/`kibana.yml` (Dashboards/Kibana).
+Make sure the respective settings match in `sg_config.yml` (OpenSearch/Elasticsearch) and `opensearch_dashboards.yml`/`kibana.yml` (Dashboards/Kibana).
 
 

@@ -24,7 +24,7 @@ The Dashboards/Kibana read only mode is based on the Search Guard roles of a use
 
 If a user is assigned to one or more configured *read only roles*, the Dashboards/Kibana read only mode is activated automatically upon login.
 
-Use the following entry in `openearch_dashboards.yml`/`kibana.yml` to configure the read only roles:
+Use the following entry in `opensearch_dashboards.yml`/`kibana.yml` to configure the read only roles:
 
 ```
 searchguard.readonly_mode.roles: ["sg_read_only_1", "sg_read_only_2", ...]

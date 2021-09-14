@@ -25,7 +25,7 @@ Search guard comes with multiple audit log storage types. This specifies where y
 * webhook - writes the events to an arbitrary HTTP endpoint.
 * log4j - writes the events to a log4j logger. You can use any log4j appender like SNMP, JDBC, Cassandra, Kafka etc.
  
-You configure the type of audit logging in the `openearch.yml`/`elasticsearch.yml` file:
+You configure the type of audit logging in the `opensearch.yml`/`elasticsearch.yml` file:
 
 ```
 searchguard.audit.type: <debug|internal_elasticsearch|external_elasticsearch|webhook|log4j>
@@ -35,7 +35,7 @@ You can also use your own, custom implementation of an audit log storage in case
 
 ## Storage type 'debug'
 
-There are no special configuration settings for this audit type.  Just add the audit type setting in `openearch.yml`/`elasticsearch.yml`:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.audit.type: debug
@@ -45,7 +45,7 @@ This will output tracked events to stdout, and is mainly useful when debugging o
 
 ## Storage type 'internal_elasticsearch'
 
-There are no special configuration settings for this audit type.  Just add the audit type setting in `openearch.yml`/`elasticsearch.yml`:
+There are no special configuration settings for this audit type.  Just add the audit type setting in `opensearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 searchguard.audit.type: internal_elasticsearch
@@ -217,7 +217,7 @@ Make sure that the class is accessible by Search Guard by putting the respective
 
 ## Expert: Finetuning the thread pool
 
-All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `openearch.yml`/`elasticsearch.yml`:
+All events are logged asynchronously, so the overall performance of our cluster will only be affected minimally. Search Guard internally uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `opensearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 # Tune threadpool size, default is 10 and 0 means disabled

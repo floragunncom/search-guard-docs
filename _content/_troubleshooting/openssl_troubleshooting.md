@@ -11,7 +11,7 @@ description: Step-by-step instructions on how to troubleshoot OpenSSL issues for
 
 # OpenSSL Troubleshooting
 
-Check that you have enabled OpenSSL in `openearch.yml`/`elasticsearch.yml` (which is the default)
+Check that you have enabled OpenSSL in `opensearch.yml`/`elasticsearch.yml` (which is the default)
   * `searchguard.ssl.transport.enable_openssl_if_available: true`
   * `searchguard.ssl.http.enable_openssl_if_available: true`
 

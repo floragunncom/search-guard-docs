@@ -158,7 +158,7 @@ config:
 
 ### Client authentication
 
-If you use TLS client authentication, Search Guard sends the PEM certificate of the node, as configured in `openearch.yml`/`elasticsearch.yml`.
+If you use TLS client authentication, Search Guard sends the PEM certificate of the node, as configured in `opensearch.yml`/`elasticsearch.yml`.
 
 by setting **one of** the following configuration options::
 

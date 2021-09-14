@@ -61,7 +61,7 @@ Okta example:
 <img src="saml_sp_acs_okta.png" style="width: 80%" class="md_image"/>
 </p>
 
-Dashboards/Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `openearch_dashboards.yml`/`kibana.yml`:
+Dashboards/Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```
 server.xsrf.whitelist: [/searchguard/saml/acs]

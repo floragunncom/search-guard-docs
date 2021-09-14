@@ -21,7 +21,7 @@ Search Guard can use a client TLS certificate in the HTTP request to authenticat
 
 ## Configuration
 
-In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `openearch.yml`/`elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
+In order for Search Guard to pick up client certificate on the REST layer, you need to set the `clientauth_mode` in `opensearch.yml`/`elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 
 ```yaml
 searchguard.ssl.http.clientauth_mode: OPTIONAL

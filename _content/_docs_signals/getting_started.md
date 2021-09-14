@@ -22,7 +22,7 @@ Signals is available for Elasticsearch **7.4.0** and above.
 
 Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Dashboards/Kibana app to create your first watch.
 
-If you need to disable it, add the following setting to your `openearch.yml`/`elasticsearch.yml`:
+If you need to disable it, add the following setting to your `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 signals.enabled: false

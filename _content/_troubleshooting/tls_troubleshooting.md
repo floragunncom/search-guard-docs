@@ -82,7 +82,7 @@ Issuer: CN=Example Com Inc. Signing CA, OU=Example Com Inc. Signing CA, O=Exampl
 
 ### Checking the configured alias
 
-If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `openearch.yml`/`elasticsearch.yml` matches the alias name in the keystore. 
+If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `opensearch.yml`/`elasticsearch.yml` matches the alias name in the keystore. 
 
 In the example above example, you'd need to set:
 
@@ -259,7 +259,7 @@ ExtendedKeyUsages [
 
 ## TLS versions
 
-Search Guard disables `TLSv1` by default, because it is outdated, unsecure and vulnerable. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it in `openearch.yml`/`elasticsearch.yml` like:
+Search Guard disables `TLSv1` by default, because it is outdated, unsecure and vulnerable. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it in `opensearch.yml`/`elasticsearch.yml` like:
 
 ```
 searchguard.ssl.http.enabled_protocols:

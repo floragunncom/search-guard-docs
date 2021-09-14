@@ -177,13 +177,13 @@ sg_config:
         internalProxies: '<Dashboards/Kibana IP>'
 ```
 
-To activate proxy authentication in Dashboards/Kibana, add the following line to `openearch_dashboards.yml`/`kibana.yml`:
+To activate proxy authentication in Dashboards/Kibana, add the following line to `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```
 searchguard.auth.type: "proxy"
 ```
 
-To pass the user and role headers that the authenticating proxy adds from Dashboards/Kibana to Search Guard, you need to add them to the HTTP header whitelist in `openearch_dashboards.yml`/`kibana.yml`:
+To pass the user and role headers that the authenticating proxy adds from Dashboards/Kibana to Search Guard, you need to add them to the HTTP header whitelist in `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```
 elasticsearch.requestHeadersWhitelist: ["authorization", "sgtenant", "x-proxy-user", "x-proxy-roles"]

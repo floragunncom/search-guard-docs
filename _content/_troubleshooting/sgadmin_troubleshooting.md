@@ -62,7 +62,7 @@ Cannot retrieve cluster state due to: None of the configured nodes are available
 
 ### Check the Search Guard index name
 * By default, Search Guard uses `searchguard` as the name of the confguration index 
-* If you configured a different index name in `openearch.yml`/`elasticsearch.yml`, you need to specify it with the `-i` option
+* If you configured a different index name in `opensearch.yml`/`elasticsearch.yml`, you need to specify it with the `-i` option
 
 ## ERR: CN=... is not an admin user  
 
@@ -81,7 +81,7 @@ Seems you use a node certificate. This is not permitted, you have to use a clien
 ```
 
 * If this is the case it means you used a node certificate, and not an admin certificate in the `sgadmin` call.
-* Use a certificate that has admin privileges, i.e. that is configured in the `searchguard.authcz.admin_dn` section of `openearch.yml`/`elasticsearch.yml`.
+* Use a certificate that has admin privileges, i.e. that is configured in the `searchguard.authcz.admin_dn` section of `opensearch.yml`/`elasticsearch.yml`.
 * See [Types of certificates](../_docs_tls/tls_certificates_production.md) for more information.
 
 ### Check if a non-admin certificate was used
@@ -92,7 +92,7 @@ Seems you use a node certificate. This is not permitted, you have to use a clien
 Seems you use a client certificate but this one is not registered as admin_dn
 ```
 
-* If this is the case the used certificate is not listed in the `searchguard.authcz.admin_dn` section of `openearch.yml`/`elasticsearch.yml`.
+* If this is the case the used certificate is not listed in the `searchguard.authcz.admin_dn` section of `opensearch.yml`/`elasticsearch.yml`.
 * Follow the steps printed out by sgadmin and add the DN of your certificate to `searchguard.authcz.admin_dn`.
 * Sample output:
 

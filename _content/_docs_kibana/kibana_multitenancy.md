@@ -154,7 +154,7 @@ sg_own_index:
 
 ### Dashboards/Kibana: Plugin Configuration
 
-Enable the multi tenancy feature in `openearch_dashboards.yml`/`kibana.yml` by adding:
+Enable the multi tenancy feature in `opensearch_dashboards.yml`/`kibana.yml` by adding:
 
 ```yaml
 searchguard.multitenancy.enabled: true
@@ -184,11 +184,11 @@ sg_config: searchguard.dynamic.kibana.index
 
 ### Dashboards/Kibana: Tenant Configuration
 
-By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Dashboards/Kibana index as configured in `openearch_dashboards.yml`/`kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
+By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Dashboards/Kibana index as configured in `opensearch_dashboards.yml`/`kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
 
 The Private tenant is meant as a user's private space, thus is not shared.
 
-You can enable and disable these tenants by the following `openearch_dashboards.yml`/`kibana.yml` configuration keys:
+You can enable and disable these tenants by the following `opensearch_dashboards.yml`/`kibana.yml` configuration keys:
 
 | Name | Description |
 |---|---|
@@ -207,7 +207,7 @@ If a user logs in the first time and has not chosen a tenant yet, Search Guard w
 * if enabled, add the global and private tenant on top 
 * choose the first tenant from this list  
 
-If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `openearch_dashboards.yml`/`kibana.yml`:
+If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.multitenancy.tenants.preferred: ["tenant1","tenant2",...]
@@ -248,7 +248,7 @@ curl \
 
 ### Filter bar for tenants
 
-If you have a huge amount of tenants, the tenant list can get long. You can use a filter bar to quickly filter the tenants list. Enable it in `openearch_dashboards.yml`/`kibana.yml`:
+If you have a huge amount of tenants, the tenant list can get long. You can use a filter bar to quickly filter the tenants list. Enable it in `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.multitenancy.enable_filter: true

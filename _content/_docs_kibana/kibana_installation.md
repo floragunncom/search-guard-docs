@@ -23,7 +23,7 @@ In the following description, we assume that you have already set up a Search Gu
 
 We also assume that you have enabled TLS support on the REST layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, traffic between Dashboards/Kibana and OpenSearch/Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
 
-Please check the `openearch.yml`/`elasticsearch.yml` file and see whether TLS on the REST layer is enabled:
+Please check the `opensearch.yml`/`elasticsearch.yml` file and see whether TLS on the REST layer is enabled:
 
 ```
 searchguard.ssl.http.enabled: true

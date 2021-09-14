@@ -25,7 +25,7 @@ Search Guard emits read events if one or more of the configured watched fields w
 
 This can be used to track access to PII or otherwise sensitive data. The audit trail will contain date of access, the username, the document id, and a list of the watched fields that were contained in the result. This makes it extremely easy to implement GDPR, HIPAA, PCI or SOX compliance.
 
-Audit logging and also the compliance features are statically configured in `openearch.yml`/`elasticsearch.yml` and cannot be changed at runtime.
+Audit logging and also the compliance features are statically configured in `opensearch.yml`/`elasticsearch.yml` and cannot be changed at runtime.
 
 ## Audit Log Category
 
@@ -52,7 +52,7 @@ In the example above, any access by any user to either the `Designation`, `First
 
 ## Excluding users
 
-You can exclude users from the read history by listing them in `openearch.yml`/`elasticsearch.yml`: 
+You can exclude users from the read history by listing them in `opensearch.yml`/`elasticsearch.yml`: 
 
 ```yaml
 searchguard.compliance.history.read.ignore_users:

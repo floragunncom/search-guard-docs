@@ -93,7 +93,7 @@ For older versions of Kibaba, please use the setting `searchguard.frontend_base_
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
-Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `openearch_dashboards.yml`/`kibana.yml`:
+Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see for example [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.cookie.isSameSite: None
@@ -104,7 +104,7 @@ searchguard.cookie.secure: true
 
 In order to activate the setup, do the following:
 
-- If you needed to edit `openearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance. 
+- If you needed to edit `opensearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance. 
 - Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
 That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.

@@ -178,7 +178,7 @@ Please note that the password is immediately changed and you might need to updat
 
 ## Password rules
 
-In order to enforce password rules (e.g. mixed letters and digits, minimum length), you can configure a regular expression in `openearch.yml`/`elasticsearch.yml`:
+In order to enforce password rules (e.g. mixed letters and digits, minimum length), you can configure a regular expression in `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.restapi.password_validation_regex: "(?=.*[A-Z])(?=.*[^a-zA-Z\d])(?=.*[0-9])(?=.*[a-z]).{8,}"
@@ -195,7 +195,7 @@ If the password does not match the configured regular expression, Search Guard w
 } 
 ```
 
-The error message should match your regular expression and tell the user what rules the password must meet. If you are using the Dashboards/Kibana config GUI, the error message will be displayed to the user. You can set the error message in `openearch.yml`/`elasticsearch.yml`:
+The error message should match your regular expression and tell the user what rules the password must meet. If you are using the Dashboards/Kibana config GUI, the error message will be displayed to the user. You can set the error message in `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.restapi.password_validation_error_message: "Password must be at least 8 characters ..."

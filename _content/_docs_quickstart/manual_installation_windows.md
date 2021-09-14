@@ -54,7 +54,7 @@ Download the [certificates zip file](https://downloads.search-guard.com/resource
 
 ## Add the minimal Search Guard configuration
 
-Add the following minimal Search Guard configuration to `openearch.yml`/`elasticsearch.yml`:
+Add the following minimal Search Guard configuration to `opensearch.yml`/`elasticsearch.yml`:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 

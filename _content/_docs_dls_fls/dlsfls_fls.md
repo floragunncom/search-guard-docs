@@ -96,7 +96,7 @@ In case of FLS, the FLS field definitions of the roles are combined with `AND`. 
 
 If a user has a role that defines FLS restrictions on an index, and another role that does not place any FLS restrictions on the same index, the restrictions defined in the first role still apply.
 
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `openearch.yml`/`elasticsearch.yml`: 
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `opensearch.yml`/`elasticsearch.yml`: 
 
 ```
 searchguard.dfm_empty_overrides_all: true

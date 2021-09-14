@@ -40,7 +40,7 @@ xpack.security.enabled: false
 
 ### Check connection settings
 
-If Dashboards/Kibana cannot connect to OpenSearch/Elasticsearch, check the `elasticsearch.hosts` in  `openearch_dashboards.yml`/`kibana.yml`:
+If Dashboards/Kibana cannot connect to OpenSearch/Elasticsearch, check the `elasticsearch.hosts` in  `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```
 elasticsearch.hosts: "https://example.com:9200"
@@ -75,7 +75,7 @@ This means that Dashboards/Kibana does not trust the self-signed root CA certifi
 
 #### Disabling certificate verification
 
-In `openearch_dashboards.yml`/`kibana.yml`, disable the certificate verification like:
+In `opensearch_dashboards.yml`/`kibana.yml`, disable the certificate verification like:
 
 ```
 elasticsearch.ssl.verificationMode: none
@@ -83,7 +83,7 @@ elasticsearch.ssl.verificationMode: none
  
 #### Installing the root CA (recommended)
 
-In `openearch_dashboards.yml`/`kibana.yml`, configure the path to your root CA in PEM format like:
+In `opensearch_dashboards.yml`/`kibana.yml`, configure the path to your root CA in PEM format like:
 
 ```
 elasticsearch.ssl.certificateAuthorities: [ "/path/to/your/CA.pem" ]
@@ -95,7 +95,7 @@ When you try to log in using the Search Guard login dialogue, after pressing the
 
 ### Check HTTP/HTTPS settings for cookies
 
-Search Guard stores the credentials of authenticated users in an encrypted cookie. If you are accessing Dashboards/Kibana with HTTP instead of HTTPS, check the following setting in `openearch_dashboards.yml`/`kibana.yml`:
+Search Guard stores the credentials of authenticated users in an encrypted cookie. If you are accessing Dashboards/Kibana with HTTP instead of HTTPS, check the following setting in `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```
 searchguard.cookie.secure: <true|false>
@@ -111,7 +111,7 @@ searchguard.cookie.secure: false
 
 ## Debugging the authentication flow with extra logging
 
-In order to debug the authentication flow, you can enable authentication logging in `openearch_dashboards.yml`/`kibana.yml`.
+In order to debug the authentication flow, you can enable authentication logging in `opensearch_dashboards.yml`/`kibana.yml`.
 
 **Caution: the logged information may contain sensitive authentication information.**
 
@@ -131,7 +131,7 @@ In case the Search Guard cookies are not readable anymore, e.g. if you changed t
 
 ### Dashboards/Kibana HTTP header whitelisting
 
-Dashboards/Kibana only sends HTTP headers that are explicitely whitelisted in `openearch_dashboards.yml`/`kibana.yml` to OpenSearch/Elasticsearch. If a header is not whitelisted, it is silently discarded, just as if was not present in the HTTP request. This is a Dashboards/Kibana feature independant from Search Guard. You can whitelist headers in `openearch_dashboards.yml`/`kibana.yml` like:
+Dashboards/Kibana only sends HTTP headers that are explicitely whitelisted in `opensearch_dashboards.yml`/`kibana.yml` to OpenSearch/Elasticsearch. If a header is not whitelisted, it is silently discarded, just as if was not present in the HTTP request. This is a Dashboards/Kibana feature independant from Search Guard. You can whitelist headers in `opensearch_dashboards.yml`/`kibana.yml` like:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "...", "..." ]
@@ -147,7 +147,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 
 ### Single-Sign-On header whitelisting
 
-If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `openearch_dashboards.yml`/`kibana.yml`.
+If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `opensearch_dashboards.yml`/`kibana.yml`.
 
 #### JWT: Token in HTTP header
 For JWT, add the HTTP header you configured in the JWT section of `sg_config.yml` to the header whitelist. For example, if you configured the header like:
@@ -163,7 +163,7 @@ jwt_auth_domain:
       ...
 ```
 
-You also need to set this header explicitely in `openearch_dashboards.yml`/`kibana.yml` like:
+You also need to set this header explicitely in `opensearch_dashboards.yml`/`kibana.yml` like:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "jwtheader", "sgtenant" ]

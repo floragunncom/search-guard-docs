@@ -50,8 +50,8 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchgu
 Search Guard ships with a demo installation script. The script will:
 
 * Add demo TLS certificates in PEM format to the `config` directory of OpenSearch/Elasticsearch
-* Add the required TLS configuration to the `openearch.yml`/`elasticsearch.yml` file.
-* Add the auto-initialize option to `openearch.yml`/`elasticsearch.yml`. This option will initialize the Search Guard configuration index automatically if it does not exist.
+* Add the required TLS configuration to the `opensearch.yml`/`elasticsearch.yml` file.
+* Add the auto-initialize option to `opensearch.yml`/`elasticsearch.yml`. This option will initialize the Search Guard configuration index automatically if it does not exist.
 * Generate a `sgadmin_demo.sh` script that you can use for applying configuration changes on the command line
 
 Note that the script only works with vanilla OpenSearch/Elasticsearch installations. If you already made changes to ``elasticsearch.yml``, especially the cluster name and the host entries, you might need to adapt the generated configuration.

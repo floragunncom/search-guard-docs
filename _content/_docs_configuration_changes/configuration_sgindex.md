@@ -19,7 +19,7 @@ description: Search Guard stores its configuration in an OpenSearch/Elasticsearc
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in the Search Guard configuration index. 
 
-This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `openearch.yml`/`elasticsearch.yml`.
+This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `opensearch.yml`/`elasticsearch.yml`.
 
 Keeping the configuration settings in an OpenSearch/Elasticsearch index enables hot config reloading. This means that you can change any of the user, role and permission or authentication settings at runtime, without restarting your nodes. Configuration changes will take effect immediately.
 

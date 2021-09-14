@@ -30,7 +30,7 @@ By using TLS:
 
 Search Guard also supports OpenSSL for improved performance and modern cipher suites.
 
-The first step after installing Search Guard is to generate the necessary TLS certificates and to configure them on each node in the `openearch.yml`/`elasticsearch.yml` configuration file.
+The first step after installing Search Guard is to generate the necessary TLS certificates and to configure them on each node in the `opensearch.yml`/`elasticsearch.yml` configuration file.
 
 Note that each change to this file requires a node restart.
 

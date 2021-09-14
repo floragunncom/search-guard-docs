@@ -123,7 +123,7 @@ The detailed configuration settings can be found in the `audit_request_body` fie
 
 ### External configuration
 
-The `external_configuration` contains the `openearch.yml`/`elasticsearch.yml` settings on node startup as JSON String. Example:
+The `external_configuration` contains the `opensearch.yml`/`elasticsearch.yml` settings on node startup as JSON String. Example:
 
 ```json
 {

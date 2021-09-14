@@ -61,4 +61,4 @@ default:
 
 The entry with `type: basic` makes Dashboards/Kibana to use the username/password-based authentication domains available in the backend.
 
-Username/password-based authentication requires no special settings in the `openearch_dashboards.yml`/`kibana.yml` Dashboards/Kibana configuration file.
+Username/password-based authentication requires no special settings in the `opensearch_dashboards.yml`/`kibana.yml` Dashboards/Kibana configuration file.

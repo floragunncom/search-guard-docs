@@ -38,7 +38,7 @@ The TLS Tool is platform independent and can be used for
 * Generating CSRs 
 * Validating certificates
 
-Besides the actual certificates the tool also generated configuration snippets which you can directly copy and paste into your `openearch.yml`/`elasticsearch.yml`.
+Besides the actual certificates the tool also generated configuration snippets which you can directly copy and paste into your `opensearch.yml`/`elasticsearch.yml`.
 
 ## General usage
 

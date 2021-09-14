@@ -28,7 +28,7 @@ The configuration GUI is an Enterprise feature and not available in the Communit
 
 ## Access control
 
-The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `openearch.yml`/`elasticsearch.yml` with the following key:
+The plugin automatically detects if a user has access to the REST API or not. All Search Guard roles that should have access must be configured in `opensearch.yml`/`elasticsearch.yml` with the following key:
 
 ```
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS", ...]

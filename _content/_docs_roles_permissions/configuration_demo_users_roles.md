@@ -25,7 +25,7 @@ Search Guard ships with the following demo users:
 | Username | Password | Description |
 |---|---|---|
 | admin | admin | Full access to the cluster and all indices, but no access to the Search Guard configuration. Use an admin certificate for that. |
-| kibanaserver | kibanaserver | Internal Dashboards/Kibana server user, for configuring `elasticsearch.username` and `elasticsearch.password` in `openearch_dashboards.yml`/`kibana.yml`. Has all permissions on the `.kibana` index. |
+| kibanaserver | kibanaserver | Internal Dashboards/Kibana server user, for configuring `elasticsearch.username` and `elasticsearch.password` in `opensearch_dashboards.yml`/`kibana.yml`. Has all permissions on the `.kibana` index. |
 | kibanaro | kibanaro | Regular Dashboards/Kibana user, has `SGS_READ` access to all indices and all permissions on the `.kibana` index. |
 | logstash | logstash | Logstash and Beats user, has `SGS_CRUD` and `SGS_CREATE_INDEX` permissions on all logstash and beats indices |
 | readall | readall | Has read access to all indices |

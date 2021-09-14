@@ -29,7 +29,7 @@ These certificates are used for TLS encryption on the REST- and the transport la
 
 ## Generated configuration
 
-The demo installer automatically appends mandatory and useful configuration settings for Search Guard to `openearch.yml`/`elasticsearch.yml`. These additions are enclosed by the following lines:
+The demo installer automatically appends mandatory and useful configuration settings for Search Guard to `opensearch.yml`/`elasticsearch.yml`. These additions are enclosed by the following lines:
 
 ```yaml
 ######## Start Search Guard Demo Configuration ########
@@ -37,7 +37,7 @@ The demo installer automatically appends mandatory and useful configuration sett
 ######## End Search Guard Demo Configuration ########
 ```
 
-If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `openearch.yml`/`elasticsearch.yml`.
+If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `opensearch.yml`/`elasticsearch.yml`.
 
 ### TLS settings
 

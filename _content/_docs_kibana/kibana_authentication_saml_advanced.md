@@ -143,7 +143,7 @@ To use IdP initiated SSO, you need to complete the following steps:
 * Edit the application settings in your IdP and set the *Assertion Consumer Service* endpoint to `/searchguard/saml/acs/idpinitiated
 `.
 
-Then add this endpoint to the xsrf whitelist in `openearch_dashboards.yml`/`kibana.yml`:
+Then add this endpoint to the xsrf whitelist in `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]

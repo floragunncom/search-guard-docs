@@ -66,7 +66,7 @@ The first time installation procedure on a production cluster is to:
 1. Disable shard allocation
 2. Stop all nodes
 3. Install the Search Guard plugin on all nodes
-4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `openearch.yml`/`elasticsearch.yml`
+4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `opensearch.yml`/`elasticsearch.yml`
 5. Restart OpenSearch/Elasticsearch and check that the nodes come up
 6. Re-enable shard allocation by using [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
 7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
@@ -146,7 +146,7 @@ The `searchguard.ssl.transport.pem*` keys define the paths to the node certifica
 
 The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
 
-If you want to use TLS also on the REST layer (HTTPS), add the following lines to `openearch.yml`/`elasticsearch.yml`
+If you want to use TLS also on the REST layer (HTTPS), add the following lines to `opensearch.yml`/`elasticsearch.yml`
 
 ```yaml
 searchguard.ssl.http.enabled: true

@@ -117,7 +117,7 @@ To activate that feature, configure it in elasticsearch.yml like:
 searchguard.unsupported.inject_user.enabled: true
 ```
 
-To assign elevated admin privileges to a user, list the username in the  `searchguard.authcz.admin_dn` section in `openearch.yml`/`elasticsearch.yml`:
+To assign elevated admin privileges to a user, list the username in the  `searchguard.authcz.admin_dn` section in `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.authcz.admin_dn:

@@ -39,7 +39,7 @@ Download the [certificates zip file](https://downloads.search-guard.com/resource
 <ES installation directory>/config
 ```
 
-Next, add the Search Guard TLS configuration to `openearch.yml`/`elasticsearch.yml`:
+Next, add the Search Guard TLS configuration to `opensearch.yml`/`elasticsearch.yml`:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 

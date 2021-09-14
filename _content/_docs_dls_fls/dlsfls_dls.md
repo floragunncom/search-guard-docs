@@ -214,7 +214,7 @@ If Search Guard encounters users which have more than one role with a DLS query 
 
 If a user has a role that defines DLS restrictions on an index, and another role that does not place any DLS restrictions on the same index, the restrictions defined in the first role still apply.
 
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `openearch.yml`/`elasticsearch.yml`: 
+You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `opensearch.yml`/`elasticsearch.yml`: 
 
 ```
 searchguard.dfm_empty_overrides_all: true
@@ -239,7 +239,7 @@ Since Search Guard 52, there are two execution modes for DLS:
 
 By default, Search Guard switches automatically between the modes depending on the DLS queries configured for the index. If a term-lookup query is present, DLS will be performed in filter-level mode. Otherwise, lucene-level mode will be used.
 
-It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `searchguard.dls.mode` which must be configured in `openearch.yml`/`elasticsearch.yml` on each node of the OpenSearch/Elasticsearch cluster.
+It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `searchguard.dls.mode` which must be configured in `opensearch.yml`/`elasticsearch.yml` on each node of the OpenSearch/Elasticsearch cluster.
 
 The setting `searchguard.dls.mode` has three possible values:
 

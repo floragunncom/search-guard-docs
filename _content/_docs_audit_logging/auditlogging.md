@@ -20,7 +20,7 @@ Audit logging enables you to track access to your OpenSearch/Elasticsearch clust
 
 You can configure the categories to be logged, the detail level of the logged messages and how the events should be persisted.
 
-Audit logging is disabled by default. To enable it, you need to configure at least `searchguard.audit.type` in `openearch.yml`/`elasticsearch.yml`. This defines the endpoint where the audit events are stored. To log the events in OpenSearch/Elasticsearch and use the Audit Log default settings, simply add the following line in `openearch.yml`/`elasticsearch.yml`:
+Audit logging is disabled by default. To enable it, you need to configure at least `searchguard.audit.type` in `opensearch.yml`/`elasticsearch.yml`. This defines the endpoint where the audit events are stored. To log the events in OpenSearch/Elasticsearch and use the Audit Log default settings, simply add the following line in `opensearch.yml`/`elasticsearch.yml`:
 
 ```
 searchguard.audit.type: internal_elasticsearch
@@ -43,7 +43,7 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | BLOCKED_IP | yes | yes | A request was made from a blocked IP adress, configured in sg_blocks.yml |
 {: .config-table}
 
-For security reasons, audit logging has to be configured in `openearch.yml`/`elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
+For security reasons, audit logging has to be configured in `opensearch.yml`/`elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
 ## Configuring the log level
 
@@ -182,7 +182,7 @@ By default Search Guard stores audit events in a daily rolling index named:
 sg6-auditlog-YYYY.MM.dd
 ```
 
-You can configure the name of the index in `openearch.yml`/`elasticsearch.yml` like:
+You can configure the name of the index in `opensearch.yml`/`elasticsearch.yml` like:
 
 ```yaml
 searchguard.audit.config.index: myauditlogindex 
@@ -231,7 +231,7 @@ searchguard.audit.config.retry_count: 500
 
 ## Expert: Finetuning the thread pool
 
-All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `openearch.yml`/`elasticsearch.yml`:
+All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `opensearch.yml`/`elasticsearch.yml`:
 
 ```yaml
 # Tune threadpool size, default is 10 and 0 means disabled

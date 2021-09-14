@@ -51,7 +51,7 @@ public interface PrincipalExtractor {
 }
 ```
 
-You can then define the Principal Extractor to use in `openearch.yml`/`elasticsearch.yml` like:
+You can then define the Principal Extractor to use in `opensearch.yml`/`elasticsearch.yml` like:
 
 ```yaml
 searchguard.ssl.transport.principal_extractor_class: com.example.MyPrincipalExtractor
