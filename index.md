@@ -55,7 +55,7 @@ You can get the current snapshot of the Search Guard Tech Preview here:
 
 You have several options to try the Search Guard Tech Preview:
 
-- If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](_content/_docs_quickstart/demo_installer.md).
+- If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo_installer).
 
 - If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [kibana-authentication-migration-quick](kibana-authentication-migration) of `sgctl`. 
 
