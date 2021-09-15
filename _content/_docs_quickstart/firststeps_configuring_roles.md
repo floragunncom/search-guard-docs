@@ -36,7 +36,7 @@ Search Guard roles define what access permissions a user with this role has. Thi
 * Permissions on field level (Enterprise)
   * e.g. what fields in documents a user is allowed to see
 
-As with users, you can configure roles by using sgadmin, the [REST API](rest-api-internalusers) or the [Dashboards/Kibana Config GUI](configuration-gui).
+As with users, you can configure roles by using `sgctl`, the [REST API](rest-api-internalusers) or the [Search Guard Config GUI](configuration-gui).
      
 Users are assigned to Search Guard roles by using the roles mapping. We will first define our roles, and then map users to them in the next chapter.
      
@@ -120,17 +120,9 @@ This role grants read and write permissions to the `infrastructure` index, and r
 
 ## Uploading configuration changes
 
-In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the [`sgadmin.sh` command line tool](sgadmin). We will perform the [same steps as in the last chapter](first-steps-user-configuration):
-
-First `cd` into this directory:
+In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the `sgctl` command line tool:
 
 ```
-cd <ES installation directory>/plugins/search-guard-7/tools/
-```
-
-And then execute:
-
-```
-./sgadmin_demo.sh
+./sgctl.sh update-config /path/to/changed/sg_roles.yml
 ```
 

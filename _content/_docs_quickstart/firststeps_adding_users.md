@@ -30,7 +30,7 @@ The internal user database stores users and their credentials directly in OpenSe
 
 * Configure the users, their password hashes and backend roles in the sg_intern_users.yml file and use the sgadmin CLI to upload this configuration to your cluster (Community)
 * Use the [internal users REST API](rest-api-internalusers) (Enterprise)
-* Use the Dashboards/Kibana internal users [configuration GUI](configuration-gui) (Enterprise)
+* Use the [Search Guard Configuration GUI](configuration-gui) (Enterprise)
 
 In this guide we will take the first approach.
 
@@ -64,6 +64,19 @@ jdoe:
   backend_roles:
     - hr_department
 ```
+
+**Note:** If you want that a user is able to log into Dashboards/Kibana, you have to assign them the special role `SGS_KIBANA_USER`. This can look like this:
+
+```
+jdoe:
+  hash: <hashed password>
+  backend_roles:
+    - hr_department
+  search_guard_roles:
+    - SGS_KIBANA_USER  
+```
+
+You can also map the Search Guard role `SGS_KIBANA_USER` to the backend role `hr_department`. See the guide on [roles mapping](firststeps_rolesmapping.md) for more on this.
 
 ## Generating the password hash
 
@@ -120,44 +133,18 @@ To keep things simple, the passwords we use here are the same as the username.
 
 ## Uploading the changes to your cluster
 
-In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the [`sgadmin.sh` command line tool](sgadmin). 
+In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the `sgctl` command line tool. 
 
-If you used the demo installer to set up Search Guard, you will find a pre-configured sgadmin.sh script with all required parameters already set in the tools directory.
+If you have already set up the `sgctl` connection to the cluster, just type:
 
-First `cd` into this directory:
-
-```
-cd <ES installation directory>/plugins/search-guard-7/tools/
+```bash
+$ ./sgctl.sh update-config /path/to/the/changed/sg_internal_users.yml
 ```
 
-And then execute:
+If you have not yet set up the `sgctl` connection, you have to do this once:
 
-```
-./sgadmin_demo.sh
-```
-
-This will upload all configuration files located in
-
-```
-<ES installation directory>/plugins/search-guard-7/sgconfig/
-```
-
-to the cluster.
-
-If everything works as expected, you should see an output like
-
-```
-Will update 'sg/config' with <ES installation directory>/plugins/search-guard-6/sgconfig/sg_config.yml 
-   SUCC: Configuration for 'config' created or updated
-Will update 'sg/roles' with <ES installation directory>/plugins/search-guard-6/sgconfig/sg_roles.yml 
-   SUCC: Configuration for 'roles' created or updated
-Will update 'sg/rolesmapping' with <ES installation directory>/plugins/search-guard-6/sgconfig/sg_roles_mapping.yml 
-   SUCC: Configuration for 'rolesmapping' created or updated
-Will update 'sg/internalusers' with <ES installation directory>/plugins/search-guard-6/sgconfig/sg_internal_users.yml 
-   SUCC: Configuration for 'internalusers' created or updated
-Will update 'sg/actiongroups' with <ES installation directory>plugins/search-guard-6/sgconfig/sg_action_groups.yml 
-   SUCC: Configuration for 'actiongroups' created or updated
-Done with success
+```bash
+$ ./sgctl.sh connect localhost --ca-cart /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
 ```
 
 The configuration changes are active immediately. There is no need to restart your cluster.

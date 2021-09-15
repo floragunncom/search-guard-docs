@@ -110,5 +110,9 @@ And it maps the user `cmaddock` to the Search Guard role `sg_devops` because the
 
 ## Uploading configuration changes
 
-In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the [`sgadmin.sh` command line tool](sgadmin). We will perform the [same steps as in the first chapter](first-steps-user-configuration).
+In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the `sgctl` command line tool:
+
+```
+./sgctl.sh update-config /path/to/changed/config_files/
+```
 
