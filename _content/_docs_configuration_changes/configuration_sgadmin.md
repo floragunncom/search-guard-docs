@@ -3,7 +3,7 @@ title: Using sgadmin
 slug: sgadmin
 category: configuration
 subcategory: sgadmin
-order: 100
+order: 101
 layout: docs
 edition: community
 index: false
