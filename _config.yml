@@ -186,9 +186,6 @@ collections:
   docs_quickstart:
     output: true
     permalink: :title
-  docs_first_steps:
-    output: true
-    permalink: :title
   docs_versions:
     output: true
     permalink: :title

@@ -3,7 +3,7 @@ title: Manual Installation
 html_title: Manual Installation
 slug: installation-windows
 category: quickstart
-order: 500
+order: 300
 layout: docs
 edition: community
 description: How to download and install Search Guard and all required TLS certificates on a Windows machine. 
@@ -16,22 +16,38 @@ description: How to download and install Search Guard and all required TLS certi
 
 {% include toc.md %}
 
-To quickly set up a Search Guard secured OpenSearch/Elasticsearch cluster on Windows:
+This guide describes the steps necessary for a manual installation of a Search Guard secured OpenSearch/Elasticsearch test installation. It is possible to set up this installation as a single node on your local computer.
 
-1. Install the Search Guard Plugin to OpenSearch/Elasticsearch
-2. Download and unzip the demo certificates to the config directory of OpenSearch/Elasticsearch
-3. Add the Search Guard minimal configuration to elasticsearch.yml
+## Prerequisites
 
-To use the (optional) Search Guard Dashboards/Kibana plugin which adds security and configuration features to Dashboards/Kibana:
+If you don't have them yet, you need to download a couple of software components. The following table lists sources you can use for downloading:
 
-1. Install the Search Guard Dashboards/Kibana plugin to Dashboards/Kibana
-2. Add the minimal Dashboards/Kibana configuration to `kibana.yml`
+| Downloads for OpenSearch | Downloads for Elasticsearch |
+|---|---|
+| [OpenSearch Minimum](https://opensearch.org/downloads.html) |  [Elasticsearch](https://www.elastic.co/downloads/elasticsearch) |
+| [OpenSearch Dashboards Minimum](https://opensearch.org/downloads.html) | [Kibana](https://www.elastic.co/downloads/kibana) | 
+| [Search Guard OpenSearch Plugin](https://docs.search-guard.com/latest/search-guard-versions) | [Search Guard Elasticsearch Plugin](https://docs.search-guard.com/latest/search-guard-versions) | 
+| [Search Guard OpenSearch Dashboards Plugin](https://docs.search-guard.com/latest/search-guard-versions) | [Search Guard Kibana Plugin](https://docs.search-guard.com/latest/search-guard-versions) |
+
+<table>
+<tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.0/">Search Guard Control Tool sgctl</a></td></tr>
+</table>
+
+**Note:** OpenSearch Dashboards/Kibana is optional. You can also just install the backend part OpenSearch/Elasticsearch.
+
+**Note:** While the core downloads for OpenSearch/Elasticsearch are usually os-specific, the Search Guard plugin downloads are independent of the operating system.
+
+**Note for OpenSearch:** The "Mininum" downloads of OpenSearch come without a security plugin. Thus, Search Guard can be easily installed here. If you want to
+use the non-Minimum version, you have to remove the security plugin from the `plugins` folder of the respective installation before proceeding.
+
+Preparing a local test installation of OpenSearch/Elasticsearch is quite easy: Just unzip/untar the downloads. The following sections assume that you have these components ready.
+
 
 ## Install Search Guard on OpenSearch/Elasticsearch
 
 Search Guard can be installed like any other OpenSearch/Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your OpenSearch/Elasticsearch version
 * Change to the directory of your OpenSearch/Elasticsearch installation.
 * For OpenSearch, execute:
 
@@ -95,43 +111,81 @@ The Search Guard configuration, like users, roles and permissions, is stored in 
 Changes to the Search Guard configuration must be applied to this index by either
 
 * Using the Search Guard Configuration GUI (Enterprise feature)
-* Using the sgadmin command line tool with the generated admin certificate
+* Using the `sgctl` command line tool with the generated admin certificate
 
 For using the Search Guard Configuration GUI you need to install the Search Guard Dashboards/Kibana Plugin, as described below. 
 
-If you want to use the sgadmin tool:
+If you want to use the `sgctl` tool, you initially need to create a connection configuration for the running cluster. You can do so by executing the `sgctl connect` command like this. You need to adapt the path specifications to the PEM files you [downloaded earlier](#download-and-install-the-search-guard-demo-certificates) in the demo certificates zip file:
 
-* Apply your changes to the demo configuration files located in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
-* Execute sgadmin to upload the changed configuration to Search Guard
-
-To execute sgadmin, first cd into 
-
-```
-<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools
+```bash
+$ ./sgctl.sh connect localhost --ca-cart /path/to/root-ca.pem --cert /path/to/kirk.pem --key /path/to/kirk-key.pem
 ```
 
-And execute:
+If the connection is successful, the command should print `Connected as CN=kirk,OU=client,O=client,L=test,C=de` and store the connection configuration for future
+use. The connection settings are stored in the `.searchguard` directory inside your home directory. You can test this by just executing:
 
+```bash
+$ ./sgctl.sh connect
 ```
-sgadmin.bat -cd ..\sgconfig -key ..\..\..\config\kirk-key.pem -cert ..\..\..\config\kirk.pem -cacert ..\..\..\config\root-ca.pem -nhnv -icl
+
+`sgctl` can upload the Search Guard configuration as YAML files. You can find the intial Search Guard configuration in `<OpenSearch/Elasticsearch directory>/plugins/search-guard/sgconfig`. Alternatively you can just retrieve the current configuration from Search Guard by executing
+
+```bash
+$ ./sgctl.sh get-config -o path/to/output/dir/
 ```
 
-This will read the contents of the configuration files in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
+To make configuration changes, just edit these files. If you are done with your changes, you can upload them to Search Guard with:
 
-The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the [Using sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) chapter.
+```bash
+$ ./sgctl.sh update-config path/to/config/dir/
+```
+
+You can also just specify single files using
+
+```bash
+$ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml
+```
+
 
 ## Install Search Guard on Dashboards/Kibana
 
-The Search Guard Dashboards/Kibana plugin adds authentication, multi tenancy and the Search Guard configuration GUI to Dashboards/Kibana. 
+If you have a  Dashboards/Kibana setup and the Search Guard plugin ready, the installation is simple:
 
-* Download the [Search Guard Dashboards/Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Dashboards/Kibana version from Maven
-* Stop Dashboards/Kibana
 * cd into your Dashboards/Kibana installaton directory
-* Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip
+* For OpeanSearch Dashboards execute: 
+
+```bash
+$ bin/opensearch-dashboards-plugin install file:///path/to/opensearch-dashboards-plugin.zip
+```
+
+* For Kibana execute:
+
+```bash
+$ bin/kibana-plugin install file:///path/to/kibana-plugin.zip
+```
 
 ## Add the Search Guard Dashboards/Kibana configuration
 
-If you've used the demo configuration to initializing Search Guard as outlined above, add the following lines to your `kibana.yml` and restart Dashboards/Kibana:
+If you've used the demo configuration to set up Search Guard as outlined above, you need add some more configuration entries to use Search Guard.
+
+For OpenSearch, edit `config/opensearch_dashboards.yml` and add:
+
+```yaml
+# Use HTTPS instead of HTTP
+opensearch.hosts: "https://localhost:9200"
+
+# Configure the Dashboards/Kibana internal server user
+opensearch.username: "kibanaserver"
+opensearch.password: "kibanaserver"
+
+# Disable SSL verification because we use self-signed demo certificates
+opensearch.ssl.verificationMode: none
+
+# Whitelist the Search Guard Multi Tenancy Header
+opensearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
+```
+
+For Kibana, edit `config/kibana.yml` and add:
 
 ```yaml
 # Use HTTPS instead of HTTP
@@ -153,12 +207,26 @@ xpack.security.enabled: false
 
 ## Start Dashboards/Kibana
 
-After Dashboards/Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Dashboards/Kibana will continue to start.
+
+Now you can start Dashboards ... :
+
+```yaml
+$ bin/opensearch-dashboards
+```
+
+... or Kibana:
+
+```yaml
+$ bin/kibana
+```
+
+
+During the first startup, Dashboards/Kibana will begin optimizing and caching browser bundles. This process might take a few minutes.
 
 ## Testing the Dashboards/Kibana installation
 
 * Open `http://localhost:5601/`.
-* You should be redirected to the Dashboards/Kibana login page
+* You should be redirected to the login page
 * On the login dialogue, use `admin` as username and `admin` as password.
 
 If everything is set up correctly, you should see three new navigation entries on the left pane:

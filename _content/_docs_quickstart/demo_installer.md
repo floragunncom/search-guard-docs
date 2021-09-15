@@ -23,6 +23,8 @@ resources:
 
 Search Guard comes with a demo installation shell script which helps you to quickly get Search Guard up and running on a test instance of OpenSearch or Elasticsearch. The most easy way is to set it up just on your local computer.
 
+**Note:** The demo installer can be used on Linux systems and on MacOS systems. However, on MacOS systems, you can only use it to start test instances of Search Guard for Elasticsearch, because OpenSearch so far does not provide builds for MacOS.
+
 ## Running the Demo Installer
 
 The following paragraphs will guide you through the installation process.
@@ -50,8 +52,8 @@ drwxrwxr-x 10 sg sg 4,0K Sep 15 12:35 kibana
 -rw-rw-r--  1 sg sg 273M Sep 15 12:35 kibana-7.14.1-linux-x86_64.tar.gz
 drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
 -rw-rw-r--  1 sg sg  14M Sep 15 12:35 search-guard-kibana-plugin-7.14.1-51.0.0.zip
--rw-rw-r--  1 sg sg  49M Sep 15 12:35 search-guard-suite-plugin-7.14.1-52.2.0.zip
--rwxrwxr-x  1 sg sg  22K Sep 15 12:35 search-guard-suite-plugin-7.14.1-52.2.0-demo-installer.sh
+-rw-rw-r--  1 sg sg  49M Sep 15 12:35 search-guard-elasticsearch-plugin-7.14.1-52.2.0.zip
+-rwxrwxr-x  1 sg sg  22K Sep 15 12:35 search-guard-elasticsearch-plugin-7.14.1-52.2.0-demo-installer.sh
 -rwxrw-r--  1 sg sg  14M Sep 15 12:35 sgctl.sh
 ```
 
