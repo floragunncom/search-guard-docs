@@ -47,9 +47,14 @@ You can get the current snapshot of the Search Guard Tech Preview here:
 
 |Target Environment|Backend Plugin|Frontend Plugin|
 |---|---|---|---|
-|OpenSearch 1.0.0|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
-|Elasticsearch 7.14.1|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
-|Elasticsearch 7.10.2|[Tech Preview 1](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/)|[Tech Preview 1]()|
+|**OpenSearch 1.0.0**|[Search Guard OpenSearch Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp1-os-1.0.0/search-guard-opensearch-plugin-tp1-os-1.0.0.zip)|[Search Guard OpenSearch Dashboards Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-dashboards-plugin/tp1-os-1.0.0/search-guard-opensearch-dashboards-plugin-tp1-os-1.0.0.zip)|
+|**Elasticsearch 7.14.1**|[Search Guard Elasticsearch Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp1-es-7.14.1/search-guard-elasticsearch-plugin-tp1-es-7.14.1.zip)|[Search Guard Kibana Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp1-es-7.14.1/search-guard-kibana-plugin-tp1-es-7.14.1.zip)|
+
+<table>
+<tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.0/">Search Guard Control Tool sgctl</a></td></tr>
+</table>
+
 
 ## Getting Started
 
@@ -76,6 +81,8 @@ The breaking changes include so far:
 - The `do_not_fail_on_forbidden` setting in `sg_config` is now active by default.
 
 - Search Guard no longer warns about filtered alias settings.
+
+- A comprehensive overview over the changes regarding authenticator configuration in Kibana can be found [here](kibana-authentication-migration-feature-map).
 
 ## Feedback
 
