@@ -86,6 +86,7 @@ index: false
 
 labels:
   navigation:
+    introduction: Introduction to Search Guard
     quickstart: Quickstart
     first_steps: First steps
     versions: Search Guard Versions
@@ -148,6 +149,7 @@ labels:
     v5: Search Guard 5
     v2: Search Guard 2
   collections:
+    docs_introduction: Introduction to Search Guard
     docs_quickstart: Documentation
     docs_first_steps: First steps
     docs_versions: Documentation
@@ -178,6 +180,9 @@ baseurl: /tech-preview
 collections_dir: _content
 
 collections:
+  docs_introduction:
+    output: true
+    permalink: :title
   docs_quickstart:
     output: true
     permalink: :title

@@ -2,12 +2,12 @@
 title: Overview
 html_title: Security for OpenSearch/Elasticsearch Overview
 slug: security-for-elasticsearch
-category: quickstart
+category: introduction
 order: 10
 layout: docs
 description: Search Guard is an Enterprise Security Suite for OpenSearch/Elasticsearch that encrypts and protects your data in the entire Elastic Stack, including Dashboards/Kibana, Logstash and Beats.
 resources:
-  - "https://search-guard.com/security-for-elasticsearch/|OpenSearch/Elasticsearch security overview (website)"
+  - "https://search-guard.com/security-for-elasticsearch/|Elasticsearch security overview (website)"
   - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
   - "search-guard-presentations#architecture-request-flow|Architecture and Request Flow (presentation)"
   - "search-guard-presentations#configuration-basics|Configuration Basics (presentation)"
@@ -25,7 +25,7 @@ Copyright 2020 floragunn GmbH
 
 ## Security Overview 
 
-Search Guard is an Enterprise Security and Alerting suite for OpenSearch and Elasticsearch and the entire Elastic Stack. It provides TLS encryption, Role Based
+Search Guard is an Enterprise Security and Alerting suite for OpenSearch and Elasticsearch. It provides TLS encryption, Role Based
 Access Control (RBAC) to OpenSearch/Elasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
 
 Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in OpenSearch/Elasticsearch, including Dashboards/Kibana, Logstash and Beats.
@@ -36,7 +36,7 @@ Search Guard comes in three flavours:
 * Enterprise Edition
 * Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX
 
-## TLS enryption for OpenSearch/Elasticsearch
+## TLS Encryption 
 
 Search Guard encrypts all data flows in your cluster, both on REST and on Transport layer. This ensures that:
 
@@ -49,7 +49,7 @@ Search Guard supports all modern cipher suites including Elliptic Curve Cryptogr
 Search Guard provides hostname validation and DNS lookups to ensure the validity and integrity of your certificates. Certificates can be
  changed by hot-reloading them on a running cluster without any downtimes. Search Guard supports both CRL and OCSP for revoking compromised certificates.
 
-## OpenSearch/Elasticsearch authentication and authorization
+## Authentication and authorization
   
 Search Guard supports all major industry standards for authentication and authorization like:
   
@@ -65,21 +65,21 @@ If you do not want or need any external authentication tool you can also use the
    
 * [Search Guard Internal user database](../_docs_roles_permissions/configuration_internalusers.md)
  
-## OpenSearch/Elasticsearch security controls
+## Security Controls
  
-Search Guard adds Role-Based Access Control (RBAC) to your OpenSearch/Elasticsearch cluster and indices. Search Guard roles define and
-control what actions a user is allowed to perform on any given OpenSearch/Elasticsearch index. Roles can be defined and assigned to users on-the-fly 
+Search Guard adds Role-Based Access Control (RBAC) to your cluster and indices. Search Guard roles define and
+control what actions a user is allowed to perform on any given index. Roles can be defined and assigned to users on-the-fly 
 without the need for any node or cluster restart.
  
 You can use pre-defined action groups like READ, WRITE or DELETE to define access permissions. You can also mix action groups
 with *single permissions* to implement very fine-grained access controls if required. For example, grant a user the right to read data
-in an OpenSearch/Elasticsearch index, but deny the permission to create an index alias.
+in an index, but deny the permission to create an index alias.
  
 Index names are dynamic and support wildcards, regular expressions, date/math expressions and variable substitution for dynamic role definitions.
  
-## Document- and Field-level access to OpenSearch/Elasticsearch data
+## Document- and Field-level access to your data
 
-Search Guard also controls access to documents and fields in your OpenSearch/Elasticsearch indices. You can use Search Guard roles to define:
+Search Guard also controls access to documents and fields in your indices. You can use Search Guard roles to define:
 
 * To what documents in an index a user has access to
 * What fields a user can access and what other fields should be removed
@@ -89,7 +89,7 @@ This can be defined at runtime. You do not need to decide upfront at ingest time
   
 ## Audit Logging
   
-Search Guard tracks and monitors all data flows inside your OpenSearch/Elasticsearch cluster and can produce audit trails on
+Search Guard tracks and monitors all data flows inside your cluster and can produce audit trails on
 several levels. This includes
 
 * Security related events like failed login attempts, missing privileges, spoofed headers or invalid TLS certificates
@@ -99,9 +99,9 @@ several levels. This includes
 
 The Audit Logging capabilities of Search Guard especially help to keep your OpenSearch/Elasticsearch cluster compliant with regualations like GDPR, PCI, SOX or HIPAA.
 
-## Alerting - Anomaly detection for your OpenSearch/Elasticsearch data
+## Alerting - Anomaly detection for your data
 
-Search Guard comes with an [Alerting module](elasticsearch-alerting-getting-started) that periodically scans the data in your OpenSearch/Elasticsearch cluster for anomalies and send out
+Search Guard comes with an [Alerting module](elasticsearch-alerting-getting-started) that periodically scans the data in your cluster for anomalies and send out
 notifications on various channels like Email, PagerDuty, Slack, JIRA or any endpoint that provides a Webhook.
 
 The Signals Alerting module provides a fully fledged escalation model so you can choose to send notifications on different channels based on

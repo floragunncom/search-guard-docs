@@ -1,5 +1,5 @@
 ---
-title: Manual Installation (Windows)
+title: Manual Installation 
 html_title: Manual Installation
 slug: installation-windows
 category: quickstart
@@ -11,7 +11,7 @@ description: How to download and install Search Guard and all required TLS certi
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Manual installation (Windows) 
+# Search Guard Manual Installation 
 {: .no_toc}
 
 {% include toc.md %}

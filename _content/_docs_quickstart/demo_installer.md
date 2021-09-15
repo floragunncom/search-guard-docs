@@ -21,67 +21,54 @@ resources:
 
 {% include toc.md %}
 
-To quickly set up a Search Guard secured OpenSearch or Elasticsearch cluster:
+Search Guard comes with a demo installation shell script which helps you to quickly get Search Guard up and running on a test instance of OpenSearch or Elasticsearch. The most easy way is to set it up just on your local computer.
 
-1. Install the Search Guard Plugin to OpenSearch or Elasticsearch
-2. Execute the Search Guard demo installation script
+## Running the Demo Installer
 
-The demo installation script will setup and configure Search Guard on an existing OpenSearch/Elasticsearch cluster. It also installs demo users and roles for OpenSearch/Elasticsearch, Dashboards/Kibana and Logstash. It uses self-signed TLS certificates and unsafe configuration options, so **do not use in production!**
+The following paragraphs will guide you through the installation process.
 
-To use the (optional) Search Guard Dashboards/Kibana plugin which adds security and configuration features to Dashboards/Kibana:
-
-1. Install the Search Guard Dashboards/Kibana plugin to Dashboards/Kibana
-2. Add the minimal Dashboards/Kibana configuration to `kibana.yml`
-
-## Install Search Guard on OpenSearch or Elasticsearch
-
-Search Guard can be installed like any other OpenSearch/Elasticsearch plugin by using the `elasticsearch-plugin` command. 
-
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your OpenSearch/Elasticsearch version
-* Change to the directory of your OpenSearch/Elasticsearch installation and type:
+- Download the demo installer script for the setup you want to test:<br>[OpenSearch 1.0.0]()<br>[Elasticsearch 7.14.1]()<br>[Elasticsearch 7.10.2]()
+- If you want, feel invited to review the script. The single steps are also explained as comments in the file.
+- Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-suite-plugin-7.14.1-52.2.0-demo-installer.sh`. Then, execute the script:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.searchguard.esmajorversion}}-<version>.zip
+$ ./search-guard-suite-plugin-7.14.1-52.2.0-demo-installer.sh
+```
+
+- The script will download the Search Guard plugin and the `sgctl` tool. Additionally, it will download the matching version of OpenSearch or Elasticsearch, which will be automatically extracted to the working directory. 
+- Afterwards, the script will install the Search Guard plugin and apply the basic configuration necessary for Search Guard and `sgctl`.
+- Now, the script is done. If you want to see what the script has downloaded installed, list the directory contents. You should see the downloaded software archives, the `sgctl.sh` tool, keys for authenticating as administrator, and the `opensearch`/`elasticsearch` directory with a ready-to-start setup.
+
+```bash
+$ ls -lh
+total 391M
+-rw-rw-r--  1 sg sg 1,7K Sep 15 12:34 admin-key.pem
+-rw-rw-r--  1 sg sg 1,6K Sep 15 12:34 admin.pem
+drwxrwxr-x 10 sg sg 4,0K Sep 15 12:34 elasticsearch
+-rw-rw-r--  1 sg sg 329M Sep 15 12:34 elasticsearch-7.14.1-linux-x86_64.tar.gz
+-rw-rw-r--  1 sg sg  49M Sep 15 12:34 search-guard-suite-plugin-7.14.1-52.2.0.zip
+-rwxrwxr-x  1 sg sg  16K Sep 15 12:34 search-guard-suite-plugin-7.14.1-52.2.0-demo-installer.sh
+-rwxrw-r--  1 sg sg  14M Sep 15 00:52 sgctl.sh
 ```
 
 
-## Execute the demo installation script
 
-Search Guard ships with a demo installation script. The script will:
-
-* Add demo TLS certificates in PEM format to the `config` directory of OpenSearch/Elasticsearch
-* Add the required TLS configuration to the `opensearch.yml`/`elasticsearch.yml` file.
-* Add the auto-initialize option to `opensearch.yml`/`elasticsearch.yml`. This option will initialize the Search Guard configuration index automatically if it does not exist.
-* Generate a `sgadmin_demo.sh` script that you can use for applying configuration changes on the command line
-
-Note that the script only works with vanilla OpenSearch/Elasticsearch installations. If you already made changes to ``elasticsearch.yml``, especially the cluster name and the host entries, you might need to adapt the generated configuration.
-
-To execute the demo installation:
-
-* ``cd`` into `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
-* Execute ``./install_demo_configuration.sh`` (``chmod`` the script first if necessary.)
-
-The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
+- You can start the cluster by running either
 
 ```bash
-Search Guard {{site.searchguard.esmajorversion}} Demo Installer
- ** Warning: Do not use on production or publicly reachable systems **
-Install demo certificates? [y/N] y
-Initialize Search Guard? [y/N] y
-Enable cluster mode? [y/N] n
+$ opensearch/bin/opensearch
 ```
 
-* Install demo certificates
-  * Whether to install the self-signed demo TLS certificates or not
-* Initialize Search Guard
-  * Whether to auto-initialize Search Guard with the demo configuration
-  * If answered with `y`, Search Guard will initialize the configuration index with the files from the `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory if the index does not exist 
-* Enable cluster mode
-  * If answered with `y`, the `network.host` parameter will be set to `0.0.0.0` to bind to all interfaces
-  * Depending on your system you may need to adjust the `vm.max_map_count` for OpenSearch/Elasticsearch to start
-  * see [https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) 
+or
+
+```bash
+$ elasticsearch/bin/elasticsearch
+```
+
 
 ## Testing the installation
+
+After having started the cluster, you can make the first steps with Search Guard.
 
 * Open ``https://localhost:9200/_searchguard/authinfo``.
 * Accept the self-signed demo TLS certificate.
@@ -95,18 +82,39 @@ The Search Guard configuration, like users, roles and permissions, is stored in 
 Changes to the Search Guard configuration must be applied to this index by either
 
 * Using the Search Guard Configuration GUI (Enterprise feature)
-* Using the sgadmin command line tool with the generated admin certificate
+* Using the `sgctl` command line tool
 
 For using the Search Guard Configuration GUI you need to install the Search Guard Dashboards/Kibana Plugin, as described below. 
 
 If you want to use the sgadmin tool:
 
-* Apply your changes to the demo configuration files located in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig`
-* Execute the pre-configured sgadmin call by executing `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/sgadmin_demo.sh`
+* Apply your changes to the demo configuration files located in `my-sg-config`
+* Execute `./sgctl.sh update-config my-sg-config`
 
-This will read the contents of the configuration files in `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` and upload the contents to the Search Guard index. 
+This will read the contents of the configuration files in `my-sg-config` and upload the contents to the Search Guard index. 
 
-The sgadmin tool is very powerful and offers a lot of features to manage any Search Guard installation. For more information about sgadmin, head over to the [Using sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) chapter.
+## Review the generated configuration
+
+If you want to know how things work under the hood, have a look at the automatically generated configuration in the files 
+
+- `opensearch/config/opensearch.yml` resp.  `elaticsearch/config/elaticsearch.yml`
+
+You will find lots of additional information on the options in comments in the files. Look for sections starting like this:
+
+```yaml
+# -----------------------------------------------------------
+# Search Guard Demo Configuration
+# -----------------------------------------------------------
+
+# -----
+# The root certificate that is used to check the authenticity
+# of all other certificates presented to Search Guard
+#
+searchguard.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
+...
+```
+
 
 ## Install Search Guard on OpenSearch Dashboards or Kibana
 
@@ -196,19 +204,15 @@ Furthermore you can view your currently active license, upload a new license if 
 
 ## Where to go next
 
-If you have not already done so, make yourself familiar with the [Search Guard Main Concepts](../_docs_quickstart/main_concepts.md). 
-
-After that, configure roles and access permissions by either modifying the configuration files and uploading them via `sgadmin`, or use the Dashboards/Kibana configuration GUI to change them directly. 
-
-* [Using and defining action groups](../_docs_roles_permissions/configuration_action_groups.md)
-* [Defining roles and permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
-* [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
-* [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
-
-If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_config.yml`.
-
-For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
-
-If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
-
-And if you need to support multiple tenants in Dashboards/Kibana, use [Dashboards/Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.
+- If you have not already done so, make yourself familiar with the [Search Guard Main Concepts](../_docs_introduction/main_concepts.md). 
+- After that, configure roles and access permissions by either modifying the configuration files and uploading them via `sgctl`, or use the Search Guard configuration GUI to change them directly. 
+  - [Using and defining action groups](../_docs_roles_permissions/configuration_action_groups.md)
+  - [Defining roles and permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
+  - [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
+  - [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
+  
+- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_config.yml`.
+- For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
+- If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
+- And if you need to support multiple tenants in Dashboards/Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.
+- Details on how to set up a production-ready TLS can be found in [Configuring TLS](../_docs_tls/tls_configuration.md) and [Moving TLS to production](../_docs_tls/tls_certificates_production.md).

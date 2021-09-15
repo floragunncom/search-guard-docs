@@ -1,7 +1,7 @@
 ---
 title: Main concepts
 slug: main-concepts
-category: quickstart
+category: introduction
 order: 600
 layout: docs
 description: How Search Guard extracts credentials from a request and how they are mapped to users, roles and permissions.
@@ -16,7 +16,7 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Search Guard main concepts
+# Search Guard Main Concepts
 {: .no_toc}
 
 {% include toc.md %}
