@@ -57,12 +57,25 @@ You have several options to try the Search Guard Tech Preview:
 
 - If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo-installer).
 
-- If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [kibana-authentication-migration-quick](kibana-authentication-migration) of `sgctl`. 
+- If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [migrate-config command](kibana-authentication-migration-quick) of `sgctl`. Please also review the list of breaking changes below.
 
 See the documentation on [Dashboards/Kibana Authentication](kibana-authentication-types) for an comprehensive overview over the new possibilities Search Guard offers.
 
 Documentation on how to use the `sgctl` command can be found in the [README](https://git.floragunn.com/search-guard/sgctl/-/blob/main/README.md).
 
+## Breaking Changes
+
+There has been a number of breaking changes to the Search Guard configuration. Some don't require config changes, some can be automatically migrated by using the `sgctl migrate` command, still some need manual intervention.
+
+The breaking changes include so far:
+
+- The old style user attributes (`attr.ldap....`, `attr.jwt...`, etc) are not supported any more for users logging in via Kibana. You need to use new style user attributes (`user.attrs....`)  instead. See the chapters on [DLS](document-level-security) and [Roles](roles-permissions) for details.
+
+- Support for OpenSSL was removed from Search Guard already quite a while a go. Now, also the configuration options - which were just ignored in the meantime - have been also removed. Thus, if you have any `searchguard` settings in `elasticsearch.yml` mentioning `openssl`, you need to remove these.
+
+- The `do_not_fail_on_forbidden` setting in `sg_config` is now active by default.
+
+- Search Guard no longer warns about filtered alias settings.
 
 ## Feedback
 
