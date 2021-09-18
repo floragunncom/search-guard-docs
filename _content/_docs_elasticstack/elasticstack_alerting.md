@@ -1,6 +1,6 @@
 ---
 title: X-Pack Alerting
-slug: search-guard-xpack-alerting
+permalink: search-guard-xpack-alerting
 category: elasticstack
 order: 700
 layout: docs

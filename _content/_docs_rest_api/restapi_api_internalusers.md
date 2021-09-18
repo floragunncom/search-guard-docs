@@ -1,7 +1,7 @@
 ---
 title: Internal users API
 html_title: Users API
-slug: rest-api-internalusers
+permalink: rest-api-internalusers
 category: restapi
 order: 400
 layout: docs

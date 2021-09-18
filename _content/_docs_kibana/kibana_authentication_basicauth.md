@@ -1,7 +1,7 @@
 ---
 title: HTTP Basic Authentication
 html_title: Kibana Basic Auth
-slug: kibana-authentication-http-basic
+permalink: kibana-authentication-http-basic
 category: kibana-authentication
 order: 200
 layout: docs

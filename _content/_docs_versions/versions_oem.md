@@ -1,6 +1,6 @@
 ---
 title: OEM Licenses
-slug: oem-licenses
+permalink: oem-licenses
 category: versions
 order: 500
 layout: docs

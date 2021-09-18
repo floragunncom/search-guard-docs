@@ -1,6 +1,6 @@
 ---
 title: HTTP Basic Authentication
-slug: http-basic-authorization
+permalink: http-basic-authorization
 category: authauth
 order: 200
 layout: docs

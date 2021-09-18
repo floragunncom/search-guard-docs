@@ -1,7 +1,7 @@
 ---
 title: Inputs Overview
 html_title: Inputs Overview
-slug: elasticsearch-alerting-inputs-overview
+permalink: elasticsearch-alerting-inputs-overview
 category: inputs
 order: 0
 layout: docs

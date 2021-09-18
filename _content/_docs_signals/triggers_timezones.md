@@ -1,7 +1,7 @@
 ---
 title: Handling Timezones
 html_title: Timezones
-slug: elasticsearch-alerting-triggers-timezones
+permalink: elasticsearch-alerting-triggers-timezones
 category: triggers
 order: 200
 layout: docs

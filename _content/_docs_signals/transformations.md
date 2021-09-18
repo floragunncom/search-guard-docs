@@ -1,7 +1,7 @@
 ---
 title: Transformations
 html_title: Data Transformations
-slug: elasticsearch-alerting-transformations-calculations
+permalink: elasticsearch-alerting-transformations-calculations
 category: signals
 subcategory: transformations
 order: 500
