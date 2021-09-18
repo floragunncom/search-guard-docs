@@ -1,7 +1,7 @@
 ---
 title: Put Watch
 html_title:  Put Watch
-slug: elasticsearch-alerting-rest-api-watch-put
+permalink: elasticsearch-alerting-rest-api-watch-put
 category: signals-rest
 order: 110
 layout: docs

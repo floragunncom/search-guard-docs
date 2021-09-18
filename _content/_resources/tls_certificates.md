@@ -1,7 +1,7 @@
 ---
 title: TLS Demo Certificates
 html_title: TLS Demo Certificates
-slug: tls-demo-certificates
+permalink: tls-demo-certificates
 category: resources
 order: 200
 layout: resources

@@ -1,7 +1,7 @@
 ---
 title: OpenID Connect
 html_title: OpenID Connect
-slug: openid-json-web-keys
+permalink: openid-json-web-keys
 category: authauth
 order: 600
 layout: docs

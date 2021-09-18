@@ -1,6 +1,6 @@
 ---
 title: Elastalert
-slug: search-guard-elastalert
+permalink: search-guard-elastalert
 category: elasticstack-alternatives
 order: 100
 layout: docs

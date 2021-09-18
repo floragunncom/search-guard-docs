@@ -1,7 +1,7 @@
 ---
 title: Adding users
 html_title: Adding users
-slug: first-steps-user-configuration
+permalink: first-steps-user-configuration
 category: first_steps
 order: 100
 layout: docs
