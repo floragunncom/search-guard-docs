@@ -7,6 +7,7 @@ order: 200
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin
 index: false
+sitemap: false
 ---
 
 <!---
