@@ -12,7 +12,7 @@ sass:
   style: compressed
   sass_dir: ./sass
 
-exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache']
+exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'README*']
 
 plugins:
   - jekyll-relative-links
