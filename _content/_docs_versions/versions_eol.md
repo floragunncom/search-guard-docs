@@ -1,7 +1,7 @@
 ---
 title: Search Guard end of life policy
 html_title: End of life
-slug: eol-policy
+permalink: eol-policy
 category: versions
 order: 700
 layout: docs

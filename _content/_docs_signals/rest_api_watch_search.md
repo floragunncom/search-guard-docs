@@ -1,7 +1,7 @@
 ---
 title: Search Watch
 html_title: Search Watch
-slug: elasticsearch-alerting-rest-api-watch-search
+permalink: elasticsearch-alerting-rest-api-watch-search
 category: signals-rest
 order: 150
 layout: docs

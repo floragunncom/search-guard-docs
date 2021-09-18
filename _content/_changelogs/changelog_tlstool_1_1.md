@@ -1,6 +1,6 @@
 ---
 title: TLS Tool 1.1
-slug: changelog-tlstool_1_1
+permalink: changelog-tlstool_1_1
 category: changelogs-tlstool
 order: 900
 layout: changelogs

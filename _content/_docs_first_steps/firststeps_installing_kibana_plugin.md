@@ -1,7 +1,7 @@
 ---
 title: Kibana access control
 html_title: Kibana access control
-slug: first-steps-kibana-access-control
+permalink: first-steps-kibana-access-control
 category: first_steps
 order: 400
 layout: docs
