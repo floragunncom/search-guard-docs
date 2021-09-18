@@ -12,7 +12,7 @@ sass:
   style: compressed
   sass_dir: ./sass
 
-exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache']
+exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'README*']
 
 plugins:
   - jekyll-relative-links
@@ -178,18 +178,6 @@ relative_links:
 #baseurl: /tech-preview
 
 collections_dir: _content
-#
-#defaults:
-#  - scope:
-#      path: "docs_kibana"
-#    values:
-#      permalink: :file.name
-
-#defaults:
-#  - scope:
-#      path: "/_content/_docs_introduction/"
-#    values:
-#      permalink: "abcde"
 
 collections:
   docs_introduction:
@@ -329,8 +317,9 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-suite-7:
-    - 7.14.0|52.2.0|51.0.0|yes|no  
-    - 7.10.2|52.2.0|51.0.0|yes|no    
+    - 7.14.1|52.3.0|51.0.0|yes|no  
+    - 7.14.0|52.3.0|51.0.0|yes|no  
+    - 7.10.2|52.3.0|51.0.0|yes|no    
     - 7.13.4|52.1.0|51.0.0|yes_no_sgadmin|no
     - 7.13.3|52.1.0|51.0.0|yes_no_sgadmin|no
     - 7.13.2|52.1.0|51.0.0|yes_no_sgadmin|no
