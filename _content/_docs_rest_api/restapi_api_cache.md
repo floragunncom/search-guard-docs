@@ -1,7 +1,7 @@
 ---
 title: Cache API
 html_title: Cache API
-slug: rest-api-cache
+permalink: rest-api-cache
 category: restapi
 order: 500
 layout: docs

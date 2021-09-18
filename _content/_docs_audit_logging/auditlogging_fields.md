@@ -1,7 +1,7 @@
 ---
 title: Field Reference
 html_title: Audit Log Field Reference
-slug: audit-logging-reference
+permalink: audit-logging-reference
 category: auditlog
 order: 300
 layout: docs

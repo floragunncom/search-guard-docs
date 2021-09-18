@@ -1,7 +1,7 @@
 ---
 title: Static Input
 html_title: Static Data Input
-slug: elasticsearch-alerting-inputs-static
+permalink: elasticsearch-alerting-inputs-static
 category: inputs
 order: 100
 layout: docs

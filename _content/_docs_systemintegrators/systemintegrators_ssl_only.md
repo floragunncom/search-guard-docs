@@ -1,7 +1,7 @@
 ---
 title: SSL only mode
 html_title: SSL only mode
-slug: search-guard-oem-ssl-only
+permalink: search-guard-oem-ssl-only
 category: systemintegrators
 order: 100
 layout: docs

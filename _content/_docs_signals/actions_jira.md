@@ -1,7 +1,7 @@
 ---
 title: JIRA Actions
 html_title: JIRA Actions
-slug: elasticsearch-alerting-actions-jira
+permalink: elasticsearch-alerting-actions-jira
 category: actions
 order: 600
 layout: docs
