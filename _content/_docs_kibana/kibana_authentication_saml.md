@@ -1,7 +1,7 @@
 ---
 title: SAML authentication
 html_title: Kibana SAML
-slug: kibana-authentication-saml
+permalink: kibana-authentication-saml
 category: kibana-authentication
 order: 800
 layout: docs

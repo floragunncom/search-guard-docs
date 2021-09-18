@@ -1,7 +1,7 @@
 ---
 title: Calculations
 html_title: Data Calculations
-slug: elasticsearch-alerting-calculations
+permalink: elasticsearch-alerting-calculations
 category: transformations
 order: 200
 layout: docs

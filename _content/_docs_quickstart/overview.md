@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: Security for Elasticsearch Overview
-slug: security-for-elasticsearch
+permalink: security-for-elasticsearch
 category: quickstart
 order: 10
 layout: docs

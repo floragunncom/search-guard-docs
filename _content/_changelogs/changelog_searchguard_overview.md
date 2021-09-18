@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: Search Guard changelogs
-slug: changelogs-searchguard
+permalink: changelogs-searchguard
 category: changelogs-searchguard
 order: -10000
 layout: changelogs

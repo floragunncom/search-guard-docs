@@ -1,7 +1,7 @@
 ---
 title: Action groups API
 html_title: Action groups API
-slug: rest-api-actiongroups
+permalink: rest-api-actiongroups
 category: restapi
 order: 440
 layout: docs

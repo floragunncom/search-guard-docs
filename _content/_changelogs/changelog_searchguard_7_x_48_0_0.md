@@ -1,6 +1,6 @@
 ---
 title: Search Guard 7.x-48.0.0
-slug: changelog-searchguard-7.x-48_0_0
+permalink: changelog-searchguard-7.x-48_0_0
 category: changelogs-searchguard
 order: -100
 layout: changelogs

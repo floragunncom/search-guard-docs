@@ -1,6 +1,6 @@
 ---
 title: Search Guard logging
-slug: troubleshooting-setting-log-level
+permalink: troubleshooting-setting-log-level
 category: troubleshooting
 order: 50
 layout: troubleshooting

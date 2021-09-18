@@ -1,6 +1,6 @@
 ---
 title: JSON web tokens
-slug: json-web-tokens
+permalink: json-web-tokens
 category: authauth
 order: 500
 layout: docs

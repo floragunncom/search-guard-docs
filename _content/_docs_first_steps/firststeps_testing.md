@@ -1,7 +1,7 @@
 ---
 title: Testing the configuration
 html_title: Testing the configuration
-slug: first-steps-testing-configuration
+permalink: first-steps-testing-configuration
 category: first_steps
 order: 300
 layout: docs

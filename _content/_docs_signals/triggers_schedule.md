@@ -1,7 +1,7 @@
 ---
 title: Schedule Triggers
 html_title: Schedule Triggers
-slug: elasticsearch-alerting-triggers-schedule
+permalink: elasticsearch-alerting-triggers-schedule
 category: triggers
 order: 100
 layout: docs

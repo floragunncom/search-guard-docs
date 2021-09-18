@@ -1,7 +1,7 @@
 ---
 title: Search Guard index restore
 html_title: Index restore
-slug: search-guard-oem-index-restore
+permalink: search-guard-oem-index-restore
 category: systemintegrators
 order: 300
 layout: docs

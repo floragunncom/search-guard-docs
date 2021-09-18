@@ -1,6 +1,6 @@
 ---
 title: OpenID Troubleshooting
-slug: troubleshooting-openid
+permalink: troubleshooting-openid
 category: troubleshooting
 order: 550
 layout: troubleshooting

@@ -1,7 +1,7 @@
 ---
 title: Security Integration
 html_title: Security Integration
-slug: elasticsearch-alerting-security
+permalink: elasticsearch-alerting-security
 category: signals
 subcategory: security
 order: 950

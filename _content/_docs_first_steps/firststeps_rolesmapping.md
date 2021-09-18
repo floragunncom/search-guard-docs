@@ -1,7 +1,7 @@
 ---
 title: Mapping users to Search Guard roles
 html_title: Roles mapping
-slug: first-steps-mapping-users-roles
+permalink: first-steps-mapping-users-roles
 category: first_steps
 order: 200
 layout: docs

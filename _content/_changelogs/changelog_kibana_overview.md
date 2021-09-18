@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: Kibana changelogs
-slug: changelogs-kibana
+permalink: changelogs-kibana
 category: changelogs-kibana
 order: -10000
 layout: changelogs

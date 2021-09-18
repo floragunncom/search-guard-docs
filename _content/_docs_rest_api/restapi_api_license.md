@@ -1,7 +1,7 @@
 ---
 title: License API
 html_title: License API
-slug: rest-api-license
+permalink: rest-api-license
 category: restapi
 order: 480
 layout: docs

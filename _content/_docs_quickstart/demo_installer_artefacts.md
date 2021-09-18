@@ -1,7 +1,7 @@
 ---
 title: Demo Installer Generated Artefacts
 html_title: Generated Artefacts
-slug: demo-installer-generated-artefacts
+permalink: demo-installer-generated-artefacts
 category: quickstart
 order: 300
 layout: docs
