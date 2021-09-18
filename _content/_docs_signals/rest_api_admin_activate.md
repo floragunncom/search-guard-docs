@@ -1,7 +1,7 @@
 ---
 title: Activate and Deactivate Signals
 html_title: Activate / Deactivate Signals
-slug: elasticsearch-alerting-rest-api-admin-activate
+permalink: elasticsearch-alerting-rest-api-admin-activate
 category: signals-rest
 order: 960
 layout: docs

@@ -1,6 +1,6 @@
 ---
 title: X-Pack Alternatives
-slug: search-guard-xpack-alternatives
+permalink: search-guard-xpack-alternatives
 category: elasticstack
 subcategory: elasticstack-alternatives
 order: 1000

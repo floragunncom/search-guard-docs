@@ -1,7 +1,7 @@
 ---
 title: Docker Demo
 html_title: Docker Demo
-slug: docker
+permalink: docker
 category: quickstart
 order: 100
 layout: docs

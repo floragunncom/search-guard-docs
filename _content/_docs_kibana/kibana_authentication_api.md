@@ -1,7 +1,7 @@
 ---
 title: Using the Kibana API
 html_title: Using the Kibana API
-slug: kibana-authentication-api
+permalink: kibana-authentication-api
 category: kibana-authentication
 order: 1000
 layout: docs
