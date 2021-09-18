@@ -1,7 +1,7 @@
 ---
 title: Search Guard roles
 html_title: Search Guard roles
-slug: roles-permissions
+permalink: roles-permissions
 category: rolespermissions
 order: 400
 layout: docs

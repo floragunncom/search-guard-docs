@@ -1,7 +1,7 @@
 ---
 title: Get Watch State
 html_title: Get Watch State
-slug: elasticsearch-alerting-rest-api-watch-state
+permalink: elasticsearch-alerting-rest-api-watch-state
 category: signals-rest
 order: 750
 layout: docs

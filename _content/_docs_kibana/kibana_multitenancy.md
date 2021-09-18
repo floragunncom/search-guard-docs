@@ -1,7 +1,7 @@
 ---
 title: Multitenancy
 html_title: Kibana Multitenancy
-slug: kibana-multi-tenancy
+permalink: kibana-multi-tenancy
 category: kibana
 order: 300
 layout: docs

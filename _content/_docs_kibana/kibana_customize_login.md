@@ -1,7 +1,7 @@
 ---
 title: Customizing the login page
 html_title: Login Page
-slug: kibana-login-customizing
+permalink: kibana-login-customizing
 category: kibana-authentication
 order: 250
 layout: docs

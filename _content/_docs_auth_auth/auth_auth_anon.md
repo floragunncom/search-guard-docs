@@ -1,6 +1,6 @@
 ---
 title: Anonymous authentication
-slug: anonymous authentication 
+permalink: anonymous authentication 
 category: authauth
 order: 1000
 layout: docs

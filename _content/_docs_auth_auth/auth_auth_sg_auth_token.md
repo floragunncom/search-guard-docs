@@ -1,6 +1,6 @@
 ---
 title: Search Guard Auth Tokens
-slug: search-guard-auth-tokens
+permalink: search-guard-auth-tokens
 category: authauth
 order: 11000
 layout: docs

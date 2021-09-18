@@ -1,7 +1,7 @@
 ---
 title: Activate and Deactivate Tenant
 html_title: Activating Watch by tenant
-slug: elasticsearch-alerting-rest-api-tenant-activate
+permalink: elasticsearch-alerting-rest-api-tenant-activate
 category: signals-rest
 order: 950
 layout: docs

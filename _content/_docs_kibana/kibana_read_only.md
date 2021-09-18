@@ -1,7 +1,7 @@
 ---
 title: Read Only mode
 html_title: Kibana Read Only mode
-slug: kibana-read-only
+permalink: kibana-read-only
 category: kibana
 order: 400
 layout: docs

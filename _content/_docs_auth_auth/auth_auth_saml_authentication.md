@@ -1,7 +1,7 @@
 ---
 title: SAML Authentication
 html_title: SAML Authentication
-slug: saml-authentication
+permalink: saml-authentication
 category: authauth
 order: 700
 layout: docs

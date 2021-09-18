@@ -1,6 +1,6 @@
 ---
 title: X-Pack Monitoring
-slug: search-guard-xpack-monitoring
+permalink: search-guard-xpack-monitoring
 category: elasticstack
 order: 600
 layout: docs

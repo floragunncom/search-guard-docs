@@ -1,7 +1,7 @@
 ---
 title: Search Accounts
 html_title: Search Accounts
-slug: elasticsearch-alerting-rest-api-account-search
+permalink: elasticsearch-alerting-rest-api-account-search
 category: signals-rest
 order: 850
 layout: docs
