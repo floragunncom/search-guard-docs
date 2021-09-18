@@ -1,7 +1,7 @@
 ---
 title: Accounts
 html_title: Accounts
-slug: elasticsearch-alerting-accounts
+permalink: elasticsearch-alerting-accounts
 category: signals
 order: 710
 layout: docs

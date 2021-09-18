@@ -1,7 +1,7 @@
 ---
 title: Scripting
 html_title: Scripting in Signals Alerting
-slug: signals-alerting-scripting
+permalink: signals-alerting-scripting
 category: signals
 order: 710
 layout: docs

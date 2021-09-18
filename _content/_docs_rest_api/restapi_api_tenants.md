@@ -1,7 +1,7 @@
 ---
 title: Tenants API
 html_title: Tenants API
-slug: rest-api-tenants
+permalink: rest-api-tenants
 category: restapi
 order: 460
 layout: docs

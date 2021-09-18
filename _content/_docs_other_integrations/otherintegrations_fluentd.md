@@ -1,7 +1,7 @@
 ---
 title: Fluentd
 html_title: Fluentd
-slug: elasticsearch-fluentd-search-guard
+permalink: elasticsearch-fluentd-search-guard
 category: otherintegrations
 order: 500
 layout: docs

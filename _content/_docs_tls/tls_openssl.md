@@ -1,6 +1,6 @@
 ---
 title: OpenSSL
-slug: openssl
+permalink: openssl
 category: tls
 order: 400
 layout: docs

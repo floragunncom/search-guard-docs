@@ -1,6 +1,6 @@
 ---
 title: Role Mapping Modes
-slug: role-mapping-modes
+permalink: role-mapping-modes
 category: rolespermissions
 order: 600
 layout: docs

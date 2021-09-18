@@ -1,6 +1,6 @@
 ---
 title: Certificate revocation
-slug: elasticsearch-certificate-revocation
+permalink: elasticsearch-certificate-revocation
 category: tls
 order: 350
 layout: docs
