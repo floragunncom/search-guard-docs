@@ -1,7 +1,7 @@
 ---
 title: Get Settings
 html_title: Get settings
-slug: elasticsearch-alerting-rest-api-settings-get
+permalink: elasticsearch-alerting-rest-api-settings-get
 category: signals-rest
 order: 900
 layout: docs

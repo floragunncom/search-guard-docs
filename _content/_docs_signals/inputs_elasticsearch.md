@@ -1,7 +1,7 @@
 ---
 title: Elasticsearch Input
 html_title: Elasticsearch Input
-slug: elasticsearch-alerting-inputs-elasticsearch
+permalink: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs

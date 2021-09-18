@@ -1,7 +1,7 @@
 ---
 title: Logstash
 html_title: Logstash
-slug: elasticsearch-logstash-search-guard
+permalink: elasticsearch-logstash-search-guard
 category: elasticstack
 order: 100
 layout: docs

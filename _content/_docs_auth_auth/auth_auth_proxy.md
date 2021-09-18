@@ -1,6 +1,6 @@
 ---
 title: Proxy Authentication
-slug: proxy-authentication
+permalink: proxy-authentication
 category: authauth
 order: 800
 layout: docs

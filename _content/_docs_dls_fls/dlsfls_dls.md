@@ -1,7 +1,7 @@
 ---
 title: Document-level security
 html_title: Document-level security
-slug: document-level-security
+permalink: document-level-security
 category: dlsfls
 order: 100
 layout: docs

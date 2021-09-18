@@ -1,6 +1,6 @@
 ---
 title: Latest Releases
-slug: search-guard-versions
+permalink: search-guard-versions
 category: versions
 order: 100
 layout: docs

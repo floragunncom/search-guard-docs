@@ -1,7 +1,7 @@
 ---
 title: Put Settings
 html_title: Put Settings
-slug: elasticsearch-alerting-rest-api-settings-put
+permalink: elasticsearch-alerting-rest-api-settings-put
 category: signals-rest
 order: 910
 layout: docs
