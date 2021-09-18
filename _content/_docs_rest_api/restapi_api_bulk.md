@@ -1,7 +1,7 @@
 ---
 title: REST API - Bulk Requests
 html_title: REST API - Bulk Requests
-slug: rest-api-bulk
+permalink: rest-api-bulk
 category: restapi
 order: 600
 layout: docs

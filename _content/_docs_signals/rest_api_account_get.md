@@ -1,7 +1,7 @@
 ---
 title: Get Account
 html_title: Get Account
-slug: elasticsearch-alerting-rest-api-account-get
+permalink: elasticsearch-alerting-rest-api-account-get
 category: signals-rest
 order: 800
 layout: docs

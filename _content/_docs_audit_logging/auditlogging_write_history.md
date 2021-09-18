@@ -1,7 +1,7 @@
 ---
 title: Write History Audit Logging
 html_title: Write History
-slug: compliance-write-history
+permalink: compliance-write-history
 category: auditlog
 order: 500
 layout: docs

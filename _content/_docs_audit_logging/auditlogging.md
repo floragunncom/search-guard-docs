@@ -1,6 +1,6 @@
 ---
 title: Configuring Audit Logging
-slug: audit-logging-compliance
+permalink: audit-logging-compliance
 category: auditlog
 order: 100
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: OpenID Connect authentication
 html_title: Kibana OpenID
-slug: kibana-authentication-openid
+permalink: kibana-authentication-openid
 category: kibana-authentication
 order: 350
 layout: docs

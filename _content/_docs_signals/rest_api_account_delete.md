@@ -1,7 +1,7 @@
 ---
 title: Delete Account
 html_title: Delete Account
-slug: elasticsearch-alerting-rest-api-account-delete
+permalink: elasticsearch-alerting-rest-api-account-delete
 category: signals-rest
 order: 820
 layout: docs

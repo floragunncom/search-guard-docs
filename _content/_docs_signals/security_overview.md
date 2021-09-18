@@ -1,7 +1,7 @@
 ---
 title: Security Integration Overview
 html_title: Security Overview
-slug: elasticsearch-alerting-security-overview
+permalink: elasticsearch-alerting-security-overview
 category: security
 order: 0
 layout: docs
