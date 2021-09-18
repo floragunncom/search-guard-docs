@@ -1,6 +1,6 @@
 ---
 title: OpenSSL Troubleshooting
-slug: troubleshooting-openssl
+permalink: troubleshooting-openssl
 category: troubleshooting
 order: 150
 layout: troubleshooting

@@ -1,6 +1,6 @@
 ---
 title: Kerberos / SPNEGO
-slug: kerberos-spnego
+permalink: kerberos-spnego
 category: authauth
 order: 400
 layout: docs

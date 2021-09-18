@@ -1,7 +1,7 @@
 ---
 title: Iframe
 html_title: Kibana in iframe
-slug: kibana-in-iframe
+permalink: kibana-in-iframe
 category: kibana
 order: 500
 layout: docs

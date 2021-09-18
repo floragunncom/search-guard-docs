@@ -1,6 +1,6 @@
 ---
 title: Upgrading from 6.x to 7.x
-slug: upgrading-6-7
+permalink: upgrading-6-7
 category: installation
 order: 850
 layout: docs

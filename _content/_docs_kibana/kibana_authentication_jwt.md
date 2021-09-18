@@ -1,7 +1,7 @@
 ---
 title: JWT authentication
 html_title: JWT authentication
-slug: kibana-authentication-jwt
+permalink: kibana-authentication-jwt
 category: kibana-authentication
 order: 300
 layout: docs
