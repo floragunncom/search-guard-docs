@@ -7,6 +7,7 @@ order: 100
 layout: changelogs
 description: Changelog for the Search Guard and Search Guard SSL
 index: false
+sitemap: false
 ---
 
 <!---
