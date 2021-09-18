@@ -1,7 +1,7 @@
 ---
 title: Production
 html_title: Migrating older SG authentication configuration with minimal outage
-slug: kibana-authentication-migration-prod
+permalink: kibana-authentication-migration-prod
 category: kibana-authentication-migration-overview
 order: 300
 layout: docs

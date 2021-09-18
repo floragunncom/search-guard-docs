@@ -1,7 +1,7 @@
 ---
 title: Cross Cluster Search
 html_title: Cross Cluster Search
-slug: cross-cluster-tribe
+permalink: cross-cluster-tribe
 category: elasticstack
 order: 450
 layout: docs

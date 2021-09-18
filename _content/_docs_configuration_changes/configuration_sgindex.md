@@ -1,7 +1,7 @@
 ---
 title: Search Guard Configuration Index
 html_title: Search Guard Index
-slug: search-guard-index
+permalink: search-guard-index
 category: configuration
 order: 50
 layout: docs

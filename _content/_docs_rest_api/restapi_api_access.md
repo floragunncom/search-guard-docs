@@ -1,6 +1,6 @@
 ---
 title: Access Control
-slug: rest-api-access-control
+permalink: rest-api-access-control
 category: restapi
 order: 100
 layout: docs

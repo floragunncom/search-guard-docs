@@ -1,6 +1,6 @@
 ---
 title: Preventing brute force attacks
-slug: elasticsearch-brute-force-attacks
+permalink: elasticsearch-brute-force-attacks
 category: authauth
 order: 1200
 layout: docs

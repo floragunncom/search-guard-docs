@@ -1,7 +1,7 @@
 ---
 title: Feature Map
 html_title: Migrating older SG authentication configuration
-slug: kibana-authentication-migration-feature-map
+permalink: kibana-authentication-migration-feature-map
 category: kibana-authentication-migration-overview
 order: 1100
 layout: docs

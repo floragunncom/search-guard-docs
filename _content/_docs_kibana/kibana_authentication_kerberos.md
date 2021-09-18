@@ -1,7 +1,7 @@
 ---
 title: Kerberos
 html_title: Kerberos authentication
-slug: kibana-authentication-kerberos
+permalink: kibana-authentication-kerberos
 category: kibana-authentication
 order: 400
 layout: docs

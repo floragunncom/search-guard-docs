@@ -1,7 +1,7 @@
 ---
 title: Acknowledge Watch
 html_title: Acknowledge Watch
-slug: elasticsearch-alerting-rest-api-watch-acknowledge
+permalink: elasticsearch-alerting-rest-api-watch-acknowledge
 category: signals-rest
 order: 700
 layout: docs

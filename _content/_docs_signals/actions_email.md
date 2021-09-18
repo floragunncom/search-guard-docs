@@ -1,7 +1,7 @@
 ---
 title: Email Actions
 html_title: Email Actions
-slug: elasticsearch-alerting-actions-email
+permalink: elasticsearch-alerting-actions-email
 category: actions
 order: 200
 layout: docs

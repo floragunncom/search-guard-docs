@@ -1,6 +1,6 @@
 ---
 title: Using sgadmin
-slug: sgadmin
+permalink: using-sgadmin
 category: configuration
 subcategory: sgadmin
 order: 101

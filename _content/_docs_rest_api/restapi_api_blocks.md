@@ -1,7 +1,7 @@
 ---
 title: Blocks API
 html_title: Blocks API
-slug: rest-api-blocks
+permalink: rest-api-blocks
 category: restapi
 order: 460
 layout: docs

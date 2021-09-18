@@ -1,7 +1,7 @@
 ---
 title: Permissions and Action Groups
 html_title: Permissions
-slug: action-groups
+permalink: action-groups
 category: rolespermissions
 order: 200
 layout: docs

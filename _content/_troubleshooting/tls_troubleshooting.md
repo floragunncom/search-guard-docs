@@ -1,7 +1,7 @@
 ---
 title: TLS troubleshooting
 html_title: TLS help
-slug: troubleshooting-tls
+permalink: troubleshooting-tls
 category: troubleshooting
 order: 100
 layout: troubleshooting

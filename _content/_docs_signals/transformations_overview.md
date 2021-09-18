@@ -1,7 +1,7 @@
 ---
 title: Transformations Overview
 html_title: Transformations / Calculations
-slug: elasticsearch-alerting-transformations-calculations-overview
+permalink: elasticsearch-alerting-transformations-calculations-overview
 category: transformations
 order: 0
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: TLS Tool changelogs
-slug: changelogs-tlstool
+permalink: changelogs-tlstool
 category: changelogs-tlstool
 order: 0
 layout: changelogs

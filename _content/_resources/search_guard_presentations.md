@@ -1,7 +1,7 @@
 ---
 title: Search Guard Presentations
 html_title: Presentations
-slug: search-guard-presentations
+permalink: search-guard-presentations
 category: resources
 order: 100
 layout: resources

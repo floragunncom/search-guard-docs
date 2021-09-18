@@ -1,7 +1,7 @@
 ---
 title: Injecting Search Guard users
 html_title: Injecting users
-slug: search-guard-oem-user-injection
+permalink: search-guard-oem-user-injection
 category: systemintegrators
 order: 400
 layout: docs

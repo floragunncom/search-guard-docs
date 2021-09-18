@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 html_title: Authentication Troubleshooting
-slug: kibana-authentication-troubleshooting
+permalink: kibana-authentication-troubleshooting
 category: kibana-authentication
 order: 1000
 layout: docs

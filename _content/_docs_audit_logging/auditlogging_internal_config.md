@@ -1,7 +1,7 @@
 ---
 title: Configuration change tracking
 html_title: Change tracking
-slug: configuration-integrity
+permalink: configuration-integrity
 category: auditlog
 order: 600
 layout: docs

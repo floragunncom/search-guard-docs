@@ -1,7 +1,7 @@
 ---
 title: Field anonymization
 html_title: Field anonymization
-slug: field-anonymization
+permalink: field-anonymization
 category: dlsfls
 order: 300
 layout: docs

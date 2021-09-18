@@ -1,6 +1,6 @@
 ---
 title: System Administration
-slug: sgadmin-system-administration
+permalink: sgadmin-system-administration
 category: sgadmin
 order: 300
 layout: docs

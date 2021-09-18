@@ -1,7 +1,7 @@
 ---
 title: Authentication
 html_title: LDAP Authentication
-slug: active-directory-ldap-authentication
+permalink: active-directory-ldap-authentication
 category: ldap
 order: 200
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Webhook Actions
 html_title: Webhook Actions
-slug: elasticsearch-alerting-actions-webhook
+permalink: elasticsearch-alerting-actions-webhook
 category: actions
 order: 300
 layout: docs

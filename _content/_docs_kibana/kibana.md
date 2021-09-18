@@ -1,7 +1,7 @@
 ---
 title: Dashboards/Kibana
 html_title: Dashboards/Kibana Plugin
-slug: kibana-search-guard
+permalink: kibana-search-guard
 category: esstack
 subcategory: kibana
 order: 100

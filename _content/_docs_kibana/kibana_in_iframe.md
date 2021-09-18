@@ -1,7 +1,7 @@
 ---
 title: Dashboards/Kibana in IFrame
 html_title: Dashboards/Kibana in IFrame
-slug: kibana-in-iframe
+permalink: kibana-in-iframe
 category: kibana-advanced
 order: 200
 layout: docs

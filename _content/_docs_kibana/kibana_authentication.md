@@ -1,7 +1,7 @@
 ---
 title: Authentication
 html_title: Dashboards/Kibana Authentication
-slug: kibana-authentication
+permalink: kibana-authentication
 category: kibana
 subcategory: kibana-authentication
 order: 200

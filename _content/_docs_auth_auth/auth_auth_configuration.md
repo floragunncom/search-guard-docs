@@ -1,7 +1,7 @@
 ---
 title: Configuration
 html_title: Authentication
-slug: authentication-authorization
+permalink: authentication-authorization
 category: authauth
 order: 100
 layout: docs

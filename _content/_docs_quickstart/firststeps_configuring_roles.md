@@ -1,7 +1,7 @@
 ---
 title: Configuring roles and permissions
 html_title: Configuring roles
-slug: first-steps-roles-configuration
+permalink: first-steps-roles-configuration
 category: first_steps
 order: 200
 layout: docs

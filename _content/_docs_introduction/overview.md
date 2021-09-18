@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: Security for OpenSearch/Elasticsearch Overview
-slug: security-for-elasticsearch
+permalink: security-for-elasticsearch
 category: introduction
 order: 10
 layout: docs

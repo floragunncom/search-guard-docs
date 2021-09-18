@@ -1,7 +1,7 @@
 ---
 title: Active Directory and LDAP
 html_title: Active Directory and LDAP
-slug: active-directory-ldap
+permalink: active-directory-ldap
 category: authauth
 subcategory: ldap
 order: 300

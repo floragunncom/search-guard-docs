@@ -1,7 +1,7 @@
 ---
 title: Cerebro
 html_title: Cerebro
-slug: elasticsearch-cerebro-search-guard
+permalink: elasticsearch-cerebro-search-guard
 category: otherintegrations
 order: 600
 layout: docs

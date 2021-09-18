@@ -1,7 +1,7 @@
 ---
 title: Permissions
 html_title: API Permissions
-slug: elasticsearch-alerting-security-permissions
+permalink: elasticsearch-alerting-security-permissions
 category: security
 order: 100
 layout: docs

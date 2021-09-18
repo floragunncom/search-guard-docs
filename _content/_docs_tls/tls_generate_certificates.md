@@ -1,6 +1,6 @@
 ---
 title: Generating Certificates
-slug: generating-tls-certificates
+permalink: generating-tls-certificates
 category: tls
 subcategory: generating-certificates
 order: 100

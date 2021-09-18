@@ -1,7 +1,7 @@
 ---
 title: Manual Installation 
 html_title: Manual Installation
-slug: installation-windows
+permalink: installation-windows
 category: quickstart
 order: 300
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Delete Watch
 html_title: Deleting Watch
-slug: elasticsearch-alerting-rest-api-watch-delete
+permalink: elasticsearch-alerting-rest-api-watch-delete
 category: signals-rest
 order: 120
 layout: docs

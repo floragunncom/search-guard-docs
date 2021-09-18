@@ -1,7 +1,7 @@
 ---
 title: Demo users and roles
 html_title: Demo users and role
-slug: demo-users-roles
+permalink: demo-users-roles
 category: rolespermissions
 order: 50
 layout: docs

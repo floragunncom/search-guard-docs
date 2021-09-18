@@ -1,7 +1,7 @@
 ---
 title: Index Actions
 html_title: Index Actions
-slug: elasticsearch-alerting-actions-index
+permalink: elasticsearch-alerting-actions-index
 category: actions
 order: 100
 layout: docs

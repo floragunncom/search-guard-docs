@@ -1,7 +1,7 @@
 ---
 title: Pagerduty Actions
 html_title: Pagerduty Actions
-slug: elasticsearch-alerting-actions-pagerduty
+permalink: elasticsearch-alerting-actions-pagerduty
 category: actions
 order: 500
 layout: docs

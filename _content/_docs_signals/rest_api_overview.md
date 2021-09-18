@@ -1,7 +1,7 @@
 ---
 title: REST API Overview
 html_title:  REST API
-slug: elasticsearch-alerting-rest-api-overview
+permalink: elasticsearch-alerting-rest-api-overview
 category: signals-rest
 order: 0
 layout: docs

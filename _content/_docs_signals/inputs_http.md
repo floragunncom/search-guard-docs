@@ -1,7 +1,7 @@
 ---
 title: HTTP Input
 html_title: HTTP Data Input
-slug: elasticsearch-alerting-inputs-http
+permalink: elasticsearch-alerting-inputs-http
 category: inputs
 order: 300
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Reserved and hidden resources
 html_title: Reserved resources
-slug: rest-api-reserved-hidden
+permalink: rest-api-reserved-hidden
 category: restapi
 order: 310
 layout: docs

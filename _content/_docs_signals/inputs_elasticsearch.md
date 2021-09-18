@@ -1,7 +1,7 @@
 ---
 title: Search Input
 html_title: Signals Search Input
-slug: elasticsearch-alerting-inputs-elasticsearch
+permalink: elasticsearch-alerting-inputs-elasticsearch
 category: inputs
 order: 200
 layout: docs

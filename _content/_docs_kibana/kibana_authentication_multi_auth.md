@@ -1,7 +1,7 @@
 ---
 title: Using multiple authentication methods
 html_title: Using multiple authentication methods
-slug: kibana-multiple-authentication-methods
+permalink: kibana-multiple-authentication-methods
 category: kibana-authentication
 order: 900
 layout: docs

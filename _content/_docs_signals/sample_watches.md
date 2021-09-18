@@ -1,7 +1,7 @@
 ---
 title: Sample Watches
 html_title: Sample Watches
-slug: elasticsearch-alerting-watches-sample
+permalink: elasticsearch-alerting-watches-sample
 category: signals
 order: 210
 layout: docs

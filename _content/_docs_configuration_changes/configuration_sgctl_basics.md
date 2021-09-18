@@ -1,6 +1,6 @@
 ---
 title: Basic Usage
-slug: sgctl
+permalink: sgctl
 category: sgctl
 order: 100
 layout: docs

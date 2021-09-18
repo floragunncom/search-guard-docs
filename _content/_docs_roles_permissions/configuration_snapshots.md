@@ -1,7 +1,7 @@
 ---
 title: Snapshot, Restore, Index Aliases
 html_title: Snapshot Restore
-slug: snapshot-restore
+permalink: snapshot-restore
 category: rolespermissions
 order: 1000
 layout: docs

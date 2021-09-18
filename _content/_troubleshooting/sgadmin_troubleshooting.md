@@ -1,6 +1,6 @@
 ---
 title: sgadmin Troubleshooting
-slug: troubleshooting-sgadmin
+permalink: troubleshooting-sgadmin
 category: troubleshooting
 order: 200
 layout: troubleshooting

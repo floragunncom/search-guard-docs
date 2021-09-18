@@ -1,6 +1,6 @@
 ---
 title: Cache settings
-slug: cache-settings
+permalink: cache-settings
 category: configuration
 order: 1000
 layout: docs

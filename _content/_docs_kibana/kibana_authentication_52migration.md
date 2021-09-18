@@ -1,7 +1,7 @@
 ---
 title: Overview
 html_title: Migrating older SG authentication configuration
-slug: kibana-authentication-migration
+permalink: kibana-authentication-migration
 category: kibana-authentication-migration-overview
 order: 100
 layout: docs

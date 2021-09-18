@@ -1,7 +1,7 @@
 ---
 title: Download demo certificates
 html_title: Demo certificates
-slug: tls-download-certificates
+permalink: tls-download-certificates
 category: generating-certificates
 order: 110
 layout: docs

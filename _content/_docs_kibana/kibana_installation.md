@@ -1,12 +1,12 @@
 ---
 title: Installing the Plugin
 html_title: Installing the Search Guard Dashboards/Kibana Plugin
-slug: kibana-plugin-installation
+permalink: kibana-plugin-installation
 category: kibana
 order: 100
 layout: docs
 edition: community
-description: How to install the Search Guard Dashboards/Kibana plugin which adds authentication, multi tenany and the configuration GUI.
+description: How to install the Search Guard Dashboards/Kibana plugin which adds authentication, multi-tenany and the configuration UI.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -19,9 +19,9 @@ Copyright 2020 floragunn GmbH
 
 Search Guard is compatible with [Dashboards/Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Dashboards/Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
-In the following description, we assume that you have already set up a Search Guard secured OpenSearch/Elasticsearch cluster. We'll walk through all additional steps needed for integrating Dashboards/Kibana with your setup.
+We assume that you have already set up a Search Guard secured OpenSearch/Elasticsearch cluster in the following description. We will walk through all additional steps needed for integrating Dashboards/Kibana with your setup.
 
-We also assume that you have enabled TLS support on the REST layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, traffic between Dashboards/Kibana and OpenSearch/Elasticsearch is made via unsecure HTTP calls, and thus can be sniffed.
+We also assume that you have enabled TLS support on the REST layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, traffic between Dashboards/Kibana and OpenSearch/Elasticsearch is made via insecure HTTP calls and thus can be sniffed.
 
 Please check the `opensearch.yml`/`elasticsearch.yml` file and see whether TLS on the REST layer is enabled:
 
@@ -43,13 +43,15 @@ xpack.security.enabled: false
 * For OpenSearch Dashboards, execute:  `bin/opensearch-dashboards-plugin install file:///path/to/plugin.zip`
 * For Kibana, execute: `bin/kibana-plugin install file:///path/to/plugin.zip`
 
-After the plugin has been installed, Dashboards/Kibana will run the optimization process. Depending on your system this might take a couple of minutes. This is an Dashboards/Kibana internal process required for each installed plugin and cannot be skipped. The [optimization process is shaky](https://github.com/elastic/kibana/issues/19678){:target="_blank"} and problems are typically not related to Search Guard. 
+After the plugin has been installed, Dashboards/Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Dashboards/Kibana internal process required for each installed plugin and cannot be skipped.
 
-Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`. 
+The [optimization process is shaky](https://github.com/elastic/kibana/issues/19678){:target="_blank"} and problems are typically not related to Search Guard.
 
-## Configuring the Dashboards/Kibana server user
+Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`.
 
-For management calls to OpenSearch/Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards etc., Dashboards/Kibana uses a service user, called the **Dashboards/Kibana server user**.
+## Configuring the server user
+
+For management calls to OpenSearch/Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards, etc., Dashboards/Kibana uses a service user, called the **Dashboards/Kibana server user**.
 
 This user needs certain privileges for the Dashboards/Kibana index. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring OpenSearch/Elasticsearch" below.
 
@@ -87,30 +89,27 @@ All requests that Dashboards/Kibana makes to OpenSearch/Elasticsearch will now u
 
 ### Configuring the Root CA
 
-If you use your own root CA on OpenSearch/Elasticsearch, you need to either disable certificate validation or provide the root CA and all intermediate certififcates (if any) to Dashboards/Kibana. Otherwise, you'll see the following error message in the Dashboards/Kibana logfile:
+Suppose you use your own root CA on OpenSearch/Elasticsearch. In that case, you need to either disable certificate validation or provide the root CA and all intermediate certificates (if any) to Dashboards/Kibana. Otherwise, you will see the following error message in the Dashboards/Kibana logfile:
 
 ```
-Request error, retrying -- self signed certificate in certificate chain
+Request error, retrying -- self-signed certificate in certificate chain
 ```
 
 You can disable certificate validation in `opensearch_dashboards.yml`/`kibana.yml` by setting:
-
 
 OpenSearch:
 
 ```yaml
 opensearch.ssl.verificationMode: none
+
 ```
-
 Elasticsearch:
-
 
 ```yaml
 elasticsearch.ssl.verificationMode: none
 ```
 
-Or you can provide the root CA in PEM format by setting:
-
+Or you can provide the root CA in PEM format by setting (recommended):
 
 ```yaml
 opensearch.ssl.certificateAuthorities: "/path/to/your/root-ca.pem"
@@ -128,28 +127,28 @@ In this case, you can leave the setting `opensearch.ssl.verify`/`elasticsearch.s
 
 After you restart Dashboards/Kibana, it will start optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Dashboards/Kibana will continue to start.
 
-## Upgrading the Search Guard Dashboards/Kibana Plugin
+## Upgrading the Search Guard Plugin
 
-In order to upgrade the Search Guard Dashboards/Kibana Plugin:
+To upgrade the Search Guard Dashboards/Kibana Plugin:
 
 * Stop Dashboards/Kibana
-* Delete the Search Guard Dashboards/Kibana plugin from the `plugins` directory 
+* Delete the Search Guard Dashboards/Kibana plugin from the `plugins` directory
 * Restart Dashboards/Kibana, which will clear all cached files
 * Stop Dashboards/Kibana, and install the new version of the plugin
 
-## Configuring OpenSearch/Elasticsearch: The Dashboards/Kibana server user
+## The Dashboards/Kibana server user
 
 ### Adding the Dashboards/Kibana server user
 
-Dashboards/Kibana uses a special user internally to talk to OpenSearch/Elasticsearch when performing management calls. The username and password for this user is configured in `opensearch_dashboards.yml`/`kibana.yml`. 
+Dashboards/Kibana uses a unique user internally to talk to OpenSearch/Elasticsearch when performing management calls. The username and password for this user are configured in `opensearch_dashboards.yml`/`kibana.yml`.
 
 On the OpenSearch/Elasticsearch side, make sure that this user has the required permissions. If you use the Search Guard demo configuration, you can either use the `kibanaserver` user account, or you can map a different user to the  built-in role `SGS_KIBANA_SERVER`.
 
-Dashboards/Kibana uses HTTP Basic Authentication for the Dashboards/Kibana server user, so make sure you have set up an authentication domain which supports HTTP Basic Authentication.
+Dashboards/Kibana uses HTTP Basic Authentication for this server user. Make sure you have set up an authentication domain that supports HTTP Basic Authentication.
 
 ### Example: Internal authentication
 
-Typically you set up the Dashboards/Kibana server user in the Search Guard Internal User Database backend, and configure any other authentication methods you have in place second in the chain:
+Typically you set up the Dashboards/Kibana server user in the Search Guard Internal User Database backend and configure any other authentication methods you have in place second in the chain:
 
 
 ```yaml
@@ -182,13 +181,11 @@ sg_config:
           ...
 ```
 
-## Configuring OpenSearch/Elasticsearch: Adding Dashboards/Kibana users
+## Adding Dashboards/Kibana users
 
-All Dashboards/Kibana users must be mapped to the built-in `SGS_KIBANA_USER` role.
-This role has the minimum permissions to access Dashboards/Kibana.
+All Dashboards/Kibana users must be mapped to the built-in `SGS_KIBANA_USER` role. This role has the minimum permissions to access Dashboards/Kibana.
 
-In addition, the users need to have READ permissions to all indices they should be allowed to use with Dashboards/Kibana. Typically you will want to set up different roles for different users, and give them the `SGS_KIBANA_USER` role in additions.
-
+In addition, the users need to have READ permissions to all indices they should be allowed to use with Dashboards/Kibana. Typically you will want to set up different roles for different users and give them the `SGS_KIBANA_USER` role in additions.
 
 ## Client certificates: elasticsearch.ssl.certificate
 
@@ -212,13 +209,13 @@ elasticsearch.ssl.certificate: /path/to/your/client.crt
 elasticsearch.ssl.key: /path/to/your/client.key
 ```
 
-When these options are defined, Dashboards/Kibana will include the configured certificate in every request to OpenSearch/Elasticsearch. This happens in the backend and is not related to your browser’s configuration.
+When these options are defined, Dashboards/Kibana will include the configured certificate in every request to OpenSearch/Elasticsearch. This happens in the backend and is not related to the configuration of your browser.
 
-If the certificate is an admin certificate, this means that all actions from all users will be allowed, regardless of other authorization settings. While this may be useful in cases where you need complete admin access, it isn’t always clear what these configuration settings actually do and what their implications are.
+If the certificate is an admin certificate, this means that all actions from all users will be allowed, regardless of other authorization settings. While this may be useful in cases where you need complete admin access, it isn’t always clear what these configuration settings actually do and their implications.
 
-Hence, in order to avoid elevating the user permissions by mistake, Search Guard will check if a certificate has been defined and, by default, switch its status to red.
+Hence, to avoid elevating the user permissions by mistake, Search Guard will check if a certificate has been defined and, by default, switch its status to red.
 
-You can override this behaviour explicitly by using the following option in your kibana.yml:
+You can override this behavior explicitly by using the following option in your kibana.yml:
 
 ```
 # Allow using a client certificate defined in elasticsearch.ssl.certificate

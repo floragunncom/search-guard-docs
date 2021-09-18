@@ -1,6 +1,6 @@
 ---
 title: Community Edition
-slug: search-guard-community-edition
+permalink: search-guard-community-edition
 category: versions
 order: 200
 layout: docs

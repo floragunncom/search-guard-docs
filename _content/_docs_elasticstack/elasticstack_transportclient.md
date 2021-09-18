@@ -1,7 +1,7 @@
 ---
 title: Transport Clients
 html_title: Transport Clients
-slug: elasticsearch-transport-clients-search-guard
+permalink: elasticsearch-transport-clients-search-guard
 category: elasticstack
 order: 400
 layout: docs

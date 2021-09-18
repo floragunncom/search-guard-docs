@@ -1,6 +1,6 @@
 ---
 title: Passwords in configuration files
-slug: configuration-password-handling
+permalink: configuration-password-handling
 category: configuration
 order: 210
 layout: docs

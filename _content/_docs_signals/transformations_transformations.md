@@ -1,7 +1,7 @@
 ---
 title: Transformations
 html_title: Transformation Scripts
-slug: elasticsearch-alerting-transformations
+permalink: elasticsearch-alerting-transformations
 category: transformations
 order: 100
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Slack Actions
 html_title: Slack Actions
-slug: elasticsearch-alerting-actions-slack
+permalink: elasticsearch-alerting-actions-slack
 category: actions
 order: 400
 layout: docs

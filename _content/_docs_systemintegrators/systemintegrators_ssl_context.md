@@ -1,7 +1,7 @@
 ---
 title: Injecting an SSLContext
 html_title: Injecting an SSLContext
-slug: search-guard-oem-inject-ssl-context
+permalink: search-guard-oem-inject-ssl-context
 category: systemintegrators
 order: 700
 layout: docs

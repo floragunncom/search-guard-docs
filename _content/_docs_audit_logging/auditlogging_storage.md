@@ -1,7 +1,7 @@
 ---
 title: Storage Types
 html_title: Audit Logging Storage
-slug: audit-logging-storage
+permalink: audit-logging-storage
 category: auditlog
 order: 200
 layout: docs

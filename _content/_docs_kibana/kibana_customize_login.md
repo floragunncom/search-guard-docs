@@ -1,7 +1,7 @@
 ---
 title: Customizing the login page
 html_title: Customizing the Search Guard Dashboards/Kibana Plugin login page
-slug: kibana-login-customizing
+permalink: kibana-login-customizing
 category: kibana-authentication-basic-overview
 order: 250
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Authorisation
 html_title: LDAP Authorisation
-slug: active-directory-ldap-authorisation
+permalink: active-directory-ldap-authorisation
 category: ldap
 order: 300
 layout: docs

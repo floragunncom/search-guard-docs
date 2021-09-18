@@ -1,7 +1,7 @@
 ---
 title: Custom Principal Extractor
 html_title: Principal Extractor
-slug: search-guard-oem-principal-extractor
+permalink: search-guard-oem-principal-extractor
 category: systemintegrators
 order: 600
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Inputs
 html_title: Alerting Data Input
-slug: elasticsearch-alerting-inputs
+permalink: elasticsearch-alerting-inputs
 category: signals
 subcategory: inputs
 order: 400

@@ -1,7 +1,7 @@
 ---
 title: Quick Start
 html_title: Quickly migrating older SG authentication configuration
-slug: kibana-authentication-migration-quick
+permalink: kibana-authentication-migration-quick
 category: kibana-authentication-migration-overview
 order: 100
 layout: docs

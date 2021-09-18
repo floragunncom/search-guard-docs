@@ -1,6 +1,6 @@
 ---
 title: TLS Hot-Reload
-slug: hot-reload-tls
+permalink: hot-reload-tls
 category: tls
 order: 500
 layout: docs

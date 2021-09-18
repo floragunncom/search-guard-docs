@@ -1,7 +1,7 @@
 ---
 title: Permissions troubleshooting
 html_title: Permissions help
-slug: troubleshooting-search-guard-permission
+permalink: troubleshooting-search-guard-permission
 category: troubleshooting
 order: 220
 layout: troubleshooting

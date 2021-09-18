@@ -1,6 +1,6 @@
 ---
 title: Upgrading Search Guard
-slug: upgrading
+permalink: upgrading
 category: installation
 order: 800
 layout: docs

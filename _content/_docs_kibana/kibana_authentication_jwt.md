@@ -1,7 +1,7 @@
 ---
 title: JWT URL Parameters
 html_title: JWT URL Parameter Authentication with the Search Guard Dashboards/Kibana Plugin
-slug: kibana-authentication-jwt
+permalink: kibana-authentication-jwt
 category: kibana-authentication
 order: 700
 layout: docs

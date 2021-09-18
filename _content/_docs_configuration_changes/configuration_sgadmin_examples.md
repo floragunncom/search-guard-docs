@@ -1,7 +1,7 @@
 ---
 title: Examples
 html:title: sgaddmin Examples
-slug: sgadmin-examples
+permalink: sgadmin-examples
 category: sgadmin
 order: 800
 layout: docs

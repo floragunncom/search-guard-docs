@@ -1,7 +1,7 @@
 ---
 title: Using the Dashboards/Kibana API
 html_title: Using the Dashboards/Kibana API
-slug: kibana-authentication-api
+permalink: kibana-authentication-api
 category: kibana-advanced
 order: 100
 layout: docs

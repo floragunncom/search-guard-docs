@@ -1,6 +1,6 @@
 ---
 title: Using sgctl
-slug: sgctl-overview
+permalink: sgctl-overview
 category: configuration
 subcategory: sgctl
 order: 100

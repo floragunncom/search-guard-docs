@@ -1,6 +1,6 @@
 ---
 title: SAML troubleshooting
-slug: troubleshooting-saml
+permalink: troubleshooting-saml
 category: troubleshooting
 order: 500
 layout: troubleshooting

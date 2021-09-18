@@ -1,7 +1,7 @@
 ---
 title: Configuration changes
 html_title: Configuration Changes
-slug: sgadmin-configuration-changes
+permalink: sgadmin-configuration-changes
 category: sgadmin
 order: 200
 layout: docs

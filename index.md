@@ -16,7 +16,7 @@ Copryight 2020 floragunn GmbH
 <img src="img/logos/search-guard-frontmatter.png" alt="Search Guard - Security for Elasticsearch" style="width: 40%" />
 </p>
 
-<h2 align="center">Security and Alerting for Elasticsearch</h2>
+<h2 align="center">Security and Alerting for Elasticsearch and OpenSearch</h2>
 
 <h1 align="center">Search Guard Tech Preview Documentation</h1>
 

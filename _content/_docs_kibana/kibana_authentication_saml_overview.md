@@ -1,7 +1,7 @@
 ---
 title: SAML
 html_title: Dashboards/Kibana SAML
-slug: kibana-authentication-saml-overview
+permalink: kibana-authentication-saml-overview
 category: kibana-authentication
 subcategory: kibana-authentication-saml-overview
 order: 220

@@ -1,7 +1,7 @@
 ---
 title: OIDC
 html_title: Dashboards/Kibana OpenID
-slug: kibana-authentication-openid-overview
+permalink: kibana-authentication-openid-overview
 category: kibana-authentication
 subcategory: kibana-authentication-openid-overview
 order: 210

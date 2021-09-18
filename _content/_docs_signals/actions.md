@@ -1,7 +1,7 @@
 ---
 title: Actions
 html_title: Actions
-slug: elasticsearch-alerting-actions
+permalink: elasticsearch-alerting-actions
 category: signals
 subcategory: actions
 order: 700

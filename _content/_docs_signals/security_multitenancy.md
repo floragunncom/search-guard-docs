@@ -1,7 +1,7 @@
 ---
 title: Multi tenancy
 html_title: Multi-Tenancy
-slug: elasticsearch-alerting-security-multi-tenancy
+permalink: elasticsearch-alerting-security-multi-tenancy
 category: security
 order: 300
 layout: docs

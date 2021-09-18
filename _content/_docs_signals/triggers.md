@@ -1,7 +1,7 @@
 ---
 title: Alerting Triggers
 html_title: Triggers
-slug: elasticsearch-alerting-triggers
+permalink: elasticsearch-alerting-triggers
 category: signals
 subcategory: triggers
 order: 300

@@ -1,7 +1,7 @@
 ---
 title: System change tracking
 html_title: System change tracking
-slug: integrity-elasticsearch
+permalink: integrity-elasticsearch
 category: auditlog
 order: 700
 layout: docs

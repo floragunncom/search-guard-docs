@@ -1,7 +1,7 @@
 ---
 title: Search Guard configuration GUI
 html_title: Configuration GUI
-slug: configuration-gui
+permalink: configuration-gui
 category: configuration
 order: 200
 layout: docs

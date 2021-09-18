@@ -174,72 +174,84 @@ relative_links:
   enabled:     true
   collections: true
 
-domain: https://docs.search-guard.com
-baseurl: /tech-preview
+#domain: https://docs.search-guard.com
+#baseurl: /tech-preview
 
 collections_dir: _content
+#
+#defaults:
+#  - scope:
+#      path: "docs_kibana"
+#    values:
+#      permalink: :file.name
+
+#defaults:
+#  - scope:
+#      path: "/_content/_docs_introduction/"
+#    values:
+#      permalink: "abcde"
 
 collections:
   docs_introduction:
     output: true
-    permalink: :title
+    permalink: :name
   docs_quickstart:
     output: true
-    permalink: :title
+    permalink: :name
   docs_versions:
     output: true
-    permalink: :title
+    permalink: :name
   docs_installation:
     output: true
-    permalink: :title
+    permalink: :name
   docs_tls:
     output: true
-    permalink: :title
+    permalink: :name
   docs_configuration_changes:
     output: true
-    permalink: :title
+    permalink: :name
   docs_auth_auth:
     output: true
-    permalink: :title
+    permalink: :name
   docs_roles_permissions:
     output: true
-    permalink: :title
+    permalink: :name
   docs_dls_fls:
     output: true
-    permalink: :title
+    permalink: :name
   docs_audit_logging:
     output: true
-    permalink: :title
+    permalink: :name
   docs_rest_api:
     output: true
-    permalink: :title
+    permalink: :name
   docs_kibana:
     output: true
-    permalink: :title
+    permalink: :name
   docs_elasticstack:
     output: true
-    permalink: :title
+    permalink: :name
   docs_other_integrations:
     output: true
-    permalink: :title
+    permalink: :name
   docs_systemintegrators:
     output: true
-    permalink: :title
+    permalink: :name
   docs_signals:
     output: true
-    permalink: :title
+    permalink: :name
   troubleshooting:
     output: true
-    permalink: :title
+    permalink: :name
   changelogs:
     output: true
-    permalink: :title
+    permalink: :name
   resources:
     output: true
-    permalink: :title
+    permalink: :name
   common:
     output: true
-    permalink: :title
+    permalink: :name
 
 algolia:
   application_id: '2ESDTH812Y'

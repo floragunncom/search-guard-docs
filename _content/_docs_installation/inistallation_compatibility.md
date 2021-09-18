@@ -1,7 +1,7 @@
 ---
 title: Search Guard Compatibility
 html_title: Compatibility
-slug: search-guard-compatibility
+permalink: search-guard-compatibility
 category: installation
 order: 1000
 layout: docs

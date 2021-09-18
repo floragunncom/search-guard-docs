@@ -1,7 +1,7 @@
 ---
 title: Password based authentication
 html_title: Username/password based authentication for Dashboards/Kibana
-slug: kibana-authentication-http-basic-overview
+permalink: kibana-authentication-http-basic-overview
 category: kibana-authentication
 subcategory: kibana-authentication-basic-overview
 order: 200

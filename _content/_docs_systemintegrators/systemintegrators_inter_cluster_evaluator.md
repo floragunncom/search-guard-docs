@@ -1,7 +1,7 @@
 ---
 title: Inter-node traffic evaluator
 html_title: Inter-node traffic
-slug: search-guard-oem-inter-node-traffic
+permalink: search-guard-oem-inter-node-traffic
 category: systemintegrators
 order: 500
 layout: docs

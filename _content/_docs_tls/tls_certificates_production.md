@@ -1,6 +1,6 @@
 ---
 title: Production environments
-slug: tls-in-production
+permalink: tls-in-production
 category: tls
 order: 300
 layout: docs

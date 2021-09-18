@@ -1,7 +1,7 @@
 ---
 title: Multitenancy Troubleshooting
 html_title: Multitenancy help
-slug: troubleshooting-multitenancy
+permalink: troubleshooting-multitenancy
 category: troubleshooting
 order: 600
 layout: troubleshooting

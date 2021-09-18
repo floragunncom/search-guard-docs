@@ -1,6 +1,6 @@
 ---
 title: Offline TLS Tool
-slug: offline-tls-tool
+permalink: offline-tls-tool
 category: generating-certificates
 order: 300
 layout: docs

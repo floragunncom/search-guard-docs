@@ -1,7 +1,7 @@
 ---
 title: Execution context
 html_title: Execution context
-slug: elasticsearch-alerting-security-security-context
+permalink: elasticsearch-alerting-security-security-context
 category: security
 order: 200
 layout: docs
