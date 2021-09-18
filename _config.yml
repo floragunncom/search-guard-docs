@@ -96,6 +96,7 @@ labels:
     ldap: Active Directory / LDAP
     generating-certificates: "Generating certificates"
     configuration: "Search Guard Configuration"
+    sgctl: "Search Guard CTL"
     authauth: Authentication and Authorization
     rolespermissions: "Users, Roles and Permissions"
     eeadvanced: Advanced Security Features
@@ -107,6 +108,11 @@ labels:
     elasticstack: Integrating with the Elasticstack
     elasticstack-alternatives: "Elasticstack alternatives"
     kibana-authentication: "Kibana Authentication"
+    kibana-authentication-migration-overview: "Migration from v52"
+    kibana-advanced: "Kibana Advanced Settings"
+    kibana-authentication-basic-overview: "Password based authentication"
+    kibana-authentication-openid-overview: "OpenID authentication"
+    kibana-authentication-saml-overview: "SAML authentication"
     otherintegrations: Other integrations
     systemintegrators: Advanced system integrator features
     troubleshooting: Troubleshooting
