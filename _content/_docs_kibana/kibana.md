@@ -1,7 +1,7 @@
 ---
 title: Kibana
 html_title: Kibana Plugin
-slug: kibana-search-guard
+permalink: kibana-search-guard
 category: esstack
 subcategory: kibana
 order: 100

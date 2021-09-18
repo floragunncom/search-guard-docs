@@ -1,7 +1,7 @@
 ---
 title: Getting started with Signals Alerting
 html_title: Getting started 
-slug: elasticsearch-alerting-getting-started
+permalink: elasticsearch-alerting-getting-started
 category: signals
 order: 100
 layout: docs

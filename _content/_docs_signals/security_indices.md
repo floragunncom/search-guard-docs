@@ -1,7 +1,7 @@
 ---
 title: Signals Indices
 html_title: Alerting Indices
-slug: elasticsearch-alerting-security-indices
+permalink: elasticsearch-alerting-security-indices
 category: security
 order: 50
 layout: docs

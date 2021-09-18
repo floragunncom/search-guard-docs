@@ -1,7 +1,7 @@
 ---
 title: Curator
 html_title: Curator
-slug: elasticsearch-curator-search-guard
+permalink: elasticsearch-curator-search-guard
 category: elasticstack
 order: 300
 layout: docs

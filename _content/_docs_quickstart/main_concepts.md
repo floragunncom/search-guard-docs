@@ -1,6 +1,6 @@
 ---
 title: Main concepts
-slug: main-concepts
+permalink: main-concepts
 category: quickstart
 order: 600
 layout: docs

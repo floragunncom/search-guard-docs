@@ -1,7 +1,7 @@
 ---
 title: Kibana new platform plugin beta
 html_title: Kibana new platform plugin
-slug: kibana-new-platform-plugin-beta
+permalink: kibana-new-platform-plugin-beta
 category: kibana
 order: 150
 layout: docs

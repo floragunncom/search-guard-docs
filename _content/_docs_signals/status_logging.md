@@ -1,7 +1,7 @@
 ---
 title: Status and Logging
 html_title: Status and Logging of Signals Alerting
-slug: elasticsearch-alerting-status-logging
+permalink: elasticsearch-alerting-status-logging
 category: signals
 order: 1000
 layout: docs

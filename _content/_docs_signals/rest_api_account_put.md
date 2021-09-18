@@ -1,7 +1,7 @@
 ---
 title: Put Account
 html_title: Put Account
-slug: elasticsearch-alerting-rest-api-account-put
+permalink: elasticsearch-alerting-rest-api-account-put
 category: signals-rest
 order: 810
 layout: docs

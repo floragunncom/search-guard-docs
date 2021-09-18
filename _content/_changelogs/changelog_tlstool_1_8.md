@@ -1,6 +1,6 @@
 ---
 title: TLS Tool 1.8
-slug: changelog-tlstool_1_8
+permalink: changelog-tlstool_1_8
 category: changelogs-tlstool
 order: 380
 layout: changelogs
