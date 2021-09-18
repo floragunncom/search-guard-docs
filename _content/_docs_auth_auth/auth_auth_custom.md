@@ -1,6 +1,6 @@
 ---
 title: Custom implementations
-slug: custom-authentication-modules
+permalink: custom-authentication-modules
 category: authauth
 order: 10000
 layout: docs

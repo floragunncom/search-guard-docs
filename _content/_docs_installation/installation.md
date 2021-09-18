@@ -1,7 +1,7 @@
 ---
 title: Search Guard Installation
 html_title: Installation
-slug: search-guard-installation
+permalink: search-guard-installation
 category: installation
 order: 100
 layout: docs

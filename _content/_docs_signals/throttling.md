@@ -1,7 +1,7 @@
 ---
 title: Throttling and Acknowledgement
 html_title: Notification Throttling
-slug: elasticsearch-alerting-throttling
+permalink: elasticsearch-alerting-throttling
 category: signals
 order: 800
 layout: docs
