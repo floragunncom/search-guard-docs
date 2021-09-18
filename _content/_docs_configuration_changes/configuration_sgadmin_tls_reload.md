@@ -1,7 +1,7 @@
 ---
 title: TLS Reload
 html_title: TLS Reload
-slug: sgadmin-tls-reload
+permalink: sgadmin-tls-reload
 category: sgadmin
 order: 350
 layout: docs

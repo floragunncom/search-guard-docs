@@ -1,7 +1,7 @@
 ---
 title: Proxy authentication
 html_title: Kibana Proxy
-slug: kibana-authentication-proxy
+permalink: kibana-authentication-proxy
 category: kibana-authentication
 order: 600
 layout: docs

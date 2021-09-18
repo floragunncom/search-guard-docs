@@ -1,6 +1,6 @@
 ---
 title: X-Pack Machine Learning
-slug: search-guard-xpack-machine-learning
+permalink: search-guard-xpack-machine-learning
 category: elasticstack
 order: 800
 layout: docs

@@ -1,6 +1,6 @@
 ---
 title: Enhanced Proxy Authentication 2
-slug: proxy-authentication-2
+permalink: proxy-authentication-2
 category: authauth
 order: 810
 layout: docs

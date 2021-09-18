@@ -1,6 +1,6 @@
 ---
 title: Sample PKI scripts
-slug: tls-certificates-sample-scripts
+permalink: tls-certificates-sample-scripts
 category: generating-certificates
 order: 400
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Connection Settings
 html_title: LDAP Connection
-slug: active-directory-ldap-connection
+permalink: active-directory-ldap-connection
 category: ldap
 order: 100
 layout: docs

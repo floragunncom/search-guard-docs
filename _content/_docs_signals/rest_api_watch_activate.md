@@ -1,7 +1,7 @@
 ---
 title: Activate and Deactivate Watch
 html_title: Activate Watch
-slug: elasticsearch-alerting-rest-api-watch-activate
+permalink: elasticsearch-alerting-rest-api-watch-activate
 category: signals-rest
 order: 500
 layout: docs

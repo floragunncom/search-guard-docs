@@ -1,7 +1,7 @@
 ---
 title: Actions Overview
 html_title: Actions Overview
-slug: elasticsearch-alerting-actions-overview
+permalink: elasticsearch-alerting-actions-overview
 category: actions
 order: 0
 layout: docs

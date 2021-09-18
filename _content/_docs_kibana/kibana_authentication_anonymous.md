@@ -1,7 +1,7 @@
 ---
 title: Anonymous authentication
 html_title: Kibana anon authentication
-slug: kibana-authentication-anonymous
+permalink: kibana-authentication-anonymous
 category: kibana-authentication
 order: 220
 layout: docs
