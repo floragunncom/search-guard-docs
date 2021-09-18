@@ -1,7 +1,7 @@
 ---
 title: Field-level security
 html_title: Field-level security
-slug: field-level-security
+permalink: field-level-security
 category: dlsfls
 order: 100
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Compliance event routing
 html_title: Event routing
-slug: compliance-event-routing
+permalink: compliance-event-routing
 category: auditlog
 order: 250
 layout: docs

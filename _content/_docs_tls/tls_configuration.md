@@ -1,6 +1,6 @@
 ---
 title: Configuring TLS
-slug: configuring-tls
+permalink: configuring-tls
 category: tls
 order: 200
 layout: docs

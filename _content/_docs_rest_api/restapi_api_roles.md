@@ -1,7 +1,7 @@
 ---
 title: Roles API
 html_title: Roles API
-slug: rest-api-roles
+permalink: rest-api-roles
 category: restapi
 order: 410
 layout: docs

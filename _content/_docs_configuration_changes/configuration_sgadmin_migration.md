@@ -1,7 +1,7 @@
 ---
 title: Migrating configuration files
 html_title: Configuration Migration
-slug: sgadmin
+permalink: sgadmin
 category: sgadmin
 order: 500
 layout: docs

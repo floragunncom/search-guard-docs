@@ -1,6 +1,6 @@
 ---
 title: Security Presentations
-slug: search-guard-security-presentations
+permalink: search-guard-security-presentations
 category: resources
 order: 150
 layout: resources

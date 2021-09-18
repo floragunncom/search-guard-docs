@@ -1,6 +1,6 @@
 ---
 title: Online TLS Generator
-slug: online-tls-generator
+permalink: online-tls-generator
 category: generating-certificates
 order: 200
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: User Impersonation
 html_title: User Impersonation
-slug: user-impersonation
+permalink: user-impersonation
 category: rolespermissions
 order: 700
 layout: docs

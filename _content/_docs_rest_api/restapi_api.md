@@ -1,7 +1,7 @@
 ---
 title: Usage and return values
 html_title: REST API usage overview
-slug: rest-api
+permalink: rest-api
 category: restapi
 order: 300
 layout: docs

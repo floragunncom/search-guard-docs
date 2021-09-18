@@ -1,7 +1,7 @@
 ---
 title: Conditions
 html_title: Conditions
-slug: elasticsearch-alerting-conditions
+permalink: elasticsearch-alerting-conditions
 category: signals
 order: 600
 layout: docs
