@@ -1,7 +1,7 @@
 ---
 title: Authentication API
 html_title: Authentication API
-slug: rest-api-authentication
+permalink: rest-api-authentication
 category: restapi
 order: 460
 layout: docs

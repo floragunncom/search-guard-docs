@@ -1,7 +1,7 @@
 ---
 title: Triggers Overview
 html_title: Triggers Overview
-slug: elasticsearch-alerting-triggers-overview
+permalink: elasticsearch-alerting-triggers-overview
 category: triggers
 order: 0
 layout: docs

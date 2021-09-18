@@ -1,6 +1,6 @@
 ---
 title: Upgrading from 5.x to 6.x
-slug: upgrading-5-6
+permalink: upgrading-5-6
 category: upgrading
 order: 400
 layout: docs

@@ -1,6 +1,6 @@
 ---
 title: Search Guard Installer
-slug: tls-certificates-installer
+permalink: tls-certificates-installer
 category: generating-certificates
 order: 100
 layout: docs

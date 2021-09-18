@@ -1,7 +1,7 @@
 ---
 title: Grafana
 html_title: Grafana 
-slug: elasticsearch-grafana-search-guard
+permalink: elasticsearch-grafana-search-guard
 category: otherintegrations
 order: 620
 layout: docs

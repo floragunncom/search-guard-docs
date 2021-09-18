@@ -1,7 +1,7 @@
 ---
 title: Read History Audit Logging
 html_title: Read History
-slug: compliance-read-history
+permalink: compliance-read-history
 category: auditlog
 order: 400
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Execute Watch
 html_title: Execute Watch
-slug: elasticsearch-alerting-rest-api-watch-execute
+permalink: elasticsearch-alerting-rest-api-watch-execute
 category: signals-rest
 order: 600
 layout: docs

@@ -1,7 +1,7 @@
 ---
 title: Severity Levels
 html_title: Severity Levels
-slug: elasticsearch-alerting-severity
+permalink: elasticsearch-alerting-severity
 category: signals
 order: 650
 layout: docs

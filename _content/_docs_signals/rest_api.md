@@ -1,7 +1,7 @@
 ---
 title: REST API
 html_title: REST API
-slug: elasticsearch-alerting-rest-api
+permalink: elasticsearch-alerting-rest-api
 category: signals
 subcategory: signals-rest
 order: 900
