@@ -1,7 +1,7 @@
 ---
 title: Enterprise and Compliance Edition
 html_title: Enterprise Edition
-slug: search-guard-enterprise-edition
+permalink: search-guard-enterprise-edition
 category: versions
 order: 300
 layout: docs

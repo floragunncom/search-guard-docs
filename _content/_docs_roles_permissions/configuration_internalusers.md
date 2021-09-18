@@ -1,6 +1,6 @@
 ---
 title: Internal Users Database
-slug: internal-users-database
+permalink: internal-users-database
 category: rolespermissions
 order: 100
 layout: docs

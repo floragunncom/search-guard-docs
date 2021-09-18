@@ -180,64 +180,64 @@ collections_dir: _content
 collections:
   docs_quickstart:
     output: true
-    permalink: :title
+    permalink: :name
   docs_first_steps:
     output: true
-    permalink: :title
+    permalink: :name
   docs_versions:
     output: true
-    permalink: :title
+    permalink: :name
   docs_installation:
     output: true
-    permalink: :title
+    permalink: :name
   docs_tls:
     output: true
-    permalink: :title
+    permalink: :name
   docs_configuration_changes:
     output: true
-    permalink: :title
+    permalink: :name
   docs_auth_auth:
     output: true
-    permalink: :title
+    permalink: :name
   docs_roles_permissions:
     output: true
-    permalink: :title
+    permalink: :name
   docs_dls_fls:
     output: true
-    permalink: :title
+    permalink: :name
   docs_audit_logging:
     output: true
-    permalink: :title
+    permalink: :name
   docs_rest_api:
     output: true
-    permalink: :title
+    permalink: :name
   docs_kibana:
     output: true
-    permalink: :title
+    permalink: :name
   docs_elasticstack:
     output: true
-    permalink: :title
+    permalink: :name
   docs_other_integrations:
     output: true
-    permalink: :title
+    permalink: :name
   docs_systemintegrators:
     output: true
-    permalink: :title
+    permalink: :name
   docs_signals:
     output: true
-    permalink: :title
+    permalink: :name
   troubleshooting:
     output: true
-    permalink: :title
+    permalink: :name
   changelogs:
     output: true
-    permalink: :title
+    permalink: :name
   resources:
     output: true
-    permalink: :title
+    permalink: :name
   common:
     output: true
-    permalink: :title
+    permalink: :name
 
 algolia:
   application_id: '2ESDTH812Y'

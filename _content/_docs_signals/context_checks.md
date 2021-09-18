@@ -1,7 +1,7 @@
 ---
 title: Execution chain and payload
 html_title: Execution chain
-slug: elasticsearch-alerting-chaining-checks
+permalink: elasticsearch-alerting-chaining-checks
 category: signals
 order: 250
 layout: docs

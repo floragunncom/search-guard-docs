@@ -1,6 +1,6 @@
 ---
 title: Kibana 7.x-41.0.0
-slug: changelog-kibana-7.x-41_0_0
+permalink: changelog-kibana-7.x-41_0_0
 category: changelogs-kibana
 order: 700
 layout: changelogs

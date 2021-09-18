@@ -1,7 +1,7 @@
 ---
 title: Installing the Kibana plugin
 html_title: Kibana Plugin
-slug: kibana-plugin-installation
+permalink: kibana-plugin-installation
 category: kibana
 order: 100
 layout: docs

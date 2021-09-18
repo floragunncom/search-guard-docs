@@ -1,7 +1,7 @@
 ---
 title: Basic usage
 html_title: sgadmin Basic Usage
-slug: sgadmin-basic-usage
+permalink: sgadmin-basic-usage
 category: sgadmin
 order: 100
 layout: docs

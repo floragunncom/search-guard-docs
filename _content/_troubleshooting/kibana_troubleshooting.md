@@ -1,6 +1,6 @@
 ---
 title: Kibana Troubleshooting
-slug: troubleshooting-kibana
+permalink: troubleshooting-kibana
 category: troubleshooting
 order: 500
 layout: troubleshooting

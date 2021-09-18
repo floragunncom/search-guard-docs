@@ -1,7 +1,7 @@
 ---
 title: Immutable indices
 html_title: Immutable indices
-slug: immutable-indices
+permalink: immutable-indices
 category: auditlog
 order: 700
 layout: docs
