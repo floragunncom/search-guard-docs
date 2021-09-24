@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 This chapter describes how to quickly migrate legacy Search Guard configuration to the new structure. This is useful for testing - possibly as a preparatory step for updating a production cluster.
 
-**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](kibana_authentication_52migration_production.md).
+**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](kibana_authentication_52migration_prod.md).
 
 ## Prerequisites
 
