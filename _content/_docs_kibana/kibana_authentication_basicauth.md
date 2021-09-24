@@ -32,7 +32,7 @@ To verify the configuration for this approach, follow the steps described in the
 
 Ensure that you configured authentication domains of type `basic` in the Search Guard `sg_config` configuration. In most cases, you already created this configuration when configuring the OpenSearch/Elasticsearch backend.
 
-For the internal user database, an entry in `sg_config.yml` might look like this:
+For the internal user database, such an entry in `sg_config.yml` might look like this:
 
 ```yaml
 sg_config:

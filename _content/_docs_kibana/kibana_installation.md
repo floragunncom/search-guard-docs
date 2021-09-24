@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 Search Guard is compatible with [Dashboards/Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Dashboards/Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
-We assume that you have already set up a Search Guard secured OpenSearch/Elasticsearch cluster in the following description. We will walk through all additional steps needed for integrating Dashboards/Kibana with your setup.
+In the following description, we assume that you have already set up a Search Guard secured OpenSearch/Elasticsearch cluster. We will walk through all additional steps needed for integrating Dashboards/Kibana with your setup.
 
 We also assume that you have enabled TLS support on the REST layer via Search Guard SSL. While this is optional, we strongly recommend using this feature. Otherwise, traffic between Dashboards/Kibana and OpenSearch/Elasticsearch is made via insecure HTTP calls and thus can be sniffed.
 
@@ -49,7 +49,7 @@ The [optimization process is shaky](https://github.com/elastic/kibana/issues/196
 
 Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`.
 
-## Configuring the server user
+## Configuring the Dashboards/Kibana server user
 
 For management calls to OpenSearch/Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards, etc., Dashboards/Kibana uses a service user, called the **Dashboards/Kibana server user**.
 
@@ -89,7 +89,7 @@ All requests that Dashboards/Kibana makes to OpenSearch/Elasticsearch will now u
 
 ### Configuring the Root CA
 
-Suppose you use your own root CA on OpenSearch/Elasticsearch. In that case, you need to either disable certificate validation or provide the root CA and all intermediate certificates (if any) to Dashboards/Kibana. Otherwise, you will see the following error message in the Dashboards/Kibana logfile:
+If you use your own root CA on OpenSearch/Elasticsearch, you need to either disable certificate validation or provide the root CA and all intermediate certificates (if any) to Dashboards/Kibana. Otherwise, you will see the following error message in the Dashboards/Kibana logfile:
 
 ```
 Request error, retrying -- self-signed certificate in certificate chain
@@ -136,11 +136,9 @@ To upgrade the Search Guard Dashboards/Kibana Plugin:
 * Restart Dashboards/Kibana, which will clear all cached files
 * Stop Dashboards/Kibana, and install the new version of the plugin
 
-## The Dashboards/Kibana server user
+## Adding the Dashboards/Kibana server user
 
-### Adding the Dashboards/Kibana server user
-
-Dashboards/Kibana uses a unique user internally to talk to OpenSearch/Elasticsearch when performing management calls. The username and password for this user are configured in `opensearch_dashboards.yml`/`kibana.yml`.
+Dashboards/Kibana uses a special user internally to talk to OpenSearch/Elasticsearch when performing management calls. The username and password for this user are configured in `opensearch_dashboards.yml`/`kibana.yml`.
 
 On the OpenSearch/Elasticsearch side, make sure that this user has the required permissions. If you use the Search Guard demo configuration, you can either use the `kibanaserver` user account, or you can map a different user to the  built-in role `SGS_KIBANA_SERVER`.
 

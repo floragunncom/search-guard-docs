@@ -22,7 +22,7 @@ Copyright 2020 floragunn GmbH
 
 You can use the OpenID Connect (OIDC) protocol to authenticate users in Dashboards/Kibana using external Identity Providers (IdP).
 
-This chapter describes the basic setup of OIDC with Search Guard. This will work in most cases. Some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
+This chapter describes the basic setup of OIDC with Search Guard. This will work in most cases. However, some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
 
 ## Prerequisites
 
@@ -35,9 +35,9 @@ First, create a new client representing your Dashboards/Kibana installation in y
 * Root URL: The base URL of the Dashboards/Kibana instance. For example, `https://kibana.example.com:5601/`
 * Valid Redirect URLs: The base URL of Dashboards/Kibana plus a `*` wildcard for paths. For example, `https://kibana.example.com:5601/*`
 
-* Also, you need to make sure that a user's roles are mapped to a JWT claim.
+* Also, you need to make sure that the roles of a user are mapped to a JWT claim.
 
-* All users who are supposed to log in to Dashboards/Kibana must have certain privileges. If you use the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to all users. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.
+* All users who are supposed to log in to Dashboards/Kibana must have certain privileges. If you use the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to the users who shall be able to log in. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.
 
 You need to keep a couple of values from the IdP setup ready for the next step. These values are:
 
@@ -48,7 +48,7 @@ You need to keep a couple of values from the IdP setup ready for the next step. 
 
 ## Search Guard Setup
 
-You need to edit the `sg_frontend_config.yml` file for OIDC support.
+Now you need to edit the `sg_frontend_config.yml` file.
 
 The default version of this file contains an entry for password-based authentication:
 
@@ -58,7 +58,7 @@ default:
   - type: basic
 ```
 
-If you don't want to use password-based authentication, replace the new configuration's entry`- type: basic`. If you want to continue to use password-based authentication besides OIDC, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
+If you don't want to use password-based authentication, replace the entry `- type: basic` by the new configuration. If you want to continue to use password-based authentication besides OIDC, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
 
 The minimal `sg_frontend_config.yml` configuration for OIDC looks like this:
 
@@ -91,7 +91,7 @@ For older versions of Kibaba, please use the setting `searchguard.frontend_base_
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
-Furthermore, the OIDC protocol requires specific settings for the cookies used by Search Guard (For background information on this, see, for example, [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To do so,  add the following settings to `opensearch_dashboards.yml`/`kibana.yml`:
+Furthermore, the OIDC protocol requires specific settings for the cookies used by Search Guard (For background information on this, see [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this,  add the following settings to `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.cookie.isSameSite: None
@@ -105,4 +105,4 @@ To activate the setup, do the following:
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, ensure that you restart the Dashboards/Kibana instance.
 - Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
-That's it. If you navigate your Dashboards/Kibana instance in a browser, you should be directed to the IdP login page.
+That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.

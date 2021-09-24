@@ -20,7 +20,7 @@ This chapter lists all advanced configuration options for OIDC. Most of them are
 
 ## Mapping of JWT Claims to User Data
 
-The name of users and their roles are determined by so-called claims stored in the JWTs, which are provided by the IdP to Search Guard. You can control the mapping of these claims to user data using the following options:
+The user names and the users' roles are determined by so-called claims stored in the JWTs, which are provided by the IdP to Search Guard. You can control the mapping of these claims to user data using the following options:
 
 **user_mapping.subject:** The name of the JWT claim that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional. You can also use a JSON path expression here.
 
@@ -32,7 +32,7 @@ The name of users and their roles are determined by so-called claims stored in t
 
 ## TLS Settings
 
-If you need unique TLS settings to create connections from Search Guard to the IdP, you can configure them with the options listed below. Such configuration might become necessary if your IdP uses TLS certificates signed by non-public certificate authorities.
+If you need special TLS settings to create connections from Search Guard to the IdP, you can configure them with the options listed below. For example, such configuration might become necessary if your IdP uses TLS certificates signed by non-public certificate authorities.
 
 **idp.tls.trusted_cas:** The root certificates to trust when connecting to the IdP. You can specify the certificates in PEM format inline or specify an absolute pathname using the syntax `${file:/path/to/certificate.pem}`.
 
@@ -171,7 +171,7 @@ You can also use several capturing groups if you want to use these groups for th
 
 ## Logout URL
 
-If you want to customize the URL that Dashboards/Kibana will navigate when the user selects the "Logout" menu item, use the `logout` option.
+If you want to customize the URL that Dashboards/Kibana will navigate to when the user selects the "Logout" menu item, use the `logout` option.
 
 ```yaml
 default:

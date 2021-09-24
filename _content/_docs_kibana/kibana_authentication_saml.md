@@ -23,7 +23,7 @@ Copyright 2020 floragunn GmbH
 
 Search Guard supports user authentication via SAML Single Sign-On. Search Guard implements the Web Browser SSO profile of the SAML 2.0 protocol.
 
-This chapter describes the basic setup of SAML with Search Guard. However, this will work in many cases; some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_saml_advanced_config.md) for this.
+This chapter describes the basic setup of SAML with Search Guard. This will work in many cases; some setups, however, require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_saml_advanced_config.md) for this.
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ default:
   - type: basic
 ```
 
-If you don't want to use password-based authentication, replace the entry`- type: basic` with the new configuration. If you're going to continue to use password-based authentication besides SAML, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
+If you don't want to use password-based authentication, replace the entry`- type: basic` with the new configuration. If you are going to continue to use password-based authentication besides SAML, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
 
 The minimal `sg_frontend_config.yml` configuration for SAML looks like this:
 
@@ -132,5 +132,5 @@ To activate the setup, do the following:
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance.
 - Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
-That's it. If you navigate your Dashboards/Kibana instance in a browser, you should be directed to the IdP login page.
+That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
 
