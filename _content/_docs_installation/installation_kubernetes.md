@@ -7,7 +7,7 @@ order: 390
 layout: docs
 description: Use our Helm charts to set up Elasticsearch and Kibana on a Kubernetes cluster, secured by Search Guard.
 resources:
-  - "https://github.com/floragunncom/search-guard-helm|Search Guard Helm charts (github)"
+  - "https://git.floragunn.com/search-guard/search-guard-helm|Search Guard Helm charts (github)"
   - "https://kubernetes.io/docs/setup/minikube/|Minikube documentation (website)"
 ---
 <!---
@@ -21,7 +21,7 @@ Copyright 2020 floragunn GmbH
 
 We provide Helm charts for running Search Guard secured Elasticsearch and Kibana instances on a Kubernetes cluster. This charts are considered beta at the moment.
 
-* [https://github.com/floragunncom/search-guard-helm](https://github.com/floragunncom/search-guard-helm){:target="_blank"}
+* [https://git.floragunn.com/search-guard/search-guard-helm](https://git.floragunn.com/search-guard/search-guard-helm){:target="_blank"}
 
 ## Requirements
 
@@ -104,20 +104,22 @@ helm init --wait --service-account tiller --upgrade
 ### Deploy via repository
 
 ```bash
-helm repo add sg-helm https://floragunncom.github.io/search-guard-helm
+helm repo add search-guard https://helm.search-guard.com
+helm repo update
 helm search "search guard"
-helm install --name sg-elk sg-helm/sg-helm --version 6.5.4-24.0-17.0-beta3
+helm install sg-elk search-guard/search-guard-helm
 ```
 Please refer to the [Helm Documentation](https://github.com/helm/helm/blob/master/docs/helm/helm_install.md){:target="_blank"} on how to override the chart default
 settings. See `sg-helm/values.yaml` for the documented set of settings you can override.
 
-### Deploy via GitHub
+### Deploy via GitLab
 
 Optionally read the comments in `sg-helm/values.yaml` and customize them to suit your needs.
 
 ```bash
-$ git clone https://github.com/floragunncom/search-guard-helm.git
-$ helm install search-guard-helm/sg-helm
+$ git clone git@git.floragunn.com:search-guard/search-guard-helm.git
+$ helm dependency update search-guard-helm
+$ helm install sg-elk search-guard-helm
 ```
 
 ## Accessing Kibana
