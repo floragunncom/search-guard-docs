@@ -29,7 +29,7 @@ Search Guard comes with a demo installation shell script which helps you to quic
 
 The following paragraphs will guide you through the installation process.
 
-- Download the demo installer script for the setup you want to test:<br>[OpenSearch 1.0.0](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp1-os-1.0.0/search-guard-opensearch-plugin-tp1-os-1.0.0-demo-installer.sh)<br>[Elasticsearch 7.14.1](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp1-es-7.14.1/search-guard-elasticsearch-plugin-tp1-es-7.14.1-demo-installer.sh)
+- Download the demo installer script for the setup you want to test:<br>[OpenSearch 1.0.0](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp2-os-1.0.0/search-guard-opensearch-plugin-tp2-os-1.0.0-demo-installer.sh)<br>[Elasticsearch 7.10.2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.10.2/search-guard-elasticsearch-plugin-tp2-es-7.10.2-demo-installer.sh)<br>[Elasticsearch 7.14.1](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.14.1/search-guard-elasticsearch-plugin-tp2-es-7.14.1-demo-installer.sh)
 - If you want, feel invited to review the script. The single steps are also explained as comments in the file.
 - Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-suite-plugin-7.14.1-52.2.0-demo-installer.sh`. Then, execute the script:
 

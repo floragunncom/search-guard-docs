@@ -43,16 +43,17 @@ Major changes include:
 
 ## Download
 
-You can get the current snapshot of the Search Guard Tech Preview here:
+You can get the current snapshot of the Search Guard Tech Preview at the following locations. If you chose to use the demo installer, you just need to download the script. The script will take care of downloading all further components.
 
-|Target Environment|Backend Plugin|Frontend Plugin|
+|Target Platform|Backend Plugin|Frontend Plugin|Demo Installer|
 |---|---|---|---|
-|**OpenSearch 1.0.0**|[Search Guard OpenSearch Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp1-os-1.0.0/search-guard-opensearch-plugin-tp1-os-1.0.0.zip)|[Search Guard OpenSearch Dashboards Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-dashboards-plugin/tp1-os-1.0.0/search-guard-opensearch-dashboards-plugin-tp1-os-1.0.0.zip)|
-|**Elasticsearch 7.14.1**|[Search Guard Elasticsearch Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp1-es-7.14.1/search-guard-elasticsearch-plugin-tp1-es-7.14.1.zip)|[Search Guard Kibana Plugin](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp1-es-7.14.1/search-guard-kibana-plugin-tp1-es-7.14.1.zip)|
+|**OpenSearch 1.0.0**|[Search Guard OpenSearch Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp2-os-1.0.0/search-guard-opensearch-plugin-tp2-os-1.0.0.zip)|[Search Guard OpenSearch Dashboards Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-dashboards-plugin/tp2-os-1.0.0/search-guard-opensearch-dashboards-plugin-tp2-os-1.0.0.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp2-os-1.0.0/search-guard-opensearch-plugin-tp2-os-1.0.0-demo-installer.sh)|
+|**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.10.2/search-guard-elasticsearch-plugin-tp2-es-7.10.2.zip)|[Search Guard Kibana Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp2-es-7.10.2/search-guard-kibana-plugin-tp2-es-7.10.2.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.10.2/search-guard-elasticsearch-plugin-tp2-es-7.10.2-demo-installer.sh)|
+|**Elasticsearch 7.14.1**|[Search Guard Elasticsearch Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.14.1/search-guard-elasticsearch-plugin-tp2-es-7.14.1.zip)|[Search Guard Kibana Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp2-es-7.14.1/search-guard-kibana-plugin-tp2-es-7.14.1.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.14.1/search-guard-elasticsearch-plugin-tp2-es-7.14.1-demo-installer.sh)|
 
 <table>
 <tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.0/">Search Guard Control Tool sgctl</a></td></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.1/">Search Guard Control Tool sgctl 0.1.1</a></td></tr>
 </table>
 
 
