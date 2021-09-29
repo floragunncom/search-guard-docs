@@ -12,6 +12,9 @@ index_algolia: false
 
 # Search Guard Versions
 
+You can get the [Search Guard Technical Preview](https://docs.search-guard.com/tech-preview/) at [https://docs.search-guard.com/tech-preview/](https://docs.search-guard.com/tech-preview/).
+{: .note .js-note}
+
 This page lists all available versions of Search Guard. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
 
 Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
