@@ -20,7 +20,7 @@ Copryight 2020 floragunn GmbH
 
 <h1 align="center">Search Guard {{site.searchguard.version}} Documentation</h1>
 
-Signals, our free Enterprise Alerting solution for Elasticsearch, has been released! [Signals docs](elasticsearch-alerting-getting-started).
+The [Search Guard Technical Preview 2](https://docs.search-guard.com/tech-preview/), a preview of the next generation of Search Guard, has been just released!
 {: .note .js-note}
 
 ## Docker Demo
