@@ -10,7 +10,7 @@ description: How to use the interal usersroles REST API endpoints to manage user
 ---
 
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 

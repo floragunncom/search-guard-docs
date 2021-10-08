@@ -9,7 +9,7 @@ edition: enterprise
 description: Use the Kibana configuration GUI to quickly and easily setup and configure Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Using the Search Guard configuration GUI

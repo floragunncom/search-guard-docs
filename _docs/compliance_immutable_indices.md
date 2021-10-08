@@ -14,7 +14,7 @@ How Immutable Indices help you to stay GDPR compliant (blog post)"
 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Immutable indices

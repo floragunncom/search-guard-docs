@@ -13,7 +13,7 @@ resources:
 ---
 
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # User Impersonation

@@ -8,7 +8,7 @@ edition: community
 description: Different ways to use the Search Guard role mapping feature to map users, backend roles and hosts to Search Guard roles.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Expert: Role mapping modes
 {: .no_toc}

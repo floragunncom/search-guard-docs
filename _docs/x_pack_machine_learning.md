@@ -8,7 +8,7 @@ edition: community
 description: How to configure Search Guard and X-Pack Machine Learning for Elasticsearch
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Machine Learning
 {: .no_toc}

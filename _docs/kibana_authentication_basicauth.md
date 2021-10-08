@@ -9,7 +9,7 @@ edition: community
 description: How to configure Kibana for HTTP Basic Authentication.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 
 # HTTP Basic Authentication

@@ -12,7 +12,7 @@ resources:
   - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with JWT

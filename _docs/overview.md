@@ -13,7 +13,7 @@ resources:
 ---
 
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Search Guard main concepts

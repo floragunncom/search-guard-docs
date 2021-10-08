@@ -8,7 +8,7 @@ edition: community
 description: How to customize the Kibana login page with your own logo, corporate identity and messages.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 
 # Customizing the login page

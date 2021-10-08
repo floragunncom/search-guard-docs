@@ -9,7 +9,7 @@ edition: enterprise
 description: How to usee Kerberos to implement Kibana Single Sign On.
 ---
 <!---
-Copryight 2016-2017 floragunn GmbH
+Copyright 2016-2017 floragunn GmbH
 -->
 
 # Using Kibana with Kerberos

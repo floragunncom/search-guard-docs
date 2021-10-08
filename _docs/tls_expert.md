@@ -9,7 +9,7 @@ edition: community
 description: How to write your own inter-node traffic evaluator and TLS principal extractor for Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Expert features
 {: .no_toc}

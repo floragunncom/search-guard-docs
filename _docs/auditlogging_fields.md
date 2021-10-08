@@ -9,7 +9,7 @@ edition: enterprise
 description: Reference for all fields that are used in audit log events.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Audit Log Field Reference

@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the cache REST API endpoint to flush the Search Guard cache.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Cache API

@@ -9,7 +9,7 @@ edition: community
 description: How to manage the primary and replica shards of the Search Guard configuration index.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Managing the Search Guard index

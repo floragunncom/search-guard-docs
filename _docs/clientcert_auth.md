@@ -9,7 +9,7 @@ edition: community
 description: How to use client side TLS certificates to protect Elasticsearch against unauthorized access.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Client certificate based authentication

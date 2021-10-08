@@ -7,7 +7,7 @@ layout: docs
 description: The Search Guard Community Edition provides TLS encryption and index-level permissions on REST and transport for free.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Search Guard Versions

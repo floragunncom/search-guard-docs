@@ -11,7 +11,7 @@ resources:
 
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Enterprise and Compliance Edition

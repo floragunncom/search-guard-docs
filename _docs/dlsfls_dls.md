@@ -14,7 +14,7 @@ resources:
 
 ---
 <!---
-Copryight 2016 floragunn GmbH
+Copyright 2016 floragunn GmbH
 -->
 
 # Document-level security

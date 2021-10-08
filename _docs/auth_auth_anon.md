@@ -8,7 +8,7 @@ edition: community
 description: How to use Search Guard anonymous authentication to assign default permissions if a user is not authenticated.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Anonymous authentication

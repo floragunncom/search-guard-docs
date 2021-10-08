@@ -8,7 +8,7 @@ edition: enterprise
 description: Configure role-based access control to different endpoints and methods of the REST API.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # REST management API

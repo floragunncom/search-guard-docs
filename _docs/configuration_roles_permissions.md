@@ -9,7 +9,7 @@ edition: community
 description: How to define role based access to Elasticsearch on index- and document-type level with Search Guard.
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 # Defining Roles and permissions
 {: .no_toc}

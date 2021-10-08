@@ -11,7 +11,7 @@ resources:
   - https://search-guard.com/read-history-gdpr/|Using X-Pack Monitoring with Search Guard (blog post)
 ---
 <!---
-Copryight 2017 floragunn GmbH
+Copyright 2017 floragunn GmbH
 -->
 
 # Read History Audit Logging

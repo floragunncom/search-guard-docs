@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the action groups REST API endpoints to create, edit and delte Search Guard action groups.
 ---
 <!---
-Copryight 2018 floragunn GmbH
+Copyright 2018 floragunn GmbH
 -->
 
 # Action groups API
