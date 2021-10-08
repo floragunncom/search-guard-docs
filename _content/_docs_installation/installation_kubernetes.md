@@ -219,8 +219,10 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 
 ## Configuration parameters
 
-| Parameter | Description | Default value |
- |------|------|------|
+### Client
+
+| Parameter | Description | Default |
+|------|------|------|
 | client.annotation |  Metadata to attach to client nodes | null |
 | client.antiAffinity | Affinity policy for master nodes: 'hard' for pods scheduling only on the different nodes, 'soft' pods scheduling on the same node possible  | soft |
 | client.heapSize | HeapSize limit for client nodes | 1g |
@@ -233,6 +235,12 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 | client.resources.requests.memory | Memory resources requested on cluster start | 1500Mi |
 | client.storage | Storage size for client nodes | 2Gi |
 | client.storageClass | Storage class for client nodes if you use non-default storage class | default |
+{: .config-table}
+
+### Common
+
+| Parameter | Description | Default |
+|------|------|------|
 | common.admin_dn | DN of certificate with admin privileges | CN=sgadmin,OU=Ops,O=Example Com\\, Inc.,DC=example,DC=com |
 | common.ca_certificates_enabled | Feature that enables possibility to upload customer CA and use it to sign cluster certificates | false |
 | common.certificates_directory | Directory with customer certificates that are used in ES cluster | secrets |
@@ -274,6 +282,12 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 | common.update_sgconfig_on_change | Run automatically sgadmin whenever neccessary  | true |
 | common.users | Additional users configuration in sg_internal_users.yml | null |
 | common.xpack_basic | Enable/Disable X-Pack in the ES cluster | false |
+{: .config-table}
+
+### Data
+
+| Parameter | Description | Default |
+|------|------|------|
 | data.annotations | Metadata to attach to data nodes | null |
 | data.antiAffinity | Affinity policy for master nodes: 'hard' for pods scheduling only on the different nodes, 'soft' pods scheduling on the same node possible | soft |
 | data.heapSize | HeapSize limit for data nodes | 1g |
@@ -286,6 +300,12 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 | data.resources.requests.memory | Memory resources requested on cluster start for kibana nodes | 1500Mi |
 | data.storage | Storage size for data nodes | 4Gi |
 | data.storageClass | Storage type for data nodes if you use non-default storage class | default |
+{: .config-table}
+
+### Kibana
+
+| Parameter | Description | Default |
+|------|------|------|
 | kibana.annotations | Metadata to attach to kibana nodes | null |
 | kibana.antiAffinity | Affinity policy for master nodes: 'hard' for pods scheduling only on the different nodes, 'soft' pods scheduling on the same node possible | soft |
 | kibana.heapSize | HeapSize limit for kibana nodes | 1g |
@@ -300,6 +320,12 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 | kibana.serviceType | Type of Kibana service exposing in the ES cluster | ClusterIP |
 | kibana.storage | Storage size for client nodes | 2Gi |
 | kibana.storageClass | Storage class for client nodes if you use non-default storage class | default |
+{: .config-table}
+
+### Master 
+
+| Parameter | Description | Default |
+|------|------|------|
 | master.annotations | Metadata to attach to master nodes | null |
 | master.antiAffinity | Affinity policy for master nodes: 'hard' for pods scheduling only on the different nodes, 'soft' pods scheduling on the same node possible | soft |
 | master.heapSize | HeapSize limit for master nodes | 1g |
@@ -312,6 +338,12 @@ Do not use ``common.es_upgrade_order=true`` when your master.replicas=1 because 
 | master.resources.requests.memory | Memory resources requested on cluster start for kibana nodes | 2500Mi |
 | master.storage | Storage size for master nodes | 2Gi |
 | master.storageClass | Storage class for master nodes if you use non-default storage class | default |
+{: .config-table}
+
+### Other
+
+| Parameter | Description | Default |
+|------|------|------|
 | pullPolicy | Kubernetes image pull policy | IfNotPresent |
 | rbac.create | Feature to create Kubernetes entities for Role-based access control in the Kubernetes cluster | true |
 | service.httpPort | Port to be exposed by Elasticsearch service in the cluster | 9200 |
