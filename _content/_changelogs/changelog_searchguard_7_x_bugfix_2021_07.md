@@ -1,6 +1,6 @@
 ---
 title: Search Guard Bugfix Release July 2021
-permalink: changelog-searchguard-7.x-bugfix-20217-07
+permalink: changelog-searchguard-7x-bugfix-20217-07
 category: changelogs-searchguard
 order: -315
 layout: changelogs
