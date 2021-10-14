@@ -1,6 +1,6 @@
 ---
 title: Kibana 7.x-36.0.0
-permalink: changelog-kibana-7.x-36_0_0
+permalink: changelog-kibana-7x-36_0_0
 category: changelogs-kibana
 order: 770
 layout: changelogs
