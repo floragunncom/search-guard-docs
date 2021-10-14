@@ -1,6 +1,6 @@
 ---
 title: Kibana 7.x-47.0.0
-permalink: changelog-kibana-7.x-47_0_0
+permalink: changelog-kibana-7x-47_0_0
 category: changelogs-kibana
 order: 0
 layout: changelogs
