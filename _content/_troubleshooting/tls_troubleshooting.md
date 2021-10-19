@@ -176,9 +176,9 @@ In this example, the node tries to join the cluster with the IPv4 `10.0.0.42`, b
 
 TLS certificates are organized in a certificate chain:
 
-> A certificate chain is an ordered list of certificates, containing an SSL Certificate and Certificate Authority (CA) Certificates, that enable the receiver to verify that the sender and all CA's are trustworthy. The chain or path begins with the SSL certificate, and each certificate in the chain is signed by the entity identified by the next certificate in the chain.
+> A certificate chain is an ordered list of certificates, containing an SSL/TLS Certificate and Certificate Authority (CA) Certificates, that enable the receiver to verify that the sender and all CA's are trustworthy.
 
-(from: [Thawte](https://search.thawte.com/support/ssl-digital-certificates/index?page=content&actp=CROSSLINK&id=SO16297))
+(from: [Digicert](https://knowledge.digicert.com/solution/SO16297.html))
 
 You can check with keytool that the certificate chain is correct by inspecting the owner and the issuer of each certificate. If you used the demo installation script that ships with Search Guard, the chain looks like:
 
