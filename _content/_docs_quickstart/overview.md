@@ -59,7 +59,7 @@ Search Guard supports all major industry standards for authentication and author
 * [Proxy authentication](../_docs_auth_auth/auth_auth_proxy2.md)
 * [Kerberos](../_docs_auth_auth/auth_auth_kerberos.md)
 * [OpenID Connect](../_docs_auth_auth/auth_auth_openid.md)
-* [SAML](../_docs_auth_auth/auth_auth_saml.md)
+* [SAML](../_docs_auth_auth/auth_auth_saml_authentication.md)
   
 If you do not want or need any external authentication tool you can also use the built-in user database:
    

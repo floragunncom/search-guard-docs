@@ -72,8 +72,7 @@ This is the default setting of Search Guard when no `searchguard.nodes_dn` is sp
 
 `OID` stands for an object identifier and in this context it is used to identify an X.509 certificate extension, i.e. an additional data field stored in the certificate, which is not predefined by the standard.
 
-If you want to learn more about OIDs in TLS certificates, refer to Red Hats [Standard X.509 v3 Certificate Extension Reference](https://access.redhat.com/documentation/en-US/Red_Hat_Certificate_System/8.0/html/Admin_Guide/Standard_X.509_v3_Certificate_Extensions.html
-){:target="_blank"}.
+If you want to learn more about OIDs in TLS certificates, refer to Red Hats [Standard X.509 v3 Certificate Extension Reference](https://access.redhat.com/documentation/en-us/red_hat_certificate_system/9/html/administration_guide/standard_x.509_v3_certificate_extensions){:target="_blank"}.
 
 The `OID` is defined in the `Subject Alternative Name (SAN)` section of the certificate. Unless `searchguard.nodes_dn` is configured it must have the default value `1.2.3.4.5.5` for node certificates (see below how to use a custom value). If this value is found, the certificate is considered to be a valid node certificate.
 
