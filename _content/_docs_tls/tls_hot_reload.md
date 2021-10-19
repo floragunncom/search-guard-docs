@@ -48,7 +48,7 @@ To update node certificates, follow this procedure:
 	2. Generate the new keys and certificates. The certificates need to have the same issuer distinguished name, the same subject distinguished name and the same subject alternative names (if any). Furthermore, the new certificates must have an expiry date which is after the expiry date of the existing certificates. The new key must use the same password as the existing key. It is not possible to change the value of the password configured in `config/elasticsearch.yml`. If you use JKS files, the aliases must stay the same.
 	3. If you use intermediate certificates, remember to include these in the respective files.
 	4. Copy the new certificate and key files over the existing certificate and key files on the particular node.
-	5. Trigger the TLS reload. You can use either use the [sgadmin](../docs_configuration_changes/configuration_sgadmin.md) tool or call the REST API directly, for example via `curl`.
+	5. Trigger the TLS reload. You can use either use the [sgadmin](../_docs_configuration_changes/configuration_sgadmin_basic_usage.md) tool or call the REST API directly, for example via `curl`.
 		1. `cd /path/to/elasticsearch-installation-dir/plugins/search-guard-7/tools/`
 		2. `./sgadmin.sh --reload-http-certs --reload-transport-certs -cacert /path/to/root-ca.pem -cert /path/to/admin-cert.pem -key /path/to/admin-cert-private-key.pem -keypass private-key-password -h localhost -p 9200`.
 		
@@ -68,7 +68,7 @@ To update root certificates, follow this procedure:
 2. For each node in the cluster, add the new root certificate: 
 	1. Determine in which file on the node the trusted certificates are stored. This information is stored in the `config/elasticsearch.yml` file on the respective node. Look for the options `searchguard.ssl.transport.pemtrustedcas_filepath`, `searchguard.ssl.http.pemtrustedcas_filepath`, `searchguard.ssl.transport.truststore_*`, `searchguard.ssl.http.truststore_*` . For details on these options, see [Configuring TLS](tls_configuration.md).
 	2. Add the new certificates to the respective files. Be sure to keep the old certificates.
-	3. Trigger the TLS reload. This needs to be done for each node in the cluster. You can use either use the [sgadmin](../docs_configuration_changes/configuration_sgadmin.md) tool or call the REST API directly, for example via `curl`.
+	3. Trigger the TLS reload. This needs to be done for each node in the cluster. You can use either use the [sgadmin](../_docs_configuration_changes/configuration_sgadmin_basic_usage.md) tool or call the REST API directly, for example via `curl`.
 		1. `cd /path/to/elasticsearch-installation-dir/plugins/search-guard-7/tools/`
 		2. `./sgadmin.sh --reload-http-certs --reload-transport-certs -cacert /path/to/root-ca.pem -cert /path/to/admin-cert.pem -key /path/to/admin-cert-private-key.pem -keypass private-key-password -h localhost -p 9200`.
 3. For each node in the cluster, update the node certificate:
