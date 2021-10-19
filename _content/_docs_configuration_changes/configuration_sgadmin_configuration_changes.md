@@ -21,11 +21,11 @@ The Search Guard configuration is comprised of the following files:
 
 * **sg_config.yml** - [Authentication and authorization](authentication-authorization) settings
 * **sg_roles.yml** - [Search Guard roles](roles-permissions) defining access permissions to indices, documents and fields
-* **sg_action_groups.yml** - [pre-defined permission sets](configuration_action_groups.md) like READ, WRITE, DELETE. Used to define access permissions for Search Guard roles.
+* **sg_action_groups.yml** - [pre-defined permission sets](action-groups) like READ, WRITE, DELETE. Used to define access permissions for Search Guard roles.
 * **sg_internal_users.yml** - users stored in the [Search Guard internal user database](internal-users-database)
 * **sg_roles_mapping.yml** - defines how [Search Guard roles are assigned to users](mapping-users-roles)
 * **sg_blocks.yml** - defines access control rules on a global level, for example blocking IPs or IP ranges
-* **sg_tenants.yml** - defines the available tenants for [Kibana multi-tenancy](kibana_multitenancy.md)
+* **sg_tenants.yml** - defines the available tenants for [Kibana multi-tenancy](kibana-multi-tenancy)
 
 You can use sgadmin to change upload all configuration fies or just a single one.
 
