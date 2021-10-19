@@ -11,9 +11,7 @@ resources:
   - "search-guard-presentations#active-directory-ldap|LDAP & Active Directory configuration (presentation)"
 
 ---
-<!---
-Copyright 2020 floragunn GmbH
--->
+<!--- Copyright 2020 floragunn GmbH -->
 
 # Active Directory and LDAP Authorisation
 {: .no_toc}
