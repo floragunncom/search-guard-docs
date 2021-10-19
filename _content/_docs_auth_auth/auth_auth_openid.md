@@ -97,7 +97,7 @@ jwks_uri: "https://keycloak.example.com:8080/auth/realms/master/protocol/openid-
 You can find more information about the endpoint for your IdP here:
 
 * [Okta](https://developer.okta.com/docs/api/resources/oidc#well-knownopenid-configuration){:target="_blank"}
-* [Kecloak](https://www.keycloak.org/docs/3.0/securing_apps/topics/oidc/oidc-generic.html){:target="_blank"}
+* [Kecloak](https://github.com/keycloak/keycloak-documentation/blob/master/securing_apps/topics/oidc/oidc-generic.adoc){:target="_blank"}
 * [Auth0](https://auth0.com/docs/protocols/oidc/openid-connect-discovery){:target="_blank"}
 * [Connect2ID](https://connect2id.com/products/server/docs/api/discovery){:target="_blank"}
 * [Salesforce](https://help.salesforce.com/articleView?id=remoteaccess_using_openid_discovery_endpoint.htm&type=5){:target="_blank"}
