@@ -19,28 +19,14 @@
 
     {% if include.issuite %}
 
-      {% capture sg_url %}
-        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}.zip      
-      {% endcapture %}
-      {% capture sgadmin_url %}
-        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip      
-      {% endcapture %}      
-      {% capture kibana_url %}
-        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip    
-      {% endcapture %}  
+      {% capture sg_url %}https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}.zip{% endcapture %}
+      {% capture sgadmin_url %}https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip{% endcapture %}
+      {% capture kibana_url %}https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip{% endcapture %}
 
     {% else %}
-      {% capture sg_url %}
-        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip      
-      {% endcapture %}
-      {% capture sgadmin_url %}
-        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip      
-      {% endcapture %}      
-      {% capture kibana_url %}
-        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip    
-      {% endcapture %}      
-
-
+      {% capture sg_url %}https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip{% endcapture %}
+      {% capture sgadmin_url %}https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip{% endcapture %}
+      {% capture kibana_url %}https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip{% endcapture %}
     {% endif %}
 
   <tr>
