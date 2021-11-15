@@ -30,7 +30,7 @@ Unexpected Elasticsearch ResponseError: statusCode: 400, method: PUT, url: /.kib
 error: [mapper_parsing_exception]: Failed to parse mapping [_doc]: unknown parameter [enabled] on mapper [params] of type [flattened]
 ```
 
-This release of Search Guard fixes that problem; saved object migrations will no run again without an error.
+This release of Search Guard fixes that problem; saved object migrations will now run again without an error.
 
 The bugfix requires that also the Search Guard Elasticsearch Plugin 52.4.0 is installed. 
 
