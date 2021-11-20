@@ -44,23 +44,13 @@ where
 
 ## Which Elasticsearch versions receive new Search Guard features and bugfixes
 
-* Current release of the current minor version of the current Elasticsearch major version
-* Current release of the previous minor version of the current Elasticsearch major version
-* Current release of the previous Elasticsearch major version (but not all features will be backported)
-
-
-At the time of writing this is: {% for version in site.eol.features %}
-* {{ version }}{% endfor %}
-
+* All releases of the current minor version of the current Elasticsearch major version
 
 ## Which Elasticsearch versions receive critical bugfixes only (but no new features)
 
-* Current releases of the third and fourth from last Elasticsearch minor version of the current Elasticsearch major version
-
-
-At the time of writing this is: {% for version in site.eol.updates %}
-* {{ version }}{% endfor %}
-
+* All releases of the current minor version of the current Elasticsearch major version
+* All releases of the previous minor version of the current Elasticsearch major version
+* Current version of the last Elasticsearch major version
 
 ## Which Elasticsearch versions receive no updates at all any longer
 
@@ -72,24 +62,3 @@ At the time of writing this is: {% for version in site.eol.updates %}
 * Upgrade Elasticsearch always to the latest fix version or your Elasticsearch minor version
 * Make sure your Elasticsearch minor version is not older than six month 
 * When the first beta version of a new Elasticsearch major version is released prepare to upgrade to the latest release of the current major version of Elasticsearch.
-
-## EOL Examples
-
-### Assume 7.0.0 is the current Elasticsearch Version 
-
-* Which Elasticsearch versions receive new Search Guard features and bugfixes: 6.7.1, 7.0.0
-* Which Elasticsearch versions receive critical bugfixes (but no new features): n/a
-* Which Elasticsearch versions receive no updates at all any longer: all other (1.x.x-6.7.0)
-
-
-### Assume 6.7.1 is the current Elasticsearch Version
-
-* Which Elasticsearch versions receive new Search Guard features and bugfixes: 5.6.16, 6.6.2, 6.7.1
-* Which Elasticsearch versions receive critical bugfixes (but no new features): 6.4.3, 6.5.4
-* Which Elasticsearch versions receive no updates at all any longer: all other (1.x.x-5.6.15, 6.0.x-6.4.2, 6.5.0-6.5.3, 6.6.0-6.6.1, 6.7.0)
-
-### Assume 6.5.4 is the current Elasticsearch Version
-
-* Which Elasticsearch versions receive new Search Guard features and bugfixes: 5.6.16, 6.4.3, 6.5.4
-* Which Elasticsearch versions receive critical bugfixes (but no new features): 6.2.4, 6.3.2
-* Which Elasticsearch versions receive no updates at all any longer: all other (1.x.x-5.6.15, 6.0.x-6.2.3, 6.3.0-6.3.1, 6.4.0-6.4.2, 6.5.0-6.5.3)
