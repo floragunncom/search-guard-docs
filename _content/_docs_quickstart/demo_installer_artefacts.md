@@ -25,19 +25,18 @@ After executing the demo installer, you will find the following generated certif
 * ``kirk.pem``— the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API
 * ``kirk-key.pem``— the private key for the admin certificate
 
-These certificates are used for TLS encryption on the REST- and the transport layer of Elasticsearch, and for granting admin access to the Search Guard configuration index. For a detailed description on the types of certificates Search Guard uses, please see [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
+These certificates are used for TLS encryption on the REST- and the transport-layer of Elasticsearch, and for granting admin access to the Search Guard configuration index. For a detailed description on the types of certificates Search Guard uses, please see [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
 
 ## Generated configuration
 
-The demo installer automatically appends mandatory and useful configuration settings for Search Guard to `elasticsearch.yml`. These additions are enclosed by the following lines:
-
+The demo installer automatically appends mandatory and helpful configuration settings for Search Guard to `elasticsearch.yml`. The following lines enclose these additions:
 ```yaml
 ######## Start Search Guard Demo Configuration ########
 ...
 ######## End Search Guard Demo Configuration ########
 ```
 
-If for any reason you want to execute the demo installation script again. remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `elasticsearch.yml`.
+If, for any reason, you want to execute the demo installation script again,  remove these lines and everything between them. The script will refuse to run if it finds an existing Search Guard configuration in `elasticsearch.yml`.
 
 ### TLS settings
 
@@ -61,23 +60,30 @@ For details on the TLS configuration please refer to [Configuring TLS](../_docs_
 
 ### Admin certificate
 
-In order to apply changes to the Search Guard configuration index, an admin TLS cetificate is required. This line tells Search Guard that the DN of the generated `kirk.pem` certificate denotes an admin certificate and should be granted elevated privileges:
+In order to apply changes to the Search Guard configuration index, an admin TLS certificate is required. This line tells Search Guard that the DN of the generated `kirk.pem` certificate denotes an admin certificate and should be granted elevated privileges:
 
 ```yaml
 searchguard.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=test, C=de
 ```
 
-### Allow demo certificates and auto-initialization
+### Allow demo certificates 
 
-By adding these two lines, Search Guard will accept the generated demo certificates and initialize the Search Guard index with the contents from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory. 
+The shipped demo certificates are not suited for production, and should only be used for PoC or non-critical, non-production systems. 
+Thus, by default, Search Guard rejects to start up if demo certificates are being used. In order for Search Guard to accept the demo certificates, add the following line to elasticsearch.yml:
 
 ```yaml
 searchguard.allow_unsafe_democertificates: true
-searchguard.allow_default_init_sgindex: true
 ```
 
-Both options are unsafe for production, so their default value is `false`. Don't forget to remove them if you move your configuration to production!
+### Auto-initialization
+
+The following line in elasticsearch.yml enables the _auto-initialization_ feature: 
+If Elasticsearch starts, and the Search Guard security index has not been initialized yet, Search Guard will automatically initialize it with the contents from the `<Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig` directory.
+
+```yaml
+searchguard.allow_default_init_sgindex: true
+```
 
 ### Allow snapshot / restore
 

@@ -306,12 +306,6 @@ algolia:
       - ignorePlurals
       - singleWordSynonym
 
-eol:
-  features:
-    - 7.11.0
-  updates:
-    - 6.8.10
-
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-suite-7:
