@@ -309,6 +309,7 @@ algolia:
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-suite-7:
+    - 7.16.1|52.5.0|52.2.0|yes|no
     - 7.15.2|52.5.0|52.1.0|yes|no
     - 7.15.1|52.5.0|52.1.0|yes|no
     - 7.15.0|52.5.0|52.1.0|yes|no
