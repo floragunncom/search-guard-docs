@@ -1,5 +1,5 @@
 ---
-title: HTTP Basic Authentication
+title: Password-based Authentication
 permalink: http-basic-authorization
 category: authauth
 order: 200
@@ -11,19 +11,49 @@ description: How to set up HTTP Basic Authentication on the REST layer of OpenSe
 Copyright 2020 floragunn GmbH
 -->
 
-# HTTP Basic Authentication
+# Password-based authentication
 {: .no_toc}
 
-In order to set up HTTP Basic authentication, you just need to enable it in the http_authenticator section of the configuration:
+If you want to use a user name and password to log into OpenSearch/Elasticsearch, you need to use the `basic` authentication frontend combined with an authentication backend.
+
+The simplest setup uses the Search Guard internal user database as the authentication backend; for this, you just have to define the users. No further configuration is necessary. See below for more details on this.
+
+If you want to use Active Directory/LDAP for authenticating users, you can use the `ldap` authentication backend. This requires a bit more configuration; see the [LDAP and Active Directory docs](../_docs_auth_auth/auth_auth_ldap.md) for more information.
+
+**Note:** Users of older Search Guard versions might know the `challenge` flag which controls whether Search Guards sends HTTP Basic challenges for unauthenticated requests. The new version of Search Guard is capable of sending multiple challenges at once. Thus, this flag is no longer needed.
+
+## Internal users database
+
+The minimal `sg_authc.yml` configuration for using Search Guard with the internal users database looks like this:
 
 ```yaml
-http_authenticator:
-  type: basic
-  challenge: true
+auth_domains:
+- type: basic/internal_users_db
 ```
 
-In most cases, you will want to set the `challenge` flag to `true`. The flag defines the behaviour of Search Guard, if the `Authorization` field in the HTTP header is not set:
+Additionally, you need to add users to the internal user database. See [here](../_docs_roles_permissions/configuration_internalusers.md) for more details on this.
 
-If `challenge` is set to `true`, Search Guard will send a response with status `UNAUTHORIZED` (401) back to the client, and set the `WWW-Authenticate` header to `Basic realm="Search Guard"`. If the client is accessing the Search Guard secured cluster with a browser, this will trigger the authentication dialog and the user is prompted to enter username and password.
+Users authenticated via the internal users database automatically have the roles that are associated with them in the database (both backend roles and Search Guard roles). 
 
-If `challenge` is set to `false`, and no `Authorization` header field is set, Search Guard will **not** sent a `WWW-Authenticate` response back to the client, and authentication will fail. You may want to use this setting if you have another challenge `http_authenticator` in your configured authentication domains (Note that there can only be one challenge authenticator).  One such scenario is when you plan to use Basic Authentication and Kerberos together, and set Kerberos to `challenge: true`. In that case, you can still use Basic Authentication, but only with pre-authenticated requests
+### Attribute mapping
+
+If you want to use user-attribute-based authorization (TODO: link), you have to define an attribute mapping. This mapping maps the attributes stored in the internal user database to the attributes the logged-in user will have.  Suppose users in the internal user database are defined like this:
+
+```yaml
+hr_employee:
+  [...]
+  attributes:
+    manager: "layne.burton"
+    department: 
+      name: "operations"
+      number: 52
+```
+
+The `internal_users_db` makes the attributes available for mapping below the key `user_entry.attributes`. Thus, you can map the attribute `department.number` like this:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+  user_mapping.attributes.from:
+    dept_no: user_entry.attributes.department.number
+```

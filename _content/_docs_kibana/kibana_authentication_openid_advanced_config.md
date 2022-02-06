@@ -34,42 +34,42 @@ The user names and the users' roles are determined by so-called claims stored in
 
 If you need special TLS settings to create connections from Search Guard to the IdP, you can configure them with the options listed below. For example, such configuration might become necessary if your IdP uses TLS certificates signed by non-public certificate authorities.
 
-**idp.tls.trusted_cas:** The root certificates to trust when connecting to the IdP. You can specify the certificates in PEM format inline or specify an absolute pathname using the syntax `${file:/path/to/certificate.pem}`.
+**oidc.idp.tls.trusted_cas:** The root certificates to trust when connecting to the IdP. You can specify the certificates in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/certificate.pem}`.
 
-**idp.tls.enabled_protocols:** The enabled TLS protocols. Defaults to `["TLSv1.2", "TLSv1.1"]`.
+**oidc.idp.tls.enabled_protocols:** The enabled TLS protocols. Defaults to `["TLSv1.2", "TLSv1.1"]`.
 
-**idp.tls.enabled_ciphers:** The enabled TLS cipher suites.
+**oidc.idp.tls.enabled_ciphers:** The enabled TLS cipher suites.
 
-**idp.tls.verify_hostnames:** Whether to verify the hostnames of the IdP’s TLS certificate or not. Default: true.
+**oidc.idp.tls.verify_hostnames:** Whether to verify the hostnames of the IdP’s TLS certificate or not. Default: true.
 
-**idp.tls.trust_all:** Disable all certificate checks. You should only use this for quick tests. *Never use this for production systems.*
+**oidc.idp.tls.trust_all:** Disable all certificate checks. You should only use this for quick tests. *Never use this for production systems.*
 
 
 ### Example
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    idp.tls.trusted_cas: |
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    oidc.idp.tls.trusted_cas: |
       -----BEGIN CERTIFICATE-----
       MIIEZjCCA06gAwIBAgIGAWTBHiXPMA0GCSqGSIb3DQEBCwUAMHgxEzARBgoJkiaJ
       [...]
       1k4enV7iJWXE8009a6Z0Ouwm2Bg68Wj7TAQ=
       -----END CERTIFICATE-----
-    user_mapping.roles: roles
+    user_mapping.roles.from_comma_separated_string: jwt.roles
 ```
 
 ## TLS Client Authentication
 
 If you need to use TLS client authentication to connect from Search Guard to the IdP, you can configure it using the following options:
 
-**idp.tls.client_auth.certificate:** The client certificate. You can specify the certificate in PEM format inline or specify an absolute pathname using the syntax `${file:/path/to/certificate.pem}`. You can also specify several certificates to specify a certificate chain.
+**idp.tls.client_auth.certificate:** The client certificate. You can specify the certificate in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/certificate.pem}`. You can also specify several certificates to specify a certificate chain.
 
-**idp.tls.client_auth.private_key:** The private key that belongs to the client certificate. You can specify the key in PEM format inline or specify an absolute pathname using the syntax `${file:/path/to/private-key.pem}`.
+**idp.tls.client_auth.private_key:** The private key that belongs to the client certificate. You can specify the key in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/private-key.pem}`.
 
 **idp.tls.client_auth.private_key_password:** If the private key is encrypted, you must specify the key password using this option.
 
@@ -82,13 +82,13 @@ If the IdP is only reachable from Search Guard via an HTTP proxy, you can use th
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_mapping.roles: roles
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    oidc.idp.proxy: "https://your.outbreaking.proxy:8080"
+    user_mapping.roles.from_comma_separated_string: roles
 ```
 
 ## Mapping user attributes
@@ -102,14 +102,14 @@ This might look like this:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_mapping.roles: roles
-    user_mapping.attrs: 
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    oidc.idp.proxy: "https://your.outbreaking.proxy:8080"
+    user_mapping.roles.from_comma_separated_string: roles
+    user_mapping.attrs.from: 
       department: department.number
       email_address: user.email
 ```
@@ -141,11 +141,11 @@ For example:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    user_mapping.subject_pattern: "^(.+)@example\.com$"
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    user_mapping.subject_pattern: "^(.+)@example\.com$" # TODO obsolete
     user_mapping.roles: roles
 ```
 
@@ -175,13 +175,12 @@ If you want to customize the URL that Dashboards/Kibana will navigate to when th
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    logout_url: "https://your.idp/logout"
-    user_mapping.roles: roles
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    oidc.logout_url: "https://your.idp/logout"
 ```
 
 ## Rate-limiting connections to the IdP

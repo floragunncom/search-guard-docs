@@ -16,9 +16,15 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-## Static configuration in elasticsearch.yml
 
-Due to the nature of Kerberos, you need to define some (static) settings in `opensearch.yml`/`elasticsearch.yml`, and some in `sgconfig.yml`.
+
+## Prerequisites
+
+To use Kerberos with Search Guard, you need matching `krb5.conf` and keytab files for your Kerberos installation. Due to the nature of Kerberos, you need to define some (static) settings in `opensearch.yml`/`elasticsearch.yml`. This means that a cluster restart is necessary to peform the configuration.
+
+## Search Guard setup
+
+### Static configuration
 
 In `opensearch.yml`/`elasticsearch.yml`, you need to define:
 
@@ -37,38 +43,20 @@ The `acceptor_principal` defines the acceptor/server principal name Search Guard
 
 **Due to security restrictions the keytab file must be placed in the `<ES installation directory>/conf` directory or a subdirectory, and the path in `opensearch.yml`/`elasticsearch.yml` must be configured relative, not absolute.**
 
-## Dynamic configuration in sgconfig.yml
+### `sg_authc.yml`
 
-A typical Kerberos authentication domain in sgconfig.yml looks like this:
+A typical Kerberos authentication domain in `sg_authc.yml` looks like this:
 
 ```yaml
-    authc:
-      kerberos_auth_domain:
-        http_enabled: true
-        order: 1
-        http_authenticator:
-          type: kerberos
-          challenge: true
-          config:
-            krb_debug: false
-            strip_realm_from_principal: true
-        authentication_backend:
-          type: noop
+auth_domains:
+- type: kerberos
+  kerberos.krb_debug: false
+  kerberos.strip_realm_from_principal: true
 ```
-
-Authentication against Kerberos via a browser on HTTP level is achieved by using SPNEGO. The Kerberos/SPNEGO implementations vary, depending on your browser/operating system. This is important when deciding if you need to set the `challenge` flag to true or false.
-
-As with [HTTP Basic Authentication](../_docs_auth_auth/auth_auth_httpbasic.md), this flag determines how Search Guard should react when no `Authorization` header is found in the HTTP request, or if this header does not equal `negotiate`.
-
-If set to true, Search Guard will send a response with status code 401 and a `WWW-Authenticate` header set to `Negotiate`. This will tell the client (browser) to resend the request with the `Authorization` header set. If set to false, Search Guard cannot extract the credentials from the request, and authentication will fail. Setting `challenge` to false thus only makes sense if the Kerberos credentials are sent in the inital request.
 
 As the name implies, setting `krb_debug` to true will output a lot of Kerberos specific debugging messages to stdout. Use this if you encounter any problems with your Kerberos integration.
 
 If you set `strip_realm_from_principal` to true, Search Guard will strip the realm from the user name.
-
-## Authentication backend
-
-Since SPNEGO/Kerberos authenticates a user on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
 
 ## Troubleshooting
 

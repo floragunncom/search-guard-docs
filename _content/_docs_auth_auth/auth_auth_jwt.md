@@ -1,8 +1,9 @@
 ---
-title: JSON web tokens
+title: Quick Start
+html_title: JSON web tokens Quick Start
 permalink: json-web-tokens
-category: authauth
-order: 500
+category: jwt
+order: 100
 layout: docs
 edition: enterprise
 description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access to your OpenSearch/Elasticsearch cluster.
@@ -15,307 +16,104 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Using JSON web tokens for OpenSearch/Elasticsearch access control
+# JWT Authentication Quick Start
 {: .no_toc}
 
 {% include toc.md %}
 
-## Token based authentication
+Search Guard supports user authentication with [JSON Web Tokens](https://jwt.io/introduction) (JWT). 
 
-JSON Web Tokens (JWT) are JSON-based access tokens that assert one or more claims. They are commonly used to implement Single-Sign-On solutions and fall in the category of token based authentication system:
+This chapter describes the basic setup of JWT with Search Guard. This will work in many cases; some setups, however, require special configurations. Please refer to the section Advanced Configuration for this.
 
-* A user logs in to an authentication server by providing credentials, e.g. username and password.
-* The authentication server validates the credentials.
-* The authentication server creates an access token and signs it.
-* The authentication server returns the token to the user.
-* The user stores the access token.
-* The user sends the access token along with every request to the service it wants to use.
-* The service verifies the token and grants or denies access.
+## Prerequisites
 
-You can read more about token based authentication [in this blog post.](https://scotch.io/tutorials/the-ins-and-outs-of-token-based-authentication){:target="_blank"}.
+To use JWT based authentication, you need the keys which are used to sign the JWT. You can provide these in form of a [JSON Web Key or JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517) (JWK/JWKS) or in form of EC or RSA public keys or certificates in PEM format. You can also use an OIDC `.well-known/openid-configuration` URL to retrieve the signing keys. 
 
-## JSON web tokens
+Additionally, you need to clarify from where to retrieve the roles of a user. These can be encoded in form of a claim inside of the JWT. However, there is no standardized format or claim name for this.
 
-A JSON web token is self-contained in the sense that it carries all necessary information to verify a user within itself. The tokens are base64-encoded,  signed JSON objects. They are URL safe and can be passed around easily.
+## Search Guard setup
 
-A JSON web token consists of three parts:
-
-* Header
-* Payload
-* Signature
-
-### Header
-
-The header contains information about the used signing mechanism, for example:
-
-```json
-{
-  "alg": "HS256",
-  "typ": "JWT"
-}
-```
-
-In this case, the header states that the message was signed using HMAC-SHA256.
-
-### Payload
-
-The payload of a JSON web token contains the so-called [JWT Claims](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName){:target="_blank"}. A claim can be any piece of information about the user that the application that created the token has verified.
-
-The specification defines a set of standard claims with reserved names ("registered claims"). These include, for example, the token issuer, the expiration date, or the creation date.
-
-Public claims on the other hand can be created freely by the token issuer.  They can contain arbitrary information, such as the user name and the roles of the user.
-
-Example:
-
-```json
-{
-  "iss": "floragunn.com",
-  "exp": 1300819380,
-  "name": "John Doe",
-  "roles": ["admin, "devops"]
-}
-```
-
-### Signature
-
-The issuer of the token calculates the signature of the token by applying a cryptographic hash function on the base-64 encoded header and payload. These three parts are then concatenated via a `.` dot. We now have a complete JSON web token:
-
-```
-encoded = base64UrlEncode(header) + "." + base64UrlEncode(payload)
-signature = HMACSHA256(encoded, 'secretkey');
-jwt = encoded + "." + base64UrlEncode(signature)
-```
-
-For example:
-```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI
-```
-
-## Configuring JWT support in Search Guard
-
-If JWT is the only authentication method you use, you should disable the [Search Guard User Cache](../_docs_configuration_changes/configuration_cache.md).
-{: .note .js-note .note-warning}
-
-In order to use JWT, set up an authentication domain and choose `jwt` as HTTP authentication type. Since the tokens already contain all required information to verify the request, `challenge` must be set to `false` and `authentication_backend` to `noop`.
-
-Example:
+A minimal `sg_authc.yml` file for JWT authentication using JWKS looks like this:
 
 ```yaml
-jwt_auth_domain:
-  http_enabled: true
-  order: 0
-  http_authenticator:
-    type: jwt
-    challenge: false
-    config:
-      signing_key: "base64 encoded key"
-      jwt_header: "Authorization"
-      jwt_url_parameter: null
-      <subject_key|subject_path>: null
-      <roles_key|roles_path> : null
-  authentication_backend:
-I    type: noop
+auth_domains:
+- type: jwt
+  jwt.signing.jwks.keys:
+  - kty: RSA
+    use: sig
+    alg: RS256
+    n: "jicRTT-2H3U6jAoBeUKh8s..."
+    e: "AQAB"
+  user_mapping.roles.from_comma_separated_string: jwt.roles
 ```
 
-Configuration parameter:
+The section below `jwt.signing.jwks.keys` is a JWKS document encoded into the YAML structure.
 
-| Name | Description |
-|---|---|
-| signing_key | The signing key to use when verifying the token. If you use a symmetric key algorithm, it is the base64 encoded shared secret. If you use an asymmetric algorithm it contains the public key. |
-| jwt\_header | The HTTP header in which the token is transmitted. This is typically the `Authorization` header with the `Bearer` schema: `Authorization: Bearer <token>`. Default is `Authorization`.|
-| jwt\_url\_parameter | If the token is not transmitted in the HTTP header, but as an URL parameter, define the name of this parameter here. |
-| subject_key | The key in the JSON payload that stores the username. If not set, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2){:target="_blank"} registered claim is used.|
-| subject_path | A JSON path expression in the payload that stores the username, for example ```$["foo"]["user"]["name"]```  where `foo` is the claim name|
-| roles_key | The key in the JSON payload that stores the user's roles. The value of this key must be a comma-separated list of roles. |
-| roles_path | A JSON path expression to the payload that stores the user's roles, for example ```$["foo"]["user"]["roles"]``` where `foo` is the claim name |
-| subject_pattern | A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the JWT as the Search Guard user name. If the pattern does not match, login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional, defaults to no pattern. |
-{: .config-table}
-
-It is recommend to use the bracket-notation in JSON path expressions in order to avoid ambiguity, for example a key could be called `user.id` and thus wouldn't be the same as `$["user"]["id"]`.
-
-Since JSON web tokens are self-contained and the user is authenticated on HTTP level, no additional `authentication_backend` is needed, hence it can be set to `noop`.
-
-### Using Further Attributes from the JWT Claims
-
-Search Guard allows to use any attribute available in the JWT claims to construct [dynamic index patterns](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-patterns-user-name-substitution) and [dynamic queries for document and field level security](../_docs_dls_fls/dlsfls_dls.md#dynamic-queries-variable-subtitution). In order to use these attributes, you need to use the configuration attribute `map_claims_to_user_attrs` to provide a mapping from JWT claim attributes to Search Guard user attributes inside the LDAP configuration.
-
-As the other JWT configuration, the `map_claims_to_user_attrs` attribute needs to be placed in the `config` section of the JWT `http_authenticator`  configuration. As value, you need to provide a map of the form `search_guard_user_attribute: json_path_to_jwt_claim_attribute`. You can use JSON path expressions to specify what part of the claims you want to extract exactly.
-
-This might look like this:
-
+If you have a config variable containing a PEM file with an RSA certificate, you can use a configuration similar to the following:
 
 ```yaml
-jwt_auth_domain:
-  http_enabled: true
-  order: 0
-  http_authenticator:
-    type: jwt
-    challenge: false
-    config:
-      map_claims_to_user_attrs:
-        department: department.number
-        email_address: user.email
+auth_domains:
+- type: jwt
+  jwt.signing.rsa.certificate: "#{var:jwt_rsa_cert}"
+  jwt.signing.rsa.algorithm: RS256
+  user_mapping.roles.from_comma_separated_string: jwt.roles
 ```
 
-This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from the JWT claims. The types from the JSON claim structure are preserved, i.e., arrays remain arrays and objects remain objects, etc.
-
-In the Search Guard role configuration, the attributes can be then used like this:
+If you have a PEM with with an EC certificate, use this:
 
 ```yaml
-my_dls_role:
-  index_permissions:
-  - index_patterns:
-    - "dls_test"
-    dls: '{"terms" : {"filter_attr": ${user.attrs.department|toList|toJson}}}'
-    allowed_actions:
-    - "READ"
+auth_domains:
+- type: jwt
+  jwt.signing.ec.certificate: "#{var:jwt_ec_cert}"
+  jwt.signing.ec.curve: "P-521"
+  user_mapping.roles.from_comma_separated_string: jwt.roles
+```
+
+Note that you must specify a `curve` for EC, which is either `P-256`, `P-384` or `P-521`. 
+
+For options on how to retrieve the keys from external endpoints, see TODO.
+
+### Audience validation
+
+JWT contain an "audience claim" which defines the system which is supposed to use the JWT. You can
+configure Search Guard to validate the audience claim. For this, use the option `jwt.required_audience`. 
+
+### Roles
+
+The examples above assumed that the JWT contains an attribute called `roles` which is a simple, comma-separated string of role names. Thus, the `user_mapping.roles` configuration was set like this:
+
+```
+  user_mapping.roles.from_comma_separated_string: jwt.roles
+```
+
+If your JWT contain the roles in a different attribute, you can change the attribute path specification accordingly. 
+
+It is also possible that your JWT contain the roles as an actual array of strings. Then, use this configuration:
+
+```
+  user_mapping.roles.from: jwt.roles
+```
+
+In some cases, JWT do not contain role information. In that case, you need a user information backend to retrieve role information.
+
+
+## Activate the setup
+
+After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the file to Search Guard:
+
+```
+$ ./sgctl.sh update-config sg_authc.yml
+```
+
+That’s it. You can test the JWT setup with your favorite REST client. If you are using curl, you can try this command:
+
+```
+$ curl -H "Authorization: Bearer ${JWT}" "https://node.example.com:9200/_searchguard/authinfo"
 ```
 
 
-**Note:** Take care that the mapped attributes are of reasonable size. As the attributes need to be internally forwarded over the network for each operation in the OpenSearch/Elasticsearch cluster, attributes carrying a big amount of data may cause a performance penalty.
-
-**Note:** This method of providing attributes supersedes the old way which provided all JWT attributes as Search Guard user attributes with the prefix `attr.jwt`. These attributes are still supported, but are now deprecated.
-
-### Using only certain sections of a JWT subject claim as user name
-
-In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `subject_pattern` option gives you the possibility to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
-
-With `subject_pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a certain part of the subject supplied by the JWT as the Search Guard user name.
-
-For example:
-
-```yaml
-jwt_auth_domain:
-  http_enabled: true
-  order: 0
-  http_authenticator:
-    type: jwt
-    challenge: false
-    config:
-      subject_pattern: "^(.+)@example\.com$"
-```
-
-In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to login with a subject that does not match this pattern (e.g. `foo@bar`), login will fail.
-
-You can use all the pattern features which the Java `Pattern` class supports. See the [official documentation](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) for details. 
-
-Keep in mind that all capturing groups are used for constructing the user name. If you need grouping only because you want to apply a pattern quantifier or operator, you should use non-capturing groups: `(?:...)`. 
-
-Example for using capturing groups and non-capturing groups:
-
-```yaml
-      subject_pattern: "^(.+)@example\.(?:com|org)$"
-```
-
-In this example, the group around `com` and `org` is required to use the alternative operator `|`. But it must be non-capturing, because otherwise it would show up in the user name.
-
-You can however also use several capturing groups if you want to use these groups for the user name:
-
-```yaml
-      subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
-```
-
- 
-
-## Symmetric key algorithms: HMAC 
-
-*Hash-Based Message Authentication Codes* (HMACs) are a group of algorithms that provide a way of signing messages by means of a shared key. The key is shared between the authentication server and Search Guard. It must be configured as **base64-encoded** value of the `signing_key` configuration key:
-
-```yaml
-jwt_auth_domain:
-  ...
-    config:
-      signing_key: "bmRSMW00c2pmNUk4Uk9sVVFmUnhjZEhXUk5Hc0V5MWgyV2p1RFE3Zk1wSTE="
-      ...
-```
 
 
-Please refer to the documentation of your authentication server on how to obtain it.
+## Where to go next
 
-While HMACs are simple to use they do not provide guarantees with regards to the creator of the JWT: Anyone who is in possession of the shared key can generate valid JWTs. In case the shared key is lost, all participating systems need to exchange it.
-
-For security reasons, the shared key must be at least 32 characters
-{: .note .js-note .note-warning}
-
-## Asymmetric key algorithms: RSA and ECDSA 
-
-RSA and ECDSA are asymmetric encryption and digital signature algorithms and use  a public/private key pair to sign and verify tokens. This means that they use a *private key* for signing the token, while Search Guard only needs to know the *public key* to verify it. 
-
-Since you cannot issue new tokens with the public key and because you can make valid assumptions about the creator of the token, RSA and ECDSA are considered more secure than using HMAC.
-
-In order to use RS256, you only need to configure the (non-base-64 encoded) public RSA key as `signing_key` in the JWT configuration like:
-
-```yaml
-jwt_auth_domain:
-  ...
-    config:
-      signing_key: |-
-        -----BEGIN PUBLIC KEY-----
-        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQK...
-        -----END PUBLIC KEY-----
-      ...
-```
-
-Search Guard will detect the used algorithm (RSA/ECDSA) automatically.
-
-Please make sure that you keep the content of your public key on one line. Depending on the YAML parser, breaking it into newlines may lead to unwanted whitespaces in the key, rendering it unreadable.
-{: .note .js-note .note-warning}
-
-
-## Using JWT in HTTP requests: Bearer authentication
-
-The most common way of transmitting a JWT in an HTTP request is to add it as HTTP header field with the Bearer authentication schema.
-
-*Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens. The name “Bearer authentication” can be understood as “give access to the bearer of this token.”*
-
-*The bearer token is a cryptic string, usually generated by the server in response to a login request. The client must send this token in the Authorization header when making requests to protected resources*
-(Source: [https://swagger.io/docs/specification/authentication/bearer-authentication/](https://swagger.io/docs/specification/authentication/bearer-authentication/){:target="_blank"})
-
-```
-Authorization: Bearer <JWT>
-```
-
-The default name of the header is `Authorization`. If required by your authentication server or proxy, you can also use a different HTTP header name by  using the `jwt_header` configuration key.
-
-As with HTTP Basic authentication, you should use HTTPS instead of HTTP when transmitting JWTs in HTTP requests.
-
-## Using JWT in HTTP requests: URL parameter
-
-While the most common way to transmit JWTs in HTTP requests is to use a header field, Search Guard also supports JWTs transmitted as GET parameter. To do so, configure the name of the GET parameter by using the following key:
-
-```yaml
-    config:
-      signing_key: ...
-      jwt_url_parameter: "parameter_name"
-      subject_key: ...
-      roles_key: ...
-```
-
-As with HTTP Basic authentication, you should use HTTPS instead of HTTP when transmitting JWTs in HTTP requests.
-
-## Validated registered claims
-
-The following registered claims are validated automatically:
-
-* "iat" (Issued At) Claim
-* "nbf" (Not Before) Claim
-* "exp" (Expiration Time) Claim
-
-## Supported formats and algorithms
-
-Search Guard supports digitally signed compact JWTs with all standard algorithms:
-
-```
-HS256: HMAC using SHA-256
-HS384: HMAC using SHA-384
-HS512: HMAC using SHA-512
-RS256: RSASSA-PKCS-v1_5 using SHA-256
-RS384: RSASSA-PKCS-v1_5 using SHA-384
-RS512: RSASSA-PKCS-v1_5 using SHA-512
-PS256: RSASSA-PSS using SHA-256 and MGF1 with SHA-256
-PS384: RSASSA-PSS using SHA-384 and MGF1 with SHA-384
-PS512: RSASSA-PSS using SHA-512 and MGF1 with SHA-512
-ES256: ECDSA using P-256 and SHA-256
-ES384: ECDSA using P-384 and SHA-384
-ES512: ECDSA using P-521 and SHA-512
-```
+* Check the  [advanced configuration options for JWT](../_docs_auth_auth/auth_auth_jwt_advanced.md)

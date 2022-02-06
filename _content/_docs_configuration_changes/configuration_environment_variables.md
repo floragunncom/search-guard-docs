@@ -5,7 +5,7 @@ category: configuration
 order: 210
 layout: docs
 edition: community
-description: How to use environment variables to remove sensitive information like passwords from the Search Guard configuration.
+description: How to use config variables to keep sensitive information like passwords separate from the Search Guard configuration.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -15,139 +15,75 @@ description: How to use environment variables to remove sensitive information li
 
 {% include toc.md %}
 
-The Search Guard configuration is stored in a secured OpenSearch/Elasticsearch index. Without an admin certificate, it is not possible to acces it's content. Therefore storing sensitive data in this index, like passwords or other access credentials, is safe. 
+The Search Guard configuration is stored in a secured OpenSearch/Elasticsearch index. Without an admin certificate, it is not possible to access its content. 
 
-After uploading configuration changes with `sgadmin`, the actual configuration files that may contain sensitive information, can be discarded.
+Still, you might want to keep sensitive data separate from the configuration. This has a number of advantages:
 
-There is no need to place any configuration file physically on your nodes.
-{: .note .js-note note-info}
+- It is not possibly to accidentially reveal secrets when reviewing configuration files.
+- You can separately manage and update secrets and configuration files.
 
-If you want to keep the configuration files free from any sensitive data, you can use environment variable substitutions.
+## Using Configuration Variables
 
-## Using environment variables
+Search Guard supports variable substitution for all configuration files. The substitution will take place on the cluster, after the configuration has been loaded.
 
-Search Guard supports environment variable substitution for all configuration files. The substitution will take place either by using sgadmin or directly on your nodes.
+**Note:** Search Guard supports encryption of configuration variables. Naturally, Search Guard also needs to be able to access the decrypted values. This requires the encryption key to be available on each node of the cluster. Thus, this encryption should be considered as a basic protection against accidential exposure. However, users with administration access to a cluster node will be always able to access decrypted values if they really want to.
 
-### Substitution by sgadmin
-
-Before uploading the configuration to Search Guard, `sgadmin` will scan the file content and replace all environment variables with their actual values. This means the variables will have the same values on all nodes.
-
-To activate environment variable substitution, use the `-rev` switch like:
-
-```bash
-./sgadmin.sh \
-    -cd ../sgconfig/ \
-    -rev \
-    -cacert ../../../root-ca.pem \
-    -cert ../../../kirk.pem \
-    -key ../../../kirk.key.pem    
-```
-
-sgadmin replaces environment variables in-memory before uploading the configuration. The actual file contents are not changed.
-{: .note .js-note .note-info}
-
-<p align="center">
-<img src="config_environment_variables.png" style="width: 60%" class="md_image"/>
-</p>
-
-### Substitution on OpenSearch/Elasticsearch nodes
-
-Before loading and activating the configuration, Search Guard will scan the configuration for environment variables and replace them by using the values configured on the machine the OpenSearch/Elasticsearch node is running on. This means the values can differ from node to node. 
-
-## Plain value substitution
-
-To replace a variable with its plain content, use:
+You can define configuration variables using the `sgctl` tool. After [having established a connection profile with your cluster](configuration_sgctl_basics.md), you can do the following:
 
 ```
-${env.<variable name>}
-
-or
-
-${env.<variable name>:-<default value>}
+$ ./sgctl.sh add-var ldap_password secret123 --encrypt 
 ```
 
-### Example
+This will store the value under the key `ldap_password` in encrypted form in a protected index, that cannot be accessed by normal users. By default, the encryption key is the hard-coded value `v9hGHVFiTgj+eAhjJrDgAEy5GUoTBUwXkAKEpfCL6dQ`. Thus, you should consider rather as obfuscation than an encryption. However, if you want, you can also [configure your own encryption key](TODO). TODO
 
-```
-ldap:
-  http_enabled: true
-    ...
-    config:
-      hosts:
-        - ${env.LDAP_HOST:-ldapdev.example.com}
-      bind_dn: ${env.LDAP_BIND_DN}
-      password: ${env.LDAP_BIND_DN_PASSWORD}
-      ...
+You can also use configuration variables to store non-sensitive information. Just omit the `--encrypt` switch and the data won't be stored in encrypted form.
+
+After having defined a variable, you can use it in any Search Guard configuration like this:
+
+```yaml
+auth_domains:
+- type: basic/ldap
+  ldap.idp.password: '#{var:ldap_password}'
 ```
 
-The `host` entry in the file will be replaced with the content of the environment variable `LDAP_HOST`. If this variable is not defined, the default value `ldapdev.example.com` will be used.
+Note: For a configuration property, you can either use a constant value or a configuration variable. However, you cannot use a configuration variable to define a sub-string of a constant. **Thus, something like this does not work:**
 
-The `bind_dn` and `password` entries will be replaced with the content of the environmt variables `LDAP_BIND_DN` and `LDAP_BIND_DN_PASSWORD`.
-
-## Base64 substitution
-
-To replace a variable with an environment that is base64 encoded, use:
-
-```
-${envbase64.<variable name>}
-
-or
-
-${envbase64.<variable name>:-<default value>}
+```yaml
+  ldap.password: 'part_constant#{var:part_variable}'
 ```
 
-Search Guard will *base64-decode* the environment variable before applying it.
-
-### Example
+In order to update configuration variables, use `update-var` command:
 
 ```
-ldap:
-  http_enabled: true
-    ...
-    config:
-      rolebase: '${envbase64.LDAP_ROLEBASE_BASE64}'
-      ...
+$ ./sgctl.sh update-var ldap_password newSecret456 --encrypt 
 ```
 
-If the environment variable `LDAP_ROLEBASE_BASE64` contains a base64 encoded String `b3U9Z3JvdXBzLGRjPWV4YW1wbGUsZGM9Y29t`, Search Guard will decode it and use the decoded value:
+This will automatically reload the configuration. Thus, any change applied this way becomes immediately effective.
+
+### Creating Backups
+
+If you want to create a dump or backup of all configuration variables, you can use the `sgctl get-config` command:
 
 ```
-ldap:
-  http_enabled: true
-    ...
-    config:
-      rolebase: 'ou=groups,dc=example,dc=com'
-      ...
+$ ./sgctl.sh get-config
 ```
 
-## BCrypt passwords
+This includes the configuration variables in the file `sg_config_vars.yml`. Note that encrypted variables are also stored in encrypted form in this file.
 
-To replace a variable with the BCrypt hash of an environment variable, use:
+## Using Content From External Files
 
-```
-${envbc.<variable name>}
+You can also retrieve configuration values from files which are available on your cluster nodes. You can use the following syntax for this purpose:
 
-or
 
-${envbc.<variable name>:-<default value>}
-```
-
-Search Guard will calculate the BCrypt hash of the environment variable before applying it. This is especially useful for the `internal_users.yaml` file.
-
-### Example
-
-```
-my_user:
-  hidden: true
-  reserved: false
-  hash: ${envbc.MY_USER_PASSWORD}
+```yaml
+auth_domains:
+- type: basic/ldap
+  ldap.idp.tls.trusted_cas: '#{file:/path/to/certificate.pem}'
 ```
 
-If the environment variable `MY_USER_PASSWORD` contains a String `mypwd`, Search Guard will calculate the BCrypt hash of `mypwd` before substituting it:
+This will load the data from the specified file and use it as the configuration value.
 
-```
-my_user:
-  hidden: true
-  reserved: false
-  hash: $2y$12$8/gQtVE58Yf8btfTktLSlOrsLD0pHzwYJscqc5kXC3FpV52MWTGxC
-```
+**Note:** Elasticsearch/OpenSearch places some restrictions on the locations of files plugins are allowed to access. TODO: Document these locations.
+
+**Note:** These files must be available on all nodes of your cluster; if the files change after a node has started, the change will not be immediately picked up. Changes will be only picked up when the configuration is reloaded. This is the case when the configuration is changed or if a node is restarted.
+

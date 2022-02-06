@@ -31,6 +31,7 @@ This technical preview brings a number of fundamental improvements and updates t
 Major changes include:
 
 - The first version of Search Guard which brings support for **OpenSearch** and **OpenSearch Dashboards**.
+- Completely new approach for configuring authentication. **The new configuration format is more coherent, more predictable and much more powerful.** Simple setups require very little configuration; very complex setups are possible by straight-forward configuration. If something goes wrong, Search Guard provides extensive error messages and diagnostic information.
 - Completely new approach for logging into Dashboards/Kibana. **Logged in users now get an actual server-side session.** This fixes a number of issues, such as:
   - Issues with cookies exceeding the browser size limit.
   - The "logout" menu item is able to invalidate the session. Thus, session cookies cannot be re-used any more.
@@ -38,7 +39,7 @@ Major changes include:
   - The configuration format is now more streamlined and consistent.  
   - Dashboards/Kibana authentication configuration can be changed without having to restart the node.
 - **New administration tool** `sgctl` which shall replace `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
-
+- Improved way of handling unauthorized indices. You no longer have to worry that your wildcard query breaks because it might pick up an index you don't have permissions for.
 
 
 ## Download

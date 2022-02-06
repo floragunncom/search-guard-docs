@@ -16,46 +16,48 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard supports anonymous authentication. Usually, if no user credentials are provided, Search Guard will decline the request with a security exception. However, if you enable anonymous authentication, unauthenticated requests get assigned to a default user and backend role automatically.
+Search Guard supports anonymous authentication. Usually, if no user credentials are provided, Search Guard will decline the request. However, with anonymous authentication, you can grant basic rights to unauthenticated requests.
 
 For example, you can grant unauthenticated users read-only access to certain indices, while requiring authentication for all other requests.
 
-## Enabling anonymous authentication
+You can choose to enable anonymous authentication only for specific source IPs.
 
-To use anonymous authentication, enable it in sg_config.yml like:
+## Search Guard setup
+
+To use anonymous authentication, edit `sg_authc.yml` and append an authentication domain of type `anonymous` to the end of the list of authentication domains:
 
 ```yaml
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    ...
-    http:
-      anonymous_auth_enabled: true
+auth_domains:
+- type: basic/internal_users_db
+- type: anonymous
+  user_mapping.user_name.static: anon
+  user_mapping.roles.static: anon_role
 ```
 
-| Name | Description |
-|---|---|
-| anonymous\_auth\_enabled | Whether to enable anonymous authentication. Boolean. Default: false|
-{: .config-table}
+You use the options `user_mapping.user_name.static` and `user_mapping.roles.static` to define which user name and which roles shall be assigned to the anonymous user.
 
-## User and role mapping
+You can also use the client IP address as the name of the anonymous user:
 
-Anonymous users always have the username `sg_anonymous` and one backen role named `sg_anonymous_backendrole`. 
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+- type: anonymous
+  user_mapping.user_name.from: request.originating_ip_address
+  user_mapping.roles.static: anon_role
+```
 
-You can use the role mapping to assign one or more Search Guard role to this user:
+Then, use `sg_roles_mapping.yml` and `sg_roles.yml` to assign the desired privileges to the `anon_role`: 
 
-sg\_roles\_mapping.yml:
+
+**sg\_roles\_mapping.yml:**
 
 ```
 sg_anonymous:
   backend_roles:
-    - sg_anonymous_backendrole
+    - anon_role
 ```
 
-sg\_roles.yml:
+**sg\_roles.yml:**
 
 ```
 sg_anonymous:
@@ -66,3 +68,44 @@ sg_anonymous:
       '*':
         - SGS_READ
 ```
+
+### Client IP specific anonymous users
+
+If you want to activate anonymous authentication only for specific source IPs, you can use the standard `accept.ips` config option of authentication domains:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+- type: anonymous
+  accept.ips: "10.12.123.0/24"
+  user_mapping.user_name.from: request.originating_ip_address
+  user_mapping.roles.static: anon_role
+```
+
+Using this method, you can even define different privilege levels for anonymous users, based on their origin IP. Just define several `anonymous` auth domains for different CIDR subnets:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+- type: anonymous
+  accept.ips: "10.12.123.0/24"
+  user_mapping.user_name.from: request.originating_ip_address
+  user_mapping.roles.static: anon_role_low_rights
+- type: anonymous
+  accept.ips: "172.10.1.0/24"
+  user_mapping.user_name.from: request.originating_ip_address
+  user_mapping.roles.static: anon_role_evelated_rights
+```
+
+
+## Activate the setup
+
+After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the file to Search Guard:
+
+```
+$ ./sgctl.sh update-config sg_authc.yml
+```
+
+That’s it. If you navigate in a browser to your OpenSearch/Elasticsearch instance, you should get a basic authentication popup asking for your username and password. If you then click on "Cancel", you should be logged in as anonymous user.
+
+

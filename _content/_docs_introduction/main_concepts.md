@@ -56,7 +56,7 @@ A credential provider can either be **challenging** or **non-challenging**. A ch
 
 A non-challenging authenticator always assumes that the credentials are present in the request, and will not ask the user for it in case they are missing.
 
-## Authentication (authc)
+## Authentication AKA Authc
 
 Search Guard then **authenticates** the credentials **against a backend authentication module**, for example LDAP, Active Directory, Kerberos or JWT.
 
@@ -64,15 +64,11 @@ Search Guard supports chaining multiple authenticators. If more than one authent
 
 A common use case is to combine the Search Guard internal user database with LDAP / Active Directory.
 
-### External authentication / SSO
+Additionally, Search Guard supports so-called user information backends which can enrich the data of an already authenticated user by additional roles or attributes. Thus, you can get authentication from JWT. This JWT might also already carry role information. Using an LDAP user information backend, you can retrieve additional roles for the authenticated user.
 
-Search Guard also supports external authentication and Single Sign On (SSO) solutions. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. 
 
-## Authorisation (authz)
+Search Guard also supports **external authentication and Single Sign On (SSO) solutions**. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. 
 
-After an authenticator has **verified** a user's **credentials**, an (optional) authorisation module can collect additional roles for the authenticated user from a configured backend. In most cases, this will be LDAP / Active Directory.
-
-These roles are called **backend roles**.
 
 ## Users and roles
 
@@ -116,43 +112,6 @@ SGS_SUGGEST:
 Action groups can be used in the role configuration instead of or in combination with fine-grained permissions like `indices:data/read/search*`.
 
 Search Guard ships with a built-in set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the built-in action groups**.
-
-## Block User / IP address/net mask
-
-Search Guard allows to block users/IP addresses. See the following snippet for three examples of blocks, block by user name and by IP address/net masks.
-Please note that it is possible to block IP (v4/v6) addresses and users at runtime, either via the `sgadmin` tool or via the REST API. 
-
-```yaml
-demo_user_blocked:
-  type: "name"
-  value: ["John Doe"] # you can also use regular expressions and wildcards, e.g. '* Doe'
-  verdict: "disallow"
-
-demo_ip_blocked:
-  type: "ip"
-  value: ["8.8.8.8"]
-  verdict: "disallow"
-
-demo_ip_v6_blocked:
-  type: "ip"
-  value: ["0:0:0:0:0:ffff:808:808"]
-  verdict: "disallow"
-
-demo_netmask_allow:
-  type: "net_mask"
-  value: ["127.0.0.0/8"]
-  verdict: "allow"
-
-demo_netmask_v6_allow:
-  type: "net_mask"
-  value: ["1::/64"]
-  verdict: "allow"
-```
-
-### Allow vs Block
-
-You can think of `allow` as a white list while `disallow` serves as a black list, i.e. with `allow` only client IPs which are either in the specified net or have an expected IP are allowed to perform requests. All other IPs are unauthorized.
-`disallow` enables you to selectively block IPs (or IPs from certain networks).
 
 ## The Search Guard index
 

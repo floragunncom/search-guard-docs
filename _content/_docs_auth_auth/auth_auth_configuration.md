@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard comes with pluggable authentication and authorization modules. Depending on your use case and infrastructure, you can use one or multiple authentication and authorization modules like:
+Search Guard comes with pluggable authentication and user information modules. Depending on your use case and infrastructure, you can use one or multiple modules like:
 
 * [Search Guard Internal user database](../_docs_roles_permissions/configuration_internalusers.md)
 * [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md)
@@ -29,181 +29,234 @@ Search Guard comes with pluggable authentication and authorization modules. Depe
 
 **Note:** OIDC and SAML based authentication is only available for Dashboards/Kibana. See the documentation on [Dashboards/Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
 
-## sg_config.yml
+## Introduction to `sg_authc.yml`
 
-The main configuration file for authentication and authorization modules  is `sg_config.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user roles are fetched from backend systems (optional).
+The main configuration file for authentication is `sg_authc.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user information is fetched from backend systems (optional).
 
-It has three main parts:
+The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to OpenSearch/Elasticsearch and for password-based authentication in Dashboards/Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Dashboards/Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
 
-```yaml
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    http:
-      ...
-    authc:
-      ...
-    authz:
-      ...
-```
-
-## HTTP
-
-The `http` section has the following format:
+A minimal `sg_authc.yml` file may look like this:
 
 ```yaml
-anonymous_auth_enabled: <true|false>
-xff: # non mandatory section
-  enabled: <true|false>
-  internalProxies: <string> # Regex pattern
-  remoteIpHeader: <string> # Name of the header in which to look. Typically: x-forwarded-for
-  proxiesHeader: <string>
-  trustedProxies: <string> # Regex pattern
+auth_domains:
+- type: basic/internal_users_db
 ```
 
-## Authentication
+This way, you configure Search Guard to expect credentials by Basic HTTP authentication. This means, you need to supply a username and password to authenticate. The credentials are checked by Search Guard using its [internal users database](../_docs_roles_permissions/configuration_internalusers.md). If the password is correct, Search Guard allows the user to access OpenSearch/Elasticsearch. The user will have the roles that are configured in the internal users database.
 
-The `authc` section has the following format:
+Thus, the `type` attribute defines a two-dimensional value: The part in front of the slash - `basic` in the example - identifies the HTTP authentication frontend. It is responsible for retrieving credentials from the request. The part after the slash is the authentication backend. It is responsible for validating the extracted credentials using a backend system. 
+
+**Note:** The authentication backend is optional. In some cases - like signature-based credentials - the authentication frontend is sufficient to securly authenticate a user. Then, you can just omit the second part of the `type` attribute.
+
+A more evolved `sg_authc.yml` file may look like this:
 
 ```yaml
-<name>:
-  http_enabled: <true|false>
-  transport_enabled: <true|false>
-  enabled_only_for_hosts: <array of netmasks>
-  order: <integer>
-    http_authenticator:
-      ...
-    authentication_backend:
-      ...
+auth_domains:
+- type: basic/internal_users_db
+- type: basic/ldap
+  ldap.idp.hosts: ldap.example.com
+  ldap.idp.bind_dn: "cn=admin,dc=example,dc=com"
+  ldap.idp.password: secret
+- type: jwt
+  jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
 ```
 
-An entry in the `authc` section is called an `authentication domain`. It specifies where to get the user credentials from, and against which backend they should be authenticated.
+This configuration contains three *authentication domains*. When Search Guard receives a request, it goes through the list of authentication domains - from top to the bottom and checks for each authentication domain if it can authenticate the request. When a domain successfully authenticates a request, this process is ended. The request passes without checking the preceding authentication domains.
 
-You can use more than one authentication domain. Each authentication domain has a freely selectable name (e.g. `basic_auth_internal`), `enabled` flags and an `order`. This makes it possible to chain authentication domains together.  Search Guard will execute them in the order provided. If the user could be authenticated by a domain, the rest of the chain is skipped, so "first one wins".
+We already know the first authentication domain of type `basic/internal_users_db`. The second one, `basic/ldap` also uses Basic HTTP authentication to retrieve the supplied user name and password. However, it connects to an external LDAP server to check the credentials. Here, you can see some more configuration properties that specify how to connect to the external LDAP server. See the [LDAP documentation](../_docs_auth_auth/auth_auth_ldap.md) for more details on this.
 
-You can enable or disable an authentication domain for HTTP/REST and transport independently. This is for example useful if you want to use different authentication methods for `TransportClients`.
+The third authentication domain has type `jwt`. This type only consists of one part, the authentication frontend. The second part, the authentication backend, is not specified here. This means that the authentication frontend is sufficient to authenticate the request. This is because cryptographic signatures are used to verify the authenticity of a user with JWT. When Search Guard is initialized, it loads the public keys for verification as JWKS file from the URL specified using the `jwt.jwks_endpoint.url` property. However, the necessary keys can be also specified directly inside the configuration. See the [JWT documentation](../_docs_auth_auth/auth_auth_jwt.md) for more on this.
 
+### Debugging the authc configuration
 
+If something regarding authentication does not work as expected, you might want to get additional debugging information from Search Guard. Search Guard offers a special authc debugging mode for this.
 
-### HTTP Authenticator
+**Note:** This mode might reveal sensitive data. Only use this mode on test clusters. Do not forget to switch the debug mode off before going into production.
 
-The `http_authenticator` specifies which authentication method you want to use on the HTTP layer.
-
-The syntax for defining an authenticator on the HTTP layer is:
+For this, just add `debug: true` to the top level of `sg_authc.yml`:
 
 ```yaml
-http_authenticator:
-  type: <type>
-  challenge: <true|false>
-  config:
-    ...
+debug: true
+auth_domains:
+- type: basic/internal_users_db
+- type: jwt
+  jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
 ```
 
-Allowed values for `type` are:
+You can also use the `sgctl` command to set the flag directly on the cluster wihout having edit files:
 
-* basic
-  * HTTP basic authentication. No additional configuration is needed. See [HTTP Basic Authentication](../_docs_auth_auth/auth_auth_httpbasic.md) for further details.
-* kerberos
-  * Kerberos authentication. Additional, [Kerberos-specific configuration](../_docs_auth_auth/auth_auth_kerberos.md) is needed.
-* jwt
-  * JSON web token authentication. Additional, [JWT-specific configuration](../_docs_auth_auth/auth_auth_jwt.md) is needed.
-* proxy
-  * Use an external, proxy based authentication. Additional, proxy-specific configuration is needed, and the "X-forwarded-for" module has to be enabled as well. See [Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md) for further details.
-* clientcert
-  * Authentication via a client TLS certificate. This certificate must be trusted by one of the Root CAs in the truststore of your nodes.
+```
+$ ./sgctl.sh set authc debug --true
+```
 
-### Authentication Backend
+To disable it, use this command:
 
-After the HTTP authenticator was executed, you need to specify against which backend system you want to authenticate the user. This is specified in the `authentication_backend` section and has the following format:
+```
+$ ./sgctl.sh set authc debug --false
+```
+
+If the debug mode is active, open the URL `/_searchguard/auth/debug` - either with your browser, curl or your favorite REST client tool. Provide the credentials you want to test. The endpoints returns a JSON document detailing all intermediate steps of the authentication process and their status.
+
+
+
+### Mapping user information
+
+Both authentication frontends and authentication backends can deliver user information in a big variety of different data structures. Most frontends and backends have suitable defaults for retrieving user names. However, for retrieving roles and user attributes, you often need to specify how you want to retrieve these.
+
+This is where the user mapping comes into play. It allows you to map the various information from authentication frontends and backends to the user name, to roles, and to user attributes.
+
+Let's have a look at an example:
 
 ```yaml
-authentication_backend:
-  type: <type>
-  config:
-    ...
+auth_domains:
+- type: jwt
+  jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
+  user_mapping.user_name.from: jwt.preferred_user_name
+  user_mapping.roles.from: jwt.roles
+  user_mapping.attributes.from:
+    dept_no: jwt.department.number
+    level: jwt.department.access_level
 ```
 
-Possible vales for `type` are:
+The JWT authentication frontend retrieves the user name by default from the `sub` attribute inside the JWT. However, sometimes, this value might be a not really human-readable value like a UUID. Then a different attribute of the JWT might contain a more suitable user name. By specifying `user_mapping.user_name.from: jwt.preferred_user_name` we say that the user name should be taken from the `preferred_user_name` attribute of the JWT. The expression that can be used as value for this setting is a JSON path, which allows you great flexibility in traversing object graphs for values. In front of `preferred_user_name` we need to specify `jwt` to indicate that the value shall be taken from the JWT used for authentication. All authentication frontends and backends can make their own information objects available for querying. See the respective documentation of the frontends and backends for the available objects. Also, there are a couple of global objects which provide request metadata such as originating IP addresses, etc.
 
-* noop
-  * This means that no further authentication against any backend system is performed. Use `noop` if the HTTP authenticator has already authenticated the user completely, as in the case of JWT, Kerberos, Proxy or Client certificate authentication.
-* internal
-  * use the users and roles defined in `sg_internal_users` for authentication.
-* ldap
-  * authenticate users against an LDAP server. This requires [additional, LDAP specific](../_docs_auth_auth/auth_auth_ldap.md) configuration settings.
+Moving on to `user_mapping.roles.from`: This specifies to retrieve roles from an attribute called `roles` inside the JWT. In contrast to the user name, roles are usually multi-valued. Thus, this expects the `roles` attribute in the JWT to be an array of role names which will be then mapped to the user's backend roles.  
 
-## Authorization
+Often, it might be the case that roles are specified only as a comma-separated string. In this case, you can write instead `user_mapping.roles.from_comma_separated_value: jwt.roles`.
 
-After the user has been authenticated, Search Guard can optionally collect additional user roles from backend systems. The authorization configuration has the following format:
+Finally, `user_mapping.attributes.from` is the most complex setting. In Search Guard, user attributes are used for dynamically defining the data a user has access to - based on index names or document attribute values. A Search Guard user can have an arbitrary number of named attributes. Each attribute can be a string, number, boolean or a complex type such as an array or an object with further attributes. However, it is not desirable to map all possible attributes coming from the request to user attributes. This is both for security and for performance reasons. Thus, the user attribute mapping should just map the attributes that are really necessary. 
+
+In the example, the attribute `department.number` is retrieved from the JWT and put into the Search Guard user with the attribute name `dept_no`. Additionally, the attribute `level` is retrieved from `jwt.department.access_level`. 
+
+You can also define constant values to be used for user name, roles or attributes. For this, use the properties `user_mapping.user_name.static`, `user_mapping.roles.static` and `user_mapping.attributes.static`. A case, where this is very useful, is anonymous authentication. See the following example configuration for this:
 
 ```yaml
-authz:
-  <name>:
-    http_enabled: <true|false>
-    transport_enabled: <true|false>
-    authorization_backend:
-      type: <type>
-      config:
-        ...
+auth_domains:
+- type: anonymous
+  user_mapping.user_name.static: anon
+  user_mapping.roles.static: anon_role
+  user_mapping.attributes.static:
+    dept_no: 0
+    level: 0
 ```
 
-You can also define multiple entries in this section the same way as you can for authentication entries. The execution order is not relevant here, hence there is no `order` field.
-
-Possible vales for `type` are:
-
-* noop
-  * Used for skipping this step altogether
-* ldap
-  * Fetch additional roles from an LDAP server. This requires [additional, LDAP specific](../_docs_auth_auth/auth_auth_ldap.md) configuration settings.
 
 
-## Examples
+### Restricting authentication domains
 
-The [sg_config.yml](https://git.floragunn.com/search-guard/search-guard/blob/master/sgconfig/sg_config.yml){:target="_blank"} that ships with Search Guard contains configuration examples for all support modules. Use these examples as a starting point and customize them to your needs.
-
-## Advanced Configuration
-
-
-### Exclude certain users from authentication/authorization
-
-It is possible to exclude users from authentication and/or authorization by specifying a 'skip_users' section inside the domain (root-level) configuration. **Wildcards** and **regular expressions** are supported.
-
-This could be useful if fetching roles, let's say from a LDAP server, for a specific user wouldn't make sense since we know in advance that a user might not have any roles defined, e.g. Dashboards/Kibana user, thus saving
-unnecessary network round trips and reducing request latency. 
+You can selectively restrict each authentication domains to specific origin IPs or to specific users. This may be useful if you want to offer some authentication domains only for specific systems in your network. This may look like this:
 
 ```yaml
-authc:
-  my_auth_domain_using_skip_users:
-    type: ...
-    http_enabled: true
-    skip_users:
-    - kibanaserver
-    - 'cn=Michael Jackson,ou*people,o=TEST'
-    - '/\S*/'
+auth_domains:
+- type: jwt
+  jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
+- type: basic/internal_users_db
+  accept.ips: '10.10.22.16/30'
+  accept.users: 'kibanaserver' 
 ```
 
-### Limiting authentication domains to certain sub-nets only
+In the example above, JWT authentication is available for all systems. The password-based authentication, however, is only available for certain IPs identified by a CIDR expression. Furthermore, only the user with the name `kibanaserver` is allowed to be authenticated on this domain. For the `accept.users` property, you can also use wildcards like `accept.users: 'kibana*'`. For both properties, you can also specify multiple values as a list.
 
-Using the `enabled_only_for_ips` attribute you are able to restrict usage of the auth domain only to certain IPs or subnets.  The option expects a list which can contain any of these values:
-
-* Single IPv4 addresses, e.g. `192.168.123.123`
-* Single IPv6 addresses, e.g. `2001:db8::8a2e:370:7334`
-* IPv4 subnets in CIDR notation, e.g. `192.0.2.0/24`
-* IPv6 subnets in CIDR notation, e.g. `2001:db8::/32`
-
-This can be for example useful if the only reason to enable HTTP basic authentication is your Dashboards/Kibana installation. Then, you can limit the auth domain to the IPs used by Dashboards/Kibana.
-
-Example:
+On the other hand, you can use the `skip.ips` and `skip.users` properties to skip an authentication domain for certain IPs or users:
 
 ```yaml
-authc:
-  my_auth_domain_using_only_for_internal_hosts:
-    type: ...
-    http_enabled: true
-    enabled_only_for_ips:
-    - '192.0.2.0/24'
+auth_domains:
+- type: basic/ldap
+  ldap.idp.hosts: ldap.example.com
+  ldap.idp.bind_dn: "cn=admin,dc=example,dc=com"
+  ldap.idp.password: secret
+  skip.users: 'kibanaserver'   
+- type: basic/internal_users_db
+  accept.users: 'kibanaserver' 
 ```
+
+You can also combine `skip` and `accept`. When doing so, keep in mind that `accept` is evaluated first; `skip` is evaluated afterwards. This means that `skip` can only further restrict the `accept` settings. However, `accept` *cannot* be used to allow access which would be otherwise denied by a `skip` rule. 
+
+
+#### IP addresses of users behind proxies
+
+If users are required to use proxies to access OpenSearch/Elasticsearch, their actual IP address might be obscured by the proxy. However, proxies can report the actual IP address of the user in special HTTP headers, such as the `X-Forwarded-For` header. Search Guard allows you to evaluate these IP addresses as well. You just need to specify the IP addresses of trusted proxies in the configuration. This is one in a special section of `sg_authc.yml`: 
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+  accept.originating_ips: '172.16.10.0/24'
+network:
+  trusted_proxies: '10.111.111.0/30' 
+```
+
+The originating IP which is checked in `accept.originating_ips` is determined the following way:
+
+- If the IP address of the directly connecting host does not match the `trusted_proxies` expression, that IP is also the originating IP.
+- If the IP address is in a trusted proxy network, Search Guard will look at the `X-Forwarded-For` header.  Search Guard will search the IPs specified in the header from right to left for the first untrusted IP address. This will be the originating IP address.  If you want to use a different header name, you can configure the name with the property `http.remote_ip_header` in the `network` section.s
+
+
+
+### Additional user information backends
+
+For each authentication domain, you can configure additional user information backends. These user information backends allow you to enrich the user information by additional roles and attributes. The different to normal authentication backends is that user information backends do not participate in authentication:  If a user information backend has no records on a particular user, the user is able to login anyway.
+
+**Note:** Users of earlier versions of Search Guard know "Authorization Backends" as a similar concept. User information backends are replacing these now. Major differences to authorization backends include: While authorization backends were configured globally, user information backends do always belong to one auth domain. This allows for a more fine-grained configuration. Additionally, user information backends support the retrieval of user attributes.
+
+See the following example:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_dbs
+  additional_user_information:
+  - type: ldap
+    ldap.idp.hosts: ldap.example.com
+    ldap.idp.bind_dn: 'cn=admin,dc=example,dc=com'
+    ldap.idp.password: secret
+    ldap.group_search.base_dn: 'ou=groups,dc=example,dc=com'
+    ldap.group_search.recursive.enabled: true
+```
+
+Here, we use LDAP to retrieve additional roles for users which have authenticated using the internal users database. By default, the roles are represented by the distinguished name of the respective LDAP entries found during the role search. If you want to use other attributes for defining the role names or if you also want to retrieve user attributes, you must use the `user_mapping` configuration.
+
+The LDAP group search produces an array of LDAP entries, which are made available for user mapping as `ldap_group_entries`; each entry contains has a name (`dn`) and may have further attributes.  Keep in mind that in LDAP attributes are always multi-valued. Thus, the data structure available for user mapping might look similar to this object tree (rendered in YAML):
+
+```yaml
+ldap_user_entry:
+   dn: "cn=Karlotta,ou=people,o=TEST"
+   cn: ["Karlotta"]
+   departmentNumber: [1, 2]
+ldap_group_entries:
+-  dn: "cn=group1,ou=groups,o=TEST"
+   cn: ["group1"]
+   businessCategory: ["c"]
+-  dn: "cn=group2,ou=groups,o=TEST"
+   cn: ["group2"]
+   businessCategory: ["d", "e"]
+-  dn: "cn=group3,ou=groups,o=TEST"
+   cn: ["group3"]
+   businessCategory: ["f"]
+```
+
+If you want to use the `cn` attributes of the group entries as role names and want to map the `businessCategory` attributes to user attributes, you can use this user mapping:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_dbs
+  additional_user_information:
+  - type: ldap
+    [...]
+    user_mapping.groups.from: ldap_group_entries[*].cn
+    user_mapping.attributes.from:
+       biz_cat: ldap_group_entries[*].businessCategory
+```
+   
+Remember that the expressions used for retrieving the role and attribute values are JSON path expressions. By writing `[*]` after `ldap_group_entries` you specify, that `ldap_group_entries` is an array and that you want to search all elements of the array. From all the elements, you are then getting the union of the values of the `cn`, resp. `businessCategory` attributes.
+
+
+### Advanced topics
+
+There are a number of additional advanced options in `sg_authc.yml`. These allow you to customize the following things:
+
+- Global restrictions for IP addresses that are allowed to connect to the OpenSearch/Elasticsearch REST interface
+- Authentication cache settings
+- Authentication failure handling
+
+TODO: Document these
+
+
