@@ -16,11 +16,18 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Search Guard Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Internal Users Database.
 
 Search Guard ships with an internal user database. You can use this user database if you do not have any external authentication system like LDAP or Active Directory in place. Users, their hashed passwords and roles are stored in the internal Search Guard configuration index on your cluster.
 
-Internal users are configured in `sg_internal_users.yml`. You can find a template in `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig/sg_internal_users.yml`
+You can use `sgctl` or the [Search Guard confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for adding users to the internal users database. You can also directly edit the file `sg_internal_users.yml` and upload it as a whole with `sgctl`. 
+
+**Note:** You should prefer to use `sgctl` or the [Search Guard confguration GUI](../_docs_configuration_changes/configuration_config_gui.md). If you choose to directly edit `sg_internal_users.yml`, keep in mind that you might overwrite changes if you work on an old copy. Thus, before modifying `sg_internal_users.yml`, be sure to get an up-to-date version of the file from the cluster. 
+
+If you are using the internal users database for the first time, make sure that it is configured in `sg_authc.yml`. See the [authentication docs](../_docs_auth_auth/auth_auth_httpbasic.md) for details on this. 
+
+## Structure
+
+You can find a template in `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig/sg_internal_users.yml`
 
 Syntax:
  
@@ -43,7 +50,7 @@ _sg_meta:
   description: <String>
 ```
 
-## Description
+### Description
 
 | Name | Description |
 |---|---|
@@ -55,7 +62,7 @@ _sg_meta:
 | description | A description of the user. Optional.|
 {: .config-table}
 
-## Example
+### Example
 
 ```yaml
 _sg_meta:
@@ -80,73 +87,58 @@ finance_employee:
 
 ```
 
+## Using `sgctl` 
 
-## Generating hashed passwords
+You can use `sgctl` to modify the internal users database if your cluster is already running and you have connected `sgctl` to the cluster. See the [general `sgctl` docs](../_docs_configuration_changes/configuration_sgctl.md) for more on this.
 
-The password is a BCrypt hash of the cleartext password. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
+### Adding users
+
+In order to add a new user to the internal users database, you can use the following command:
+
+```
+$ ./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 --password
+```
+This will prompt you to enter a password. Then, a user with the name `user_name` and the Search Guard roles `sg_role1` and `sg_role2` is created. Instead of `--sg-roles`, you can also use the shortcut `-r`. 
+
+You can also specify a comma separated list of backend roles using the option `--backend-roles`. 
+
+You can define attributes using the option `--attributes` (or `-a`: 
+
+```
+$ ./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 -a a=1,b.c.d=3,e=foo --password
+```
+
+### Editing users 
+
+To edit existing users, use the `update-user` command. The options are similar to the `add-user` command:
+
+```
+$ ./sgctl.sh update-user user_name --sg-roles sg_role3 
+```
+
+This **adds** the role `sg_role3` to the existing Search Guard roles. Likewise, the option `--backend-roles` *adds* new roles to the existing backend roles. To remove existing roles, use the options `--remove-sg-roles` and `--remove-backend-roles`. 
+
+To change the password of a user, use this:
+
+```
+$ ./sgctl.sh update-user user_name --password 
+```
+
+
+### Deleting users
+
+To delete users, use the `delete-user` command:
+
+```
+$ ./sgctl.sh delete-user user_name 
+```
+ 
+## Directly modifying `sg_internal_users.yml` 
+
+Directly modifying the `sg_internal_users.yml` file can be useful fFor initial configuration or when generating the configuration using scripts.
+
+In order to set a password for users, you need to calculate its BCrypt hash. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
 
 ``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hash.sh -p mycleartextpassword``
 
-You can also use any offline or [online tool](https://bcrypt-generator.com/) that is able to produce BCrypt hashes, like the 
-
-## Activating the internal user database
-
-In order to use the internal user database for authentication, set the `authentication_backend` in `sg_config.yml` to `internal`. For example, if you want to use HTTP Basic Authentication and the internal user database, the configuration looks like:
-
-```yaml
-basic_internal_auth_domain:
-  http_enabled: true
-  order: 1
-  http_authenticator:
-    type: basic
-    challenge: true
-  authentication_backend:
-    type: internal
-```
-
-## Using attributes from the internal user database
-{: #user-attributes }
-
-If you want to use attributes from the internal user database for the new-style [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries, you need to provide a mapping in the `authentication_backend` entry in `sg_config.yml`. This might look like this:
-
-```yaml
-basic_internal_auth_domain:
-  http_enabled: true
-  order: 1
-  http_authenticator:
-    type: basic
-    challenge: true
-  authentication_backend:
-    type: internal
-    config:
-      map_db_attrs_to_user_attrs:
-        department: departmentName      
-```
-
-This makes the value of the attribute `departmentName` from the internal user database available under the name `department`. Besides using a plain attribute name, you can also use JSON path expressions to extract values from complex attribute values.
-
-For details, refer to:
-
-- [Index name variable substitution](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes)
-- [DLS query variable substitution](../_docs_dls_fls/dlsfls_dls.md)
-
-
-## Authorization
-
-You can also use the internal user database for authorization only. This is useful when your primary way of authentication does not provide any role information.
-
-For example, you can use LDAP or JWT for authentication, and the internal user database for authorization/assigning roles.
-
-Search Guard will use the name of the authenticated user to look up the corresponding entry in the internal user database. If found, the configures roles will be assigned as backend roles to this user.
-
-If you use the internal user database for authorization only, there is no need to set a password hash. The entries are solely used for assigning backend roles.
-
-Configuration:
-
-```yaml
-authz:
-  internal_authorization:
-    http_enabled: true
-    authorization_backend:
-      type: internal
-```      
+You can also use any offline or [online tool](https://bcrypt-generator.com/) that is able to produce BCrypt hashes.

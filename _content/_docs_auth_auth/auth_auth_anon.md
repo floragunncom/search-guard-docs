@@ -65,8 +65,7 @@ sg_anonymous:
     - SGS_CLUSTER_COMPOSITE_OPS_RO
   indices:
     'public':
-      '*':
-        - SGS_READ
+      - SGS_READ
 ```
 
 ### Client IP specific anonymous users

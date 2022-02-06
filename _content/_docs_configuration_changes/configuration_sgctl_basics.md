@@ -17,6 +17,8 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
+
+
 The Search Guard configuration is stored in an index on the OpenSearch/Elasticsearch cluster. This allows for configuration hot-reloading, and eliminates the need to place configuration files on any node.
 
 Configuration settings are uploaded to the Search Guard configuration index using the `sgctl` tool. When installing Search Guard for the first time, you have to run `sgctl` at least once to initialize the configuration index.

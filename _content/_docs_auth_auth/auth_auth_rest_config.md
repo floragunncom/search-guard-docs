@@ -23,6 +23,8 @@ The main configuration file for authentication is `sg_authc.yml`. It defines how
 
 The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to OpenSearch/Elasticsearch and for password-based authentication in Dashboards/Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Dashboards/Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
 
+## Basics
+
 A minimal `sg_authc.yml` file may look like this:
 
 ```yaml
@@ -49,7 +51,7 @@ auth_domains:
   jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
 ```
 
-This configuration contains three *authentication domains*. When Search Guard receives a request, it goes through the list of authentication domains - from top to the bottom and checks for each authentication domain if it can authenticate the request. When a domain successfully authenticates a request, this process is ended. The request passes without checking the preceding authentication domains.
+This configuration contains three *authentication domains*. When Search Guard receives a request, it goes through the list of authentication domains - from top to the bottom - and checks for each authentication domain if it can authenticate the request. When a domain successfully authenticates a request, this process ends. The request passes without checking the succeeding authentication domains.
 
 We already know the first authentication domain of type `basic/internal_users_db`. The second one, `basic/ldap` also uses Basic HTTP authentication to retrieve the supplied user name and password. However, it connects to an external LDAP server to check the credentials. Here, you can see some more configuration properties that specify how to connect to the external LDAP server. See the [LDAP documentation](../_docs_auth_auth/auth_auth_ldap.md) for more details on this.
 

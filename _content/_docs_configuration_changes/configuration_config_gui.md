@@ -168,14 +168,6 @@ The "Tenants" tab on the edit roles screen allows you to add and remove tenants 
 </p>
 
 
-## Authentication and Authorization settings
-
-By clicking on the Authentication & Authorization navigation entry, you can display the currently configured authentication and authorization domains. Disabled domains are greyed out. By clicking on the arrow symbol besided any domain, you can display its configuration.
-
-<p align="center">
-<img src="kibana_gui_auth.png" style="width: 70%" class="md_image"/>
-</p>
-
 ## License & System Status
 
 The License & System Status displays the deployed Search Guard license, and also information about the loaded Search Guard modules and its version number.
