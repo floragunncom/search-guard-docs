@@ -1,5 +1,5 @@
 ---
-title: Proxy Authentication
+title: Proxy authentication
 permalink: proxy-authentication-overview
 category: authauth
 subcategory: proxy

@@ -1,5 +1,5 @@
 ---
-title: Password-based Authentication
+title: Password-based authentication
 permalink: http-basic-authorization
 category: authauth
 order: 200
