@@ -56,6 +56,9 @@ _sg_meta:
   hosts:
     - <hostname>
     - ...
+  ips:
+    - <CIDR>
+    - ...  
 ```
 
 Example:
@@ -71,9 +74,13 @@ sg_read_write:
     - 'cn=ldaprole,ou=groups,dc=example,dc=com'
   hosts:
     - "*.devops.company.com"
+  ips:
+    - "10.12.13.0/24"
 ```
 
 A request can be assigned to one or more Search Guard roles. If a request is mapped to more than one role, the permissions of these roles are combined.
+
+**Note:** If you use the `host` option, Search Guard might have to perform a reverse DNS lookup to resolve the host name.
 
 ## Use wildcards and regular expressions
 
@@ -83,22 +90,3 @@ For users, backendroles, and hosts you can also use wildcards and regular expres
 * A question mark (`?`) will match any single character (but NOT empty character)
 * Regular expressions have to be enclosed in `/`: `'/<java regex>/'`
   * `'/\S*/'` will match any non whitespace characters
-
-## Advanced: Hostname lookup
-
-Search Guard provides three different approaches to resolve the actual hostname against the configured hosts mapping in `sg_roles_mapping`. This can be configured in `sg_config.yml`:
-
-```yaml
-searchguard
-  dynamic
-    hosts_resolver_mode: <mode>
-```
-
-Where mode is one of:
-
-| Name | Description |
-|---|---|
-| ip-only | Match IP addresses only. Default. |
-| ip-hostname | Match IP addresses and hostnames |
-| ip-hostname-lookup | Match IP addresses and hostnames, and perform a reverse hostname lookup |
-{: .config-table}
