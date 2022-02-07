@@ -9,7 +9,7 @@ searchguard:
 
 index: true
 
-baseurl: /tech-preview
+baseurl: /tech-preview3
 
 algolia:
-  index_name: 'tech-preview'
+  index_name: 'tech-preview3'
