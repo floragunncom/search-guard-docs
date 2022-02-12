@@ -1,5 +1,5 @@
 ---
-title: Upgrading Search Guard
+title: Updating Search Guard
 permalink: upgrading
 category: installation
 order: 800
@@ -10,12 +10,12 @@ description: How to upgrade Search Guard and OpenSearch/Elasticsearch by rolling
 Copyright 2020 floragunn GmbH
 -->
 
-# Upgrading Search Guard
+# Updating Search Guard
 {: .no_toc}
 
 {% include toc.md %}
 
-If you're looking for specific upgrade instructions from 6.x to 7.x, please follow the [steps described here](../_docs_installation/installation_upgrading_6_7.md).
+If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](../_docs_installation/sg53_migration.md).
 {: .note .js-note .note-warning}
 
 The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.
@@ -64,9 +64,6 @@ After that, restart your node and check that OpenSearch/Elasticsearch and Search
 Then, repeat this process for all other nodes in the cluster.  
 
 ## Upgrading OpenSearch/Elasticsearch and Search Guard
-
-If you're looking for specific upgrade instructions from 6.x to 7.x, please follow the [steps described here](../_docs_installation/installation_upgrading_6_7.md).
-{: .note .js-note .note-warning}
 
 First check with the official OpenSearch/Elasticsearch documentation if your upgrade requires a full cluster restart, or if it can be performed via a rolling restart:
 
