@@ -237,6 +237,14 @@ The functionality provided by the `ldap` authorization backend can be now used i
 
 
 
+
+## `elasticsearch.yml`
+
+| Legacy Config | New Config | Details |
+|---|---|---|
+|`searchguard.cache.ttl_minutes` | Property `user_cache.expire_after_write` in `sg_authc.yml` and `sg_authc_transport.yml` | The new property requires the specification of a temporal unit after the amount. To specify 10 minutes, write `10m` |
+
+
 ## `kibana.yml`
 
 | Legacy Config | New Config | Details |

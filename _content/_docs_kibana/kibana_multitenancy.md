@@ -33,31 +33,15 @@ The Private tenant is not shared.  It is only accessible for the currently logge
 
 ### OpenSearch/Elasticsearch: Configuration
 
-Multi tenancy is configured in sg_config.yml:
-
-```yaml
-sg_config:
-  dynamic:
-    do_not_fail_on_forbidden: true 
-    kibana:
-      multitenancy_enabled: true
-      server_username: 'xxx'
-      ...
-    http:
-      anonymous_auth_enabled: false
-      xff:
-        enabled: false
-        ...
-```
+Multi tenancy is configured in `sg_frontend_multi_tenancy.yml`.
 
 The following configuration keys are available:
 
 | Name | Description |
 |---|---|
-| searchguard.dynamic.kibana.multitenancy_enabled  |  boolean, enable or disable multi tenancy. Default: true.|
-| searchguard.dynamic.kibana.server_username |  String, the name of the Dashboards/Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
-| searchguard.dynamic.kibana.index  | String, the name of the Dashboards/Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
-| searchguard.dynamic.do\_not\_fail\_on\_forbidden  | boolean, if enabled Search Guard will remove content from the search result a user is not allowed to see. If disabled, a security exceptions is returned. Should be set to true if you use Dashboards/Kibana. Default: true.  |
+| enabled  |  boolean, enable or disable multi tenancy. Default: true.|
+| server_user |  String, the name of the Dashboards/Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
+| index  | String, the name of the Dashboards/Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
 {: .config-table}
 
 ### Defining tenants
