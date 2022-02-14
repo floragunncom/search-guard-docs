@@ -18,17 +18,30 @@ description: How to use OpenID Connect and your favorite identity provider to im
 
 This chapter lists all advanced configuration options for OIDC. Most of them are only needed for specific setups.
 
-## Mapping of JWT Claims to User Data
+## Using the OIDC user info endpoint
 
-The user names and the users' roles are determined by so-called claims stored in the JWTs, which are provided by the IdP to Search Guard. You can control the mapping of these claims to user data using the following options:
+You can use the OIDC user info endpoint to retrieve additional user information in addition to the claims stored in the OIDC ID token.
 
-**user_mapping.subject:** The name of the JWT claim that stores the user's name. If not defined, the [subject](https://tools.ietf.org/html/rfc7519#section-4.1.2) registered claim is used. Most IdP providers use the `preferred_username` claim. Optional. You can also use a JSON path expression here.
+To do so, add `oidc.get_user_info` to the configuration of the auth domain. Then, Search Guard will query the user info endpoint on each login and make the result available for user mapping in the attribute `oidc_user_info`. 
 
-**user_mapping.roles:** The name of the JWT claim that stores the user's roles. The value of this claim must be a comma-separated list of roles. You can also use a JSON path expression here.
+### Example
 
-**user_mapping.attrs:** You can use this option to map JWT claims to Search Guard user attributes. See [below](#mapping-user-attributes) for details. Optional.
+```yaml
+default:
+  auth_domains:
+  - type: oidc
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.get_user_info: true
+    user_mapping.roles.from_comma_separated_string: oidc_user_info.roles
+```
 
-**user_mapping.subject_pattern:**  A regular expression that defines the structure of an expected user name. You can use capturing groups to use only a certain part of the subject supplied by the JWT as the Search Guard user name. If the pattern does not match, the login will fail. See [below](#using-only-certain-sections-of-a-jwt-subject-claim-as-user-name) for details. Optional. Defaults to no pattern.
+## Using PKCE
+
+PKCE ("Proof Key for Code Exchange") is an extension to the OIDC authorization code flow with the goal of preventing CSRF and auth code injection attacks.  
+
+If your IdP is capable of supporting PKCE, we are recommending to enable it in Search Guard. To do so, add `oidc.use_pkce: true` to the auth domain configuration.
+
 
 ## TLS Settings
 
@@ -60,7 +73,7 @@ default:
       [...]
       1k4enV7iJWXE8009a6Z0Ouwm2Bg68Wj7TAQ=
       -----END CERTIFICATE-----
-    user_mapping.roles.from_comma_separated_string: jwt.roles
+    user_mapping.roles.from_comma_separated_string: oidc_id_token.roles
 ```
 
 ## TLS Client Authentication
@@ -133,7 +146,7 @@ my_dls_role:
 
 ## Using only certain sections of a JWT subject claim as user name
 
-In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `user_mapping.subject_pattern` option allows you to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
+In some cases, the subject claim in a JWT might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like `exampleuser@example.com`. The `user_mapping.user_name.from.pattern` option allows you to only use the local part (i.e., `exampleuser`) as the user name inside Search Guard.
 
 With `subject_pattern`, you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; `(...)`) to use only a specific part of the subject supplied by the JWT as the Search Guard user name.
 
@@ -145,8 +158,9 @@ default:
   - type: oidc
     oidc.client_id: "my-kibana-client"
     oidc.client_secret: "client-secret-from-idp"
-    user_mapping.subject_pattern: "^(.+)@example\.com$" # TODO obsolete
-    user_mapping.roles: roles
+    user_mapping.user_name.from.json_path: oidc_id_token.sub
+    user_mapping.user_name.from.pattern: "^(.+)@example\.com$" 
+    user_mapping.roles.from_comma_separated_string: roles
 ```
 
 In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to log in with a subject that does not match this pattern (e.g. `foo@bar`), the login will fail.
@@ -158,7 +172,7 @@ Keep in mind that all capturing groups are used for constructing the user name. 
 Example for using capturing groups and non-capturing groups:
 
 ```yaml
-      user_mapping.subject_pattern: "^(.+)@example\.(?:com|org)$"
+      user_mapping.user_name.from.pattern: "^(.+)@example\.(?:com|org)$"
 ```
 
 In this example, the group around `com` and `org` must use the alternative operator `|`. But it must be non-capturing because otherwise it would show up in the user name.
@@ -166,7 +180,7 @@ In this example, the group around `com` and `org` must use the alternative opera
 You can also use several capturing groups if you want to use these groups for the user name:
 
 ```yaml
-      user_mapping.subject_pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
+      user_mapping.user_name.from.pattern: "^(.+)@example\.com|(.+)@foo\.bar$"
 ```
 
 ## Logout URL

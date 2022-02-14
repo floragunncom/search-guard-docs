@@ -56,7 +56,7 @@ The default version of this file contains an entry for password-based authentica
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: basic
 ```
 
@@ -66,12 +66,12 @@ The minimal `sg_frontend_config.yml` configuration for SAML looks like this:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: saml
-    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    user_mapping.roles: roles
+    saml.idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"
+    user_mapping.roles.from: saml_response.roles
 ```
 
 You need to replace the values for `idp.metadata_url`, `idp.entity_id`, `sp.entity_id` and `user_mapping.roles` by the values configured in the IdP.
@@ -80,17 +80,17 @@ If your IdP does not provide the metadata by an URL, you can to download the met
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: saml
-    idp.metadata_xml: |
+    saml.idp.metadata_xml: |
             <EntityDescriptor entityID="IdP entity id from the IdP" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
               <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
                  ...
               </IDPSSODescriptor>
             </EntityDescriptor>  
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    user_mapping.roles: roles
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"
+    user_mapping.roles.from: saml_response.roles
 ```
 
 ## Dashboards/Kibana Setup
@@ -130,7 +130,7 @@ If `opensearch_dashboards.yml`/`kibana.yml`  already contains the key, make sure
 To activate the setup, do the following:
 
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance.
-- Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
+- Use `sgctl` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
 That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
 

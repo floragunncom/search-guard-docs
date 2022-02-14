@@ -43,7 +43,7 @@ You need to keep a couple of values from the IdP setup ready for the next step. 
 
 * The client id
 * The client secret
-* The name of the JWT claim to which you mapped the roles
+* The name of the OIDC ID token claim to which you mapped the roles
 * The URL of the OIDC configuration endpoint. This URL generally looks like this: `https://your.idp/.../.well-known/openid-configuration`
 
 ## Search Guard Setup
@@ -54,7 +54,7 @@ The default version of this file contains an entry for password-based authentica
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: basic
 ```
 
@@ -64,15 +64,15 @@ The minimal `sg_frontend_config.yml` configuration for OIDC looks like this:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: oidc
-    client_id: "my-kibana-client"
-    client_secret: "client-secret-from-idp"
-    idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
-    user_mapping.roles: "roles"
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    user_mapping.roles.from_comma_separated_string: "oidc_id_token.roles"
 ```
 
-You need to replace the values for `client_id`, `client_secret`, `idp.openid_configuration_url` and `user_mapping.roles` by the values configured in the IdP.
+You need to replace the values for `client_id`, `client_secret` and `idp.openid_configuration_url`  by the values configured in the IdP. In the  `user_mapping.roles` config option, specify a JSON path expression to access the roles inside the OIDC ID token retrieved from the IdP. The attribute `oidc_id_token` is initialized with the claims retrieved from the ID token.
 
 
 ## Dashboards/Kibana Setup
@@ -103,6 +103,6 @@ searchguard.cookie.secure: true
 To activate the setup, do the following:
 
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, ensure that you restart the Dashboards/Kibana instance.
-- Use `sgadmin` to upload the new `sg_frontend_config.yml` file to Search Guard.
+- Use `sgctl` to upload the new `sg_frontend_config.yml` file to Search Guard.
 
 That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
