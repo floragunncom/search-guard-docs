@@ -123,14 +123,25 @@ Also the authenticator configuration is hot reloadable, so you can add, remove o
 
 You can load and change the settings from any machine which has access to your OpenSearch/Elasticsearch cluster.  You do not need to keep any configuration files on the nodes themselves. 
 
-The configuration consists of the following files. These are shipped with Search Guard as templates.
+The core configuration consists of the following files:
 
-* sg\_config.yml - configure authenticators and authorisation backends.
-* sg\_roles.yml - define roles and the associated permissions.
-* sg\_roles\_mapping.yml - map backend roles, hosts and users to roles.
-* sg\_internal\_users.yml - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
-* sg\_action\_groups.yml - define named permission groups.
-* sg\_tenants.yml - defines tenants for configuring Dashboards/Kibana access
-* sg\_blocks.yml - defines blocked users and IP addresses
+* `sg\_authc.yml` - configure authentication
+* `sg\_roles.yml` - define roles and the associated permissions.
+* `sg\_internal\_users.yml` - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
+* `sg\_action\_groups.yml` - define named permission groups.
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md). 
+If you are running OpenSearch Dashboards, resp. Kibana, you might also need the following configuration:
+
+* `sg_frontend_authc.yml` - authentication for Dashboards/Kibana
+* `sg_frontend_multi_tenancy.yml` - basic multi-tenancy settings for Dashboards/Kibana
+* `sg\_tenants.yml` - defines tenants for configuring Dashboards/Kibana access
+
+For special features or configuration, you have also the following files:
+
+* `sg_authz.yml` - authorization-specific settings
+* `sg_auth_token_service.yml` - for confiuguring the API auth token service
+* `sg\_blocks.yml` - defines blocked users and IP addresses
+
+You can find sample templates for all files in the Search Guard download.
+
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgadmin](../_docs_configuration_changes/configuration_sgctl.md). 

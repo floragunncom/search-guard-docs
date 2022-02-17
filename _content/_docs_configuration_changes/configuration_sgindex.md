@@ -1,6 +1,6 @@
 ---
-title: Search Guard Configuration Index
-html_title: Search Guard Index
+title: Basics
+html_title: Search Guard Configuration Basics
 permalink: search-guard-index
 category: configuration
 order: 50
@@ -10,12 +10,8 @@ description: Search Guard stores its configuration in an OpenSearch/Elasticsearc
 ---
 <!--- Copyright 2020 floragunn GmbH -->
 
-# The Search Guard configuration index
+# Search Guard configuration basics
 {: .no_toc}
-
-{% include toc.md %}
-
-## Concepts
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in the Search Guard configuration index. 
 
@@ -25,75 +21,26 @@ Keeping the configuration settings in an OpenSearch/Elasticsearch index enables 
 
 You can load and change the settings from any machine which has access to your OpenSearch/Elasticsearch cluster. You do not need to keep any configuration files on the nodes.
 
-The configuration consists of the following files. These are shipped with Search Guard as templates.
+The core configuration consists of the following files:
 
-* sg\_config.yml - configure authenticators and authorisation backends.
-* sg\_roles.yml - define roles and the associated permissions.
-* sg\_roles\_mapping.yml - map backend roles, hosts and users to roles.
-* sg\_internal\_users.yml - stores users,and hashed passwords in the internal user database.
-* sg\_action\_groups.yml - define named permission groups.
-* sg\_tenants.yml - defines tenants for configuring Dashboards/Kibana access
+* `sg_authc.yml`: [authentication](../_docs_auth_auth/auth_auth_configuration.md)
+* `sg_roles.yml`: [roles and the associated permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
+* `sg_roles_mapping.yml`: [mapping users to roles](../_docs_roles_permissions/configuration_roles_mapping.md)
+* `sg_internal_users.yml`: [locally defined users, roles and attributes](../_docs_roles_permissions/configuration_internalusers.md)
+* `sg_action_groups.yml`: [named permission groups](../_docs_roles_permissions/configuration_action_groups.md)
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgadmin` tool. For details, refer to the chapter sgadmin.
+If you are running OpenSearch Dashboards, resp. Kibana, you might also need the following configuration:
 
-<p align="center">
-<img src="search_guard_index.png" style="width: 70%" class="md_image"/>
-</p>
+* `sg_frontend_authc.yml`: [authentication for Dashboards/Kibana](../_docs_kibana/kibana_authentication.md)
+* `sg_frontend_multi_tenancy.yml`: [basic multi-tenancy settings for Dashboards/Kibana](../_docs_kibana/kibana_multitenancy.md)
+* `sg_tenants.yml`: [tenants for multi-tenancy](../_docs_kibana/kibana_multitenancy.md)
 
-## Index name
+For special features or configuration, you have also the following files:
 
-If nothing else is specified, Search Guard uses `searchguard` as index name.  
-
-You can configure the name of the Search Guard index in elasticsearch.yml by setting:
-
-```
-searchguard.config_index_name: myindexname 
-```
+* `sg_authz.yml`: authorization-specific settings
+* `sg_auth_token_service.yml`: [API auth token service](../_docs_auth_auth/auth_auth_configuration.md)
+* `sg_blocks.yml`: defines blocked users and IP addresses
 
 
-## Backup and Restore
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the [sgctl docs](configuration_sgctl_basics.md).
 
-Use `sgadmin` to backup the contents of the Search Guard configuration index
-
-Backup the current configuration from a cluster running on `staging.example.com` and place the files in /etc/sgbackup/:
-
-```
-./sgadmin.sh 
-  -backup /etc/sgbackup/  \
-  -h staging.example.com  \
-  -cacert /path/to/root-ca.pem  \
-  -cert /path/to/admin.pem  \
-  -key /path/to/admin-key.pem    
-```
-
-To upload the dumped files to another cluster, here `production.example.com` listening on port 9301, use:
-
-```
-./sgadmin.sh 
-  -cd /etc/sgbackup/  \
-  -h production.example.com  \
-  -p 9301 \
-  -cacert /path/to/root-ca.pem  \
-  -cert /path/to/admin.pem  \
-  -key /path/to/admin-key.pem    
-```
-
-## Replica shards
-
-Search Guard manages the number of replica shards of the Search Guard index automatically. If the Search Guard index is created for the first time, the number of replica shards is set to the number of nodes - 1. If you add or remove nodes, the number of shards will be increased or decreased automatically. This means that a primary or replica shard of the Search Guard index is available on all nodes.
-
-If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the `-dra` switch of sgadmin. To set the number of replica shards, use sgadmin with the `-us` switch. To re-enable replica auto-expansion, use the `-era` switch. See also section "Index and replica settings" in the [sgadmin chapter](../_docs_configuration_changes/configuration_sgadmin.md).
-
-Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search Guard index.
-
-## Disable auto expand replicas of the searchguard index
-
-There are several situations where the auto-expand feature is not suitable including:
-
-* When using a Hot/Warm Architecture
-* Running multiple instances of OpenSearch/Elasticsearch on the same host machine
-* When `cluster.routing.allocation.same_shard.host` is set to `false`, see also [elastic/elasticsearch#29933](https://github.com/elastic/elasticsearch/issues/29933)
-* The searchguard index stays constantly yellow
-
-To solve this disable the auto-expand replicas feature of the searchguard index and set the number of replicas manually.
-You can also keep the auto-expand replicas feature and set it to "0-n" where n is the number of datanodes-2.
