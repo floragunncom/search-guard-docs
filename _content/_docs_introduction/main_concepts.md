@@ -125,22 +125,22 @@ You can load and change the settings from any machine which has access to your O
 
 The core configuration consists of the following files:
 
-* `sg\_authc.yml` - configure authentication
-* `sg\_roles.yml` - define roles and the associated permissions.
-* `sg\_internal\_users.yml` - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
-* `sg\_action\_groups.yml` - define named permission groups.
+* `sg_authc.yml` - configure authentication
+* `sg_roles.yml` - define roles and the associated permissions.
+* `sg_internal_users.yml` - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
+* `sg_action_groups.yml` - define named permission groups.
 
 If you are running OpenSearch Dashboards, resp. Kibana, you might also need the following configuration:
 
 * `sg_frontend_authc.yml` - authentication for Dashboards/Kibana
 * `sg_frontend_multi_tenancy.yml` - basic multi-tenancy settings for Dashboards/Kibana
-* `sg\_tenants.yml` - defines tenants for configuring Dashboards/Kibana access
+* `sg_tenants.yml` - defines tenants for configuring Dashboards/Kibana access
 
 For special features or configuration, you have also the following files:
 
 * `sg_authz.yml` - authorization-specific settings
 * `sg_auth_token_service.yml` - for confiuguring the API auth token service
-* `sg\_blocks.yml` - defines blocked users and IP addresses
+* `sg_blocks.yml` - defines blocked users and IP addresses
 
 You can find sample templates for all files in the Search Guard download.
 

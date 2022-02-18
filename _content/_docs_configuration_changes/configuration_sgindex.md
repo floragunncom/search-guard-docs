@@ -1,6 +1,6 @@
 ---
-title: Basics
-html_title: Search Guard Configuration Basics
+title: Overview
+html_title: Search Guard Configuration Overview
 permalink: search-guard-index
 category: configuration
 order: 50
@@ -10,10 +10,10 @@ description: Search Guard stores its configuration in an OpenSearch/Elasticsearc
 ---
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Search Guard configuration basics
+# Search Guard configuration overview
 {: .no_toc}
 
-All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in the Search Guard configuration index. 
+Most configuration settings for Search Guard - including users, roles and permissions - are stored as documents in the Search Guard configuration index and can be manipulated only using the `sgctl` tool, API or the Search Guard Configuration UI.
 
 This index is secured so that only an admin user with an admin TLS certificate may write or read this index. Admin certificates are configured in `opensearch.yml`/`elasticsearch.yml`.
 
