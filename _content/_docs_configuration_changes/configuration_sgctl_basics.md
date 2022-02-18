@@ -40,6 +40,8 @@ $ ./sgctl.sh connect localhost --ca-cart /path/to/root-ca.pem --cert /path/to/ad
 You need to replace the path specifications by paths to the certificate of the root CA which signed the TLS certificates by your cluster (`--ca-cert`)  and by an admin 
 certificate and its corresponding private key (`--cert` and `--key`). If the private key is password protected, specify `--key-pass` to be get a request for the password on the command line.
 
+By default, `sgctl` will check that the host name of the target host matches the name specified in its TLS certificate. If you want to disable this check - for example because you are just on a test system with test certificates - specify the option `--insecure` on the command line.
+
 If the Elasticsearch REST port is not the default 9200, you also need to specify the port using the `-p` parameter.
 
 If the connection is successful, the command should print `Connected as CN=kirk,OU=client,O=client,L=test,C=de` and store the connection configuration for future
