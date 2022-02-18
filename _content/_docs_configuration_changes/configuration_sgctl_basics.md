@@ -18,12 +18,78 @@ Copyright 2020 floragunn GmbH
 {% include toc.md %}
 
 
-
-The Search Guard configuration is stored in an index on the OpenSearch/Elasticsearch cluster. This allows for configuration hot-reloading, and eliminates the need to place configuration files on any node.
-
-Configuration settings are uploaded to the Search Guard configuration index using the `sgctl` tool. When installing Search Guard for the first time, you have to run `sgctl` at least once to initialize the configuration index.
+The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. 
 
 You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/). The same `sgctl` command can be used both for OpenSearch clusters and Elasticsearch clusters.
+
+The `sgctl` tool provides a set of commands. To get an overview of all commands, just execute `sgctl.sh` on the command line:
+
+```
+$ ./sgctl.sh
+
+Usage: sgctl [COMMAND]
+Remote control tool for Search Guard
+Commands:
+  connect          Tries to connect to a cluster and persists this connection
+                     for subsequent commands
+  get-config       Retrieves Search Guard configuration from the server to
+                     local files
+  update-config    Updates Search Guard configuration on the server from local
+                     files
+  migrate-config   Converts old-style sg_config.yml and kibana.yml into
+                     sg_authc.yml and sg_frontend_authc.yml
+  component-state  Retrieves Search Guard compontent status information
+  sgctl-licenses   Displays license information for sgctl
+  sgctl-version    Shows the version of this sgctl command
+  add-user-local   Adds a new user to a local sg_internal_users.yml file
+  add-user         Adds a new user
+  update-user      Updates a user
+  delete-user      Deletes a user
+  add-var          Adds a new configuration variable
+  update-var       Updates an existing configuration variable
+  delete-var       Deletes an existing configuration variable
+  set              Modifies a property in the Search Guard Configuration
+```
+
+To get help for a particular command just append the `--help` option to the command:
+
+```
+$ ./sgctl.sh connect --help
+
+Usage: sgctl connect [-v] [--debug] [-k[=<insecure>]] [--key-pass
+                     [=<clientKeyPass>]] [-c=<clusterIdOption>]
+                     [--ca-cert=<caCert>] [-E=<clientCert>] [-h=<host>]
+                     [--key=<clientKey>] [-p=<serverPort>]
+                     [--sgctl-config-dir=<customConfigDir>] [--tls=<tls>]
+                     [--ciphers[=<ciphers>...]]... [<server>]
+Tries to connect to a cluster and persists this connection for subsequent
+commands
+      [<server>]
+  -c, --cluster=<clusterIdOption>
+                            The ID of the cluster configuration to be used by
+                              this command
+      --ca-cert=<caCert>    Trusted certificates
+      --ciphers[=<ciphers>...]
+                            The ciphers to be allowed for the TLS connection to
+                              the cluster
+      --debug               Print debug information
+  -E, --cert=<clientCert>   Client certificate for admin authentication
+  -h, --host=<host>         Hostname of the node to connect to
+  -k, --insecure[=<insecure>]
+                            Do not verify the hostname when connecting to the
+                              cluster
+      --key=<clientKey>     Private key for admin authentication
+      --key-pass[=<clientKeyPass>]
+                            Password for private key
+  -p, --port=<serverPort>   REST port to connect to. Default: 9200
+      --sgctl-config-dir=<customConfigDir>
+                            The directory where sgctl reads from and writes to
+                              its configuration
+      --tls=<tls>           The TLS version to use when connecting to the
+                              cluster
+  -v, --verbose             Print more information
+```
+
 
 <!--
 You can find sample sgadmin calls in the [examples chapter](configuration_sgadmin_examples.md)
@@ -85,7 +151,7 @@ Reconnect whith:
 $ ./sgctl.sh connect -c my-cluster
 ```
 
-## Uploading Search Guard Configuration
+## Uploading Search Guard configuration
 
 The most important command of `sgctl` is probably `sgctl update-config`. This command is used to upload Search Guard YAML configuration files to Search Guard. 
 
@@ -100,3 +166,15 @@ $ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml path/to/conf
 ```bash
 $ ./sgctl.sh update-config path/to/config/dir/
 ```
+<!--
+Modifying Search Guard configuration on the fly
+
+Sometimes you need to modify only a single attribute of the Search Guard configuration. If you want to do so without editing files, you can use the `sgctl set` command.
+
+A sample command looks like this:
+
+```
+$ ./sgctl.sh set 
+```
+
+--->
