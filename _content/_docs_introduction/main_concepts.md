@@ -144,4 +144,4 @@ For special features or configuration, you have also the following files:
 
 You can find sample templates for all files in the Search Guard download.
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgadmin](../_docs_configuration_changes/configuration_sgctl.md). 
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgctl](../_docs_configuration_changes/configuration_sgctl.md). 
