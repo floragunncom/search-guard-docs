@@ -243,10 +243,9 @@ Remember that the expressions used for retrieving the role and attribute values 
 
 There are a number of additional advanced options in `sg_authc.yml`. These allow you to customize the following things:
 
-- Global restrictions for IP addresses that are allowed to connect to the OpenSearch/Elasticsearch REST interface
-- Authentication cache settings
-- Authentication failure handling
+- [Advanced User Mapping](auth_auth_rest_config_advanced_user_mapping.md)
+- [Global restrictions for IP addresses](auth_auth_rest_config_advanced_options.md)
+- [Authentication cache settings](auth_auth_rest_config_advanced_options.md)
 
-TODO: Document these
 
 

@@ -32,31 +32,17 @@ Auth tokens issued by Search Guard are based on the JSON Web Token (JWT) standar
 
 ## Configuring the Search Guard Auth Token Service
 
-The built-in auth token functionality is disabled by default. It can be enabled by editing the `sg_config.yml` configuration file. You need to modify the `auth_token_provider` section, set `enabled` to true and configure a key used for JWT signing. Additionally, an authentication domain for SG auth tokens needs to be enabled.
+The built-in auth token functionality is disabled by default. It can be enabled by editing the `sg_auth_token_service.yml` configuration file. You need to set `enabled` to true and configure a key used for JWT signing.
 
 ```yaml
-sg_config:
-  dynamic:
-      [...]
-      auth_token_provider:
-        enabled: true
-        jwt_signing_key_hs512: "..."
-        jwt_encryption_key_a256kw: "..."   # Omit this to have unencrypted keys
-        max_validity: "1y"                 # Omit this to have keys with unlimited lifetime
-        max_tokens_per_user: 100    
-      authc:
-		 [...]
-        sg_issued_jwt_auth_domain:
-          description: "Authenticate via Json Web Tokens issued by Search Guard"
-          http_enabled: true
-          transport_enabled: false
-          order: 0
-          http_authenticator:
-            type: sg_auth_token
-            challenge: false
-          authentication_backend:
-            type: sg_auth_token            
+enabled: true
+jwt_signing_key_hs512: "..."
+jwt_encryption_key_a256kw: "..."   # Omit this to have unencrypted keys
+max_validity: "1y"                 # Omit this to have keys with unlimited lifetime
+max_tokens_per_user: 100    
 ```
+
+**Note:** In earlier versions of Search Guard, adding an additional authentication domain was necessary for being able to use the auth token service. This is no longer necessary.
 
 ### Configuring Keys
 
@@ -79,19 +65,15 @@ openssl rand -base64 32 | tr '/+' '_-'
 In order to use other signature or encryption methods available for JWTs, you can use the options `jwt_signing_key` and `jwt_encryption_key` to specify the complete key configuration using the [JSON Web Key](https://tools.ietf.org/html/rfc7517) (JWK) standard. For example, you can use Elliptic Curve based signatures like this:
 
 ```yaml
-sg_config:
-  dynamic:
-      [...]
-      auth_token_provider:
-        enabled: true
-        jwt_signing_key:
-        	kty: EC
-        	alg: ES256
-        	crv: P-256
-        	use: sig
-        	d: "..."
-        	x: "..."
-        	y: "..."
+enabled: true
+jwt_signing_key:
+   	kty: EC
+   	alg: ES256
+   	crv: P-256
+   	use: sig
+   	d: "..."
+   	x: "..."
+   	y: "..."
 ```
 
 ### Other Configuration Options
@@ -108,12 +90,6 @@ sg_config:
 
 **freeze_privileges:** This option controls how users can use the `freeze_privileges` attribute in create auth token request bodies. This defaults to `user_chooses` which allows users to choose whether they want to create a config snapshot or not. If you specify `always`, all auth token creation requests will create a snapshot the role configuration; the user won't be able to choose. If you specify `never`, no auth token creation requests will create such a snapshot. Note that changes to this config option won't affect auth tokens which have been already created.
 
-
-### Authentication Domain
-
-In addition to the `auth_token_provider` config, you have to configure a separate [authentication domain](../_docs_auth_auth/auth_auth_configuration.md#authentication) in the `authc` section.
-
-Not much needs to be configured there, though. The `order` attribute should be chosen in a way that this authentication domain is checked before any domain which sends authentication challenges. For example, if you have Basic Auth sending challenges at `order` 1, you should have the auth token domain at `order` 0. Otherwise, the configuration must stay the same as shown above. The keys for verifying the JWTs are automatically obtained from the `auth_token_provider` section.
 
 ## Required Privileges
 
@@ -168,7 +144,7 @@ This is an overview of all attributes Search Guard supports in requests sent to 
 
 **name:** A name giving a human-readable description of the token. Required.
 
-**expires_after:** A time period specification which defines the maximum lifetime of the token. If this attribute is omitted, the token will have an unbounded lifetime. If the configuration in `sg_config.yml` specified a `max_validity` attribute, the validity will be always bounded by this value. Examples for valid values for this attribute are: `1y`: one year; `1y 6M`: one year and six months; `7d`: seven days; `1h 30m`: one hour and 30 minutes. Optional, defaults to no bound.
+**expires_after:** A time period specification which defines the maximum lifetime of the token. If this attribute is omitted, the token will have an unbounded lifetime. If the configuration in `sg_auth_token_service.yml` specified a `max_validity` attribute, the validity will be always bounded by this value. Examples for valid values for this attribute are: `1y`: one year; `1y 6M`: one year and six months; `7d`: seven days; `1h 30m`: one hour and 30 minutes. Optional, defaults to no bound.
 
 **requested.index_permissions:** An array of objects with the attributes `index_patterns` and `allowed_actions`. The `index_patterns` attribute specifies an array of index patterns which define the indices the privileges in `allowed_actions` apply to. Likewise,  `allowed_actions`  is an array of patterns to match on OpenSearch/Elasticsearch actions. Optional.
 
