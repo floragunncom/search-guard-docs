@@ -31,6 +31,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - 7x-53  
     - 7x-52  
     - 7x-51  
     - 7x-50  
@@ -123,6 +124,7 @@ labels:
     transformations: Transformations
     triggers: Triggers
     sgadmin: sgadmin
+    7x-53: Search Guard 7.x-53     
     7x-52: Search Guard 7.x-52     
     7x-51: Search Guard 7.x-51    
     7x-50: Search Guard 7.x-50    
@@ -309,9 +311,10 @@ algolia:
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-suite-7:
-    - 7.16.3|52.6.0|52.2.0|yes|no
+    - 7.17.0|53.0.0|53.0.0|yes|no
+    - 7.16.3|53.0.0|53.0.0|yes|no
+    - 7.10.2|53.0.0|53.0.0|yes|no    
     - 7.16.2|52.6.0|52.2.0|yes|no
-    - 7.10.2|52.7.0|51.0.0|yes|no    
     - 7.16.1|52.5.0|52.2.0|yes|no
     - 7.15.2|52.5.0|52.1.0|yes|no
     - 7.15.1|52.5.0|52.1.0|yes|no
