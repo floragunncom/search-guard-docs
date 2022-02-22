@@ -1,6 +1,6 @@
 ---
 title: Overview
-html_title: Kibana changelogs
+html_title: Search Guard Kibana plugin changelogs
 permalink: changelogs-kibana
 category: changelogs-kibana
 order: -10000
@@ -13,6 +13,10 @@ Copyright 2020 floragunn GmbH
 -->
 
 # Search Guard Kibana Plugin Changelogs
+
+### [Search Guard Kibana Plugin 7.x-53.1.0](changelog_kibana_7_x_53_0_0.md)
+
+Release Date: 2022-02-22
 
 ### [Search Guard Kibana Plugin 7.x-52.1.0](changelog_kibana_7_x_52_1_0.md)
 
