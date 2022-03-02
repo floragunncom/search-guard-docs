@@ -1,5 +1,5 @@
 ---
-title: Passwords in configuration files
+title: Configuration variables
 permalink: configuration-password-handling
 category: configuration
 order: 210
@@ -10,7 +10,7 @@ description: How to use config variables to keep sensitive information like pass
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Handling sensitive data in configuration files
+# Configuration variables
 {: .no_toc}
 
 {% include toc.md %}
@@ -22,7 +22,7 @@ Still, you might want to keep sensitive data separate from the configuration. Th
 - It is not possibly to accidentially reveal secrets when reviewing configuration files.
 - You can separately manage and update secrets and configuration files.
 
-## Using Configuration Variables
+## Using configuration variables
 
 Search Guard supports variable substitution for all configuration files. The substitution will take place on the cluster, after the configuration has been loaded.
 
@@ -60,7 +60,7 @@ $ ./sgctl.sh update-var ldap_password newSecret456 --encrypt
 
 This will automatically reload the configuration. Thus, any change applied this way becomes immediately effective.
 
-### Creating Backups
+### Creating backups
 
 If you want to create a dump or backup of all configuration variables, you can use the `sgctl get-config` command:
 
@@ -70,7 +70,7 @@ $ ./sgctl.sh get-config
 
 This includes the configuration variables in the file `sg_config_vars.yml`. Note that encrypted variables are also stored in encrypted form in this file.
 
-## Using Content From External Files
+## Using content from external files
 
 You can also retrieve configuration values from files which are available on your cluster nodes. You can use the following syntax for this purpose:
 
@@ -83,7 +83,7 @@ auth_domains:
 
 This will load the data from the specified file and use it as the configuration value.
 
-**Note:** Elasticsearch/OpenSearch places some restrictions on the locations of files plugins are allowed to access. TODO: Document these locations.
+**Note:** Elasticsearch and OpenSearch place some restrictions on the locations of files plugins are allowed to access. The files must be located inside the `config` directory of your Elasticsearch installation. You can create subdirectories inside the `config` directory.
 
 **Note:** These files must be available on all nodes of your cluster; if the files change after a node has started, the change will not be immediately picked up. Changes will be only picked up when the configuration is reloaded. This is the case when the configuration is changed or if a node is restarted.
 

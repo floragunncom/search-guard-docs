@@ -71,7 +71,7 @@ auth_domains:
 
 Note that you must specify a `curve` for EC, which is either `P-256`, `P-384` or `P-521`. 
 
-For options on how to retrieve the keys from external endpoints, see TODO.
+For options on how to retrieve the keys from external endpoints, see [advanced configuration](./auth_auth_jwt_advanced.md).
 
 ### Audience validation
 
