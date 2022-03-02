@@ -48,7 +48,7 @@ You need to keep a couple of values from the IdP setup ready for the next step. 
 
 ## Search Guard Setup
 
-Now you need to edit the `sg_frontend_config.yml` file.
+Now you need to edit the `sg_frontend_authc.yml` file.
 
 The default version of this file contains an entry for password-based authentication:
 
@@ -60,7 +60,7 @@ default:
 
 If you don't want to use password-based authentication, replace the entry `- type: basic` by the new configuration. If you want to continue to use password-based authentication besides OIDC, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
 
-The minimal `sg_frontend_config.yml` configuration for OIDC looks like this:
+The minimal `sg_frontend_authc.yml` configuration for OIDC looks like this:
 
 ```yaml
 default:
@@ -79,13 +79,13 @@ You need to replace the values for `client_id`, `client_secret` and `idp.openid_
 
 To use OIDC with Dashboards/Kibana it is necessary to configure the external URL of Dashboards/Kibana in the file `config/kibana.yml` in your Dashboards/Kibana installation.
 
-For Dashboards/Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
+For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
 ```yaml
 server.publicBaseUrl: "https://kibana.example.com:5601"
 ```
 
-For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`:
+For older versions of Kibaba or for OpenSearch Dashboards, please use the setting `searchguard.frontend_base_url`:
 
 ```yaml
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
@@ -103,6 +103,6 @@ searchguard.cookie.secure: true
 To activate the setup, do the following:
 
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, ensure that you restart the Dashboards/Kibana instance.
-- Use `sgctl` to upload the new `sg_frontend_config.yml` file to Search Guard.
+- Use `sgctl` to upload the new `sg_frontend_authc.yml` file to Search Guard.
 
 That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.

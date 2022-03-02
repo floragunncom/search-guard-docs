@@ -48,13 +48,14 @@ You can get the current snapshot of the Search Guard Tech Preview at the followi
 
 |Target Platform|Backend Plugin|Frontend Plugin|Demo Installer|
 |---|---|---|---|
-|**OpenSearch 1.0.0**|[Search Guard OpenSearch Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp2-os-1.0.0/search-guard-opensearch-plugin-tp2-os-1.0.0.zip)|[Search Guard OpenSearch Dashboards Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-dashboards-plugin/tp2-os-1.0.0/search-guard-opensearch-dashboards-plugin-tp2-os-1.0.0.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp2-os-1.0.0/search-guard-opensearch-plugin-tp2-os-1.0.0-demo-installer.sh)|
-|**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.10.2/search-guard-elasticsearch-plugin-tp2-es-7.10.2.zip)|[Search Guard Kibana Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp2-es-7.10.2/search-guard-kibana-plugin-tp2-es-7.10.2.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp2-es-7.10.2/search-guard-elasticsearch-plugin-tp2-es-7.10.2-demo-installer.sh)|
-|**Elasticsearch 7.16.3**|[Search Guard Elasticsearch Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.16.3/search-guard-elasticsearch-plugin-tp2-es-7.14.1.zip)|[Search Guard Kibana Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp3-es-7.16.3/search-guard-kibana-plugin-tp3-es-7.16.3.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.16.3/search-guard-elasticsearch-plugin-tp3-es-7.16.3-demo-installer.sh)|
+|**OpenSearch 1.2.4**|[Search Guard OpenSearch Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp3-os-1.2.4/search-guard-opensearch-plugin-tp2-os-1.2.4.zip)|[Search Guard OpenSearch Dashboards Plugin TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-dashboards-plugin/tp3-os-1.2.0/search-guard-opensearch-dashboards-plugin-tp3-os-1.2.0.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-opensearch-plugin/tp3-os-1.2.4/search-guard-opensearch-plugin-tp3-os-1.2.4-demo-installer.sh)|
+|**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.10.2/search-guard-elasticsearch-plugin-tp3-es-7.10.2.zip)|[Search Guard Kibana Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp3-es-7.10.2/search-guard-kibana-plugin-tp3-es-7.10.2.zip)|[Demo Installer TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.10.2/search-guard-elasticsearch-plugin-tp3-es-7.10.2-demo-installer.sh)|
+|**Elasticsearch 7.16.3**|[Search Guard Elasticsearch Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.16.3/search-guard-elasticsearch-plugin-tp2-es-7.16.3.zip)|[Search Guard Kibana Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp3-es-7.16.3/search-guard-kibana-plugin-tp3-es-7.16.3.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.16.3/search-guard-elasticsearch-plugin-tp3-es-7.16.3-demo-installer.sh)|
+|**Elasticsearch 7.17.1**|[Search Guard Elasticsearch Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.17.1/search-guard-elasticsearch-plugin-tp2-es-7.17.1.zip)|[Search Guard Kibana Plugin TP3](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-kibana-plugin/tp3-es-7.17.1/search-guard-kibana-plugin-tp3-es-7.17.1.zip)|[Demo Installer TP2](https://maven.search-guard.com/search-guard-suite-alpha/com/floragunn/search-guard-elasticsearch-plugin/tp3-es-7.17.1/search-guard-elasticsearch-plugin-tp3-es-7.17.1-demo-installer.sh)|
 
 <table>
 <tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.1/">Search Guard Control Tool sgctl 0.1.1</a></td></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.2.4/">Search Guard Control Tool sgctl 0.2.4</a></td></tr>
 </table>
 
 
@@ -66,25 +67,34 @@ You have several options to try the Search Guard Tech Preview:
 
 - If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [migrate-config command](kibana-authentication-migration-quick) of `sgctl`. Please also review the list of breaking changes below.
 
-See the documentation on [Dashboards/Kibana Authentication](kibana-authentication-types) for an comprehensive overview over the new possibilities Search Guard offers.
+You might want to read the following sections of the documentation to get a comprehensive overview over the new possibilities of Search Guard:
 
-Documentation on how to use the `sgctl` command can be found in the [README](https://git.floragunn.com/search-guard/sgctl/-/blob/main/README.md).
+* [Using sgctl](sgctl) (See also the [repository README](https://git.floragunn.com/search-guard/sgctl/)). 
+* [Using configuration variables](configuration-password-handling)
+* [Configuring authentication](authentication-authorization)
+* [Configuring Dashboards/Kibana authentication](kibana-authentication-types) 
+* [Migrating from Search Guard 53 and before](sg-classic-config-migration)
 
 ## Breaking Changes
 
-There has been a number of breaking changes to the Search Guard configuration. Some don't require config changes, some can be automatically migrated by using the `sgctl migrate` command, still some need manual intervention.
+There has been a number of breaking changes to the Search Guard configuration. Some don't require config changes, some can be automatically migrated by using the `sgctl migrate-config` command, still some need manual intervention.
 
 The breaking changes include so far:
+
+- The file `sg_config.yml` is being replaced by a number of more specialized files. This allows for a clearer and more concise configuration.
 
 - The old style user attributes (`attr.ldap....`, `attr.jwt...`, etc) are not supported any more for users logging in via Kibana. You need to use new style user attributes (`user.attrs....`)  instead. See the chapters on [DLS](document-level-security) and [Roles](roles-permissions) for details.
 
 - Support for OpenSSL was removed from Search Guard already quite a while a go. Now, also the configuration options - which were just ignored in the meantime - have been also removed. Thus, if you have any `searchguard` settings in `elasticsearch.yml` mentioning `openssl`, you need to remove these.
 
-- The `do_not_fail_on_forbidden` setting in `sg_config` is now active by default.
+- The `do_not_fail_on_forbidden` mode is now active by default.
 
 - Search Guard no longer warns about filtered alias settings.
 
-- A comprehensive overview over the changes regarding authenticator configuration in Kibana can be found [here](kibana-authentication-migration-feature-map).
+- More about the configuration migration can be found [here](sg-classic-config-migration).
+
+- A comprehensive overview over the configuration format changes can be found [here](config-migration-feature-map).
+
 
 ## Feedback
 

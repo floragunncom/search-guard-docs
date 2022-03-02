@@ -24,13 +24,13 @@ There are two approaches to this:
 
 ## Several Authentication Methods in one Dashboards/Kibana Instance
 
-Configuring more than one authentication method for Dashboards/Kibana is straight forward: The  `sg_frontend_config.yml` configuration allows to configure more than one login method at once. 
+Configuring more than one authentication method for Dashboards/Kibana is straight forward: The  `sg_frontend_authc.yml` configuration allows to configure more than one login method at once. 
 
 This might then look like this:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: basic
   - type: saml
     label: "SAML Login"
@@ -44,22 +44,22 @@ The resulting login screen will then look like this:
 
 ![Dashboards/Kibana login page with password based authentication and SAML authentication link](kibana_multi_login.png)
 
-You can also configure several `authcz` entries using the same type. So, you can support several IdPs at once. Use the `label` attribute of each entry to give the user a short hint what authentication method is configured here. The value of the `label` attribute will be displayed on the button that links to the IdP.
+You can also configure several `auth_domains` entries using the same type. So, you can support several IdPs at once. Use the `label` attribute of each entry to give the user a short hint what authentication method is configured here. The value of the `label` attribute will be displayed on the button that links to the IdP.
 
 ## Running Several Dashboards/Kibana Instances
 
 If you are running several instances of Dashboards/Kibana, you can assign each Dashboards/Kibana instance a different authentication configuration. 
 
-To achieve this, the `sg_frontend_config.yml` configuration file allows you to specify additional configuration entries, besides the usually existing `default` entry.
+To achieve this, the `sg_frontend_authc.yml` configuration file allows you to specify additional configuration entries, besides the usually existing `default` entry.
 
-So, you can have your `sg_frontend_config.yml` like this:
+So, you can have your `sg_frontend_authc.yml` like this:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: basic
 another_instance:
-  authcz:  
+  auth_domains:  
   - type: saml
     idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
     idp.entity_id: "IdP entity id from the IdP"
@@ -73,7 +73,7 @@ On the Dashboards/Kibana instance, which is supposed to use SAML authentication,
 searchguard.sg_frontend_config_id: another_instance
 ```
 
-This makes the Dashboards/Kibana instance use the configuration entry `another_instance` in  `sg_frontend_config.yml`.
+This makes the Dashboards/Kibana instance use the configuration entry `another_instance` in  `sg_frontend_authc.yml`.
 
-In order to activate the changes, do not forget to upload `sg_frontend_config.yml` and restart the particular Dashboards/Kibana instance afterwards. 
+In order to activate the changes, do not forget to upload `sg_frontend_authc.yml` and restart the particular Dashboards/Kibana instance afterwards. 
 

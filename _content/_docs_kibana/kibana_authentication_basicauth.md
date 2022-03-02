@@ -30,31 +30,22 @@ To verify the configuration for this approach, follow the steps described in the
 
 ## Search Guard Setup
 
-Ensure that you configured authentication domains of type `basic` in the Search Guard `sg_config` configuration. In most cases, you already created this configuration when configuring the OpenSearch/Elasticsearch backend.
+Ensure that you configured authentication domains of type `basic` in the Search Guard `sg_authc` or `sg_config` configuration. In most cases, you already created this configuration when configuring the OpenSearch/Elasticsearch backend.
 
-For the internal user database, such an entry in `sg_config.yml` might look like this:
+For the internal user database, such an entry in `sg_authc.yml` might look like this:
 
 ```yaml
-sg_config:
-  dynamic:
-    authc:
-     basic_internal_auth_domain:
-       http_enabled: true
-       order: 1
-     http_authenticator:
-       type: basic
-       challenge: true
-     authentication_backend:
-       type: internal
+auth_domains:
+  - type: basic/internal_users_db
 ```
 
 See the chapters on the [Search Guard internal user database](../_docs_roles_permissions/configuration_internalusers.md) and [LDAP](../_docs_auth_auth/auth_auth_ldap.md) for more details on setting up such auth domains.
 
-The Dashboards/Kibana-specific part of the authentication configuration is done in the file `sg_frontend_config.yml`. By default, this file contains this entry:
+The Dashboards/Kibana-specific part of the authentication configuration is done in the file `sg_frontend_authc.yml`. By default, this file contains this entry:
 
 ```yaml
 default:
-  authcz:
+  auth_domains:
   - type: basic
     label: "Login"
 ```

@@ -87,7 +87,7 @@ finance_employee:
 
 ```
 
-## Using `sgctl` 
+## Using `sgctl` to directly add new users
 
 You can use `sgctl` to modify the internal users database if your cluster is already running and you have connected `sgctl` to the cluster. See the [general `sgctl` docs](../_docs_configuration_changes/configuration_sgctl.md) for more on this.
 
@@ -135,10 +135,16 @@ $ ./sgctl.sh delete-user user_name
  
 ## Directly modifying `sg_internal_users.yml` 
 
-Directly modifying the `sg_internal_users.yml` file can be useful fFor initial configuration or when generating the configuration using scripts.
+Directly modifying the `sg_internal_users.yml` file can be useful for initial configuration or when generating the configuration using scripts.
 
-In order to set a password for users, you need to calculate its BCrypt hash. You can use the `hash.sh` script that is shipped with Search Guard to generate them:
+You have two choices:
 
-``plugins/search-guard-{{site.searchguard.esmajorversion}}/tools/hash.sh -p mycleartextpassword``
+- You edit the `sg_internal_users.yml` file manually. This requires you to calculate the BCrypt hash of the user password. You can use any offline or [online tool](https://bcrypt-generator.com/) that is able to produce BCrypt hashes.
+- You use the `sgctl add-user-local` command to modify an `sg_internal_users.yml` file and have the BCrypt hash automatically generated. The `add-user-local` command uses the same options as the the `add-user` command described above.
 
-You can also use any offline or [online tool](https://bcrypt-generator.com/) that is able to produce BCrypt hashes.
+In order to add the user `jdoe` to the file at `/path/to/a/local/sg_internal_users.yml`, use this command:
+
+```
+$ ./sgctl.sh add-user-local jdoe --backend-roles hr_department --password -o /path/to/a/local/sg_internal_users.yml
+```
+

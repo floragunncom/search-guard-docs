@@ -50,7 +50,7 @@ You need to keep a couple of values from the IdP setup ready for the next step. 
 
 ## Search Guard Setup
 
-Now you need to edit the `sg_frontend_config.yml` file.
+Now you need to edit the `sg_frontend_authc.yml` file.
 
 The default version of this file contains an entry for password-based authentication:
 
@@ -62,7 +62,7 @@ default:
 
 If you don't want to use password-based authentication, replace the entry`- type: basic` with the new configuration. If you are going to continue to use password-based authentication besides SAML, just add the new configuration below. The following examples assume that you have removed the password-based authentication.
 
-The minimal `sg_frontend_config.yml` configuration for SAML looks like this:
+The minimal `sg_frontend_authc.yml` configuration for SAML looks like this:
 
 ```yaml
 default:
@@ -97,19 +97,19 @@ default:
 
 To use SAML with Dashboards/Kibana, it is necessary to configure the external URL of Dashboards/Kibana in the file `config/kibana.yml` in your Dashboards/Kibana installation.
 
-For Dashboards/Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
+For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
 ```yaml
 server.publicBaseUrl: "https://kibana.example.com:5601"
 ```
 
-For older versions of Kibaba, please use the setting `searchguard.frontend_base_url`:
+For OpenSearch Dashboards and older versions of Kibana, please use the setting `searchguard.frontend_base_url`:
 
 ```yaml
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
-Furthermore, the OIDC protocol requires special settings for the cookies used by Search Guard (For background information on this, see, for example, [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `opensearch_dashboards.yml`/`kibana.yml`:
+Furthermore, the SAML protocol requires special settings for the cookies used by Search Guard (For background information on this, see, for example, [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this, you need to add this to `opensearch_dashboards.yml`/`kibana.yml`:
 
 ```yaml
 searchguard.cookie.isSameSite: None
@@ -130,7 +130,7 @@ If `opensearch_dashboards.yml`/`kibana.yml`  already contains the key, make sure
 To activate the setup, do the following:
 
 - If you edited `opensearch_dashboards.yml`/`kibana.yml`, make sure that you restart the Dashboards/Kibana instance.
-- Use `sgctl` to upload the new `sg_frontend_config.yml` file to Search Guard.
+- Use `sgctl` to upload the new `sg_frontend_authc.yml` file to Search Guard.
 
 That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
 

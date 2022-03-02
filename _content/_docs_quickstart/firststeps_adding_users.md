@@ -33,9 +33,9 @@ The internal user database stores users and their credentials directly in OpenSe
 * Use the [Search Guard Configuration GUI](configuration-gui) (Enterprise)
 * Use the [internal users REST API](rest-api-internalusers) (Enterprise)
 
-## Adding users to sg\_internal\_users.yml
+## Adding users to `sg_internal_users.yml`
 
-The `sg\_internal\_users.yml` file defines all Search Guard users. You can find an example in the folder:
+The `sg_internal_users.yml` file defines all Search Guard users. You can find an example in the folder:
 
 ```
 <ES installation directory>/plugins/search-guard-7/sgconfig/sg_internal_users.yml
