@@ -54,9 +54,9 @@ Download standalone [sgadmin 7](../_docs_versions/versions_versionmatrix.md) and
 
 * `./sgadmin7/tools/sgadmin.sh -backup "./sgadmin7" <other parameters like -ks -cert etc>`
 
-If the command completes successfully the run
+If the command completes successfully then run
 
-* `./sgadmin7/tools/sgadmin.sh -vc 6 "./sgadmin7"`
+* `./sgadmin7/tools/sgadmin.sh -vc 6 -cd "./sgadmin7"`
 
 If the output looks like
 
