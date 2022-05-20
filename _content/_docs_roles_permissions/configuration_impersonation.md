@@ -27,19 +27,6 @@ For example, this can be useful when an admin needs to debug permission problems
 
 In order for user impersonation to work, you must be able to retrieve the user from one of the configured authentication backends. The Active Directory/LDAP and the Internal Users authentication backend support impersonation out of the box.
 
-If you use a custom authentication backend, make sure you to implement the `AuthenticationBackend#exists(User user)` method correctly:
-
-```java
-/**
-* 
-* Lookup for a specific user in the authentication backend
-* 
-* @param user The user for which the authentication backend should be queried
-* @return true if the user exists in the authentication backend, false otherwise
-*/
-boolean exists(User user);
-```
-
 ## Permission settings
 
 To give a user permission to impersonate as another user, 

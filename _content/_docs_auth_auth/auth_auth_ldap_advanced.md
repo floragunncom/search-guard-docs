@@ -78,10 +78,42 @@ If you need to use TLS client authentication to connect from Search Guard to the
 
 The LDAP user search can be customized using the following settings:
 
-**ldap.user_search.base_dn:** Root of the directory tree under which users shall be searched. Default: The root of the directory.
+**ldap.user_search.base_dn:** Root of the directory tree under which users shall be searched. Default: The empty dn.
+
+**ldap.user_search.scope:** Defines the scope of the search. The default is `sub`, which specifies that the tree below `base_dn` is searched to any depth. `one` specifies that only directly subordinated entries shall be searched. 
 
 **ldap.user_search.filter.by_attribute:** Filters the subtree by the specify attribute which must match the user name which was extracted by the authentication frontend. Default: `sAMAccountName`
 
 **ldap.user_search.filter.raw:** Alternatively to `ldap.user_search.filter.by_attribute`, you can specify a raw LDAP search filter. In the search filter, you can use the placeholder `${user.name}` to refer to the user name extracted by the authentication frontend. Example: `(uid=${user.name})`. 
 
+## Group Search Settings
 
+The group search can be customized using the following settings:
+
+**ldap.group_search.base_dn:** Root of the directory tree under which users shall be searched. 
+
+**ldap.group_search.scope:** Defines the scope of the search. The default is `sub`, which specifies that the tree below `base_dn` is searched to any depth. `one` specifies that only directly subordinated entries shall be searched. 
+
+**ldap.group_search.filter.by_attribute:** Filters the subtree by the specify attribute which must match the user name which was extracted by the authentication frontend. Default: `sAMAccountName`
+
+**ldap.group_search.filter.raw:** Alternatively to `ldap.group_search.filter.by_attribute`, you can specify a raw LDAP search filter. In the search filter, you can use the following placeholders:
+
+- `${dn}` refers to the distinguished name of the LDAP entry found by the user search phase. 
+- `${user.name}` refers to the user name extracted by the authentication frontend. 
+- A placeholder like `${ldap_user_entry.x}` can be used to refer to any attribute of the LDAP entry found by the user search phase. 
+
+**ldap.group_search.role_name_attribute:** Defines the attribute that will be read from the found LDAP group entries to define the backend role names used by Search Guard. Default: `dn`. 
+
+**ldap.group_search.recursive.enabled:** Set this to `true`, to also search for group memberships of the groups that have been already found during group search. Default: `false`
+
+**ldap.group_search.recursive.enabled_for:** Set this to a regular expression pattern to allow recursion only for DNs which match the specified pattern.
+
+**ldap.group_search.recursive.filter.by_attribute, ldap.group_search.recursive.filter.raw:** You can customize the search filter to be used for recursive group searches here. By default, the filter specified by `ldap.group_search.filter` is also used for recursive searches.
+
+**ldap.group_search.recursive.max_depth:** Specifies the maximum recursion depth for group searches. Defaults to 30.
+
+**ldap.group_search.cache.enabled:** By default, the results of group searches are cached. Set this to `false` to disable caching.
+
+**ldap.group_search.cache.expire_after_write:** Defines that cached entries shall be removed from the cache at a certain time after they were written to the cache. Defaults to `2m`, which means two minutes. You can specify time units using the characters `s` (seconds), `m` (minutes), `h` (hours).
+
+**ldap.group_search.cache.max_size:** Defines the maximum size of the cache. Defaults to 1000 entries.

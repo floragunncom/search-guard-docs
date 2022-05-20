@@ -1,6 +1,6 @@
 searchguard:
   esmajorversion: 7
-  version: "<span style='color:red'>SG Tech Preview</span>"
+  version: "<span style='color:red'>SG FLX 1.0.0 Beta</span>"
   fullversion: 7.13.3-51.0.0
   nextminorversion: 7.13.3-52.1.0
   nextmajorversion: 7.13.3-53.0.0

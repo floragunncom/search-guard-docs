@@ -27,11 +27,15 @@ The user mapping options now provide a unified way to process this information: 
 
 ## `user_mapping.user_name`
 
-The `user_mapping.user_name` options determine the name of the logged in user. These options are evaluated after the authentication frontend gathered the credentials, but **before the authentication backend** is called. Thus, the  `user_mapping.user_name` options also determine the user name that is sent to the authentication backend.
+The `user_mapping.user_name` options determine the name of the logged in user. 
 
 If you use the `user_mapping.user_name` options, you need to make sure that these produce only a single value. If the options produce an array of values - or no value - authentication will fail.
 
-Normally, you will use `user_mapping.user_name.from` to extract the user name. For anonymous authentication, the option `user_mapping.user_name.static` might be helpful, as it just defines a constant value.
+Normally, you will use `user_mapping.user_name.from` to extract the user name. This option is evaluated after the authentication frontend gathered the credentials, but **before the authentication backend** is called. Thus, the  `user_mapping.user_name.from` option also determines the user name that is sent to the authentication backend.
+
+For anonymous authentication, the option `user_mapping.user_name.static` might be helpful, as it just defines a constant value. This is also evaluated after the authentication frontend, but before any authentication backends.
+
+If you want to map 
 
 ### Using only certain sections of a string as user name
 

@@ -3,7 +3,7 @@ title: Search Guard Documentation
 html_title: Documentation
 slug: index
 layout: docs
-description: Official documentation for Search Guard 7, the enterprise security and alerting suite for Elasticsearch.
+description: Official documentation for Search Guard FLX, the enterprise security and alerting suite for Elasticsearch.
 showsearch: true
 isroot: true
 ---
@@ -18,15 +18,15 @@ Copryight 2020 floragunn GmbH
 
 <h2 align="center">Security and Alerting for Elasticsearch and OpenSearch</h2>
 
-<h1 align="center">Search Guard Tech Preview Documentation</h1>
+<h1 align="center">Search Guard FLX Documentation</h1>
 
-Welcome to the preview of the next generation of Search Guard! We provide you this preview in order to give you an impression of the changes and an opportunity to test it and give feedback.
+Welcome to Search Guard FLX, the next generation of Search Guard! 
 
-Please note that this preview is not yet ready for use in production systems. It might have bugs. Also, we might decide to introduce further breaking changes before the release.
+Please note that Search Guard FLX is a beta version, which might be not yet ready for use in production systems. It might have bugs. 
 
 ## What's New
 
-This technical preview brings a number of fundamental improvements and updates to Search Guard. These require breaking changes in the configuration format.
+Search Guard FLX brings a number of fundamental improvements and updates to Search Guard. These require breaking changes in the configuration format.
 
 Major changes include:
 
@@ -40,6 +40,7 @@ Major changes include:
   - Dashboards/Kibana authentication configuration can be changed without having to restart the node.
 - **New administration tool** `sgctl` which shall replace `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
 - Improved way of handling unauthorized indices. You no longer have to worry that your wildcard query breaks because it might pick up an index you don't have permissions for.
+- More speed. Many components of Search Guard underwent major optimizations. Thus, Search Guard FLX can now handle more throughput with a lower CPU footprint.
 
 
 ## Download
@@ -61,7 +62,7 @@ You can get the current snapshot of the Search Guard Tech Preview at the followi
 
 ## Getting Started
 
-You have several options to try the Search Guard Tech Preview:
+You have several options to try the Search Guard FLX:
 
 - If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo-installer).
 
@@ -87,7 +88,7 @@ The breaking changes include so far:
 
 - Support for OpenSSL was removed from Search Guard already quite a while a go. Now, also the configuration options - which were just ignored in the meantime - have been also removed. Thus, if you have any `searchguard` settings in `elasticsearch.yml` mentioning `openssl`, you need to remove these.
 
-- The `do_not_fail_on_forbidden` mode has been replaced by `ignore_unauthorized` mode with refined semantics. This mode is now active by default.
+- The `do_not_fail_on_forbidden` mode has been replaced by `ignore_unauthorized` mode with refined semantics. This mode is now active by default. 
 
 - Search Guard no longer warns about filtered alias settings.
 

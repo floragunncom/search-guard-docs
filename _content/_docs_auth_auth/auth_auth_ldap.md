@@ -46,7 +46,7 @@ auth_domains:
   ldap.idp.password: "secret-ldap-password-123"
 ```
 
-If you need to special TLS settings for creating TLS connections to the LDAP server,  you can use the attributes below `ldap.idp.tls`. See TODO for details on this.
+If you need to special TLS settings for creating TLS connections to the LDAP server,  you can use the attributes below `ldap.idp.tls`. See the section on [advanced configuration options](../_docs_auth_auth/auth_auth_ldap_advanced.md#tls-settings) for details on this.
 
 ### User search
 
@@ -62,7 +62,7 @@ auth_domains:
   ldap.user_search.filter.by_attribute: "uid"
 ```
 
-Search Guard allows you to configure all aspects of the user search: The search tree root, the search scope and complex filter expressions. See TODO for details.
+Search Guard allows you to configure all aspects of the user search: The search tree root, the search scope and complex filter expressions. See the section [advanced configuration options for LDAP](../_docs_auth_auth/auth_auth_ldap_advanced.md) for details.
 
 ### Roles
 
@@ -85,13 +85,13 @@ memberOf: cn=devops,ou=groups,dc=example,dc=com
 memberOf: cn=hr,ou=groups,dc=example,dc=com
 ```
 
-To access attributes of the LDAP entry during user mapping, the `ldap` authentication backend provides the `ldap_entry` object. If you want the values of the `memberOf` attribute as role names, you can use this user mapping:
+To access attributes of the LDAP entry during user mapping, the `ldap` authentication backend provides the `ldap_user_entry` object. If you want the values of the `memberOf` attribute as role names, you can use this user mapping:
 
 ```yaml
 auth_domains:
 - type: basic/ldap
   [...]
-  user_mapping.roles.from: ldap_entry.memberOf
+  user_mapping.roles.from: ldap_user_entry.memberOf
 ```
 
 In Search Guard, the logged in users will then have the attribute values entries as backend roles; in the example, these would be the distinguished names `cn=devops,ou=groups,dc=example,dc=com` and `cn=hr,ou=groups,dc=example,dc=com`. You can use [the role mapping configuration](../_docs_roles_permissions/configuration_roles_mapping.md) to map these to Search Guard roles.
@@ -107,7 +107,7 @@ auth_domains:
   ldap.group_search.base_dn: "ou=groups,dc=example,dc=com"  
 ```
 
-With this configuration, Search Guard will search the directory tree below `ou=groups,dc=example,dc=com` for all entries which have a `member` attribute which equals the dn of the user logging in. The options of `group_search` are similar to `user_search`. If you need to search using a different attribute, you can use the `ldap.group_search.filter.by_attribute` option. See TODO for all available configuration options.
+With this configuration, Search Guard will search the directory tree below `ou=groups,dc=example,dc=com` for all entries which have a `member` attribute which equals the dn of the user logging in. The options of `group_search` are similar to `user_search`. If you need to search using a different attribute, you can use the `ldap.group_search.filter.by_attribute` option. See [here](../_docs_auth_auth/auth_auth_ldap_advanced.md#group-search-settings) for all available configuration options.
 
 By default, the logged in users will then have the distinguished names ("dn") of the LDAP entries as backend roles. If you want to use a different attribute, you can specify this using `ldap.group_search.role_name_attribute`. For advanced mapping, you can also reference the group search result via `user_mapping`. See below for more on this.
 
@@ -125,7 +125,7 @@ auth_domains:
 
 **Note:** When doing recursive group search, Search Guard has to issue one further LDAP query for each level of recursion. This can slow down the authentication process. 
 
-There are a couple of further configuration options to control and limit the recursive group search. See TODO.
+There are a couple of further configuration options to control and limit the recursive group search. See the [group search configuration options](../_docs_auth_auth/auth_auth_ldap_advanced.md#group-search-settings).
 
 ## Activate the setup
 

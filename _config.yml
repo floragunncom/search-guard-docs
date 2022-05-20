@@ -97,7 +97,7 @@ labels:
     generating-certificates: "Generating certificates"
     configuration: "Search Guard Configuration"
     sgctl: "Search Guard CTL"
-    authauth: Authentication and Authorization
+    authauth: Authentication
     rolespermissions: "Users, Roles and Permissions"
     eeadvanced: Advanced Security Features
     dlsfls: Document- and Field-Level Security

@@ -14,8 +14,6 @@ By using TLS, the traffic between ES nodes and ES clients will be encrypted, whi
 * Nobody can tamper with the traffic.
 * Only trusted nodes can join your cluster.
 
-Search Guard supports OpenSSL for improved performance and the most modern cipher suites.
-
 ## TLS in a nutshell
 
 TLS (aka SSLv3) is a cryptographic protocol to secure the communication over a computer network. It uses **symmetric encryption** to encrypt the transmitted data, by negotiating a **unique secret** at the start of any **TLS session** between two participating parties. It uses **public key cryptography** to authenticate the identity of the participating parties.

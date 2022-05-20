@@ -95,6 +95,9 @@ Both authentication frontends and authentication backends can deliver user infor
 
 This is where the user mapping comes into play. It allows you to map the various information from authentication frontends and backends to the user name, to roles, and to user attributes.
 
+
+### Example application
+
 Let's have a look at an example:
 
 ```yaml
@@ -118,6 +121,8 @@ Finally, `user_mapping.attributes.from` is the most complex setting. In Search G
 
 In the example, the attribute `department.number` is retrieved from the JWT and put into the Search Guard user with the attribute name `dept_no`. Additionally, the attribute `level` is retrieved from `jwt.department.access_level`. 
 
+### Using static information for user mapping
+
 You can also define constant values to be used for user name, roles or attributes. For this, use the properties `user_mapping.user_name.static`, `user_mapping.roles.static` and `user_mapping.attributes.static`. A case, where this is very useful, is anonymous authentication. See the following example configuration for this:
 
 ```yaml
@@ -130,7 +135,29 @@ auth_domains:
     level: 0
 ```
 
+### Getting the user name from a backend
 
+Usually, the user name is determined by the authentication frontend. For username/password-based authentication, it is quite clear that the username used by Search Guard is normally the same as the one provided by the user during login. Also, JWT, OIDC or SAML protocols usually provide a suitable user name.
+
+In some cases, however, it might be useful to use a backend to provide the actual username which shall be used by Search Guard. For this use-case, you need to use the
+configuration option `user_mapping.user_name.from_backend`. 
+
+An example for this might look like this:
+
+```yaml
+auth_domains:
+- type: basic/ldap
+  ldap.idp.hosts:
+  - "ldaps://ldap.example.com"
+  ldap.user_search.filter.by_attribute: uid
+  user_mapping.user_name.from_backend: ldap_user_entry.displayName[0]
+```
+
+In this case, the user needs to provide their `uid` as user name in the login form. However, when the user is logged in, the `displayName` attribute from the corresponding LDAP entry is used as the actual user name.
+
+### More details on user mapping
+
+See the section [advanced user mapping](auth_auth_rest_config_advanced_user_mapping.md) for a comprehensive overview over all options.
 
 ## Restricting authentication domains
 
@@ -243,7 +270,7 @@ Remember that the expressions used for retrieving the role and attribute values 
 
 There are a number of additional advanced options in `sg_authc.yml`. These allow you to customize the following things:
 
-- [Advanced User Mapping](auth_auth_rest_config_advanced_user_mapping.md)
+- [Advanced user mapping](auth_auth_rest_config_advanced_user_mapping.md)
 - [Global restrictions for IP addresses](auth_auth_rest_config_advanced_options.md)
 - [Authentication cache settings](auth_auth_rest_config_advanced_options.md)
 

@@ -108,21 +108,6 @@ searchguard.authcz.admin_dn:
 
 For security reasons, you cannot use wildcards or regular expressions here.
 
-
-## Using OpenSSL
-
-Search Guard supports OpenSSL. We recommend to use OpenSSL in production for enhanced performance and a wider range of modern cipher suites. In order to use OpenSSL, you need to install OpenSSL, the Apache Portable Runtime and a Netty version with OpenSSL support matching your platform on all nodes. This is described in the [OpenSSL](tls_openssl.md) chapter.
-
-If OpenSSL is enabled, but for one reason or another the installation does not work, Search Guard will fall back to the Java JCE as security engine.
-
-| Name | Description |
-|---|---|
-| searchguard.ssl.transport.enable\_openssl\_if\_available | Enable OpenSSL on the transport layer if avaliable. (Optional, default: true) |
-| searchguard.ssl.http.enable\_openssl\_if\_available | Enable OpenSSL on the REST layer if available. (Optional, default: true) |
-{: .config-table}
-
-See the [OpenSSL](tls_openssl.md) chapter for more information on how to install all required components.
-
 ## Advanced: Hostname verification and DNS lookup
 
 In addition to verifying the TLS certificates against the Root CA and/or intermediate CA(s), Search Guard can apply additional checks on the transport layer to further secure your cluster.
