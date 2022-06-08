@@ -2,23 +2,39 @@
    Headlines
    ========================================================================== */
 
-h1{
+h1 {
+  font-weight:400;
+  color: $darkBlue;
+  font-size: 2.5em;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight:400;
   color: $darkBlue
 }
 
-h2{
-  margin-top:1.3em;
-  color: $darkBlue
-}
-
-h3{
-  margin-top:1em;
-  color: $darkBlue
-}
-
-h4{
+p + h2, p + h3, p + h4, p + h5, p + h6, pre + h2, pre + h3, pre + h4, pre + h5, pre + h6, ul + h2, ul + h3, ul + h4, ul + h5, ul + h6  {
   margin-top:2em;
-  color: $darkBlue
+}
+
+h5{
+  margin-top:1.5em;
+}
+
+/* ==========================================================================
+   Typo fixes
+   ========================================================================== */
+
+body {
+    font-size: 118%;
+}
+
+strong {
+    font-weight: 400;
+}
+
+code {
+    font-size: 90%;
 }
 
 /* ==========================================================================

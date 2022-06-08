@@ -1,8 +1,8 @@
 ---
-title: Snapshot, Restore, Index Aliases
+title: Snapshot, Restore
 html_title: Snapshot Restore
 permalink: snapshot-restore
-category: rolespermissions
+category: authorization-advanced
 order: 1000
 layout: docs
 edition: community
@@ -11,68 +11,18 @@ description: Control access to the snapshot and restore features of OpenSearch/E
 <!---
 Copyright 2020 floragunn GmbH
 -->
-# Aliases, snapshots and restore
+# Snapshot and restore
 {: .no_toc}
 
 {% include toc.md %}
 
-## Index alias handling
 
-Before applying any security checks, Search Guard first resolves any alias to the concrete index name(s). Index aliases are thus transparent to Search Guard. The same is true for 
 
-* Index wildcards, also with multiple index names
-  * e.g. `https://localhost:9200/i*ex*,otherindex/_search` 
-* Date math index names
-  * e.g.  `https://localhost:9200/<logstash-{now/d}>/_search/_search`
-* Filtered index aliases 
-
-Index names are resolved to their concrete index name(s) in
-
-* REST requests
-* Transport requests
-* Search Guard role definitions
-
-In practice this means that you do not need to grant permissions on index aliases in addition to granting permission on the concrete index names. For example, if you have an index alias `myalias` pointing to an index `myindex`, you only need to configure permissions for `myindex`. These permissions apply regardless whether the user accesses the index via `myalias` or `myindex`.
-
-In detail, for every request Search Guard
-
-* resolves any index name(s) in the request to the concrete index name(s)
-* resolves any index name(s) in the user's role definitions to the concrete index name(s)
-* applies permission checks based on the concrete index name(s)
-
-## Handling filtered index aliases
-
-Filtered index aliases currently do not work if the `do_not_fail_on_forbidden` flag is set to true in `sg_config.yml`.
-{: .note .js-note .note-warning}
-
-Filtered index aliases can be used to filter documents from the underlying concrete index. However, **using filteres aliases is not a secure way to restrict access to certain documents**. In order to do that, please use the [Document Level Security](../_docs_dls_fls/dlsfls_dls.md) feature of Search Guard.
-
-Because of this potential security leak, Search Guard detects and treats filtered index aliases in a special way: You can either disallow them completely, or issue a warning message on `WARN` or `DEBUG` level.
-
-The following entry in sg_config can be used to configure this:
-
-```yaml
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
- sg_config:
-    dynamic:		    
-      filtered_alias_mode: <warn|nowarn|disallow>
-```
-
-| Name  | Description  |
-|---|---|
-| warn | default, logs a warning message if multiple filtered index aliases are detected on `WARN` level |
-| disallow | forbids multiple filtered index aliases completely |
-| nowarn | logs a warning message if multiple filtered index aliases are detected on `DEBUG` level |      
-
-### Required permissions
+## Required permissions
 
 In order to perform snapshot and restore operations, the user must be assigned to the built-in `SGS_MANAGE_SNAPSHOTS` role.
 
-### Restoring a snapshot
+## Restoring a snapshot
 
 A snapshot can only be restored if it does not contain global state and it does not contain the 'searchguard' index. 
 

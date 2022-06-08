@@ -1,8 +1,8 @@
 ---
-title: User Impersonation
-html_title: User Impersonation
+title: User impersonation
+html_title: User impersonation in Search Guard
 permalink: user-impersonation
-category: rolespermissions
+category: authorization-advanced
 order: 700
 layout: docs
 edition: community

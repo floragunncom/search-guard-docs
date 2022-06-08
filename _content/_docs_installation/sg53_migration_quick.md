@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-html_title: Quickly migrating older SG authentication configuration
+html_title: Quickly migrating from older Search Guard versions
 permalink: sg-classic-config-migration-quick
 category: kibana-authentication-migration-overview
 order: 100
@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 This chapter describes how to quickly migrate legacy Search Guard configuration to the new structure. This is useful for testing - possibly as a preparatory step for updating a production cluster.
 
-**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](kibana_authentication_52migration_prod.md).
+**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](sg53_migration_prod.md).
 
 ## Prerequisites
 

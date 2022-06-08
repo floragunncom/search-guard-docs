@@ -1,7 +1,7 @@
 ---
 title: Production
-html_title: Migrating older SG authentication configuration with minimal outage
-permalink: kibana-authentication-migration-prod
+html_title: Migrating from older Search Guard versions with minimal outage
+permalink: sg-classic-config-migration-prod
 category: kibana-authentication-migration-overview
 order: 300
 layout: docs
@@ -12,7 +12,7 @@ description: How to migrate older Kibana authentication configurations to sg_fro
 Copyright 2020 floragunn GmbH
 -->
 
-# Production Cluster: Migrating from Search Guard 52 and before
+# Production Cluster: Migrating from Search Guard 53 and before
 {: .no_toc}
 
 This chapter describes how to migrate a cluster running legacy Search Guard configuration to the new structure with minimal outage.

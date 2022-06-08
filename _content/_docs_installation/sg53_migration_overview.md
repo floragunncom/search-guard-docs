@@ -1,6 +1,6 @@
 ---
-title: Config Migration
-html_title: Migrating older SG authentication configuration
+title: Migrating to FLX
+html_title: Migrating from older Search Guard versions to FLX
 permalink: sg-classic-config-migration-overview
 category: installation
 subcategory: kibana-authentication-migration-overview
@@ -13,7 +13,7 @@ description: How to migrate older Search Guard authentication configurations
 Copyright 2020 floragunn GmbH
 -->
 
-# Migrating from Search Guard 53 and before
+# Migrating from Search Guard 53 and before to Search Guard FLX
 {: .no_toc}
 
 If you have an existing cluster running Search Guard 53 or earlier, you need to migrate your configuration. 

@@ -1,6 +1,6 @@
 ---
-title: Feature Map
-html_title: Migrating older SG authentication configuration
+title: Feature map
+html_title: Feature map - Search Guard 53 to FLX
 permalink: config-migration-feature-map
 category: kibana-authentication-migration-overview
 order: 1100
@@ -243,7 +243,7 @@ The functionality provided by the `ldap` authorization backend can be now used i
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`searchguard.cache.ttl_minutes` | Property `user_cache.expire_after_write` in `sg_authc.yml` and `sg_authc_transport.yml` | The new property requires the specification of a temporal unit after the amount. To specify 10 minutes, write `10m` |
-
+|`searchguard.dfm_empty_overrides_all` | none | The setting has been removed. Search Guard now always behave like it is set to true. |
 
 ## `kibana.yml`
 

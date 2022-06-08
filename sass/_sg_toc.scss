@@ -9,14 +9,12 @@
   padding-bottom: 0px;
   background-color: $grey;
   position: relative;
-  font-size: 1.1em;
 }
 
 .faq-table-of-contents-title{
   margin-bottom: 5px;
   font-weight: 400;
   color: $navyBlueActive;
-  font-size: 1.2em;
 }
 
 .faq-table-of-contents a {
@@ -26,5 +24,5 @@
 
 #markdown-toc {
   list-style-type: none;
-  margin-bottom: 5px;
+  margin: 0 0 0.8em 0;
 }
