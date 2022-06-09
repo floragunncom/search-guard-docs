@@ -20,7 +20,7 @@ Copryight 2020 floragunn GmbH
 
 <h1 align="center">Search Guard {{site.searchguard.version}} Documentation</h1>
 
-The [Search Guard Technical Preview 2](https://docs.search-guard.com/tech-preview/), a preview of the next generation of Search Guard, has been just released!
+The [Search Guard FLX Beta 2](https://docs.search-guard.com/flx/), a preview of the next generation of Search Guard, has been just released! Please check it out!
 {: .note .js-note}
 
 ## Docker Demo
