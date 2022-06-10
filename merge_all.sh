@@ -5,6 +5,7 @@ for i in "${versions[@]}"
 do
     git checkout "$i" && git pull && git merge 7.x --no-edit && git push
 	echo "Merged 7.x in $i"
+	./deploy.sh
 done
 git checkout 7.x
 
