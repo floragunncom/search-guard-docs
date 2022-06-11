@@ -12,7 +12,7 @@ index_algolia: false
 
 # Search Guard Versions
 
-You can get the [Search Guard Technical Preview](https://docs.search-guard.com/tech-preview/) at [https://docs.search-guard.com/tech-preview/](https://docs.search-guard.com/tech-preview/).
+You can get the [Search Guard FLX Beta](https://docs.search-guard.com/flx/) at [https://docs.search-guard.com/flx/](https://docs.search-guard.com/flx/).
 {: .note .js-note}
 
 This page lists all available versions of Search Guard. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
