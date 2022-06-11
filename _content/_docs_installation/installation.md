@@ -68,7 +68,7 @@ The first time installation procedure on a production cluster is to:
 3. Install the Search Guard plugin on all nodes
 4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `opensearch.yml`/`elasticsearch.yml`
 5. Restart OpenSearch/Elasticsearch and check that the nodes come up
-6. Re-enable shard allocation by using [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
+6. Re-enable shard allocation
 7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
 
 While for an already configured Search Guard plugin you can also use the Dashboards/Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
@@ -77,7 +77,13 @@ While for an already configured Search Guard plugin you can also use the Dashboa
 
 This step is optional but recommended especially for large clusters with a huge amount of data. This step makes sure that shards will not be shifted around when restarting the cluster, causing a lot of I/O. See also [https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/shards-allocation.html){:target="_blank"}
 
-**Example using curl**
+### Using sgctl
+
+```bash
+./sgctl.sh rest put _cluster/settings --json '{"persistent":{"cluster.routing.allocation.enable": "none"}}'
+```
+
+### Using curl
 
 ```bash
 curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \ 
@@ -174,18 +180,15 @@ The REST management API is an Enterprise feature.
 
 After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgadmin or curl:
 
-**Example using sgadmin**
-
 ```bash
-./sgadmin.sh --enable-shard-allocation
- -cert ./kirk.pem -key ./kirk-key.pem -cacert ./root-ca.pem 
+./sgctl.sh rest put _cluster/settings --json '{"persistent":{"cluster.routing.allocation.enable": "all"}}'
 ```
 
 ## Initializing Search Guard
 
-All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on OpenSearch/Elasticsearch. By default, this index is not populated automatically for security reason. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
+All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on OpenSearch/Elasticsearch. By default, this index is not populated automatically for security reasons. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
 
-You intialize Search Guard by using the [sgadmin command line tool](../_docs_configuration_changes/configuration_sgadmin.md) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication and authorisation modules](../_docs_auth_auth/auth_auth_configuration.md) to use.
+You initialize Search Guard by using the [sgctl command line tool](../_docs_configuration_changes/configuration_sgctl.md) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication modules](../_docs_auth_auth/auth_auth_configuration.md) to use.
 
 Once initialized, you can also use the Search Guard configuration GUI to edit roles and permissions.
 

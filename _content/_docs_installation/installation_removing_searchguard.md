@@ -33,7 +33,7 @@ If you disable Search Guard, the Search Guard configuration index will also be e
 
 In order to remove Search Guard completely you need to
 
-* Delete or remove the plugins/search-guard-{{site.searchguard.esmajorversion}} folder from all nodes
+* Delete or remove the plugins/search-guard-flx folder from all nodes
 * Delete or comment the Search Guard configuration entries from elasticsearch.yml
 
 A full cluster restart is required for removing Search Guard completely. Since transport traffic is TLS encrypted, you can't perform a rolling restart. Nodes running with TLS cannot talk to nodes running with TLS anymore, so you would end up with a split cluster (TLS / non-TLS).

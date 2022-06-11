@@ -24,13 +24,13 @@ Since the demo certificates are the same for each Search Guard installation, do 
 
 To execute the demo installation:
 
-* ``cd`` into `<OpenSearch/Elasticsearch directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools`
+* ``cd`` into `<OpenSearch/Elasticsearch directory>/plugins/search-guard-flx/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
 The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
 
 ```bash
-Search Guard {{site.searchguard.esmajorversion}} Demo Installer
+Search Guard FLX Demo Installer
  ** Warning: Do not use on production or publicly reachable systems **
 Install demo certificates? [y/N] y
 Initialize Search Guard? [y/N] y

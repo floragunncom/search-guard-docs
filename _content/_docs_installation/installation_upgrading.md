@@ -54,7 +54,7 @@ Given there are no breaking changes, you can directly upgrade to the latest Sear
 
 * Stop your OpenSearch/Elasticsearch node
 * Remove the old version of Search Guard
-  * `bin/elasticsearch-plugin remove search-guard-{{site.searchguard.esmajorversion}}`
+  * `bin/elasticsearch-plugin remove search-guard-flx`
 * Install the new version of Search Guard
   * See the chapter [Installing Search Guard](../_docs_installation/installation.md)
  for instructions
@@ -75,7 +75,7 @@ Follow the official Elasticsearch guideline for rolling upgrades:
 
 [Rolling upgrades](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html){:target="_blank"}
 
-Depending on your configured authentication and authorisation modules, you need to provide additional credentials in the `curl` calls mentioned in the rolling upgrade guide.
+Depending on your configured authentication modules, you need to provide additional credentials in the `curl` calls mentioned in the rolling upgrade guide.
 
 You can either use a user that has full cluster management permissions, or use an admin certificate, which has full access as well.
 
@@ -131,15 +131,12 @@ The same rules for the `curl` commands as above apply, you need to execute them 
 
 ### Back up the Search Guard configuration (Optional)
 
-In case you do not have acces to your original Search Guard configuration files anymore, you can retrieve the current configuration of your running cluster by using `sgadmin` with the `-r` (`--retrieve`) switch:
+In case you do not have acces to your original Search Guard configuration files anymore, you can retrieve the current configuration of your running cluster by using `sgctl` with the `get-config` subcommand:
 
 ```bash
-./sgadmin.sh \ 
-  -ks kirk.jks -kspass changeit \  
-  -ts truststore.jks -tspass changeit \ 
-  -icl -nhnv -r
+./sgctl.sh get-config -o path/to/your/output/directory
 ```
 
-This will retrieve and save all Search Guard configuration files to your working directory. You can later use these files to initialize Search Guard after the upgrade. 
+This will retrieve and save all Search Guard configuration files to the specified directory. You can later use these files to initialize Search Guard after the upgrade. 
 
 For a major upgrade, the permission schema has very likely changed. so compare especially the `sg_roles.yml` and `sg_action_groups.yml` files with the versions that ship with the Search Guard plugin.

@@ -27,7 +27,7 @@ Configuration settings are uploaded to the Search Guard configuration index usin
 Search Guard ships with sgadmin included. 
 
 ```
-<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/tools
+<ES installation directory>/plugins/search-guard-flx/tools
 ```
 
 You can also [download a standalone version](search-guard-versions) of sgadmin with all dependencies. You can run sgadmin from any machine that has access to the transport port of your cluster. This means that you can change the Search Guard configuration without having to access your nodes via SSH. 

@@ -38,7 +38,7 @@ The internal user database stores users and their credentials directly in OpenSe
 The `sg_internal_users.yml` file defines all Search Guard users. You can find an example in the folder:
 
 ```
-<ES installation directory>/plugins/search-guard-7/sgconfig/sg_internal_users.yml
+<ES installation directory>/plugins/search-guard-flx/sgconfig/sg_internal_users.yml
 ```
 
 A user entry has the following basic format:

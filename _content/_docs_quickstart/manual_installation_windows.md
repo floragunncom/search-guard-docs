@@ -1,7 +1,7 @@
 ---
 title: Manual Installation 
 html_title: Manual Installation
-permalink: installation-windows
+permalink: manual-installation
 category: quickstart
 order: 300
 layout: docs
@@ -30,8 +30,8 @@ If you don't have them yet, you need to download a couple of software components
 | [Search Guard OpenSearch Dashboards Plugin](https://docs.search-guard.com/latest/search-guard-versions) | [Search Guard Kibana Plugin](https://docs.search-guard.com/latest/search-guard-versions) |
 
 <table>
-<tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/0.1.0/">Search Guard Control Tool sgctl</a></td></tr>
+<tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
 </table>
 
 **Note:** OpenSearch Dashboards/Kibana is optional. You can also just install the backend part OpenSearch/Elasticsearch.

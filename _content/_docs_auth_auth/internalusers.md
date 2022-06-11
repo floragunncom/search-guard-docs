@@ -1,8 +1,8 @@
 ---
 title: Internal Users Database
 permalink: internal-users-database
-category: rolespermissions
-order: 100
+category: password-based
+order: 200
 layout: docs
 edition: community
 description: How to store and manage Search Guard users directly in OpenSearch/Elasticsearch by using the Internal Users Database.
@@ -23,19 +23,50 @@ You can use `sgctl` or the [Search Guard confguration GUI](../_docs_configuratio
 
 **Note:** You should prefer to use `sgctl` or the [Search Guard confguration GUI](../_docs_configuration_changes/configuration_config_gui.md). If you choose to directly edit `sg_internal_users.yml`, keep in mind that you might overwrite changes if you work on an old copy. Thus, before modifying `sg_internal_users.yml`, be sure to get an up-to-date version of the file from the cluster. 
 
-If you are using the internal users database for the first time, make sure that it is configured in `sg_authc.yml`. See the [authentication docs](../_docs_auth_auth/auth_auth_httpbasic.md) for details on this. 
+## Initial `sg_authc.yml` configuration 
+
+If you are using the internal users database for the first time, you need to make sure that it is configured in `sg_authc.yml`. 
+
+The minimal `sg_authc.yml` configuration for using Search Guard with the internal users database looks like this:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+```
+
+For basic use, no further configuration is necessary. Users authenticated via the internal users database automatically have the roles that are associated with them in the database (both backend roles and Search Guard roles). 
+
+### Attribute mapping
+
+If you want to use [user-attribute-based authorization](../docs_roles_permissions/configuration_roles_permissions.md), you have to define an attribute mapping. This mapping maps the attributes stored in the internal user database to the attributes the logged-in user will have.  Suppose users in the internal user database are defined like this:
+
+```yaml
+hr_employee:
+  [...]
+  attributes:
+    manager: "layne.burton"
+    department: 
+      name: "operations"
+      number: 52
+```
+
+The `internal_users_db` makes the attributes available for mapping below the key `user_entry.attributes`. Thus, you can map the attribute `department.number` like this:
+
+```yaml
+auth_domains:
+- type: basic/internal_users_db
+  user_mapping.attributes.from:
+    dept_no: user_entry.attributes.department.number
+```
+
 
 ## Structure
 
-You can find a template in `<ES installation directory>/plugins/search-guard-{{site.searchguard.esmajorversion}}/sgconfig/sg_internal_users.yml`
+You can find a template in `<ES installation directory>/plugins/search-guard-flx/sgconfig/sg_internal_users.yml`
 
 Syntax:
  
 ```yaml
-_sg_meta:
-  type: "internalusers"
-  config_version: 2
-  
 <username>:
   hash: <hashed password>
   search_guard_roles:
@@ -65,10 +96,6 @@ _sg_meta:
 ### Example
 
 ```yaml
-_sg_meta:
-  type: "internalusers"
-  config_version: 2
-  
 hr_employee:
   hash: $2a$12$7QIoVBGdO41qSCNoecU3L.yyXb9vGrCvEtVlpnC4oWLt/q0AsAN52
   search_guard_roles:
