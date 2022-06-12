@@ -360,6 +360,8 @@ Search Guard FLX comes with a revised implementation for DLS/FLS and field anony
 
 **Note:** By default the new implementation is inactive, because it can be only used if all nodes of the cluster have finished the migration to Search Guard FLX. After you have completed the migration, you can activate the new implementation by creating/editing `sg_authz_dlsfls.yml` and setting the attribute `use_impl` to `flx`. 
 
+**Note:** The hashing parameters for the new implementation of field masking have changed. Thus, when switching to the new implementation, the value of hashed fields changes.
+
 ##### Related:
 
 * [Merge Request: New DLS/FLS implementation](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/223)
