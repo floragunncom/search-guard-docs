@@ -364,6 +364,9 @@ Search Guard FLX comes with a revised implementation for DLS/FLS and field anony
 
 ##### Related:
 
+* [Documentation: DLS](../_docs_dls_fls/dlsfls_dls.md)
+* [Documentation: FLS](../_docs_dls_fls/dlsfls_fls.md)
+* [Documentation: Field anonymization](../_docs_dls_fls/dlsfls_field_anonymization.md)
 * [Merge Request: New DLS/FLS implementation](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/223)
 
 

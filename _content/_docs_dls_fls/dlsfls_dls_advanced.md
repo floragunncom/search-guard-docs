@@ -31,7 +31,7 @@ There are two execution modes for DLS:
 
 By default, Search Guard switches automatically between the modes depending on the DLS queries configured for the index. If a term-lookup query is present, DLS will be performed in filter-level mode. Otherwise, lucene-level mode will be used.
 
-It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `dls.mode` in the file `sg_dlsfls.yml`.
+It is however possible to configure Search Guard to always use one specific mode, regardless of the used queries. This can be achieved using the setting `dls.mode` in the file `sg_authz_dlsfls.yml`.
 
 The setting `dls.mode` has three possible values:
 

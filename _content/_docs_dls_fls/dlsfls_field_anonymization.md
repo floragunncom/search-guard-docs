@@ -33,7 +33,7 @@ Field masking works well together with field-level security and can be applied t
 - A legacy implementation, which is compatible with nodes which are running still older versions of Search Guard
 - A new implementation, which provides better efficiency and functionality. However, this implementation can only be used if you have completely updated your cluster to Search Guard FLX.
 
-As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_dlsfls.yml` and add:
+As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_authz_dlsfls.yml` and add:
 
 ```yaml
 use_impl: flx
@@ -152,7 +152,7 @@ The above example means that all values of all fields ending with `Name` are ano
 
 ## Global configuration
 
-Global configuration for field masking is stored in the `sg_dlsfls` configuration. You can use `sgctl` to upload the changed configuration to the cluster.
+Global configuration for field masking is stored in the `sg_authz_dlsfls` configuration. You can use `sgctl` to upload the changed configuration to the cluster.
 
 ### Configuring the hash salt
 

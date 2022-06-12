@@ -31,7 +31,7 @@ You can both use field inclusion lists and exclusion lists. As inclusion lists a
 - A legacy implementation, which is compatible with nodes which are running still older versions of Search Guard
 - A new implementation, which provides better efficiency and functionality. However, this implementation can only be used if you have completely updated your cluster to Search Guard FLX.
 
-As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_dlsfls.yml` and add:
+As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_authz_dlsfls.yml` and add:
 
 ```yaml
 use_impl: flx
