@@ -1,5 +1,5 @@
 ---
-title: Internal Users Database
+title: Internal users database
 permalink: internal-users-database
 category: password-based
 order: 200

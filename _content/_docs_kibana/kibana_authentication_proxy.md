@@ -26,22 +26,26 @@ To use proxy authentication, you need a proxy in front of Dashboards/Kibana, whi
 
 ## Search Guard Backend Setup
 
-To use proxy authentication with Dashboards/Kibana, you have to also set up a suitable authentication mechanism in the Search Guard backend configuration `sg_config.yml`.
+To use proxy authentication with Dashboards/Kibana, you have to also set up a suitable authentication mechanism in the Search Guard backend configuration `sg_authc.yml`.
 
 The type of the setup depends on the information provided by the proxy in the HTTP headers:
 
-- If the proxy transmits username and role information as plain headers, go for a [proxy](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend.
+- If the proxy transmits username and role information as plain headers, go for a [trusted_origin](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Dashboards/Kibana, which also acts as a proxy in this case.
 - If the proxy transmits authorization as a JWT in a header, go for a  [JWT](../_docs_auth_auth/auth_auth_jwt.md) authenticator in the backend.
 
 ## Dashboards/Kibana Setup
 
-Additionally, you need to edit the file `config/kibana.yml` in your Dashboards/Kibana installation:
+Additionally, you need to edit the file `config/opensearch_dashboards.yml`, resp. `config/kibana.yml`:
 
 * Add the line `searchguard.auth.type: "proxy"`
-* Make sure to whitelist all HTTP headers set by your proxy in the header whitelist in kibana.yml:
+* Make sure to whitelist all HTTP headers set by your proxy in the header whitelist:
 
 ```yaml
-elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-forwarded-for", "x-proxy-user", "x-proxy-roles" ]
+elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-proxy-user", "x-proxy-roles" ]
 ```
 
-Note that the Search Guard proxy authenticator requires the `x-forwarded-for`header to function correctly.
+You do not need to add the `x-forwarded-for` header, as this is automatically handled by the Search Guard plugin. The Search Guard plugin acts here like Dashboards/Kibana is a proxy. This means:
+
+- If there is no `x-forwarded-for` header, the Search Guard plugin adds the header and adds the IP of the host connecting to Dashboards/Kibana to the header value.
+- If there is an `x-forwarded-for` header, the Search Guard plugin appeands the IP of the host connecting to Dashboards/Kibana to the end of the header value.
+

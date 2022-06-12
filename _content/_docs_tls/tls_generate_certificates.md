@@ -1,5 +1,5 @@
 ---
-title: Generating Certificates
+title: Generating certificates
 permalink: generating-tls-certificates
 category: tls
 subcategory: generating-certificates

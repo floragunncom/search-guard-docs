@@ -1,5 +1,5 @@
 ---
-title: TLS Hot-Reload
+title: TLS hot-reload
 permalink: hot-reload-tls
 category: tls
 order: 500
@@ -13,7 +13,7 @@ resources:
 
 ---
 
-# TLS Certificate Hot-Reload
+# TLS certificate hot-reload
 
 TLS certificate hot-reload provides you the ability to change the TLS certificates and private keys used by Search Guard without having to restart the ES cluster.
 

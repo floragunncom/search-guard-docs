@@ -128,15 +128,3 @@ Follow the official OpenSearch/Elasticsearch guideline for full cluster restart 
 [Full cluster restart upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html){:target="_blank"}
 
 The same rules for the `curl` commands as above apply, you need to execute them by using an admin certificate or by providing credentials for a user that has full cluster management permissions.
-
-### Back up the Search Guard configuration (Optional)
-
-In case you do not have acces to your original Search Guard configuration files anymore, you can retrieve the current configuration of your running cluster by using `sgctl` with the `get-config` subcommand:
-
-```bash
-./sgctl.sh get-config -o path/to/your/output/directory
-```
-
-This will retrieve and save all Search Guard configuration files to the specified directory. You can later use these files to initialize Search Guard after the upgrade. 
-
-For a major upgrade, the permission schema has very likely changed. so compare especially the `sg_roles.yml` and `sg_action_groups.yml` files with the versions that ship with the Search Guard plugin.

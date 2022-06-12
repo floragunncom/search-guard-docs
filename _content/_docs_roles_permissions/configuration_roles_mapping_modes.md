@@ -1,5 +1,5 @@
 ---
-title: Role Mapping Modes
+title: Role mapping modes
 permalink: role-mapping-modes
 category: rolespermissions
 order: 600

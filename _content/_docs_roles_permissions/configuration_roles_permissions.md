@@ -12,12 +12,12 @@ description: How to define role based access to OpenSearch/Elasticsearch on inde
 Copyright 2020 floragunn GmbH
 -->
 
-# Defining Search Guard Roles
+# Defining Search Guard roles
 {: .no_toc}
 
 {% include toc.md %}
 
-Hint: You can also use the [Search Guard Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
+Hint: You can also use the [Search Guard Configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
 
 Search Guard roles are the central place to configure access permissions on:
 
@@ -30,10 +30,6 @@ Search Guard roles are the central place to configure access permissions on:
 Search Guard roles and their associated permissions are defined in the file `sg_roles.yml`. The syntax to define a role is as follows:
 
 ```yaml
-_sg_meta:
-  type: "roles"
-  config_version: 2
-
 <role_name>:
   cluster_permissions:
     - '<action group or single permission>'

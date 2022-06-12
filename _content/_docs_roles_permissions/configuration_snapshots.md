@@ -1,6 +1,6 @@
 ---
-title: Snapshot, Restore
-html_title: Snapshot Restore
+title: Snapshot and restore
+html_title: Authorization for snapshot and restore in Search Guard
 permalink: snapshot-restore
 category: authorization-advanced
 order: 1000

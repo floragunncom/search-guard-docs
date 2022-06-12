@@ -1,6 +1,6 @@
 ---
-title: Mapping Users to Search Guard Roles
-html_title: Mapping Users to Roles
+title: Mapping users to Search Guard roles
+html_title: Mapping users to Search Guard roles
 permalink: mapping-users-roles
 category: rolespermissions
 order: 150
@@ -22,18 +22,12 @@ After a user is authenticated, Search Guard uses the role mappings to determine 
 
 You can use the following data to assign a user to one or more Search Guard roles:
 
-* username
-  * the name of the authenticated user.
-* backend roles
-  * the backend roles of the user as collected in the authentication / authorization step
+* the username
+* the backend roles of the user as collected by [authentication modules or user information backends](../docs_auth_auth/auth_auth_rest_config_overview.md)
   * e.g. backend roles defined in the internal user database
   * e.g. LDAP groups
   * e.g. JWT claims or SAML assertions
-* hostname / IP
-  * the hostname or IP the request originated from.
-* Common name
-  * the DN of the client certificate sent with the request.
-
+* the host name or IP the request originated from.
 
 ## Mapping
 
@@ -42,10 +36,6 @@ Users, backend roles and hosts are mapped to Search Guard roles in the file `sg_
 Syntax:
 
 ```yaml
-_sg_meta:
-  type: "rolesmapping"
-  config_version: 2
-  
 <Search Guard role name>:
   users:
     - <username>

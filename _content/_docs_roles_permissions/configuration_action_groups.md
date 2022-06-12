@@ -1,6 +1,6 @@
 ---
-title: Permissions and Action Groups
-html_title: Permissions
+title: Permissions and action groups
+html_title: Permissions and action groups in Search Guard
 permalink: action-groups
 category: rolespermissions
 order: 200
@@ -40,18 +40,12 @@ The file structure is very simple:
 Example:
 
 ```yaml
-_sg_meta:
-  type: "actionsgroups"
-  config_version: 2
-  
 MY_ACTION_GROUP:
-  reserved: false
   allowed_actions:
     - "indices:data/read/search*"
     - "indices:data/read/msearch*"
     - MY_OTHER_ACTION_GROUP
 MY_OTHER_ACTION_GROUP:
-  reserved: true
   description: "my other action group"
   type: "index"
   allowed_actions:
