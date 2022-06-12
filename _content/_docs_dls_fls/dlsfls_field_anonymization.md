@@ -1,6 +1,6 @@
 ---
 title: Field anonymization
-html_title: Field anonymization
+html_title: Anonymize fields in OpenSearch/Elasticsearch documents
 permalink: field-anonymization
 category: dlsfls
 order: 300
@@ -12,49 +12,38 @@ description: How to anonymize fields in OpenSearch/Elasticsearch documents by us
 Copyright 2020 floragunn GmbH
 -->
 
-# Anonymize fields in OpenSearch/Elasticsearch documents
+# Field anonymization
 {: .no_toc}
 
 {% include toc.md %}
 
-Instead of removing sensitive fields from a document with [field-level security](../_docs_dls_fls/dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only and replaces the actual field value with a cryptographic hash. 
+Instead of removing sensitive fields from a document with [field-level security](../_docs_dls_fls/dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only. 
 
+You can choose between several methods for anonymization:
+
+- Hashing using the blake 2 hash algorithm
+- Hashing using other available algorithms
+- Custom string replace operations
+ 
 Field masking works well together with field-level security and can be applied to on a per-role and per-index basis. This gives you the flexibility of allowing certain roles to see sensitive fields in clear text, while anonymizing them for others.
 
-## Hash algorithm and salts
 
-Search Guard by default uses Blake2bDigest to calculate the hash. This alogorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing.
+**Note:** Search Guard FLX 1.0 comes with two implementations of DLS/FLS:
 
-## Setting a static salt
+- A legacy implementation, which is compatible with nodes which are running still older versions of Search Guard
+- A new implementation, which provides better efficiency and functionality. However, this implementation can only be used if you have completely updated your cluster to Search Guard FLX.
 
-You can set the salt in elasticsearch.yml like: 
+As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_dlsfls.yml` and add:
 
-```
-searchguard.compliance.salt: abc123
-```
-
-| Name | Description |
-|---|---|
-| searchguard.compliance.salt | Optional. Salt to use when generating the hash value. Must be at least 32 characters, only ASCII is allowed. Optional.|
-{: .config-table}
-
-While setting a salt is optional, it is highly recommended to do so. The salt you set in `opensearch.yml`/`elasticsearch.yml` cannot be changed without restarting OpenSearch/Elasticsearch. This provides a high level of security and performance, but limits flexibility. Depending on your use case and security requirements you can also use a dynamic salt.
-
-## Setting a dynamic salt
-
-You can also configure the salt in `sg_config.yml`. This makes it possible to change the salt at runtime without the need to restart OpenSearch/Elasticsearch. Please note that changing the salt at runtime will invalidate any query cache, so you might see a small degradation in performance for a brief period of time.
-
-Enable dynamic salts in elasticsearch.yml by setting:
-
-```
-searchguard.compliance.local_hashing_enabled: true
+```yaml
+use_impl: flx
 ```
 
-The dynamic salt can be configure in `sg_config.yml`and thus updated at runtime with either [sgadmin](sgadmin) or the [REST API](rest-api-access-control).
+This documentation describes the *new implementation*.
 
 ## Configuring fields to anonymize
 
-Field masking can be configured per role and index pattern, very similar to field-level security. You simply list the fields to be masked under the  `_masked_fields_` key in the role definition. Wildcards and nested documents are supported:
+Field masking can be configured per role and index pattern, very similar to field-level security. You simply list the fields to be masked under the  `masked_fields` key in the role definition. Wildcards and nested documents are supported:
 
 ```yaml
 hr_employee:
@@ -71,9 +60,12 @@ hr_employee:
       
 ```
 
+By default, Search Guard uses the blake2b hash algorithm to calculate the hash. This alogorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing. If you use the blake2b algorithm, you should [configure a custom hash salt](#configuring-the-hash-salt).
+
+
 Field masking plays well together with [field-level security](../_docs_dls_fls/dlsfls_fls.md). You just need to make sure that the fields you want to mask are not excluded from the result by the field-level security configuration.
 
-## Example
+### Example
 
 ```yaml
 hr_employee:
@@ -94,9 +86,9 @@ hr_employee:
       
 ```
 
-In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName` and `Address` of documents in the index `humanresources` are included in the resulting documents. This is done by whitelisting these fields in the `_fls_` section of the role / index definition. In addition, the `FirstName`, `LastName` and `Address` are masked. A search result might look like:
+In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName` and `Address` of documents in the index `humanresources` are included in the resulting documents. This is done by whitelisting these fields in the `fls` section of the role / index definition. In addition, the `FirstName`, `LastName` and `Address` are masked. A search result might look like:
 
-```
+```json
 {
   "_index" : "humanresources",
   "_type" : "employees",
@@ -112,30 +104,7 @@ In this example only the fields `Designation`, `Salary`, `FirstName`, `LastName`
 }
 ```
 
-## Custom hash algorithms
-
-You can configure alternative hash algorithms (instead of Blake2bDigest) and you also can mask only a part of the field value.
-
-### Defining an alternative hash algorithm
-
-```yaml
-hr_employee:
-  index_permissions:
-    - index_patterns:
-      - 'humanresources'
-      allowed_actions:
-        - ...
-      masked_fields:
-        - '*Name::SHA-1'
-        - 'Address::SHA-512'     
-      
-```
-
-The above example means that all values of all fields ending with `Name` are anonymized with an SHA-1 hash and all values of the field `Address` are anonymized with an SHA-512. All hashing algorithms provided which are provided by your JVM are supported. This typically includes MD5, SHA-1, SHA-384, and SHA-512.
-
-If you use the REST API to define your roles and masked fields then the validity or your alternative hash algorithm is checked.
-
-### Using regular expressions
+## String manipulation using regular expressions
 
 You can apply one or more regex patterns and replacement strings to configure how the value of a particular field will be anonymized.
 The formal definition is `<field-pattern>::/<regex>/::<replacement-string>`. There can be multiple regex/replacement tuples whereas the result from one on the left side is passed as in input to the one on the right side (like piping in a shell). The regex can include `^` and `$`, they are not implicitly assumed. 
@@ -160,32 +129,48 @@ by replacing the last three numbers with ***. So an example IP address of `100.2
 
 If you use the REST API to define your roles and masked fields then the syntax of your patterns is checked.
 
-## Prefixing anonymized fields
+## Custom hash algorithms
 
-In order to make it easier for the end user to understand which fields are anonymized, you can configure a prefix for anonymized fields. The prefix has no impact on search or aggregations.
+You can also configure alternative hash algorithms instead of blake2b. This looks like this:
 
-Set the prefix in elasticsearch.yml:
 
-```
-searchguard.compliance.mask_prefix: "<prefix>"
-```
-
-## Multiple roles and field anonymization
-
-As with document-level security, if a user is member of multiple roles it is important to understand how the field anonymization (FA) settings for these roles are combined.
-
-In case of FA, the FA field definitions of the roles are combined with `AND`. 
-
-If a user has a role that defines FA restrictions on an index, and another role that does not place any FA restrictions on the same index, the restrictions defined in the first role still apply.
-
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `opensearch.yml`/`elasticsearch.yml`: 
-
-```
-searchguard.dfm_empty_overrides_all: true
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      masked_fields:
+        - '*Name::SHA-1'
+        - 'Address::SHA-512'     
+      
 ```
 
-## Effects on the compliance read history
+The above example means that all values of all fields ending with `Name` are anonymized with an SHA-1 hash and all values of the field `Address` are anonymized with an SHA-512. All hashing algorithms provided which are provided by your JVM are supported. This typically includes MD5, SHA-1, SHA-384, and SHA-512.
 
-The [compliance read history](../_docs_audit_logging/auditlogging_read_history.md) feature makes it possible to track read access to sensitive fields in your documents. For example, you can track access to the email field of customer records in order to stay GDPR compliant.
 
-Access to masked fields are excluded from the read history, because the user has only seen that hash value, and not the email address in clear text.
+## Global configuration
+
+Global configuration for field masking is stored in the `sg_dlsfls` configuration. You can use `sgctl` to upload the changed configuration to the cluster.
+
+### Configuring the hash salt
+
+If you use a hashing algorithm, you should configure a custom hash salt. 
+
+**field_anonymization.salt:** A hexadecimal value with exactly 32 characters. For secure hashing, you should make sure that this value has a high entropy. The default value is `7A4EB67D40536EB6B107AF3202EA6275`. 
+
+**field_anonymization.personalization:** A string which serves as the personalization parameter of the blake2b algorithm. Only the first 16 bytes of the string will be used. The default value is `searchguard-flx1`. 
+
+
+For generating a suitable random value for `field_anonymization.salt`, you can use the following command:
+
+```
+$ xxd -u -l 16 -p /dev/urandom
+```
+
+### Constant prefixes for anonymized fields
+
+You can configure a constant prefix for anonymized fields. This makes it clearer that the content was anonymized.
+
+**field_anonymization.prefix:** A string that is prepended to any anonymized value. Defaults to the empty string.

@@ -22,30 +22,27 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Field-level security controls which fields a user is able to see. As with document-level security, FLS can be defined per role and per index. Search Guard supports including (whitelisting) and excluding (blacklisting) fields from documents.
+Field-level security controls which fields a user is able to see. As with document-level security, FLS can be defined per role and per index. 
 
-In order to restrict access to certain fields, you simply list the fields to be excluded or included on the same indentation level as the document types.
+You can both use field inclusion lists and exclusion lists. As inclusion lists are most robust against accidental exposure of data, this is the recommended approach.
 
-## Including fields
+**Note:** Search Guard FLX 1.0 comes with two implementations of DLS/FLS:
 
-In this mode, only fields listed in the FLS section of the role definition are returned by Search Guard. In the example below, only the fields `Designation`, `FirstName` and `LastName` are included in the returned documents. All other fields are filtered out:
+- A legacy implementation, which is compatible with nodes which are running still older versions of Search Guard
+- A new implementation, which provides better efficiency and functionality. However, this implementation can only be used if you have completely updated your cluster to Search Guard FLX.
+
+As the new implementation is not backwards-compatible, it needs to be manually activated in the configuration. To do so, create or edit `sg_dlsfls.yml` and add:
 
 ```yaml
-hr_employee:
-  index_permissions:
-    - index_patterns:
-      - 'humanresources'
-      allowed_actions:
-        - ...
-      fls:
-        - 'Designation'
-        - 'FirstName'
-        - 'LastName'      
+use_impl: flx
 ```
 
-## Excluding fields
+This documentation describes the *new implementation*.
 
-If you rather want to exclude than include fields, simply prefix all fields with a `~`. In the example below, all fields except `Designation`, `FirstName` and `LastName` are returned by Search Guard:
+
+## Example
+
+The most basic example for a rule using FLS rules looks like this:
 
 ```yaml
 hr_employee:
@@ -55,9 +52,24 @@ hr_employee:
       allowed_actions:
         - ...
       fls:
-        - '~Designation'
-        - '~FirstName'
-        - '~LastName'      
+        - 'designation'
+        - 'first_name'
+        - 'last_name'      
+```
+
+Here, the attribute `fls` defines an include list. For users which have only this role, only the fields `designation`, `first_name` and `last_name` are included in the returned documents. All other fields are filtered out.
+
+If you want to use exclusion rules, you need to prefix the field names inside the `fls` attribute with a `~`. This can look like this:
+
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - 'humanresources'
+      allowed_actions:
+        - ...
+      fls:
+        - '~salary'
 ```
 
 ## Using wildcards
@@ -80,28 +92,58 @@ would filter our all fields that end with `Name`.
 
 An asterisk matches any character sequence, while a question mark will match any single character.
 
-Using wildcards with FLS security will have an effect on the overall performance, especially if you are dealing with documents that contain a huge number of fields. If possible, they should be avoided. See also chapter "Performance considerations" below.
-
 ## Mixing included and excluded fields
 
-Mixing included and excluded fields per role and index does not make sense and leads to undefined results.
+As already explained, we strongly recommend to only use field inclusion. However, in some cases, field exclusion or a mix of inclusion or exclusion might be more suitable.
 
-Please make sure that the FLS definition(s) of an authenticated user is either include only, or exclude only!
+The new FLS implementation of Search Guard FLX uses well-defined semantics for mixing included and excluded fields.
+
+If you consider single roles, any excluded fields are *subtracted* from the included fields. Thus, you can use the following role:
+
+```yaml
+hr_employee:
+  index_permissions:
+    - index_patterns:
+      - logs
+      allowed_actions:
+        - ...
+      fls:
+        - 'meta_*'
+        - '~meta_uid'
+```
+
+This allows to read all fields that start with the string `meta_`. However, as an exception, the field `meta_uid` is not included.
 
 ## Multiple roles and field-level security
 
-As with document-level security, if a user is member of multiple roles it is important to understand how the FLS settings for these roles are combined.
+A user can be member of more than one role, and each role can potentially define different FLS rules for the same index. Search Guard uses well-defined semantics for these cases, which are described in this section.
 
-In case of FLS, the FLS field definitions of the roles are combined with `AND`. If you use FLS `include` (whitelisting) and `exclude` (blacklisting) definitions for different roles, you need to make sure that for each user and its roles the combination of the FLS field is either include only, or exclude only.
+If Search Guard encounters users which have more than one role with a FLS rules for the same index, Search Guard grants access to the *union* of all fields that are granted by the respective rules.
 
-If a user has a role that defines FLS restrictions on an index, and another role that does not place any FLS restrictions on the same index, the restrictions defined in the first role still apply.
+What this means is illustrated by the following example:
 
-You can change that behaviour so that a role that places no restrictions on an index removes any restrictions from other roles. This can be enabled in `opensearch.yml`/`elasticsearch.yml`: 
+- `role_a` grants only access to the fields `a1`, `a2` and `a3` 
+- `role_b` grants only access to the fields `b1`, `b2` and `b3`
 
-```
-searchguard.dfm_empty_overrides_all: true
-```
+A user who is member both of `role_a` and `role_b` gets thus access to the fields `a1`, `a2`, `a3`, `b1`, `b2` and `b3`
 
-## DLS/FLS Execution Order
+If you use exclusion, Search Guard will first determine the actually included fields for each role and then create the union of the *included* fields. Consider the following example:
+
+- `role_no_x` grants access to all fields except `x`
+- `role_no_y` grants access to all fields except `y`
+
+Note that `role_no_y` grants access to `x`. Likewise, `role_no_x` grants access to `y`. Thus, a user that is member of both roles is effectively allowed to access all fields, including `x` and `y`.
+
+
+Keep in mind that roles without explicit FLS rules implicitly grant access to all attributes of a document. Thus, if a user is in such a role, they will always be able to access all fields, even though they might be also member of roles which only grant access to a subset of fields.
+
+For illustration:
+
+- `role_all` does not have an explicit FLS rule and thus grants access to all fields
+- `role_b` grants only access to fields `b1`, `b2` and `b3`
+
+A user who is member both of `role_all` and `role_b` gets thus access to all fields. The FLS rule of `role_b` does not have any effect in this case.
+
+## Combining DLS and FLS
 
 If you use both DLS and FLS, all fields that you are basing the DLS query on must be visible, i.e. not filtered by FLS. Otherwise, your DLS query will not work properly. 

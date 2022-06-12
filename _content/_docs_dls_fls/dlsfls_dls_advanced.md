@@ -22,9 +22,9 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-## DLS Execution Modes
+## DLS execution modes
 
-Since Search Guard 52, there are two execution modes for DLS:
+There are two execution modes for DLS:
 
 - Lucene-level DLS, which is the default, is performed by modifying Lucene queries and data structures. This is the most efficient mode. However, it is unable to support certain advanced constructs used in DLS queries; most importantly, this includes term lookup queries.
 - Filter-level DLS is performed at the top level of the Elastic stack by modifying queries directly after they have been received by OpenSearch/Elasticsearch. This allows the use of term lookup queries (TLQ) inside of DLS queries, but limits the set of operations that can be used to retrieve data from the protected index to `get`, `search`, `mget`, `msearch`. Also, the use of Cross Cluster Searches is limited in this mode.

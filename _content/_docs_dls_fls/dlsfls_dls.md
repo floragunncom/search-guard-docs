@@ -87,7 +87,7 @@ What this means is illustrated by the following example:
 A user who is member both of `role_a` and `role_b` gets thus access to `a1`, `a2`, `a3`, `b1`, `b2` and `b3`
 
 
-Keep in mind that roles without explicit DLS query definitions, implicitly grant access to all documents of an index. Thus, if a user is in such a role, they will always be able to access all documents, even though they might be also member of roles which only grant access to a subset of documents.
+Keep in mind that roles without explicit DLS query definitions implicitly grant access to all documents of an index. Thus, if a user is in such a role, they will always be able to access all documents, even though they might be also member of roles which only grant access to a subset of documents.
 
 For illustration:
 
