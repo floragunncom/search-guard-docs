@@ -29,7 +29,7 @@ If in your setup, the JWT gets transmitted via an HTTP header, check out the [Da
 
 ## Search Guard Backend Setup
 
-In order to use proxy authentication with Dashboards/Kibana, you have to also set up an JWT authenticator in the Search Guard backend configuration `sg_config.yml`.
+In order to use proxy authentication with Dashboards/Kibana, you have to also set up an JWT authenticator in the Search Guard backend configuration `sg_authc.yml`.
 
 See the [JWT authenticator documentation](../_docs_auth_auth/auth_auth_jwt.md) for details.
 

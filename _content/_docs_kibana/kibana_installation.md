@@ -45,10 +45,6 @@ xpack.security.enabled: false
 
 After the plugin has been installed, Dashboards/Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Dashboards/Kibana internal process required for each installed plugin and cannot be skipped.
 
-The [optimization process is shaky](https://github.com/elastic/kibana/issues/19678){:target="_blank"} and problems are typically not related to Search Guard.
-
-Most issues can be resolved by giving the process more memory by setting `NODE_OPTIONS="--max-old-space-size=8192"`.
-
 ## Configuring the Dashboards/Kibana server user
 
 For management calls to OpenSearch/Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards, etc., Dashboards/Kibana uses a service user, called the **Dashboards/Kibana server user**.
@@ -146,44 +142,25 @@ Dashboards/Kibana uses HTTP Basic Authentication for this server user. Make sure
 
 ### Example: Internal authentication
 
-Typically you set up the Dashboards/Kibana server user in the Search Guard Internal User Database backend and configure any other authentication methods you have in place second in the chain:
+Typically you set up the Dashboards/Kibana server user in the Search Guard Internal User Database backend and configure any other authentication methods you have in place second in the chain. See the following `sg_authc.yml` example:
 
 
 ```yaml
 ---
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    http:
-     ...
-    authc:
-      kibana_auth_domain:
-        enabled: true
-        order: 0
-        http_authenticator:
-          type: basic
-          challenge: false
-        authentication_backend:
-          type: internal
-      ldap_auth_domain:
-        enabled: true
-        order: 1
-        http_authenticator:
-          type: basic
-          challenge: false
-        authentication_backend:
-          type: ldap
-          ...
+auth_domains:
+- type: basic/internal_users_db
+- type: basic/ldap
+  ldap.idp.hosts: ldap.example.com
+  ldap.idp.bind_dn: "cn=admin,dc=example,dc=com"
+  ldap.idp.password: secret
 ```
 
 ## Adding Dashboards/Kibana users
 
-All Dashboards/Kibana users must be mapped to the built-in `SGS_KIBANA_USER` role. This role has the minimum permissions to access Dashboards/Kibana.
+All Dashboards/Kibana users must be mapped one of the built-in roles `SGS_KIBANA_USER` or `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. These roles have the minimum permissions to access Dashboards/Kibana. 
+If you do not multi-tenancy, or if the user is supposed to have access to the default tenant, use the role `SGS_KIBANA_USER`. If the user is not supposed to access the default tenant, you should use the role `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. 
 
-In addition, the users need to have READ permissions to all indices they should be allowed to use with Dashboards/Kibana. Typically you will want to set up different roles for different users and give them the `SGS_KIBANA_USER` role in additions.
+In addition, the users need to have READ permissions to all indices they should be allowed to use with Dashboards/Kibana. For this purpose, you should assign the users to additional roles.
 
 ## Client certificates: elasticsearch.ssl.certificate
 
