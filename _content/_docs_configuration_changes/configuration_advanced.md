@@ -55,9 +55,26 @@ $ ./sgctl.sh update-config /etc/sgbackup/
 
 Search Guard manages the number of replica shards of the Search Guard index automatically. If the Search Guard index is created for the first time, the number of replica shards is set to the number of nodes - 1. If you add or remove nodes, the number of shards will be increased or decreased automatically. This means that a primary or replica shard of the Search Guard index is available on all nodes.
 
-If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the `-dra` switch of sgadmin. To set the number of replica shards, use sgadmin with the `-us` switch. To re-enable replica auto-expansion, use the `-era` switch. See also section "Index and replica settings" in the [sgadmin chapter](../_docs_configuration_changes/configuration_sgadmin.md).
+**Note:** The commands listed in this section assume that the Search Guard index is called `.searchguard`. If it has a different name on your cluster, you need to adapt it inside the command.
 
-Note that the `-us`, `-era` and `-dra` only apply if there is an existing Search Guard index.
+If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the following command:
+
+```
+$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "false"}}'
+```
+
+To set the number of replica shards, use the following command. Be sure to change the number after `number_of_replicas` to the desired value:
+
+```
+$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"number_of_replicas": 42}}'
+```
+
+
+To re-enable replica auto-expansion, use the following command:
+
+```
+$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "0-all"}}'
+```
 
 ## Disable auto expand replicas of the Search Guard index
 
