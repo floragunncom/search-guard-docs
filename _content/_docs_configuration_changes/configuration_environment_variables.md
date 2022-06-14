@@ -87,3 +87,13 @@ This will load the data from the specified file and use it as the configuration 
 
 **Note:** These files must be available on all nodes of your cluster; if the files change after a node has started, the change will not be immediately picked up. Changes will be only picked up when the configuration is reloaded. This is the case when the configuration is changed or if a node is restarted.
 
+## Using content from environment variables
+
+You can also use the value of environment variables of the OpenSearch/Elasticsearch process. You can use the syntax `#{env:MY_ENV}` for this purpose. Example:
+
+
+```yaml
+auth_domains:
+- type: basic/ldap
+  ldap.idp.tls.trusted_cas: '#{env:CA_CERT}'
+```
