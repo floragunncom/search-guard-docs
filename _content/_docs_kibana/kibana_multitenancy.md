@@ -51,10 +51,6 @@ If you do not configure anything special, every user has access to the Global an
 You can define an arbitrary number of additional tenants in `sg_tenants.yml`, for example:
 
 ```yaml
-_sg_meta:
-  type: "tenants"
-  config_version: 2
-
 admin_tenant:
   description: "The admin tenant"
 
