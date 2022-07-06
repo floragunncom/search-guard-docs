@@ -101,7 +101,7 @@ default:
     oidc.client_secret: "client-secret-from-idp"
     oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
     oidc.idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_mapping.roles.from_comma_separated_string: roles
+    user_mapping.roles.from_comma_separated_string: oidc_id_token.roles
 ```
 
 ## Mapping user attributes
@@ -121,13 +121,13 @@ default:
     oidc.client_secret: "client-secret-from-idp"
     oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
     oidc.idp.proxy: "https://your.outbreaking.proxy:8080"
-    user_mapping.roles.from_comma_separated_string: roles
+    user_mapping.roles.from_comma_separated_string: oidc_id_token.roles
     user_mapping.attrs.from: 
-      department: department.number
-      email_address: user.email
+      department: oidc_id_token.department_number
+      email_address: oidc_id_token.email
 ```
 
-This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from the JWT claims. The types from the JSON claim structure are preserved, i.e., arrays remain arrays and objects remain objects, etc.
+This adds the attributes `department` and `email_address` to the Search Guard user and sets them to the respective values from the claims of the OIDC ID token. The types from the JSON claim structure are preserved, i.e., arrays remain arrays and objects remain objects, etc.
 
 In the Search Guard role configuration, the attributes can be then used like this:
 
@@ -160,7 +160,7 @@ default:
     oidc.client_secret: "client-secret-from-idp"
     user_mapping.user_name.from.json_path: oidc_id_token.sub
     user_mapping.user_name.from.pattern: "^(.+)@example\.com$" 
-    user_mapping.roles.from_comma_separated_string: roles
+    user_mapping.roles.from_comma_separated_string: oidc_id_token.roles
 ```
 
 In this example, `(.+)` is the capturing group, i.e., at least one character. This group must be followed by the string `@example.com`, which must be present, but will not be part of the resulting user name in Search Guard. If you try to log in with a subject that does not match this pattern (e.g. `foo@bar`), the login will fail.
