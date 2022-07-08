@@ -105,7 +105,7 @@ helm init --wait --service-account tiller --upgrade
 
 ```bash
 helm repo add sg-helm https://floragunncom.github.io/search-guard-helm
-helm search "search guard"
+helm search  repo search-guard
 helm install --name sg-elk sg-helm/sg-helm --version 6.5.4-24.0-17.0-beta3
 ```
 Please refer to the [Helm Documentation](https://github.com/helm/helm/blob/master/docs/helm/helm_install.md){:target="_blank"} on how to override the chart default
