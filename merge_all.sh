@@ -4,8 +4,7 @@ versions=( "7.x-53" "7.x-52" "7.x-51" "7.x-50" "7.x-49" "7.x-48" "7.x-47" "7.x-4
 for i in "${versions[@]}"
 do
     git checkout "$i" && git pull && git merge 7.x --no-edit && git push
-	echo "Merged 7.x in $i"
-	./deploy.sh
+	  echo "Merged 7.x in $i"
 done
 git checkout 7.x
 
