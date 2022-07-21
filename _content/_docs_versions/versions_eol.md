@@ -31,7 +31,7 @@ has reached End of Life in general.
 The Search Guard versioning scheme is: 
 
 * e1.e2.e3-s1.s2.s3
-* Example: 6.7.1-25.0.0
+* Example: 7.17.5-53.1.0
  
 where 
 
