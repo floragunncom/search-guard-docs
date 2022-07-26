@@ -6,7 +6,7 @@ category: security
 order: 200
 layout: docs
 edition: community
-description: Understanding the security execution context of Signals Alerting for OpenSearch/Elasticsearch
+description: Understanding the security execution context of Signals Alerting for Elasticsearch
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -16,7 +16,7 @@ description: Understanding the security execution context of Signals Alerting fo
 
 Signals is fully integrated with all Search Guard security features.
 
-In particular this means that each watch is executed in a **security context** that controls **to what data on OpenSearch/Elasticsearch the watch has access to**:
+In particular this means that each watch is executed in a **security context** that controls **to what data on Elasticsearch the watch has access to**:
 
 * The security context is stored as part of the watch definition
 * It is encrypted, and can be changed only by the Signals application

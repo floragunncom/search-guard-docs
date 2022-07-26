@@ -6,7 +6,7 @@ category: sgadmin
 order: 200
 layout: docs
 edition: community
-description: How to use sgadmin to connect to an OpenSearch/Elasticsearch cluster and upload configuration changes
+description: How to use sgadmin to connect to an Elasticsearch cluster and upload configuration changes
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -25,11 +25,11 @@ The Search Guard configuration is comprised of the following files:
 * **sg_internal_users.yml** - users stored in the [Search Guard internal user database](internal-users-database)
 * **sg_roles_mapping.yml** - defines how [Search Guard roles are assigned to users](mapping-users-roles)
 * **sg_blocks.yml** - defines access control rules on a global level, for example blocking IPs or IP ranges
-* **sg_tenants.yml** - defines the available tenants for [Dashboards/Kibana multi-tenancy](kibana_multitenancy.md)
+* **sg_tenants.yml** - defines the available tenants for [Kibana multi-tenancy](kibana_multitenancy.md)
 
 You can use sgadmin to change upload all configuration fies or just a single one.
 
-sgadmin will replace the current configuration in your OpenSearch/Elasticsearch cluster with the one you provide. We recommended to [backup](#backup-and-restore) the configuration first before applying changes. This is to make sure you don't accidentially overwrite your existing configuration.
+sgadmin will replace the current configuration in your Elasticsearch cluster with the one you provide. We recommended to [backup](#backup-and-restore) the configuration first before applying changes. This is to make sure you don't accidentially overwrite your existing configuration.
 {: .note .js-note .note-warning}
 
 ## Uploading a single configuration file
@@ -88,7 +88,7 @@ Example:
 
 ## Environment variable substitution
 
-Some configuration files may contain senstive information. You can use [placeholders in configuration files](configuration_environment_variables.md) which sgadmin will replace with environment variables before uploading the configuration to the OpenSearch/Elasticsearch cluster. The environment variables must be configured on the machine you run sgadmin from.
+Some configuration files may contain senstive information. You can use [placeholders in configuration files](configuration_environment_variables.md) which sgadmin will replace with environment variables before uploading the configuration to the Elasticsearch cluster. The environment variables must be configured on the machine you run sgadmin from.
 
 | Name | Description |
 |---|---|

@@ -6,7 +6,7 @@ category: signals-rest
 order: 500
 layout: docs
 edition: community
-description: Use the Alerting for OpenSearch/Elasticsearch Activate Watch API activate and deactivate watches.
+description: Use the Alerting for Elasticsearch Activate Watch API activate and deactivate watches.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

@@ -16,7 +16,7 @@ Copryight 2020 floragunn GmbH
 <img src="img/logos/search-guard-frontmatter.png" alt="Search Guard - Security for Elasticsearch" style="width: 40%" />
 </p>
 
-<h2 align="center">Security and Alerting for Elasticsearch and OpenSearch</h2>
+<h2 align="center">Security and Alerting for Elasticsearch</h2>
 
 <h1 align="center">Search Guard FLX Documentation</h1>
 
@@ -30,14 +30,13 @@ Search Guard FLX brings a number of fundamental improvements and updates to Sear
 
 Major changes include:
 
-- The first version of Search Guard which brings support for **OpenSearch** and **OpenSearch Dashboards**.
 - Completely new approach for configuring authentication. **The new configuration format is more coherent, more predictable and much more powerful.** Simple setups require very little configuration; very complex setups are possible by straight-forward configuration. If something goes wrong, Search Guard provides extensive error messages and diagnostic information.
-- Completely new approach for logging into Dashboards/Kibana. **Logged in users now get an actual server-side session.** This fixes a number of issues, such as:
+- Completely new approach for logging into Kibana. **Logged in users now get an actual server-side session.** This fixes a number of issues, such as:
   - Issues with cookies exceeding the browser size limit.
   - The "logout" menu item is able to invalidate the session. Thus, session cookies cannot be re-used any more.
-  - Configuration of SSO using OIDC or SAML for Dashboards/Kibana no longer interfers with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Dashboards/Kibana.
+  - Configuration of SSO using OIDC or SAML for Kibana no longer interfers with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Kibana.
   - The configuration format is now more streamlined and consistent.  
-  - Dashboards/Kibana authentication configuration can be changed without having to restart the node.
+  - Kibana authentication configuration can be changed without having to restart the node.
 - **New administration tool** `sgctl` which shall replace `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
 - **Wildcard queries without hassle** made possible by an improved method for handling unauthorized indices. You no longer have to worry that your wildcard query breaks because it might pick up an index you don't have permissions for.
 - **More speed.** Many components of Search Guard underwent major optimizations. Thus, Search Guard FLX can now handle more throughput with a lower CPU footprint.
@@ -49,8 +48,6 @@ You can get the current snapshot of the Search Guard Tech Preview at the followi
 
 |Target Platform|Backend Plugin|Frontend Plugin|Demo Installer|
 |---|---|---|---|
-|**OpenSearch 1.3.2**|[Search Guard OpenSearch Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-plugin/1.0.0-beta-2-os-1.3.2/search-guard-flx-opensearch-plugin-1.0.0-beta-2-os-1.3.2.zip)|[Search Guard OpenSearch Dashboards Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-dashboards-plugin/1.0.0-beta-2-os-1.3.2/search-guard-flx-opensearch-dashboards-plugin-1.0.0-beta-2-os-1.3.2.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-plugin/1.0.0-beta-2-os-1.3.2/search-guard-flx-opensearch-plugin-1.0.0-beta-2-os-1.3.2-demo-installer.sh)|
-|**OpenSearch 2.0.0**|[Search Guard OpenSearch Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-plugin/1.0.0-beta-2-os-2.0.0/search-guard-flx-opensearch-plugin-1.0.0-beta-2-os-2.0.0.zip)|[Search Guard OpenSearch Dashboards Plugin Beta 2](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-dashboards-plugin/1.0.0-beta-2-os-2.0.0/search-guard-flx-opensearch-dashboards-plugin-1.0.0-beta-2-os-2.0.0.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-plugin/1.0.0-beta-2-os-2.0.0/search-guard-flx-opensearch-plugin-1.0.0-beta-2-os-2.0.0-demo-installer.sh)|
 |**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2-demo-installer.sh)|
 |**Elasticsearch 7.16.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3-demo-installer.sh)|
 |**Elasticsearch 7.17.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3-demo-installer.sh)|

@@ -24,7 +24,7 @@ Stored scripts are not supported by Signals because the owner semantics of store
 
 ## Supported Scripting Languages
 
-OpenSearch/Elasticsearch comes out of the box with support for the scripting languages Painless and Mustache. You can get support for more scripting languages using [OpenSearch/Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting-engine.html).
+Elasticsearch comes out of the box with support for the scripting languages Painless and Mustache. You can get support for more scripting languages using [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting-engine.html).
 
 In many cases, Signals allows using the `lang` attribute to choose the language to be used. Examples are [conditions](conditions.md) and [transformations](transformations_overview.md). In some cases, however, changing the language is not supported. This includes text templates in actions such as email or slack.
 

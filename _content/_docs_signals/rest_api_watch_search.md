@@ -6,7 +6,7 @@ category: signals-rest
 order: 150
 layout: docs
 edition: community
-description: Use the Alerting for OpenSearch/Elasticsearch Search REST API to search for configured watches
+description: Use the Alerting for Elasticsearch Search REST API to search for configured watches
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -27,7 +27,7 @@ GET /_signals/watch/{tenant}/_search
 POST /_signals/watch/{tenant}/_search
 ```
 
-Searches for watches. Search criteria and options can be specified in a manner similar to the OpenSearch/Elasticsearch document search REST API.
+Searches for watches. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
 
 Both the GET and the POST HTTP method can be used with the same effect.
 

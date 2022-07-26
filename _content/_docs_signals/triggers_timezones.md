@@ -6,7 +6,7 @@ category: triggers
 order: 200
 layout: docs
 edition: community
-description: Signals Alerting for OpenSearch/Elasticsearch supports different timezones for triggers that control when a watch is executed.
+description: Signals Alerting for Elasticsearch supports different timezones for triggers that control when a watch is executed.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

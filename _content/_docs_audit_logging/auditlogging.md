@@ -5,7 +5,7 @@ category: auditlog
 order: 100
 layout: docs
 edition: enterprise
-description: Implement Audit Logging on your OpenSearch/Elasticsearch cluster and stay compliant with GDPR, HIPAA, ISO, PCI and SOX.
+description: Implement Audit Logging on your Elasticsearch cluster and stay compliant with GDPR, HIPAA, ISO, PCI and SOX.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -16,11 +16,11 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Audit logging enables you to track access to your OpenSearch/Elasticsearch cluster, log security related events and provide evidence in case of an attack. Audit logging helps you to stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
+Audit logging enables you to track access to your Elasticsearch cluster, log security related events and provide evidence in case of an attack. Audit logging helps you to stay compliant with security regulations like GDPR, HIPAA, ISO, PCI or SOX. 
 
 You can configure the categories to be logged, the detail level of the logged messages and how the events should be persisted.
 
-Audit logging is disabled by default. To enable it, you need to configure at least `searchguard.audit.type` in `opensearch.yml`/`elasticsearch.yml`. This defines the endpoint where the audit events are stored. To log the events in OpenSearch/Elasticsearch and use the Audit Log default settings, simply add the following line in `opensearch.yml`/`elasticsearch.yml`:
+Audit logging is disabled by default. To enable it, you need to configure at least `searchguard.audit.type` in `elasticsearch.yml`. This defines the endpoint where the audit events are stored. To log the events in Elasticsearch and use the Audit Log default settings, simply add the following line in `elasticsearch.yml`:
 
 ```
 searchguard.audit.type: internal_elasticsearch
@@ -35,15 +35,15 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | FAILED_LOGIN | yes | yes | The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect.|
 | AUTHENTICATED | yes | yes | A user has been authenticated successfully. |
 | MISSING_PRIVILEGES | no | yes | The user does not have the required permissions to execute the submitted request.|
-| GRANTED_PRIVILEGES | no | yes | Represents a successful request to OpenSearch/Elasticsearch. |
-| SSL_EXCEPTION | yes | yes | An attempt was made to access OpenSearch/Elasticsearch without a valid SSL/TLS certificate.|
+| GRANTED_PRIVILEGES | no | yes | Represents a successful request to Elasticsearch. |
+| SSL_EXCEPTION | yes | yes | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.|
 | SG\_INDEX\_ATTEMPT | no | yes | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate.|
-| BAD_HEADERS | yes | yes | An attempt was made to spoof a request to OpenSearch/Elasticsearch with Search Guard internal headers.|
+| BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.|
 | BLOCKED_USER | yes | yes | A user that is blocked in sg_blocks.yml tried to login.|
 | BLOCKED_IP | yes | yes | A request was made from a blocked IP adress, configured in sg_blocks.yml |
 {: .config-table}
 
-For security reasons, audit logging has to be configured in `opensearch.yml`/`elasticsearch.yml`, not in `sg_config.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
+For security reasons, audit logging has to be configured in `elasticsearch.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
 ## Configuring the log level
 
@@ -160,7 +160,7 @@ searchguard.audit.ignore_requests: ["indices:data/read/*", "SearchRequest"]
 
 ### Excluding users
 
-By default, Search Guard logs events from all users, but excludes the internal Dashboards/Kibana server user `kibanaserver`. You can define users to be excluded from Audit Logging by setting the following configuration:
+By default, Search Guard logs events from all users, but excludes the internal Kibana server user `kibanaserver`. You can define users to be excluded from Audit Logging by setting the following configuration:
 
 ```yaml
 searchguard.audit.ignore_users:
@@ -182,7 +182,7 @@ By default Search Guard stores audit events in a daily rolling index named:
 sg6-auditlog-YYYY.MM.dd
 ```
 
-You can configure the name of the index in `opensearch.yml`/`elasticsearch.yml` like:
+You can configure the name of the index in `elasticsearch.yml` like:
 
 ```yaml
 searchguard.audit.config.index: myauditlogindex 
@@ -231,7 +231,7 @@ searchguard.audit.config.retry_count: 500
 
 ## Expert: Finetuning the thread pool
 
-All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `opensearch.yml`/`elasticsearch.yml`:
+All events are logged asynchronously, so the overall performance of your cluster will only be affected minimally. Search Guard uses a fixed thread pool to submit log events. You can define the number of threads in the pool by the following configuration key in `elasticsearch.yml`:
 
 ```yaml
 # Tune threadpool size, default is 10 and 0 means disabled

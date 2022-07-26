@@ -12,7 +12,7 @@ description: General usage instructions for the Search Guard REST API which can 
 Copyright 2020 floragunn GmbH
 -->
 
-# Search Guard OpenSearch/Elasticsearch REST API
+# Search Guard Elasticsearch REST API
 {: .no_toc}
 
 {% include toc.md %}

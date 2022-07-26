@@ -6,7 +6,7 @@ category: signals
 order: 800
 layout: docs
 edition: community
-description: How to throttle notifications in Signals Alerting for OpenSearch/Elasticsearch to prevent alert flooding
+description: How to throttle notifications in Signals Alerting for Elasticsearch to prevent alert flooding
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

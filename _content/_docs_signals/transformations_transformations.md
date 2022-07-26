@@ -6,7 +6,7 @@ category: transformations
 order: 100
 layout: docs
 edition: community
-description: Signals Alerting uses the OpenSearch/Elasticsearch Painless scripting language for transforming data.
+description: Signals Alerting uses the Elasticsearch Painless scripting language for transforming data.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -35,7 +35,7 @@ Transformations can be used
 
 A transformation painless script can be defined as inline script within the transformation definition.
 
-For example, the next transformation accesses a runtime context that has stored an OpenSearch/Elasticsearch query result. It will replace the context data with only the `hit`s of the search result, discarding all other data like total hits or execution time
+For example, the next transformation accesses a runtime context that has stored an Elasticsearch query result. It will replace the context data with only the `hit`s of the search result, discarding all other data like total hits or execution time
 
 ```
 {
@@ -52,7 +52,7 @@ For example, the next transformation accesses a runtime context that has stored 
 | name | name of this transformation. Can be chosen freely. Mandatory. |
 | target | Under which context name to store the result of the transformation in the runtime data. If the context already exists, it is replaced. If it does not exist, a new contect is created. If omitted, the top-level context will be used. |
 | source | The script to execute. Mandatory |
-| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by OpenSearch/Elasticsearch plugins. |
+| lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
 {: .config-table}
 
 ## Accessing the runtime data
@@ -63,7 +63,7 @@ All scripts have full access to the runtime data. The data in the execution cont
 
 Transformations can also be used with actions. Each action can define it's own chain of `check`s, including transformation.
 
-The next example runs a transformation that extracts the hits from an OpenSearch/Elasticsearch result set prior to writing it back to another OpenSearch/Elasticsearch index via an [Index Action](actions_index.md).
+The next example runs a transformation that extracts the hits from an Elasticsearch result set prior to writing it back to another Elasticsearch index via an [Index Action](actions_index.md).
 
 ```
 {

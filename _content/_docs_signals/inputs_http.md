@@ -6,7 +6,7 @@ category: inputs
 order: 300
 layout: docs
 edition: community
-description: Signals Alerting for OpenSearch/Elasticsearch can pull in data from any REST HTTP endpoint make it available to watches and conditions.
+description: Signals Alerting for Elasticsearch can pull in data from any REST HTTP endpoint make it available to watches and conditions.
 
 ---
 
@@ -165,4 +165,4 @@ A TLS configuration might look like this:
 
 ## Security Considerations
 
-Keep in mind that HTTP inputs allow to send arbitrary HTTP requests from OpenSearch/Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](administration.md) for details.
+Keep in mind that HTTP inputs allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](administration.md) for details.

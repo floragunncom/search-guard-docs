@@ -6,7 +6,7 @@ category: signals-rest
 order: 0
 layout: docs
 edition: community
-description: Overview of the Alerting for OpenSearch/Elasticsearch REST API for configuring watches, alerts and accounts.
+description: Overview of the Alerting for Elasticsearch REST API for configuring watches, alerts and accounts.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

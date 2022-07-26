@@ -6,7 +6,7 @@ category: elasticstack
 order: 450
 layout: docs
 edition: community
-description: Search Guard fully supports the Cross Cluster Search feature of OpenSearch/Elasticsearch. Implement access control on distributed clusters.
+description: Search Guard fully supports the Cross Cluster Search feature of Elasticsearch. Implement access control on distributed clusters.
 ---
 <!---
 Copyright 2020 floragunn GmbH

@@ -1,7 +1,7 @@
 ---
 title: Advanced Topics
-html_title: Dashboards/Kibana Advanced Topics
-permalink: kibana-advanced
+html_title: Kibana Advanced Topics
+slug: kibana-advanced
 category: kibana
 subcategory: kibana-advanced
 order: 1000

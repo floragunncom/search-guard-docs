@@ -1,12 +1,12 @@
 ---
 title: Advanced Configuration
-html_title: Dashboards/Kibana OIDC Advanced Configuration
+html_title: Kibana OIDC Advanced Configuration
 permalink: kibana-authentication-openid-advanced-config
 category: kibana-authentication-openid-overview
 order: 200
 layout: docs
 edition: enterprise
-description: How to use OpenID Connect and your favorite identity provider to implement Dashboards/Kibana Single Sign-On.
+description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
 
 ---
 <!--- Copyright 2021 floragunn GmbH -->
@@ -142,7 +142,7 @@ my_dls_role:
 ```
 
 
-**Note:** Take care that the mapped attributes are of reasonable size. As these attributes need to be forwarded over the network for each operation in the OpenSearch/Elasticsearch cluster, attributes carrying a significant amount of data may cause a performance penalty.
+**Note:** Take care that the mapped attributes are of reasonable size. As these attributes need to be forwarded over the network for each operation in the Elasticsearch cluster, attributes carrying a significant amount of data may cause a performance penalty.
 
 ## Using only certain sections of a JWT subject claim as user name
 
@@ -185,7 +185,7 @@ You can also use several capturing groups if you want to use these groups for th
 
 ## Logout URL
 
-If you want to customize the URL that Dashboards/Kibana will navigate to when the user selects the "Logout" menu item, use the `logout` option.
+If you want to customize the URL that Kibana will navigate to when the user selects the "Logout" menu item, use the `logout` option.
 
 ```yaml
 default:

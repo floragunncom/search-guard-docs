@@ -6,7 +6,7 @@ category: dls
 order: 100
 layout: docs
 edition: enterprise
-description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your OpenSearch/Elasticsearch cluster.
+description: Use Document- and Field-Level Security to implement fine grained access control to documents and fields in your Elasticsearch cluster.
 resources:
   - "search-guard-presentations#dls-fls|Document- and Field-level security (presentation)"
   - https://search-guard.com/document-field-level-security-search-guard/|Document- and field-level security with Search Guard (blog post)
@@ -22,9 +22,9 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Document-level security (DLS) restricts a user's access to certain documents within an index. To enable document-level security you configure an OpenSearch/Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
+Document-level security (DLS) restricts a user's access to certain documents within an index. To enable document-level security you configure an Elasticsearch query that defines which documents are accessible and which not. Only documents matching this query will be visible for the role that the DLS is defined for.
 
-The query supports the full range of the OpenSearch/Elasticsearch query DSL, and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
+The query supports the full range of the Elasticsearch query DSL, and you can also use user attributes to make the query dynamic. This is a powerful feature to implement access permissions to documents based on user attributes stored in Active Directory / LDAP or a JSON web token.
 
 **Note:** Search Guard FLX 1.0 comes with two implementations of DLS/FLS:
 
@@ -101,10 +101,12 @@ A user who is member both of `role_all` and `role_b` gets thus access to all doc
 
 DLS only applies for operations that read from an index. It does not apply to index or update operations. Thus, you should take care that you do not grant any write privileges in roles which apply DLS restrictions.  
 
+
 ## Performance considerations
 
-A DLS query can be as simple or complex as necessary, and you can use the full range of OpenSearch/Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
+A DLS query can be as simple or complex as necessary, and you can use the full range of Elasticsearch's query DSL. Regarding the performance overhead, think of the DLS query as an additional query executed on top of your original one. 
 
 ## Combining DLS and FLS
 
 If you use both DLS and FLS, all fields that you are basing the DLS query on must be visible, i.e. not filtered by FLS. Otherwise, your DLS query will not work properly. 
+

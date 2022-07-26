@@ -48,7 +48,11 @@ public final class MyInterClusterRequestEvaluator
 }
 ```
 
+<<<<<<< tech-preview
 Make sure the class is on the classpath, and configure your custom implementation in `opensearch.yml`/`elasticsearch.yml`:
+=======
+Make sure the class is on the classpath, and configure your custom implementation in `elasticsearch.yml`:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 searchguard.cert.intercluster_request_evaluator_class: ...

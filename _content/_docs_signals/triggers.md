@@ -8,12 +8,12 @@ order: 300
 layout: docs
 edition: community
 canonical: triggers-overview
-description: How to create triggers for Signals Alerting for OpenSearch/Elasticsearch that control the execution of watches
+description: How to create triggers for Signals Alerting for Elasticsearch that control the execution of watches
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Creating triggers for OpenSearch/Elasticsearch watches
+# Creating triggers for Elasticsearch watches
 {: .no_toc}
 
 {% include toc.md %}

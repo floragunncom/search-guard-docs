@@ -15,7 +15,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard provides [**free Alerting for OpenSearch and Elasticsearch**](elasticsearch-alerting-getting-started), perfectly integrated with all security features.
+Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerting-getting-started), perfectly integrated with all security features.
 {: .note .js-note .note-info}
 
 

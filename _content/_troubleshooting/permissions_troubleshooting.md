@@ -194,4 +194,4 @@ sg_config:
       do_not_fail_on_forbidden: true
 ```
 
-This is the recommended setting when using Dashboards/Kibana.
+This is the recommended setting when using Kibana.

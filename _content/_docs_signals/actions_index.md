@@ -6,7 +6,7 @@ category: actions
 order: 100
 layout: docs
 edition: community
-description: Signals Alerting for OpenSearch/Elasticsearch can write data back to an OpenSearch/Elasticsearch  index if a watch is executed.
+description: Signals Alerting for Elasticsearch can write data back to an Elasticsearch  index if a watch is executed.
 
 ---
 
@@ -17,7 +17,7 @@ description: Signals Alerting for OpenSearch/Elasticsearch can write data back t
 
 {% include toc.md %}
 
-Use index actions to store data in an OpenSearch/Elasticsearch index.
+Use index actions to store data in an Elasticsearch index.
 
 ## Basic Functionality
 
@@ -78,6 +78,6 @@ The index operation will be executed with the privileges the user had when creat
 Further configuration attributes are:
 
 
-**refresh:** The OpenSearch/Elasticsearch index [refresh policy](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html). One of `false`, `true` or `wait_for`. Optional; default is `false`.
+**refresh:** The Elasticsearch index [refresh policy](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-refresh.html). One of `false`, `true` or `wait_for`. Optional; default is `false`.
 
 **timeout:** If the index operation does not complete in the specified time (in seconds), it will be aborted. Optional; default is 60 seconds.

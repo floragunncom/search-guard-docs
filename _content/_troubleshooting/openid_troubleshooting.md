@@ -4,7 +4,7 @@ permalink: troubleshooting-openid
 category: troubleshooting
 order: 550
 layout: troubleshooting
-description: Step-by-step instructions on how to troubleshoot OpenID Connect issues in OpenSearch/Elasticsearch and Dashboards/Kibana.
+description: Step-by-step instructions on how to troubleshoot OpenID Connect issues in Elasticsearch and Kibana.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -13,7 +13,7 @@ description: Step-by-step instructions on how to troubleshoot OpenID Connect iss
 
 ## Setting the log level to debug
 
-For troubleshooting any problem with OpenID, it is recommended to set the log level to at least `debug` on OpenSearch/Elasticsearch.
+For troubleshooting any problem with OpenID, it is recommended to set the log level to at least `debug` on Elasticsearch.
 
 Add the following lines in `config/log4j2.properties` and restart your node:
 
@@ -42,7 +42,7 @@ openid_auth_domain:
 
 ## ValidationError: child "searchguard" fails ...
 
-This indicates that one or more of the Dashboards/Kibana configuration settings are missing.
+This indicates that one or more of the Kibana configuration settings are missing.
 
 Check your kibana.yml file and make sure you have set the following minimal configuration:
 
@@ -69,7 +69,7 @@ To trade the access token for an identity token, most IdPs require you to provid
 
 ### Failed to get subject from JWT claims, check if subject_key ... is correct.
 
-This error is logged on OpenSearch/Elasticsearch and means that the username could not be extracted from the id token. Make sure the following setting matches the claims in the JWT your IdP issues:
+This error is logged on Elasticsearch and means that the username could not be extracted from the id token. Make sure the following setting matches the claims in the JWT your IdP issues:
 
 ```
 openid_auth_domain:

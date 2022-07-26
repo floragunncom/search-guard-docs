@@ -15,7 +15,7 @@ description: How to use config variables to keep sensitive information like pass
 
 {% include toc.md %}
 
-The Search Guard configuration is stored in a secured OpenSearch/Elasticsearch index. Without an admin certificate, it is not possible to access its content. 
+The Search Guard configuration is stored in a secured index. Without an admin certificate, it is not possible to access its content. 
 
 Still, you might want to keep sensitive data separate from the configuration. This has a number of advantages:
 

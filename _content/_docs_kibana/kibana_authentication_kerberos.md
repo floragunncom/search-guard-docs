@@ -6,26 +6,26 @@ category: kibana-authentication
 order: 400
 layout: docs
 edition: enterprise
-description: How to use Kerberos to implement Dashboards/Kibana Single Sign On and  to protect your data from any unauthorized access.
+description: How to use Kerberos to implement Kibana Single Sign On and  to protect your data from any unauthorized access.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Dashboards/Kibana Kerberos Authentication
+# Kibana Kerberos Authentication
 {: .no_toc}
 
 {% include toc.md %}
 
 ## Prerequisites
 
-To user Kerberos-based authentication with Dashboards/Kibana, you first need to configure [Kerberos authentication](../_docs_auth_auth/auth_auth_kerberos.md) for the OpenSearch/Elasticsearch backend.
+To user Kerberos-based authentication with Kibana, you first need to configure [Kerberos authentication](../_docs_auth_auth/auth_auth_kerberos.md) for the Elasticsearch backend.
 
-Depending on the browser you are using, make sure you have configured the Dashboards/Kibana domain correctly for Kerberos authentication. Please refer to the documentation of your browser for further instructions.
+Depending on the browser you are using, make sure you have configured the Kibana domain correctly for Kerberos authentication. Please refer to the documentation of your browser for further instructions.
 
-## Dashboards/Kibana configuration
+## Kibana configuration
 
-The remaining configuration for Dashboards/Kibana is rather simple; configure it as authentication type in `kibana.yml`/`opensearch_dashboards.yml` like: 
+The remaining configuration for Kibana is rather simple; configure it as authentication type in `kibana.yml` like: 
 
 ```
 searchguard.auth.type: "kerberos"
@@ -33,15 +33,14 @@ searchguard.auth.type: "kerberos"
 
 You can use all Search Guard features like multi tenancy and the configuration GUI with Kerberos. 
 
-Due to bugs and limitations in Dashboards/Kibana and X-Pack, not all X-Pack features will work however, please see below.
+Due to bugs and limitations in Kibana and X-Pack, not all X-Pack features will work however, please see below.
 {: .note .js-note .note-warning}
-
 
 ## Accessing external monitoring clusters via Kibana
 
 If you want to use both Kerberos authentication for Kibana and want to access an external monitoring cluster with Kibana (using the settings `monitoring.ui.elasticsearch.*´), some further special configuration is needed. This is necessary because the monitoring cluster will need to use sessions managed by the main cluster in order to authenticate Kibana users. 
 
-**Note:** Using sessions to access external monitoring clusters via Kibana/Dashboards is an Enterprise feature. A license is needed to use this in production.
+**Note:** Using sessions to access external monitoring clusters via Kibana is an Enterprise feature. A license is needed to use this in production.
 
 The first part is to configure an explicit session signing hash key for the main cluster. You need to edit `sg_sessions.yml` and add the following lines. If you do not yet have the file `sg_sessions.yml`, you must create it.
 
@@ -88,25 +87,23 @@ The option `external_session.hosts` requires the URL of at least one node of the
 
 The option `external_session.tls.trusted_cas` can be used if TLS connections to the main cluster need to use a special PKI. You can directly specify the CA certificate as PEM file here.
 
-
-
 ## Known Issues/Limitations
 
 ### X-Pack Machine Learning
 
 Due to the way HTTP requests are handled by the machine learning module internally, it is currently not possible to use X-Pack Machine Learning with Kerberos. 
 
-### Dashboards/Kibana URL shortener
+## Kibana URL shortener
 
-It's currently not possible to use the Dashboards/Kibana URL shortener together with Dashboards/Kibana/SPNEGO due to technical limitations of the Dashboards/Kibana architecture.
+It's currently not possible to use the Kibana URL shortener together with Kibana/SPNEGO due to technical limitations of the Kibana architecture.
 
-### Dashboards/Kibana Index Management UI
+## Kibana Index Management UI
 
-It's currently not possible to use the Dashboards/Kibana Index Management UI together with Dashboards/Kibana/SPNEGO due to technical limitations of the Dashboards/Kibana architecture.
+It's currently not possible to use the Kibana Index Management UI together with Kibana/SPNEGO due to technical limitations of the Kibana architecture.
 
 ### Disabling the replay cache
 
-Kerberos/SPNEGO has a security mechanism called "Replay Cache". The replay cache makes sure that an Kerberos/SPENGO token can be used only once in a certain timeframe. This conflicts with the Dashboards/Kibana request handling, where one browser request to Dashboards/Kibana can result in multiple requests to OpenSearch/Elasticsearch.
+Kerberos/SPNEGO has a security mechanism called "Replay Cache". The replay cache makes sure that an Kerberos/SPENGO token can be used only once in a certain timeframe. This conflicts with the Kibana request handling, where one browser request to Kibana can result in multiple requests to Elasticsearch.
 
 These sub-requests will all carry the same Kerberos token and are thus interpreted as replay attack. You will see error messages like:
 
@@ -114,7 +111,7 @@ These sub-requests will all carry the same Kerberos token and are thus interpret
 [com.floragunn.dlic.auth.http.kerberos.HTTPSpnegoAuthenticator] Service login not successful due to java.security.PrivilegedActionException: GSSException: Failure unspecified at GSS-API level (Mechanism level: Request is a replay (34)) 
 ```
 
-At the moment, the only way to make Kerberos work with Dashboards/Kibana is to disable the replay cache. This is of course not optimal, but so far the only known way.
+At the moment, the only way to make Kerberos work with Kibana is to disable the replay cache. This is of course not optimal, but so far the only known way.
 
 With Oracle JDK, you can set
 
@@ -122,4 +119,4 @@ With Oracle JDK, you can set
 -Dsun.security.krb5.rcache=none
 ```
 
-in `jvm.options` of OpenSearch/Elasticsearch. 
+in `jvm.options` of Elasticsearch. 

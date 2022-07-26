@@ -6,7 +6,7 @@ category: rolespermissions
 order: 150
 layout: docs
 edition: community
-description: How to map users and backend roles to Search Guard roles to implement flexible access control to an OpenSearch/Elasticsearch cluster.
+description: How to map users and backend roles to Search Guard roles to implement flexible access control to an Elasticsearch cluster.
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -16,7 +16,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Search Guard Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Roles Mapping.
+Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Roles Mapping.
 
 After a user is authenticated, Search Guard uses the role mappings to determine which Search Guard roles should be assigned to the user.
 

@@ -6,9 +6,9 @@ category: jwt
 order: 100
 layout: docs
 edition: enterprise
-description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access to your OpenSearch/Elasticsearch cluster.
+description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access to your Elasticsearch cluster.
 resources:
-  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure OpenSearch/Elasticsearch (blog post)"
+  - "https://search-guard.com/jwt-secure-elasticsearch/|Using JSON web tokens to secure Elasticsearch (blog post)"
   - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 
 ---
@@ -110,8 +110,6 @@ That’s it. You can test the JWT setup with your favorite REST client. If you a
 ```
 $ curl -H "Authorization: Bearer ${JWT}" "https://node.example.com:9200/_searchguard/authinfo"
 ```
-
-
 
 
 ## Where to go next

@@ -4,7 +4,7 @@ permalink: troubleshooting-saml
 category: troubleshooting
 order: 500
 layout: troubleshooting
-description: Step-by-step guide on how to troubleshoot OpenSearch/Elasticsearch and Dashboards/Kibana SAML issues
+description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML issues
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -45,9 +45,9 @@ saml:
                     
 ## Check the SAML Assertion Consumer Service URL
 
-After a successful login, your IdP sends a SAML Response via HTTP POST to the so-called "Assertion Consumer Service URL" of Dashboards/Kibana.
+After a successful login, your IdP sends a SAML Response via HTTP POST to the so-called "Assertion Consumer Service URL" of Kibana.
 
-The endpoint Search Guard Dashboards/Kibana plugin provides is:
+The endpoint Search Guard Kibana plugin provides is:
 
 ```
 /searchguard/saml/acs
@@ -61,7 +61,11 @@ Okta example:
 <img src="saml_sp_acs_okta.png" style="width: 80%" class="md_image"/>
 </p>
 
+<<<<<<< tech-preview
 Dashboards/Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `opensearch_dashboards.yml`/`kibana.yml`:
+=======
+Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `kibana.yml`:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 server.xsrf.whitelist: [/searchguard/saml/acs]
@@ -115,9 +119,9 @@ logger.token.name = com.floragunn.dlic.auth.http.saml.Token
 logger.token.level = debug
 ```
 
-This will print out the SAML response in the OpenSearch/Elasticsearch log file so you can inspect and debug it. Setting this logger to `debug will generate a lot of statements, so it's not recommended to do it in production. Log levels can also be changed at run time, please see the [OpenSearch/Elasticsearch official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html){:target="_blank"} on how to do that.
+This will print out the SAML response in the Elasticsearch log file so you can inspect and debug it. Setting this logger to `debug will generate a lot of statements, so it's not recommended to do it in production. Log levels can also be changed at run time, please see the [Elasticsearch official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html){:target="_blank"} on how to do that.
 
-Another way of inspecting the SAML Response is to montitor the network traffic while logging in to Dashboards/Kibana. The IdP will HTTP POST the base64-encoded SAML Response to:
+Another way of inspecting the SAML Response is to montitor the network traffic while logging in to Kibana. The IdP will HTTP POST the base64-encoded SAML Response to:
 
 ```
 /searchguard/saml/acs

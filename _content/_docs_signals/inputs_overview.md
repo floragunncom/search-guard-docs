@@ -6,7 +6,7 @@ category: inputs
 order: 0
 layout: docs
 edition: community
-description: In Signals Alerting for OpenSearch/Elasticsearch, each watch can have one or more data inputs that collect data for further processing.
+description: In Signals Alerting for Elasticsearch, each watch can have one or more data inputs that collect data for further processing.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -22,8 +22,8 @@ At the moment, Signals supports the following input types:
 
 * [Static](inputs_static.md)
   * Define constants you can then use at multiple places in the execution chain
-* [OpenSearch/Elasticsearch](inputs_elasticsearch.md)
-  * Use the full power of OpenSearch/Elasticsearch queries and aggregations
+* [Elasticsearch](inputs_elasticsearch.md)
+  * Use the full power of Elasticsearch queries and aggregations
 * [HTTP](inputs_http.md)
   * Pull in data from a REST endpoint
 

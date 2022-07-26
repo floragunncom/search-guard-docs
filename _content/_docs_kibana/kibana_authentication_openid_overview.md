@@ -1,6 +1,6 @@
 ---
 title: OIDC
-html_title: Dashboards/Kibana OpenID
+html_title: Kibana OpenID
 permalink: kibana-authentication-openid-overview
 category: kibana-authentication
 subcategory: kibana-authentication-openid-overview
@@ -13,5 +13,5 @@ edition: enterprise
 Copyright 2021 floragunn GmbH
 -->
 
-# Dashboards/Kibana OpenID Connect Authentication
+# Kibana OpenID Connect Authentication
 

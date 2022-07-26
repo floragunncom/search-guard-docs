@@ -6,7 +6,7 @@ category: signals-rest
 order: 100
 layout: docs
 edition: community
-description: Use the Alerting for OpenSearch/Elasticsearch Get Watch API to retrieve configured watches by watch ID
+description: Use the Alerting for Elasticsearch Get Watch API to retrieve configured watches by watch ID
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

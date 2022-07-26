@@ -1,41 +1,41 @@
 ---
 title: Proxy
-html_title: Dashboards/Kibana Proxy Authentication
+html_title: Kibana Proxy Authentication
 permalink: kibana-authentication-proxy
 category: kibana-authentication
 order: 300
 layout: docs
 edition: community
-description: How to use an authenticating proxy in front of Dashboards/Kibana to implement Single-Sign-On.
+description: How to use an authenticating proxy in front of Kibana to implement Single-Sign-On.
 ---
 <!--- Copyright 2021 floragunn GmbH -->
 
-# Dashboards/Kibana Proxy authentication
+# Kibana Proxy authentication
 {: .no_toc}
 
 {% include toc.md %}
 
-Proxy authentication depends on a proxy running in front of Dashboards/Kibana and adding the necessary authentication and authorization information to the headers of the HTTP requests.
+Proxy authentication depends on a proxy running in front of Kibana and adding the necessary authentication and authorization information to the headers of the HTTP requests.
 
-To securely use proxy authentication with Dashboards/Kibana, you must ensure that Dashboards/Kibana is only available via the proxy and not via direct connections. If Dashboards/Kibana were available via direct connections, users could spoof authentication or authorization information.
+To securely use proxy authentication with Kibana, you must ensure that Kibana is only available via the proxy and not via direct connections. If Kibana were available via direct connections, users could spoof authentication or authorization information.
 {: .note .js-note .note-warning}
 
 ## Prerequisites
 
-To use proxy authentication, you need a proxy in front of Dashboards/Kibana, which adds authentication information to the HTTP requests.
+To use proxy authentication, you need a proxy in front of Kibana, which adds authentication information to the HTTP requests.
 
 ## Search Guard Backend Setup
 
-To use proxy authentication with Dashboards/Kibana, you have to also set up a suitable authentication mechanism in the Search Guard backend configuration `sg_authc.yml`.
+To use proxy authentication with Kibana, you have to also set up a suitable authentication mechanism in the Search Guard backend configuration `sg_authc.yml`.
 
 The type of the setup depends on the information provided by the proxy in the HTTP headers:
 
 - If the proxy transmits username and role information as plain headers, go for a [trusted_origin](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Dashboards/Kibana, which also acts as a proxy in this case.
 - If the proxy transmits authorization as a JWT in a header, go for a  [JWT](../_docs_auth_auth/auth_auth_jwt.md) authenticator in the backend.
 
-## Dashboards/Kibana Setup
+## Kibana Setup
 
-Additionally, you need to edit the file `config/opensearch_dashboards.yml`, resp. `config/kibana.yml`:
+Additionally, you need to edit the file `config/kibana.yml`:
 
 * Add the line `searchguard.auth.type: "proxy"`
 * Make sure to whitelist all HTTP headers set by your proxy in the header whitelist:

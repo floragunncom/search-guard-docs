@@ -6,7 +6,7 @@ category: signals-rest
 order: 120
 layout: docs
 edition: community
-description: Use the Alerting for OpenSearch/Elasticsearch Delete Watch API to delete watches by their watch ID.
+description: Use the Alerting for Elasticsearch Delete Watch API to delete watches by their watch ID.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

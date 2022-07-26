@@ -6,7 +6,7 @@ category: otherintegrations
 order: 500
 layout: docs
 edition: community
-description: How to configure and use fluentd with a Search Guard secured OpenSearch/Elasticsearch cluster. Protect your data from any unauthorized access.
+description: How to configure and use fluentd with a Search Guard secured Elasticsearch cluster. Protect your data from any unauthorized access.
 ---
 <!---
 Copyright floragunn GmbH
@@ -17,15 +17,15 @@ Copyright floragunn GmbH
 
 {% include toc.md %}
 
-Fluentd connects to OpenSearch/Elasticsearch on the REST layer, just like a browser or curl. To use fluentd with a Search Guard secured cluster:
+Fluentd connects to Elasticsearch on the REST layer, just like a browser or curl. To use fluentd with a Search Guard secured cluster:
 
 * set up a fluentd user with permissions to read and write to the fluentd index
 * configure fluentd to use HTTPS instead of HTTP (optional, only applicable if you enabled HTTPS on the REST layer)
-* configure fluentd to provide HTTP Basic Authentication credentials when connecting to OpenSearch/Elasticsearch / Search Guard
+* configure fluentd to provide HTTP Basic Authentication credentials when connecting to Elasticsearch / Search Guard
 
 ## Setting up the fluentd user and role
 
-For fluentd being able to write to OpenSearch/Elasticsearch, set up a role first that has full access to the fluentd index. Let's assume you use a daily rolling index in fluentd like:
+For fluentd being able to write to Elasticsearch, set up a role first that has full access to the fluentd index. Let's assume you use a daily rolling index in fluentd like:
 
 ```
 index_name fluentd-%Y%m%d
@@ -66,7 +66,7 @@ sg_fluentd:
     - fluentd
 ```
     
-## Configuring the OpenSearch/Elasticsearch output
+## Configuring the Elasticsearch output
 
 In your `td-agent.conf` make sure you provide the username and password of the fluentd user you have configured above.
 

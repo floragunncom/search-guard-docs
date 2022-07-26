@@ -1,18 +1,18 @@
 ---
 title: Advanced Configuration
-html_title: Dashboards/Kibana SAML Advanced Configuration
+html_title: Kibana SAML Advanced Configuration
 permalink: kibana-authentication-saml-advanced
 category: kibana-authentication-saml-overview
 order: 200
 layout: docs
 edition: enterprise
-description: How to configure Dashboards/Kibana for SAML Single Sign On authentication and IdP integrations.
+description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
 
 
 ---
 <!--- Copyright 2021 floragunn GmbH-->
 
-# Dashboards/Kibana SAML Advanced Configuration
+# Kibana SAML Advanced Configuration
 {: .no_toc}
 
 {% include toc.md %}
@@ -64,31 +64,16 @@ If you need to use TLS client authentication to connect from Search Guard to the
 **saml.idp.tls.client_auth.private_key_password:** If the private key is encrypted, you must specify the key password using this option.
 
 
-## Force a re-login even if the user has an active session with the IdP
-
-TODO
-
-```yaml
-default:
-  auth_domains:
-    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    sp.forceAuthn: false
-    user_mapping.roles: "roles"
-    user_mapping.subject_pattern: "^(.+)@example\.com$"
-```
 
 ## IdP initated SSO
 
-IdP initiated SSO allows you to open Dashboards/Kibana directly from your IdP without navigating to Dashboards/Kibana first.
+IdP initiated SSO allows you to open Kibana directly from your IdP without navigating to Kibana first.
 
 To use IdP initiated SSO, you need to complete the following steps:
 
-* Edit the application settings in your IdP and set the *Assertion Consumer Service* endpoint to `/searchguard/saml/acs/idpinitiated
-  `.
+* Edit the application settings in your IdP and set the *Assertion Consumer Service* endpoint to `/searchguard/saml/acs/idpinitiated`.
 
-Then add this endpoint to the xsrf whitelist in `opensearch_dashboards.yml`/`kibana.yml`:
+Then add this endpoint to the xsrf whitelist in `kibana.yml`:
 
 ```yaml
 server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]

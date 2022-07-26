@@ -6,7 +6,7 @@ category: security
 order: 0
 layout: docs
 edition: community
-description: Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying OpenSearch/Elasticsearch indices is governed by Search Guard roles.
+description: Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying Elasticsearch indices is governed by Search Guard roles.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -16,7 +16,7 @@ description: Signals is integrated with all security related features of Search 
 
 {% include toc.md %}
 
-Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying OpenSearch/Elasticsearch indices is governed by Search Guard roles.
+Signals is integrated with all security related features of Search Guard. This means that access to watches and also the underlying Elasticsearch indices is governed by Search Guard roles.
 
 
 ## Signals Indices
@@ -33,7 +33,7 @@ Signals ships with [pre-defined action groups](security_permissions.md) that you
 
 ## Security execution context
 
-Each watch is executed in a security context that governs access to the OpenSearch/Elasticsearch indices. A watch is always executed with the set of permissions the user that created or updated the watch has at the time of creation / update.
+Each watch is executed in a security context that governs access to the Elasticsearch indices. A watch is always executed with the set of permissions the user that created or updated the watch has at the time of creation / update.
 
 ## Multi tenancy
 

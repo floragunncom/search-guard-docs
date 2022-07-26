@@ -17,7 +17,7 @@ Copyright floragunn GmbH
 
 {% include toc.md %}
 
-Grafana connects to OpenSearch/Elasticsearch on the REST layer, just like a browser or curl. To use Grafana with a Search Guard secured cluster:
+Grafana connects to Elasticsearch on the REST layer, just like a browser or curl. To use Grafana with a Search Guard secured cluster:
 
 * set up one or more Grafana users with permissions to read data
   * With the Community Edition of Grafana, you are limited to one user per datasource
@@ -25,13 +25,13 @@ Grafana connects to OpenSearch/Elasticsearch on the REST layer, just like a brow
   * See: [https://github.com/grafana/grafana/issues/6359](https://github.com/grafana/grafana/issues/6359)
 * configure Grafana to use HTTPS instead of HTTP (optional, only applicable if you enabled HTTPS on the REST layer)
 * import your root CA into Grafana in case you use self-signed certificates
-* configure Grafana to provide credentials when connecting to OpenSearch/Elasticsearch / Search Guard. Grafana supports
+* configure Grafana to provide credentials when connecting to Elasticsearch / Search Guard. Grafana supports
   * HTTP Basic Authentication
   * TLS client certificate authentication 
 
 ## Configure HTTPS connections
 
-If you are using HTTPS instead of HTTP, specify a https URL when creating an OpenSearch/Elasticsearch data source.
+If you are using HTTPS instead of HTTP, specify a https URL when creating an Elasticsearch data source.
 
 <p align="center">
 <img src="grafana_https.png" style="width: 50%" class="md_image"/>

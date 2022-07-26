@@ -21,7 +21,7 @@ Copyright floragunn GmbH
 
 {% include toc.md %}
 
-Cerebro connects to OpenSearch/Elasticsearch on the REST layer, just like a browser or curl. Cerebro detects HTTP Basic Authentication automatically, so you only need to set up TLS. If you are using self-signed certificates, you have two options:
+Cerebro connects to Elasticsearch on the REST layer, just like a browser or curl. Cerebro detects HTTP Basic Authentication automatically, so you only need to set up TLS. If you are using self-signed certificates, you have two options:
 
 * disable certificate validation (not recommended)
 * configure the root CA in Cerebro (recommended)
@@ -50,7 +50,7 @@ play.ws.ssl.loose.acceptAnyCertificate=true
 
 ## Cerebro user
 
-Since Cerebro is an admin tool for OpenSearch/Elasticsearch, the user should have full permissions to manage the cluster. If you use the sample configuration Search Guard ships with, you can use the `SGS_ALL_ACCESS` role.
+Since Cerebro is an admin tool for Elasticsearch, the user should have full permissions to manage the cluster. If you use the sample configuration Search Guard ships with, you can use the `SGS_ALL_ACCESS` role.
 
 ## Pre-configuring clusters
 

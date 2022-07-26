@@ -1,14 +1,14 @@
 ---
 title: Quick Start
-html_title: Dashboards/Kibana OIDC Quick Start
+html_title: Kibana OIDC Quick Start
 permalink: kibana-authentication-openid
 category: kibana-authentication-openid-overview
 order: 100
 layout: docs
 edition: enterprise
-description: How to use OpenID Connect and your favorite identity provider to implement Dashboards/Kibana Single Sign-On.
+description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
 resources:
-- "https://search-guard.com/kibana-openid-keycloak/|Dashboards/Kibana Single Sign-On with OpenID and Keycloak"
+  - "https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID and Keycloak"
 
 ---
 <!---
@@ -20,24 +20,24 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-You can use the OpenID Connect (OIDC) protocol to authenticate users in Dashboards/Kibana using external Identity Providers (IdP).
+You can use the OpenID Connect (OIDC) protocol to authenticate users in Kibana using external Identity Providers (IdP).
 
 This chapter describes the basic setup of OIDC with Search Guard. This will work in most cases. However, some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
 
 ## Prerequisites
 
-To use OIDC, you need to have an Identity Provider (IdP) supporting OIDC. Furthermore, HTTPS must be configured for Dashboards/Kibana.
+To use OIDC, you need to have an Identity Provider (IdP) supporting OIDC. Furthermore, HTTPS must be configured for Kibana.
 
 ## IdP Setup
 
-First, create a new client representing your Dashboards/Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the client, you must make sure that the following settings are configured like this:
+First, create a new client representing your Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the client, you must make sure that the following settings are configured like this:
 
-* Root URL: The base URL of the Dashboards/Kibana instance. For example, `https://kibana.example.com:5601/`
-* Valid Redirect URLs: The base URL of Dashboards/Kibana plus a `*` wildcard for paths. For example, `https://kibana.example.com:5601/*`
+* Root URL: The base URL of the Kibana instance. For example, `https://kibana.example.com:5601/`
+* Valid Redirect URLs: The base URL of Kibana plus a `*` wildcard for paths. For example, `https://kibana.example.com:5601/*`
 
 * Also, you need to make sure that the roles of a user are mapped to a JWT claim.
 
-* All users who are supposed to log in to Dashboards/Kibana must have certain privileges. If you use the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to the users who shall be able to log in. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.
+* All users who are supposed to log in to Kibana must have certain privileges. If you use the default `sg_roles_mapping.yml` configuration, just make sure that the IdP assigns the role `kibanauser` to the users who shall be able to log in. The default `sg_roles_mapping.yml` then maps this to the Search Guard role `SGS_KIBANA_USER`. If you are not using the default `sg_roles_mapping` you need to make sure that it maps  `SGS_KIBANA_USER` to a suitable backend role provided by the IdP.
 
 You need to keep a couple of values from the IdP setup ready for the next step. These values are:
 
@@ -74,10 +74,9 @@ default:
 
 You need to replace the values for `client_id`, `client_secret` and `idp.openid_configuration_url`  by the values configured in the IdP. In the  `user_mapping.roles` config option, specify a JSON path expression to access the roles inside the OIDC ID token retrieved from the IdP. The attribute `oidc_id_token` is initialized with the claims retrieved from the ID token.
 
+## Kibana Setup
 
-## Dashboards/Kibana Setup
-
-To use OIDC with Dashboards/Kibana it is necessary to configure the external URL of Dashboards/Kibana in the file `config/kibana.yml` in your Dashboards/Kibana installation.
+To use OIDC with Kibana it is necessary to configure the external URL of Kibana in the file `config/kibana.yml` in your Kibana installation.
 
 For Kibana 7.11 and newer versions, you can use the built-in setting `server.publicBaseUrl`:
 
@@ -91,7 +90,7 @@ For older versions of Kibaba or for OpenSearch Dashboards, please use the settin
 searchguard.frontend_base_url: "https://kibana.example.com:5601"
 ```
 
-Furthermore, the OIDC protocol requires specific settings for the cookies used by Search Guard (For background information on this, see [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this,  add the following settings to `opensearch_dashboards.yml`/`kibana.yml`:
+Furthermore, the OIDC protocol requires specific settings for the cookies used by Search Guard (For background information on this, see [this blog post at auth0.com](https://auth0.com/blog/browser-behavior-changes-what-developers-need-to-know/). To achieve this,  add the following settings to `kibana.yml`:
 
 ```yaml
 searchguard.cookie.isSameSite: None
@@ -102,7 +101,7 @@ searchguard.cookie.secure: true
 
 To activate the setup, do the following:
 
-- If you edited `opensearch_dashboards.yml`/`kibana.yml`, ensure that you restart the Dashboards/Kibana instance.
+- If you edited `kibana.yml`, ensure that you restart the Kibana instance.
 - Use `sgctl` to upload the new `sg_frontend_authc.yml` file to Search Guard.
 
-That's it. If you navigate in a browser to your Dashboards/Kibana instance, you should be directed to the IdP login page.
+That's it. If you navigate in a browser to your Kibana instance, you should be directed to the IdP login page.

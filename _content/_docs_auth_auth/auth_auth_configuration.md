@@ -30,6 +30,6 @@ You can choose now:
   - [JWT](../_docs_auth_auth/auth_auth_jwt.md)
 - Or do you want to learn more about the [general configuration approach](../_docs_auth_auth/auth_auth_rest_config.md)?
 
-**Note:** OIDC and SAML based authentication is only available for Dashboards/Kibana. See the documentation on [Dashboards/Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
+**Note:** OIDC and SAML based authentication is only available for Kibana. See the documentation on [Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
 
 

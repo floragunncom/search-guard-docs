@@ -14,13 +14,17 @@ description: Step-by-step instructions on how to troubleshoot Multi Tenancy issu
 
 ## Headers not whitelisted
 
+<<<<<<< tech-preview
 During Dashboards/Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `opensearch_dashboards.yml`/`kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Dashboards/Kibana. Make sure you have whitelisted this header:
+=======
+During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the pluin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
 ```
 
-## OpenSearch/Elasticsearch: Multi tenancy not enabled
+## Elasticsearch: Multi tenancy not enabled
 
 If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
 
@@ -30,14 +34,18 @@ If the Search Guard multitenancy module is not installed or is disabled, you wil
 
 Make sure the enterprise module is installed, and also check that `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
 
-## Dashboards/Kibana and OpenSearch/Elasticsearch: Configuration mismatch
+## Kibana and Elasticsearch: Configuration mismatch
 
-If either the configured Dashboards/Kibana server username or the configured Dashboards/Kibana index name do not match on OpenSearch/Elasticsearch and Dashboards/Kibana, an error will be displayed on the "Tenants" page, like:
+If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
 
 <p align="center">
 <img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
 </p>
 
+<<<<<<< tech-preview
 Make sure the respective settings match in `sg_config.yml` (OpenSearch/Elasticsearch) and `opensearch_dashboards.yml`/`kibana.yml` (Dashboards/Kibana).
+=======
+Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
+>>>>>>> 2a2e5e1 OpenSearch support
 
 

@@ -21,9 +21,7 @@ resources:
 
 {% include toc.md %}
 
-Search Guard comes with a demo installation shell script which helps you to quickly get Search Guard up and running on a test instance of OpenSearch or Elasticsearch. The most easy way is to set it up just on your local computer.
-
-**Note:** The demo installer can be used on Linux systems and on MacOS systems. However, on MacOS systems, you can only use it to start test instances of Search Guard for Elasticsearch, because OpenSearch so far does not provide builds for MacOS.
+Search Guard comes with a demo installation shell script which helps you to quickly get Search Guard up and running on a test instance of Elasticsearch. The most easy way is to set it up just on your local computer.
 
 ## Running the Demo Installer
 
@@ -39,7 +37,7 @@ $ ./search-guard-elasticsearch-plugin-tp3-es-7.16.3-demo-installer.sh
 
 - The script will download the Search Guard plugins and the `sgctl` tool. Additionally, it will download the matching version of OpenSearch or Elasticsearch, which will be automatically extracted to the working directory. The same will be done for OpenSearch Dashboards or Kibana, respectively.
 - Afterwards, the script will install the Search Guard plugins and apply the basic configuration necessary for Search Guard and `sgctl`.
-- Now, the script is done. If you want to see what the script has downloaded installed, list the directory contents. You should see the downloaded software archives, the `sgctl.sh` tool, keys for authenticating as administrator, and the `opensearch`/`elasticsearch` directory with a ready-to-start setup.
+- Now, the script is done. If you want to see what the script has downloaded installed, list the directory contents. You should see the downloaded software archives, the `sgctl.sh` tool, keys for authenticating as administrator, and the `elasticsearch` directory with a ready-to-start setup.
 
 ```bash
 $ ls -lh
@@ -58,34 +56,21 @@ drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
 ```
 
 
-
-- You can start the cluster by running either
-
-```bash
-$ opensearch/bin/opensearch
-```
-
-or
+- You can start the cluster by running 
 
 ```bash
 $ elasticsearch/bin/elasticsearch
 ```
 
-- If you want, you can also start Dashboards, resp. Kibana in a parallel shell by executing:
-
-```bash
-$ opensearch-dashboards/bin/opensearch-dashboards
-```
-
-or
+- If you want, you cans tart Kibana in a parallel shell by executing:
 
 ```bash
 $ kibana/bin/kibana
 ```
 
-Note: While Dashboards/Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes. 
+Note: While Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes. 
 
-## Testing the installation
+## Testing the Elasticsearch installation
 
 After having started the cluster, you can make the first steps with Search Guard.
 
@@ -94,16 +79,16 @@ After having started the cluster, you can make the first steps with Search Guard
 * In the HTTP Basic Authentication dialogue, use ``admin`` as username and ``admin`` as password.
 * This will print out information about the user ``admin`` in JSON format.
 
-If you also have started Dashboards/Kibana, you can test it as well:
+If you also have started Kibana, you can test it as well:
 
 * Open `http://localhost:5601/`.
-* You should be redirected to the login page
-* On the login dialogue, use `admin` as user name and `admin` as password.
+* You should be redirected to the Kibana login page
+* On the login dialogue, use `admin` as username and `admin` as password.
 
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
 * Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Dashboards/Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
+* Tenants - to select a tenant for [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -130,8 +115,8 @@ If you also have started Dashboards/Kibaba, you can also edit the configuration 
 
 If you want to know how things work under the hood, have a look at the automatically generated configuration in the files 
 
-- `opensearch/config/opensearch.yml` resp.  `elaticsearch/config/elaticsearch.yml`
-- `opensearch-dashboards/config/opensearch_dashboards.yml` resp.  `kibana/config/kibana.yml`
+- `elaticsearch/config/elaticsearch.yml`
+- `kibana/config/kibana.yml`
 
 
 You will find lots of additional information on the options in comments in the files. Look for sections starting like this:
@@ -166,3 +151,4 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
 - If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
 - And if you need to support multiple tenants in Dashboards/Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.
 - Details on how to set up a production-ready TLS can be found in [Configuring TLS](../_docs_tls/tls_configuration.md) and [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
+

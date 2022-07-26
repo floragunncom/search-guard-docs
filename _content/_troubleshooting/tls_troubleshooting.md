@@ -14,7 +14,7 @@ description: Step-by-step instructions to troubleshoot Search Guard TLS and cert
 
 ## Validate your elasticsearch.yml
 
-The OpenSearch/Elasticsearch configuration is in yaml format, and so is the Search Guard configuration. A quick way of checking the validity of any yml file is to use the Yaml Lint web service:
+The Elasticsearch configuration is in yaml format, and so is the Search Guard configuration. A quick way of checking the validity of any yml file is to use the Yaml Lint web service:
 
 [http://www.yamllint.com/](http://www.yamllint.com/)
 
@@ -54,7 +54,7 @@ If you rather like to work with a GUI, we recommend [KeyStore Explorer](http://k
 
 > KeyStore Explorer is an open source GUI replacement for the Java command-line utilities keytool and jarsigner. KeyStore Explorer presents their functionality, and more, via an intuitive graphical user interface. 
 
-You can use it to examine the contents of locally stored files, but you can also retrieve and inspect certificates from a server (or OpenSearch/Elasticsearch cluster) directly.
+You can use it to examine the contents of locally stored files, but you can also retrieve and inspect certificates from a server (or Elasticsearch cluster) directly.
 
 ## Checking the main attributes of a certificate
 
@@ -82,7 +82,11 @@ Issuer: CN=Example Com Inc. Signing CA, OU=Example Com Inc. Signing CA, O=Exampl
 
 ### Checking the configured alias
 
+<<<<<<< tech-preview
 If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `opensearch.yml`/`elasticsearch.yml` matches the alias name in the keystore. 
+=======
+If you have multiple entries in the keystore and you are using aliases to refer to them, make sure that the configured alias in `elasticsearch.yml` matches the alias name in the keystore. 
+>>>>>>> 2a2e5e1 OpenSearch support
 
 In the example above example, you'd need to set:
 
@@ -259,7 +263,11 @@ ExtendedKeyUsages [
 
 ## TLS versions
 
+<<<<<<< tech-preview
 Search Guard disables `TLSv1` by default, because it is outdated, unsecure and vulnerable. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it in `opensearch.yml`/`elasticsearch.yml` like:
+=======
+Search Guard disables `TLSv1` by default, because it is outdated, unsecure and vulnerable. If you need to use `TLSv1` and you know what you  are doing, you can re-enable it in `elasticsearch.yml` like:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 searchguard.ssl.http.enabled_protocols:

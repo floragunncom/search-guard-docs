@@ -5,7 +5,7 @@ category: authauth
 order: 11000
 layout: docs
 edition: enterprise
-description: Creating API auth tokens for accessing OpenSearch/Elasticsearch using Search Guard
+description: Creating API auth tokens for accessing Elasticsearch using Search Guard
 
 ---
 <!---
@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 The auth token feature is a Search Guard Enterprise feature. You will need a license to use it after the trial period.
 {: .note .js-note .note-warning}
 
-Search Guard provides a built-in functionality to create and manage API auth tokens that can be used to access OpenSearch/Elasticsearch.
+Search Guard provides a built-in functionality to create and manage API auth tokens that can be used to access Elasticsearch.
 
 Such an auth token is always associated with the user that has created it. The auth token inherits the privileges of the user and freezes them. Thus, even if the user later gains or loses privileges, the privileges available to a token remain unchanged. 
 
@@ -134,7 +134,7 @@ This returns a response like this:
 }
 ```
 
-The value of the `token` attribute is the JWT token that can now be used to send authenticated requests to OpenSearch/Elasticsearch. The token provides a subset of the privileges the user had at the point in time the token was created. The token allows only actions on indices matching the pattern `my_index_*`. Because the `allowed_actions` attribute is `*`, the token provides all index permissions the user has. The cluster permissions are also identical to the user's cluster permissions.
+The value of the `token` attribute is the JWT token that can now be used to send authenticated requests to Elasticsearch. The token provides a subset of the privileges the user had at the point in time the token was created. The token allows only actions on indices matching the pattern `my_index_*`. Because the `allowed_actions` attribute is `*`, the token provides all index permissions the user has. The cluster permissions are also identical to the user's cluster permissions.
 
 In a request to create an auth token, it is possible to specify privileges that exceed the actual privileges the user has. Search Guard will only grant the intersection of the requested and the available privileges.
 
@@ -146,9 +146,9 @@ This is an overview of all attributes Search Guard supports in requests sent to 
 
 **expires_after:** A time period specification which defines the maximum lifetime of the token. If this attribute is omitted, the token will have an unbounded lifetime. If the configuration in `sg_auth_token_service.yml` specified a `max_validity` attribute, the validity will be always bounded by this value. Examples for valid values for this attribute are: `1y`: one year; `1y 6M`: one year and six months; `7d`: seven days; `1h 30m`: one hour and 30 minutes. Optional, defaults to no bound.
 
-**requested.index_permissions:** An array of objects with the attributes `index_patterns` and `allowed_actions`. The `index_patterns` attribute specifies an array of index patterns which define the indices the privileges in `allowed_actions` apply to. Likewise,  `allowed_actions`  is an array of patterns to match on OpenSearch/Elasticsearch actions. Optional.
+**requested.index_permissions:** An array of objects with the attributes `index_patterns` and `allowed_actions`. The `index_patterns` attribute specifies an array of index patterns which define the indices the privileges in `allowed_actions` apply to. Likewise,  `allowed_actions`  is an array of patterns to match on Elasticsearch actions. Optional.
 
-**requested.cluster_permissions:** An array of pattern strings that match on OpenSearch/Elasticsearch cluster actions. Optional.
+**requested.cluster_permissions:** An array of pattern strings that match on Elasticsearch cluster actions. Optional.
 
 **requested.exclude_index_permissions:** This attribute can be used to specify index permissions the auth token must not grant. The format is the same as `requested.index_permissions`. Optional.
 
@@ -170,7 +170,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJuYmYiOj...
 
 ### Curl
 
-When you are using `curl` to make requests to OpenSearch/Elasticsearch, you can specify the access token like this:
+When you are using `curl` to make requests to Elasticsearch, you can specify the access token like this:
 
 ```
 curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9..." -X GET "$ES_HOST/kibana_sample_data_flights/_search"
@@ -178,7 +178,7 @@ curl -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9..." -X GET "$ES_HOST/kibana_
 
 ### Java RestHighLevelClient
 
-When using the Java `RestHighLevelClient` to make requests to OpenSearch/Elasticsearch, you can use the `setDefaultHeaders()` method in the `RestClientBuilder` class to
+When using the Java `RestHighLevelClient` to make requests to Elasticsearch, you can use the `setDefaultHeaders()` method in the `RestClientBuilder` class to
 specify the access token:
 
 ```
@@ -201,7 +201,7 @@ A user can list all auth tokens that have been issued to them by doing this requ
 GET /_searchguard/authtoken/_search
 ```
 
-The result is formed like a standard OpenSearch/Elasticsearch search response:
+The result is formed like a standard Elasticsearch search response:
 
 ```
 {
@@ -244,7 +244,7 @@ The result is formed like a standard OpenSearch/Elasticsearch search response:
 }
 ```
 
-You can specify search criteria by issuing POST requests to the same endpoint. This works like other OpenSearch/Elasticsearch searches. The following query searches for all auth tokens that have index patterns that match `*my_index*`.
+You can specify search criteria by issuing POST requests to the same endpoint. This works like other Elasticsearch searches. The following query searches for all auth tokens that have index patterns that match `*my_index*`.
 
 
 ```

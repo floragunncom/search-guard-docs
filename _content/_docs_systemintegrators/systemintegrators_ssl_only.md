@@ -6,7 +6,7 @@ category: systemintegrators
 order: 100
 layout: docs
 edition: community
-description: How to enable Search Guard SSL only mode. This adds TLS encryption to OpenSearch/Elasticsearch, but skips authentication and authorization.
+description: How to enable Search Guard SSL only mode. This adds TLS encryption to Elasticsearch, but skips authentication and authorization.
 ---
 <!---
 Copyright 2020 floragunn GmbH

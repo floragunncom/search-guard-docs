@@ -22,9 +22,13 @@ Copyright 2020 floragunn GmbH
 
 The Community Edition of Search Guard is free, and you can use it for production and non-production systems without any cost. 
 
-It includes TLS encryption on REST and on transport layer, HTTP Basic Authentication, the Internal User Database authentication backend and Dashboards/Kibana session management.
+It includes TLS encryption on REST and on transport layer, HTTP Basic Authentication, the Internal User Database authentication backend and Kibana session management.
 
+<<<<<<< tech-preview
 The Community Edition does not require a license. To use it, just install the Enterprise Edition and disable all commercial features by adding the following line to `opensearch.yml`/`elasticsearch.yml` and restart the node:
+=======
+The Community Edition does not require a license. To use it, just install the Enterprise Edition and disable all commercial features by adding the following line to `elasticsearch.yml` and restart the node:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 searchguard.enterprise_modules_enabled: false
@@ -41,7 +45,7 @@ For a feature comparison between the Complince, Enterprise and Community Edition
 If you are unsure whether you are running the free Community Edition or not, you can visit the HTTP license endpoint of Search Guard like:
 
 ```
-https://<OpenSearch/Elasticsearch Host>:<HTTP Port>/_searchguard/license
+https://<Elasticsearch Host>:<HTTP Port>/_searchguard/license
 ```
 
 For example:
@@ -65,7 +69,7 @@ sg_license: {
 
 ## Logfile
 
-On startup, Search Guard will print license information to the OpenSearch/Elasticsearch logfile on `INFO` level. If you are running the Community Edition you will find the following entry:
+On startup, Search Guard will print license information to the Elasticsearch logfile on `INFO` level. If you are running the Community Edition you will find the following entry:
 
 ```
 Search Guard License Info: No license needed because enterprise modules are not enabled

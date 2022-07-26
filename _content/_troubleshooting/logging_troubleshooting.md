@@ -4,9 +4,9 @@ permalink: troubleshooting-setting-log-level
 category: troubleshooting
 order: 50
 layout: troubleshooting
-description: Hot to set the Search Guard log level in a running OpenSearch/Elasticsearch cluster for debugging.
+description: Hot to set the Search Guard log level in a running Elasticsearch cluster for debugging.
 resources:
-  - https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|OpenSearch/Elasticsearch logging configuration (website)
+  - https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|Elasticsearch logging configuration (website)
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
@@ -17,7 +17,7 @@ For troubleshooting any problem with Search Guard, it is recommended to set the 
 
 ## Turn on debug logging temporarily 
 
-To turn on debug logging temporarily, you can use the  `_cluster/settings` API of OpenSearch/Elasticsearch:
+To turn on debug logging temporarily, you can use the  `_cluster/settings` API of Elasticsearch:
 
 ```
 curl -u admin:admin --insecure -X PUT "https://localhost:9200/_cluster/settings" -H 'Content-Type: application/json' -d '{
@@ -41,7 +41,7 @@ logger.searchguard.level = debug
 
 Search Guard adds the currently logged in user to the log4j *Thread Context Map*. This makes it possible to exclude/filter log messages for certain users.
 
-This is especially useful when debugging permission issues with Dashboards/Kibana. You can filter out any log messages from the internal Dashboards/Kibana server that would otherwise just clutter the logfile. To filter log statements from the user *kibanaserver* and *logstash*, add a *ThreadContextMapFilter* to the respective appender in `log4j2.properties`:
+This is especially useful when debugging permission issues with Kibana. You can filter out any log messages from the internal Kibana server that would otherwise just clutter the logfile. To filter log statements from the user *kibanaserver* and *logstash*, add a *ThreadContextMapFilter* to the respective appender in `log4j2.properties`:
  
 ``` 
 appender.console.type = Console

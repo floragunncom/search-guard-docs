@@ -6,7 +6,7 @@ category: sgadmin
 order: 100
 layout: docs
 edition: community
-description: How to use sgadmin to connect to an OpenSearch/Elasticsearch cluster to configure Search Guard
+description: How to use sgadmin to connect to an Elasticsearch cluster to configure Search Guard
 ---
 <!---
 Copyright 2020 floragunn GmbH
@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 **`sgadmin` is deprecated:** `sgadmin` can be only used to modify the configuration format of Search Guard 7. If you want to use `sg_authc.yml`, you must use `sgctl` instead. Expect `sgadmin` to be removed soon.
 {: .note .js-note .note-warning}
 
-The Search Guard configuration is stored in an index on the OpenSearch/Elasticsearch cluster. This allows for configuration hot-reloading, and eliminates the need to place configuration files on any node.
+The Search Guard configuration is stored in an index on the Elasticsearch cluster. This allows for configuration hot-reloading, and eliminates the need to place configuration files on any node.
 
 Configuration settings are uploaded to the Search Guard configuration index using the `sgadmin` tool. When installing Search Guard for the first time, you have to run sgadmin at least once to initialize the configuration index.
 
@@ -68,7 +68,7 @@ searchguard.authcz.admin_dn:
 
 *Do not use node certificates as admin certifcates. The intended use is to keep node and admin certificates separate. Using node certificates as admin certificates can lead to unexpected results. Also, do not use any whitespaces between the parts of the DN.*
 
-## Connecting to OpenSearch/Elasticsearch with PEM certificates
+## Connecting to Elasticsearch with PEM certificates
 
 If you use PEM certificates, you need to provide
 
@@ -95,7 +95,7 @@ All PEM options:
 | cacert | The location of the pem file containing the root certificate. You can use an absolute or relative path. Relative paths are resolved relative to the execution directory of sgadmin.|
 {: .config-table}
 
-## Connecting to OpenSearch/Elasticsearch with keystore files
+## Connecting to Elasticsearch with keystore files
 
 You can also use keystore files in JKS format in conjunction with `sgadmin`, for example: 
 
@@ -142,9 +142,9 @@ Usually you do not need to change the cipher settings. If you do, use the follow
 {: .config-table}
 
 
-## OpenSearch/Elasticsearch cluster settings
+## Elasticsearch cluster settings
 
-If you run a default OpenSearch/Elasticsearch installation, which listens on transport port 9300, and uses `elasticsearch` as cluster name, you can omit the following settings altogether. Otherwise, specify your OpenSearch/Elasticsearch settings by using the following switches:
+If you run a default Elasticsearch installation, which listens on transport port 9300, and uses `elasticsearch` as cluster name, you can omit the following settings altogether. Otherwise, specify your Elasticsearch settings by using the following switches:
 
 | Name | Description |
 |---|---|
@@ -156,4 +156,4 @@ If you run a default OpenSearch/Elasticsearch installation, which listens on tra
 | -arc,--accept-red-cluster | Execute sgadmin even if the cluster state is red. Default: sgadmin won't execute on red cluster state |
 {: .config-table}
 
-Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [OpenSearch/Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).
+Ignore cluster name means that the name of your cluster will not be validated. Sniffing can be used to detected available nodes by using the ES cluster state API. You can read more about this feature in the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/transport-client.html).

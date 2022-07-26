@@ -6,7 +6,7 @@ category: authorization-advanced
 order: 1000
 layout: docs
 edition: community
-description: Control access to the snapshot and restore features of OpenSearch/Elasticsearch by using Search Guard.
+description: Control access to the snapshot and restore features of Elasticsearch by using Search Guard.
 ---
 <!---
 Copyright 2020 floragunn GmbH

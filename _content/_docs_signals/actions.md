@@ -23,7 +23,7 @@ description: Actions are used to send notifications by Email or other services l
 
 When the checks configured in a watch found a situation to be noteworthy, it's time to take action. This is done using the equally named watch building block: Actions.
 
-Actions can be used to send notifications by e-mail or other messaging services such as [Slack](actions_slack.md). Also, actions allow to write data to [OpenSearch/Elasticsearch indices](actions_index.md). A general purpose mechanism to invoke external services is the [webhook action](actions_webhook.md) which allows making HTTP requests to configurable endpoints.
+Actions can be used to send notifications by e-mail or other messaging services such as [Slack](actions_slack.md). Also, actions allow to write data to [Elasticsearch indices](actions_index.md). A general purpose mechanism to invoke external services is the [webhook action](actions_webhook.md) which allows making HTTP requests to configurable endpoints.
 
 A watch can have several actions; either for sending notifications via different media, or for acting differently depending on the situation.
 
@@ -47,7 +47,7 @@ These action types are available at the moment:
 
 **[Webhook Action Type](actions_webhook.md):** Sends HTTP requests to external services.
 
-**[Index Action Type](actions_index.md):** Writes data to an OpenSearch/Elasticsearch index.
+**[Index Action Type](actions_index.md):** Writes data to an Elasticsearch index.
 
 These action types are only available in the Enterprise Edition:
 
@@ -79,7 +79,7 @@ A manual way of suppressing the execution of actions is acknowledging actions.
 
 If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, all checks are executed to determine if a watch is still in alert state. If the watch remains in alert state, the action remains acknowledged and thus execution is suppressed. Only if the watch leaves alert state, the acknowledge state of the action is reset. Thus, if the situation changes again that the watch reaches alert state, the action would be actually executed again.
 
-A watch can be acknowledged via the Signals Dashboards/Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
+A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
 
 
 ## Processing Collections of Objects in Actions

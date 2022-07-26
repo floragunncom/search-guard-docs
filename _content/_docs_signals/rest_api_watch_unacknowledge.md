@@ -6,7 +6,7 @@ category: signals-rest
 order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for OpenSearch/Elasticsearch API provides an endpoint for un-acknowledging a watch to move it back to the initial state
+description: The Signals Alerting for Elasticsearch API provides an endpoint for un-acknowledging a watch to move it back to the initial state
 
 ---
 

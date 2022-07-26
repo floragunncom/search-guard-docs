@@ -28,7 +28,7 @@ sg_config:
 
 ## How it works
 
-Signals multi tenancy works very similar to [Dashboards/Kibana multi tenancy](../_docs_kibana/kibana_multitenancy.md).
+Signals multi tenancy works very similar to [Kibana multi tenancy](../_docs_kibana/kibana_multitenancy.md).
 
 By using multi tenancy, you can separate the management and execution of watches by tenant: 
 

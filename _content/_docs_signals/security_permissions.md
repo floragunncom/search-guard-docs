@@ -6,7 +6,7 @@ category: security
 order: 100
 layout: docs
 edition: community
-description: Configure access permissions for the Alerting API running on OpenSearch/Elasticsearch, including Watches and Accounts.
+description: Configure access permissions for the Alerting API running on Elasticsearch, including Watches and Accounts.
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->

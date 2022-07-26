@@ -6,23 +6,21 @@ category: signals
 order: 100
 layout: docs
 edition: community
-description: How to get started with Signals Alerting to find anomalies in your data and send alerts
+description: How to get started with Signals Alerting for Elasticsearch to find anomalies in your data and send alerts
 ---
 
 <!--- Copyright 2020 floragunn GmbH -->
 
-# Getting started with Signals Alerting 
+# Getting started with Signals Alerting for Elasticsearch
 {: .no_toc}
 
 {% include toc.md %}
 
-Since v40, Signals Alerting is distributed as part of Search Guard. To use Signals, you just need to [install the Search Guard plugins](search-guard-versions) version 40 and above.
+Since v40, Signals Alerting for Elasticsearch is distributed as part of Search Guard. To use Signals, you just need to [install the Search Guard plugin for Elasticsearch and  (optional) Kibana](search-guard-versions) version 40 and above.
 
-Signals is available for Elasticsearch **7.4.0** and above.
+Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Kibana app to create your first watch.
 
-Signals is enabled by default, so after the cluster is up you can either use the [REST API](elasticsearch-alerting-rest-api-overview) or the Signals Dashboards/Kibana app to create your first watch.
-
-If you need to disable it, add the following setting to your `opensearch.yml`/`elasticsearch.yml`:
+If you need to disable it, add the following setting to your `elasticsearch.yml`:
 
 ```
 signals.enabled: false
@@ -52,9 +50,9 @@ Note that Signals is fully compatible with [Search Guard multi-tenancy](kibana-m
 
 ## Sample watches
 
-To start quickly with Signals, we have [prepared sample watches](sample_watches.md) that can be either installed by using the REST API, or the Dashboards/Kibana plugin.
+To start quickly with Signals, we have [prepared sample watches](sample_watches.md) that can be either installed by using the REST API, or the Kibana plugin.
 
-The examples are based on the [Dashboards/Kibana sample data](https://www.elastic.co/guide/en/kibana/current/add-sample-data.html), so you need to import it first.
+The examples are based on the [Kibana sample data](https://www.elastic.co/guide/en/kibana/current/add-sample-data.html), so you need to import it first.
 
 ## First steps
 

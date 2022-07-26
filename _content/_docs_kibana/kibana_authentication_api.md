@@ -1,25 +1,25 @@
 ---
-title: Using the Dashboards/Kibana API
-html_title: Using the Dashboards/Kibana API
-permalink: kibana-authentication-api
+title: Using the Kibana API
+html_title: Using the Kibana API
+slug: kibana-authentication-api
 category: kibana-advanced
 order: 100
 layout: docs
 edition: community
-description: How to use the Dashboards/Kibana saved objects API when authentication is configured.
+description: How to use the Kibana saved objects API when authentication is configured.
 ---
 <!---
 Copyright 2020 floragunn GmbH
 -->
 
-# Dashboards/Kibana REST API
+# Kibana REST API
 {: .no_toc}
 
 {% include toc.md %}
 
 ## Adding user credentials
 
-Dashboards/Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with Search Guard you need to add user credentials as HTTP headers to these calls as well. What kind of HTTP header is required depends on the configured Search Guard authentication type. 
+Kibana offers an API for saved objects like index patterns, dashboards and visualizations. In order to use this API in conjunction with Search Guard you need to add user credentials as HTTP headers to these calls as well. What kind of HTTP header is required depends on the configured Search Guard authentication type. 
 
 **HTTP Basic example:**
 

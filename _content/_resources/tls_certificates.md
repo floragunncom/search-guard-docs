@@ -29,7 +29,11 @@ Download the [certificates zip file](/resources/certificates/certificates.zip){:
 <ES installation directory>/config
 ```
 
+<<<<<<< tech-preview
 Next, add the Search Guard TLS configuration to `opensearch.yml`/`elasticsearch.yml`:
+=======
+Next, add the Search Guard TLS configuration to `elasticsearch.yml`:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 

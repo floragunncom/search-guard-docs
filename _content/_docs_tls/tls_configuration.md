@@ -20,7 +20,11 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
+<<<<<<< tech-preview
 TLS is configured in the `config/elasticsearch.yml` file of your OpenSearch/Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `opensearch.yml`/`elasticsearch.yml` file, the order does not matter.
+=======
+TLS is configured in the `config/elasticsearch.yml` file of your Elasticsearch installation. There are two main configuration sections, one for the transport layer, and one for the REST layer. For the REST layer, TLS is optional, while it is mandatory for the transport layer. You can add the configuration at any place of the `elasticsearch.yml` file, the order does not matter.
+>>>>>>> 2a2e5e1 OpenSearch support
 
 You can find an example configuration template with all options on [GitLab](https://git.floragunn.com/search-guard/search-guard-ssl/blob/master/searchguard-ssl-config-template.yml){:target="_blank"}
 {: .note .js-note}
@@ -85,7 +89,11 @@ As an alternative to certificates and private keys in PEM format, you can also u
 
 ## Configuring Node certificates
 
+<<<<<<< tech-preview
 Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. The simplest way of configuring node certificates is to list the DNs of these certificates in `opensearch.yml`/`elasticsearch.yml`. Search Guard supports wildcards and regular expressions:
+=======
+Search Guard needs to identify inter-cluster requests, i.e. requests between the nodes in the cluster reliably. The simplest way of configuring node certificates is to list the DNs of these certificates in `elasticsearch.yml`. Search Guard supports wildcards and regular expressions:
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 searchguard.nodes_dn:
@@ -99,7 +107,11 @@ If your node certificates have an OID identifier in the SAN section, you can omi
 
 ## Configuring Admin certificates
 
+<<<<<<< tech-preview
 Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `opensearch.yml`/`elasticsearch.yml` by simply stating their DN(s).
+=======
+Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
+>>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 searchguard.authcz.admin_dn:
@@ -128,7 +140,7 @@ With TLS client authentication enabled, REST clients can send a TLS certificate 
 
 * Providing an admin certificate when using the REST management API.
 * Configuring roles and permissions based on a client certificate.
-* Providing identity information for tools like Dashboards/Kibana, logstash or Beats
+* Providing identity information for tools like Kibana, logstash or Beats
 
 TLS client authentication has three modes:
 

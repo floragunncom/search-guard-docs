@@ -6,7 +6,7 @@ category: dlsfls
 order: 300
 layout: docs
 edition: compliance
-description: How to anonymize fields in OpenSearch/Elasticsearch documents by using hashes or regular expressions.
+description: How to anonymize fields in Elasticsearch documents by using hashes or regular expressions.
 ---
 <!---
 Copyright 2020 floragunn GmbH
