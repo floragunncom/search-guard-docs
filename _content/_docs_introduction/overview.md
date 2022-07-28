@@ -26,7 +26,7 @@ Copyright 2020 floragunn GmbH
 ## Security Overview 
 
 Search Guard is an Enterprise Security and Alerting suite for Elasticsearch. It provides TLS encryption, Role Based
-Access Control (RBAC) to OElasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
+Access Control (RBAC) to Elasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
 
 Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in Elasticsearch, including Kibana, Logstash and Beats.
 
