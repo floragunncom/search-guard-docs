@@ -6,7 +6,7 @@ category: proxy
 order: 200
 layout: docs
 edition: community
-description: Use Search Guard's Proxy authentication feature to connect OpenSearch/Elasticsearch to any third-party identity provider.
+description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
 ---
 <!---
 Copyright 2020 floragunn GmbH

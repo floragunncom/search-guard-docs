@@ -84,7 +84,7 @@ For Kibana 7.11 and newer versions, you can use the built-in setting `server.pub
 server.publicBaseUrl: "https://kibana.example.com:5601"
 ```
 
-For older versions of Kibaba or for OpenSearch Dashboards, please use the setting `searchguard.frontend_base_url`:
+For older versions of Kibana, please use the setting `searchguard.frontend_base_url`:
 
 ```yaml
 searchguard.frontend_base_url: "https://kibana.example.com:5601"

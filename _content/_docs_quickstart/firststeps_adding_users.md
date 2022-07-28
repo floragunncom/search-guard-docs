@@ -26,7 +26,7 @@ This guide assumes that you have already installed Search Guard in your cluster 
 
 Search Guard can use external authentication systems like LDAP, OpenID, SAML or Kerberos for authenticating users. As an alternative, you can also use the **internal user database** to manage your users.
 
-The internal user database stores users and their credentials directly in OpenSearch/Elasticsearch. To manage users in the internal user database you have three options:
+The internal user database stores users and their credentials directly in Elasticsearch. To manage users in the internal user database you have three options:
 
 * Configure the users, their password hashes and backend roles in the `sg_internal_users.yml` file and use the `sgctl` CLI tool to upload this configuration to your cluster (Community Edition)
 * Use the `sgctl` tool to directly add users to a running cluster (Community Edition)
@@ -69,7 +69,7 @@ jdoe:
     - hr_department
 ```
 
-**Note:** If you want that a user is able to log into Dashboards/Kibana, you have to assign them the special role `SGS_KIBANA_USER`. This can look like this:
+**Note:** If you want that a user is able to log into Kibana, you have to assign them the special role `SGS_KIBANA_USER`. This can look like this:
 
 ```
 jdoe:

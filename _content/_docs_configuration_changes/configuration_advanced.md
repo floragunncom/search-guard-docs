@@ -6,7 +6,7 @@ category: configuration
 order: 1000
 layout: docs
 edition: community
-description: Search Guard stores its configuration in an OpenSearch/Elasticsearch index. This allows for configuration hot-reloading
+description: Search Guard stores its configuration in an Elasticsearch index. This allows for configuration hot-reloading
 ---
 <!--- Copyright 2020 floragunn GmbH -->
 
@@ -81,7 +81,7 @@ $ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_repl
 There are several situations where the auto-expand feature is not suitable including:
 
 * When using a Hot/Warm Architecture
-* Running multiple instances of OpenSearch/Elasticsearch on the same host machine
+* Running multiple instances of Elasticsearch on the same host machine
 * When `cluster.routing.allocation.same_shard.host` is set to `false`, see also [elastic/elasticsearch#29933](https://github.com/elastic/elasticsearch/issues/29933)
 * The searchguard index stays constantly yellow
 

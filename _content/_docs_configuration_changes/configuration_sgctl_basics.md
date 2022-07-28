@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 
 The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. 
 
-You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/). The same `sgctl` command can be used both for OpenSearch clusters and Elasticsearch clusters.
+You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/).
 
 The `sgctl` tool provides a set of commands. To get an overview of all commands, just execute `sgctl.sh` on the command line:
 

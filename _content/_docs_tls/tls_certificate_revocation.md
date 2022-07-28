@@ -49,11 +49,7 @@ Instead of downloading a potentially large CRL file periodically, one can also q
 
 ## CRL Configuration
 
-<<<<<<< tech-preview
-To enable CRL support, add the following to `opensearch.yml`/`elasticsearch.yml`:
-=======
 To enable CRL support, add the following to `elasticsearch.yml`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 searchguard.ssl.http.crl.validate: true
@@ -86,11 +82,7 @@ To enable OCSP, add the following line to this file:
 ocsp.enable=true
 ```  
 
-<<<<<<< tech-preview
-You can use the following configuration options in `opensearch.yml`/`elasticsearch.yml` to control whether CRL, OCSP or both are being used:
-=======
 You can use the following configuration options in `elasticsearch.yml` to control whether CRL, OCSP or both are being used:
->>>>>>> 2a2e5e1 OpenSearch support
 
 | Name | Description |
 |---|---|

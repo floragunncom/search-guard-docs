@@ -1,11 +1,6 @@
 ---
-<<<<<<< tech-preview
-title: Dashboards/Kibana Troubleshooting
-permalink: troubleshooting-kibana
-=======
 title: Kibana Troubleshooting
 slug: troubleshooting-kibana
->>>>>>> 2a2e5e1 OpenSearch support
 category: troubleshooting
 order: 500
 layout: troubleshooting
@@ -45,11 +40,7 @@ xpack.security.enabled: false
 
 ### Check connection settings
 
-<<<<<<< tech-preview
-If Dashboards/Kibana cannot connect to OpenSearch/Elasticsearch, check the `elasticsearch.hosts` in  `opensearch_dashboards.yml`/`kibana.yml`:
-=======
 If Kibana cannot connect to Elasticsearch, check the `elasticsearch.hosts` in  `kibana.yml`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 elasticsearch.hosts: "https://example.com:9200"
@@ -84,11 +75,7 @@ This means that Kibana does not trust the self-signed root CA certificate. You c
 
 #### Disabling certificate verification
 
-<<<<<<< tech-preview
-In `opensearch_dashboards.yml`/`kibana.yml`, disable the certificate verification like:
-=======
 In `kibana.yml`, disable the certificate verification like:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 elasticsearch.ssl.verificationMode: none
@@ -96,11 +83,7 @@ elasticsearch.ssl.verificationMode: none
  
 #### Installing the root CA (recommended)
 
-<<<<<<< tech-preview
-In `opensearch_dashboards.yml`/`kibana.yml`, configure the path to your root CA in PEM format like:
-=======
 In `kibana.yml`, configure the path to your root CA in PEM format like:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 elasticsearch.ssl.certificateAuthorities: [ "/path/to/your/CA.pem" ]
@@ -112,11 +95,7 @@ When you try to log in using the Search Guard login dialogue, after pressing the
 
 ### Check HTTP/HTTPS settings for cookies
 
-<<<<<<< tech-preview
-Search Guard stores the credentials of authenticated users in an encrypted cookie. If you are accessing Dashboards/Kibana with HTTP instead of HTTPS, check the following setting in `opensearch_dashboards.yml`/`kibana.yml`:
-=======
 Search Guard stores the credentials of authenticated users in an encrypted cookie. If you are accessing Kibana with HTTP instead of HTTPS, check the following setting in `kibana.yml`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 searchguard.cookie.secure: <true|false>
@@ -132,11 +111,7 @@ searchguard.cookie.secure: false
 
 ## Debugging the authentication flow with extra logging
 
-<<<<<<< tech-preview
-In order to debug the authentication flow, you can enable authentication logging in `opensearch_dashboards.yml`/`kibana.yml`.
-=======
 In order to debug the authentication flow, you can enable authentication logging in `kibana.yml`.
->>>>>>> 2a2e5e1 OpenSearch support
 
 **Caution: the logged information may contain sensitive authentication information.**
 
@@ -156,11 +131,7 @@ In case the Search Guard cookies are not readable anymore, e.g. if you changed t
 
 ### Kibana HTTP header whitelisting
 
-<<<<<<< tech-preview
-Dashboards/Kibana only sends HTTP headers that are explicitely whitelisted in `opensearch_dashboards.yml`/`kibana.yml` to OpenSearch/Elasticsearch. If a header is not whitelisted, it is silently discarded, just as if was not present in the HTTP request. This is a Dashboards/Kibana feature independant from Search Guard. You can whitelist headers in `opensearch_dashboards.yml`/`kibana.yml` like:
-=======
-Kibana only sends HTTP headers that are explicitely whitelisted in `kibana.yml` to Elasticsearch. If a header is not whitelisted, it is silently discarded, just as if was not present in the HTTP request. This is a Kibana feature independant from Search Guard. You can whitelist headers in `kibana.yml` like:
->>>>>>> 2a2e5e1 OpenSearch support
+Kibana only sends HTTP headers that are explicitly whitelisted in `kibana.yml` to Elasticsearch. If a header is not whitelisted, it is silently discarded, just as if was not present in the HTTP request. This is a Kibana feature independent from Search Guard. You can whitelist headers in `kibana.yml` like:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "...", "..." ]
@@ -176,11 +147,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 
 ### Single-Sign-On header whitelisting
 
-<<<<<<< tech-preview
-If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `opensearch_dashboards.yml`/`kibana.yml`.
-=======
 If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `kibana.yml`.
->>>>>>> 2a2e5e1 OpenSearch support
 
 #### JWT: Token in HTTP header
 For JWT, add the HTTP header you configured in the JWT section of `sg_config.yml` to the header whitelist. For example, if you configured the header like:
@@ -196,11 +163,7 @@ jwt_auth_domain:
       ...
 ```
 
-<<<<<<< tech-preview
-You also need to set this header explicitely in `opensearch_dashboards.yml`/`kibana.yml` like:
-=======
-You also need to set this header explicitely in `kibana.yml` like:
->>>>>>> 2a2e5e1 OpenSearch support
+You also need to set this header explicitly in `kibana.yml` like:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "jwtheader", "sgtenant" ]

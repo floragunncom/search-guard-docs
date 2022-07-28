@@ -1,11 +1,11 @@
 ---
 title: Overview
-html_title: Security for OpenSearch/Elasticsearch Overview
+html_title: Security for Elasticsearch Overview
 permalink: security-for-elasticsearch
 category: introduction
 order: 10
 layout: docs
-description: Search Guard is an Enterprise Security Suite for OpenSearch/Elasticsearch that encrypts and protects your data in the entire Elastic Stack, including Dashboards/Kibana, Logstash and Beats.
+description: Search Guard is an Enterprise Security Suite for Elasticsearch that encrypts and protects your data in the entire Elastic Stack, including Kibana, Logstash and Beats.
 resources:
   - "https://search-guard.com/security-for-elasticsearch/|Elasticsearch security overview (website)"
   - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
@@ -18,17 +18,17 @@ resources:
 Copyright 2020 floragunn GmbH
 -->
 
-# Security for OpenSearch and Elasticsearch
+# Security for Elasticsearch
 {: .no_toc}
 
 {% include toc.md %}
 
 ## Security Overview 
 
-Search Guard is an Enterprise Security and Alerting suite for OpenSearch and Elasticsearch. It provides TLS encryption, Role Based
-Access Control (RBAC) to OpenSearch/Elasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
+Search Guard is an Enterprise Security and Alerting suite for Elasticsearch. It provides TLS encryption, Role Based
+Access Control (RBAC) to OElasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
 
-Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in OpenSearch/Elasticsearch, including Dashboards/Kibana, Logstash and Beats.
+Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in Elasticsearch, including Kibana, Logstash and Beats.
 
 Search Guard comes in three flavours:
 
@@ -97,7 +97,7 @@ several levels. This includes
 * Read-access to documents
 * Write-access to documents including the changes in JSON patch format
 
-The Audit Logging capabilities of Search Guard especially help to keep your OpenSearch/Elasticsearch cluster compliant with regualations like GDPR, PCI, SOX or HIPAA.
+The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regualations like GDPR, PCI, SOX or HIPAA.
 
 ## Alerting - Anomaly detection for your data
 

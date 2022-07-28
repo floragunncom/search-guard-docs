@@ -24,11 +24,7 @@ There are two approaches to this:
 
 ## Several Authentication Methods in one Kibana Instance
 
-<<<<<<< tech-preview
-Configuring more than one authentication method for Dashboards/Kibana is straight forward: The  `sg_frontend_authc.yml` configuration allows to configure more than one login method at once. 
-=======
 Configuring more than one authentication method for Kibana is straight forward: The  `sg_frontend_config.yml` configuration allows to configure more than one login method at once. 
->>>>>>> 2a2e5e1 OpenSearch support
 
 This might then look like this:
 
@@ -77,15 +73,7 @@ On the Kibana instance, which is supposed to use SAML authentication, edit the f
 searchguard.sg_frontend_config_id: another_instance
 ```
 
-<<<<<<< tech-preview
-This makes the Dashboards/Kibana instance use the configuration entry `another_instance` in  `sg_frontend_authc.yml`.
-=======
 This makes the Kibana instance use the configuration entry `another_instance` in  `sg_frontend_config.yml`.
->>>>>>> 2a2e5e1 OpenSearch support
 
-<<<<<<< tech-preview
-In order to activate the changes, do not forget to upload `sg_frontend_authc.yml` and restart the particular Dashboards/Kibana instance afterwards. 
-=======
 In order to activate the changes, do not forget to upload `sg_frontend_config.yml` and restart the particular Kibana instance afterwards. 
->>>>>>> 2a2e5e1 OpenSearch support
 

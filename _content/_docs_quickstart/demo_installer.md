@@ -27,7 +27,7 @@ Search Guard comes with a demo installation shell script which helps you to quic
 
 The following paragraphs will guide you through the installation process.
 
-- Download the demo installer script for the setup you want to test:<br>[OpenSearch 2.0.0](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-opensearch-plugin/1.0.0-beta-2-os-1.3.2/search-guard-flx-opensearch-plugin-1.0.0-beta-2-os-1.3.2-demo-installer.sh)<br>[Elasticsearch 7.10.2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2-demo-installer.sh)<br>[Elasticsearch 7.17.3](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3-demo-installer.sh)
+- Download the demo installer script for the setup you want to test:<br>[Elasticsearch 7.10.2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2-demo-installer.sh)<br>[Elasticsearch 7.17.3](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3-demo-installer.sh)
 - If you want, feel invited to review the script. The single steps are also explained as comments in the file.
 - Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-elasticsearch-plugin-tp3-es-7.16.3-demo-installer.sh`. Then, execute the script:
 
@@ -35,7 +35,7 @@ The following paragraphs will guide you through the installation process.
 $ ./search-guard-elasticsearch-plugin-tp3-es-7.16.3-demo-installer.sh
 ```
 
-- The script will download the Search Guard plugins and the `sgctl` tool. Additionally, it will download the matching version of OpenSearch or Elasticsearch, which will be automatically extracted to the working directory. The same will be done for OpenSearch Dashboards or Kibana, respectively.
+- The script will download the Search Guard plugins and the `sgctl` tool. Additionally, it will download the matching version of Elasticsearch, which will be automatically extracted to the working directory. The same will be done for Kibana.
 - Afterwards, the script will install the Search Guard plugins and apply the basic configuration necessary for Search Guard and `sgctl`.
 - Now, the script is done. If you want to see what the script has downloaded installed, list the directory contents. You should see the downloaded software archives, the `sgctl.sh` tool, keys for authenticating as administrator, and the `elasticsearch` directory with a ready-to-start setup.
 
@@ -93,14 +93,14 @@ If everything is set up correctly, you should see three new navigation entries o
 
 ## Applying configuration changes
 
-The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in OpenSearch/Elasticsearch itself, the so-called Search Guard Index. 
+The Search Guard configuration, like users, roles and permissions, is stored in a dedicated index in Elasticsearch itself, the so-called Search Guard Index. 
 
 Changes to the Search Guard configuration must be applied to this index by either
 
 * Using the Search Guard Configuration GUI (Enterprise feature)
 * Using the `sgctl` command line tool
 
-For using the Search Guard Configuration GUI you need to install the Search Guard Dashboards/Kibana Plugin, as described below. 
+For using the Search Guard Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
 
 If you want to use the sgadmin tool:
 
@@ -109,7 +109,7 @@ If you want to use the sgadmin tool:
 
 This will read the contents of the configuration files in `my-sg-config` and upload the contents to the Search Guard index. 
 
-If you also have started Dashboards/Kibaba, you can also edit the configuration via the Search Guard Config GUI. Click on the hamburger icon and then on the "Search Guard" menu item to get directed to the [Search Guard Config GUI](../_docs_configuration_changes/configuration_config_gui.md).
+If you also have started Kibana, you can also edit the configuration via the Search Guard Config GUI. Click on the hamburger icon and then on the "Search Guard" menu item to get directed to the [Search Guard Config GUI](../_docs_configuration_changes/configuration_config_gui.md).
 
 ## Review the generated configuration
 
@@ -149,6 +149,6 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
 - If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_config.yml`.
 - For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 - If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
-- And if you need to support multiple tenants in Dashboards/Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate Visualizations and Dashboards by tenant.
+- And if you need to support multiple tenants in Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.
 - Details on how to set up a production-ready TLS can be found in [Configuring TLS](../_docs_tls/tls_configuration.md) and [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
 

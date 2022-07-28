@@ -62,7 +62,7 @@ While earlier versions of Search Guard still worked with Search Guard 6 configur
 
 ### New configuration file
 
-The configuration for authentication has been moved from `sg_config.yml` to `sg_authc.yml` to authentication directly at Elasticsearch/OpenSearch and `sg_frontend_authc.yml` for authentication at OpenSearch Dashboards. resp. Kibana.
+The configuration for authentication has been moved from `sg_config.yml` to `sg_authc.yml` to authentication directly at Elasticsearch and `sg_frontend_authc.yml` for authentication at Kibana.
 
 Generally, `sg_authc.yml` offers a redesigned approach to authentication configuration, which offers functionality in a more flexible, streamlined and consistent manner.
 
@@ -74,7 +74,7 @@ In most cases, the conversion from `sg_config.yml` to the new config files can b
 
 * [Documentation: sgctl migrate-config](sg53_migration_quick.md)
 * [Documentation: Authentication configuration](../_docs_auth_auth/auth_auth_configuration.yml)
-* [Documentation: Authentication configuration for Dashboards/Kibana](../_docs_kibana/kibana_authentication.yml)
+* [Documentation: Authentication configuration for Kibana](../_docs_kibana/kibana_authentication.yml)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -172,26 +172,26 @@ You can retrieve metrics for the user cache using `sgctl component-state`.
     
 ### Removed transport client authentication
 
-Search Guard FLX no longer supports authentication with the deprecated transport client. The only exception are transport clients authenticated by admin certificates, which are still supported for Elasticsearch 7.x and OpenSearch 1.x.
+Search Guard FLX no longer supports authentication with the deprecated transport client. The only exception are transport clients authenticated by admin certificates, which are still supported for Elasticsearch 7.x.
 
 ##### Related:
 
 * [Merge Request: Removed transport client authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/222)
     
     
-## Authentication for OpenSearch Dashboards and Kibana
+## Authentication for Kibana
 
 ### Session-based authentication
 
-Search Guard now uses server-side sessions for managing logins at Dashboards/Kibana. This fixes a number of issues, such as:
+Search Guard now uses server-side sessions for managing logins at Kibana. This fixes a number of issues, such as:
 
 - Issues with cookies exceeding the browser size limit.
 - The “logout” menu item is able to invalidate the session. Thus, session cookies cannot be re-used any more.
-- Configuration of SSO using OIDC or SAML for Dashboards/Kibana no longer interfers with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Dashboards/Kibana.
+- Configuration of SSO using OIDC or SAML for Kibana no longer interferes with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Kibana.
 - The configuration format is now more streamlined and consistent.
-- Dashboards/Kibana authentication configuration can be changed without having to restart the node.
+- Kibana authentication configuration can be changed without having to restart the node.
 
-The configuration format for authentication in Dashboards/Kibana has been fundamentally changed. You can use the `sgctl migrate-config`  command to migrate the configuration. 
+The configuration format for authentication in Kibana has been fundamentally changed. You can use the `sgctl migrate-config`  command to migrate the configuration. 
 
 See the documentation for details on the functionality.
 
@@ -204,17 +204,17 @@ See the documentation for details on the functionality.
 
 ### Kerberos
 
-When using Kerberos with Dashboards/Kibana, Search Guard will now only authenticate the first request using Kerberos and then create a session. 
+When using Kerberos with Kibana, Search Guard will now only authenticate the first request using Kerberos and then create a session. 
 
-If you have configured Dashboards/Kibana with an external monitoring cluster (using the settings `monitoring.ui.elasticsearch.*´), you will need additional configuration on the monitoring cluster. This is necessary because the monitoring cluster will need to use sessions managed by the main cluster in order to authenticate Kibana users. 
+If you have configured Kibana with an external monitoring cluster (using the settings `monitoring.ui.elasticsearch.*´), you will need additional configuration on the monitoring cluster. This is necessary because the monitoring cluster will need to use sessions managed by the main cluster in order to authenticate Kibana users. 
 
 See the documentation for details.
 
-**Note:** Using sessions to access external monitoring clusters via Kibana/Dashboards is an Enterprise feature. A license is needed to use this in production.
+**Note:** Using sessions to access external monitoring clusters via Kibana is an Enterprise feature. A license is needed to use this in production.
 
 ##### Related:
 
-* [Documentation: Kerberos authentication for Dashboards/Kibana](../_docs_kibana/kibana_authentication_kerberos.md)
+* [Documentation: Kerberos authentication for Kibana](../_docs_kibana/kibana_authentication_kerberos.md)
 * [Merge Request: Let Kerberos authenticated request also start a session](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/781)
 * [Merge Request: New API for creating sessions working on normal authenticated requests ](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/196)
 * [Merge Request: Kerberos authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/184)
@@ -268,7 +268,7 @@ The old style user attributes (`attr.ldap....`, `attr.jwt...`, etc) are not supp
 
 ### Using negation for index and action patterns
 
-The syntax of the simple patterns used in `sg_roles.yml` for index and action names has been extended to allow for exclusion of matches. The syntax is very similar to the index pattern syntax used for OpenSearch/Elasticsearch search operations. For example, you can now write a role like this:
+The syntax of the simple patterns used in `sg_roles.yml` for index and action names has been extended to allow for exclusion of matches. The syntax is very similar to the index pattern syntax used for Elasticsearch search operations. For example, you can now write a role like this:
 
 ```yaml
 role_with_pattern_negation:
@@ -377,7 +377,7 @@ Search Guard now allows to configure actions and indices which can be **only** u
 
 Search Guard uses these configuration options by itself to restrict the access to the internal `searchguard` and `.searchguard_*` indices, and to restrict access to the low-level configuration REST APIs used by `sgctl`. 
 
-Both options are contained in `opensearch.yml`/`elasticsearch.yml`:
+Both options are contained in `elasticsearch.yml`:
 
 **searchguard.admin_only_actions:** Actions that can be only used by users authenticated with an admin certificate. A list of patterns. Default: `cluster:admin:searchguard:config/*`, `cluster:admin:searchguard:internal/*`
 
@@ -388,8 +388,6 @@ Both options are contained in `opensearch.yml`/`elasticsearch.yml`:
 ##### Related:
 
 * [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
-
-
 
 ### Filtered alias settings
 

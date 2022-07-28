@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-This chapter takes a closer look at how Search Guard applies the configured privileges to actually executed operations in OpenSearch/Elasticsearch. 
+This chapter takes a closer look at how Search Guard applies the configured privileges to actually executed operations in Elasticsearch. 
 
 
 ## Handling references to unauthorized indices
@@ -26,7 +26,7 @@ There are several ways how the privileges of a user can be applied to operations
 
 - In the simplest cases, it is a yes/no decision: If a user has the necessary privileges, the operation succeeds and the user gets a `200 OK` result (or similar). On the other hand, if a user does not have the necessary privileges, the operation is not performed and the user receives a `403 Forbidden` result.
 
-- However, depending on the type of operation, the result might be more gradual: Take for example search operations on index patterns (such as the wildcard `*`, which searches all indices). By default, Search Guard will make all indices for which the user does not have privileges, "invisible" to the operation. This means that a search on the index pattern `*` will only return results for indices the user is allowed to see. If a user does not have access to any indices that are matched by the pattern, the user will get a search result with zero search hits. This gradual application of index privileges is also referred to as the `ignore_unauthorized` mode. The name was chosen following the `ignore_unavailable` index option of OpenSearch/Elasticsearch, which has a similar goal and operates with similar semantics.
+- However, depending on the type of operation, the result might be more gradual: Take for example search operations on index patterns (such as the wildcard `*`, which searches all indices). By default, Search Guard will make all indices for which the user does not have privileges, "invisible" to the operation. This means that a search on the index pattern `*` will only return results for indices the user is allowed to see. If a user does not have access to any indices that are matched by the pattern, the user will get a search result with zero search hits. This gradual application of index privileges is also referred to as the `ignore_unauthorized` mode. The name was chosen following the `ignore_unavailable` index option of Elasticsearch, which has a similar goal and operates with similar semantics.
 
 The `ignore_unauthorized` mode of Search Guard is configurable to a certain extent and is described more in detail in the following sections. If you do not want Search Guard to reduce the searched indices based on privileges, you can turn this feature completely off by setting `ignore_unauthorized.enabled` to `false` in `sg_authz.yml`. However, we are not recommending this mode of operation, as disadvantages clearly outweigh advantages. 
 
@@ -38,7 +38,7 @@ Search Guard applies the  `ignore_unauthorized` treatment only under a set of co
 
 - The `ignore_unauthorized` mode is enabled.
 
-- One of the supported operations is executed. Search Guard supports operations of Elasticsearch/OpenSearch which support index patterns or operate on all indices on the cluster. Furthermore, Search Guard provides configuration options to control what operations shall be affected by the `ignore_unauthorized` mode. <!-- See TODO for details. -->
+- One of the supported operations is executed. Search Guard supports operations of Elasticsearch which support index patterns or operate on all indices on the cluster. Furthermore, Search Guard provides configuration options to control what operations shall be affected by the `ignore_unauthorized` mode. <!-- See TODO for details. -->
 
 <!-- 
 | Name | Rest endpoint | Action |
@@ -56,7 +56,7 @@ Search Guard applies the  `ignore_unauthorized` treatment only under a set of co
 If you choose to disable the `ignore_unauthorized` feature, there are a couple of things to take care of:
 
 - Operations referencing `_all` or `*` will also apply to the legacy `searchguard` index, if it exists. As normal users are normally not allowed to access this index, you will get `403 Forbidden` errors for operations referencing `_all` or `*`. This can be avoided by migrating the `searchguard` index to a hidden index called `.searchguard`. See TODO for details on how to perform this migration.
-- Dashboards/Kibana will only work properly for users with full access. Users having access to only a subset of indices will get lots of error messages within Dashboards/Kibana.
+- Kibana will only work properly for users with full access. Users having access to only a subset of indices will get lots of error messages within Kibana.
 
 
 ## Index alias handling

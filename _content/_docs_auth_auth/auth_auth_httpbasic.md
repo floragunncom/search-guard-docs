@@ -14,7 +14,7 @@ Copyright 2020 floragunn GmbH
 # Password-based authentication
 {: .no_toc}
 
-If you want to use a user name and password to log into OpenSearch/Elasticsearch, you need to use the `basic` authentication frontend combined with an authentication backend. For the authentication backend, you have the following options:
+If you want to use a user name and password to log into Elasticsearch, you need to use the `basic` authentication frontend combined with an authentication backend. For the authentication backend, you have the following options:
 
 * The simplest setup uses the Search Guard **internal users database** as the authentication backend; for this, you just have to define the users. No further configuration is necessary. See the section [internal users database](internalusers.md) for more details on this.
 

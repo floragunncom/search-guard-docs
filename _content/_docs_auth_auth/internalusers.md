@@ -5,7 +5,7 @@ category: password-based
 order: 200
 layout: docs
 edition: community
-description: How to store and manage Search Guard users directly in OpenSearch/Elasticsearch by using the Internal Users Database.
+description: How to store and manage Search Guard users directly in Elasticsearch by using the Internal Users Database.
 ---
 <!---
 Copyright 2020 floragunn GmbH

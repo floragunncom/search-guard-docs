@@ -50,7 +50,7 @@ If you need to special TLS settings for creating TLS connections to the LDAP ser
 
 ### User search
 
-When a user tries to authenticate at OpenSearch/Elasticsearch, Search Guard will search the whole LDAP directory tree for an entry where the attribute `sAMAccountName` equals the user name provided to OpenSearch/Elasticsearch. 
+When a user tries to authenticate at Elasticsearch, Search Guard will search the whole LDAP directory tree for an entry where the attribute `sAMAccountName` equals the user name provided to Elasticsearch. 
 
 If you need to search using a different attribute, you can use the `ldap.user_search.filter.by_attribute` option to specify this:
 
@@ -135,7 +135,7 @@ After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the fi
 $ ./sgctl.sh update-config sg_authc.yml
 ```
 
-That’s it. If you navigate in a browser to your OpenSearch/Elasticsearch instance, you should get a basic authentication popup asking for your username and password.
+That’s it. If you navigate in a browser to your Elasticsearch instance, you should get a basic authentication popup asking for your username and password.
 
 
 ## Where to go next

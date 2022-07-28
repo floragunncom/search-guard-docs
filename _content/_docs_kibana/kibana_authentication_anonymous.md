@@ -38,7 +38,7 @@ The role `SGS_KIBANA_USER` is needed because a certain set of permissions is nec
 
 **Note:** Do not forget that the anonymous user also needs to have privileges for the indices they are supposed to access. For this, you need to map the user to more roles. See the [backend documentation](../_docs_auth_auth/auth_auth_anon.md) for details on this.
 
-**Note:** If you want to allow anonymous authentication only for Dashboards/Kibana, you can restrict the `anonymous` auth domain to the IPs that  Dashboards/Kibana uses to connect to the backend. This can look like this:
+**Note:** If you want to allow anonymous authentication only for Kibana, you can restrict the `anonymous` auth domain to the IPs that Kibana uses to connect to the backend. This can look like this:
 
 ```yaml
 auth_domains:

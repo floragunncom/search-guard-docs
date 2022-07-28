@@ -49,7 +49,7 @@ The settings relating to Kibana multi tenenancy have been moved to `sg_frontend_
 
 ### `authc`
 
-The authentication domain settings have been combined with the authorization domains and moved to `sg_authc.yml` and `sg_authc_transport.yml`. If you do not use the transport client, you will not need `sg_authc_transport.yml`.  Settings for authentication modes which are specific to Kibana/OpenSearch Dashboards (such as OIDC and SAML) have been moved to `sg_frontend_config.yml`. 
+The authentication domain settings have been combined with the authorization domains and moved to `sg_authc.yml` and `sg_authc_transport.yml`. If you do not use the transport client, you will not need `sg_authc_transport.yml`.  Settings for authentication modes which are specific to Kibana (such as OIDC and SAML) have been moved to `sg_frontend_config.yml`. 
 
 | Legacy Config | New Config | Details |
 |---|---|---|

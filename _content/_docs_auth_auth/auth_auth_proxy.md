@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 The proxy based authentication enables you to use a single sign on (SSO) solution - which you might already have - instead of the Search Guard authentication backend. 
 
-Most of these solutions work as a proxy in front of OpenSearch/Elasticsearch. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependent on the SSO solution you have in place.
+Most of these solutions work as a proxy in front of Elasticsearch. Usually the request is routed to the SSO proxy first. The SSO proxy authenticates the user. If authentication succeeds, the (verified) username and its (verified) roles are set in HTTP header fields. The names of these fields are dependent on the SSO solution you have in place.
 
 Several components of the Search Guard REST authentication feature can be composed to integrate with such a solution:
 
@@ -29,7 +29,7 @@ Several components of the Search Guard REST authentication feature can be compos
 
 ## Prerequisites
 
-For configuring proxy based authentication, you need to know the IP addresses of the proxy which connect to OpenSearch/Elasticsearch. Additionally, you need to know 
+For configuring proxy based authentication, you need to know the IP addresses of the proxy which connect to Elasticsearch. Additionally, you need to know 
 the names and the format of the additional HTTP headers the proxy injects into the REST requests.
 
 ## Search Guard setup

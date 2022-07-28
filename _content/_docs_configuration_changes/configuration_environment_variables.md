@@ -83,13 +83,13 @@ auth_domains:
 
 This will load the data from the specified file and use it as the configuration value.
 
-**Note:** Elasticsearch and OpenSearch place some restrictions on the locations of files plugins are allowed to access. The files must be located inside the `config` directory of your Elasticsearch installation. You can create subdirectories inside the `config` directory. If this directory is not convenient for you, you can use the `-Des.path.conf` or `-Dopensearch.path.conf` command line option to move the directory to a different place.
+**Note:** Elasticsearch places restrictions on the locations of files plugins are allowed to access. The files must be located inside the `config` directory of your Elasticsearch installation. You can create subdirectories inside the `config` directory. If this directory is not convenient for you, you can use the `-Des.path.conf` command line option to move the directory to a different place.
 
 **Note:** These files must be available on all nodes of your cluster; if the files change after a node has started, the change will not be immediately picked up. Changes will be only picked up when the configuration is reloaded. This is the case when the configuration is changed or if a node is restarted.
 
 ## Using content from environment variables
 
-You can also use the value of environment variables of the OpenSearch/Elasticsearch process. You can use the syntax `#{env:MY_ENV}` for this purpose. Example:
+You can also use the value of environment variables of the Elasticsearch process. You can use the syntax `#{env:MY_ENV}` for this purpose. Example:
 
 
 ```yaml

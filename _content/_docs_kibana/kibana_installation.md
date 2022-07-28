@@ -42,7 +42,7 @@ xpack.security.enabled: false
 * cd into your Kibana installaton directory
 * Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip`
 
-After the plugin has been installed, Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Dashboards/Kibana internal process required for each installed plugin and cannot be skipped.
+After the plugin has been installed, Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Kibana internal process required for each installed plugin and cannot be skipped.
 
 ## Configuring the Kibana server user
 
@@ -105,7 +105,7 @@ In order to upgrade the Search Guard Kibana Plugin:
 * Restart Kibana, which will clear all cached files
 * Stop Kibana, and install the new version of the plugin
 
-## Adding the Dashboards/Kibana server user
+## Adding the Kibana server user
 
 Kibana uses a special user internally to talk to Elasticsearch when performing management calls. The username and password for this user are configured in `kibana.yml`.
 

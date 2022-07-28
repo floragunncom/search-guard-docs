@@ -20,11 +20,7 @@ TLS certificate hot-reload provides you the ability to change the TLS certificat
 Note that this an advanced feature; enabling it has security implications. Furthermore, activating an invalid certificate configuration on your cluster can actually lock yourself out of the cluster. Thus, please be sure to read this documentation thoroughly and to test the procedure.
 {: .note .js-note .note-warning}
 
-<<<<<<< tech-preview
-The hot-reload feature is only available if you have enabled TLS for HTTP connections. Furthermore, you must add this configuration setting to `opensearch.yml`/`elasticsearch.yml`:
-=======
 The hot-reload feature is only available if you have enabled TLS for HTTP connections. Furthermore, you must add this configuration setting to `elasticsearch.yml`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 searchguard.ssl.cert_reload_enabled: true

@@ -61,11 +61,7 @@ Okta example:
 <img src="saml_sp_acs_okta.png" style="width: 80%" class="md_image"/>
 </p>
 
-<<<<<<< tech-preview
-Dashboards/Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `opensearch_dashboards.yml`/`kibana.yml`:
-=======
 Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `kibana.yml`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```
 server.xsrf.whitelist: [/searchguard/saml/acs]
@@ -83,7 +79,7 @@ Keycloak example:
 
 ## Role settings
 
-How to include user roles in the SAML response is highly dependant on the IdP. For example, in Keycloak this is configured in the Mappers section of your client. With Okta you have to set group attribute statements. Make sure this is configured correctly, and the role_key in the SAML configuration matches the role name in the SAML response.
+How to include user roles in the SAML response is highly dependent on the IdP. For example, in Keycloak this is configured in the Mappers section of your client. With Okta you have to set group attribute statements. Make sure this is configured correctly, and the role_key in the SAML configuration matches the role name in the SAML response.
 
 Keycloak example:
 

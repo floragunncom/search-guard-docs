@@ -1,6 +1,6 @@
 ---
 title: Search Guard roles
-html_title: Search Guard role-based authorization for Elasticsearch and OpenSearch actions
+html_title: Search Guard role-based authorization for Elasticsearch
 permalink: roles-permissions
 category: rolespermissions
 order: 400

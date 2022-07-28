@@ -21,11 +21,11 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard can be used to secure your OpenSearch or Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, LDAP / Active Directory, JSON web tokens, TLS certificates and Proxy authentication / SSO.
+Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, LDAP / Active Directory, JSON web tokens, TLS certificates and Proxy authentication / SSO.
 
 Regardless of what authentication method you use, the basic flow is as follows:
 
-* A user wants to **access** an OpenSearch/Elasticsearch cluster, for example by issuing  a simple query.
+* A user wants to **access** an Elasticsearch cluster, for example by issuing  a simple query.
 * Search Guard retrieves the user's **credentials** from the request
   * How the credentials are retrieved depends on the authentication method. For example, they can be extracted from HTTP Basic Authentication headers, from a JSON web token or from a Kerberos ticket.
 * Search Guard **authenticates** the credentials against the configured authentication backend(s).  
@@ -78,7 +78,7 @@ In some cases you want to map the backend roles 1:1 to Search Guard roles, but m
 
 ## Permissions
 
-Each interaction with OpenSearch/Elasticsearch means that a particular **user** wants to **execute** an **action** on an OpenSearch/Elasticsearch **cluster** and **one or more indices**. 
+Each interaction with Elasticsearch means that a particular **user** wants to **execute** an **action** on an Elasticsearch **cluster** and **one or more indices**. 
 
 A permission defines:
 
@@ -117,11 +117,11 @@ Search Guard ships with a built-in set of useful action groups like `SGS_READ`, 
 
 All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, in elasticsearch.yml.
 
-Keeping the configuration settings in an OpenSearch/Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. 
+Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. 
 
 Also the authenticator configuration is hot reloadable, so you can add, remove or change authenticators at runtime as well.
 
-You can load and change the settings from any machine which has access to your OpenSearch/Elasticsearch cluster.  You do not need to keep any configuration files on the nodes themselves. 
+You can load and change the settings from any machine which has access to your Elasticsearch cluster.  You do not need to keep any configuration files on the nodes themselves. 
 
 The core configuration consists of the following files:
 
@@ -130,11 +130,11 @@ The core configuration consists of the following files:
 * `sg_internal_users.yml` - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
 * `sg_action_groups.yml` - define named permission groups.
 
-If you are running OpenSearch Dashboards, resp. Kibana, you might also need the following configuration:
+If you are running Kibana, you might also need the following configuration:
 
-* `sg_frontend_authc.yml` - authentication for Dashboards/Kibana
-* `sg_frontend_multi_tenancy.yml` - basic multi-tenancy settings for Dashboards/Kibana
-* `sg_tenants.yml` - defines tenants for configuring Dashboards/Kibana access
+* `sg_frontend_authc.yml` - authentication for Kibana
+* `sg_frontend_multi_tenancy.yml` - basic multi-tenancy settings for Kibana
+* `sg_tenants.yml` - defines tenants for configuring Kibana access
 
 For special features or configuration, you have also the following files:
 

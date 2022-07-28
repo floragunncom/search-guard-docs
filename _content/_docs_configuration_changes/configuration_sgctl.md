@@ -18,5 +18,5 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-The Search Guard configuration for an OpenSearch/Elasticsearch cluster can be managed by either using sgctl, the [REST API](rest-api) or the [Search Guard config UI](configuration-gui).
+The Search Guard configuration for an Elasticsearch cluster can be managed by either using sgctl, the [REST API](rest-api) or the [Search Guard config UI](configuration-gui).
 

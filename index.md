@@ -71,7 +71,7 @@ You might want to read the following sections of the documentation to get a comp
 * [Using sgctl](sgctl) (See also the [repository README](https://git.floragunn.com/search-guard/sgctl/)). 
 * [Using configuration variables](configuration-password-handling)
 * [Configuring authentication](authentication-authorization)
-* [Configuring Dashboards/Kibana authentication](kibana-authentication-types) 
+* [Configuring Kibana authentication](kibana-authentication-types) 
 * [Search Guard FLX release notes](sg-flx-release-notes)
 * [Migrating from Search Guard 53 and before](sg-classic-config-migration)
 * [SG 53 to FLX feature map](config-migration-feature-map)

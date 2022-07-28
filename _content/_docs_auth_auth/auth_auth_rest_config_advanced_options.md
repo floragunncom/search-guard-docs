@@ -16,7 +16,7 @@ Copyright 2020 floragunn GmbH
 
 ## Allowed client IPs
 
-In some cases it might be necessary to only allow certain IP subnets to authenticate at your Elasticsearch/OpenSearch cluster. For this purpose, you can define global accept and deny rules for IP addresses in `sg_authc.yml` and `sg_authc_transport.yml`. 
+In some cases it might be necessary to only allow certain IP subnets to authenticate at your Elasticsearch cluster. For this purpose, you can define global accept and deny rules for IP addresses in `sg_authc.yml` and `sg_authc_transport.yml`. 
 
 **Note:** By default, all IPs are allowed to connect. However, if you specify any of the `accept` options, all IPs not covered by the `accept` options will be denied.
 

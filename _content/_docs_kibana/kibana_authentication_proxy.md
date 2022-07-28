@@ -30,7 +30,7 @@ To use proxy authentication with Kibana, you have to also set up a suitable auth
 
 The type of the setup depends on the information provided by the proxy in the HTTP headers:
 
-- If the proxy transmits username and role information as plain headers, go for a [trusted_origin](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Dashboards/Kibana, which also acts as a proxy in this case.
+- If the proxy transmits username and role information as plain headers, go for a [trusted_origin](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Kibana, which also acts as a proxy in this case.
 - If the proxy transmits authorization as a JWT in a header, go for a  [JWT](../_docs_auth_auth/auth_auth_jwt.md) authenticator in the backend.
 
 ## Kibana Setup
@@ -44,8 +44,8 @@ Additionally, you need to edit the file `config/kibana.yml`:
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-proxy-user", "x-proxy-roles" ]
 ```
 
-You do not need to add the `x-forwarded-for` header, as this is automatically handled by the Search Guard plugin. The Search Guard plugin acts here like Dashboards/Kibana is a proxy. This means:
+You do not need to add the `x-forwarded-for` header, as this is automatically handled by the Search Guard plugin. The Search Guard plugin acts here like Kibana is a proxy. This means:
 
-- If there is no `x-forwarded-for` header, the Search Guard plugin adds the header and adds the IP of the host connecting to Dashboards/Kibana to the header value.
-- If there is an `x-forwarded-for` header, the Search Guard plugin appeands the IP of the host connecting to Dashboards/Kibana to the end of the header value.
+- If there is no `x-forwarded-for` header, the Search Guard plugin adds the header and adds the IP of the host connecting to Kibana to the header value.
+- If there is an `x-forwarded-for` header, the Search Guard plugin appeands the IP of the host connecting to Kibana to the end of the header value.
 

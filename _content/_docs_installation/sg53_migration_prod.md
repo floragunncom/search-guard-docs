@@ -29,7 +29,7 @@ In order to perform the migration, you need the following:
 
 - The file `sg_config.yml` from the existing Elasticsearch setup.
 - Sometimes, `sg_config.yml` references further files, such as PEM files. You need these as well.
-- If you are also using Kibana, you need the file `kibana.yml` from the `config` directory of the existing Dashboards/Kibana setup.
+- If you are also using Kibana, you need the file `kibana.yml` from the `config` directory of the existing Kibana setup.
 - You need to download the `sgctl` tool. It does not require any special installation, just copy it to a suitable place and execute it.
 
 ## Migrating the Configuration

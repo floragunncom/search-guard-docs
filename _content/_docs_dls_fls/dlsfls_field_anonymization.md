@@ -1,6 +1,6 @@
 ---
 title: Field anonymization
-html_title: Anonymize fields in OpenSearch/Elasticsearch documents
+html_title: Anonymize fields in Elasticsearch documents
 permalink: field-anonymization
 category: dlsfls
 order: 300

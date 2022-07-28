@@ -24,11 +24,7 @@ Since the REST management API makes it possible to change users, roles and permi
 
 ## Role-based access control
 
-<<<<<<< tech-preview
-All roles that should have access to the API must be configured in `opensearch.yml`/`elasticsearch.yml` with the following key:
-=======
 All roles that should have access to the API must be configured in `elasticsearch.yml` with the following key:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS", ...]
@@ -83,17 +79,13 @@ searchguard.restapi.endpoints_disabled.global.<endpoint>: ["<method>",...]
 
 Access can also be granted by using an admin certificate. This is the same certificate that you use when executing [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md).
 
-<<<<<<< tech-preview
-In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `opensearch.yml`/`elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
-=======
 In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
->>>>>>> 2a2e5e1 OpenSearch support
 
 ```yaml
 searchguard.ssl.http.clientauth_mode: OPTIONAL
 ```
 
-For curl, you need to specify the admin certificate with it's complete certificate chain, and also the key:
+For curl, you need to specify the admin certificate with its complete certificate chain, and also the key:
 
 ```bash
 curl --insecure --cert chain.pem --key kirk.key.pem "<API Endpoint>"

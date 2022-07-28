@@ -21,7 +21,7 @@ Copyright 2020 floragunn GmbH
 
 The main configuration file for authentication is `sg_authc.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user information is fetched from backend systems (optional).
 
-The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to OpenSearch/Elasticsearch and for password-based authentication in Dashboards/Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Dashboards/Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
+The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to Elasticsearch and for password-based authentication in Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
 
 ## Basics
 
@@ -32,7 +32,7 @@ auth_domains:
 - type: basic/internal_users_db
 ```
 
-This way, you configure Search Guard to expect credentials by Basic HTTP authentication. This means, you need to supply a username and password to authenticate. The credentials are checked by Search Guard using its [internal users database](../_docs_roles_permissions/configuration_internalusers.md). If the password is correct, Search Guard allows the user to access OpenSearch/Elasticsearch. The user will have the roles that are configured in the internal users database.
+This way, you configure Search Guard to expect credentials by Basic HTTP authentication. This means, you need to supply a username and password to authenticate. The credentials are checked by Search Guard using its [internal users database](../_docs_roles_permissions/configuration_internalusers.md). If the password is correct, Search Guard allows the user to access Elasticsearch. The user will have the roles that are configured in the internal users database.
 
 Thus, the `type` attribute defines a two-dimensional value: The part in front of the slash - `basic` in the example - identifies the HTTP authentication frontend. It is responsible for retrieving credentials from the request. The part after the slash is the authentication backend. It is responsible for validating the extracted credentials using a backend system. 
 
@@ -192,7 +192,7 @@ You can also combine `skip` and `accept`. When doing so, keep in mind that `acce
 
 ### IP addresses of users behind proxies
 
-If users are required to use proxies to access OpenSearch/Elasticsearch, their actual IP address might be obscured by the proxy. However, proxies can report the actual IP address of the user in special HTTP headers, such as the `X-Forwarded-For` header. Search Guard allows you to evaluate these IP addresses as well. You just need to specify the IP addresses of trusted proxies in the configuration. This is one in a special section of `sg_authc.yml`: 
+If users are required to use proxies to access Elasticsearch, their actual IP address might be obscured by the proxy. However, proxies can report the actual IP address of the user in special HTTP headers, such as the `X-Forwarded-For` header. Search Guard allows you to evaluate these IP addresses as well. You just need to specify the IP addresses of trusted proxies in the configuration. This is one in a special section of `sg_authc.yml`: 
 
 ```yaml
 auth_domains:

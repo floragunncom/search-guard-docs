@@ -164,7 +164,7 @@ sg_config: searchguard.dynamic.kibana.index
 
 ### Kibana: Tenant Configuration
 
-By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Dashboards/Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
+By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
 
 
 The Private tenant is meant as a user's private space, thus is not shared.
