@@ -7,7 +7,6 @@ searchguard:
   islatestversion: false
   ispreliminaryversion: false
 
-
 baseurl: /7.x-41
 
 algolia:
