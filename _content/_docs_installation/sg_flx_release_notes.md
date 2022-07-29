@@ -439,7 +439,44 @@ Users with the `SGS_KIBANA_USER` role automatically get write access to the defa
 
 ### Auth token service configuration
 
-The configuration for the auth token service was moved from `sg_config.yml` to `sg_auth_token_service.yml`. 
+The configuration for the auth token service was moved from the section `sg_config.dynamic.auth_token_provider` in the file `sg_config.yml` to `sg_auth_token_service.yml`. 
+
+Assuming your `sg_config.yml` contained this:
+
+```yaml
+sg_config:
+  dynamic:
+      auth_token_provider:
+        enabled: true
+        jwt_signing_key_hs512: "abcdefg"
+        max_tokens_per_user: 100   
+```
+
+Then, the new file `sg_auth_token_service.yml` looks like this:
+
+```yaml
+enabled: true
+jwt_signing_key_hs512: "abcdefg"
+max_tokens_per_user: 100   
+```
+
+
+Furthermore, you no longer need to configure an explicit authentication domain for auth tokens. Earlier versions of Search Guard required you to add an authentication domain like the following to `sg_config.yml`: 
+
+```yaml
+        sg_issued_jwt_auth_domain:
+          http_enabled: true
+          http_authenticator:
+            type: sg_auth_token
+            challenge: false
+          authentication_backend:
+            type: sg_auth_token   
+```
+
+This is no longer necessary. If you enable the auth tokens in `sg_auth_token_service.yml`, authentication gets automatically available.
+            
+
+
 
 
 ##### Related:

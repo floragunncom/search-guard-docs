@@ -200,6 +200,10 @@ The `internal` authentication backend now has the type `internal_users_db`.
 |`config.map_ldap_attrs_to_user_attrs` | Property `user_mapping.attrs.from` of an auth domain in `sg_authc.yml` | You need to prefix the path with `ldap_user_entry` to access the attributes.  |
 
 
+### `http_authenticator` of type `sg_auth_token`
+
+This is no longer necessary, nor available. It is now sufficient to configure the auth token service in the file `sg_auth_token_service.yml`.
+
 ### `authz`
 
 The authorization domains have been replaced by user information backends. While authorization domains were configured globally, user information backends now need to be configured for each authentication domain separately. This gives you greater control over the association of user information backends with authentication modes.
