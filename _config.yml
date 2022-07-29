@@ -84,7 +84,7 @@ docroots:
   v5: v5
   v2: v2
 
-index: false
+index: true
 
 labels:
   navigation:
