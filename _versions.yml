@@ -13,4 +13,4 @@ index: true
 baseurl: /7.x-49
 
 algolia:
-  index_name: '7.x-49'
+  index_name: '7x-49'
