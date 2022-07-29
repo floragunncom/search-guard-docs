@@ -12,4 +12,4 @@ index: false
 baseurl: /7.x-52
 
 algolia:
-  index_name: 'latest'
+  index_name: '7x-52'
