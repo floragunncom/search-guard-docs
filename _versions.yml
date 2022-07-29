@@ -7,8 +7,6 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
 
-index: true
-
 baseurl: /latest
 
 algolia:
