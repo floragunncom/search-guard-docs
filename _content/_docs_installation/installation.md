@@ -31,8 +31,8 @@ If you just want to use the free Community Edition, install Search Guard Enterpr
 
 ### Ensure that your Java Virtual Machine is supported
 
-* We support only OpenJDK 7/8/11, Oracle JVM 7/8/11 and Amazon Corretto 8/11.
-* There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM/Amazon Corretto
+* We support the same JVM versions and vendors listed here: [Support Matrix](https://www.elastic.co/de/support/matrix#matrix_jvm)
+* There is **no** support for IBM VM and Azul Zing
 
 ### Generate all required TLS certificates
 
