@@ -42,22 +42,6 @@ Major changes include:
 - **More speed.** Many components of Search Guard underwent major optimizations. Thus, Search Guard FLX can now handle more throughput with a lower CPU footprint.
 - **Easily reachable diagnostics and metrics;** most modules of Search Guard FLX offer debug modes which deliver diagnostic information right at the place where you operate. You no longer have to grep through logfiles to find out why your OIDC authentication is not working.
 
-## Download
-
-You can get the current snapshot of the Search Guard Tech Preview at the following locations. If you chose to use the demo installer, you just need to download the script. The script will take care of downloading all further components.
-
-|Target Platform|Backend Plugin|Frontend Plugin|Demo Installer|
-|---|---|---|---|
-|**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2-demo-installer.sh)|
-|**Elasticsearch 7.16.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3-demo-installer.sh)|
-|**Elasticsearch 7.17.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3-demo-installer.sh)|
-
-<table>
-<tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/1.0.0-beta-2/sgctl-1.0.0-beta-2.sh">Search Guard Control Tool sgctl 1.0.0 Beta 2</a></td></tr>
-</table>
-
-
 ## Getting Started
 
 You have several options to try the Search Guard FLX:

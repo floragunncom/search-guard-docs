@@ -33,7 +33,7 @@ If you don't have them yet, you need to download a couple of software components
 
 <table>
 <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
 </table>
 
 **Note:** Kibana is optional. You can also just install the backend partElasticsearch.

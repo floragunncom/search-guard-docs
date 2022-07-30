@@ -1,5 +1,13 @@
 {% assign sgversions = site.sgversions[include.versions] %}
 
+
+
+
+<table>
+  <tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
+  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard Control Tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
+</table>
+
 <h2>{{include.title}}</h2>
 <table>
   <thead>
@@ -7,7 +15,6 @@
     <th>Elasticsearch</th>
     <th>Search Guard</th>
     <th>Kibana Plugin</th>
-    <th>SG Admin Standalone</th>
     <th>Status</th>
   </tr>
   </thead>
@@ -16,61 +23,27 @@
   {% for version in sgversions %}
 
     {% assign sgversions = version | split: "|" %}
-
-    {% if include.issuite %}
-
+    
       {% capture sg_url %}
-        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}.zip      
-      {% endcapture %}
-      {% capture sgadmin_url %}
-        https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-suite-plugin-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip      
-      {% endcapture %}      
+        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}.zip      
+      {% endcapture %}    
       {% capture kibana_url %}
-        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{ sgversions[0] }}-{{ sgversions[2] }}.zip    
+        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ sgversions[2] }}-es-{{ sgversions[0] }}/search-guard-flx-kibana-plugin-{{ sgversions[2] }}-es-{{ sgversions[0] }}.zip    
       {% endcapture %}  
 
-    {% else %}
-      {% capture sg_url %}
-        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}.zip      
-      {% endcapture %}
-      {% capture sgadmin_url %}
-        https://maven.search-guard.com/search-guard-release/com/floragunn/search-guard-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[1] }}/search-guard-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[1] }}-sgadmin-standalone.zip      
-      {% endcapture %}      
-      {% capture kibana_url %}
-        https://maven.search-guard.com/search-guard-kibana-plugin-release/com/floragunn/search-guard-kibana-plugin-{{include.majorversion}}/{{ sgversions[0] }}-{{ sgversions[2] }}/search-guard-kibana-plugin-{{include.majorversion}}-{{ sgversions[0] }}-{{ sgversions[2] }}.zip    
-      {% endcapture %}      
 
-
-    {% endif %}
 
   <tr>
     
     <td>{{ sgversions[0] }} </td>
 
-    {% if sgversions[3] == "yes_no_sgadmin" %}
-
-    <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
-
-    <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
-
-    <td><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.10.2-49.0.0/search-guard-suite-plugin-7.10.2-49.0.0-sgadmin-standalone.zip" target="_blank">49.0.0</a></td>
-
-    <!-- is EOL switch -->
-    {% if sgversions[4] == "no" %}
-    <td>Active</td>
-    {% else %}
-    <td>EOL</td>
-    {% endif %}
-
-    {% elsif sgversions[3] == "yes" %}
+    {% if sgversions[3] == "yes" %}
 
     <!-- available version -->
 
     <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
-
-    <td><a href="{{ sgadmin_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <!-- is EOL switch -->
     {% if sgversions[4] == "no" %}
