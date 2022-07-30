@@ -62,7 +62,7 @@ drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
 $ elasticsearch/bin/elasticsearch
 ```
 
-- If you want, you cans tart Kibana in a parallel shell by executing:
+- If you want, you can start Kibana in a parallel shell by executing:
 
 ```bash
 $ kibana/bin/kibana
