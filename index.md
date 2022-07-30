@@ -48,6 +48,8 @@ You have several options to try the Search Guard FLX:
 
 - If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo-installer).
 
+- If you have docker installed you can just simply run `docker run -it --rm -p 5601:5601 floragunncom/flx-7-demo` and point your Browser to `http://localhost:5601` and login with Username: `admin` and Password: `admin`
+
 - If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [migrate-config command](sg-classic-config-migration) of `sgctl`. Please also review the list of [release notes](sg-flx-release-notes).
 
 You might want to read the following sections of the documentation to get a comprehensive overview over the new possibilities of Search Guard:
