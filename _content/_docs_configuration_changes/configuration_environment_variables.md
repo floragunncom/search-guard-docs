@@ -26,7 +26,7 @@ Still, you might want to keep sensitive data separate from the configuration. Th
 
 Search Guard supports variable substitution for all configuration files. The substitution will take place on the cluster, after the configuration has been loaded.
 
-**Note:** Search Guard supports encryption of configuration variables. Naturally, Search Guard also needs to be able to access the decrypted values. This requires the encryption key to be available on each node of the cluster. Thus, this encryption should be considered as a basic protection against accidential exposure. However, users with administration access to a cluster node will be always able to access decrypted values if they really want to.
+**Note:** Search Guard supports encryption of configuration variables. Naturally, Search Guard also needs to be able to access the decrypted values. This requires the encryption key to be available on each node of the cluster. Thus, this encryption should be considered as a basic protection against accidental exposure. However, users with administration access to a cluster node will be always able to access decrypted values if they really want to.
 
 You can define configuration variables using the `sgctl` tool. After [having established a connection profile with your cluster](configuration_sgctl_basics.md), you can do the following:
 
