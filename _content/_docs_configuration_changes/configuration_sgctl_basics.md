@@ -96,9 +96,9 @@ commands
 ```
 
 
-<!--
-You can find sample sgadmin calls in the [examples chapter](configuration_sgadmin_examples.md)
--->
+
+You can find sample sgadmin calls in the [examples chapter](sgctl-examples)
+
 
 ## Connection Settings
 
