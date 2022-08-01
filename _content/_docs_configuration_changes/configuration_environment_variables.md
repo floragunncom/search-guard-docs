@@ -19,7 +19,7 @@ The Search Guard configuration is stored in a secured index. Without an admin ce
 
 Still, you might want to keep sensitive data separate from the configuration. This has a number of advantages:
 
-- It is not possibly to accidentially reveal secrets when reviewing configuration files.
+- It is not possibly to accidentally reveal secrets when reviewing configuration files.
 - You can separately manage and update secrets and configuration files.
 
 ## Using configuration variables
