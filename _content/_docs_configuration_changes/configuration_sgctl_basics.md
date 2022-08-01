@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 
 The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. 
 
-You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/).
+You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/).
 
 The `sgctl` tool provides a set of commands. To get an overview of all commands, just execute `sgctl.sh` on the command line:
 
@@ -49,6 +49,9 @@ Commands:
   update-var       Updates an existing configuration variable
   delete-var       Deletes an existing configuration variable
   set              Modifies a property in the Search Guard Configuration
+  update-license   Updates the SG license
+  rest             REST client for administration
+  special          Commands for special circumstances
 ```
 
 To get help for a particular command just append the `--help` option to the command:
@@ -56,15 +59,15 @@ To get help for a particular command just append the `--help` option to the comm
 ```
 $ ./sgctl.sh connect --help
 
-Usage: sgctl connect [-v] [--debug] [-k[=<insecure>]] [--key-pass
-                     [=<clientKeyPass>]] [-c=<clusterIdOption>]
+Usage: sgctl connect [-v] [--debug] [--skip-connection-check] [-k[=<insecure>]]
+                     [--key-pass[=<clientKeyPass>]] [-c=<clusterIdOption>]
                      [--ca-cert=<caCert>] [-E=<clientCert>] [-h=<host>]
                      [--key=<clientKey>] [-p=<serverPort>]
                      [--sgctl-config-dir=<customConfigDir>] [--tls=<tls>]
                      [--ciphers[=<ciphers>...]]... [<server>]
 Tries to connect to a cluster and persists this connection for subsequent
 commands
-      [<server>]
+      [<server>]            Name of the server to connect to.
   -c, --cluster=<clusterIdOption>
                             The ID of the cluster configuration to be used by
                               this command
@@ -85,6 +88,8 @@ commands
       --sgctl-config-dir=<customConfigDir>
                             The directory where sgctl reads from and writes to
                               its configuration
+      --skip-connection-check
+                            Skips initial REST API call to check the connection
       --tls=<tls>           The TLS version to use when connecting to the
                               cluster
   -v, --verbose             Print more information
