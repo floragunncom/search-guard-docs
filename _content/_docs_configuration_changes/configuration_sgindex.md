@@ -34,6 +34,7 @@ If you are running Kibana you might also need the following configuration:
 * `sg_frontend_authc.yml`: [authentication for Kibana](../_docs_kibana/kibana_authentication.md)
 * `sg_frontend_multi_tenancy.yml`: [basic multi-tenancy settings for Kibana](../_docs_kibana/kibana_multitenancy.md)
 * `sg_tenants.yml`: [tenants for multi-tenancy](../_docs_kibana/kibana_multitenancy.md)
+* `sg_license_key.yml`: [enterprise license key](sg-flx-release-notes#sg_license_key)
 
 For special features or configuration, you have also the following files:
 

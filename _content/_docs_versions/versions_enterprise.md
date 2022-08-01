@@ -78,51 +78,11 @@ If you're using the Search Guard Kibana plugin, you can display your license and
 
 After obtaining a license, you can apply it in two ways. 
 
-#### sg_config.yml
+#### sg_license_key.yml
 
-Add the license string to sg_config.yml and upload the configuration by using sgadmin. You can either configure the license on a single line, or use YAML multi-line format:
+Add the license string to sg_license_key.yml and upload the configuration by using [sgctl](sg-flx-release-notes#sg_license_key)
 
-```yaml
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    license: LS0tLS1CRUdJTiBQR1A...
-    http:
-      ...
-    authc:          
-      ...
-```
-
-```yaml
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    license: |-
-      LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU
-      1NBR0UtLS0tLQpIYXNoOiBTSEE1M
-      ...    
-    http:
-      ...
-    authc:          
-      ...
-```
-
-When using `sgadmin` to upload the changed `sg_config.yml` with the new license, any existing license will be overwritten. In order to backup your existing license, you can use the the `-r` (`--retrieve`) switch with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md), e.g.:
-
-```bash
-./sgadmin.sh \ 
-  -ks kirk.jks -kspass changeit \  
-  -ts truststore.jks -tspass changeit \ 
-  -icl -nhnv -r
-``` 
+When using `sgctl` to upload the changed `sg_license_key.yml` with the new license, any existing license will be overwritten. In order to [backup your existing license](sgctl-configuration-changes).
 #### REST API
 
 You can use the [REST management API](rest-api) license endpoint to `POST` an Enterprise License to Search Guard.

@@ -9,7 +9,7 @@ description: How to configure Search Guard roles to control access to indices, d
 resources:
   - roles-permissions|Roles and permissions (docs)  
   - action-groups|Action groups (docs)  
-  - sgadmin|Using sgadmin (docs)  
+  - sgctl|Using sgctl (docs)  
 
 ---
 
@@ -48,7 +48,7 @@ As with internal users, you define Search Guard roles in the `sg_roles.yml` file
 <ES installation directory>/plugins/search-guard-flx/sgconfig/sg_roles.yml
 ```
 
-After that you upload this file to the cluster by using the sgadmin command line tool for the configuration changes to become effective. 
+After that you upload this file to the cluster by using the sgctl command line tool for the configuration changes to become effective. 
 
 The basic structure of a role looks like:
 

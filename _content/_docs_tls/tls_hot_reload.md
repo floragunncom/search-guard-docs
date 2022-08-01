@@ -89,7 +89,7 @@ $ ./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/http/reloadcerts/
 	1. Remove the old root certificates from the respective files.
 	2. Trigger the TLS reload.  This needs to be done for each node in the cluster. You can use the same command as in step 3. However, remember that the specified root CA must match the new root certificate now. Also, you need to use the newly generated admin certificate.
 
-Note: You need to call sgadmin for each host where you want to perform the reload. You can specify the respective host using the `-h` option. In contrast to other sgadmin operations, you need to specify the HTTP port for the sgadmin calls here; this is normally 9200. If you only want to reload certs of one type, omit either `--reload-http` or `--reload-transport-certs`.
+Note: You need to call sgctl for each host where you want to perform the reload. You can specify the respective host using the `-h` option.
 
 If you want to call the REST API directly, see [below](#rest-api).
 

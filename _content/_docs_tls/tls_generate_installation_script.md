@@ -55,7 +55,7 @@ The demo installer will place the following files in the `config` directory of y
 			<span class="file-tree-description">the private key for the node certificate</span>
 		</li>
 		<li class="is-file contains-items">kirk.pem
-			<span class="file-tree-description">the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API</span>
+			<span class="file-tree-description">the admin certificate, allows full access to the cluster and can be used with sgctl and the REST management API</span>
 		</li>
 		<li class="is-file contains-items">kirk-key.pem
 			<span class="file-tree-description">the private key for the admin certificate</span>

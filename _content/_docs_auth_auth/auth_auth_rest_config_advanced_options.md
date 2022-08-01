@@ -50,17 +50,4 @@ The settings of the cache can be adjusted by using the following configuration p
 **user_cache.max_size:** The maximum number of entries in the cache. Defaults to 1000 entries.
 
 
-The cache can be flushed manually by `sgadmin` in conjunction with the `-rl/--reload` switch, or by using the Search Guard Config GUI.
-
-Example:
-
-```
-./sgadmin.sh \
-   -ks /path/to/keystore.jks \
-   -kspass <keystore password> \
-   -ts /path/to/truststore.jks \
-   -tspass <truststore password>
-   -rl
-```
-
-
+The cache can be [flushed manually with sgctl](sgctl-system-administration)

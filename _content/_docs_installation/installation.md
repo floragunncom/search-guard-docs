@@ -68,9 +68,9 @@ The first time installation procedure on a production cluster is to:
 4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `elasticsearch.yml`
 5. Restart Elasticsearch and check that the nodes come up
 6. Re-enable shard allocation
-7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
+7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgctl](sgctl-configuration-changes)
 
-While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
+While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgctl at least once to initialize the Search Guard index.
 
 ## Disable shard allocation
 
@@ -142,7 +142,7 @@ searchguard.authcz.admin_dn:
 
 The `searchguard.ssl.transport.pem*` keys define the paths to the node certificate, relative to the Elasticsearch `config` directory.
 
-The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
+The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgctl or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
 
 If you want to use TLS also on the REST layer (HTTPS), add the following lines to `elasticsearch.yml`
 
@@ -170,7 +170,7 @@ The REST management API is an Enterprise feature.
 
 ## Re-enable shard allocation
 
-After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgadmin or curl:
+After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgctl or curl:
 
 ```bash
 ./sgctl.sh rest put _cluster/settings --json '{"persistent":{"cluster.routing.allocation.enable": "all"}}'

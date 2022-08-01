@@ -37,7 +37,7 @@ The old environment variable substitution mechanism using the syntaxes `${env...
 * [Merge Request: Infrastructure for storing configuration secrets](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/99)
 * [Merge Request: Extended SecretsService into a more general ConfigVarService](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/140)
 
-
+<a name="sg_license_key"></a>
 ###  License configuration
 
 There is now a dedicated configuration file for the license key: `sg_license_key.yml`. 

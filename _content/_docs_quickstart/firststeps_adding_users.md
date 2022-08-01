@@ -5,7 +5,7 @@ permalink: first-steps-user-configuration
 category: first_steps
 order: 100
 layout: docs
-description: How to add new Search Guard users by using sgadmin and the Search Guard configuration.
+description: How to add new Search Guard users by using sgctl and the Search Guard configuration.
 resources:
   - internal-users-database|Internal user database (docs)  
   - sgctl|Using sgctl (docs)  

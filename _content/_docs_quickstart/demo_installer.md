@@ -102,7 +102,7 @@ Changes to the Search Guard configuration must be applied to this index by eithe
 
 For using the Search Guard Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
 
-If you want to use the sgadmin tool:
+If you want to use the sgctl tool:
 
 * Apply your changes to the demo configuration files located in `my-sg-config`
 * Execute `./sgctl.sh update-config my-sg-config`

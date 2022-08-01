@@ -77,7 +77,7 @@ searchguard.restapi.endpoints_disabled.global.<endpoint>: ["<method>",...]
 
 ## Admin certificate access control
 
-Access can also be granted by using an admin certificate. This is the same certificate that you use when executing [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md).
+Access can also be granted by using an admin certificate. This is the same certificate that you use when executing [sgctl](sgctl-configuration-changes).
 
 In order for Search Guard to pick up this certificate on the REST layer, you need to set the `clientauth_mode` in `elasticsearch.yml` to either `OPTIONAL` or `REQUIRE`:
 

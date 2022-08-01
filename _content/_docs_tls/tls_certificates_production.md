@@ -41,7 +41,7 @@ Search Guard distinguishes between the following types of certificates
 
 **Client certificates** are regular TLS certificates without any special requirements. They are used to identify Elasticsearch clients on the REST and transport layer. They can be used for HTTP client certificate authentication or when using a Java Transport Client on transport layer. 
 
-**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as an admin certificate.  
+**Admin certificates** are **client certificates** that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgctl](sgctl-configuration-changes) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s). You can use any valid client certificate as an admin certificate.  
 
 Note: Do not use a node certificate as admin certificate! Node and admin certificates must always be kept separate.
 {: .note .js-note .note-warning}

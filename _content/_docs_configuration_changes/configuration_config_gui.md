@@ -101,7 +101,7 @@ If a resource is reserved, it is marked underneath the resource name. You cannot
 </p>
 
 
-If you want to mark or unmark a resource, you need to change the readonly flag in the respective configuration YAML file and upload the changes via `sgadmin`. Example:
+If you want to mark or unmark a resource, you need to change the readonly flag in the respective configuration YAML file and upload the changes via `sgctl`. Example:
 
 ```
 sg_kibana_server:
