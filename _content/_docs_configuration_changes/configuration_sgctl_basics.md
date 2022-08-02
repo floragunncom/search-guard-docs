@@ -18,7 +18,7 @@ Copyright 2022 floragunn GmbH
 {% include toc.md %}
 
 
-The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. 
+The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. [Here you can find the source code alongside with a comprehensive readme](https://git.floragunn.com/search-guard/sgctl){:target="_blank"}.
 
 You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/).
 
