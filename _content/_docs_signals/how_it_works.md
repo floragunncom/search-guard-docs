@@ -145,7 +145,7 @@ The checks of a watch subsequently modify the runtime data. If action-specific c
   "actions": [
     {
       "type": "slack",
-      "name": "slack_notifcation",
+      "name": "slack_notification",
       "throttle_period": "10m",
       "channel": "#warnings",
       "text": "Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}"

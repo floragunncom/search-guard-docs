@@ -36,7 +36,7 @@ This way, you configure Search Guard to expect credentials by Basic HTTP authent
 
 Thus, the `type` attribute defines a two-dimensional value: The part in front of the slash - `basic` in the example - identifies the HTTP authentication frontend. It is responsible for retrieving credentials from the request. The part after the slash is the authentication backend. It is responsible for validating the extracted credentials using a backend system. 
 
-**Note:** The authentication backend is optional. In some cases - like signature-based credentials - the authentication frontend is sufficient to securly authenticate a user. Then, you can just omit the second part of the `type` attribute.
+**Note:** The authentication backend is optional. In some cases - like signature-based credentials - the authentication frontend is sufficient to securely authenticate a user. Then, you can just omit the second part of the `type` attribute.
 
 A more evolved `sg_authc.yml` file may look like this:
 
@@ -73,7 +73,7 @@ auth_domains:
   jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
 ```
 
-You can also use the `sgctl` command to set the flag directly on the cluster wihout having edit files:
+You can also use the `sgctl` command to set the flag directly on the cluster without having edit files:
 
 ```
 $ ./sgctl.sh set authc debug --true

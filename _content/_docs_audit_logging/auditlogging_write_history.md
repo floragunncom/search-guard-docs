@@ -55,7 +55,7 @@ Changes on field level are written in [JSON patch format](http://jsonpatch.com/)
 
 The write history can be used to track changes to PII or otherwise sensitive data. The audit trail will contain date of access, the username, the document id, and a list of the changes on JSON patch format. 
 
-By tracking the insertion and the deletion of documens you can prove when PII data was created and also deleted. This makes it extremely easy to implement GDPR, HIPAA, PCI or SOX compliance.
+By tracking the insertion and the deletion of documents you can prove when PII data was created and also deleted. This makes it extremely easy to implement GDPR, HIPAA, PCI or SOX compliance.
 
 Audit logging and also the compliance features are statically configured in `elasticsearch.yml` and cannot be changed at runtime.
 
@@ -136,7 +136,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 | Name | Description |
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
-| audit\_request\_remote\_address | The adress where the request came from.  |
+| audit\_request\_remote\_address | The address where the request came from.  |
 {: .config-table}
 
 ### User attributes
@@ -204,7 +204,7 @@ Events in the `COMPLIANCE_DOC_WRITE` category have the following attributes:
 
 Logging the difference between to versions of a document has a performance impact. It should be used only on relevant data, and bulk updates should be minimized. 
 
-### Keeping the watched indices at a minumum
+### Keeping the watched indices at a minimum
 
 The more indices you watch, the more events are possibly created. Consider only watching indices that you are required to monitor.
 

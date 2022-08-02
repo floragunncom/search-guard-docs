@@ -94,7 +94,7 @@ Migrating from the `searchguard` index name to the `.searchguard` index name is 
 
 The basic principle of the migration is that Search Guard will prefer to use the `.searchguard` index over the `searchguard` index as soon as it finds it.
 
-You can use the `sgctl special move-sg-index` command to achive this goal. The command does the following:
+You can use the `sgctl special move-sg-index` command to achieve this goal. The command does the following:
 
 - Copy the contents of the `searchguard` index to the new `.searchguard` index
 - Validate that configuration can be successfully loaded from the new index

@@ -161,7 +161,7 @@ For Fiel-Level-Security you can list the fields, and specify if they should be i
 
 ### Tenants
 
-The "Tenants" tab on the edit roles screen allows you to add and remove tenants for any role. You can define whether the role should have read/write acess or read-only access to the tenant:
+The "Tenants" tab on the edit roles screen allows you to add and remove tenants for any role. You can define whether the role should have read/write access or read-only access to the tenant:
 
 <p align="center">
 <img src="kibana_gui_tenants.png" style="width: 70%" class="md_image"/>

@@ -207,7 +207,7 @@ Options:
 | validityDays | Validity of the generated certificates, in days. Default: 730. Can be overwritten for each certificate separately. |
 | pkPassword | Password of the private key. One of: "none", "auto" or a self chosen password. Default: auto. Can be overwritten for each certificate separately. |
 | generatedPasswordLength | Length of the auto-generated password for the private keys. Only takes effect when `pkPassword` is set to `auto`. Default: 12. Can be overwritten for each certificate separately. |
-| nodesDn | Value of the `searchguard.nodes_dn` in the configuration snippet. Optional. If omitted, all DNs of all node certificates are listed. If you want to define your node certificates by using wildcards or regular expressions, set the values here. Default: list all DNs explicitely |
+| nodesDn | Value of the `searchguard.nodes_dn` in the configuration snippet. Optional. If omitted, all DNs of all node certificates are listed. If you want to define your node certificates by using wildcards or regular expressions, set the values here. Default: list all DNs explicitly |
 | nodeOid | If you want to use OIDs to mark legitimate node certificates instead of listing them in `searchguard.nodes_dn`, set the OID here. It will be included in the SAN section of all node certificates. Default: Don't add the OID to the SAN section. |
 | httpsEnabled | Whether to enable TLS on the REST layer or not. Default: true |
 | reuseTransportCertificatesForHttp | If set to false, individual certificates for REST and Transport are generated. If set to true, the node certificates are also used on the REST layer. Default: false |

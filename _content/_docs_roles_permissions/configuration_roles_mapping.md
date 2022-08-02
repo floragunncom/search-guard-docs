@@ -16,7 +16,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Kibana Confguration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Roles Mapping.
+Hint: You can also use the [Kibana Configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Roles Mapping.
 
 After a user is authenticated, Search Guard uses the role mappings to determine which Search Guard roles should be assigned to the user.
 

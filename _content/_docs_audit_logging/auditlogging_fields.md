@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 ## Common Attributes
 
-The following attributes are logged for all event categores, independent of the layer.
+The following attributes are logged for all event categories, independent of the layer.
 
 | Name | Description |
 |---|---|
@@ -115,7 +115,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport AUTHENTICATED attributes
@@ -132,7 +132,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport MISSING_PRIVILEGES attributes
@@ -151,7 +151,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport GRANTED_PRIVILEGES attributes
@@ -170,7 +170,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport SSL_EXCEPTION attributes
@@ -194,7 +194,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport BLOCKED_USER attributes
@@ -208,7 +208,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport BLOCKED_IP attributes
@@ -223,7 +223,7 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}
 
 ## Transport SG\_INDEX\_ATTEMPT attributes
@@ -240,5 +240,5 @@ The following attributes are logged for all event categores, independent of the 
 | audit\_request\_body | The body / source, if any and if request body logging is enabled. Optional.|
 | audit\_trace\_indices | The index name(s) as contained in the request. Can contain wildcards, date patterns and aliases. Only logged if `resolve_indices` is true. Optional. |
 | audit\_trace\_resolved\_indices | The resolved, concrete index name(s) affected by this request. Only logged if `resolve_indices` is true. Optional. |
-| audit\_trace\_doc\_types | The document types affecated by this request. Only logged if `resolve_indices` is true. Optional. |
+| audit\_trace\_doc\_types | The document types affected by this request. Only logged if `resolve_indices` is true. Optional. |
 {: .config-table}

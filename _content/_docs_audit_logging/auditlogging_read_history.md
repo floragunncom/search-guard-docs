@@ -97,7 +97,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 | Name | Description |
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
-| audit\_request\_remote\_address | The adress where the request came from.  |
+| audit\_request\_remote\_address | The address where the request came from.  |
 {: .config-table}
 
 ### User attributes
@@ -151,7 +151,7 @@ Events in the `COMPLIANCE_DOC_READ` category have the following attributes:
 
 ## Performance considerations
 
-### Keeping the watched fields at a minumum
+### Keeping the watched fields at a minimum
 
 The more fields you watch, the more events are possibly created. Consider only watching fields that you are required to monitor.
 

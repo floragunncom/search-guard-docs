@@ -93,7 +93,7 @@ auth_domains:
 - type: anonymous
   accept.ips: "172.10.1.0/24"
   user_mapping.user_name.from: request.originating_ip_address
-  user_mapping.roles.static: anon_role_evelated_rights
+  user_mapping.roles.static: anon_role_elevated_rights
 ```
 
 

@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-Logstash connects to Elasticserch on the REST layer, just like a browser or curl. In order to use logstash with a Search Guard secured cluster:
+Logstash connects to Elasticsearch on the REST layer, just like a browser or curl. In order to use logstash with a Search Guard secured cluster:
 
 * set up a logstash user with permissions to read and write to the logstash and beats indices
 * configure logstash to use HTTPS instead of HTTP (optional, only applicable if you enabled HTTPS on the REST layer).

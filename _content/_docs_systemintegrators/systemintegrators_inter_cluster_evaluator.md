@@ -6,7 +6,7 @@ category: systemintegrators
 order: 500
 layout: docs
 edition: community
-description: How implement a custom inter-node traffic evaluator for Seaerch Guard.
+description: How implement a custom inter-node traffic evaluator for Search Guard.
 
 ---
 <!---

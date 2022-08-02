@@ -26,11 +26,11 @@ For running Search Guard Enterprise or Compliance on production systems you need
 
 ## Feature Comparison
 
-For a feature comparison between the Complince, Enterprise and Community Edition please refer to [the feature comparison matrix on our website](https://search-guard.com/licensing/){:target="_blank"}.
+For a feature comparison between the Compliance, Enterprise and Community Edition please refer to [the feature comparison matrix on our website](https://search-guard.com/licensing/){:target="_blank"}.
 
 ## Trial License
 
-When installing Search Guard for the first time, a trial license is automatically generated. Depending on the installed version, it unlocks all Enteprise and Compliance features without any limitation.
+When installing Search Guard for the first time, a trial license is automatically generated. Depending on the installed version, it unlocks all Enterprise and Compliance features without any limitation.
 
 This trial license is valid for 60 days. If you want to extend it, just [contact us](https://search-guard.com/contacts/) and we're happy to send you an extended license. 
 

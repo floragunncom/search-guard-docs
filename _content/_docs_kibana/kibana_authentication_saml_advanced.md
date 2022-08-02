@@ -65,7 +65,7 @@ If you need to use TLS client authentication to connect from Search Guard to the
 
 
 
-## IdP initated SSO
+## IdP initiated SSO
 
 IdP initiated SSO allows you to open Kibana directly from your IdP without navigating to Kibana first.
 

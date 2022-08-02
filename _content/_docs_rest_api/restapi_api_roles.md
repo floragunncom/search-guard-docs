@@ -192,7 +192,7 @@ If the call is succesful, a JSON structure is returned, indicating whether the r
 
 ## PATCH
 
-The PATCH endpoint can be used to change individual attributes of a rolw, or to create, change and delete roles in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
+The PATCH endpoint can be used to change individual attributes of a role, or to create, change and delete roles in a bulk call. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 

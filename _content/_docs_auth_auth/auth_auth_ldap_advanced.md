@@ -70,7 +70,7 @@ If you need to use TLS client authentication to connect from Search Guard to the
 
 **ldap.idp.tls.client_auth.certificate:** The client certificate. You can specify the certificate in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/certificate.pem}`. You can also specify several certificates to specify a certificate chain.
 
-**lpda.idp.tls.client_auth.private_key:** The private key that belongs to the client certificate. You can specify the key in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/private-key.pem}`.
+**ldap.idp.tls.client_auth.private_key:** The private key that belongs to the client certificate. You can specify the key in PEM format inline or specify an absolute pathname using the syntax `#{file:/path/to/private-key.pem}`.
 
 **ldap.idp.tls.client_auth.private_key_password:** If the private key is encrypted, you must specify the key password using this option.
 

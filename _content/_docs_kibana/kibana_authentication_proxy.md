@@ -47,5 +47,5 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", "x-proxy-u
 You do not need to add the `x-forwarded-for` header, as this is automatically handled by the Search Guard plugin. The Search Guard plugin acts here like Kibana is a proxy. This means:
 
 - If there is no `x-forwarded-for` header, the Search Guard plugin adds the header and adds the IP of the host connecting to Kibana to the header value.
-- If there is an `x-forwarded-for` header, the Search Guard plugin appeands the IP of the host connecting to Kibana to the end of the header value.
+- If there is an `x-forwarded-for` header, the Search Guard plugin appends the IP of the host connecting to Kibana to the end of the header value.
 

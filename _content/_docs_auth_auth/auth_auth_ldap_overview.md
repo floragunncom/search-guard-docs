@@ -22,4 +22,4 @@ Copyright 2020 floragunn GmbH
 
 * Configure the [connection settings](../_docs_auth_auth/auth_auth_ldap_connection_settings.md) for your Active Directory or LDAP server
 * Use Active Directory and LDAP for [user authentication](../_docs_auth_auth/auth_auth_ldap_authentication.md).
-* Use Active Directory and LDAP for [user authorisation](../_docs_auth_auth/auth_auth_ldap_authorisation.md).
+* Use Active Directory and LDAP for [user authorization](../_docs_auth_auth/auth_auth_ldap_authorisation.md).

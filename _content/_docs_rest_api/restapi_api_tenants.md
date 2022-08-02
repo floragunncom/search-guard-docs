@@ -31,7 +31,7 @@ Where `tenantname` is the name of the tenant.
 ### Get a single tenant
 
 ```
-GET /_searchguard/api/tenant/{tenantma,e}
+GET /_searchguard/api/tenant/{tenantname}
 ```
 Returns the settings for the respective tenant in JSON format, for example:
 

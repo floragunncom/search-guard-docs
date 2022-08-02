@@ -118,9 +118,9 @@ The attributes have the following meaning:
 **actions.{name}.last_status:** The status of the last execution. The same status can be also found in the watch log. The status code can be:
 * `ACTION_TRIGGERED`: The action was successfully executed.
 * `NO_ACTION`: The checks determined that the action does not need to be executed.
-* `ACTION_FAILED`: An error occured during execution of the action.
+* `ACTION_FAILED`: An error occurred during execution of the action.
 * `ACTION_THROTTLED`: The action was not executed because it is throttled
-* `ACKED`: The action was not exectued because it was acked before
+* `ACKED`: The action was not executed because it was acked before
 
 **actions.{name}.acked:** If the action was acknowledged, the time and the name of the user acknowledging the action are listed here.
 
@@ -131,7 +131,7 @@ The attributes have the following meaning:
 **last_execution.trigger.triggered_time:** The time the watch was actually triggered.
 **last_execution.execution_time:** The time the watch reached execution stage.
 **last_status:** The status of the last execution summarized for the whole watch. The same status can be also found in the watch log. 
-**node:** The name of the node which is right now responsible for exeucting the watch.
+**node:** The name of the node which is right now responsible for executing the watch.
 
 ### 403 Forbidden
 

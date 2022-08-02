@@ -100,7 +100,7 @@ If you're unsure what attributes are available, you can always access the `/_sea
 
 ## Standard user attributes
 
-Using the arbitrarily structured gives you the greatest flexbility and the greatest expressiveness when using dynamic DLS query. Still, you can also use the username and the roles of a user for variable substitution.
+Using the arbitrarily structured gives you the greatest flexibility and the greatest expressiveness when using dynamic DLS query. Still, you can also use the username and the roles of a user for variable substitution.
 
 **`${user.name}`:** This allows you to access the user name. In order to safely use the user name in the JSON-based query, you should normally use `${user.name|toJson}`.
 

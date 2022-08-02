@@ -217,7 +217,7 @@ After that, configure roles and access permissions by either modifying the confi
 * [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
 * [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
 
-If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
+If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
 
 For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 

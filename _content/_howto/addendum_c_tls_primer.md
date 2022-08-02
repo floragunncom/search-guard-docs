@@ -44,7 +44,7 @@ To establish a TLS session, all certificates in the hierarchy are verified, up t
 
 Before any user data is sent between these parties, first a **TLS session** has to be established. This process is called **TLS handshake**.
 
-The details of this handshake can vary slighty, depending on the selected cipher suite. At a high level the following steps are performed:
+The details of this handshake can vary slightly, depending on the selected cipher suite. At a high level the following steps are performed:
 
 * The client sends a ClientHello message containing the information which TLS version and cipher protocols it supports.
 * The server sends a ServerHello message containing the chosen protocol version and cipher suite.

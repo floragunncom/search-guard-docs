@@ -23,7 +23,7 @@ Signals is integrated with all security related features of Search Guard. This m
 
 The [Signals configuration index](security_indices.md) may store sensitive data and is only accessible by using the Signals API. Direct access is not possible.
 
-Information about the previous execution of watches is written to the `.signals_log_*` index. You should use Search Guard configuration to configure index access rights that match your organisation's requirements.
+Information about the previous execution of watches is written to the `.signals_log_*` index. You should use Search Guard configuration to configure index access rights that match your organization's requirements.
 
 ## API Access
 

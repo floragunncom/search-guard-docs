@@ -83,7 +83,7 @@ auth_domains:
 
 The options `jwt.signing.jwks.keys` and `jwt.required_audience` must be adapted to the corresponding settings in `sg_sessions.yml` on the main cluster. If several clusters are using the same monitoring cluster, you can create several entries, one for each cluster.
 
-The option `external_session.hosts` requires the URL of at least one node of the main cluster. You can also specifiy more than one node for load-balancing. 
+The option `external_session.hosts` requires the URL of at least one node of the main cluster. You can also specify more than one node for load-balancing. 
 
 The option `external_session.tls.trusted_cas` can be used if TLS connections to the main cluster need to use a special PKI. You can directly specify the CA certificate as PEM file here.
 

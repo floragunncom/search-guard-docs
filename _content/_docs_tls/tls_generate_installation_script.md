@@ -27,7 +27,7 @@ To execute the demo installation:
 * ``cd`` into `<Elasticsearch directory>/plugins/search-guard-flx/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
-The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
+The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
 
 ```bash
 Search Guard FLX Demo Installer
@@ -66,7 +66,7 @@ The demo installer will place the following files in the `config` directory of y
 
 ## Allow demo certificate usage
 
-Since the demo certificates are unsafe to use on a production cluster, you must explicitely allow their usage by adding the following line to elasticsearch.yml:
+Since the demo certificates are unsafe to use on a production cluster, you must explicitly allow their usage by adding the following line to elasticsearch.yml:
 
 ```
 searchguard.allow_unsafe_democertificates: true

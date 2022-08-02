@@ -74,7 +74,7 @@ hr_employee:
 
 ## Using wildcards
 
-You can use wildcards when definig FLS field, both for include and exclude mode.
+You can use wildcards when defining FLS field, both for include and exclude mode.
 
 For example:
 

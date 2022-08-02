@@ -41,7 +41,7 @@ Search Guard provides an HTTP endpoint to check the attributes of a user.
 https://<node name>:<http port>/_searchguard/authinfo?pretty
 ```
 
-To fetch the user information, we need to provde the username and the password. We first check the attributes of the user `jdoe` by issuing a curl call to this endpoint:
+To fetch the user information, we need to provide the username and the password. We first check the attributes of the user `jdoe` by issuing a curl call to this endpoint:
 
 ```
 curl -k -u jdoe:jdoe -XGET "https://sgssl-0.example.com:9200/_searchguard/authinfo?pretty"

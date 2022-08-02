@@ -111,7 +111,7 @@ You need to specify either `hash` or `password`.
 
 You can either use an already hashed password (`hash field`) or provide it in clear text (`password` field). In the latter case the password hashed automatically before storing it. If both fields are specified, `hash` takes precedence.
 
-`backend_roles` contains an array of the user's backend roles. This is optional. If the call is succesful, a JSON structure is returned, indicating whether the user was created or updated.
+`backend_roles` contains an array of the user's backend roles. This is optional. If the call is successful, a JSON structure is returned, indicating whether the user was created or updated.
 
 ```json
 {

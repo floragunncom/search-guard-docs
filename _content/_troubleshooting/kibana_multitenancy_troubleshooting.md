@@ -14,7 +14,7 @@ description: Step-by-step instructions on how to troubleshoot Multi Tenancy issu
 
 ## Headers not whitelisted
 
-During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the plugin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
+During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` configuration key in `kibana.yml`. If this is not the case, the state of the plugin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]

@@ -6,7 +6,7 @@ category: systemintegrators
 order: 600
 layout: docs
 edition: community
-description: How implement a custom TLS principal extractor for a Seaerch Guard secured Elasticsearch cluster.
+description: How implement a custom TLS principal extractor for a Search Guard secured Elasticsearch cluster.
 ---
 
 <!---

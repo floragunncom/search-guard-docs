@@ -75,7 +75,7 @@ The `severity` element supports these attributes:
 
 **value:** This is a Painless script which defines a numeric value which shall be mapped to severity levels. In the easiest case, this is a simple expression such as `data.errors.hits.total.value`. However, you can also use any Painless script in order to do more advanced computations. The only requirement is that the script returns a number. The script is executed after all checks have been executed.
 
-**order:** This is either `ascending` or `descending`. If `ascending` is specified here, severity increases with increasing numbers determined by the script defined in the `value` property. If `descending` is specified here, increasing values means decreasing severity. If this attribute is ommitted, `ascending` order is assumed.
+**order:** This is either `ascending` or `descending`. If `ascending` is specified here, severity increases with increasing numbers determined by the script defined in the `value` property. If `descending` is specified here, increasing values means decreasing severity. If this attribute is omitted, `ascending` order is assumed.
 
 **mapping:** This is an array of objects; each object maps a numeric `threshold` to a severity `level`. If the specified `order` is `ascending`, the threshold the minimum value necessary to enter the specified severity level. If the specified order is `descending`, the threshold is the maximum value for the specified severity level. The `level` attribute may be one of (in order of increasing severity) `info`, `warning`, `error`, `critical`. If you use a severity mapping, you need to define at least one severity levels. However, you don't need to define thresholds for all levels. Levels without thresholds are not in use for the particular watch.
 

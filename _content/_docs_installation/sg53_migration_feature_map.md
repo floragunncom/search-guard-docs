@@ -24,12 +24,12 @@ This section serves as a reference by config file and config name how the classi
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`dynamic.do_not_fail_on_forbidden` | Property `ignore_unauthorized_indices` in `sg_authz.yml` | Semantics of `ignore_unauthorized_indices` have slightly changed and provide more expected results |
-|`dynamic.do_not_fail_on_forbidden_empty` | No longer necessary | This behaviour has been integrated into the new semantics of `ignore_unauthorized_indices` |
+|`dynamic.do_not_fail_on_forbidden_empty` | No longer necessary | This behavior has been integrated into the new semantics of `ignore_unauthorized_indices` |
 |`dynamic.field_anonymization_salt2` | Property `field_anonymization.salt` in `sg_authz.yml` | |
 |`dynamic.license` | Property `license` in `sg_license_key.yml` | |
 |`dynamic.filtered_alias_mode` |  No longer supported | Search Guard no longer restricts the use of filtered aliases |
 |`dynamic.multi_rolespan_enabled` | No longer supported | Multi-rolespan is now always active |
-|`dynamic.hosts_resolver_mode` | No longer necessary | Search Guard will automatically lookup host names when any are specified in `sg_roles_mapping.yml`. Lookups can be avoided by specifiying IP addresses in the new `ip` attribute in `sg_roles_mapping.yml`. |
+|`dynamic.hosts_resolver_mode` | No longer necessary | Search Guard will automatically lookup host names when any are specified in `sg_roles_mapping.yml`. Lookups can be avoided by specifying IP addresses in the new `ip` attribute in `sg_roles_mapping.yml`. |
 |`dynamic.http.anonymous_auth_enabled` | Authentication domain of type `anonymous` in `sg_authc.yml` | See [Anonymous authentication](../_docs_auth_auth/auth_auth_anon.md) |
 |`dynamic.http.xff.internalProxies` | Property `network.trusted_proxies` in `sg_authc.yml` | While `xff.internalProxies` expects a regular expression, you can specify subnets in  `network.trusted_proxies` using CIDR expressions. See also [IP addresses of users behind proxies](../_docs_auth_auth/auth_auth_configuration.md#ip-addresses-of-users-behind-proxies). 
 |`dynamic.http.xff.remoteIpHeader` | Property `network.http.remote_ip_header` in `sg_authc.yml` | |
@@ -38,7 +38,7 @@ This section serves as a reference by config file and config name how the classi
 
 ### `kibana`
 
-The settings relating to Kibana multi tenenancy have been moved to `sg_frontend_multi_tenancy.yml`.
+The settings relating to Kibana multi tenancy have been moved to `sg_frontend_multi_tenancy.yml`.
 
 | Legacy Config | New Config | Details |
 |---|---|---|
@@ -127,7 +127,7 @@ SAML configuration is now performed in `sg_frontend_config.yml`.
 |`config.roles_key` | Property `user_mapping.roles` in an `authcz` entry of type `saml` in `sg_frontend_config.yml`| See [SAML](kibana_authentication_saml.md) |
 |`config.exchange_key` |  No longer necessary  | |
 |`config.idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.verify_hostnames` |  Property `idp.tls.verfiy_hostnames` in an `authcz` entry of type `saml` in `sg_frontend_config.yml`  | See [SAML](kibana_authentication_saml.md) |
+|`config.idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `authcz` entry of type `saml` in `sg_frontend_config.yml`  | See [SAML](kibana_authentication_saml.md) |
 |`config.idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `authcz` entry of type `saml` in `sg_frontend_config.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [SAML](kibana_authentication_saml.md) |
 |`config.idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `authcz` entry of type `saml` in `sg_frontend_config.yml`  |  See [SAML](kibana_authentication_saml.md) |
 |`config.idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [SAML](kibana_authentication_saml.md) |
@@ -156,7 +156,7 @@ OIDC configuration is now performed in `sg_frontend_config.yml`.
 |`config.roles_key` | Property `user_mapping.roles` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`| [OIDC](kibana_authentication_openid.md) |
 |`config.roles_path` | Property `user_mapping.roles` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`| [OIDC](kibana_authentication_openid.md) |
 |`config.openid_connect_idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.verify_hostnames` |  Property `idp.tls.verfiy_hostnames` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`  | See [OIDC](kibana_authentication_openid.md) |
+|`config.openid_connect_idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`  | See [OIDC](kibana_authentication_openid.md) |
 |`config.openid_connect_idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [OIDC](kibana_authentication_openid.md) |
 |`config.openid_connect_idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `authcz` entry of type `oidc` in `sg_frontend_config.yml`  |  See [OIDC](kibana_authentication_openid.md) |
 |`config.openid_connect_idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [OIDC](kibana_authentication_openid.md) |
@@ -254,7 +254,7 @@ The functionality provided by the `ldap` authorization backend can be now used i
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`searchguard.auth.anonymous_auth_enabled` | Unchanged | See [Anonymous authentication](kibana_authentication_anonymous.md) |
-|`searchguard.auth.type: "basicauth"` | `authcz` entry of type `basic` in `sg_frontend_config.yml` | See [Username based autentication](kibana_authentication_basicauth.md) |
+|`searchguard.auth.type: "basicauth"` | `authcz` entry of type `basic` in `sg_frontend_config.yml` | See [Username based authentication](kibana_authentication_basicauth.md) |
 |`searchguard.auth.type: "jwt"` | Multiple possibilities | Depends on the further configuration of `searchguard.jwt.url_parameter` and `searchguard.jwt.header`. See there. |
 |`searchguard.auth.type: "kerberos"` | Unchanged | See [Kerberos authentication](kibana_authentication_kerberos.md) |
 |`searchguard.auth.type: "openid"` | `authcz` entry of type `oidc` in `sg_frontend_config.yml` | See [OIDC](kibana_authentication_oidc.md) |

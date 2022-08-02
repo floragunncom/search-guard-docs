@@ -109,7 +109,7 @@ several levels. This includes
 * Read-access to documents
 * Write-access to documents including the changes in JSON patch format
 
-The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regualations like GDPR, PCI, SOX or HIPAA.
+The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regulations like GDPR, PCI, SOX or HIPAA.
 
 ## Alerting - Anomaly detection for your data
 

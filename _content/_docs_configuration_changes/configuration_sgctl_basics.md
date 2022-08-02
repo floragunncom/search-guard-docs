@@ -38,7 +38,7 @@ Commands:
                      files
   migrate-config   Converts old-style sg_config.yml and kibana.yml into
                      sg_authc.yml and sg_frontend_authc.yml
-  component-state  Retrieves Search Guard compontent status information
+  component-state  Retrieves Search Guard component status information
   sgctl-licenses   Displays license information for sgctl
   sgctl-version    Shows the version of this sgctl command
   add-user-local   Adds a new user to a local sg_internal_users.yml file
@@ -97,7 +97,7 @@ commands
 
 
 
-You can find sample sgadmin calls in the [examples chapter](sgctl-examples)
+You can find sample sgctl calls in the [examples chapter](sgctl-examples)
 
 
 ## Connection Settings
@@ -150,7 +150,7 @@ $ ./sgctl.sh connect another-cluster-host.example.com
 $ ./sgctl.sh connect -c my-cluster 2001:0db8:85a3:0000:0000:8a2e:0370:7334 --ca-cart /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 ```
 
-Reconnect whith:
+Reconnect with:
 
 ```bash
 $ ./sgctl.sh connect -c my-cluster

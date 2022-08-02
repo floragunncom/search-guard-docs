@@ -50,7 +50,7 @@ For example, the next transformation accesses a runtime context that has stored 
 |---|---|
 | type | transform, defines this script as transformation. Mandatory. |
 | name | name of this transformation. Can be chosen freely. Mandatory. |
-| target | Under which context name to store the result of the transformation in the runtime data. If the context already exists, it is replaced. If it does not exist, a new contect is created. If omitted, the top-level context will be used. |
+| target | Under which context name to store the result of the transformation in the runtime data. If the context already exists, it is replaced. If it does not exist, a new context is created. If omitted, the top-level context will be used. |
 | source | The script to execute. Mandatory |
 | lang | The scripting language to be used. Optional, defaults to painless. Other scripting languages may be provided by Elasticsearch plugins. |
 {: .config-table}

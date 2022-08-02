@@ -71,7 +71,7 @@ If you use self signed certificate you may see the following error in the Kibana
 HEAD https://example.com:9200/ => unable to get local issuer certificate
 ```
 
-This means that Kibana does not trust the self-signed root CA certificate. You can either disable the certificate cerification or install the root CA in Kibana.
+This means that Kibana does not trust the self-signed root CA certificate. You can either disable the certificate certification or install the root CA in Kibana.
 
 #### Disabling certificate verification
 
@@ -101,7 +101,7 @@ Search Guard stores the credentials of authenticated users in an encrypted cooki
 searchguard.cookie.secure: <true|false>
 ```
 
-If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receieves a cookie via unsecure HTTP, the cookie is discarded. This means the authenticated credentials are not stored and you are redirected to the login page again.
+If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receives a cookie via unsecure HTTP, the cookie is discarded. This means the authenticated credentials are not stored and you are redirected to the login page again.
 
 Either access Kibana with HTTPS instead of HTTP, or set:
 
@@ -139,7 +139,7 @@ elasticsearch.requestHeadersWhitelist: [ "...", "..." ]
 
 A common source of error is that a HTTP header required by the configured authentication module(s) is not whitelisted, and thus authentication fails. Since the header is just discarded by Kibana, you won't see any error message.
 
-By default, the whitelist includes the standardized `Authorization` header, but only if no other headers are configured. If you add any other header, for example `sgtenant`, make sure to add `Authorization` explicitely as well:
+By default, the whitelist includes the standardized `Authorization` header, but only if no other headers are configured. If you add any other header, for example `sgtenant`, make sure to add `Authorization` explicitly as well:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]

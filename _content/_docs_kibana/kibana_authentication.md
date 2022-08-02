@@ -17,7 +17,7 @@ Copyright 2020 floragunn GmbH
 
 Search Guard protects Kibana by adding authentication and authorization. You can use nearly all features that Search Guard provides for Elasticsearch also for Kibana.
 
-In addition, Search Guard adds multi-tenancy to Kibana which makes it prossible to store saved objects like dashboards and visualizations by tenant. Tenants can be configured per role.
+In addition, Search Guard adds multi-tenancy to Kibana which makes it possible to store saved objects like dashboards and visualizations by tenant. Tenants can be configured per role.
 
 ## Installation
 

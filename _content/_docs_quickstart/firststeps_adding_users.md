@@ -82,7 +82,7 @@ jdoe:
 
 You can also map the Search Guard role `SGS_KIBANA_USER` to the backend role `hr_department`. See the guide on [roles mapping](firststeps_rolesmapping.md) for more on this.
 
-Because we do not want to store any cleartext passsords anywhere, the password of the user must be hashed before we can add it to the configuration.
+Because we do not want to store any cleartext passwords anywhere, the password of the user must be hashed before we can add it to the configuration.
 
 Search Guard uses a BCrypt hash for the passwords, so you can use [any tool that is capable of producing a BCrypt hash](https://bcrypt-generator.com/).
 
