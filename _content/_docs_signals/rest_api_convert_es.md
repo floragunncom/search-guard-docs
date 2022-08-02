@@ -1,6 +1,6 @@
 ---
 title: Convert ES Watch
-html_title: Import Elastcsearch Watch
+html_title: Import Elasticsearch Watch
 permalink: elasticsearch-alerting-rest-api-convert-es
 category: signals-rest
 order: 710
