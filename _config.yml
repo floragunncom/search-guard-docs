@@ -316,9 +316,11 @@ algolia:
 
 eol:
   features:
-    - 7.11.0
+    - 7.10.2
+    - 7.16.2
+    - 7.17.x
   updates:
-    - 6.8.10
+    - n.a.
 
 sgversions:
   # esv |sgv |kbv |available| eol
