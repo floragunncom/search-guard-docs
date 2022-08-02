@@ -22,8 +22,6 @@ Copryight 2020 floragunn GmbH
 
 Welcome to Search Guard FLX, the next generation of Search Guard! 
 
-Please note that Search Guard FLX is a beta version, which might be not yet ready for use in production systems. It might have bugs. 
-
 ## What's New
 
 Search Guard FLX brings a number of fundamental improvements and updates to Search Guard. These require breaking changes in the configuration format.
