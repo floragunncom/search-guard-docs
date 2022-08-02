@@ -9,7 +9,7 @@ index: false
 description: Examples for sgctl command line tool
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using `sgctl` to Configure Search Guard

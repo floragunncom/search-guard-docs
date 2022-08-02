@@ -12,7 +12,7 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Advanced user mapping
 {: .no_toc}

@@ -9,7 +9,7 @@ layout: docs
 edition: community
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Guided Tour: Search Guard Basics
 {: .no_toc}

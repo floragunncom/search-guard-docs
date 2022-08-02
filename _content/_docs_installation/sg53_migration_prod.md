@@ -9,7 +9,7 @@ edition: community
 description: How to migrate older Kibana authentication configurations to sg_frontend_config.yml with minimal outage
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Production Cluster: Migrating from Search Guard 53 and before

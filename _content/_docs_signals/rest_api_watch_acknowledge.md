@@ -10,7 +10,7 @@ description: The Signals Alerting for Elasticsearch API provides an endpoint for
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Acknowledge Watch API
 {: .no_toc}

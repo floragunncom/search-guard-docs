@@ -10,7 +10,7 @@ index: false
 description: Use the powerful and easy-to-use sgctl command line tool to manage and configure  everything in Search Guard.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using sgctl to configure Search Guard

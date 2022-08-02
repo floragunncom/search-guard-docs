@@ -8,7 +8,7 @@ layout: docs
 description: How to migrate older authentication configurations to new configurations
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Feature Map: Legacy config to new-style config

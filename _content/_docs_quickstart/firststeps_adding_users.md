@@ -11,7 +11,7 @@ resources:
   - sgctl|Using sgctl (docs)  
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Adding Search Guard users

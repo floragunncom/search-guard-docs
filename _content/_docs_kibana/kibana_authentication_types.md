@@ -9,7 +9,7 @@ edition: community
 description: A list of all Kibana authentication types supported by Search Guard. Protect Kibana from any unauthorized access.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Kibana Authentication Types

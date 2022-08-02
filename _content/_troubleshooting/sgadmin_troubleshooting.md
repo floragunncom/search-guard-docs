@@ -7,7 +7,7 @@ layout: troubleshooting
 description: How to troubleshoot problems and issues with the Search Guard sgctl command line tool.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # sgctl Troubleshooting
 

@@ -9,7 +9,7 @@ edition: community
 description: How Signals Alerting for Elasticsearch works and how to use it for log file analysis and audit logging notifications
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # How Signals Alerting works
 {: .no_toc}

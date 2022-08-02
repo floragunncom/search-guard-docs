@@ -9,7 +9,7 @@ edition: community
 description: How to migrate older Search Guard authentication configurations to sg_authc.yml and sg_frontend_config.yml
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Quick Start: Migrating from Search Guard 53 and before

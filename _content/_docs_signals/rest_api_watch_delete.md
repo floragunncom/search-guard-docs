@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Delete Watch API to delete watches by their watch ID.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 
 # Delete Watch API

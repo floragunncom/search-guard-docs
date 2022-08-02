@@ -10,7 +10,7 @@ description:
 index: false
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Status and Logging
 {: .no_toc}

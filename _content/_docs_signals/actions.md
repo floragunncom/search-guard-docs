@@ -11,7 +11,7 @@ canonical: elasticsearch-alerting-actions-overview
 description: Actions are used to send notifications by Email or other services like Slack, PagerDuty JIRA or webhooks.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 
 # Actions

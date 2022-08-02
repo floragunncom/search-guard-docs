@@ -8,7 +8,7 @@ description: A list of the current Search Guard releases for all Elasticsearch 7
 index_algolia: false
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search Guard Versions
 

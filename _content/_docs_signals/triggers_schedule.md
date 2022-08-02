@@ -9,7 +9,7 @@ edition: community
 description: Configure how often an Alerting watch is executed that scans data in Elasticsearch for anomalies.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Schedule Triggers
 {: .no_toc}

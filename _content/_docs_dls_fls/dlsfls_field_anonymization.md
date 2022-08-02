@@ -9,7 +9,7 @@ edition: compliance
 description: How to anonymize fields in Elasticsearch documents by using hashes or regular expressions.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Field anonymization

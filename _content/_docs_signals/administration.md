@@ -9,7 +9,7 @@ edition: community
 description: How to configure and administer Signals Alerting for Elasticsearch and adapt it to your use cases.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Signals Administration
 {: .no_toc}

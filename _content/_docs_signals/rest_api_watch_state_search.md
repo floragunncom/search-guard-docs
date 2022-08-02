@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Search API to search for watch state documents
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search Watch State API
 {: .no_toc}

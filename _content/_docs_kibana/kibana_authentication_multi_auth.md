@@ -10,7 +10,7 @@ description: How to configure Kibana to use several authentication methods
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using Multiple Authentication Methods for Kibana

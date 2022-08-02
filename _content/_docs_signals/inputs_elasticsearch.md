@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting executes Elasticsearch queries and use the query result to check for anomalies.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search input
 {: .no_toc}

@@ -13,7 +13,7 @@ resources:
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH-->
+<!--- Copyright 2022 floragunn GmbH-->
 
 # Configuring roles and permissions
 {: .no_toc}

@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can pull in data from any REST H
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # HTTP input
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting uses the Elasticsearch Painless scripting language for transforming data.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Transformations
 {: .no_toc}

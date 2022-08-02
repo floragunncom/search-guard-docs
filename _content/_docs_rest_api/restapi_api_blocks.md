@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the Blocks REST API endpoints to create, edit and delete Search Guard blocks.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Blocks API

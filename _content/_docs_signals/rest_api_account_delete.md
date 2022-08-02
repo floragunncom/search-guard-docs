@@ -9,7 +9,7 @@ edition: community
 description: Use the Delete REST API endpoint to remove PagerDuty, Email, Slack and Webhook connectors by ID.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Delete Account
 {: .no_toc}

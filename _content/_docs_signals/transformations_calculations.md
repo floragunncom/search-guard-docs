@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch uses Painless scripting for perf
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Calculations
 {: .no_toc}

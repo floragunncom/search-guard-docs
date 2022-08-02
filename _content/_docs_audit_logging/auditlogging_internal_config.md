@@ -9,7 +9,7 @@ edition: compliance
 description: Track Search Guard configuration changes by using the advanced audit logging features.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard configuration change tracking

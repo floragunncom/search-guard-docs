@@ -9,7 +9,7 @@ edition: community
 description: A trigger specifies when and how often a watch for Elasticsearch Alerting i executed.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Triggers overview
 {: .no_toc}

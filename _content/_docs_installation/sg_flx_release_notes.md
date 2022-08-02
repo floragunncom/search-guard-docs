@@ -9,7 +9,7 @@ edition: community
 description: Search Guard FLX release notes
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard FLX release notes

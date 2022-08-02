@@ -10,7 +10,7 @@ description: How implement a custom TLS principal extractor for a Search Guard s
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Custom Principal Extractor

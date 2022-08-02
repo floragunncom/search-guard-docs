@@ -8,7 +8,7 @@ layout: troubleshooting
 description: How to troubleshoot problems with users and roles in an Search Guard secured Elasticsearch cluster.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # User and roles troubleshooting
 

@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Search REST API to search for configured watches
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search Watch API
 {: .no_toc}

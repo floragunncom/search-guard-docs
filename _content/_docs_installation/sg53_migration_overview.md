@@ -10,7 +10,7 @@ edition: community
 description: How to migrate older Search Guard authentication configurations 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Migrating from Search Guard 53 and before to Search Guard FLX

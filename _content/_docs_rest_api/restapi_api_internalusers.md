@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the users REST API endpoints to create, update and delete Search Guard users.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Internal Users API

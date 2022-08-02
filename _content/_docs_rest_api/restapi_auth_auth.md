@@ -10,7 +10,7 @@ description: How to use the Search Guard REST API to create, modify and change a
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 

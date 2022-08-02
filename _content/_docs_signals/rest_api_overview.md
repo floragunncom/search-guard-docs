@@ -9,7 +9,7 @@ edition: community
 description: Overview of the Alerting for Elasticsearch REST API for configuring watches, alerts and accounts.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # REST API
 {: .no_toc}

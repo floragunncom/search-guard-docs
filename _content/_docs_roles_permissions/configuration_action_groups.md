@@ -10,7 +10,7 @@ description: How to define and use Search Guard action groups for easy configura
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Permissions and action groups
 {: .no_toc}

@@ -8,7 +8,7 @@ showsearch: true
 isroot: true
 ---
 <!---
-Copryight 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 

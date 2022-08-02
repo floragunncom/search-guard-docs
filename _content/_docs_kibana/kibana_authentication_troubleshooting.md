@@ -9,7 +9,7 @@ edition: community
 description: What to do when things do not work as they are supposed to
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Kibana Authentication Troubleshooting

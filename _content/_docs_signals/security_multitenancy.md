@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting is fully compatible with Search Guard multi tenancy so you can separate watch access by tenants.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Multi tenancy
 {: .no_toc}

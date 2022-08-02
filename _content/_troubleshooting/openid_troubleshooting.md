@@ -7,7 +7,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot OpenID Connect issues in Elasticsearch and Kibana.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # OpenID troubleshooting
 

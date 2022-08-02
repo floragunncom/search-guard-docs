@@ -9,7 +9,7 @@ description: Creating API auth tokens for accessing Elasticsearch using Search G
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Creating API Auth Tokens with Search Guard

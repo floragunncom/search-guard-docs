@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the reserved and hidden flag to protect Search Guard resources from being overwritten.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Reserved and hidden resources

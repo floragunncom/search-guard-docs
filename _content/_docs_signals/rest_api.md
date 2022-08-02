@@ -11,7 +11,7 @@ canonical: elasticsearch-alerting-rest-api-overview
 description: Overview of the Elasticsearch Alerting REST API
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # REST API
 {: .no_toc}

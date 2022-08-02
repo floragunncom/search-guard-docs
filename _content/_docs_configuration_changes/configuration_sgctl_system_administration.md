@@ -9,7 +9,7 @@ description: sgctl offers some handy and powerful tools for administering a Sear
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # System administration

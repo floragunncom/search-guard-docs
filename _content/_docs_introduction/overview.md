@@ -15,7 +15,7 @@ resources:
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Security for Elasticsearch

@@ -9,7 +9,7 @@ edition: community
 description:  Use the Signals for Alerting API to retrieve PagerDuty, Email, Slack and Webhook connectors by ID.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Get Account API
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Get Watch API to retrieve a watch in JSON format.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Get Watch State API
 {: .no_toc}

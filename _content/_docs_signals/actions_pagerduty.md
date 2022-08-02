@@ -9,7 +9,7 @@ edition: enterprise
 description: How to create PagerDuty incidents from Signals Alerting for Elasticsearch if anomalies are detected.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # PagerDuty Actions
 {: .no_toc}

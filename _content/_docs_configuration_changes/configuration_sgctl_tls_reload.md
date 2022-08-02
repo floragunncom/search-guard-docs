@@ -9,7 +9,7 @@ edition: community
 description: How to use sgctl to reload TLS certificates on a running Elasticsearch cluster
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # TLS reload

@@ -8,7 +8,7 @@ edition: community
 description: How to use config variables to keep sensitive information like passwords separate from the Search Guard configuration.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Configuration variables
 {: .no_toc}

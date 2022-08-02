@@ -7,7 +7,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot Kibana issues with the Search Guard plugin.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Kibana troubleshooting
 

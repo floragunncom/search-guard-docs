@@ -9,7 +9,7 @@ edition: beta
 description: How to automatically convert an existing Elasticsearch Alerting watch to the Signals format and import it.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Convert Watch API
 {: .no_toc}

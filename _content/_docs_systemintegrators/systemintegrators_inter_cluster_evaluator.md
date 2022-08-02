@@ -10,7 +10,7 @@ description: How implement a custom inter-node traffic evaluator for Search Guar
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Custom inter-node traffic evaluator

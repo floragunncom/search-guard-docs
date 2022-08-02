@@ -11,7 +11,7 @@ canonical: triggers-overview
 description: How to create triggers for Signals Alerting for Elasticsearch that control the execution of watches
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Creating triggers for Elasticsearch watches
 {: .no_toc}

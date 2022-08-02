@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting for Elasticsearch ships with several sample watches that you can use for a quickstart or proof of concept.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Sample Watches
 {: .no_toc}

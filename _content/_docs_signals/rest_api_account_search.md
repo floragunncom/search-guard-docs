@@ -9,7 +9,7 @@ edition: community
 description: Use the Signals for Alerting Search Accounts REST API to search for email, PagerDuty, Slack and webhook accounts.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search Accounts
 {: .no_toc}

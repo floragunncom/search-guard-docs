@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can send notifications via email
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Email Action
 {: .no_toc}

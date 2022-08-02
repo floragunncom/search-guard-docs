@@ -11,7 +11,7 @@ description: Advanced authorization topics
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Permissions and action groups
 {: .no_toc}

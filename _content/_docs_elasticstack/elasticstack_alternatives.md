@@ -9,6 +9,6 @@ edition: community
 description: A list of free alternatives for the commercial X-Pack Elasticsearch plugins.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # X-Pack Alternatives

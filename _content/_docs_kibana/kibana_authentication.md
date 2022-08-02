@@ -10,7 +10,7 @@ edition: community
 description: Use the Search Guard Kibana plugin to add authentication and session management to Kibana.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Kibana authentication

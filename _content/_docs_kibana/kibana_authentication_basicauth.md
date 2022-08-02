@@ -9,7 +9,7 @@ edition: community
 description: How to configure Kibana for Username/password based authentication. Secure Kibana access with a login screen.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Password-based authentication for Kibana

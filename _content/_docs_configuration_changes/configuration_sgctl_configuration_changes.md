@@ -9,7 +9,7 @@ edition: community
 description: How to use sgctl to connect to an Elasticsearch cluster and upload configuration changes
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Configuration changes

@@ -7,7 +7,7 @@ layout: troubleshooting
 description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML issues
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # SAML troubleshooting
 

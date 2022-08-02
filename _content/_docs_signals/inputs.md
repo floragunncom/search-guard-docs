@@ -11,7 +11,7 @@ canonical: elasticsearch-alerting-inputs-overview
 description: Signals Alerting for Elasticsearch offers multiple data inputs like Elasticsearch queries and HTTP endpoints.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Inputs
 {: .no_toc}

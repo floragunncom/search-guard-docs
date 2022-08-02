@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Get Watch API to retrieve configured watches by watch ID
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Get Watch API
 {: .no_toc}

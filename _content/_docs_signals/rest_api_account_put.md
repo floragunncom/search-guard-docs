@@ -9,7 +9,7 @@ edition: community
 description: Use the Signals for Alerting API to create PagerDuty, Email, Slack and Webhook connectors.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Put Account API
 {: .no_toc}

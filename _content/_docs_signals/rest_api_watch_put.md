@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Put Watch API to create new watches in JSON format.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Put Watch API
 {: .no_toc}
