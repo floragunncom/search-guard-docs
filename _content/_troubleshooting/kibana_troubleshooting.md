@@ -214,24 +214,4 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-
 
 If you do not specify any index in the timelion query, it will simply use a wildcard ('*') for the index name. If the currently logged in user does not have READ permission on all indices, a security exception is displayed.
 
-### Enable the "do not fail on forbidden" mode
-
-Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
-
-```
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    kibana:
-      do_not_fail_on_forbidden: true
-      ...
-```
-
-With this mode enabled Search Guard filters all indices from a query a user does not have access to and not security exception is raised.
-
-**Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
 
