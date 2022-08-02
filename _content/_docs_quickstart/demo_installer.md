@@ -146,7 +146,7 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
   - [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
   - [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
   
-- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_config.yml`.
+- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
 - For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 - If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
 - And if you need to support multiple tenants in Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.

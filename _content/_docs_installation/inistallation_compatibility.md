@@ -36,7 +36,6 @@ The following plugins and tools have been tested for compatibility with Search G
 * [X-Pack Alerting](https://www.elastic.co/guide/en/x-pack/current/xpack-alerting.html){:target="_blank"}
 * [X-Pack Machine Learning](https://www.elastic.co/guide/en/x-pack/current/xpack-ml.html){:target="_blank"}
 * [ElastAlert](https://github.com/Yelp/elastalert){:target="_blank"}
-* [Curator](https://github.com/elastic/curator){:target="_blank"}
 * [Kibi](https://siren.solutions/kibi/){:target="_blank"}
 * [syslog-ng](https://syslog-ng.org/){:target="_blank"}
 * Kopf / [Cerebro](https://github.com/lmenezes/cerebro){:target="_blank"}

@@ -55,7 +55,7 @@ The following attributes are logged for all event categories, independent of the
 | Name | Description |
 |---|---|
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_config.yml`. E.g. "ldap", "jwt" |  
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |  
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
 | audit\_rest\_request\_path | The REST endpoint URI |
@@ -125,7 +125,7 @@ The following attributes are logged for all event categories, independent of the
 | audit\_trace\_task\_id | The ID of this request |
 | audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_config.yml`. E.g. "ldap", "jwt" |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
 | audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
@@ -143,7 +143,7 @@ The following attributes are logged for all event categories, independent of the
 | audit\_trace\_task\_parent\_id | The parent ID of this request, if any. Optional. |
 | audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_config.yml`. E.g. "ldap", "jwt" |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
 | audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
@@ -162,7 +162,7 @@ The following attributes are logged for all event categories, independent of the
 | audit\_trace\_task\_parent\_id | The parent ID of this request, if any. Optional. |
 | audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_config.yml`. E.g. "ldap", "jwt" |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
 | audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |
@@ -233,7 +233,7 @@ The following attributes are logged for all event categories, independent of the
 | audit\_trace\_task\_id | The ID of this request |
 | audit\_transport\_headers | The headers of the request, if any. Optional. |
 | audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_config.yml`. E.g. "ldap", "jwt" |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |
 | audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
 | audit\_transport\_request\_type | The type of request, e.g. `IndexRequest`, `SearchRequest` |

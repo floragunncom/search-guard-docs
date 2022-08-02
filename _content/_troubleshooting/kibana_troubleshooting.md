@@ -150,7 +150,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `kibana.yml`.
 
 #### JWT: Token in HTTP header
-For JWT, add the HTTP header you configured in the JWT section of `sg_config.yml` to the header whitelist. For example, if you configured the header like:
+For JWT, add the HTTP header you configured in the JWT section of `sg_authc.yml` to the header whitelist. For example, if you configured the header like:
 
 ```yaml
 jwt_auth_domain:
@@ -189,7 +189,7 @@ Next, make sure the HTTP header is whitelisted:
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "jwtheader", "sgtenant" ]
 ```
 
-Last, configure the HTTP header in the JWT section of `sg_config.yml`:
+Last, configure the HTTP header in the JWT section of `sg_authc.yml`:
 
 ```yaml
 jwt_auth_domain:

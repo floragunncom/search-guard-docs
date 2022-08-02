@@ -16,14 +16,12 @@ description: Signals Alerting is fully compatible with Search Guard multi tenanc
 
 {% include toc.md %}
 
-Signals is fully compatible with Search Guard multi tenancy. To use multi tenancy with Signals, make sure it is enabled in sg_config.yml first:
+Signals is fully compatible with Search Guard multi tenancy. To use multi tenancy with Signals, make sure it is enabled in sg_frontend_multi_tenancy.yml first:
 
 ```yaml
-sg_config:
-  dynamic:
-    do_not_fail_on_forbidden: true 
-    kibana:
-      multitenancy_enabled: true
+enabled: true
+index: ".kibana"
+server_user: "kibanaserver"
 ```
 
 ## How it works

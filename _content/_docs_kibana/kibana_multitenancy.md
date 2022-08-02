@@ -146,20 +146,20 @@ In addition, Kibana requires you to whitelist all HTTP headers that should be pa
 elasticsearch.requestHeadersWhitelist: ["sgtenant", "Authorization", ...]
 ```
 
-Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
+Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
 
 Kibana server user:
 
 ```yaml
 kibana.yml: elasticsearch.username
-sg_config: searchguard.dynamic.kibana.server_username
+sg_frontend_multi_tenancy.yml: server_user
 ```
 
 Kibana index name:
 
 ```yaml
 kibana.yml: kibana.index
-sg_config: searchguard.dynamic.kibana.index
+sg_frontend_multi_tenancy.yml: index
 ```
 
 ### Kibana: Tenant Configuration
