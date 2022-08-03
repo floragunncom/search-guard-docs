@@ -49,19 +49,19 @@ The settings relating to Kibana multi tenancy have been moved to `sg_frontend_mu
 
 ### `authc`
 
-The authentication domain settings have been combined with the authorization domains and moved to `sg_authc.yml` and `sg_authc_transport.yml`. If you do not use the transport client, you will not need `sg_authc_transport.yml`.  Settings for authentication modes which are specific to Kibana (such as OIDC and SAML) have been moved to `sg_frontend_authc.yml`. 
+The authentication domain settings have been combined with the authorization domains and moved to `sg_authc.yml`.  Settings for authentication modes which are specific to Kibana (such as OIDC and SAML) have been moved to `sg_frontend_authc.yml`. 
 
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`http_enabled` | Property `enabled` of an auth domain in `sg_authc.yml` |  |
-|`transport_enabled` | Property `enabled` of an auth domain in `sg_authc_transport.yml` |  |
+|`transport_enabled` | |  |
 |`order` | No longer necessary | The order of authentication domains is now specified using the natural order of the entries in the config file |
-|`skip_users` | Property `users.skip` of an auth domain in `sg_authc.yml` or  `sg_authc_transport.yml` |  |
-|`enabled_only_for_ips` | Property `ips.accept` of an auth domain in `sg_authc.yml` or  `sg_authc_transport.yml` |  |
+|`skip_users` | Property `users.skip` of an auth domain in `sg_authc.yml` |  |
+|`enabled_only_for_ips` | Property `ips.accept` of an auth domain in `sg_authc.yml` |  |
 |`http_authenticator.type` | First part of the `type` property of an auth domain in `sg_authc.yml` |  |
 |`http_authenticator.challenge` | No longer necessary | Search Guard will combine challenges if necessary |
 |`http_authenticator.config` | The new property is named after the type of the authentication frontend |  |
-|`authentication_backend.type` | Second part of the `type` property of an auth domain in `sg_authc.yml`. For `sg_authc_transport.yml`, this is the only part | If the `type` was `noop`, this can be now omitted. |
+|`authentication_backend.type` | Second part of the `type` property of an auth domain in `sg_authc.yml`. | If the `type` was `noop`, this can be now omitted. |
 |`authentication_backend.config` | The new property is named after the type of the authentication backend |  |
 
 
@@ -246,7 +246,7 @@ The functionality provided by the `ldap` authorization backend can be now used i
 
 | Legacy Config | New Config | Details |
 |---|---|---|
-|`searchguard.cache.ttl_minutes` | Property `user_cache.expire_after_write` in `sg_authc.yml` and `sg_authc_transport.yml` | The new property requires the specification of a temporal unit after the amount. To specify 10 minutes, write `10m` |
+|`searchguard.cache.ttl_minutes` | Property `user_cache.expire_after_write` in `sg_authc.yml` | The new property requires the specification of a temporal unit after the amount. To specify 10 minutes, write `10m` |
 |`searchguard.dfm_empty_overrides_all` | none | The setting has been removed. Search Guard now always behave like it is set to true. |
 
 ## `kibana.yml`
