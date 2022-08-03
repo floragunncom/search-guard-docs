@@ -22,7 +22,7 @@ You can fully customize the login page to adapt it to your needs. Per default, t
 kibana_customize_login.jpg" style="width: 40%" class="md_image"/>
 </p>
 
-You can use `sg_frontend_config` to customize the login page. Such a configuration can look like this:
+You can use `sg_frontend_authc` to customize the login page. Such a configuration can look like this:
 
 ```yaml
 default:

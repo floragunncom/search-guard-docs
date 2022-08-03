@@ -24,7 +24,7 @@ There are two approaches to this:
 
 ## Several Authentication Methods in one Kibana Instance
 
-Configuring more than one authentication method for Kibana is straight forward: The  `sg_frontend_config.yml` configuration allows to configure more than one login method at once. 
+Configuring more than one authentication method for Kibana is straight forward: The  `sg_frontend_authc.yml` configuration allows to configure more than one login method at once. 
 
 This might then look like this:
 
@@ -70,10 +70,10 @@ another_instance:
 On the Kibana instance, which is supposed to use SAML authentication, edit the file `config/kibana.yml` and add this line:
 
 ```yaml
-searchguard.sg_frontend_config_id: another_instance
+searchguard.sg_frontend_authc_id: another_instance
 ```
 
-This makes the Kibana instance use the configuration entry `another_instance` in  `sg_frontend_config.yml`.
+This makes the Kibana instance use the configuration entry `another_instance` in  `sg_frontend_authc.yml`.
 
-In order to activate the changes, do not forget to upload `sg_frontend_config.yml` and restart the particular Kibana instance afterwards. 
+In order to activate the changes, do not forget to upload `sg_frontend_authc.yml` and restart the particular Kibana instance afterwards. 
 

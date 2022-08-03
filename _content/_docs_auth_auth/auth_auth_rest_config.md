@@ -21,7 +21,7 @@ Copyright 2022 floragunn GmbH
 
 The main configuration file for authentication is `sg_authc.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user information is fetched from backend systems (optional).
 
-The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to Elasticsearch and for password-based authentication in Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
+The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to Elasticsearch and for password-based authentication in Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Kibana like OIDC or SAML can be configured in `sg_frontend_authc.yml`. 
 
 ## Basics
 
