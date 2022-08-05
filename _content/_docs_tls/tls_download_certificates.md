@@ -79,25 +79,11 @@ The demo certificates contain an admin TLS certificate which you can use to run 
 	</ul>	
 </div>
 
-To execute sgctl with the `kirk` admin certificate, execute:
+To execute the `sgctl` command with the `kirk` admin certificate, execute:
 
 ```
 ./sgctl.sh update-config --ca-cert root-ca.pem --cert kirk.pem --key kirk-key.pem /path/to/config/
 ```
-
-or create a sgctl configuration file `~/.searchguard/my_cluster.yml`
-
-```
-server: "localhost"
-port: 9200
-tls:
-  trusted_cas: "#{file:/path/to/root-ca.pem}"
-  client_auth:
-    certificate: "#{file:/path/to/kirk.pem}"
-    private_key: "#{file:/path/to/kirk-key.pem}"
-```
-
-and use this with sgctl
 
 ## File contents
 
