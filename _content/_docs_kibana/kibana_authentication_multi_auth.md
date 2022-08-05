@@ -70,7 +70,7 @@ another_instance:
 On the Kibana instance, which is supposed to use SAML authentication, edit the file `config/kibana.yml` and add this line:
 
 ```yaml
-searchguard.sg_frontend_authc_id: another_instance
+searchguard.sg_frontend_config_id: another_instance
 ```
 
 This makes the Kibana instance use the configuration entry `another_instance` in  `sg_frontend_authc.yml`.
