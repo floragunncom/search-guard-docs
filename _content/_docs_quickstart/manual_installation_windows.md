@@ -9,7 +9,7 @@ edition: community
 description: How to download and install Search Guard and all required TLS certificates on a Windows machine. 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search Guard Manual Installation 
 {: .no_toc}
@@ -33,7 +33,7 @@ If you don't have them yet, you need to download a couple of software components
 
 <table>
 <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
+<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
 </table>
 
 **Note:** Kibana is optional. You can also just install the backend partElasticsearch.
@@ -217,7 +217,7 @@ After that, configure roles and access permissions by either modifying the confi
 * [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
 * [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
 
-If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
+If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
 
 For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 

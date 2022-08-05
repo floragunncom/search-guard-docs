@@ -9,7 +9,7 @@ edition: community
 description: Configure how often an Alerting watch is executed that scans data in Elasticsearch for anomalies.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Schedule Triggers
 {: .no_toc}
@@ -238,7 +238,7 @@ This trigger will fire on Thursday at 2pm and on Friday at 5pm.
 
 ## Interval triggers
 
-Interval triggers define their schedul by configuring a time interval. The interval can be specified in seconds, minutes, hours, days or weeks:
+Interval triggers define their schedule by configuring a time interval. The interval can be specified in seconds, minutes, hours, days or weeks:
 
 * [n]s - fires every n seconds
 * [n]m - fires every n minutes

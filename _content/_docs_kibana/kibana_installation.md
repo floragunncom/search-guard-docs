@@ -6,10 +6,10 @@ category: kibana
 order: 100
 layout: docs
 edition: community
-description: How to install the Search Guard Kibana plugin which adds authentication, multi-tenany and the configuration UI.
+description: How to install the Search Guard Kibana plugin which adds authentication, multi-tenancy and the configuration UI.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Installing the Search Guard Kibana plugin
@@ -39,7 +39,7 @@ xpack.security.enabled: false
 
 * Download the [Search Guard Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Kibana version from Maven
 * Stop Kibana
-* cd into your Kibana installaton directory
+* cd into your Kibana installation directory
 * Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip`
 
 After the plugin has been installed, Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Kibana internal process required for each installed plugin and cannot be skipped.
@@ -48,7 +48,7 @@ After the plugin has been installed, Kibana will run the optimization process. D
 
 For management calls to Elasticsearch, such as setting the index pattern, saving and retrieving visualizations and dashboards, etc., Kibana uses a service user, called the **Kibana server user**.
 
-This user needs certain privileges for the Kibana index. When using the sample users and roles that ship with Search Guard, you can use the preconfigured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
+This user needs certain privileges for the Kibana index. When using the sample users and roles that ship with Search Guard, you can use the pre-configured `kibanaserver` user. If you want to set up your own user, please see chapter "Configuring Elasticsearch" below.
 
 The username and password for the Kibana server user can be configured in `kibana.yml` by setting:
 

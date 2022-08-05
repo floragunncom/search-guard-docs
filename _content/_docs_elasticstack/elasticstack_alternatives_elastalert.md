@@ -7,7 +7,7 @@ layout: docs
 description: How to configure and use Search Guard and ElastAlert for Elasticsearch as an alternative to X-Pack.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Using Search Guard with ElastAlert for Elasticsearch
 {: .no_toc}
@@ -85,7 +85,7 @@ writeback_index: elastalert_status
 |es_port| String, HTTP(S) port of your Elasticsearch node |
 |use_ssl| Boolean, if set to true, ElastAlert will connect via HTTPS, if set to false HTTP is used |
 |verify_certs| Boolean, whether to verify the certificate used by Elasticsearch/Search Guard or not. If you use self-signed certificates, you need to either set this to false, or configure the Root CA via the `ca_certs` configuration key. If certificate validation is disabled and self-signed certificates are used, you will see several warning messages in the ElastALert logs. |
-|ca_certs| String, path to the Root certificate (and intermediate certificates if any) in PEM format. If verify_certs is set to true, and you use self-sgned certificates, this entry is mandatory.|
+|ca_certs| String, path to the Root certificate (and intermediate certificates if any) in PEM format. If verify_certs is set to true, and you use self-signed certificates, this entry is mandatory.|
 |es_username| String, the username that ElastAlert uses when connecting to Elasticsearch |
 |es_password| String, the password that ElastAlert uses when connecting to Elasticsearch |
 |writeback_index| String, the name of the index in which ElastAlert will store data |

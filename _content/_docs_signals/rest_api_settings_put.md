@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Put Settings API to update the Signals Settings
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Put Settings API
 {: .no_toc}

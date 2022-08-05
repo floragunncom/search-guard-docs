@@ -15,7 +15,7 @@ resources:
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Security for Elasticsearch
@@ -30,11 +30,23 @@ Access Control (RBAC) to Elasticsearch indices, Document- and Field-level securi
 
 Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in Elasticsearch, including Kibana, Logstash and Beats.
 
-Search Guard comes in three flavours:
+Search Guard comes in two variants and three editions:
+### Search Guard variants
 
-* Free Community Edition
-* Enterprise Edition
-* Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX
+* Search Guard (Classic)
+  * Search Guard like you know it as of yet
+  * Bugfixes only, no new features
++ Search Guard FLX (pronounced as FLEX)
+  * Next generation Search Guard
+  * Lots of enhancements
+  * Our recommended solution to secure Elasticsearch
+
+### Search Guard editions
+
+* Free Community Edition (Apache 2 licensed, open source and free of charge)
+* Enterprise Edition (requires license)
+* Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX (requires license)
+
 
 ## TLS Encryption 
 
@@ -97,7 +109,7 @@ several levels. This includes
 * Read-access to documents
 * Write-access to documents including the changes in JSON patch format
 
-The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regualations like GDPR, PCI, SOX or HIPAA.
+The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regulations like GDPR, PCI, SOX or HIPAA.
 
 ## Alerting - Anomaly detection for your data
 

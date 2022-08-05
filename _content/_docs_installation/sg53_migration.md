@@ -6,10 +6,10 @@ category: kibana-authentication-migration-overview
 order: 100
 layout: docs
 edition: community
-description: How to migrate older Kibana authentication configurations to sg_frontend_config.yml
+description: How to migrate older Kibana authentication configurations to sg_frontend_authc.yml
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Migrating from Search Guard 53 and before

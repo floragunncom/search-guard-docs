@@ -11,7 +11,7 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Search Guard Community Edition
 {: .no_toc}
@@ -34,7 +34,7 @@ Setting this flag will disable any commercial module or custom authentication do
 
 ## Feature Comparison
 
-For a feature comparison between the Complince, Enterprise and Community Edition please refer to [the feature comparison matrix on our website](https://search-guard.com/licensing/){:target="_blank"}.
+For a feature comparison between the Compliance, Enterprise and Community Edition please refer to [the feature comparison matrix on our website](https://search-guard.com/licensing/){:target="_blank"}.
 
 ## HTTP License endpoint
 

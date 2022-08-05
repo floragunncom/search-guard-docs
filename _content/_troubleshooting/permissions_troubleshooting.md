@@ -8,7 +8,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot issues with Search Guard roles and permissions.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Roles and permissions troubleshooting
 
@@ -174,24 +174,4 @@ Search Guard will resolve any wildcard or index alias to the concrete, underlyin
 curl ... -XGET "https://sgssl-0.example.com:9200/logstash-*/_search"
 ```
 
-In the log statement, you can see that Search Guard has expanded `logstash-*` to `logstash-2018.05.18`, `logstash-2018.05.19` and `logstash-2018.05.20`. 
-
-By default, Search Guard requires the user to have the required permission(s) for all concrete indices. If the user lacks permissions for one of the indices, the request will fail with a security exception.
-
-## Only return data from allowed indices
-
-If you want Search Guard to return only data from allowed indices, and discard the security exceptions for the other ones, set do\_not\_fail\_on\_forbidden to true in sg_config.yml:
-
-```
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    kibana:
-      do_not_fail_on_forbidden: true
-```
-
-This is the recommended setting when using Kibana.
+In the log statement, you can see that Search Guard has expanded `logstash-*` to `logstash-2018.05.18`, `logstash-2018.05.19` and `logstash-2018.05.20`.

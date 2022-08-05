@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can write data back to an Elasti
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Index Action
 {: .no_toc}

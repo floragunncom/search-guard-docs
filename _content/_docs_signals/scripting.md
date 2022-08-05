@@ -9,7 +9,7 @@ edition: community
 description: 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Scripting in Signals
 {: .no_toc}

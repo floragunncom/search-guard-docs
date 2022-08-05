@@ -9,7 +9,7 @@ edition: community
 description: How Signals Alerting for Elasticsearch works and how to use it for log file analysis and audit logging notifications
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # How Signals Alerting works
 {: .no_toc}
@@ -145,7 +145,7 @@ The checks of a watch subsequently modify the runtime data. If action-specific c
   "actions": [
     {
       "type": "slack",
-      "name": "slack_notifcation",
+      "name": "slack_notification",
       "throttle_period": "10m",
       "channel": "#warnings",
       "text": "Average flight ticket price decreased to {{data.avg_ticket_price.aggregations.when.value}} over last {{data.constants.window}}"

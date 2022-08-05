@@ -8,7 +8,7 @@ edition: community
 description: How to use Search Guard anonymous authentication to assign default permissions if a user is not authenticated.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Anonymous authentication
@@ -93,7 +93,7 @@ auth_domains:
 - type: anonymous
   accept.ips: "172.10.1.0/24"
   user_mapping.user_name.from: request.originating_ip_address
-  user_mapping.roles.static: anon_role_evelated_rights
+  user_mapping.roles.static: anon_role_elevated_rights
 ```
 
 

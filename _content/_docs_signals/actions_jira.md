@@ -9,7 +9,7 @@ edition: enterprise
 description: How to create JIRA issues directly from Signals Alerting if anomalies are detected.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Jira Actions
 {: .no_toc}

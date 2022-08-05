@@ -9,7 +9,7 @@ edition: community
 description: Control access to the snapshot and restore features of Elasticsearch by using Search Guard.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Snapshot and restore
 {: .no_toc}
@@ -26,7 +26,7 @@ In order to perform snapshot and restore operations, the user must be assigned t
 
 A snapshot can only be restored if it does not contain global state and it does not contain the 'searchguard' index. 
 
-In order to restore indices from a snapshot that does contain global state, you need to exclude it when performing the restore. If your snapshot also contains the Search Guard index, list the indices to restore explicitely:
+In order to restore indices from a snapshot that does contain global state, you need to exclude it when performing the restore. If your snapshot also contains the Search Guard index, list the indices to restore explicitly:
 
 ```json
 POST /_snapshot/my_backup/snapshot_1/_restore

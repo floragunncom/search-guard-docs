@@ -9,7 +9,7 @@ edition: enterprise
 description: How to perform REST API bulk requests
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # REST API - Bulk Requests

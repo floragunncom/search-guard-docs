@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can send notifications to Slack 
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Slack Action
 {: .no_toc}

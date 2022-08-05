@@ -9,7 +9,7 @@ edition: community
 description: These endpoints can be used to activate and deactivate the execution of all watches configured for a Signals tenant.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Activate/Deactivate Watches by Tenant API
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: enterprise
 description: How to store audit events in Elasticsearch, external SIEM or monitoring systems, or a custom storage.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Configuring storage types
@@ -224,7 +224,7 @@ All events are logged asynchronously, so the overall performance of our cluster 
 searchguard.audit.threadpool.size: <integer>
 ```
 
-The default setting is `10`. Setting this value to `0` disables the thread pool completey, and the events are logged synchronously. 
+The default setting is `10`. Setting this value to `0` disables the thread pool completely, and the events are logged synchronously. 
 
 The maximum queue length per thread can also be configured:
 

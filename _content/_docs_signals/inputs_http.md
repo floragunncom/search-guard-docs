@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can pull in data from any REST H
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # HTTP input
 {: .no_toc}
@@ -153,7 +153,7 @@ A TLS configuration might look like this:
 }
 ```
 
-**tls.trusted_certs:** An array of certificats in PEM format. If you only have one cert, you can also specify it directly as string without an array. Optional.
+**tls.trusted_certs:** An array of certificates in PEM format. If you only have one cert, you can also specify it directly as string without an array. Optional.
 
 **tls.client_auth:** If you want to use TLS client certificate authentication, you have to specify the certificate, its private key and the password for the private key here. Optional.
 

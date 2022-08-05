@@ -8,7 +8,7 @@ edition: community
 description: How to configure Search Guard to integrate with the X-Pack Machine Learning for Elasticsearch
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Using Search Guard with X-Pack Machine Learning
 {: .no_toc}
@@ -31,7 +31,7 @@ xpack.ml.enabled: true
 
 ## Elasticsearch: Add the machine learning user
 
-For using  X-Pack Machine learning, the respective user must have the built-in `SGS_XP_MACHINE_LEARNINGG` and `SGS_KIBANA_USER` role assigned.
+For using  X-Pack Machine learning, the respective user must have the built-in `SGS_XP_MACHINE_LEARNING` and `SGS_KIBANA_USER` role assigned.
 
 ## Kibana: Enable X-Pack Machine Learning
 

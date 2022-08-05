@@ -9,7 +9,7 @@ edition: community
 description: A static input can be used to define global constant values that can be used anywhere in the Alerting execution chain
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Static inputs
 {: .no_toc}

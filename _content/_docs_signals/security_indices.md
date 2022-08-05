@@ -6,10 +6,10 @@ category: security
 order: 50
 layout: docs
 edition: community
-description: How Signals for Elasticsearch uses a protected confguration index to protect sensitive data
+description: How Signals for Elasticsearch uses a protected configuration index to protect sensitive data
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Signals Indices
 {: .no_toc}

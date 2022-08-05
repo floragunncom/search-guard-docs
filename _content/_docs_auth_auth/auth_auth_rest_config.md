@@ -12,7 +12,7 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Introduction to `sg_authc.yml`
 {: .no_toc}
@@ -21,7 +21,7 @@ Copyright 2020 floragunn GmbH
 
 The main configuration file for authentication is `sg_authc.yml`. It defines how Search Guard retrieves the user credentials, how it verifies these credentials, and how additional user information is fetched from backend systems (optional).
 
-The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to Elasticsearch and for password-based authentication in Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Kibana like OIDC or SAML can be configured in `sg_frontend_config.yml`. 
+The authentication domains configured in `sg_authc.yml` are used for authenticating REST requests to Elasticsearch and for password-based authentication in Kibana. Authentication for the transport client is configured in the additional configuration file `sg_authc_transport.yml`. Advanced authentication for Kibana like OIDC or SAML can be configured in `sg_frontend_authc.yml`. 
 
 ## Basics
 
@@ -36,7 +36,7 @@ This way, you configure Search Guard to expect credentials by Basic HTTP authent
 
 Thus, the `type` attribute defines a two-dimensional value: The part in front of the slash - `basic` in the example - identifies the HTTP authentication frontend. It is responsible for retrieving credentials from the request. The part after the slash is the authentication backend. It is responsible for validating the extracted credentials using a backend system. 
 
-**Note:** The authentication backend is optional. In some cases - like signature-based credentials - the authentication frontend is sufficient to securly authenticate a user. Then, you can just omit the second part of the `type` attribute.
+**Note:** The authentication backend is optional. In some cases - like signature-based credentials - the authentication frontend is sufficient to securely authenticate a user. Then, you can just omit the second part of the `type` attribute.
 
 A more evolved `sg_authc.yml` file may look like this:
 
@@ -73,7 +73,7 @@ auth_domains:
   jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
 ```
 
-You can also use the `sgctl` command to set the flag directly on the cluster wihout having edit files:
+You can also use the `sgctl` command to set the flag directly on the cluster without having edit files:
 
 ```
 $ ./sgctl.sh set authc debug --true

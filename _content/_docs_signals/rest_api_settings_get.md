@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Get Settings API to retrieve the current Signals configuration
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Get Settings API
 {: .no_toc}

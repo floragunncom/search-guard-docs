@@ -35,7 +35,7 @@ Returns the currently installed license in JSON format.
 PUT /_searchguard/api/license/
 ```
 
-Validates and replaces the currently active Search Guard license. Invalid (e.g. expired) licensens are rejected.
+Validates and replaces the currently active Search Guard license. Invalid (e.g. expired) licenses are rejected.
 
 ```json
 PUT /_searchguard/api/license/

@@ -10,7 +10,7 @@ description:
 index: false
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Transformations and Calculations
 {: .no_toc}

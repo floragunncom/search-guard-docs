@@ -9,7 +9,7 @@ description: How to generate TLS certificates by using the demo installation scr
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using the Search Guard demo installer
@@ -27,7 +27,7 @@ To execute the demo installation:
 * ``cd`` into `<Elasticsearch directory>/plugins/search-guard-flx/tools`
 * Execute ``./install_demo_configuration.sh``(``chmod`` the script first if necessary.)
 
-The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuaration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
+The demo installer will ask if you would like to install the demo certificates, if the Search Guard configuration should be automatically initialized and if cluster mode should be enabled. Answer as follows:
 
 ```bash
 Search Guard FLX Demo Installer
@@ -55,7 +55,7 @@ The demo installer will place the following files in the `config` directory of y
 			<span class="file-tree-description">the private key for the node certificate</span>
 		</li>
 		<li class="is-file contains-items">kirk.pem
-			<span class="file-tree-description">the admin certificate, allows full access to the cluster and can be used with sgadmin and the REST management API</span>
+			<span class="file-tree-description">the admin certificate, allows full access to the cluster and can be used with sgctl and the REST management API</span>
 		</li>
 		<li class="is-file contains-items">kirk-key.pem
 			<span class="file-tree-description">the private key for the admin certificate</span>
@@ -66,7 +66,7 @@ The demo installer will place the following files in the `config` directory of y
 
 ## Allow demo certificate usage
 
-Since the demo certificates are unsafe to use on a production cluster, you must explicitely allow their usage by adding the following line to elasticsearch.yml:
+Since the demo certificates are unsafe to use on a production cluster, you must explicitly allow their usage by adding the following line to elasticsearch.yml:
 
 ```
 searchguard.allow_unsafe_democertificates: true

@@ -6,10 +6,10 @@ category: kibana-authentication-migration-overview
 order: 300
 layout: docs
 edition: community
-description: How to migrate older Kibana authentication configurations to sg_frontend_config.yml with minimal outage
+description: How to migrate older Kibana authentication configurations to sg_frontend_authc.yml with minimal outage
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Production Cluster: Migrating from Search Guard 53 and before
@@ -46,7 +46,7 @@ Open a shell and perform the following steps:
 To execute the update, follow this process:
 
 - Perform a rolling update of the Search Guard Elasticsearch plugin.
-- Use `sgctl` to upload the `sg_frontend_config.yml` file produced by `sgctl`. 
+- Use `sgctl` to upload the `sg_frontend_authc.yml` file produced by `sgctl`. 
 - Perform an update of the Search Guard Kibana plugin. Also, copy the new `kibana.yml` file to the `config` directory of the Kibana installation.
 - Restart the Kibana instance.
 - Now also upload the other generated files (`sg_authc.yml`, and possibly `sg_authz.yml`, `sg_frontend_multi_tenancy.yml`, `sg_auth_token_service.yml`, `sg_license_key.yml`) file using `sgctl`.

@@ -10,7 +10,7 @@ description: Understanding how Search Guard performs privilege evaluation at run
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Runtime index privilege evaluation
 {: .no_toc}

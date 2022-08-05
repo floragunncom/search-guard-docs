@@ -9,7 +9,7 @@ edition: community
 description: Understanding the security execution context of Signals Alerting for Elasticsearch
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Security execution context
 {: .no_toc}

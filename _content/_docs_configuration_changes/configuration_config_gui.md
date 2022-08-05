@@ -9,7 +9,7 @@ edition: enterprise
 description: Use the Kibana configuration GUI to quickly and easily setup and configure Search Guard.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using the Search Guard configuration GUI
@@ -101,7 +101,7 @@ If a resource is reserved, it is marked underneath the resource name. You cannot
 </p>
 
 
-If you want to mark or unmark a resource, you need to change the readonly flag in the respective configuration YAML file and upload the changes via `sgadmin`. Example:
+If you want to mark or unmark a resource, you need to change the readonly flag in the respective configuration YAML file and upload the changes via `sgctl`. Example:
 
 ```
 sg_kibana_server:
@@ -161,7 +161,7 @@ For Fiel-Level-Security you can list the fields, and specify if they should be i
 
 ### Tenants
 
-The "Tenants" tab on the edit roles screen allows you to add and remove tenants for any role. You can define whether the role should have read/write acess or read-only access to the tenant:
+The "Tenants" tab on the edit roles screen allows you to add and remove tenants for any role. You can define whether the role should have read/write access or read-only access to the tenant:
 
 <p align="center">
 <img src="kibana_gui_tenants.png" style="width: 70%" class="md_image"/>

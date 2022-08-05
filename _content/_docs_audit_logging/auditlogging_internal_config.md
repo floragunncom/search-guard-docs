@@ -9,7 +9,7 @@ edition: compliance
 description: Track Search Guard configuration changes by using the advanced audit logging features.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard configuration change tracking
@@ -116,7 +116,7 @@ Since the JSON object is stored as String, the quotation marks are escaped in th
 | Name | Description |
 |---|---|
 | audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
-| audit\_request\_remote\_address | The adress where the request came from.  |
+| audit\_request\_remote\_address | The address where the request came from.  |
 {: .config-table}
 
 ### User attributes

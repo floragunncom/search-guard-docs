@@ -9,21 +9,19 @@ edition: community
 description: Signals Alerting is fully compatible with Search Guard multi tenancy so you can separate watch access by tenants.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Multi tenancy
 {: .no_toc}
 
 {% include toc.md %}
 
-Signals is fully compatible with Search Guard multi tenancy. To use multi tenancy with Signals, make sure it is enabled in sg_config.yml first:
+Signals is fully compatible with Search Guard multi tenancy. To use multi tenancy with Signals, make sure it is enabled in sg_frontend_multi_tenancy.yml first:
 
 ```yaml
-sg_config:
-  dynamic:
-    do_not_fail_on_forbidden: true 
-    kibana:
-      multitenancy_enabled: true
+enabled: true
+index: ".kibana"
+server_user: "kibanaserver"
 ```
 
 ## How it works

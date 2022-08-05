@@ -9,7 +9,7 @@ edition: community
 description: How to run Kibana powered by SearchGuard in an iframe on a third party website.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Kibana in IFrame

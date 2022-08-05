@@ -8,7 +8,7 @@ edition: enterprise
 description: Implement Audit Logging on your Elasticsearch cluster and stay compliant with GDPR, HIPAA, ISO, PCI and SOX.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Audit Logging
@@ -40,14 +40,14 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | SG\_INDEX\_ATTEMPT | no | yes | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate.|
 | BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.|
 | BLOCKED_USER | yes | yes | A user that is blocked in sg_blocks.yml tried to login.|
-| BLOCKED_IP | yes | yes | A request was made from a blocked IP adress, configured in sg_blocks.yml |
+| BLOCKED_IP | yes | yes | A request was made from a blocked IP address, configured in sg_blocks.yml |
 {: .config-table}
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
 ## Configuring the log level
 
-Search Guard already ships with sensible defaults for the audit log module. These defaults are suitable for almost all cases. However, you can configure and tweak nearly all settings manually to adap the amount and type of information to your specific use case.  
+Search Guard already ships with sensible defaults for the audit log module. These defaults are suitable for almost all cases. However, you can configure and tweak nearly all settings manually to adapt the amount and type of information to your specific use case.  
 
 ### Excluding categories
 
@@ -209,7 +209,7 @@ If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in
 
 ### External storage types
 
-Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you dont' put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
+Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you don't put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
 
 
 ## Configuring retries
@@ -238,7 +238,7 @@ All events are logged asynchronously, so the overall performance of your cluster
 searchguard.audit.threadpool.size: <integer>
 ```
 
-The default setting is `10`. Setting this value to `0` disables the thread pool completey, and the events are logged synchronously. 
+The default setting is `10`. Setting this value to `0` disables the thread pool completely, and the events are logged synchronously. 
 
 The maximum queue length per thread can be configured by setting:
 

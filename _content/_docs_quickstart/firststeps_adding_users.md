@@ -5,13 +5,13 @@ permalink: first-steps-user-configuration
 category: first_steps
 order: 100
 layout: docs
-description: How to add new Search Guard users by using sgadmin and the Search Guard configuration.
+description: How to add new Search Guard users by using sgctl and the Search Guard configuration.
 resources:
   - internal-users-database|Internal user database (docs)  
   - sgctl|Using sgctl (docs)  
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Adding Search Guard users
@@ -82,7 +82,7 @@ jdoe:
 
 You can also map the Search Guard role `SGS_KIBANA_USER` to the backend role `hr_department`. See the guide on [roles mapping](firststeps_rolesmapping.md) for more on this.
 
-Because we do not want to store any cleartext passsords anywhere, the password of the user must be hashed before we can add it to the configuration.
+Because we do not want to store any cleartext passwords anywhere, the password of the user must be hashed before we can add it to the configuration.
 
 Search Guard uses a BCrypt hash for the passwords, so you can use [any tool that is capable of producing a BCrypt hash](https://bcrypt-generator.com/).
 

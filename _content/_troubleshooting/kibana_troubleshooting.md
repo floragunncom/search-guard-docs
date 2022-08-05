@@ -7,7 +7,7 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot Kibana issues with the Search Guard plugin.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Kibana troubleshooting
 
@@ -71,7 +71,7 @@ If you use self signed certificate you may see the following error in the Kibana
 HEAD https://example.com:9200/ => unable to get local issuer certificate
 ```
 
-This means that Kibana does not trust the self-signed root CA certificate. You can either disable the certificate cerification or install the root CA in Kibana.
+This means that Kibana does not trust the self-signed root CA certificate. You can either disable the certificate certification or install the root CA in Kibana.
 
 #### Disabling certificate verification
 
@@ -101,7 +101,7 @@ Search Guard stores the credentials of authenticated users in an encrypted cooki
 searchguard.cookie.secure: <true|false>
 ```
 
-If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receieves a cookie via unsecure HTTP, the cookie is discarded. This means the authenticated credentials are not stored and you are redirected to the login page again.
+If this is set to true, Search Guard will only accept cookies if they are transmitted via HTTPS. If it receives a cookie via unsecure HTTP, the cookie is discarded. This means the authenticated credentials are not stored and you are redirected to the login page again.
 
 Either access Kibana with HTTPS instead of HTTP, or set:
 
@@ -139,7 +139,7 @@ elasticsearch.requestHeadersWhitelist: [ "...", "..." ]
 
 A common source of error is that a HTTP header required by the configured authentication module(s) is not whitelisted, and thus authentication fails. Since the header is just discarded by Kibana, you won't see any error message.
 
-By default, the whitelist includes the standardized `Authorization` header, but only if no other headers are configured. If you add any other header, for example `sgtenant`, make sure to add `Authorization` explicitely as well:
+By default, the whitelist includes the standardized `Authorization` header, but only if no other headers are configured. If you add any other header, for example `sgtenant`, make sure to add `Authorization` explicitly as well:
 
 ```
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
@@ -150,7 +150,7 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 If you are using an SSO authentication mechanism like Kerberos or JWT, or if you use proxy authentication, make sure you list all required authentication headers in `kibana.yml`.
 
 #### JWT: Token in HTTP header
-For JWT, add the HTTP header you configured in the JWT section of `sg_config.yml` to the header whitelist. For example, if you configured the header like:
+For JWT, add the HTTP header you configured in the JWT section of `sg_authc.yml` to the header whitelist. For example, if you configured the header like:
 
 ```yaml
 jwt_auth_domain:
@@ -189,7 +189,7 @@ Next, make sure the HTTP header is whitelisted:
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "jwtheader", "sgtenant" ]
 ```
 
-Last, configure the HTTP header in the JWT section of `sg_config.yml`:
+Last, configure the HTTP header in the JWT section of `sg_authc.yml`:
 
 ```yaml
 jwt_auth_domain:
@@ -214,24 +214,4 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "x-forwarded-for", "x-
 
 If you do not specify any index in the timelion query, it will simply use a wildcard ('*') for the index name. If the currently logged in user does not have READ permission on all indices, a security exception is displayed.
 
-### Enable the "do not fail on forbidden" mode
-
-Enable the `do not fail on forbidden` mode in `sg_config.yml` like:
-
-```
----
-_sg_meta:
-  type: "config"
-  config_version: 2
-
-sg_config:
-  dynamic:
-    kibana:
-      do_not_fail_on_forbidden: true
-      ...
-```
-
-With this mode enabled Search Guard filters all indices from a query a user does not have access to and not security exception is raised.
-
-**Note: While this is also the default behavior of competitor products, it may result in incorrect return values, especially if aggregations are used: If a user creates aggregations, and they include indices where he/she has no access to, the aggregation will be executed, but it will lack values from these indices. Since no exception is raised, the user will not be aware of this.**
 

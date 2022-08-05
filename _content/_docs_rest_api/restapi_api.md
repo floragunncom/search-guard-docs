@@ -9,7 +9,7 @@ edition: enterprise
 description: General usage instructions for the Search Guard REST API which can be used to manage users, roles and permissions.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard Elasticsearch REST API
@@ -36,7 +36,7 @@ The resource name specifies the entry in the `configuration type` you want to op
 
 The API returns the following HTTP status codes:
 
-* 200: A resource was modified succesfully
+* 200: A resource was modified successfully
 * 201: A resource was created
 * 400: The request could not be processed
 * 404: The resource could not be found

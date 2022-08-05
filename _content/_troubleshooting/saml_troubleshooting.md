@@ -7,7 +7,7 @@ layout: troubleshooting
 description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML issues
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # SAML troubleshooting
 
@@ -117,7 +117,7 @@ logger.token.level = debug
 
 This will print out the SAML response in the Elasticsearch log file so you can inspect and debug it. Setting this logger to `debug will generate a lot of statements, so it's not recommended to do it in production. Log levels can also be changed at run time, please see the [Elasticsearch official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html){:target="_blank"} on how to do that.
 
-Another way of inspecting the SAML Response is to montitor the network traffic while logging in to Kibana. The IdP will HTTP POST the base64-encoded SAML Response to:
+Another way of inspecting the SAML Response is to monitor the network traffic while logging in to Kibana. The IdP will HTTP POST the base64-encoded SAML Response to:
 
 ```
 /searchguard/saml/acs

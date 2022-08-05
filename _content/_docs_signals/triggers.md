@@ -11,7 +11,7 @@ canonical: triggers-overview
 description: How to create triggers for Signals Alerting for Elasticsearch that control the execution of watches
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Creating triggers for Elasticsearch watches
 {: .no_toc}
@@ -53,7 +53,7 @@ Each trigger gets registered with the Trigger Execution Engine. The execution en
 
 * Each trigger is executed on exactly one node at a time
   * You can specify node filters to define on which nodes Signals Alerting should run
-* Triggers created in different tenants will not interfere whith each other
+* Triggers created in different tenants will not interfere with each other
   * This applies only when you are using [Multi Tenancy](elasticsearch-alerting-security-multi-tenancy).   
    
 ## Time zones

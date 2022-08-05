@@ -9,7 +9,7 @@ edition: community
 description: Use the Alerting for Elasticsearch Activate Watch API activate and deactivate watches.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Activate/Deactivate Watch API
 {: .no_toc}

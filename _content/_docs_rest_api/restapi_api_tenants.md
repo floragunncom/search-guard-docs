@@ -9,7 +9,7 @@ edition: enterprise
 description: How to use the tenants REST API endpoints to create, edit and delete Search Guard tenants.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Tenants API
@@ -31,7 +31,7 @@ Where `tenantname` is the name of the tenant.
 ### Get a single tenant
 
 ```
-GET /_searchguard/api/tenant/{tenantma,e}
+GET /_searchguard/api/tenant/{tenantname}
 ```
 Returns the settings for the respective tenant in JSON format, for example:
 

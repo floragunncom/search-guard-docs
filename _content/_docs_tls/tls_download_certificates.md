@@ -14,7 +14,7 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard demo certificates
@@ -22,7 +22,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-In order to set up a Search Guard PoC quickly, you can simply download and install our demo TLS certificates. The certificates can be used for node to node TLS encryption, REST encryption and for using sgadmin. They work on Linux, Mac and Windows.
+In order to set up a Search Guard PoC quickly, you can simply download and install our demo TLS certificates. The certificates can be used for node to node TLS encryption, REST encryption and for using sgctl. They work on Linux, Mac and Windows.
 
 <div class="header-back-buttons helper center" style="margin-top: 40px; margin-bottom:40px;">
 <a href="https://downloads.search-guard.com/resources/certificates/certificates.zip" target="_blank" class="button stroke rounded large blue">Download Demo Certificates</a>
@@ -64,14 +64,14 @@ searchguard.authcz.admin_dn:
 
 This will enable TLS encryption on transport and on REST layer. 
 
-## Using sgadmin with the demo certificates
+## Using sgctl with the demo certificates
 
-The demo certificates contain an admin TLS certificate which you can use to run [sgadmin](https://docs.search-guard.com/latest/sgadmin){:target="_blank"}:
+The demo certificates contain an admin TLS certificate which you can use to run [sgctl](sgctl)
 
 <div class="file-tree">
 	<ul class="file-tree-list js-file-tree treeview" data-expanded="">
 		<li class="is-file">kirk.pem -
-			<span class="file-tree-description">The admin certificate that can be used with sgadmin.</span>
+			<span class="file-tree-description">The admin certificate that can be used with sgctl.</span>
 		</li>
 		<li class="is-file">kirk-key.pem -
 			<span class="file-tree-description">Private key for the admin certificate. This key has no password set.</span>
@@ -79,40 +79,11 @@ The demo certificates contain an admin TLS certificate which you can use to run 
 	</ul>	
 </div>
 
-To execute sgadmin with the `kirk` admin certificate, switch to the following directory:
+To execute the `sgctl` command with the `kirk` admin certificate, execute:
 
 ```
-<ES installation directory>/plugins/search-guard-<version>/tools/
+./sgctl.sh update-config --ca-cert root-ca.pem --cert kirk.pem --key kirk-key.pem /path/to/config/
 ```
-
-And execute:
-
-```
-./sgadmin.sh -cd ../sgconfig -key ../../../config/kirk-key.pem -cert ../../../config/kirk.pem -cacert ../../../config/root-ca.pem -nhnv -icl
-```
-
-This will update the Search Guard configuration with the contents of the files located in:
-
-```
-<ES installation directory>/plugins/search-guard-<version>/config/
-```
-
-If everything is updated correctly, you will see the following output:
-
-```
-Will update 'sg/config' with ../sgconfig/sg_config.yml 
-   SUCC: Configuration for 'config' created or updated
-Will update 'sg/roles' with ../sgconfig/sg_roles.yml 
-   SUCC: Configuration for 'roles' created or updated
-Will update 'sg/rolesmapping' with ../sgconfig/sg_roles_mapping.yml 
-   SUCC: Configuration for 'rolesmapping' created or updated
-Will update 'sg/internalusers' with ../sgconfig/sg_internal_users.yml 
-   SUCC: Configuration for 'internalusers' created or updated
-Will update 'sg/actiongroups' with ../sgconfig/sg_action_groups.yml 
-   SUCC: Configuration for 'actiongroups' created or updated
-Done with success
-```
-
 
 ## File contents
 
@@ -128,7 +99,7 @@ Done with success
 			<span class="file-tree-description">The private key for the node certificate. This key has no password set.</span>
 		</li>
 		<li class="is-file">kirk.pem -
-			<span class="file-tree-description">The admin certificate that can be used with sgadmin.</span>
+			<span class="file-tree-description">The admin certificate that can be used with sgctl.</span>
 		</li>
 		<li class="is-file">kirk-key.pem -
 			<span class="file-tree-description">Private key for the admin certificate. This key has no password set.</span>

@@ -9,7 +9,7 @@ edition: community
 description: How to handle disable Search Guard temporarily without removing the complete installation.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Disabling or Removing Search Guard
 {: .no_toc}
@@ -42,4 +42,4 @@ The Search Guard configuration entries from `elasticsearch.yml` need to be remov
 
 Once the Search Guard plugin is removed and your cluster is not protected anymore, you will also have access to the Search Guard configuration index. If the index is not needed anymore you delete it as well. The default index name is `searchguard`.
 
-If you want to backup the configuration before deleting the Search Guard index, you can use the `-r/--retrieve` switch in `sgadmin`. This will dump the currently active configuration to your file system. 
+If you want to backup the configuration before deleting the Search Guard index, you can use the `get-config` command in `sgctl`. This will dump the currently active configuration to your file system. 

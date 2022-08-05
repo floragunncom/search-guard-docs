@@ -9,7 +9,7 @@ edition: community
 description: Each watch can define as many inputs, transformations, calculations and conditions as required. Each step in the execution chain is called a check
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Execution chain and execution runtime data
 {: .no_toc}

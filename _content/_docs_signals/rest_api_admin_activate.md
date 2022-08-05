@@ -9,7 +9,7 @@ edition: community
 description: How to globally activate and deactivate all alerting watches for Elasticsearch.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Activate/Deactivate Signals API
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: community
 description: How to define role based access to Elasticsearch on index level with Search Guard.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Defining Search Guard roles
@@ -68,7 +68,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 | index_permissions | Permissions that apply to one or more index patterns |
 | allowed_actions | The actions that are allowed for the index or tenant patterns |
 | dls | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set. |
-| fls | The [fields that should be exluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
+| fls | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
 | tenant_permissions | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana. |
 {: .config-table}
 

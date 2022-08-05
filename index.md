@@ -8,7 +8,7 @@ showsearch: true
 isroot: true
 ---
 <!---
-Copryight 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 
@@ -21,8 +21,6 @@ Copryight 2020 floragunn GmbH
 <h1 align="center">Search Guard FLX Documentation</h1>
 
 Welcome to Search Guard FLX, the next generation of Search Guard! 
-
-Please note that Search Guard FLX is a beta version, which might be not yet ready for use in production systems. It might have bugs. 
 
 ## What's New
 
@@ -37,32 +35,18 @@ Major changes include:
   - Configuration of SSO using OIDC or SAML for Kibana no longer interfers with backend authentication configuration. Thus, you can now have challenging basic authentication on the backend while using OIDC or SAML for Kibana.
   - The configuration format is now more streamlined and consistent.  
   - Kibana authentication configuration can be changed without having to restart the node.
-- **New administration tool** `sgctl` which shall replace `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
+- **New administration tool** `sgctl` which replaces `sgadmin`.  `sgctl` is stateful; that means, you can define connection profiles once and use these later. Thus, you don't have to specify all connection configuration on each invocation. The interface of `sgctl` is more streamlined and offers you improved configuration validation functionality.
 - **Wildcard queries without hassle** made possible by an improved method for handling unauthorized indices. You no longer have to worry that your wildcard query breaks because it might pick up an index you don't have permissions for.
 - **More speed.** Many components of Search Guard underwent major optimizations. Thus, Search Guard FLX can now handle more throughput with a lower CPU footprint.
 - **Easily reachable diagnostics and metrics;** most modules of Search Guard FLX offer debug modes which deliver diagnostic information right at the place where you operate. You no longer have to grep through logfiles to find out why your OIDC authentication is not working.
-
-## Download
-
-You can get the current snapshot of the Search Guard Tech Preview at the following locations. If you chose to use the demo installer, you just need to download the script. The script will take care of downloading all further components.
-
-|Target Platform|Backend Plugin|Frontend Plugin|Demo Installer|
-|---|---|---|---|
-|**Elasticsearch 7.10.2**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.10.2.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.10.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.10.2-demo-installer.sh)|
-|**Elasticsearch 7.16.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.16.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.16.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.16.3-demo-installer.sh)|
-|**Elasticsearch 7.17.3**|[Search Guard Elasticsearch Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Search Guard Kibana Plugin Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-kibana-plugin-1.0.0-beta-2-es-7.17.3.zip)|[Demo Installer Beta 2](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-2-es-7.17.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-2-es-7.17.3-demo-installer.sh)|
-
-<table>
-<tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/1.0.0-beta-2/sgctl-1.0.0-beta-2.sh">Search Guard Control Tool sgctl 1.0.0 Beta 2</a></td></tr>
-</table>
-
 
 ## Getting Started
 
 You have several options to try the Search Guard FLX:
 
 - If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo-installer).
+
+- If you have docker installed you can just simply run `docker run -it --rm -p 5601:5601 floragunncom/flx-7-demo` and point your Browser to `http://localhost:5601` and login with Username: `admin` and Password: `admin`
 
 - If you have an existing Search Guard setup and what to test its configuration with the Search Guard Tech Preview, you can use the [migrate-config command](sg-classic-config-migration) of `sgctl`. Please also review the list of [release notes](sg-flx-release-notes).
 

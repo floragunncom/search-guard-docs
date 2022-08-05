@@ -9,7 +9,7 @@ edition: compliance
 description: How to configure event routing to ship the compliance events to their correct storage destination
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Event routing and multiple endpoints
@@ -21,7 +21,7 @@ The Search Guard Compliance Edition extends the storage capabilities of the Audi
 
 For example, this makes it possible to store compliance related events in a data lake, while shipping security related events to a SIEM system like SIEMonster or ArcSight.
 
-Events can also be routed to multiple storage endpoints at the same time. Combined with the possibility to filter events, this allowes for very flexible storage configuration settings.
+Events can also be routed to multiple storage endpoints at the same time. Combined with the possibility to filter events, this allows for very flexible storage configuration settings.
 
 ## Configuring the default storage endpoint
 
@@ -144,7 +144,7 @@ searchguard:
 
 If there is no specific routing for a category defined the events will be send to the `default` endpoint.
 
-If there is a specific routing configured for a category the events will only be send to the configured endpoints. If the event should also be stored on the default endpoint, you need to add it explicitely.
+If there is a specific routing configured for a category the events will only be send to the configured endpoints. If the event should also be stored on the default endpoint, you need to add it explicitly.
 
 ### Example
 

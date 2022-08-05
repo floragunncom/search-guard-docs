@@ -6,11 +6,11 @@ category: restapi
 order: 460
 layout: docs
 edition: enterprise
-description: How to use the Search Guard REST API to create, modify and change authentication and authorisation settings.
+description: How to use the Search Guard REST API to create, modify and change authentication and authorization settings.
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 
@@ -37,7 +37,7 @@ Returns the configured authentication and authorization modules in JSON format.
 
 ## PUT
 
-Since you can break the Search Guard authentication by uploading a faulty configuration, you need to explicitely enable the PUT endpoint by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
+Since you can break the Search Guard authentication by uploading a faulty configuration, you need to explicitly enable the PUT endpoint by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
 {: .note .js-note}
 
 ```
@@ -82,7 +82,7 @@ PUT /_searchguard/api/sg_config
 
 ## PATCH
 
-Since you can break the Search Guard authentication by uploading a faulty configuration, you need to explicitely enable the PUT endpoint by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
+Since you can break the Search Guard authentication by uploading a faulty configuration, you need to explicitly enable the PUT endpoint by setting `searchguard.unsupported.restapi.allow_sgconfig_modification: true` in elasticsearch.yml
 {: .note .js-note}
 
 The PATCH endpoint can be used to change individual attributes of the Search Guard configuration. The PATCH endpoint expects a payload in JSON Patch format. Search Guard supports the complete JSON patch specification.
@@ -93,7 +93,7 @@ The PATCH endpoint can be used to change individual attributes of the Search Gua
 PATCH /_searchguard/api/sg_config/
 ```
 
-Adds, deletes or changes one or more attributes of the authentication and authorisation configuratio.
+Adds, deletes or changes one or more attributes of the authentication and authorization configuration.
 
 ```json
 PATCH /_searchguard/api/sg_config/

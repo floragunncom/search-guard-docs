@@ -9,7 +9,7 @@ index: false
 description: Use the powerful and easy-to-use sgctl command line tool to manage and configure  everything in Search Guard.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Using `sgctl` to Configure Search Guard
@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 
 The `sgctl` tool provides you a broad set of tools to achieve administrative task on your cluster secured by Search Guard. The most important task is probably uploading the Search Guard configuration to the Search Guard configuration index. 
 
-You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/sgctl/).
+You have to download `sgctl` separately at [https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/).
 
 The `sgctl` tool provides a set of commands. To get an overview of all commands, just execute `sgctl.sh` on the command line:
 
@@ -38,7 +38,7 @@ Commands:
                      files
   migrate-config   Converts old-style sg_config.yml and kibana.yml into
                      sg_authc.yml and sg_frontend_authc.yml
-  component-state  Retrieves Search Guard compontent status information
+  component-state  Retrieves Search Guard component status information
   sgctl-licenses   Displays license information for sgctl
   sgctl-version    Shows the version of this sgctl command
   add-user-local   Adds a new user to a local sg_internal_users.yml file
@@ -49,6 +49,9 @@ Commands:
   update-var       Updates an existing configuration variable
   delete-var       Deletes an existing configuration variable
   set              Modifies a property in the Search Guard Configuration
+  update-license   Updates the SG license
+  rest             REST client for administration
+  special          Commands for special circumstances
 ```
 
 To get help for a particular command just append the `--help` option to the command:
@@ -56,15 +59,15 @@ To get help for a particular command just append the `--help` option to the comm
 ```
 $ ./sgctl.sh connect --help
 
-Usage: sgctl connect [-v] [--debug] [-k[=<insecure>]] [--key-pass
-                     [=<clientKeyPass>]] [-c=<clusterIdOption>]
+Usage: sgctl connect [-v] [--debug] [--skip-connection-check] [-k[=<insecure>]]
+                     [--key-pass[=<clientKeyPass>]] [-c=<clusterIdOption>]
                      [--ca-cert=<caCert>] [-E=<clientCert>] [-h=<host>]
                      [--key=<clientKey>] [-p=<serverPort>]
                      [--sgctl-config-dir=<customConfigDir>] [--tls=<tls>]
                      [--ciphers[=<ciphers>...]]... [<server>]
 Tries to connect to a cluster and persists this connection for subsequent
 commands
-      [<server>]
+      [<server>]            Name of the server to connect to.
   -c, --cluster=<clusterIdOption>
                             The ID of the cluster configuration to be used by
                               this command
@@ -85,15 +88,17 @@ commands
       --sgctl-config-dir=<customConfigDir>
                             The directory where sgctl reads from and writes to
                               its configuration
+      --skip-connection-check
+                            Skips initial REST API call to check the connection
       --tls=<tls>           The TLS version to use when connecting to the
                               cluster
   -v, --verbose             Print more information
 ```
 
 
-<!--
-You can find sample sgadmin calls in the [examples chapter](configuration_sgadmin_examples.md)
--->
+
+You can find sample sgctl calls in the [examples chapter](sgctl-examples)
+
 
 ## Connection Settings
 
@@ -145,7 +150,7 @@ $ ./sgctl.sh connect another-cluster-host.example.com
 $ ./sgctl.sh connect -c my-cluster 2001:0db8:85a3:0000:0000:8a2e:0370:7334 --ca-cart /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 ```
 
-Reconnect whith:
+Reconnect with:
 
 ```bash
 $ ./sgctl.sh connect -c my-cluster
@@ -178,3 +183,7 @@ $ ./sgctl.sh set
 ```
 
 --->
+
+# Advanced topics
+
+- The sgctl source code can be found at [https://git.floragunn.com/search-guard/sgctl](https://git.floragunn.com/search-guard/sgctl)

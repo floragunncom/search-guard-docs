@@ -8,13 +8,13 @@ layout: troubleshooting
 description: Step-by-step instructions on how to troubleshoot Multi Tenancy issues.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Troubleshooting Multitenancy
 
 ## Headers not whitelisted
 
-During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` condiguration key in `kibana.yml`. If this is not the case, the state of the plugin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
+During Kibana startup, Search Guard checks whether the `sgtenant` header has been added to the `elasticsearch.requestHeadersWhitelist` configuration key in `kibana.yml`. If this is not the case, the state of the plugin will be red, and you will see an error page when trying to access Kibana. Make sure you have whitelisted this header:
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
@@ -28,7 +28,7 @@ If the Search Guard multitenancy module is not installed or is disabled, you wil
 <img src="kibana_mt_disabled.png" style="width: 80%" class="md_image"/>
 </p>
 
-Make sure the enterprise module is installed, and also check that `searchguard.dynamic.kibana.multitenancy_enabled` is not set to `false` in `sg_config.yml`.
+Make sure the enterprise module is installed, and also check that `enabled` is set to `true` in `sg_frontend_multi_tenancy.yml`.
 
 ## Kibana and Elasticsearch: Configuration mismatch
 
@@ -38,6 +38,6 @@ If either the configured Kibana server username or the configured Kibana index n
 <img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
 </p>
 
-Make sure the respective settings match in `sg_config.yml` (Elasticsearch) and `kibana.yml` (Kibana).
+Make sure the respective settings match in `sg_frontend_multi_tenancy.yml` (Elasticsearch) and `kibana.yml` (Kibana).
 
 

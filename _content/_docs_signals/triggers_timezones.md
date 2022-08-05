@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting for Elasticsearch supports different timezones for triggers that control when a watch is executed.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Handling Timezones for Alerting triggers
 {: .no_toc}

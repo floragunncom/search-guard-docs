@@ -9,7 +9,7 @@ edition: community
 description: Signals Alerting executes Elasticsearch queries and use the query result to check for anomalies.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Search input
 {: .no_toc}
@@ -64,7 +64,7 @@ Example:
 
 | Name | Description |
 |---|---|
-| type | search, defines this input as a search on Elasticsearcgh|
+| type | search, defines this input as a search on Elasticsearch|
 | target | the name under which the data is available in later execution steps. |
 | request | The search request to execute |
 | request.indices | The indices to execute the `request.query` against. **The user that defines the watch needs to have a role that has access to the specified index / indices.**|

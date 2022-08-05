@@ -10,7 +10,7 @@ canonical: elasticsearch-alerting-conditions-overview
 description: In Signals Alerting, conditions are used to check for threshold values, controlling the execution flow and trigger notifications.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Conditions
 {: .no_toc}

@@ -12,7 +12,7 @@ resources:
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Advanced user mapping
 {: .no_toc}
@@ -39,7 +39,7 @@ If you want to map
 
 ### Using only certain sections of a string as user name
 
-In some cases, the user name extracted from the credentials might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like exampleuser@example.com. However, you might want to use only the local part of the email address as user name. For this, you can use the options `user_mapping.user_name.from.json_path` and `user_mapping.user_name.from.pattern`. Use `user_mapping.user_name.from.json_path` to specifiy the path to the attribute, just like `user_mapping.user_name.from`. 
+In some cases, the user name extracted from the credentials might be more complex than needed or wanted. For example, a JWT subject claim could be specified as an email address like exampleuser@example.com. However, you might want to use only the local part of the email address as user name. For this, you can use the options `user_mapping.user_name.from.json_path` and `user_mapping.user_name.from.pattern`. Use `user_mapping.user_name.from.json_path` to specify the path to the attribute, just like `user_mapping.user_name.from`. 
 
 With `user_mapping.user_name.from.pattern` you specify a regular expression that defines the structure of an expected user name. You can then use capturing groups (i.e., sections enclosed in round parentheses; (...)) to use only a certain part of the subject supplied by the JWT as the Search Guard user name.
 

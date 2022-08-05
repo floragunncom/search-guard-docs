@@ -11,7 +11,7 @@ canonical: elasticsearch-alerting-security-overview
 description: Signals Alerting for Elasticsearch is fully integrated with all Search Guard Security features
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Security Integration
 {: .no_toc}

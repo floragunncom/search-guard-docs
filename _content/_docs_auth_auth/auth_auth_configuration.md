@@ -12,7 +12,7 @@ description: How to configure, mix and chain authentication and authorization do
 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 # Configuring authentication
 {: .no_toc}

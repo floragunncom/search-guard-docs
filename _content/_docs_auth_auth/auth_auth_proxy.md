@@ -9,7 +9,7 @@ edition: community
 description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Proxy based authentication
@@ -46,7 +46,7 @@ network:
   trusted_proxies: '10.10.123.0/24' 
 ```
 
-The authentication frontend `trusted_origin` checks whether the IP address of the connecting host is contained in the `trusted_proxies` network specifed in the `network`settings. Authentication succeeds only if this is the case.
+The authentication frontend `trusted_origin` checks whether the IP address of the connecting host is contained in the `trusted_proxies` network specified in the `network`settings. Authentication succeeds only if this is the case.
 
 **Important:** Make sure that you configure the `trusted_proxies` attribute correctly. In you include untrusted IP addresses, access by unauthorized clients might be possible.
 

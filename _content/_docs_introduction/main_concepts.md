@@ -13,7 +13,7 @@ resources:
 ---
 
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard Main Concepts
@@ -139,7 +139,7 @@ If you are running Kibana, you might also need the following configuration:
 For special features or configuration, you have also the following files:
 
 * `sg_authz.yml` - authorization-specific settings
-* `sg_auth_token_service.yml` - for confiuguring the API auth token service
+* `sg_auth_token_service.yml` - for configuring the API auth token service
 * `sg_blocks.yml` - defines blocked users and IP addresses
 
 You can find sample templates for all files in the Search Guard download.

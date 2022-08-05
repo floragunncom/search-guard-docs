@@ -11,7 +11,7 @@ resources:
   
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Installation
@@ -31,8 +31,8 @@ If you just want to use the free Community Edition, install Search Guard Enterpr
 
 ### Ensure that your Java Virtual Machine is supported
 
-* We support only OpenJDK 7/8/11, Oracle JVM 7/8/11 and Amazon Corretto 8/11.
-* There is **no** support for IBM VM or any other vendor than OpenJDK/Oracle JVM/Amazon Corretto
+* We support the same JVM versions and vendors listed here: [Support Matrix](https://www.elastic.co/de/support/matrix#matrix_jvm)
+* There is **no** support for IBM VM and Azul Zing
 
 ### Generate all required TLS certificates
 
@@ -42,7 +42,6 @@ If this is not the case, you have the following options to generate certificates
 
 * Use the [Search Guard demo installation script](../_docs_tls/tls_generate_installation_script.md)  (not safe for production)
 * Download the [Search Guard demo certificates](../_docs_tls/tls_download_certificates.md) (not safe for production)
-* Use the [Online TLS generator service](../_docs_tls/tls_generate_online.md) (not safe for production)
 * Use the [Offline TLS Tool](../_docs_tls/tls_generate_tlstool.md) (safe for production)
 * Use and customize the [example PKI scripts](../_docs_tls/tls_generate_example_scripts.md) (safe for production)
 * Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
@@ -69,9 +68,9 @@ The first time installation procedure on a production cluster is to:
 4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `elasticsearch.yml`
 5. Restart Elasticsearch and check that the nodes come up
 6. Re-enable shard allocation
-7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgadmin](../_docs_configuration_changes/configuration_sgadmin.md)
+7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgctl](sgctl-configuration-changes)
 
-While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgadmin at least once to initialize the Search Guard index.
+While for an already configured Search Guard plugin you can also use the Kibana Search Guard configuration GUI, for vanilla systems you need to execute sgctl at least once to initialize the Search Guard index.
 
 ## Disable shard allocation
 
@@ -143,7 +142,7 @@ searchguard.authcz.admin_dn:
 
 The `searchguard.ssl.transport.pem*` keys define the paths to the node certificate, relative to the Elasticsearch `config` directory.
 
-The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgadmin or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
+The `searchguard.authcz.admin_dn` entry configures the admin certificate that you can use with sgctl or the REST management API. You need to state the full DN of the certificate, and you can configure more than one admin certificate.
 
 If you want to use TLS also on the REST layer (HTTPS), add the following lines to `elasticsearch.yml`
 
@@ -171,7 +170,7 @@ The REST management API is an Enterprise feature.
 
 ## Re-enable shard allocation
 
-After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgadmin or curl:
+After the cluster is up again, re-enable shard allocation so that the Search Guard configuration index can be created in the next step. Since Search Guard is active now, but not initialized yet, you need to use the admin certificate in combination with sgctl or curl:
 
 ```bash
 ./sgctl.sh rest put _cluster/settings --json '{"persistent":{"cluster.routing.allocation.enable": "all"}}'

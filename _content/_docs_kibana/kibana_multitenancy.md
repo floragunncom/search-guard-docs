@@ -24,7 +24,7 @@ resources:
 A Kibana tenant is a named container for storing saved objects ("space"). A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. 
 A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
-Any Kibana user always has access to two preconfigured tenants: Global and Private.
+Any Kibana user always has access to two pre-configured tenants: Global and Private.
 
 The Global tenant is shared with every user. This is the default tenant if no other tenant is selected.  You'll find objects that you have created before installing the multi tenancy module there.
 
@@ -146,20 +146,20 @@ In addition, Kibana requires you to whitelist all HTTP headers that should be pa
 elasticsearch.requestHeadersWhitelist: ["sgtenant", "Authorization", ...]
 ```
 
-Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_config. The contents of the following keys must match:
+Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
 
 Kibana server user:
 
 ```yaml
 kibana.yml: elasticsearch.username
-sg_config: searchguard.dynamic.kibana.server_username
+sg_frontend_multi_tenancy.yml: server_user
 ```
 
 Kibana index name:
 
 ```yaml
 kibana.yml: kibana.index
-sg_config: searchguard.dynamic.kibana.index
+sg_frontend_multi_tenancy.yml: index
 ```
 
 ### Kibana: Tenant Configuration

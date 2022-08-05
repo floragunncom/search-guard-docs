@@ -12,7 +12,7 @@ resources:
   - "https://jwt.io/|jwt.io - useful tools for generating and validating JWT (website)"
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Kibana JWT URL Parameter Authentication
@@ -20,7 +20,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-The Search Guard Kibana plugin provides you the possibility to authenticate requests to Kibana using a URL paramter in the Kibana request URL.
+The Search Guard Kibana plugin provides you the possibility to authenticate requests to Kibana using a URL parameter in the Kibana request URL.
 
 This is intended for embedding read-only Kibana instances using IFrames in dashboards or similar applications.
 

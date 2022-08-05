@@ -8,11 +8,11 @@ layout: docs
 description: How to map users to Search Guard roles to assign cluster- and index-level access permissions.
 resources:
   - mapping-users-roles|Mapping users to roles (docs)  
-  - sgadmin|Using sgadmin (docs)  
+  - sgctl|Using sgctl (docs)  
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Mapping users to Search Guard roles
 {: .no_toc}

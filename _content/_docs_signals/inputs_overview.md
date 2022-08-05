@@ -9,7 +9,7 @@ edition: community
 description: In Signals Alerting for Elasticsearch, each watch can have one or more data inputs that collect data for further processing.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Inputs
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: community
 description: How to get started with Signals Alerting for Elasticsearch to find anomalies in your data and send alerts
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Getting started with Signals Alerting for Elasticsearch
 {: .no_toc}

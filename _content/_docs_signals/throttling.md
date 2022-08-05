@@ -9,7 +9,7 @@ edition: community
 description: How to throttle notifications in Signals Alerting for Elasticsearch to prevent alert flooding
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Throttling and Acknowledgement
 {: .no_toc}

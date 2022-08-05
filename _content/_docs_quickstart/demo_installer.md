@@ -14,7 +14,7 @@ resources:
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Demo Installer 
 {: .no_toc}
@@ -62,7 +62,7 @@ drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
 $ elasticsearch/bin/elasticsearch
 ```
 
-- If you want, you cans tart Kibana in a parallel shell by executing:
+- If you want, you can start Kibana in a parallel shell by executing:
 
 ```bash
 $ kibana/bin/kibana
@@ -102,7 +102,7 @@ Changes to the Search Guard configuration must be applied to this index by eithe
 
 For using the Search Guard Configuration GUI you need to install the Search Guard Kibana Plugin, as described below. 
 
-If you want to use the sgadmin tool:
+If you want to use the sgctl tool:
 
 * Apply your changes to the demo configuration files located in `my-sg-config`
 * Execute `./sgctl.sh update-config my-sg-config`
@@ -146,7 +146,7 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
   - [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
   - [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
   
-- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorisation backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_config.yml`.
+- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
 - For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 - If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
 - And if you need to support multiple tenants in Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.

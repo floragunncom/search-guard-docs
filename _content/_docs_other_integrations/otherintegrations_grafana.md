@@ -39,7 +39,7 @@ If you are using HTTPS instead of HTTP, specify a https URL when creating an Ela
 
 ## Configure authentication
 
-Grafana suppors HTTP Basic Authentication and TLS client certificate authentication.
+Grafana supports HTTP Basic Authentication and TLS client certificate authentication.
 
 ### HTTP Basic Authentication
 

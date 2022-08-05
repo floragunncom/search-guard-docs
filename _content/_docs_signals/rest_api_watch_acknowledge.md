@@ -6,11 +6,11 @@ category: signals-rest
 order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and supress notifications until the anomaly disappears.
+description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and suppress notifications until the anomaly disappears.
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Acknowledge Watch API
 {: .no_toc}

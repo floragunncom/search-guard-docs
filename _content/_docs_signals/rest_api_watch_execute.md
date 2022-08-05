@@ -10,7 +10,7 @@ description: The Signals Alerting for Elasticsearch REST API provides an endpoin
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Execute watch API
 {: .no_toc}
@@ -89,7 +89,7 @@ The response body contains the watch log document:
 **status:** The resulting status of the watch execution. The sub-attribute `status.code` contains of these codes:
 
 * `ACTION_FAILED`: The checks of the watch were successfully executed but at least one action failed.
-* `EXECUTION_FAILED`: An error occured while the checks of a watch were executed.
+* `EXECUTION_FAILED`: An error occurred while the checks of a watch were executed.
 
 Details can be found in the attribute `status.message`. Also, the status of the single actions can be found in the attribute `actions`.
 

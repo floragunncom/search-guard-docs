@@ -10,7 +10,7 @@ description: Signals Alerting for Elasticsearch can use accounts like email, Sla
 
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Accounts Registry
 {: .no_toc}

@@ -9,7 +9,7 @@ edition: community
 description: Search Guard FLX release notes
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Search Guard FLX release notes
@@ -37,7 +37,7 @@ The old environment variable substitution mechanism using the syntaxes `${env...
 * [Merge Request: Infrastructure for storing configuration secrets](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/99)
 * [Merge Request: Extended SecretsService into a more general ConfigVarService](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/140)
 
-
+<a name="sg_license_key"></a>
 ###  License configuration
 
 There is now a dedicated configuration file for the license key: `sg_license_key.yml`. 
@@ -140,7 +140,7 @@ The Search Guard authentication components now support a debug mode. If you are 
 
 ### Metrics
 
-The Search Guard authentication components now collect some performance metrics by default. You can retrieve the metrics using the `sgctl component-state` command. There are three metrics levels, `NONE`, `BASIC` and `DETAILED`, which can be configured using the `metrics` property inside `sg_authc.yml`. The default `BASIC` collects a basic set of metrics without creating a relavant overhead. If you still want to disable metrics, you can set `metrics` to `NONE` inside `sg_authc.yml`. 
+The Search Guard authentication components now collect some performance metrics by default. You can retrieve the metrics using the `sgctl component-state` command. There are three metrics levels, `NONE`, `BASIC` and `DETAILED`, which can be configured using the `metrics` property inside `sg_authc.yml`. The default `BASIC` collects a basic set of metrics without creating a relevant overhead. If you still want to disable metrics, you can set `metrics` to `NONE` inside `sg_authc.yml`. 
 
 ##### Related:
 
@@ -249,7 +249,7 @@ See the documentation links below for the behavior in the different modes.
 If you choose to disable `ignore_unauthorized`, you might need further action in order to make queries with wildcards (like `/_search/_all`) to work. This is necessary because legacy Search Guard
 versions created the `searchguard` index, which is non-hidden and thus also matched by wildcards. If you disable `ignore_unauthorized` and still have the `searchguard` index, any wildcard query matching the `searchguard` index will fail with a 403 Forbidden error, because normal users are not allowed to access the `searchguard` index, and - as `ignore_unauthorized`  is disabled - it is no longer ignored. 
 
-We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achive this. See the [documentation](../docs_configuration_changes/configuration_advanced.md#index-name-migration) for more information on how to achive this.
+We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achieve this. See the [documentation](../docs_configuration_changes/configuration_advanced.md#index-name-migration) for more information on how to achieve this.
 
 ##### Related:
 
@@ -257,7 +257,7 @@ We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.
 * [Documentation: Index name migration](../docs_configuration_changes/configuration_advanced.md#index-name-migration)
 * [Merge Request: New approach at privilege evaluation for indices with focus on DNFOF mode.](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/146)
 * [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
-* [Merge Request: Added more action egligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220)
+* [Merge Request: Added more action eligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220)
 * [Merge Request: Infrastructure for migration to new .searchguard index name](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/212)
 * [Merge Request: sgctl special mode-sg-index](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/33)
 
@@ -303,7 +303,7 @@ Due to performance reasons, privileges cannot be assigned to aliases any longer.
 
 ### Seperate config attribute for IPs-based role mapping
 
-Older versions of Search Guard allowed to specifiy both IPs and host names in the `hosts` attribute of `sg_role_mapping.yml`. This created the issue that a reverse DNS lookup was necessary when this attribute was in use; this again could be controlled by the `hosts_resolver_mode` setting. 
+Older versions of Search Guard allowed to specify both IPs and host names in the `hosts` attribute of `sg_role_mapping.yml`. This created the issue that a reverse DNS lookup was necessary when this attribute was in use; this again could be controlled by the `hosts_resolver_mode` setting. 
 
 Search Guard FLX introduces a new `ip` attribute in `sg_role_mapping.yml`, which supports CIDR based matching and will never trigger reverse DNS lookups. 
 
@@ -517,3 +517,7 @@ User injection was a niche feature; no use of it is known any more.
 ##### Related:
 
 * [Merge Request: Removed user injection functionality](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/163)
+
+### No support for custom authentication modules
+
+Custom authentication modules are no longer supported by Search Guard FLX

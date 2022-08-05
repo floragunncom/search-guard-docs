@@ -9,7 +9,7 @@ edition: community
 description: The Alerting for Elasticsearch plugin supports multiple connectors like email, Slack, PagerDuty, JIRA or webhooks for sending notifications.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2022 floragunn GmbH -->
 
 # Actions
 {: .no_toc}
@@ -120,7 +120,7 @@ For achieving this, you can use for example loops in Mustache templates. This mi
 
 In some cases, however, it will get necessary to execute the action for each element of a collection. This can be achieved by setting the `foreach` attribute of an action to a Painless expression producing a collection. The action will be then executed for each element of that collection. To access the current element of the collection, use the property called `item`. The `data` property is still providing a view of the complete runtime data.
 
-In order to avoid actions being accidentially executed on very large collections, the amount of iterations is limited. By default, an action is only executed for the first 100 elements of a collection. This limit can be changed by setting the `foreach_limit` property of an action.
+In order to avoid actions being accidentally executed on very large collections, the amount of iterations is limited. By default, an action is only executed for the first 100 elements of a collection. This limit can be changed by setting the `foreach_limit` property of an action.
 
 A watch using the `foreach` property might look like this:
 

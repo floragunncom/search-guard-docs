@@ -7,7 +7,7 @@ layout: docs
 description: How to upgrade Search Guard and Elasticsearch by rolling restarts or a full cluster restart. 
 ---
 <!---
-Copyright 2020 floragunn GmbH
+Copyright 2022 floragunn GmbH
 -->
 
 # Updating Search Guard
@@ -119,7 +119,7 @@ Steps from the [Rolling upgrades guide](https://www.elastic.co/guide/en/elastics
 6. Reenable shard allocation
 7. Wait for the node to recover
 8. Repeat for all nodes
-9. If there are any changes in the permission schema, change the `sg_roles.yml` and/or `sg_action_groups.yml` and update the Search Guard configuration with `sgadmin` 
+9. If there are any changes in the permission schema, change the `sg_roles.yml` and/or `sg_action_groups.yml` and update the Search Guard configuration with `sgctl` 
   
 ### Major Upgrades - Full cluster restart
 
