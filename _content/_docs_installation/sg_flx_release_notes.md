@@ -514,10 +514,10 @@ The Kafka audit logging sink was an undocumented experiment. For security reason
 
 User injection was a niche feature; no use of it is known any more.
 
-### No support for custom authentication modules
-
-Custom authentication modules have been removed in FLX. They are still available when using legacy configuration but not after full migration to FLX.
-
 ##### Related:
 
 * [Merge Request: Removed user injection functionality](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/163)
+
+### No support for custom authentication modules
+
+Custom authentication modules are no longer supported by Search Guard FLX
