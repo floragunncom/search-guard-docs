@@ -37,20 +37,10 @@ has reached End of Life in general.
 
 ## Versioning schema
 
-The Search Guard versioning scheme is: 
+The Search Guard FLX versioning scheme consists of the Search Guard FLX version (following the semantic versioning standard), followed by `-es-` and the version of Elasticsearch that is supported.
 
-* e1.e2.e3-s1.s2.s3
-* Example: 7.17.5-1.0.0
+Example: 1.0.0-es-7.17.5
  
-where 
-
-* e1: Elasticsearch Major Version
-* e2: Elasticsearch Minor Version
-* e3: Elasticsearch Fix Version
-* s1: Search Guard FLX Major Version (Incremented when new features are added)
-* s2: Search Guard FLX Minor Version (Incremented when bugfixes are applied)
-* s3: Search Guard FLX Fix Version (Incremented when trivial changes, like fixing typos, are applied)
-
 ## Which Elasticsearch versions receive new Search Guard FLX features and bugfixes
 
 * Current release of the current minor version of the current Elasticsearch major version
