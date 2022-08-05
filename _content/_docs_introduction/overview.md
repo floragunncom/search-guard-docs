@@ -44,8 +44,8 @@ Search Guard comes in two variants and three editions:
 ### Search Guard editions
 
 * Free Community Edition (Apache 2 licensed, open source and free of charge)
-* Enterprise Edition (with costs, non open source)
-* Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX (with costs, non open source)
+* Enterprise Edition (requires license)
+* Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX (requires license)
 
 
 ## TLS Encryption 
