@@ -54,7 +54,7 @@ The authentication domain settings have been combined with the authorization dom
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`http_enabled` | Property `enabled` of an auth domain in `sg_authc.yml` |  |
-|`transport_enabled` | |  |
+|`transport_enabled` | No longer available | Transport client authentication is no longer available in Search Guard FLX |
 |`order` | No longer necessary | The order of authentication domains is now specified using the natural order of the entries in the config file |
 |`skip_users` | Property `users.skip` of an auth domain in `sg_authc.yml` |  |
 |`enabled_only_for_ips` | Property `ips.accept` of an auth domain in `sg_authc.yml` |  |
