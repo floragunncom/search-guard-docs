@@ -12,7 +12,7 @@ index_algolia: false
 
 # Search Guard Versions
 
-This page lists all available versions of Search Guard 7 FLX. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
+This page lists all available versions of Search Guard FLX. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
 
 Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
 
