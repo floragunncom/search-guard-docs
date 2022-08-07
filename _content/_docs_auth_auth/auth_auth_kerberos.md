@@ -18,28 +18,9 @@ Copyright 2022 floragunn GmbH
 
 ## Prerequisites
 
-To use Kerberos with Search Guard, you need matching `krb5.conf` and keytab files for your Kerberos installation. Due to the nature of Kerberos, you need to define some (static) settings in `elasticsearch.yml`. This means that a cluster restart is necessary to peform the configuration.
+To use Kerberos with Search Guard, you need matching `krb5.conf` and keytab files for your Kerberos installation. 
 
 ## Search Guard setup
-
-### Static configuration
-
-In `elasticsearch.yml`, you need to define:
-
-```yaml
-searchguard.kerberos.krb5_filepath: '/etc/krb5.conf'
-searchguard.kerberos.acceptor_keytab_filepath: 'eskeytab.tab'
-```
-
-`searchguard.kerberos.krb5_filepath` defines the path to your Kerberos configuration file. This file contains various settings regarding your Kerberos installation, for example, the realm name(s) and the hostname(s) and port(s) of the Kerberos Key Distribution Center services.
-
-`searchguard.kerberos.acceptor_keytab_filepath` defines the path to the keytab file, containing the principal that Search Guard will use to issue requests against Kerberos/KDC.
-
-`acceptor_principal: 'HTTP/localhost'` defines the principal that Search Guard will use to issue requests against Kerberos/KDC. 
-
-The `acceptor_principal` defines the acceptor/server principal name Search Guard uses to issue requests against Kerberos/KDC. This must be present in the keytab file.
-
-**Due to security restrictions the keytab file must be placed in the `<ES installation directory>/conf` directory or a subdirectory, and the path in `elasticsearch.yml` must be configured relative, not absolute.**
 
 ### `sg_authc.yml`
 
@@ -48,9 +29,18 @@ A typical Kerberos authentication domain in `sg_authc.yml` looks like this:
 ```yaml
 auth_domains:
 - type: kerberos
+  kerberos.krb5_config_file: "/etc/krb5.conf"
+  kerberos.acceptor_keytab: "eskeytab.tab"
+  kerberos.acceptor_principal: "HTTP/localhost"
   kerberos.krb_debug: false
   kerberos.strip_realm_from_principal: true
 ```
+
+The attribute `krb5_config_file` defines the path to your Kerberos configuration file. This file contains various settings regarding your Kerberos installation, for example, the realm name(s) and the hostname(s) and port(s) of the Kerberos Key Distribution Center services. Note: You cannot have multiple Kerberos auth domains with different configuration files. The default value is `/etc/krb5.conf`. 
+
+The attribute `acceptor_keytab`  defines the path to the keytab file, containing the principal that Search Guard will use to issue requests against Kerberos/KDC. Please note that Elasticsearch puts restrictions on the location of this file: It must be placed in `<ES installation directory>/conf` directory or a subdirectory. Furthermore, you must configure a relative path.
+
+The `acceptor_principal` defines the acceptor/server principal name Search Guard uses to issue requests against Kerberos/KDC. This must be present in the keytab file.
 
 As the name implies, setting `krb_debug` to true will output a lot of Kerberos specific debugging messages to stdout. Use this if you encounter any problems with your Kerberos integration.
 
