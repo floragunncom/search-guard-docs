@@ -4,17 +4,12 @@
 
 
 <table>
-  <tr><th colspan=2 style="text-align:center; font-weight:bold">Platform Independent</th></tr>
-  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard Control Tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
-</table>
-
-<h2>{{include.title}}</h2>
-<table>
   <thead>
   <tr>
     <th>Elasticsearch</th>
-    <th>Search Guard</th>
-    <th>Kibana Plugin</th>
+    <th>Search Guard Elasticsearch Plugin</th>
+    <th>Search Guard Kibana Plugin</th>
+    <th>Search Guard Demo Installer</th>
     <th>Status</th>
   </tr>
   </thead>
@@ -30,7 +25,9 @@
       {% capture kibana_url %}
         https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ sgversions[2] }}-es-{{ sgversions[0] }}/search-guard-flx-kibana-plugin-{{ sgversions[2] }}-es-{{ sgversions[0] }}.zip    
       {% endcapture %}  
-
+      {% capture demo_url %}
+        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}-demo-installer.sh      
+      {% endcapture %}  
 
 
   <tr>
@@ -44,6 +41,8 @@
     <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
+
+    <td><a href="{{ demo_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <!-- is EOL switch -->
     {% if sgversions[4] == "no" %}

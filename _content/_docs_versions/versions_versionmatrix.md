@@ -12,14 +12,29 @@ index_algolia: false
 
 # Search Guard Versions
 
-This page lists all available versions of Search Guard FLX. If you are upgrading from Elasticsearch 6.8.x to Elasticsearch 7, please read the [upgrade instructions to Elasticsearch 7.x](../_docs_installation/installation_upgrading_6_7.md). 
+This page lists all available versions of Search Guard.
 
-Please also refer to [Search Guard End of Life policy](../_docs_versions/versions_eol.md) to make sure that you are not running an outdated Search Guard version.
+## Search Guard FLX
 
-{% include sgversions.html versions="search-guard-flx-7" majorversion="7" title="Search Guard 7 FLX, including Security and Alerting"%}
+<table>
+  <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
+  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
+</table>
 
-## Older Releases
+{% include sgversions.html versions="search-guard-flx"%}
 
-All versions are available on the Search Guard Maven repository:
+## Search Guard Classic
 
-* [Search Guard Maven Repository](https://maven.search-guard.com){:target="_blank"}
+Non-FLX releases of Search Guard are in maintenance mode now and only receive limited support. Whenever possible, you should choose Search Guard FLX.
+
+### Search Guard Suite 7
+
+{% include sgversions_classic.html versions="search-guard-suite-7" majorversion="7" issuite=true title="Search Guard Suite 7, including Security and Alerting"%}
+
+### Search Guard 7
+
+{% include sgversions_classic.html versions="search-guard-7" majorversion="7" issuite=false title="Search Guard 7"%}
+
+### Search Guard 6
+
+{% include sgversions_classic.html versions="search-guard-6" majorversion="6" issuite=false title="Search Guard 6"%}

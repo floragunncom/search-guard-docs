@@ -1,0 +1,12 @@
+{% assign sgversions = site.sgversions[include.versions] %}
+
+
+  {% for version in sgversions %}
+
+    {% assign sgversions = version | split: "|" %}
+    
+      {% capture demo_url %}
+        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}-demo-installer.sh      
+      {% endcapture %}  
+
+    <a href="{{ demo_url }}">Elasticsearch {{ sgversions[0] }}</a>{% endfor %}
