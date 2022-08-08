@@ -21,7 +21,7 @@ fi
 
 echo "Building branch $git_branch"
 
-if [[ ! $git_branch =~ ^tech-preview$ ]]; then
+if [[ ! $git_branch =~ ^flx$ ]]; then
     echo "Branch $git_branch does not seem to be a release branch, exiting gracefully"
     exit 0
 fi
