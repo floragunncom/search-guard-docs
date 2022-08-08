@@ -7,7 +7,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
 
-baseurl: /latest
+baseurl: /7.x-53
 
 algolia:
-  index_name: 'latest'
+  index_name: '7x-53'

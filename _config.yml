@@ -176,7 +176,7 @@ relative_links:
   collections: true
 
 domain: https://docs.search-guard.com
-baseurl: /latest
+baseurl: /7.x-53
 
 collections_dir: _content
 
