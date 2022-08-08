@@ -92,6 +92,7 @@ labels:
   navigation:
     introduction: Introduction to Search Guard
     quickstart: Quickstart
+    password-based: Password-based authentication
     first_steps: First steps
     versions: Search Guard Versions
     installation: Installing Search Guard
@@ -104,7 +105,12 @@ labels:
     authauth: Authentication
     rolespermissions: "Authorization"
     eeadvanced: Advanced Security Features
+    jwt: "JSON web tokens"
+    proxy: "Proxy Authentication"
+    sg_authc: "Authentication"
+    authorization-advanced: "Advanced Authentication"
     dlsfls: Document- and Field-Level Security
+    dls: "Document-Lecel Security"
     kibana: Kibana
     auditlog: Audit And Compliance Logging
     compliance: Compliance
