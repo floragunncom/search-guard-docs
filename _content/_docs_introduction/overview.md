@@ -30,7 +30,7 @@ Access Control (RBAC) to Elasticsearch indices, Document- and Field-level securi
 
 Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in Elasticsearch, including Kibana, Logstash and Beats.
 
-Search Guard comes three editions:
+Search Guard comes in three editions:
 
 * Free Community Edition (Apache 2 licensed, open source and free of charge)
 * Enterprise Edition (requires license)
