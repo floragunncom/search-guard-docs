@@ -31,6 +31,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
   allversions:
+    - flx
     - 7x-53  
     - 7x-52  
     - 7x-51  
@@ -58,7 +59,8 @@ searchguard:
     - v2
 
 docroots: 
-  7x-53: latest
+  flx: latest
+  7x-53: 7.x-53
   7x-52: 7.x-52
   7x-51: 7.x-51
   7x-50: 7.x-50
@@ -125,6 +127,7 @@ labels:
     transformations: Transformations
     triggers: Triggers
     sgadmin: sgadmin
+    flx: Search Guard FLX
     7x-53: Search Guard 7.x-53     
     7x-52: Search Guard 7.x-52     
     7x-51: Search Guard 7.x-51    
