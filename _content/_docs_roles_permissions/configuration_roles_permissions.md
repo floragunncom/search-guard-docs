@@ -297,18 +297,13 @@ jdoe:
     departmentName: "operations"
 ```
 
-In order to use this attribute, you need map it in the `authentication_backend` configuration inside `sg_config.yml`: 
+In order to use this attribute, you need map it in the `user_mapping.attributes` configuration inside `sg_authc.yml`: 
 
 ```yaml
-basic:
-  ...
-  http_authenticator:
-    ...
-  authentication_backend:
-    type: internal
-    config:
-      map_db_attrs_to_user_attrs:
-        department: departmentName
+auth_domains:
+- type: basic/internal_users_db
+  user_mapping.attributes.from:
+    department: user_entry.attributes.departmentName
 ```
 
 You can then use the `department` attribute in index patterns and tenant patterns like:
