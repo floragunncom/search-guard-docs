@@ -52,7 +52,6 @@ Release Date: 2021-11-16
 
 Release Date: 2021-10-14
 
->>>>>>> 4fc6d9e9 (Add 53.5.0 release notes)
 ### [Search Guard 7.x-52.3.0](../_changelogs/changelog_searchguard_7_x_52_3_0.md)
 
 Release Date: 2021-09-16
