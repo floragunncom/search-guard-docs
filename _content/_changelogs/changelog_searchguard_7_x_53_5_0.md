@@ -2,7 +2,7 @@
 title: Search Guard 7.x-53.5.0
 permalink: changelog-searchguard-7x-53_5_0
 category: changelogs-searchguard
-order: -440
+order: -450
 layout: changelogs
 description: Changelog for Search Guard 7.x-53.5.0
 ---
