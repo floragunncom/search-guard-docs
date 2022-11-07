@@ -433,5 +433,5 @@ sgversions:
     - 6.4.2|25.5|19.0|yes|yes
     - 6.4.1|25.5|19.0|yes|yes
     - 6.4.0|25.5|19.0|yes|yes
-  tlstool: 1.8
+  tlstool: 1.9.0
   sgctl: 1.0.0
