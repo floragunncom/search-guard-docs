@@ -25,7 +25,7 @@ Copyright 2020 floragunn GmbH
 In order to set up a Search Guard PoC quickly, you can simply download and install our demo TLS certificates. The certificates can be used for node to node TLS encryption, REST encryption and for using sgadmin. They work on Linux, Mac and Windows.
 
 <div class="header-back-buttons helper center" style="margin-top: 40px; margin-bottom:40px;">
-<a href="https://downloads.search-guard.com/resources/certificates/certificates.zip" target="_blank" class="button stroke rounded large blue">Download Demo Certificates</a>
+<a href="https://maven.search-guard.com//downloads/search-guard-demo-certificates.zip" target="_blank" class="button stroke rounded large blue">Download Demo Certificates</a>
 </div>
 
 The certificates are for PoC usage only. Do not install on production.
@@ -33,7 +33,7 @@ The certificates are for PoC usage only. Do not install on production.
 
 ## Download and install
 
-Download the [certificates zip file](https://downloads.search-guard.com/resources/certificates/certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
+Download the [certificates zip file](https://maven.search-guard.com//downloads/search-guard-demo-certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
 
 ```
 <ES installation directory>/config
