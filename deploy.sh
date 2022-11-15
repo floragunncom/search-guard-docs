@@ -7,7 +7,14 @@ echo "## building docs"
 bundle install
 bundle exec jekyll build --config _config.yml,_versions.yml
 
-ftp_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
+site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
+sftp_directory=$(sed 's/^\///' <<< $site_dir )
+sftp_root_directory='html'
+
+#set default server
+if [  ! ${sftp_server+x} ];  then
+  sftp_server=185.233.188.50
+fi
 
 # Sanity check, do not upload feature branches etc.
 
@@ -26,10 +33,35 @@ if [[ ! $git_branch =~ ^7.x-[0-9]{2}$ ]]; then
     exit 0
 fi
 
-echo "## Uploading to FTP directory: $ftp_dir"
-ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  "$ftp_dir" ./_site/*
-export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
-echo "Last commit message: $GIT_COMMIT_DESC"
+if [ "$ftp_file_upload" = true ] ; then
+  echo "## Uploading to FTP directory: $site_dir"
+  ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  "$site_dir" ./_site/*
+  export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
+  echo "Last commit message: $GIT_COMMIT_DESC"
+else 
+  echo "FTP upload is disabled"    
+fi
+
+if [ "$sftp_file_upload" = true ] ; then
+
+  echo "## Uploading to SFTP Server $sftp_server directory: $ftp_dir"
+  echo "Set ssh configuration for SFTP"
+  which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+  eval $(ssh-agent -s)
+  echo "$sftp_user_private_key_base64" | base64 -d | tr -d '\r' | ssh-add -
+  mkdir -p ~/.ssh
+  echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+  echo "Uploading fles to SFTP server"
+
+sftp  -b - $sftp_user_name@$sftp_server <<EOF
+    -mkdir $sftp_root_directory/$sftp_directory
+    put -r /builds/search-guard/search-guard-docs/_site/* $sftp_root_directory/$sftp_directory
+EOF
+
+else 
+ echo "SFTP upload is disabled"    
+fi
 
 if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
   echo "## Skipping Search Index"
