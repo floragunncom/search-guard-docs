@@ -37,6 +37,13 @@ This is a beta release. If you find any issues, please report them on the <a hre
   </thead>
   <tbody>
     <tr>
+        <td>8.5.1</td>
+        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.1.zip" target="_blank">1.0.0</a></td>
+        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.5.1.zip" target="_blank">1.0.0</a></td>
+        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.1-demo-installer.sh" target="_blank">1.0.0</a></td>
+        <td>Active</td>
+    </tr>
+    <tr>
         <td>8.5.0</td>
         <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.0/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.0.zip" target="_blank">1.0.0</a></td>
         <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.5.0/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.5.0.zip" target="_blank">1.0.0</a></td>
