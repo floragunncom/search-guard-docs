@@ -6,7 +6,7 @@ docs:
   stage: build
   script: 
     - | 
-      if [[ ! $CI_COMMIT_BRANCH =~ =~ ^7.x-[0-9]{2}$ ]]; then
+      if [[ ! $CI_COMMIT_BRANCH =~ ^7.x-[0-9]{2}$ ]]; then
         echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
         exit 0
       fi
