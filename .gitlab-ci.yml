@@ -24,9 +24,10 @@ docs:
   
       echo "## building docs"
       bundle install
-      bundle exec jekyll build --config _config.yml,_versions.yml
+      bundle exec jekyll build --config _config.yml
+      
   
-      site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
+      site_dir=$(grep "baseurl:" ./_config.yml  | awk '{print $2}')
       sftp_directory=$(sed 's/^\///' <<< $site_dir )
       sftp_root_directory='html'
   
@@ -72,6 +73,6 @@ docs:
         echo "## Skipping Search Index"
       else
         echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml,_versions.yml
+        bundle exec jekyll algolia push --config _config.yml
       fi
   
