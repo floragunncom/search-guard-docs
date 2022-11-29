@@ -79,13 +79,13 @@ baseurl: /v5
 collections:
   docs:
     output: true
-    permalink: :title
+    permalink: :name
   troubleshooting:
     output: true
-    permalink: :title
+    permalink: :name
   changelogs:
     output: true
-    permalink: :title
+    permalink: :name
 
 algolia:
   application_id: '2ESDTH812Y'
