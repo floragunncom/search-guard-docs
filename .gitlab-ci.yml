@@ -6,7 +6,7 @@ docs:
   stage: build
   script: 
     - | 
-      if [[ ! $CI_COMMIT_BRANCH =~ ^flx$ ]]; then
+      if [[ ! $CI_COMMIT_BRANCH =~ ^flx-staging$ ]]; then
         echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
         exit 0
       fi
@@ -32,20 +32,20 @@ docs:
   
       #set default SFTP server
       if [ ! ${sftp_server+x} ];  then
-        sftp_server=185.233.188.50
+        sftp_server=34.255.6.138
       fi
     
       echo "Building branch $git_branch"
 
 
-      if [ "$ftp_file_upload" = true ] ; then
-        echo "## Uploading to FTP directory: $site_dir"
-        ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  "$site_dir" ./_site/*
-        export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
-        echo "Last commit message: $GIT_COMMIT_DESC"
-      else 
-        echo "FTP upload is disabled"    
-      fi
+      # if [ "$ftp_file_upload" = true ] ; then
+      #   echo "## Uploading to FTP directory: $site_dir"
+      #   ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  "$site_dir" ./_site/*
+      #   export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
+      #   echo "Last commit message: $GIT_COMMIT_DESC"
+      # else 
+      #   echo "FTP upload is disabled"    
+      # fi
   
       if [ "$sftp_file_upload" = true ] ; then
   
@@ -68,10 +68,10 @@ docs:
        echo "SFTP upload is disabled"    
       fi
       
-      if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-        echo "## Skipping Search Index"
-      else
-        echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml,_versions.yml
-      fi
+      # if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
+      #   echo "## Skipping Search Index"
+      # else
+      #   echo "## Rebuilding Search Index"
+      #   bundle exec jekyll algolia push --config _config.yml,_versions.yml
+      # fi
   
