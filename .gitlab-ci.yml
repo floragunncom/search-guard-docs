@@ -32,7 +32,7 @@ docs:
   
       #set default SFTP server
       if [ ! ${sftp_server+x} ];  then
-        sftp_server=34.255.6.138
+        sftp_server=3.250.12.47
       fi
     
       echo "Building branch $git_branch"
