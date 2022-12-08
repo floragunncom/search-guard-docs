@@ -87,30 +87,30 @@ If selective actions are supposed to be acknowledged, they can be specified as c
 https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack?actions=action_a,action_b
 ```
 
-#### Auto-Acknowledge
+Signals provides two variables for generating deeplinks. These variables can be used in Mustache templates, for example to generate
+an Email or a Slack message:
+
+* `{{ '{{' }}ack_watch_link}}`: Link to acknowledge the whole watch
+* `{{ '{{' }}ack_action_link}}`: Link to acknowledge the particular action which generated the current alert
+
+**Prerequisites**
+
+Since the deeplinks contain the base URL of Kibana, you need to configure it as a setting in Signals using the [PUT settings REST API](elasticsearch-alerting-rest-api-settings-put):
+
+Example curl call:
+
+``
+curl -u username:password \
+  -H 'Content-Type: application/json' \
+  -X PUT "https://<Elasticsearch URL>:9200/_signals/settings/frontend_base_url" \
+  -d '"https://kibana.example.com:5601"'
+``
 
 By default, the user has to acknowledge the watch with an additional button press on the Kibana acknowledge page.
 If you want to auto-acknowledge the specified actions once the user clicks on the deeplink, add `one_click=true` as a query parameter to the link:
 
 ```
 https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack?actions=action_a,action_b&one_click=true
-```
-
-#### Deeplinks in templates
-
-Signals provides two variables for generating deeplinks. These variables can be used in Mustache templates, for example to generate
-an Email or a Slack message:
-
-* {{ack_watch_link}} - Link to acknowledge the whole watch
-* {{ack_action_link}} - Link to acknowledge the particular action which generated the current alert
-
-**Prerequisites**
-
-Since the deeplinks contain the base URL of Kibana, you need to configure it as a setting in Signals using the [PUT settings REST API](elasticsearch-alerting-rest-api-settings-put):
-
-```
-PUT /_signals/settings/frontend_base_url
-"https://kibana.example.com:5601"
 ```
 
 ### Unacklowledgabe actions
@@ -120,13 +120,13 @@ Introduced in Search Guard FLX 1.1.0
 
 Search Guard FLX 1.1.0 introduces a new boolean attribute for actions: `ack_enabled` (defaults to true).
 
-If set to false, REST API calls for acknowledging a watch will not acknowledge this action, and thus it continues to run:
+If set to false, any try to acknowledge a watch will not acknowledge this action, and thus it continues to run:
 
 ```
 /_signals/watch/{tenant}/{watch_id}/_ack 
 ```
 
-If an unacknowlegable action is explicitly specified in the REST API call, the request will fail with status 400 Bad Request.
+If an unacknowlegable action is explicitly specified, the request will fail with status 400 Bad Request.
 
 ```
 /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
