@@ -81,7 +81,6 @@ If an action is acknowledged, its execution is suppressed for an indefinite amou
 
 A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
 
-
 ## Processing Collections of Objects in Actions
 
 Some types of watches can produce several objects at once which then need to be processed by actions.
