@@ -58,8 +58,76 @@ This is useful in a situation where a watch condition is met, and you want to ac
 
 A watch will remain in the `acknowledged` state until the watch condition evaluates to `false`, i.e. the condition is not met. This will move the watch out of the `acknowledged` state, so the next time the condition is met, the actions will be executed again.
 
-## Throttling flow
+### Throttling flow
 
 <p align="center">
 <img src="throttling.png" style="width: 30%" class="md_image"/>
 </p>
+
+### Kibana Deeplinks for Acknowledging Actions
+
+Introduced in Search Guard FLX 1.1.0
+{: .available-since}
+
+You can use Kibana deeplinks to acknowledge one or more actions of a watch. A deeplink makes it possible to
+
+- Acknowledge all actions of a watch
+- Acknowledge one specific action of a watch
+- Acknowledge several specific actions of a watch
+
+To acknowledge all actions of a watch, you can use the following deeplink:
+
+```
+https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack. 
+```
+
+If selective actions are supposed to be acknowledged, they can be specified as comma-separated query params:
+
+```
+https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack?actions=action_a,action_b
+```
+
+Signals provides two variables for generating deeplinks. These variables can be used in Mustache templates, for example to generate
+an Email or a Slack message:
+
+* `{{ '{{' }}ack_watch_link}}`: Link to acknowledge the whole watch
+* `{{ '{{' }}ack_action_link}}`: Link to acknowledge the particular action which generated the current alert
+
+**Prerequisites**
+
+Since the deeplinks contain the base URL of Kibana, you need to configure it as a setting in Signals using the [PUT settings REST API](elasticsearch-alerting-rest-api-settings-put):
+
+Example curl call:
+
+``
+curl -u username:password \
+  -H 'Content-Type: application/json' \
+  -X PUT "https://<Elasticsearch URL>:9200/_signals/settings/frontend_base_url" \
+  -d '"https://kibana.example.com:5601"'
+``
+
+By default, the user has to acknowledge the watch with an additional button press on the Kibana acknowledge page.
+If you want to auto-acknowledge the specified actions once the user clicks on the deeplink, add `one_click=true` as a query parameter to the link:
+
+```
+https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack?actions=action_a,action_b&one_click=true
+```
+
+### Unacklowledgabe actions
+
+Introduced in Search Guard FLX 1.1.0
+{: .available-since}
+
+Search Guard FLX 1.1.0 introduces a new boolean attribute for actions: `ack_enabled` (defaults to true).
+
+If set to false, any try to acknowledge a watch will not acknowledge this action, and thus it continues to run:
+
+```
+/_signals/watch/{tenant}/{watch_id}/_ack 
+```
+
+If an unacknowlegable action is explicitly specified, the request will fail with status 400 Bad Request.
+
+```
+/_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
+```

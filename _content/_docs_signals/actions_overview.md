@@ -76,8 +76,7 @@ A manual way of suppressing the execution of actions is acknowledging actions.
 
 If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, all checks are executed to determine if a watch is still in alert state. If the watch remains in alert state, the action remains acknowledged and thus execution is suppressed. Only if the watch leaves alert state, the acknowledge state of the action is reset. Thus, if the situation changes again that the watch reaches alert state, the action would be actually executed again.
 
-A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
-
+A watch can be acknowledged via the [Signals Kibana plugin](elasticsearch-alerting-throttling#deeplinks-for-acknowledging-actions), or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
 
 ## Processing Collections of Objects in Actions
 
