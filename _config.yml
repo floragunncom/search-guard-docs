@@ -139,6 +139,7 @@ labels:
     security: Alerting Security
     transformations: Transformations
     triggers: Triggers
+    advanced-topics: Signals Advanced Topics
     sgadmin: sgadmin
     flx: Search Guard FLX
     7x-53: Search Guard 7.x-53     
