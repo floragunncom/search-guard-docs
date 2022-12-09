@@ -113,7 +113,7 @@ If you want to auto-acknowledge the specified actions once the user clicks on th
 https://<Kibana URL>/app/searchguard-signals#/watch/{watch_id}/ack?actions=action_a,action_b&one_click=true
 ```
 
-### Unacklowledgabe actions
+### Unacknowledgeable actions
 
 Introduced in Search Guard FLX 1.1.0
 {: .available-since}
@@ -126,7 +126,7 @@ If set to false, any try to acknowledge a watch will not acknowledge this action
 /_signals/watch/{tenant}/{watch_id}/_ack 
 ```
 
-If an unacknowlegable action is explicitly specified, the request will fail with status 400 Bad Request.
+If an unacknowlegeable action is explicitly specified, the request will fail with status 400 Bad Request.
 
 ```
 /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
