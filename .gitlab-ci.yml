@@ -6,10 +6,10 @@ docs:
   stage: build
   script: 
     - | 
-      if [[ ! $CI_COMMIT_BRANCH =~ ^flx$ ]]; then
-        echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
-        exit 0
-      fi
+      # if [[ ! $CI_COMMIT_BRANCH =~ ^flx$ ]]; then
+      #   echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
+      #   exit 0
+      # fi
       cat /etc/debian_version || true 
       uname -a
       export LC_ALL="C.UTF-8"
@@ -67,11 +67,11 @@ docs:
       else 
        echo "SFTP upload is disabled"    
       fi
-      
-      if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-        echo "## Skipping Search Index"
-      else
-        echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml,_versions.yml
-      fi
+      sleep 3600
+      # if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
+      #   echo "## Skipping Search Index"
+      # else
+      #   echo "## Rebuilding Search Index"
+      #   bundle exec jekyll algolia push --config _config.yml,_versions.yml
+      # fi
   
