@@ -64,7 +64,7 @@ A watch will remain in the `acknowledged` state until the watch condition evalua
 <img src="throttling.png" style="width: 30%" class="md_image"/>
 </p>
 
-### Kibana Deeplinks for Acknowledging Actions
+### Kibana deeplinks for acknowledging actions
 
 Introduced in Search Guard FLX 1.1.0
 {: .available-since}
