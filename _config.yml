@@ -16,7 +16,7 @@ exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'RE
 
 plugins:
   - jekyll-relative-links
-  - algoliasearch-jekyll
+  - jekyll-algolia
 
 elasticsearch:
   currentversion: 7.6.0
