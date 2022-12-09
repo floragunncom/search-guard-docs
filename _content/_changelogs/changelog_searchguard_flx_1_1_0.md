@@ -29,7 +29,7 @@ In some cases, you might want certain actions of a watch to execute every time -
 
 ### Landing page for acknowledging actions
 
-You can now add a direct link for acknowledging an action to any notification sent by Signals. You just have to add the expression `{{ack_watch_link}}` or `{{ack_action_link}}` to any notification message template used in Signals actions. `{{ack_watch_link}}` lets you acknowledge the whole watch; `{{ack_action_link}}` lets you acknowledge just the action which triggered the notification.
+You can now add a direct link for acknowledging an action to any notification sent by Signals. You just have to add the expression `{{ '{{' }}ack_watch_link}}` or `{{ '{{' }}ack_action_link}}` to any notification message template used in Signals actions. `{{ '{{' }}ack_watch_link}}` lets you acknowledge the whole watch; `{{ '{{' }}ack_action_link}}` lets you acknowledge just the action which triggered the notification.
 
 ##### Related:
 
