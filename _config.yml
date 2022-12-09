@@ -271,7 +271,7 @@ algolia:
     hitsPerPage: 20
     maxValuesPerFacet: 100
     version: 2
-    attributesToIndex:
+    searchableAttributes:
       - tags
       - h1
       - h2
