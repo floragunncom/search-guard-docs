@@ -9,7 +9,7 @@ edition: community
 description: How to use query parameters to change 
 ---
 
-# Filtering and Sorting Watches in Kibana
+Filtering and Sorting Watches in Kibana
 
 Introduced in Search Guard FLX 1.1.0
 {: .available-since}
