@@ -16,6 +16,14 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 Release Date: 2022-12-08
 
+### [Search Guard FLX 1.0.0](../_changelogs/changelog_searchguard_flx_1_1_0.md)
+
+Release Date: 2022-12-08
+
+### [Search Guard 7.x-53.6.0](../_changelogs/changelog_searchguard_7_x_53_6_0.md)
+
+Release Date: 2022-12-19
+
 ### [Search Guard 7.x-53.5.0](../_changelogs/changelog_searchguard_7_x_53_5_0.md)
 
 Release Date: 2022-10-05

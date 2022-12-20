@@ -21,92 +21,13 @@ This page lists all available versions of Search Guard.
   <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
 </table>
 
-### Search Guard FLX for Elasticsearch 8 Beta
+### Search Guard FLX for Elasticsearch 8
 
-This is a beta release. If you find any issues, please report them on the <a href="https://forum.search-guard.com/" target="_blank">Search Guard Forum</a>
-
-<table>
-  <thead>
-  <tr>
-    <th>Elasticsearch</th>
-    <th>Search Guard Elasticsearch Plugin</th>
-    <th>Search Guard Kibana Plugin</th>
-    <th>Search Guard Demo Installer</th>
-    <th>Status</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td>8.5.2</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.2.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.5.2/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.5.2.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.2-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.5.1</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.1.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.5.1.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.1-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.5.0</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.0/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.0.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.5.0/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.5.0.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.5.0/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.5.0-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.4.3</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.4.3/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.4.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.3-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.4.2</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.2.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.4.2/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.4.2.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.2/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.2-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.4.1</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.1.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.4.1/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.4.1.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.1/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.1-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.4.0</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.0/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.0.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.4.0/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.4.0.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.4.0/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.4.0-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-    <tr>
-        <td>8.3.3</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.3.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.3.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.3.3/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.3.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.3.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.3.3-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>  
-    <tr>
-        <td>8.2.3</td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.2.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.2.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.0.0-beta-4-es-8.2.3/search-guard-flx-kibana-plugin-1.0.0-beta-4-es-8.2.3.zip" target="_blank">1.0.0</a></td>
-        <td><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.0.0-beta-4-es-8.2.3/search-guard-flx-elasticsearch-plugin-1.0.0-beta-4-es-8.2.3-demo-installer.sh" target="_blank">1.0.0</a></td>
-        <td>Active</td>
-    </tr>
-</tbody>
-</table>
-
-
+{% include sgversions.html versions="search-guard-flx-8"%}
 
 ### Search Guard FLX for Elasticsearch 7
 
-{% include sgversions.html versions="search-guard-flx"%}
+{% include sgversions.html versions="search-guard-flx-7"%}
 
 ## Search Guard Classic
 

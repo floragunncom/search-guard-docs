@@ -2,7 +2,7 @@
 title: Search Guard FLX 1.1.0
 permalink: changelog-searchguard-flx-1_1_0
 category: changelogs-searchguard
-order: -460
+order: -1010
 layout: changelogs
 description: Changelog for Search Guard FLX 1.1.0
 ---

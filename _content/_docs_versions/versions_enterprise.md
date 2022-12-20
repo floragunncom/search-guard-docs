@@ -80,7 +80,7 @@ After obtaining a license, you can apply it in two ways.
 
 #### sg_license_key.yml
 
-Add the license string to sg_license_key.yml and upload the configuration by using [sgctl](sg-flx-release-notes#sg_license_key)
+Add the license string to sg_license_key.yml and upload the configuration by using [sgctl](changelog-searchguard-flx-1_0_0#sg_license_key)
 
 When using `sgctl` to upload the changed `sg_license_key.yml` with the new license, any existing license will be overwritten. In order to [backup your existing license](sgctl-configuration-changes).
 #### REST API
