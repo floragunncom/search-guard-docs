@@ -37,7 +37,7 @@ In the future, this might allow tighter integration between Search Guard or Sign
 <p />
 * The Create Role page of the Search Guard configuration UI now supports the [permission exclusion feature](https://docs.search-guard.com/latest/roles-permissions#permission-exclusions).
 <p />
-* The internal user database editor now supports [complex user attributes](https://docs.search-guard.com/latest/changelog-searchguard-7.x-46_0_0#multi-valued-attributes-for-internal-user-database).
+* The internal user database editor now supports [complex user attributes](https://docs.search-guard.com/latest/changelog-searchguard-7x-46_0_0#multi-valued-attributes-for-internal-user-database).
 <p />
 
 

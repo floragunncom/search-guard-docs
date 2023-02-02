@@ -35,7 +35,7 @@ In addition to backend roles, it is now possible to specify Search Guard roles w
 
 ### OIDC Configuration
 
-With the new [backend improvements for OIDC](https://docs.search-guard.com/latest/changelog-searchguard-7.x-48_0_0), the following settings for Kibana are not necessary any more and have been deprecated. As the Search Guard backend should already have the necessary configuration, the options can and should be removed from `kibana.yml` without an explicit replacement.
+With the new [backend improvements for OIDC](https://docs.search-guard.com/latest/changelog-searchguard-7x-48_0_0), the following settings for Kibana are not necessary any more and have been deprecated. As the Search Guard backend should already have the necessary configuration, the options can and should be removed from `kibana.yml` without an explicit replacement.
 * `searchguard.openid.connect_url`
 * `searchguard.openid.root_ca`
 * `searchguard.openid.verify_hostnames`
