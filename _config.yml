@@ -338,6 +338,9 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol
   search-guard-flx-8:
+    - 8.6.2|1.1.1|1.1.0|yes|no
+    - 8.6.1|1.1.1|1.1.0|yes|no
+    - 8.6.0|1.1.1|1.1.0|yes|no
     - 8.5.3|1.1.1|1.1.0|yes|no
     - 8.5.2|1.1.1|1.1.0|yes|no
     - 8.5.1|1.1.1|1.1.0|yes|no
