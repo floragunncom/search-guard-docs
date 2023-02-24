@@ -15,9 +15,9 @@ description: Changelog for Search Guard FLX 1.1.1
 
 This is an important security fix release for Search Guard FLX. 
 
-If you are using document level security (DLS), field level security (FLS) or field masking you are required to update.
+If you are using using document level security (DLS), field level security (FLS) or field masking and your sg_authz_dlsfls.yml contains use_impl: flx, you are required to update.
 
-It also bring a number of bug fixes.
+This release also bring a number of further bug fixes.
 
 ## Security bug fixes
 
