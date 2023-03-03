@@ -232,4 +232,4 @@ So, you can access this information via the `resolved` property:
 **resolved.trigger:** The time when the previous execution was scheduled and when it was triggered.
 
 
-When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level` will be `NONE` and `severity.threshold` will be `null`.
+When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level.name` will be `NONE` and `severity.threshold` will be `null`.
