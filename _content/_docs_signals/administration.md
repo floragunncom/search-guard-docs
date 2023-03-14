@@ -43,7 +43,7 @@ These settings can be set using the Signals settings REST API:
 
 **execution.default_throttle_period:** The throttle period to be used if an action does not specify an explicit one. Defaults to `10s`. 
 
-**watch_log.index:** The name of the watch log index. Defaults to `<.signals_log_{now/d}>` which starts a new index every day. If you expect a higher throughput which makes it necessary to start an index more often, you can use another [date math expression](https://www.elastic.co/guide/en/elasticsearch/reference/current/date-math-index-names.html).
+**watch_log.index:** The name of the watch log index. Defaults to `<signals_log_{now/d}>` which starts a new index every day. If you expect a higher throughput which makes it necessary to start an index more often, you can use another [date math expression](https://www.elastic.co/guide/en/elasticsearch/reference/current/date-math-index-names.html).
 
 **watch_log.include_node:** If true, the name of the node which executed a watch is logged into the watch log index.
 
@@ -63,7 +63,7 @@ The following configuration options can be made in the elasticsearch.yml configu
 
 **signals.enabled:** Can be used to enable or disable Signals. Optional, boolean, defaults to true. Take care that the value of this setting is consistent for all nodes in a cluster. It is not supported to enable Signals only on a subset of a cluster using this setting. Use the `node_filter` settings for this purpose instead.
 
-**signals.index_names.log:** Specifies the name of the watch log index. Optional, defaults to `<.signals_log_{now/d}>`.
+**signals.index_names.log:** Specifies the name of the watch log index. Optional, defaults to `<signals_log_{now/d}>`.
 
 **Note:** There are some further configuration options for configuring internal index names. These are not needed for normal operation and should be not used except in very special circumstances.
 
