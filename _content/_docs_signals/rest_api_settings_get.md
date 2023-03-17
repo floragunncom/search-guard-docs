@@ -83,13 +83,13 @@ GET /_signals/settings
 ```
 
 ```
-GET /_signals/settings/watchlog.index
+GET /_signals/settings/watch_log.index
 ```
 
 **Response**
 
 ```
-"<.signals_log_{now/d}>"
+"<signals_log_{now/d}>"
 ```
 
 
