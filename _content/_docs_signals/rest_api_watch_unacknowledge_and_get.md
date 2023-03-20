@@ -29,7 +29,7 @@ DELETE /_signals/watch/{tenant}/{watch_id}/_ack_and_get
 DELETE /_signals/watch/{tenant}/{watch_id}/_ack_and_get/{action_id}
 ```
 
-These endpoints can be used to withdraw acknowledgements done by the [Acknowledge Watch API](rest_api_watch_acknowledge.md) or [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md). The un-acknowledged actions will be afterwards in normal state and start executing again. The
+These endpoints can be used to withdraw acknowledgements done by the [Acknowledge Watch API](rest_api_watch_acknowledge.md) or [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md). The un-acknowledged actions will afterwards be in normal state and start executing again.
 
 The request's response contains in its body the list of all un-acknowledged action ids. Therefore, the REST operation can be treated as an extended version of the request [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md).
 
