@@ -37,7 +37,7 @@ The user who acknowledged a watch or action is tracked and can be obtained using
 
 It is possible to withdraw the acknowledgement using the `DELETE` verb on this endpoint. See [Un-acknowledge And Get Watch API](./rest_api_watch_unacknowledge_and_get.md) for details.
 
-The request's response contains in its body the new state of acknowledged actions. Therefore, the REST operation can be treated as an extended version of the request [Acknowledge Watch](rest_api_watch_acknowledge.md).
+The request's response contains in its body the new state of the acknowledged actions. Therefore, the REST operation can be treated as an extended version of the request [Acknowledge Watch](rest_api_watch_acknowledge.md).
 
 ## Path Parameters
 
