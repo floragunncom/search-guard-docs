@@ -36,7 +36,7 @@ The request's response contains in its body the list of all un-acknowledged acti
 
 ## Path Parameters
 
-**{tenant}:** The name of the tenant which contains the watch to be un-acknowledged. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
+**{tenant}:** The name of the tenant which contains the watch to be un-acknowledged. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
 
 **{watch_id}:** The id of the watch containing the action to be un-acknowledged. Required.
 
