@@ -95,7 +95,7 @@ The basic configuration attributes are:
   
 **attachments.request.body:** The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data.
   
-**attachments.request.headers:** Specifies HTTP headers to be sent along the request. Optional.
+**attachments.request.headers:** Specifies HTTP headers to be sent along the request. Allows specifying dynamic headers using Mustache templates. Optional.
   
 **attachments.request.auth:** Optional. The authentication method for the HTTP request. See [Authentication](#authentication) for details.
 
