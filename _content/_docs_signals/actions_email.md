@@ -65,11 +65,11 @@ The basic configuration attributes are:
 
 **account:** Identifies the SMTP server and account which shall be used for sending the email. See the [accounts registry documentation](accounts.md).
 
-**to:** Specifies the e-mail address of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration.
+**to:** E-mail address in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Specifies the e-mail address and display name of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration.
 
-**cc, bcc:** Further recipient email addresses can be specified using the attributes `cc` and `bcc`. Optional. Falls backs to defaults set in the account configuration.
+**cc, bcc:** E-mail addresses in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Further recipient email addresses and display names can be specified using the attributes `cc` and `bcc`. Optional. Falls backs to defaults set in the account configuration.
 
-**from:** Specifies the *from* address of the e-mail.  Optional. Falls backs to defaults set in the account configuration.
+**from:** E-mail address in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Specifies the *from* address and display name of the e-mail.  Optional. Falls backs to defaults set in the account configuration.
 
 **subject:** Defines the subject of the mail. Mustache templates can be used to render attributes from the watch runtime data. Required.
 
