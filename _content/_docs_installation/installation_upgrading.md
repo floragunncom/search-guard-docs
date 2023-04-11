@@ -23,9 +23,7 @@ The following instructions assume that Search Guard has been installed on your c
 There are two types of upgrades to distinguish:
 
 * Upgrading Search Guard for your current Elasticsearch version
-  * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextminorversion}}
 * Upgrading Search Guard and Elasticsearch
-  * for example, upgrading from {{site.searchguard.fullversion}} to {{site.searchguard.nextmajorversion}}
 
 In the first case you only need to re-install Search Guard. This can be done with a rolling restart of your Elasticsearch nodes, without any downtime.
 

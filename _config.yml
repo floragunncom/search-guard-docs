@@ -19,17 +19,15 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  currentversion: 7.6.0
-  previousversion: 7.5.2
+  majorversion: 8
+  minorversion: 8.6
+  previousminorversion: 8.5
+  currentversion: 8.6.2
+  currentversionlastmajor: 7.17.9
 
 searchguard:
-  esmajorversion: 7
-  version: 7.x-40.0.0 
-  fullversion: 7.5.1-40.0.0 
-  nextminorversion: 7.5.1-40.1.0 
-  nextmajorversion: 7.5.1-41.0.0 
+  version: "SG FLX"
   islatestversion: true
-  ispreliminaryversion: false
   allversions:
     - flx
     - 7x-53
