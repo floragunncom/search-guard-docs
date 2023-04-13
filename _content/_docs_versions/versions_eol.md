@@ -38,14 +38,12 @@ the following versions receive new Search Guard features and bugfixes:
 ## Which Elasticsearch versions receive critical bugfixes
 
 * All releases of the current minor version of the current Elasticsearch major version
-* All releases of the previous minor version of the current Elasticsearch major version
 * Current version of the last Elasticsearch major version
 
 **Example:** If the most recent version of Elasticsearch and Kibana is **{{site.elasticsearch.currentversion}}**, then
 the following versions receive critical bugfixes
 
 * Elasticsearch and Kibana {{site.elasticsearch.minorversion}}.x
-* Elasticsearch and Kibana {{site.elasticsearch.previousminorversion}}.x
 * Elasticsearch and Kibana {{site.elasticsearch.currentversionlastmajor}}
 
 ## Which Elasticsearch versions receive no updates at all any longer
