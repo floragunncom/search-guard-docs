@@ -5,7 +5,7 @@ docs:
     - docs
   stage: build
   script: 
-    - | 
+    - |
       if [[ ! $CI_COMMIT_BRANCH =~ ^main$ ]]; then
         echo "Branch $CI_COMMIT_BRANCH does not seem to be the release branch, exiting gracefully"
         exit 0
