@@ -42,3 +42,5 @@ xpack.security.enabled: false
 xpack.ml.enabled: true
 ...
 ```
+
+{% include es8_migration_note.html deprecated_property="xpack.security.enabled" %}

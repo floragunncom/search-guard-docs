@@ -36,6 +36,8 @@ in the log files. This means you have X-Pack installed and X-Pack Security is en
 xpack.security.enabled: false
 ```
 
+{% include es8_migration_note.html deprecated_property="xpack.security.enabled" %}
+
 ## No living connections
 
 ### Check connection settings
