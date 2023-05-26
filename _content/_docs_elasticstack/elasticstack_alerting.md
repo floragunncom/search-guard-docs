@@ -48,4 +48,4 @@ xpack.watcher.enabled: true
 ...
 ```
 
-{% include es8_migration_note.html deprecated_property="xpack.security.enabled" %}
+{% include es8_migration_note.html deprecated_properties="xpack.security.enabled, xpack.watcher.enabled" %}

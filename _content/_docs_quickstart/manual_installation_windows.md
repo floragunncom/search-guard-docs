@@ -176,7 +176,7 @@ For Elasticsearch 7 you also have to include:
 xpack.security.enabled: false
 ```
 
-{% include es8_migration_note.html deprecated_property="xpack.security.enabled" %}
+{% include es8_migration_note.html deprecated_properties="xpack.security.enabled" %}
 
 ## Start Kibana
 
