@@ -46,7 +46,7 @@ If you run older versions of Elasticsearch and/or Search Guard, please upgrade f
 
 ## Upgrading Search Guard
 
-Upgrading from Search Guard 7 classic (i.e., Search Guard versions 53 and before) is not supported. You need first to ]migrate Search Guard classic to Search Guard FLX](sg-classic-config-migration-overview).
+Upgrading from Search Guard 7 classic (i.e., Search Guard versions 53 and before) is not supported. You need first to [migrate Search Guard classic to Search Guard FLX](sg-classic-config-migration-overview).
 {: .note .js-note .note-warning}
 
 After upgrading a node from ES 7 to 8, simply [install](installation.md) the [correct version of Search Guard](../_docs_versions/versions_versionmatrix.md) on this node.
