@@ -22,7 +22,7 @@ the TLS certificate used by the destination server is considered to be trusted w
 (certificate authority). JVM considers CA to be trusted when its, so-called, root certificate is placed in the Java trust store. 
 The trust store is usually a file provided with JVM (usually `lib/security/cacerts`) therefore its content depends on the Java version. 
 Such behaviour may block connection during the TLS handshake phase when self-signed certificates are used or when private PKI is used. 
-To overcome this inconvenience Signals component which uses a TLS connection can be configured so that it is possible to define which 
+To overcome this inconvenience, a Signals component that uses a TLS connection can be configured so that it is possible to define which 
 certificates are trusted.  An example of such a configuration is visible below.
 ```json
 {
@@ -37,8 +37,8 @@ The above configuration defines trusted CA certificates which are present in the
 might be necessary to repeat such verbose configuration multiple times in many various Signals components when for example the system 
 administrator wants to add another trusted certificate to the configuration. Therefore, updates of such configurations can be challenging.
 
-To simplify trust store management Search Guard offers REST API which can be used for trust stores management. The trust stores are created
-via REST API and then referenced by id in TLS configuration like in the below example
+To simplify trust store management Search Guard offers a REST API which can be used for trust stores management. The trust stores are created
+via the REST API and then referenced by id in the TLS configuration like in the below example
 ```json
 {
   "tls": {
@@ -47,7 +47,7 @@ via REST API and then referenced by id in TLS configuration like in the below ex
 }
 ```
 
-The trust store can be modified by REST API and all Signals components which referenced the trust store by id start using newer configuration
+The trust store can be modified with the REST API and all Signals components which referenced the trust store by id will start using the newer configuration
 on the fly.
 
 It is worth mentioning that the configuration options `trusted_certs` and `truststore_id` are mutually exclusive.
@@ -61,14 +61,14 @@ The following REST API is defined to perform CRUD (create, read, update, delete)
 * [Delete truststore](./rest_api_trust_store_delete.md)
  
 ## TLS session timeout
-To increase performance Java is able to reuse single TLS session multiple times in some circumstances. If existing TLS session is reused
-then check if certificates are trusted is omitted. The certificates must be trusted when the TLS session is established. Therefore,
-modifications of trust stores performed by REST API might not be immediately reflected because some Signals component might reuse existing
-TLS sessions. If this behaviour is not desired then it is possible to provide in the TLS configuration session timeout, so that the TLS
-session will be not reused after defined timeout. To set TLS timeout
-parameter `client_session_timeout` is used. The parameter value is expressed in seconds. When parameter `client_session_timeout` value is
-set to `0` then the TLS session timeout is infinite. The below TLS configuration contain TLS session timeout which is equal 1 second.
-Therefore, all operations performed on trust stored via REST API should be reflected almost immediately in Signals components.
+To increase performance Java is able to reuse a single TLS session multiple times in some circumstances. If an existing TLS session is reused
+then the check if certificates are trusted is omitted. The certificates must be trusted when the TLS session is established. Therefore,
+modifications of trust stores performed by REST API might not be immediately reflected because some Signals components might reuse existing
+TLS sessions. If this behaviour is not desired, it is possible to provide a session timeout in the TLS configuration, so that the TLS
+session will be not reused after the defined timeout. The TLS timeout may be set with the
+parameter `client_session_timeout` is used. The parameter value is expressed in seconds. When the value of `client_session_timeout` is
+set to `0` then the TLS session timeout is infinite. The below TLS configuration contains a TLS session timeout set to 1 second.
+Therefore, all operations performed on trust stored via REST API should be reflected almost immediately in the Signals components.
 
 ```json
 {
@@ -79,10 +79,10 @@ Therefore, all operations performed on trust stored via REST API should be refle
 }
 ```
 For more information please see 
-[documentation](https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSessionContext.html#setSessionTimeout-int-).
+[the documentation](https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSessionContext.html#setSessionTimeout-int-).
 
 ## Example
-The following watch uses trust stores in [HTTP Input](elasticsearch-alerting-inputs-http) and 
+The following watch uses trust stores in the [HTTP Input](elasticsearch-alerting-inputs-http) and 
 [Webhook action](elasticsearch-alerting-actions-webhook) configuration.
 ```json
 {

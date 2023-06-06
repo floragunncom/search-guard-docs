@@ -21,7 +21,7 @@ description: Use to retrieve all trust stores.
 GET /_signals/truststores/{trust-store-id}
 ```
 
-Load information about the trust store with given id. 
+Load information about the trust store with the given id. 
 
 
 ## Responses

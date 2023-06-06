@@ -74,6 +74,6 @@ This will give this role complete access to all Signals features and indices.
 
 * [Get one trust store](./rest_api_trust_store_get_one.md)
 * [Get all trust stores](./rest_api_trust_store_get_all.md)
-* [Create or replace trust store](./rest_api_trust_store_create_or_replace.md)
+* [Create or replace a trust store](./rest_api_trust_store_create_or_replace.md)
 * [Delete truststore](./rest_api_trust_store_delete.md)
 

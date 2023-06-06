@@ -21,21 +21,21 @@ description: The request used to create or replace a trust store
 PUT /_signals/truststores/{trust-store-id}
 ```
 
-Create a new trust store if the trust store with provided id does not exist. When the trust store with provided id exists, then the existing
+Create a new trust store if the trust store with the provided id does not exist. If a trust store with the provided id exists, the existing
 trust store is replaced. The trust store can contain one or more certificates. Certificates should be provided in
 [PEM format](https://www.rfc-editor.org/rfc/rfc7468). If the trust store is composed of more than one certificate then the 
 [PEM](https://www.rfc-editor.org/rfc/rfc7468) certificate representation should be concatenated into one string and placed in the `pem` 
 JSON field.
 
 This request accepts certificates in textual ([PEM format](https://www.rfc-editor.org/rfc/rfc7468)) representation which should be placed
-in JSON string (in the field `pem`). The certificates in ([PEM format](https://www.rfc-editor.org/rfc/rfc7468)) usually contain a lot of new
+in a JSON string (in the field `pem`). The certificates in ([PEM format](https://www.rfc-editor.org/rfc/rfc7468)) usually contain a lot of new
 line characters which cannot be placed directly in JSON string. Therefore, it is necessary to properly escape new line characters with the usage of
 character sequence `\n`. Please see [RFC 8259](https://www.rfc-editor.org/rfc/rfc8259) for more details.
 
 ## Limitations
 
 Due to performance reasons, users should not add too many certificates to their trust stores. A large number of certificates may affect 
-the time needed to perform a TLS handshake and increase the system starts time.
+the time needed to perform a TLS handshake and increase the system's start time.
 
 Moreover, when certificates are uploaded to the system only basic validation is performed. Therefore, the user can (for example) upload
 expired certificates.

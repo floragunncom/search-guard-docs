@@ -21,7 +21,7 @@ description: Use to delete trust store by id
 DELETE /_signals/truststores/{trust-store-id}
 ```
 
-Delete the trust store with provided id. 
+Delete the trust store with the provided id. 
 
 
 ## Responses
