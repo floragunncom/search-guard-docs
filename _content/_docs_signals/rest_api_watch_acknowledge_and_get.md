@@ -1,18 +1,18 @@
 ---
-title: Acknowledge Watch
-html_title: Acknowledge Watch
-permalink: elasticsearch-alerting-rest-api-watch-acknowledge
+title: Acknowledge And Get
+html_title: Acknowledge And Get
+permalink: elasticsearch-alerting-rest-api-watch-acknowledge-and-get
 category: signals-rest
 order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and suppress notifications until the anomaly disappears.
+description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and suppress notifications until the anomaly disappears. New watch state is also returned by request.
 
 ---
 
-<!--- Copyright 2022 floragunn GmbH -->
+<!--- Copyright 2023 floragunn GmbH -->
 
-# Acknowledge Watch API
+# Acknowledge And Get Watch API
 {: .no_toc}
 
 {% include toc.md %}
@@ -22,11 +22,11 @@ description: The Signals Alerting for Elasticsearch API provides an endpoint for
 ## Endpoint
 
 ```
-PUT /_signals/watch/{tenant}/{watch_id}/_ack
+PUT /_signals/watch/{tenant}/{watch_id}/_ack_and_get
 ```
 
 ```
-PUT /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
+PUT /_signals/watch/{tenant}/{watch_id}/_ack_and_get/{action_id}
 ```
 
 These endpoints can be used to acknowledge actions performed by watches. By acknowledging actions, you can temporarily suppress further executions of these actions. 
@@ -35,13 +35,13 @@ When an action is acknowledged, its checks will be still executed on schedule. T
 
 The user who acknowledged a watch or action is tracked and can be obtained using the watch state REST API.
 
-It is possible to withdraw the acknowledgement using the `DELETE` verb on this endpoint. See [Un-acknowledge Watch API](rest_api_watch_unacknowledge.md) for details.
+It is possible to withdraw the acknowledgement using the `DELETE` verb on this endpoint. See [Un-acknowledge And Get Watch API](./rest_api_watch_unacknowledge_and_get.md) for details.
 
-Please see also extended version of the requests which returns additional information [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md).
+The request's response contains in its body the new state of the acknowledged actions. Therefore, the REST operation can be treated as an extended version of the request [Acknowledge Watch](rest_api_watch_acknowledge.md).
 
 ## Path Parameters
 
-**{tenant}:** The name of the tenant which contains the watch to be acknowledged. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
+**{tenant}:** The name of the tenant which contains the watch to be acknowledged. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
 
 **{watch_id}:** The id of the watch containing the action to be acknowledged. Required.
 
@@ -81,7 +81,7 @@ This permission is included in the following [built-in action groups](security_p
 
 
 ```
-PUT /_signals/watch/_main/bad_weather/_ack/email
+PUT /_signals/watch/_main/bad_weather/_ack_and_get/email
 ```
 
 **Response**
@@ -89,4 +89,16 @@ PUT /_signals/watch/_main/bad_weather/_ack/email
 ```
 200 OK
 ``` 
+```json
+{
+	"status": "OK",
+	"acked": [
+		{
+			"action_id": "email",
+			"by_user": "Oliver",
+			"on": "2023-03-16T11:09:02.417291Z"
+		}
+	]
+}
+```
 
