@@ -65,11 +65,11 @@ The basic configuration attributes are:
 
 **account:** Identifies the SMTP server and account which shall be used for sending the email. See the [accounts registry documentation](accounts.md).
 
-**to:** E-mail address in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Specifies the e-mail address and display name of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration.
+**to:** Specifies the e-mail address and display name of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration. Starting with Search Guard FLX 1.2, you can include a real name with a [syntax](https://www.rfc-editor.org/rfc/rfc5322#section-3.4) like `Emily Example <emily@example.com>`. 
 
-**cc, bcc:** E-mail addresses in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Further recipient email addresses and display names can be specified using the attributes `cc` and `bcc`. Optional. Falls backs to defaults set in the account configuration.
+**cc, bcc:** Further recipient email addresses and display names can be specified using the attributes `cc` and `bcc`. Optional. Falls backs to defaults set in the account configuration. Starting with Search Guard FLX 1.2, you can include a real name with a [syntax](https://www.rfc-editor.org/rfc/rfc5322#section-3.4) like `Emily Example <emily@example.com>`. 
 
-**from:** E-mail address in [name-addr format](https://www.rfc-editor.org/rfc/rfc5322#section-3.4). Specifies the *from* address and display name of the e-mail.  Optional. Falls backs to defaults set in the account configuration.
+**from:** Specifies the *from* address and display name of the e-mail.  Optional. Falls backs to defaults set in the account configuration. Starting with Search Guard FLX 1.2, you can include a real name with a [syntax](https://www.rfc-editor.org/rfc/rfc5322#section-3.4) like `Emily Example <emily@example.com>`. 
 
 **subject:** Defines the subject of the mail. Mustache templates can be used to render attributes from the watch runtime data. Required.
 
@@ -77,11 +77,11 @@ The basic configuration attributes are:
 
 **html_body:** Defines the content of the mail as HTML. Mustache templates can be used to render attributes from the watch runtime data.
 
-**attachments** Defines which attachments to be included. See [Request](#Request) for details.
+**attachments** Defines which attachments to be included. See [Request](#request) for details.
 
 **attachments.name** Name of the attachment to be included, e.g. 'report.pdf'.
 
-**attachments.type** Currently you can attach the Signal runtime as JSON ('runtime') and any arbitrary response from a HTTP request ('request'). Multiple attachments are allowed. See [Request](#Request) for details.
+**attachments.type** Currently you can attach the Signal runtime as JSON ('runtime') and any arbitrary response from a HTTP request ('request'). Multiple attachments are allowed. See [Request](#request) for details.
 
 **attachments.request** You can include the response of any arbitrary HTTP request to the sent mail as an attachment, e.g. include a PDF, JSON or a CSV file from an endpoint to the sent mail. 
 
@@ -95,7 +95,7 @@ The basic configuration attributes are:
   
 **attachments.request.body:** The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data.
   
-**attachments.request.headers:** Specifies HTTP headers to be sent along the request. Allows specifying dynamic headers using Mustache templates. Optional.
+**attachments.request.headers:** Specifies HTTP headers to be sent along the request. Optional. Starting with Search Guard FLX 1.2, Mustache templates can be used to render attributes from the watch runtime data.
   
 **attachments.request.auth:** Optional. The authentication method for the HTTP request. See [Authentication](#authentication) for details.
 

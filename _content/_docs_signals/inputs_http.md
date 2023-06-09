@@ -57,7 +57,7 @@ For example, if you aggregate data from the [Search Guard Audit Log](auditlog), 
 
 **request.body:** The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data.
 
-**request.headers:** Additional HTTP headers to be sent to the end point specified as an object of key-value pairs. Allows specifying dynamic headers using Mustache templates. Optional.
+**request.headers:** Additional HTTP headers to be sent to the end point specified as an object of key-value pairs. Optional. Starting with Search Guard FLX 1.2, Mustache templates can be used to render attributes from the watch runtime data.
 
 **tls:** Configuration for TLS connections. See [TLS](#tls) for details.
 
