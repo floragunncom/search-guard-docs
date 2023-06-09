@@ -34,10 +34,9 @@ default:
   - type: basic
   - type: saml
     label: "SAML Login"
-    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"    
+    saml.idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"
 ```
 
 The resulting login screen will then look like this:
@@ -46,32 +45,9 @@ The resulting login screen will then look like this:
 
 You can also configure several `auth_domains` entries using the same type. So, you can support several IdPs at once. Use the `label` attribute of each entry to give the user a short hint what authentication method is configured here. The value of the `label` attribute will be displayed on the button that links to the IdP.
 
-## Direct access to the authentication method
-
-Apart from `/login` page, available methods can also be accessed with `/auth/{type}/login?authTypeId={id}`.
-
-* `type` is the type of the method like `saml` or `openid`.
-* `id` is defined by passing it to the domain object like in this example:
-
-```yaml
-default:
-  auth_domains:
-  - type: basic
-  - type: saml
-    id: saml_method
-    label: "SAML Login"
-    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"    
-```
-
-Now the method can be accessed with `/auth/saml/login?authTypeId=saml_method`.
-
-When `id` is not provided, the domain will receive a hashed hex value (like `ed017b18`). This value may be regenerated during configuration change, so do not leave `id` blank if you wish to provide users with a consistent URL to your method.
-{: .note .js-note .note-warning}
-
 ## Setting a default authentication method
+
+**Introduced in Search Guard FLX 1.2**
 
 If you have multiple authentication methods and you want to designate one of them as the default method presented to users, you can use the `auto_select: true` property.
 
@@ -84,19 +60,17 @@ default:
   auth_domains:
   - type: basic
   - type: saml
-    id: "saml_preffered"
     label: "SAML Login"
     auto_select: true
-    idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
-    idp.entity_id: "IdP entity id from the IdP"
-    sp.entity_id: "SP entity id from the IdP"
-    roles_key: "roles"    
+    saml.idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"
   - type: "oidc"
     id: "oidc_optional"
     label: "OIDC Login"
-    oidc.client_id: "test"
-    oidc.client_secret: "3D2yr4014thAaA1BO8FUnoGalCvLZM3y"
-    oidc.idp.openid_configuration_url: "http://0.0.0.0:8080/realms/master/.well-known/openid-configuration"
+    oidc.client_id: "Client id from the IdP"
+    oidc.client_secret: "Client secret from the IdP"
+    oidc.idp.openid_configuration_url: "http://your.id/realms/master/.well-known/openid-configuration"
     user_mapping.roles.from: "oidc_id_token.roles"
 
 ```
@@ -106,6 +80,44 @@ When an unauthenticated user enters Kibana or logs out, they will be automatical
 All other methods can be still visible if a user enters `/login` page. They can also be accessed with their respective URLs by `id`. In our example: `/auth/oidc/login?authTypeId=oidc_optional`.
 
 Only one endpoint per instance can be marked with `auto_select: true`.
+{: .note .js-note .note-warning}
+
+## Direct access to the authentication method
+
+Search Guard provides a number of defined endpoints to directly access individual authentication methods. You can use these endpoints to override the `auto_select` setting or to skip the standard login page. 
+
+The endpoints are the following:
+
+- `basic` authentication: `https://your-kibana-instance/login` on Elasticsearch 7.x and `https://your-kibana-instance/searchguard/login` on Elasticsearch 8.x. Note: This also includes links to other auth methods if configured.
+- `saml` authentication: `https://your-kibana-instance/auth/saml/login`. If you have more than one SAML `auth_domain` configured, you need to give each auth domain an explicit ID (see below) and reference that in the endpoint with `https://your-kibana-instance/auth/saml/login?authTypeId={id}`.
+- `oidc` authentication: `https://your-kibana-instance/auth/openid/login`. If you have more than one OIDC `auth_domain` configured, you need to give each auth domain an explicit ID (see below) and reference that in the endpoint with `https://your-kibana-instance/auth/openid/login?authTypeId={id}`.
+
+### Giving an authentication method an explicit ID
+
+In the case that you are using several auth domains with the same type, you need to identify each auth domain with an explicit ID in order to reference it using one of the links described above. Use the `id` attribute for this. This might look like this:
+
+
+```yaml
+default:
+  auth_domains:
+  - type: basic
+  - type: saml
+    id: your_saml_idp_1
+    label: "SAML Login"
+    saml.idp.metadata_url: "http://your.idp/auth/realms/master/protocol/saml/descriptor"
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"
+  - type: saml
+    id: your_saml_idp_2
+    label: "SAML Login"
+    saml.idp.metadata_url: "http://your.other.idp/auth/realms/master/protocol/saml/descriptor"
+    saml.idp.entity_id: "IdP entity id from the IdP"
+    saml.sp.entity_id: "SP entity id from the IdP"    
+```
+
+Now the two methods can be accessed with `/auth/saml/login?authTypeId=your_saml_idp_1`, respectively `/auth/saml/login?authTypeId=your_saml_idp_2`.
+
+When `id` is not provided, the domain will receive a hashed hex value (like `ed017b18`). This value may be regenerated during configuration change, so do not leave `id` blank if you wish to provide users with a consistent URL to your method.
 {: .note .js-note .note-warning}
 
 ## Running Several Kibana Instances
