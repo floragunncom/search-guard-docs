@@ -43,6 +43,8 @@ These settings can be set using the Signals settings REST API:
 
 **execution.default_throttle_period:** The throttle period to be used if an action does not specify an explicit one. Defaults to `10s`. 
 
+**execution.throttle_period_lower_bound:** A configurable lower bound for throttling. This can serve as a rate limiting feature for watches. If this option is set, actions without an explicit throttle value will default to the lower bound instead of the default throttle period.
+
 **watch_log.index:** The name of the watch log index. Defaults to `<signals_log_{now/d}>` which starts a new index every day. If you expect a higher throughput which makes it necessary to start an index more often, you can use another [date math expression](https://www.elastic.co/guide/en/elasticsearch/reference/current/date-math-index-names.html).
 
 **watch_log.include_node:** If true, the name of the node which executed a watch is logged into the watch log index.
