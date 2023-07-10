@@ -90,7 +90,7 @@ The endpoints are the following:
 
 - `basic` authentication: `https://your-kibana-instance/login` on Elasticsearch 7.x and `https://your-kibana-instance/searchguard/login` on Elasticsearch 8.x. Note: This also includes links to other auth methods if configured.
 - `saml` authentication: `https://your-kibana-instance/auth/saml/login`. If you have more than one SAML `auth_domain` configured, you need to give each auth domain an explicit ID (see below) and reference that in the endpoint with `https://your-kibana-instance/auth/saml/login?authTypeId={id}`.
-- `oidc` authentication: `https://your-kibana-instance/auth/openid/login`. If you have more than one OIDC `auth_domain` configured, you need to give each auth domain an explicit ID (see below) and reference that in the endpoint with `https://your-kibana-instance/auth/openid/login?authTypeId={id}`.
+- `oidc` authentication: `https://your-kibana-instance/auth/oidc/login`. If you have more than one OIDC `auth_domain` configured, you need to give each auth domain an explicit ID (see below) and reference that in the endpoint with `https://your-kibana-instance/auth/oidc/login?authTypeId={id}`.
 
 ### Giving an authentication method an explicit ID
 
