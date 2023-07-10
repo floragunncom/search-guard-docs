@@ -21,7 +21,7 @@ This release of the Search Guard Kibana plugin brings a number of UX improvement
 
 ### Handling of Kibana shared links with OIDC
 
-The mechanism how the Kibana plugin handles Kibana shared links while authenticating with OpenID Connect has changed. This requires that you must change your IDP configuration if you are using shared links and OIDC configuration. Please locate the configuration for valid redirect URIs of the Kibana authentication domain in your IDP. Then, you need to append an asterisk `*` to the URIs configured here. So, for example `https://kibana.example.com:5601/auth/oidc/login` becomes `https://kibana.example.com:5601/auth/oidc/login*`.
+The mechanism how the Kibana plugin handles Kibana shared links while authenticating with OpenID Connect has changed. This requires that you must change your IDP configuration if you are using shared links and OIDC configuration. Please locate the configuration for valid redirect URIs of the Kibana authentication domain in your IDP. Then, you need to append an asterisk `*` to the URIs configured here. So, for example `https://kibana.example.com:5601/auth/openid/login` becomes `https://kibana.example.com:5601/auth/openid/login*`.
 
 This change is necessary to avoid authentication problems for very long share URIs.
 

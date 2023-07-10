@@ -82,7 +82,7 @@ DELETE /_searchguard/api/rolesmapping/sg_role_starfleet
 ```
 PUT /_searchguard/api/rolesmapping/{rolename}
 ```
-Replaces or creates the role mapping specified by `rolename `.
+Replaces or creates the role mapping specified by `rolename`.
 
 ```json
 PUT /_searchguard/api/rolesmapping/sg_role_starfleet
@@ -119,7 +119,7 @@ The PATCH endpoint is only available for Elasticsearch 6.4.0 and above.
 PATCH /_searchguard/api/rolesmapping/{rolename}
 ```
 
-Adds, deletes or changes one or more attributes of a user specified by `rolename `.
+Adds, deletes or changes one or more attributes of a user specified by `rolename`.
 
 ```json
 PATCH /_searchguard/api/rolesmapping/sg_human_resources
@@ -149,3 +149,34 @@ PATCH /_searchguard/api/rolesmapping
   }
 ]
 ```
+
+### Modifying an existing object or array
+
+To append or remove items in an existing array according to the [JSON patch format](http://jsonpatch.com/), you need to address the index or property name.
+
+```json
+PATCH /_searchguard/api/rolesmapping/sg_human_resources
+[
+  {
+    "op": "add", "path": "/users/0", "value": "user1"
+  },
+  {
+    "op": "add", "path": "/users/-", "value": "user2"
+  }
+]
+```
+
+The operation inserts the value into an array. The value is inserted before the given index. The `-` character can be used instead of an index to insert at the end of an array.
+
+```json
+PATCH /_searchguard/api/rolesmapping/sg_human_resources
+[
+  { 
+    "op": "remove", "path": "/users/0"
+  }
+]
+```
+
+The operation removes the element `0` of the array (or just removes the `"0"` key if `users` is an object)
+
+For more examples, please refer to [JSON patch format](http://jsonpatch.com/).
