@@ -84,6 +84,7 @@ searchguard.authcz.admin_dn:
 searchguard.enable_snapshot_restore_privilege: true
 searchguard.check_snapshot_restore_write_privileges: true
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
+xpack.security.enabled: false
 </code>
 </pre>
 </div>
