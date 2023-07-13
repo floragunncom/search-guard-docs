@@ -93,9 +93,9 @@ The basic configuration attributes are:
   
 **attachments.request.query_params:** Overrides the query part of the specified URL. Can be used to specify dynamic queries using Mustache templates. Optional.
   
-**attachments.request.body:** The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data. `attachments.request.body` and `attachments.request.json_body_from_runtime_data_path` are mutually exclusive.
+**attachments.request.body:** The body of the HTTP request. Optional. Mustache templates can be used to render attributes from the watch runtime data. `attachments.request.body` and `attachments.request.json_body_from` are mutually exclusive.
 
-**attachments.request.json_body_from_runtime_data_path:** The body of the HTTP request. Optional. It should be a valid [JsonPath](https://goessner.net/articles/JsonPath/) expression which refers to the structure of the watch runtime data. Specifies which subtrees of the watch runtime data should be serialized to JSON and used as a request body. `attachments.request.json_body_from_runtime_data_path` and `attachments.request.body` are mutually exclusive.
+**attachments.request.json_body_from:** The body of the HTTP request. Optional. It should be a valid [JsonPath](https://goessner.net/articles/JsonPath/) expression which refers to the structure of the watch runtime data. Specifies which subtrees of the watch runtime data should be serialized to JSON and used as a request body. `attachments.request.json_body_from` and `attachments.request.body` are mutually exclusive.
   
 **attachments.request.headers:** Specifies HTTP headers to be sent along the request. Optional. Starting with Search Guard FLX 1.2, Mustache templates can be used to render attributes from the watch runtime data.
   
