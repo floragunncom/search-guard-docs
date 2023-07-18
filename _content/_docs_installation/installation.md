@@ -41,7 +41,6 @@ Make sure you have TLS certificates for all nodes and at least one admin certifi
 If this is not the case, you have the following options to generate certificates:
 
 * Use the [Search Guard demo installation script](../_docs_tls/tls_generate_installation_script.md)  (not safe for production)
-* Download the [Search Guard demo certificates](../_docs_tls/tls_download_certificates.md) (not safe for production)
 * Use the [Offline TLS Tool](../_docs_tls/tls_generate_tlstool.md) (safe for production)
 * Use and customize the [example PKI scripts](../_docs_tls/tls_generate_example_scripts.md) (safe for production)
 * Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)

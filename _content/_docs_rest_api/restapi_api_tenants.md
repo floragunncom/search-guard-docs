@@ -103,7 +103,7 @@ The PATCH endpoint can be used to change individual attributes of a tenant, or t
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-### Patch a tenant
+### Example: Patch a tenant
 
 ```
 PATCH /_searchguard/api/tenants/{tenantname}
@@ -120,7 +120,7 @@ PATCH /_searchguard/api/tenants/human_resources
 ]
 ```
 
-### Bulk add, delete and change tenants
+### Example: Bulk add, delete and change tenants
 
 ```json
 PATCH /_searchguard/api/tenants
@@ -134,3 +134,4 @@ PATCH /_searchguard/api/tenants
 ]
 ```
 
+For more examples, please refer to [JSON patch format documentation](http://jsonpatch.com/).

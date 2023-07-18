@@ -33,7 +33,7 @@ To use OIDC, you need to have an Identity Provider (IdP) supporting OIDC. Furthe
 First, create a new client representing your Kibana installation in your Identity Provider. The exact procedure for this is specific to the IdP. When configuring the client, you must make sure that the following settings are configured like this:
 
 * Root URL: The base URL of the Kibana instance. For example, `https://kibana.example.com:5601/`
-* Valid Redirect URLs. For example, `https://kibana.example.com:5601/auth/openid/login`
+* Valid Redirect URLs. For example, `https://kibana.example.com:5601/auth/oidc/login`
 
 * Also, you need to make sure that the roles of a user are mapped to a JWT claim.
 

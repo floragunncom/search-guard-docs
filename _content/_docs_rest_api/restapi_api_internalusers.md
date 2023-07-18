@@ -126,7 +126,7 @@ The PATCH endpoint can be used to change individual attributes of a user, or to 
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-### Patch a single user
+### Example: Patch a single user
 
 ```
 PATCH /_searchguard/api/internalusers/{username}
@@ -146,7 +146,7 @@ PATCH /_searchguard/api/internalusers/kirk
 ]
 ```
 
-### Bulk add, delete and change users
+### Example: Bulk add, delete and change users
 
 ```json
 PATCH /_searchguard/api/internalusers
@@ -162,6 +162,35 @@ PATCH /_searchguard/api/internalusers
   }
 ]
 ```
+
+### Example: Modify an existing object or array
+
+```json
+PATCH /_searchguard/api/internalusers/spock
+[
+  {
+    "op": "add", "path": "/backend_roles/0", "value": "testrole2" 
+  },
+  {
+    "op": "add", "path": "/backend_roles/-", "value": "testrole3"
+  },
+]
+```
+
+The operation inserts the value into an array. The value is inserted before the given index. The `-` character can be used instead of an index to insert at the end of an array.
+
+```json
+PATCH /_searchguard/api/internalusers/spock
+[
+  {
+    "op": "remove", "path": "/backend_roles/0"
+  }
+]
+```
+
+The operation removes the element `0` of the array (or just removes the `"0"` key if `backend_roles` is an object)
+
+For more examples, please refer to [JSON patch format documentation](http://jsonpatch.com/).
 
 ## Changing the internal user password
 

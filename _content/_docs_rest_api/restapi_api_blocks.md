@@ -115,7 +115,7 @@ The PATCH endpoint can be used to change individual attributes of a block, or to
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-### Patch a block
+### Example: Patch a block
 
 ```
 PATCH /_searchguard/api/blocks/{name}
@@ -132,7 +132,7 @@ PATCH /_searchguard/api/blocks/some_block
 ]
 ```
 
-### Bulk add, delete and change blocks
+### Example: Bulk add, delete and change blocks
 
 ```json
 PATCH /_searchguard/api/blocks
@@ -146,3 +146,4 @@ PATCH /_searchguard/api/blocks
 ]
 ```
 
+For more examples, please refer to [JSON patch format documentation](http://jsonpatch.com/).

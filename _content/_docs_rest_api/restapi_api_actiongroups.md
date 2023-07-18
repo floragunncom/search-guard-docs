@@ -76,7 +76,7 @@ DELETE /_searchguard/api/actiongroups/SEARCH
 PUT /_searchguard/api/actiongroups/{actiongroup}
 ```
 
-Replaces or creates the action group specified by `actiongroup `.
+Replaces or creates the action group specified by `actiongroup`.
 
 ```
 PUT /_searchguard/api/actiongroups/SEARCH
@@ -99,16 +99,16 @@ The PATCH endpoint can be used to change individual attributes of an action grou
 
 [JSON patch specification: http://jsonpatch.com/](http://jsonpatch.com/){:target="_blank"}
 
-### Patch an action group
+### Example: Patch an action group
 
 ```
 PATCH /_searchguard/api/actiongroups/{actiongroup}
 ```
 
-Adds, deletes or changes one or more attributes of a user specified by `actiongroup `.
+Adds, deletes or changes one or more attributes of a user specified by `actiongroup`.
 
 ```json
-PATCH /_searchguard/api/actiongroups/CREATE_INDEX
+PATCH /_searchguard/api/actiongroups/{actiongroup}
 [ 
   { 
     "op": "replace", "path": "/allowed_actions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
@@ -116,13 +116,13 @@ PATCH /_searchguard/api/actiongroups/CREATE_INDEX
 ]
 ```
 
-### Bulk add, delete and change action groups
+### Example: Bulk add, delete and change action groups
 
 ```json
 PATCH /_searchguard/api/actiongroups
 [ 
   { 
-    "op": "add", "path": "/CREATE_INDEX/allowed_actions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
+    "op": "add", "path": "/{actiongroup}/allowed_actions", "value": ["indices:admin/create", "indices:admin/mapping/put"] 
   },
   { 
     "op": "remove", "path": "/CRUD"
@@ -130,3 +130,35 @@ PATCH /_searchguard/api/actiongroups
 ]
 ```
 
+### Example: Modify an existing object or array
+
+To append or remove items in an existing array according to the [JSON patch format](http://jsonpatch.com/), you need to address the index or property name.
+
+```json
+PATCH /_searchguard/api/actiongroups/{actiongroup}
+[
+  {
+    "op": "add", "path": "/allowed_actions/0", "value": "indices:admin/validate/query"
+  },
+  {
+    "op": "add", "path": "/allowed_actions/-", "value": "indices:admin/shards/search_shards"
+  }
+]
+```
+
+The operation inserts value into an array.
+
+In the case of an array, the value is inserted before the given index. The `-` character can be used instead of an index to insert at the end of an array.
+
+```json
+PATCH /_searchguard/api/actiongroups/{actiongroup}
+[
+  {
+    "op": "remove", "path": "/allowed_actions/0", "value": "indices:admin/validate/query"
+  }
+]
+```
+
+The operation removes the element `0` of the array (or just removes the `"0"` key if `allowed_actions` is an object)
+
+For more examples, please refer to [JSON patch format documentation](http://jsonpatch.com/).
