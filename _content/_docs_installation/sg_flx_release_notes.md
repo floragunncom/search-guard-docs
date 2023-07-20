@@ -521,3 +521,15 @@ User injection was a niche feature; no use of it is known any more.
 ### No support for custom authentication modules
 
 Custom authentication modules are no longer supported by Search Guard FLX
+
+### Removed multiple roles and document-level security configuration
+
+The setting `searchguard.dfm_empty_overrides_all` has been deprecated. Search Guard now always behaves like it is set to true.
+
+A user can be member of more than one role, and each role can potentially define a different DLS query for the same index. A standard behaviour is that all DLS queries are collected and combined with `OR`.
+
+Meanwhile if a role does not define DLS query, it grants the user access to all documents. This means that the role overrides and removes any restrictions and overrides all the other roles. The alternative behaviour was rarely needed and used and thus removed from Search Guard FLX.
+
+##### Related:
+
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
