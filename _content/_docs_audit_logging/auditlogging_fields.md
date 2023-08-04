@@ -21,19 +21,20 @@ Copyright 2022 floragunn GmbH
 
 The following attributes are logged for all event categories, independent of the layer.
 
-| Name | Description |
-|---|---|
-| audit\_format\_version | Audit log message format version, current: 3|
-| @timestamp | UTC timestamp when the event was generated|
-| audit_category | Audit log category, one of FAILED\_LOGIN, MISSING\_PRIVILEGES, BAD_HEADERS, SSL\_EXCEPTION, SG\_INDEX\_ATTEMPT, AUTHENTICATED or GRANTED\_PRIVILEGES.|
-| audit\_node\_id  | The ID of the node where the event was generated.|
-| audit\_node\_name | The name of the node where the event was generated. |
-| audit\_node\_host\_address |The host address of the node where the event was generated.|
-| audit\_node\_host\_name |The host address of the node where the event was generated. |
-| audit\_request\_layer | The layer on which the event has been generated. One if `TRANSPORT` or `REST`.  |
-| audit\_request\_origin | The layer from which the event originated. One if `TRANSPORT` or `REST`.  |
-| audit\_request\_effective\_user\_is\_admin | true if the request was made wit an TLS admin certificate, false otherwise. |
-| audit\_request\_remote\_address | The IP this request originated from. |
+| Name                                       | Description                                                                                                                                           |
+|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| audit\_format\_version                     | Audit log message format version, current: 3                                                                                                          |
+| @timestamp                                 | UTC timestamp when the event was generated                                                                                                            |
+| audit_category                             | Audit log category, one of FAILED\_LOGIN, MISSING\_PRIVILEGES, BAD_HEADERS, SSL\_EXCEPTION, SG\_INDEX\_ATTEMPT, AUTHENTICATED or GRANTED\_PRIVILEGES. |
+| audit\_node\_id                            | The ID of the node where the event was generated.                                                                                                     |
+| audit\_node\_name                          | The name of the node where the event was generated.                                                                                                   |
+| audit\_node\_elasticsearch\_version        | The Elasticsearch version of the node where the event was generated.                                                                                  |
+| audit\_node\_host\_address                 | The host address of the node where the event was generated.                                                                                           |
+| audit\_node\_host\_name                    | The host address of the node where the event was generated.                                                                                           |
+| audit\_request\_layer                      | The layer on which the event has been generated. One if `TRANSPORT` or `REST`.                                                                        |
+| audit\_request\_origin                     | The layer from which the event originated. One if `TRANSPORT` or `REST`.                                                                              |
+| audit\_request\_effective\_user\_is\_admin | true if the request was made wit an TLS admin certificate, false otherwise.                                                                           |
+| audit\_request\_remote\_address            | The IP this request originated from.                                                                                                                  |
 {: .config-table}
 
 ## REST FAILED_LOGIN attributes

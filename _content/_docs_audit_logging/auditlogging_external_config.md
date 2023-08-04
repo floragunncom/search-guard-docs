@@ -61,6 +61,7 @@ The Elasticsearch configuration events are logged in the `COMPLIANCE_EXTERNAL_CO
 | audit\_cluster\_name | Name of the cluster this event was emitted on.|
 | audit\_node\_id  | The ID of the node where the event was generated.|
 | audit\_node\_name | The name of the node where the event was generated. |
+| audit\_node\_elasticsearch\_version        | The Elasticsearch version of the node where the event was generated.|
 | audit\_node\_host\_address |The host address of the node where the event was generated.|
 | audit\_node\_host\_name |The host address of the node where the event was generated. |
 {: .config-table}
