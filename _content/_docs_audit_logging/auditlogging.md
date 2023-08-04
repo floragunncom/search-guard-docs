@@ -87,6 +87,15 @@ searchguard.audit.enable_rest: true
 searchguard.audit.enable_transport: false
 ```
 
+### Define which fields are not sent to the Audit Logs
+
+To disable list of fields, that should not be stored in Audit Logs, You should
+add property with those fields in configuration:
+```yaml
+# Disabling fields (default: empty list)
+searchguard.audit.config.disabled_fields: [audit_format_version, audit_node_elasticsearch_version]
+```
+
 ### Logging the request body
 
 By default Search Guard includes the body of the request (if available) for both REST and transport layer. 
