@@ -95,6 +95,12 @@ add property with those fields in configuration:
 # Disabling fields (default: empty list)
 searchguard.audit.config.disabled_fields: [audit_format_version, audit_node_elasticsearch_version]
 ```
+**Note**: that it is also possible to disable custom static value field using this property remembering, 
+that in this case it should be prefixed with <em>audit_custom_</em>
+
+### Adding custom static values fields to the Audit Logs
+
+The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](auditlogging_storage.md).
 
 ### Logging the request body
 

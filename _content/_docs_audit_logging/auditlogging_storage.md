@@ -33,6 +33,23 @@ searchguard.audit.type: <debug|internal_elasticsearch|external_elasticsearch|web
 
 You can also use your own, custom implementation of an audit log storage in case you have special requirements that are not covered by the built-in types. See the section "Custom storage types" below.
 
+## Custom settings
+
+Every storage type supports custom fields. To add custom fields with static values, that should be stored in Audit Logs, You should
+add property with those fields in configuration:
+```yaml
+# Custom static values fields
+searchguard.audit.config.custom_attributes.field1: value1
+searchguard.audit.config.custom_attributes.field2: value2
+```
+
+In resulting log field name will be prefixed with <em>audit_custom_</em>, ie:
+```json
+"audit_custom_field1" : "val1",
+"audit_custom_field2" : "val2",
+```
+
+
 ## Storage type 'debug'
 
 There are no special configuration settings for this audit type.  Just add the audit type setting in `elasticsearch.yml`:
