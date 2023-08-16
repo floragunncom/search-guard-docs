@@ -23,6 +23,7 @@ The following attributes are logged for all event categories, independent of the
 
 | Name                                       | Description                                                                                                                                           |
 |--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| audit\_cluster\_name                       | Name of the cluster this event was emitted on.                                                                                                          |
 | audit\_format\_version                     | Audit log message format version, current: 3                                                                                                          |
 | @timestamp                                 | UTC timestamp when the event was generated                                                                                                            |
 | audit_category                             | Audit log category, one of FAILED\_LOGIN, MISSING\_PRIVILEGES, BAD_HEADERS, SSL\_EXCEPTION, SG\_INDEX\_ATTEMPT, AUTHENTICATED or GRANTED\_PRIVILEGES. |
@@ -101,6 +102,21 @@ The following attributes are logged for all event categories, independent of the
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
 | audit\_request\_remote\_address | The IP that was being blocked. |
+{: .config-table}
+
+## REST KIBANA_LOGIN attributes
+
+| Name | Description                                                                              |
+|---|------------------------------------------------------------------------------------------|
+| audit\_request\_effective\_user | The username / principal that logged in to Kibana.                                       |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |
+{: .config-table}
+
+## REST KIBANA_LOGOUT attributes
+
+| Name | Description                                         |
+|---|-----------------------------------------------------|
+| audit\_request\_effective\_user | The username / principal that logged out of Kibana. |
 {: .config-table}
 
 ## Transport FAILED_LOGIN attributes
