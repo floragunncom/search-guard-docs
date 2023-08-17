@@ -111,7 +111,6 @@ labels:
     dls: "Document-Level Security"
     kibana: Kibana
     auditlog: Audit And Compliance Logging
-    auditlog-write-history: Write History Logging
     compliance: Compliance
     restapi: REST API
     elasticstack: Integrating with the Elasticstack

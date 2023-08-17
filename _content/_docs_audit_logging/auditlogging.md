@@ -31,18 +31,20 @@ searchguard.audit.type: internal_elasticsearch
 Search Guard tracks the following types of events, on REST and Transport layer:
 
 | Category | Logged on REST | Logged on Transport | Description                                                                                                                                  |
-|---|---|---|----------------------------------------------------------------------------------------------------------------------------------------------|
-| FAILED_LOGIN | yes | yes | The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect.      |
-| AUTHENTICATED | yes | yes | A user has been authenticated successfully.                                                                                                  |
-| MISSING_PRIVILEGES | no | yes | The user does not have the required permissions to execute the submitted request.                                                            |
-| GRANTED_PRIVILEGES | no | yes | Represents a successful request to Elasticsearch.                                                                                            |
-| SSL_EXCEPTION | yes | yes | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.                                                             |
-| SG\_INDEX\_ATTEMPT | no | yes | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate. |
-| BAD_HEADERS | yes | yes | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.                                                  |
-| BLOCKED_USER | yes | yes | A user that is blocked in sg_blocks.yml tried to login.                                                                                      |
-| BLOCKED_IP | yes | yes | A request was made from a blocked IP address, configured in sg_blocks.yml                                                                    |
-| KIBANA_LOGIN | yes | no | A user has successfully logged in to Kibana.                                                                                                 |
+|---|----------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| FAILED_LOGIN | yes            | yes                 | The provided credentials of a request could not be validated, most likely because the user does not exist or the password is incorrect.      |
+| AUTHENTICATED | yes            | yes                 | A user has been authenticated successfully.                                                                                                  |
+| MISSING_PRIVILEGES | no             | yes                 | The user does not have the required permissions to execute the submitted request.                                                            |
+| GRANTED_PRIVILEGES | no             | yes                 | Represents a successful request to Elasticsearch.                                                                                            |
+| SSL_EXCEPTION | yes            | yes                 | An attempt was made to access Elasticsearch without a valid SSL/TLS certificate.                                                             |
+| SG\_INDEX\_ATTEMPT | no             | yes                 | an attempt was made to modify the Search Guard internal user and privileges index without the required permissions or TLS admin certificate. |
+| BAD_HEADERS | yes            | yes                 | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.                                                  |
+| BLOCKED_USER | yes            | yes                 | A user that is blocked in sg_blocks.yml tried to login.                                                                                      |
+| BLOCKED_IP | yes            | yes                 | A request was made from a blocked IP address, configured in sg_blocks.yml                                                                    |
+| KIBANA_LOGIN | yes            | no                  | A user has successfully logged in to Kibana.                                                                                                 |
 | KIBANA_LOGOUT | yes | no | A user has successfully logged out of Kibana.                                                                                                |
+| INDEX_TEMPLATE_WRITE | no             | yes                 | A user has successfully created, updated or deleted index template.                                                                          |
+| INDEX_WRITE | no             | yes                 | A user has successfully created index, updated index settings/mappings or deleted index.                                                     |
 {: .config-table}
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
