@@ -34,6 +34,14 @@ docs:
       if [ ! ${sftp_server+x} ];  then
         sftp_server=185.233.188.50
       fi
+      #set default cloudflare zoneid
+      if [ ! ${SG_CLOUDFLARE_ZONEID+x} ];  then
+        SG_CLOUDFLARE_ZONEID=21f0b97bf3df0f55bba6ca46b746da1f
+      fi
+      if [ ! ${REMOVE_CLOUDFLARE_CACHE+x} ];  then
+        REMOVE_CLOUDFLARE_CACHE=true
+      fi            
+      
     
       echo "Building branch $git_branch"
 
@@ -67,6 +75,15 @@ docs:
       else 
        echo "SFTP upload is disabled"    
       fi
+      
+      if $REMOVE_CLOUDFLARE_CACHE ; then
+         echo "Deleting Cloudflare Cache" 
+         curl  \
+         -X POST "https://api.cloudflare.com/client/v4/zones/$SG_CLOUDFLARE_ZONEID/purge_cache" \
+         -H "Authorization: Bearer $SG_CLOUDFLARE_DECACHE_TOKEN" \
+         -H "Content-Type: application/json" \
+         --data '{"purge_everything":true}'
+      fi      
       
       if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
         echo "## Skipping Search Index"
