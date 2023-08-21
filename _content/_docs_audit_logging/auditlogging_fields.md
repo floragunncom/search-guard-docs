@@ -269,7 +269,6 @@ The following attributes are logged for all event categories, independent of the
 | audit\_request\_effective\_user               | The username / principal that created, updated or deleted index template.                |
 | audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" | 
 | audit\_trace\_index\_templates           | Array, the index template(s) as contained in the request. Can contain wildcards.                                             |
-| audit\_trace\_resolved\_index\_templates | Array, the resolved, concrete index template(s) affected by this request. |
 {: .config-table}
 
 ## Transport INDEX\_WRITE
@@ -277,9 +276,8 @@ The following attributes are logged for all event categories, independent of the
 | Name                                          | Description                                                                                                                                                                   |
 |-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | audit\_compliance\_operation                  | The operation on the index, index settings or index mappings. In case of operation on the index it can be one of `CREATE` or `DELETE`, otherwise it's always set to `UPDATE`. |
-| audit\_request\_body                          | The content of newly created index or updated index settings/mappings.                                                                                                        |
+| audit\_request\_body                          | The content of newly created index or updated index settings/mappings as contained in the request.                                                                                                       |
 | audit\_request\_effective\_user               | The username of the user that has created, modified or deleted indices.                                                                                                       |
 | audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt"                                                                                      | 
 | audit\_trace\_indices           | Array, the index name(s) as contained in the request. Can contain wildcards.                                                                                                  |
-| audit\_trace\_resolved\_indices | Array, the resolved, concrete index name(s) affected by this request.                                                                                                         |
 {: .config-table}
