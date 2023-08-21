@@ -1,35 +1,52 @@
 image: ruby:2.5
+variables:
+  LC_ALL: "C.UTF-8"
+  LANG: "en_US.UTF-8"
+  LANGUAGE: "en_US.UTF-8"
 
-docs:
+stages:
+  - build
+  - deploy
+
+build:
   tags:
     - docs
   stage: build
-  script: 
+  artifacts:
+    paths:
+      - _site/
+  script:
     - |
-      if [[ ! $CI_COMMIT_BRANCH =~ ^main$ ]]; then
-        echo "Branch $CI_COMMIT_BRANCH does not seem to be the release branch, exiting gracefully"
-        exit 0
-      fi
-      cat /etc/debian_version || true 
+      cat /etc/debian_version || true
       uname -a
-      export LC_ALL="C.UTF-8"
-      export LANG="en_US.UTF-8"
-      export LANGUAGE="en_US.UTF-8"    
-      apt-get update -yqq && apt-get install -yqq ncftp wget
       echo "Merge marker sanity check"
       (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
-      
+
       echo "## removing old _site directory"
       rm -rf ./_site
-  
+
       echo "## building docs"
       bundle install
       bundle exec jekyll build --config _config.yml,_versions.yml
-  
+
+deploy:
+  tags:
+    - docs
+  stage: deploy
+  dependencies:
+    - build
+  only:
+    - release
+  before_script:
+    - apt-get update -yqq
+    - apt-get install -yqq ncftp wget
+    - bundle install
+  script:
+    - |
       site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
       sftp_directory=$(sed 's/^\///' <<< $site_dir )
       sftp_root_directory='html'
-  
+
       #set default SFTP server
       if [ ! ${sftp_server+x} ];  then
         sftp_server=185.233.188.50
@@ -40,11 +57,9 @@ docs:
       fi
       if [ ! ${REMOVE_CLOUDFLARE_CACHE+x} ];  then
         REMOVE_CLOUDFLARE_CACHE=true
-      fi            
-      
-    
-      echo "Building branch $git_branch"
+      fi
 
+      echo "Building branch $git_branch"
 
       if [ "$ftp_file_upload" = true ] ; then
         echo "## Uploading to FTP directory: $site_dir"
@@ -52,11 +67,11 @@ docs:
         export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
         echo "Last commit message: $GIT_COMMIT_DESC"
       else 
-        echo "FTP upload is disabled"    
+        echo "FTP upload is disabled"
       fi
-  
+
       if [ "$sftp_file_upload" = true ] ; then
-  
+
         echo "## Uploading to SFTP Server $sftp_server directory: $ftp_dir"
         echo "Set ssh configuration for SFTP"
         which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
@@ -64,31 +79,31 @@ docs:
         echo "$sftp_user_private_key_base64" | base64 -d | tr -d '\r' | ssh-add -
         mkdir -p ~/.ssh
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-  
+
         echo "Uploading fles to SFTP server"
-  
+
       sftp  -b - $sftp_user_name@$sftp_server <<EOF
           -mkdir $sftp_root_directory/$sftp_directory
           put -r /builds/search-guard/search-guard-docs/_site/* $sftp_root_directory/$sftp_directory
       EOF
-  
-      else 
-       echo "SFTP upload is disabled"    
+
+      else
+       echo "SFTP upload is disabled"
       fi
-      
+
       if $REMOVE_CLOUDFLARE_CACHE ; then
-         echo "Deleting Cloudflare Cache" 
+         echo "Deleting Cloudflare Cache"
          curl  \
          -X POST "https://api.cloudflare.com/client/v4/zones/$SG_CLOUDFLARE_ZONEID/purge_cache" \
          -H "Authorization: Bearer $SG_CLOUDFLARE_DECACHE_TOKEN" \
          -H "Content-Type: application/json" \
          --data '{"purge_everything":true}'
-      fi      
-      
+      fi
+
       if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
         echo "## Skipping Search Index"
       else
         echo "## Rebuilding Search Index"
         bundle exec jekyll algolia push --config _config.yml,_versions.yml
       fi
-  
+
