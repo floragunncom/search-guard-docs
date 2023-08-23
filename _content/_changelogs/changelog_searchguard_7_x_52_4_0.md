@@ -11,7 +11,7 @@ description: Changelog for Search Guard 7.x-52.4.0
 
 # Search Guard Suite 52.4
 
-**Release Date: 2021-14-10**
+**Release Date: 2021-10-14**
 
 This release brings support for Elasticsearch 7.15.0. Also, it fixes a bug with the saved object migration in Kibana.
 
