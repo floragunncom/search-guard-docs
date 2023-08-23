@@ -14,11 +14,11 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 ### [Search Guard FLX 1.2.0](../_changelogs/changelog_searchguard_flx_1_2_0.md)
 
-Release Date: 2022-06-09
+Release Date: 2023-06-09
 
 ### [Search Guard FLX 1.1.1](../_changelogs/changelog_searchguard_flx_1_1_1.md)
 
-Release Date: 2022-02-20
+Release Date: 2023-02-20
 
 ### [Search Guard FLX 1.1.0](../_changelogs/changelog_searchguard_flx_1_1_0.md)
 
