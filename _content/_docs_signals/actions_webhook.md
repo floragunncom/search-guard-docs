@@ -162,6 +162,9 @@ A TLS configuration might look like this:
 
 **tls.trust_all:** Trust any presented certificate. Thus, the authenticity of the host we are connecting to won't be verified. *This option should be only used for testing purposes, as the security of the connection cannot be guaranteed.* Optional, defaults to false.
 
+**tls.truststore_id** The `id` of the [trust store uploaded previously](elasticsearch-alerting-trust-stores) with the REST API. All certificates from the trust store are considered trusted. The parameter is optional and mutually exclusive with `tls.trusted_certs`.
+
+**tls.client_session_timeout** Define a TLS session timeout, please see [TLS session timeout](elasticsearch-alerting-trust-stores#tls-session-timeout).
 
 
 ## Security Considerations
