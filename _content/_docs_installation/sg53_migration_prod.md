@@ -21,7 +21,7 @@ This chapter describes how to migrate a cluster running legacy Search Guard conf
 
 - You should do a test run on a test cluster before doing the actual migration.
 - Users that were logged into Kibana while the update is performed, will need to log in again after the update is finalized.
-
+- If you have configured `searchguard.auth.type: proxy` in kibana.yml please [consult this page for troubleshooting](https://git.floragunn.com/search-guard/sgctl/-/issues/51). 
 
 ## Prerequisites
 
