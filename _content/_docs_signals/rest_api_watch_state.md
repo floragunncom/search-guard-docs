@@ -49,7 +49,7 @@ The response body will contain a JSON document listing various watch state attri
       "last_execution": "2019-12-05T14:21:50.025735Z",
       "last_error": "2019-12-03T11:17:50.129348Z",
       "last_status": {
-        "code": "ACTION_TRIGGERED"
+        "code": "ACTION_EXECUTED"
       },
       "acked": {
         "on": "2019-12-05T14:23:21.373254Z",
@@ -97,7 +97,7 @@ The response body will contain a JSON document listing various watch state attri
     "execution_time": "2019-12-05T14:21:50.009277Z"
   },
   "last_status": {
-    "code": "ACTION_TRIGGERED"
+    "code": "ACTION_EXECUTED"
   },
   "node": "my_node"
 }
@@ -125,12 +125,17 @@ The attributes have the following meaning:
 **actions.{name}.acked:** If the action was acknowledged, the time and the name of the user acknowledging the action are listed here.
 
 **last_execution.data:** The runtime data gathered by the checks during the last execution.
+
 **last_execution.severity:** If a severity mapping is configured for the watch, this lists the found severity level during the last execution.
 
 **last_execution.trigger.scheduled_time:** The time the watch was scheduled for execution.
+
 **last_execution.trigger.triggered_time:** The time the watch was actually triggered.
+
 **last_execution.execution_time:** The time the watch reached execution stage.
+
 **last_status:** The status of the last execution summarized for the whole watch. The same status can be also found in the watch log. 
+
 **node:** The name of the node which is right now responsible for executing the watch.
 
 ### 403 Forbidden
