@@ -64,7 +64,7 @@ This permission is included in the following [built-in action groups](security_p
 ### Node Filter
 
 ```
-PUT /_signals/tenant._main.node_filter
+PUT /_signals/settings/tenant._main.node_filter
 ```
 ```
 "signals:true"
@@ -79,7 +79,7 @@ PUT /_signals/tenant._main.node_filter
 ### Active
 
 ```
-PUT /_signals/active
+PUT /_signals/settings/active
 ```
 ```
 true
