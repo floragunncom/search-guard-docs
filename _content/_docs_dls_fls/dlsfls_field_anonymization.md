@@ -149,6 +149,22 @@ hr_employee:
 
 The above example means that all values of all fields ending with `Name` are anonymized with an SHA-1 hash and all values of the field `Address` are anonymized with an SHA-512. All hashing algorithms provided which are provided by your JVM are supported. This typically includes MD5, SHA-1, SHA-384, and SHA-512.
 
+## Multiple roles and field anonymization
+
+Keep in mind that roles without explicit field masking rules implicitly grant access to all attributes values of a document. Thus, if a user is in such a role, they will always be able to access all fields values, even though they might be also member of roles which only grant access to a subset of fields values.
+
+For illustration:
+
+- `role_all` does not have an explicit field masking rule and thus grants access to all fields values
+- `role_b` grants only access to values of `b1`, `b2` and `b3` fields
+
+A user who is member both of `role_all` and `role_b` gets thus access to all fields values. The field masking rule of `role_b` does not have any effect in this case.
+
+You can change that default behaviour so that a role that places no restrictions on an index does not remove any restrictions from other roles. This can be done in elasticsearch.yml:
+
+```
+searchguard.dfm_empty_overrides_all: false
+```
 
 ## Global configuration
 

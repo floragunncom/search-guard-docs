@@ -96,6 +96,11 @@ For illustration:
 
 A user who is member both of `role_all` and `role_b` gets thus access to all documents. The DLS query of `role_b` does not have any effect.
 
+You can change that default behaviour so that a role that places no restrictions on an index does not remove any restrictions from other roles. This can be done in elasticsearch.yml:
+
+```
+searchguard.dfm_empty_overrides_all: false
+```
 
 ## DLS and write-access
 
