@@ -103,6 +103,8 @@ The basic configuration attributes are:
 
 **attachments.tls:** Configuration for TLS connections. See [TLS](#tls) for details.
 
+**attachments.proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.4.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API.
+
 Please note that it is mandatory to specify at least one `text_body` or a `html_body`. You can of course provide both, a `text_body` and a `html_body` inside an email action.
 
 ## Request
