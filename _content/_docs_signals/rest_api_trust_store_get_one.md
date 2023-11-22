@@ -28,7 +28,7 @@ Load information about the trust store with the given id.
 
 ### 200 OK
 
-The trust store was found, information about trust store are present in response body.
+The trust store was found, information about trust store is present in response body.
 
 ### 403 Forbidden
 

@@ -61,7 +61,9 @@ The attribute `event.payload.summary` is a human readable description of the sit
 
 The attribute `event.payload.source` shall identify the system having the problem.
 
-Mustache templates can be used for all three attributes.
+Mustache templates can be used for all three attributes above.
+
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.4.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
 
 
 ## Adding Information to Events

@@ -75,6 +75,8 @@ The basic configuration attributes are:
 
 **read_timeout:** Specifies the timeout for reading the response data after a connection has been already established. Optional. Specified in seconds.
 
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.4.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
+
 
 ## Dynamic Endpoints
 

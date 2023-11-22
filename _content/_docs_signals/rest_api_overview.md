@@ -77,3 +77,10 @@ This will give this role complete access to all Signals features and indices.
 * [Create or replace a trust store](./rest_api_trust_store_create_or_replace.md)
 * [Delete truststore](./rest_api_trust_store_delete.md)
 
+## Proxies API
+
+* [Get one proxy](./rest_api_proxy_get_one.md)
+* [Get all proxies](./rest_api_proxy_get_all.md)
+* [Create or replace a proxy](./rest_api_proxy_create_or_replace.md)
+* [Delete proxy](./rest_api_proxy_delete.md)
+
