@@ -28,11 +28,11 @@ GET /_signals/settings
 GET /_signals/settings/{key}
 ```
 
-Retries all Signals settings or a single setting item.
+Retrieves all Signals settings or a single settings item.
 
 ## Path Parameters
 
-**{key}** The configuration setting to be retrieved. See (Signals Administration)[administration.md] for a list of the available settings.
+**{key}** The configuration setting to be retrieved. See [Signals Administration](administration.md) for a list of the available settings.
 
 ## Responses
 
