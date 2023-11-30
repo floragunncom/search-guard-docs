@@ -8,9 +8,13 @@ layout: changelogs
 description: Changelog Overview for the Search Guard Elasticsearch security plugin. Protect your data from any unauthorized access.
 ---
 
-<!--- Copyright 2020 floragunn GmbH -->
+<!--- Copyright 2024 floragunn GmbH -->
 
 # Search Guard Changelogs
+
+### [Search Guard FLX 1.4.0](../_changelogs/changelog_searchguard_flx_1_4_0.md)
+
+Release Date: 2024-11-29
 
 ### [Search Guard FLX 1.3.0](../_changelogs/changelog_searchguard_flx_1_3_0.md)
 
@@ -31,6 +35,10 @@ Release Date: 2022-12-08
 ### [Search Guard FLX 1.0.0](../_changelogs/changelog_searchguard_flx_1_1_0.md)
 
 Release Date: 2022-12-08
+
+### [Search Guard 7.x-53.8.0](../_changelogs/changelog_searchguard_7_x_53_8_0.md)
+
+Release Date: 2022-11-29
 
 ### [Search Guard 7.x-53.6.0](../_changelogs/changelog_searchguard_7_x_53_6_0.md)
 
