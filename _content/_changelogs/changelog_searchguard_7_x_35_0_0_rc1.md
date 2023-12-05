@@ -24,7 +24,7 @@ Copyright 2020 floragunn GmbH
 
 ### BREAKING: Support for document types and tribe nodes removed
 
-Elasticsearch 7 does no longer support [document types](https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html){:target="_blank"} and [tribe nodes](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html#_tribe_node_removed){:target="_blank"}. We removed those features now also from Search Guard.
+Elasticsearch 7 does no longer support [document types](https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html){:target="_blank"} and [tribe nodes](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/breaking-changes-7.0.html){:target="_blank"}. We removed those features now also from Search Guard.
 
 ### BREAKING: Deprecated endpoints from REST management API removed
 

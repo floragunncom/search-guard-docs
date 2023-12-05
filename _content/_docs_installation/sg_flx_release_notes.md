@@ -72,9 +72,9 @@ In most cases, the conversion from `sg_config.yml` to the new config files can b
 
 ##### Related:
 
-* [Documentation: sgctl migrate-config](sg53_migration_quick.md)
-* [Documentation: Authentication configuration](../_docs_auth_auth/auth_auth_configuration.yml)
-* [Documentation: Authentication configuration for Kibana](../_docs_kibana/kibana_authentication.yml)
+* [Documentation: sgctl migrate-config](sg-classic-config-migration-quick#migrating-the-configuration)
+* [Documentation: Authentication configuration](../_docs_auth_auth/auth_auth_configuration.md)
+* [Documentation: Authentication configuration for Kibana](../_docs_kibana/kibana_authentication.md)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -166,7 +166,7 @@ You can retrieve metrics for the user cache using `sgctl component-state`.
 
 ##### Related:
 
-* [Documentation: User cache settings](../_docs_auth_auth/auth_auth_rest_advanced_options.md#user-cache-settings)
+* [Documentation: User cache settings](../_docs_auth_auth/auth_auth_rest_config_advanced_options.md#user-cache-settings)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
     
@@ -253,8 +253,8 @@ We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.
 
 ##### Related:
 
-* [Documentation: Runtime index privilege evaluation](../docs_roles_permissions/runtime_privilege_evaluation.md)
-* [Documentation: Index name migration](../docs_configuration_changes/configuration_advanced.md#index-name-migration)
+* [Documentation: Runtime index privilege evaluation](authorization-runtime-index-privilege-evaluation)
+* [Documentation: Index name migration](search-guard-index-maintenance#index-name-migration)
 * [Merge Request: New approach at privilege evaluation for indices with focus on DNFOF mode.](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/146)
 * [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
 * [Merge Request: Added more action eligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220)
