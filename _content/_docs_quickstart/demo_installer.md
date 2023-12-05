@@ -28,8 +28,7 @@ Search Guard comes with a demo installation shell script which helps you to quic
 The following paragraphs will guide you through the installation process.
 
 - Download the demo installer script for the setup you want to test:
-{% include sgversions_demo.html versions="search-guard-flx-7"%}
-{% include sgversions_demo.html versions="search-guard-flx-8"%}
+  - [All Search Guard Releases](search-guard-versions)
 - If you want, feel invited to review the script. The single steps are also explained as comments in the file.
 - Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-flx-elasticsearch-plugin-1.0.0-es-7.16.3-demo-installer.sh`. Then, execute the script:
 

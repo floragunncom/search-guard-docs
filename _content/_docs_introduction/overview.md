@@ -58,14 +58,14 @@ Search Guard supports all major industry standards for authentication and author
 * [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md)
 * [JSON Web token](../_docs_auth_auth/auth_auth_jwt.md)
 * [TLS client certificates](../_docs_auth_auth/auth_auth_clientcert.md)
-* [Proxy authentication](../_docs_auth_auth/auth_auth_proxy2.md)
+* [Proxy authentication](../_docs_auth_auth/auth_auth_proxy_overview.md)
 * [Kerberos](../_docs_auth_auth/auth_auth_kerberos.md)
-* [OpenID Connect](../_docs_auth_auth/auth_auth_openid.md)
-* [SAML](../_docs_auth_auth/auth_auth_saml.md)
+* [OpenID Connect](../_docs_kibana/kibana_authentication_openid.md)
+* [SAML](../_docs_kibana/kibana_authentication_saml.md)
   
 If you do not want or need any external authentication tool you can also use the built-in user database:
    
-* [Search Guard Internal user database](../_docs_roles_permissions/configuration_internalusers.md)
+* [Search Guard Internal user database](../_docs_auth_auth/internalusers.md)
  
 ## Security Controls
  
