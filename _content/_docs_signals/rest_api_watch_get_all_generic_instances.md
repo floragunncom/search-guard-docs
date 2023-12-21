@@ -49,7 +49,7 @@ A generic watch with the given id does not exist for the selected tenant or gene
 
 ## Permissions
 
-To access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/get_all_instances` for the currently selected tenant.
+To access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/instances/get_all` for the currently selected tenant.
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 
