@@ -29,13 +29,21 @@ POST /_signals/watch/{tenant}/_execute
 POST /_signals/watch/{tenant}/{watch_id}/_execute
 ```
 
-Immediately executes a watch and returns status information in the HTTP response. The watch can be specified in the request body. Alternatively, the watch to be executed can be specified by y the `{watch_id}` path parameter.
+```
+POST /_signals/watch/{tenant}/{id}/instances/{instance_id}/_execute
+```
+
+Immediately executes a watch and returns status information in the HTTP response. The watch can be specified in the request body. Alternatively, the watch to be executed can be specified by the `{watch_id}` path parameter.
+If the provided watch's ID belongs to the generic watch, it is necessary to provide a generic watch instance ID as well.
 
 ## Path Parameters
 
 **{tenant}** The name of the tenant in whose context the watch shall be executed in. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
 
 **{watch_id}** The id of the watch to be executed. Optional. If not specified, the watch needs to be specified in the request body.
+
+**{instance_id}** If `watch_id` points out into generic watch then it is necessary to provide `instance_id`. The instance `instance_id` is
+used to select parameters for a generic watch which will be used during generic watch execution. 
 
 ## Request Body
 
@@ -116,7 +124,7 @@ The user does not have the permission to execute watches for the currently selec
 
 ### 404 Not found
 
-A watch with the given id does not exist for the selected tenant. 
+A watch with the given id or watch instance does not exist for the selected tenant. 
 
 ### 415 Unsupported Media Type
 
@@ -125,7 +133,7 @@ The watch was not encoded as JSON document. Watches need to be sent using the me
 
 ## Permissions
 
-For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/execute` for the currently selected tenant.
+For being able to access the endpoint, the user needs to have the privileges `cluster:admin:searchguard:tenant:signals:watch/execute` and `cluster:admin:searchguard:tenant:signals:watch/generic_execute` for the currently selected tenant.
 
 This permission is included in the following [built-in action groups](security_permissions.md):
 

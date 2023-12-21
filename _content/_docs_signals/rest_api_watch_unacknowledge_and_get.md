@@ -29,6 +29,14 @@ DELETE /_signals/watch/{tenant}/{watch_id}/_ack_and_get
 DELETE /_signals/watch/{tenant}/{watch_id}/_ack_and_get/{action_id}
 ```
 
+```
+DELETE /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack_and_get
+```
+
+```
+DELETE /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack_and_get/{actionId}
+```
+
 These endpoints can be used to withdraw acknowledgements done by the [Acknowledge Watch API](rest_api_watch_acknowledge.md) or [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md). The un-acknowledged actions will afterwards be in normal state and start executing again.
 
 The request's response contains in its body the list of all un-acknowledged action ids. Therefore, the REST operation can be treated as an extended version of the request [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md).
@@ -39,6 +47,8 @@ The request's response contains in its body the list of all un-acknowledged acti
 **{tenant}:** The name of the tenant which contains the watch to be un-acknowledged. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
 
 **{watch_id}:** The id of the watch containing the action to be un-acknowledged. Required.
+
+**{instance_id}** If `watch_id` points out into generic watch then it is necessary to provide `instance_id`. Actions of each generic watch instance can be unacknowledged independently.
 
 **{action_id}:** The id of the action to be un-acknowledged. Optional. If not specified, all actions of the watch will be un-acknowledged.
 
@@ -58,7 +68,7 @@ The user does not have the permission to un-acknowledge watches for the currentl
 
 ### 404 Not Found
 
-A watch with the given id does not exist for the current tenant.
+A watch with the given id (or watch instance) does not exist for the current tenant.
 
 ### 412 Precondition Failed
 

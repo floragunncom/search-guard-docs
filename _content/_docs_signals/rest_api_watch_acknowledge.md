@@ -29,6 +29,14 @@ PUT /_signals/watch/{tenant}/{watch_id}/_ack
 PUT /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
 ```
 
+```
+PUT /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack
+```
+
+```
+PUT /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack/{actionId}
+```
+
 These endpoints can be used to acknowledge actions performed by watches. By acknowledging actions, you can temporarily suppress further executions of these actions. 
 
 When an action is acknowledged, its checks will be still executed on schedule. The actual action however won't be executed until the checks determined the action to be inapplicable during at least one scheduled run.  If the checks change their state again afterwards, the action will be normally executed again.
@@ -44,6 +52,8 @@ Please see also extended version of the requests which returns additional inform
 **{tenant}:** The name of the tenant which contains the watch to be acknowledged. `_main` refers to the default tenant. Users of the community edition will can only use `_main` here.
 
 **{watch_id}:** The id of the watch containing the action to be acknowledged. Required.
+
+**{instance_id}** If `watch_id` points out into generic watch then it is necessary to provide `instance_id`. Actions of each generic watch instance can be acknowledged independently.
 
 **{action_id}:** The id of the action to be acknowledged. Optional. If not specified, all actions of the watch will be acknowledged.
 
@@ -63,7 +73,7 @@ The user does not have the permission to acknowledge watches for the currently s
 
 ### 404 Not Found
 
-A watch with the given id does not exist for the current tenant.
+A watch with the given id (or generic watch instance id) does not exist for the current tenant.
 
 ### 412 Precondition Failed
 

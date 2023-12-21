@@ -22,6 +22,10 @@ description: Use the Alerting for Elasticsearch Get Watch API to retrieve a watc
 GET /_signals/watch/{tenant}/{watch_id}/_state
 ```
 
+```
+GET /_signals/watch/{tenant}/{watch_id}/instances/{instance_id}/_state
+```
+
 Retrieves state information about the watch. 
 
 
@@ -30,6 +34,8 @@ Retrieves state information about the watch.
 **{tenant}:** The name of the tenant which contains the watch to be considered. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
 
 **{watch_id}** The id of the watch state to be retrieved. Required.
+
+**{instance_id}** If `watch_id` points out into generic watch then it is necessary to provide `instance_id`.
 
 ## Responses
 
