@@ -97,3 +97,17 @@ auth_domains:
 - type: basic/ldap
   ldap.idp.tls.trusted_cas: '#{env:CA_CERT}'
 ```
+
+## Using pipe expressions
+Pipe expressions are used to transform values of configuration variables. To transform value with the pipe expression the `|` operator is used together with the expression name, for example, `#{var:department_name|toLowerCase}`. Multiple pipe expressions can be combined e.g. `#{var:department_name|toLowerCase|base64}` Available pipe expressions
+
+* `toString` - create a string representation
+* `toJson` - convert an object to JSON string
+* `toList` - replace an object with a single element list which contains the object
+* `head` - extracts the first element from a collection
+* `tail` - extracts the last element from the collection
+* `toRegexFragment` - escapes all special characters related to regexp, please see [Pattern.quote method](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#quote-java.lang.String-)
+* `toLowerCase` - replaces each upper case character with a lower case character
+* `toUpperCase` - replaces each lower case character with upper case character
+* `base64` - performs base64 encoding
+* `bcrypt` - calculates bcrypt password hash
