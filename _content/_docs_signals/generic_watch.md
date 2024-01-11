@@ -16,6 +16,8 @@ description: How to use generic watch
 
 {% include toc.md %}
 
+The feature is available from Search Guard 2.0.0 or newer.
+
 In various production environments, it is necessary to use a significant number of watches which are very similar to each other. For example, a user can use many similar watches for its (network) device monitoring. In such a case it is necessary to create one watch for each device despite the watches created for each devices are very similar. This leads to obvious duplication and complicates watch management. If the user needs to correct such watch definition then it is required to update the watches responsible for each device monitoring. Generic watches can be used to alleviate this problem. A generic watch acts as a template with predefined parameters. Later on, values of parameters for the generic watch are provided by the generic watch instance definition.
 
 ## Watch types
@@ -58,7 +60,7 @@ The parameter names can contain only lower and upper case letters, digits and th
 
 ## Generic watch instances management
 
-The following REST API is defined to perform CRUD (create, read, update, delete) and other operations on generic watches.
+The following REST API is defined to perform CRUD (create, read, update, delete) and other operations on generic watch instances.
 * [Create or Update](./rest_api_watch_create_or_update_generic_instance.md)
 * [Create or Update Many](./rest_api_watch_create_or_update_many_generic_instances.md)
 * [Get One](./rest_api_watch_get_one_generic_instance.md)
@@ -188,7 +190,7 @@ PUT /_signals/watch/_main/devices
 #### Generic watch instance creation
 To create a generic watch instance it is necessary to provide the instance id and all parameters defined in the generic watch.
 ```
-PUT /devices/instances/device_2nd_floor
+PUT /_signals/watch/_main/devices/instances/device_2nd_floor
 ```
 
 ```json

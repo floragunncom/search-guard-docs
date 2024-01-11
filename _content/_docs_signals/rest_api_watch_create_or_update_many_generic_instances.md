@@ -27,7 +27,7 @@ Create or update instances for generic watch identified by `{watch_id}` path par
 
 ## Path Parameters
 
-**{tenant}:** The parameter contains the tenant name which is or became an owner of the updated or the created watch instances respectively. `_main` refers to the default tenant. Users of the community edition can only use `_main` here. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
+**{tenant}:** The parameter contains the tenant name which is or became an owner of the updated or the created watch instances respectively. `_main` refers to the default tenant. Users of the community edition can only use `_main` here.
 
 **{watch_id}** The id of the generic watch. Required.
 

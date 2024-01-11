@@ -22,7 +22,7 @@ description: Use the Alerting for Elasticsearch Disable Generic Watch Instance A
 DELETE /_signals/watch/{tenant}/{watch_id}/instances/{instance_id}/_active
 ```
 
-Disable generic watch instance identified by the `{watch_id}` and `{instance_id}` path parameters.
+Disable generic watch instance identified by the `{watch_id}` and `{instance_id}` path parameters. Disabled watches are not automatically executed.
 
 
 ## Path Parameters

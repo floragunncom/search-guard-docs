@@ -22,7 +22,7 @@ description: Use the Alerting for Elasticsearch Enable Generic Watch Instance AP
 PUT /_signals/watch/{tenant}/{watch_id}/instances/{instance_id}/_active
 ```
 
-Enable generic watch instance identified by the `{watch_id}` and `{instance_id}` path parameters.
+Enable generic watch instance identified by the `{watch_id}` and `{instance_id}` path parameters. Disabled watches are not automatically executed.
 
 
 ## Path Parameters

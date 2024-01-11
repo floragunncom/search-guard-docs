@@ -30,11 +30,11 @@ PUT /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
 ```
 
 ```
-PUT /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack
+PUT /_signals/watch/{tenant}/{watch_id}/instances/{instance_id}/_ack
 ```
 
 ```
-PUT /_signals/watch/{tenant}/{id}/instances/{instance_id}/_ack/{actionId}
+PUT /_signals/watch/{tenant}/{watch_id}/instances/{instance_id}/_ack/{actionId}
 ```
 
 These endpoints can be used to acknowledge actions performed by watches. By acknowledging actions, you can temporarily suppress further executions of these actions. 
