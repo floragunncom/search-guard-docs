@@ -111,3 +111,27 @@ Pipe expressions are used to transform values of configuration variables. To tra
 * `toUpperCase` - replaces each lower case character with upper case character
 * `base64` - performs base64 encoding
 * `bcrypt` - calculates bcrypt password hash
+
+### Pipe expression example
+The example uses a value defined in the config var `user_password` as a user password. Steps needed to use the value from a config vars as a user password:
+1. Define config var which contains a user password
+```bash
+./sgctl.sh add-var user_password secret_user_password
+```
+2. Define the `james` user in the `sg_internal_users.yml` file. The user definition contains a reference to config var `user_password`. Bcrypt pipe expression transforms the value of config var.
+```bash
+james:
+  hash: "#{var:user_password|bcrypt}"
+  backend_roles:
+  - "admin"
+```
+3. Update configuration with [sgctl](sgctl) tool `./sgctl.sh update-config config_dir`
+4. Test if the `james` user can authenticate with a password from the config var.
+```bash
+curl -ik --request GET --url https://localhost:9200/_searchguard/authinfo  -u james:secret_user_password
+HTTP/1.1 200 OK
+X-elastic-product: Elasticsearch
+content-type: application/json; charset=UTF-8
+content-length: 458
+```
+
