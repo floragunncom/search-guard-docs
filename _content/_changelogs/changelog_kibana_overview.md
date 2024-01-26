@@ -10,6 +10,10 @@ description: Changelog overview for all releases of the Search Guard Kibana Plug
 
 <!--- Copyright 2024 floragunn GmbH -->
 
+# Search Guard Kibana Plugin Changelogs for FLX
+
+See [https://docs.search-guard.com/latest/changelogs-searchguard](https://docs.search-guard.com/latest/changelogs-searchguard)
+
 # Search Guard Kibana Plugin Changelogs
 
 ### [Search Guard Kibana Plugin 7.x-53.0.0](../_changelogs/changelog_kibana_7_x_53_0_0.md)

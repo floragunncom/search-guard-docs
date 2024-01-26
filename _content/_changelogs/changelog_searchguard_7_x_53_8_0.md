@@ -13,11 +13,11 @@ description: Changelog for Search Guard 7.x-53.8.0
 
 **Release Date: 2023-11-29**
 
-This is a security release of Search Guard FLX that applies to Multitenancy only. If you have not enabled that Multitenancy, you are not affected.
+This is a security release of Search Guard that applies to Multitenancy only. If you have not enabled that Multitenancy, you are not affected.
 
 We ask all users that leverage the Multitenancy features of Search Guard to update to Search Guard 53.8 or above.
 
-If you are using Search Guard FLX, please upgrade to [Search Guard FLX 1.4.0](changelog-searchguard-flx-1_4_0) or above.
+If you are using Search Guard FLX, please upgrade to [Search Guard FLX 1.4.1](changelog-searchguard-flx-1_4_1).
 
 ## Security Fixes
 
