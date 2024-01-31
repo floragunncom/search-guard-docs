@@ -76,6 +76,23 @@ jwt_signing_key:
    	y: "..."
 ```
 
+### Auth Token Cache
+
+Starting with Search Guard FLX 1.6.0, you can configure the auth token cache. 
+
+Search Guard Auth Token Service uses a cache to store the information of issued auth tokens. This way, it avoids having
+to query an index every time it needs to validate a token, which might be costly.
+
+The settings of the cache can be adjusted by using the following configuration properties:
+
+**token_cache.enabled:** Controls whether a cache shall be used or not. Default: true.
+
+**token_cache.expire_after_write:** Specifies that entries shall be removed from the cache a certain time after these were written. Use a duration expression in the format *duration* `h|m|s`. Defaults to `60m`, which means 60 minutes.
+
+**token_cache.expire_after_access:** Specifies that entries shall be removed from the cache if they have not been accessed for a certain time. Use a duration expression in the format *duration* `h|m|s`. By default, there is no access-based expiry.
+
+**token_cache.max_size:** The maximum number of entries in the cache. By default, the number of entries is unlimited.
+
 ### Other Configuration Options
 
 **enabled:** Specify `true` here to activate the auth token service. If the value is false or omitted, no new tokens can be created and authentication using auth tokens won't work.
