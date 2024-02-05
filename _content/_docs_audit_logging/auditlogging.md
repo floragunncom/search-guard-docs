@@ -41,11 +41,19 @@ Search Guard tracks the following types of events, on REST and Transport layer:
 | BAD_HEADERS | yes            | yes                 | An attempt was made to spoof a request to Elasticsearch with Search Guard internal headers.                                                  |
 | BLOCKED_USER | yes            | yes                 | A user that is blocked in sg_blocks.yml tried to login.                                                                                      |
 | BLOCKED_IP | yes            | yes                 | A request was made from a blocked IP address, configured in sg_blocks.yml                                                                    |
+{: .config-table}
+
+{% availablesince :version => "1.3.0" %}
+
+
 | KIBANA_LOGIN | yes            | no                  | A user has successfully logged in to Kibana.                                                                                                 |
 | KIBANA_LOGOUT | yes | no | A user has successfully logged out of Kibana.                                                                                                |
 | INDEX_TEMPLATE_WRITE | no             | yes                 | A user has successfully created, updated or deleted index template.                                                                          |
 | INDEX_WRITE | no             | yes                 | A user has successfully created index, updated index settings/mappings or deleted index.                                                     |
 {: .config-table}
+
+{% endavailablesince %}
+
 
 For security reasons, audit logging has to be configured in `elasticsearch.yml`. Changes to the audit log settings require a restart of all participating nodes in the cluster. 
 
