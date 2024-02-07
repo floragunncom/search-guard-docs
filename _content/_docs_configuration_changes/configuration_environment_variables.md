@@ -97,3 +97,42 @@ auth_domains:
 - type: basic/ldap
   ldap.idp.tls.trusted_cas: '#{env:CA_CERT}'
 ```
+
+## Using pipe expressions
+
+Starting with Search Guard FLX 1.6.0 pipe expressions can be used to transform values of configuration variables. To transform value with the pipe expression the `|` operator is used together with the expression name, for example, `#{var:department_name|toLowerCase}`. Multiple pipe expressions can be combined e.g. `#{var:department_name|toLowerCase|base64}` Available pipe expressions
+
+* `toString` - create a string representation
+* `toJson` - convert an object to JSON string
+* `toList` - replace an object with a single element list which contains the object
+* `head` - extracts the first element from a collection
+* `tail` - extracts the last element from the collection
+* `toRegexFragment` - escapes all special characters related to regexp, please see [Pattern.quote method](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#quote-java.lang.String-)
+* `toLowerCase` - replaces each upper case character with a lower case character
+* `toUpperCase` - replaces each lower case character with upper case character
+* `base64` - performs base64 encoding
+* `bcrypt` - calculates bcrypt password hash
+
+### Pipe expression example
+The example uses a value defined in the config var `user_password` as a user password. Steps needed to use the value from a config vars as a user password:
+1. Define config var which contains a user password
+```bash
+./sgctl.sh add-var user_password secret_user_password
+```
+2. Define the `james` user in the `sg_internal_users.yml` file. The user definition contains a reference to config var `user_password`. Bcrypt pipe expression transforms the value of config var.
+```bash
+james:
+  hash: "#{var:user_password|bcrypt}"
+  backend_roles:
+  - "admin"
+```
+3. Update configuration with [sgctl](sgctl) tool `./sgctl.sh update-config config_dir`
+4. Test if the `james` user can authenticate with a password from the config var.
+```bash
+curl -ik --request GET --url https://localhost:9200/_searchguard/authinfo  -u james:secret_user_password
+HTTP/1.1 200 OK
+X-elastic-product: Elasticsearch
+content-type: application/json; charset=UTF-8
+content-length: 458
+```
+
