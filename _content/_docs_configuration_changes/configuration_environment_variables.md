@@ -99,7 +99,8 @@ auth_domains:
 ```
 
 ## Using pipe expressions
-Pipe expressions are used to transform values of configuration variables. To transform value with the pipe expression the `|` operator is used together with the expression name, for example, `#{var:department_name|toLowerCase}`. Multiple pipe expressions can be combined e.g. `#{var:department_name|toLowerCase|base64}` Available pipe expressions
+
+Starting with Search Guard FLX 1.6.0 pipe expressions can be used to transform values of configuration variables. To transform value with the pipe expression the `|` operator is used together with the expression name, for example, `#{var:department_name|toLowerCase}`. Multiple pipe expressions can be combined e.g. `#{var:department_name|toLowerCase|base64}` Available pipe expressions
 
 * `toString` - create a string representation
 * `toJson` - convert an object to JSON string
