@@ -63,7 +63,7 @@ The attribute `event.payload.source` shall identify the system having the proble
 
 Mustache templates can be used for all three attributes above.
 
-**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.4.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
 
 
 ## Adding Information to Events
