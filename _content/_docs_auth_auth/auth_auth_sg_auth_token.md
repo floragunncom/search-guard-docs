@@ -76,6 +76,8 @@ jwt_signing_key:
    	y: "..."
 ```
 
+**Starting with Search Guard FLX 1.6.0**, auth tokens are signed with default signing key in case of no explicit configuration.
+
 ### Auth Token Cache
 
 Starting with Search Guard FLX 1.6.0, you can configure the auth token cache. 
