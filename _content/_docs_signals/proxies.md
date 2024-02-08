@@ -35,14 +35,12 @@ To simplify proxy management Search Guard offers a REST API which can be used fo
 via the REST API and then referenced by id in the configuration like in the below example
 ```json
 {
-  "proxy_id": "my-proxy"
+  "proxy": "my-proxy-id"
 }
 ```
 
 The proxy can be modified with the REST API and all Signals components which referenced the proxy by id will start using the newer configuration
 on the fly.
-
-It is worth mentioning that the configuration options `proxy` and `proxy_id` are mutually exclusive.
 
 Signals supports also global configuration of an HTTP proxy which is used for all Signals actions and checks which create HTTP connections.
 This global configuration may be overridden on action or check level as described above. 
@@ -81,7 +79,7 @@ The following watch uses proxy in the [HTTP Input](elasticsearch-alerting-inputs
         "method": "GET",
         "url": "http://localhost:8080/test"
       },
-      "proxy_id": "my-proxy"
+      "proxy": "my-proxy-id"
     }
   ],
   "checks": [

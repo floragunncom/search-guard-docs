@@ -75,4 +75,4 @@ These attributes are available:
 
 **issue.parent:** If you want to create a subtask, you can specify the ID of the parent issue here. Optional. You can use Mustache templates for specifying dynamic values.
 
-**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.4.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
