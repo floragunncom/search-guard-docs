@@ -14,7 +14,7 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 ### [Search Guard FLX 1.6.0](../_changelogs/changelog_searchguard_flx_1_6_0.md)
 
-Release Date: 2024-02-XX
+Release Date: 2024-02-05
 
 ### [Search Guard 7.x-53.9.0](../_changelogs/changelog_searchguard_7_x_53_9_0.md)
 

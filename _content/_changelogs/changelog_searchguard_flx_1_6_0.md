@@ -11,7 +11,7 @@ description: Changelog for Search Guard FLX 1.6.0
 
 # Search Guard FLX 1.6.0
 
-**Release Date: 2024-02-XX**
+**Release Date: 2024-02-05**
 
 This is a new minor release of Search Guard FLX.
 
