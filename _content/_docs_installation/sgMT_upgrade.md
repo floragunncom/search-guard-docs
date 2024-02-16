@@ -32,23 +32,23 @@ For users who already used Multi Tenancy feature (called MT)
 > a full backup is necessary before the upgrade. Additionally, users should be aware 
 > that Search Guard may not be fully backward compatible between versions 1 and 2.
 > This entire procedure is applicable only if the user is utilizing multi-tenancy.
-> 
 
 ## Multi Tenancy feature
 
-A Kibana tenant serves as a designated container for the storage of saved objects, 
-referred to as a "space." It is possible to associate a tenant with one or more 
+A Kibana tenant serves as a designated container for the storage of saved objects.
+It is possible to associate a tenant with one or more 
 Search Guard roles, granting the assigned roles either read-write or read-only 
 privileges to the tenant and its associated saved objects. When working within Kibana,
 users have the option to choose the tenant they wish to interact with. Search Guard 
 ensures that the saved objects are appropriately located within the selected tenant.
 
-Every Kibana user is inherently granted access to two pre-configured tenants:
-Global and Private.
-
 The Global tenant is designed for shared use among all users, serving as the default 
 tenant when no alternative tenant is specified. Objects created prior
-to the installation of the multi-tenancy module are housed within this tenant.
+to the installation of the multi-tenancy module are lost, thus there is a need of
+secured backup. Furthermore, it is imperative to ensure that the user is granted
+access to the global tenant. By default, the Global tenant is not accessible. 
+This demarcates a distinction between the newer and older implementations of 
+Multi-Tenancy (MT).
 
 In contrast, the Private tenant is exclusively accessible to the currently 
 logged-in user and is not shared with others.
@@ -84,26 +84,49 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 
 4. Please download the new software versions from the following links:
 
-- SG plugin for Elasticsearch 8.9.2:
-[Download](https://maven.search-guard.com//search-guard-flx-snapshot/com/floragunn/search-guard-flx-elasticsearch-plugin/femt-pre-release-8.9.x-SNAPSHOT/search-guard-flx-elasticsearch-plugin-femt-pre-release-8.9.x-20240207.140845-5.zip)
-- SG plugin for Kibana 8.9.2:
-[Download](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.5.0-es-8.9.2/search-guard-flx-kibana-plugin-1.5.0-es-8.9.2.zip)
+- SG plugin for Elasticsearch 8.8.0:
+[Download](https://maven.search-guard.com//search-guard-flx-snapshot/com/floragunn/search-guard-flx-elasticsearch-plugin/sg-flx-1.5.0-es-8.8.0-SNAPSHOT/search-guard-flx-elasticsearch-plugin-sg-flx-1.5.0-es-8.8.0-20240103.143104-1.zip)
+- SG plugin for Kibana 8.8.0:
+[Download](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.5.0-es-8.8.0/search-guard-flx-kibana-plugin-1.5.0-es-8.8.0.zip)
 
 
-5. Upgrade the Elasticsearch nodes to version 8.9.2
+5. Upgrade the Elasticsearch nodes to version 8.8.0
 
-Following the successful upgrade of Elasticsearch to version 8.9.2 using the provided
+Following the successful upgrade of Elasticsearch to version 8.8.0 using the provided
 SG snapshot, you are now ready to restart your Elasticsearch nodes in a standard manner.
 
 6. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
 
 
-7. Upgrade Kibana to Version 8.9.2 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.9.2`)
+7. Upgrade Kibana to Version 8.8.0 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`)
 
-In this step, kindly proceed with the upgrade of Kibana to version 8.9.2, utilizing the provided SG plugin, specifically `search-guard-flx-kibana-plugin-1.5.0-es-8.9.2`.
+In this step, kindly proceed with the upgrade of Kibana to version 8.8.0, utilizing the provided SG plugin, specifically `search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`.
 Following the upgrade, restart Kibana in the usual manner. Subsequently, upon Kibana's successful restart, please collect the Kibana logs as well as the Elasticsearch logs. Ensure to maintain a copy or backup of these logs for reference.
 
-8. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
+
+8. Assign roles in Kibana
+
+When MT is enabled, the Kibana user needs a role `SGS_KIBANA_MT_USER`  instead of `SGS_KIBANA_USER`. 
+
+Users possessing the `SGS_KIBANA_USER` role are granted the privilege to 
+bypass multi-tenancy checks. It is noteworthy to highlight that, in contrast, 
+the `SGS_KIBANA_MT_USER` role does not confer access to the global tenant. 
+This distinction underscores the importance of recognizing the nuanced capabilities 
+associated with each role, particularly in relation to multi-tenancy considerations.
+
+> Each user needs to have at least one tenant configured, otherwise Search Guard
+> does not know which tenant to use. If you disable both the Global and Private tenant,
+> and the user does not have any other tenants configured, login will not be possible.
+
+9. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
 
 Upon completing the upgrade, log in to Kibana and thoroughly verify that all SG-Tenants, along with all Kibana Saved Objects within those Tenants, have been accurately and completely migrated.
 After this verification process, kindly reach out to us again, providing details of your results.
+
+---
+Indices utilized by Kibana in version 8.8.0 or newer include: 
+* .kibana 
+* .kibana_analytics
+* .kibana_ingest
+* .kibana_security_solution
+* .kibana_alerting_cases.
