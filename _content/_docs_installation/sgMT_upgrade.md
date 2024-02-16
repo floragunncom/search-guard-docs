@@ -6,11 +6,33 @@ For users who already used Multi Tenancy feature (called MT)
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
-> Before starting migration You need to do a backup of your whole cluster 
+> Before starting migration You need to do a backup of your whole cluster.
 > 
-> Please review the provided information about backups and restores
-> in [documentation](../docs_configuration_changes/configuration_advanced.md#backup-and-restore)
-
+> If an upgrade is being performed from version 8.7.x to a newer version
+> along with SG 2.0, the user should follow these steps:
+> 
+> 1. Backup Cluster in Version 8.7.x
+>    * Execute a comprehensive backup of the cluster in version 8.7.x.
+> 2. Upgrade Elasticsearch (ES) and Search Guard (SG)
+>    * Upgrade both Elasticsearch and Search Guard to the desired versions.
+> 3. Perform Data Migration
+>    * Execute the necessary data migration procedures.
+> 4. Upgrade Kibana
+>    * Upgrade Kibana to the corresponding version.
+> 
+> ### Troubleshooting
+> 
+> In case of any issues, if the cluster encounters problems, 
+> the user should consider reverting to the previously backed-up version.
+> 
+> ### Cluster Restoration
+> 
+> If needed, the user should restore the cluster to the version from which the upgrade was initiated.
+> It is essential to note that due to the impossibility of downgrading Elasticsearch, 
+> a full backup is necessary before the upgrade. Additionally, users should be aware 
+> that Search Guard may not be fully backward compatible between versions 1 and 2.
+> This entire procedure is applicable only if the user is utilizing multi-tenancy.
+> 
 
 ## Multi Tenancy feature
 
@@ -49,7 +71,8 @@ logged-in user and is not shared with others.
 ./sgctl-1.5.0.sh special get-mt-data-migration-state-8.7-to-8.8
 ```
 
-After executing the script, kindly copy and paste the entire output message. Please share the output details in your next reply.
+After executing the script, kindly copy and paste the entire output message. 
+Please share the output details in your next reply.
 
 3. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 
 with all Kibana Saved Objects (KSO) within those Tenants, have been successfully migrated.
