@@ -6,12 +6,31 @@ For users who already used Multi Tenancy feature (called MT)
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
->  Before starting migration You need to do a backup of your whole cluster 
+> Before starting migration You need to do a backup of your whole cluster 
+> 
+> Please review the provided information about backups and restores
+> in [documentation](../docs_configuration_changes/configuration_advanced.md#backup-and-restore)
 
-## Warnings
-When MT is enabled a user should use roles SGS_KIBANA_MT_USER instead of SGS_KIBANA_USER
-the new role SGS_KIBANA_MT_USER does not grant access to the global tenant
-User with role SGS_KIBANA_USER is unable to log in when MT is enabled
+
+## Multi Tenancy feature
+
+A Kibana tenant serves as a designated container for the storage of saved objects, 
+referred to as a "space." It is possible to associate a tenant with one or more 
+Search Guard roles, granting the assigned roles either read-write or read-only 
+privileges to the tenant and its associated saved objects. When working within Kibana,
+users have the option to choose the tenant they wish to interact with. Search Guard 
+ensures that the saved objects are appropriately located within the selected tenant.
+
+Every Kibana user is inherently granted access to two pre-configured tenants:
+Global and Private.
+
+The Global tenant is designed for shared use among all users, serving as the default 
+tenant when no alternative tenant is specified. Objects created prior
+to the installation of the multi-tenancy module are housed within this tenant.
+
+In contrast, the Private tenant is exclusively accessible to the currently 
+logged-in user and is not shared with others.
+
 
 ## Limitations
 * cannot use id in query (due to id scoping)
@@ -54,6 +73,7 @@ Following the successful upgrade of Elasticsearch to version 8.9.2 using the pro
 SG snapshot, you are now ready to restart your Elasticsearch nodes in a standard manner.
 
 6. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
+
 
 7. Upgrade Kibana to Version 8.9.2 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.9.2`)
 
