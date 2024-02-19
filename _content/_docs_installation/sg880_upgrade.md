@@ -60,6 +60,7 @@ logged-in user and is not shared with others.
 * error messages contain ID with tenant scope
 * legacy MT configuration should be not used with single index MT implementation
 * cannot switch off multi-tenancy
+* system administrator should consider if above limitations are acceptable for environment
 
 ## Upgrading steps
 
@@ -117,6 +118,9 @@ associated with each role, particularly in relation to multi-tenancy considerati
 > Each user needs to have at least one tenant configured, otherwise Search Guard
 > does not know which tenant to use. If you disable both the Global and Private tenant,
 > and the user does not have any other tenants configured, login will not be possible.
+> 
+> If a user has assigned direct access privileges to the Kibana-related indices, 
+> then the user can bypass MT restriction.
 
 9. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
 
@@ -130,3 +134,5 @@ Indices utilized by Kibana in version 8.8.0 or newer include:
 * .kibana_ingest
 * .kibana_security_solution
 * .kibana_alerting_cases.
+
+Official Kibana [documentation](https://www.elastic.co/guide/en/kibana/current/index.html)
