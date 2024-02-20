@@ -2,7 +2,9 @@
 
 ## Note
 
-For users who already used Multi Tenancy feature (called MT)
+For users who already used Multi Tenancy feature (called MT). To ensure if Multi Tenancy (MT)
+is enabled plase check Kibana configuration file and existance of indices dedicated to tanants
+(for more information please refer to [documentation](../_docs_kibana/kibana_multitenancy.md)).
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
@@ -10,6 +12,9 @@ For users who already used Multi Tenancy feature (called MT)
 > 
 > If an upgrade is being performed from version 8.7.x to a newer version
 > along with SG 2.0, the user should follow these steps:
+> 
+> It is strongly advised to perform following steps in test environment, which contains
+> copy of production cluster
 > 
 > 1. Backup Cluster in Version 8.7.x
 >    * Execute a comprehensive backup of the cluster in version 8.7.x.
@@ -86,7 +91,7 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 4. Please download the new software versions from the following links:
 
 - SG plugin for Elasticsearch 8.8.0:
-[Download](https://maven.search-guard.com//search-guard-flx-snapshot/com/floragunn/search-guard-flx-elasticsearch-plugin/sg-flx-1.5.0-es-8.8.0-SNAPSHOT/search-guard-flx-elasticsearch-plugin-sg-flx-1.5.0-es-8.8.0-20240103.143104-1.zip)
+[Download](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.5.0-es-8.8.0/search-guard-flx-elasticsearch-plugin-1.5.0-es-8.8.0.zip)
 - SG plugin for Kibana 8.8.0:
 [Download](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.5.0-es-8.8.0/search-guard-flx-kibana-plugin-1.5.0-es-8.8.0.zip)
 
@@ -135,4 +140,4 @@ Indices utilized by Kibana in version 8.8.0 or newer include:
 * .kibana_security_solution
 * .kibana_alerting_cases.
 
-Official Kibana [documentation](https://www.elastic.co/guide/en/kibana/current/index.html)
+Official Kibana [documentation](https://www.elastic.co/guide/en/kibana/current/saved-object-migrations.html)
