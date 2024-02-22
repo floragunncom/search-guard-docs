@@ -299,6 +299,62 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 <kibana index name>*
 ```
 
+## Limitations of multi-tenancy implementation in SearchGuard 2.x.x
+Most of the limitations are related to how saved object IDs are modified by SearchGuard to map saved objects to tenants. SearchGuard appends to each saved object's ID a tenant ID. SearchGuard also replaces an extended version of the saved object ID with the genuine one before returning saved objects via API. The genuine version of the saved object ID is returned only when a tenant is selected via the appropriate HTTP header. However, this is not always possible. The inability to restore genuine saved object IDs results in the following limitations
+- Cannot use document ID in query. Such a query may not gain the desired result or gain incorrect results. Example of such a query:
+```
+GET /.kibana/_search
+{
+    "query": {
+       "ids": {
+          "values": [
+             "space:custom"
+          ]
+       }
+    }
+}
+```
+- Scripts (e.g. painless scripts) may receive document ID in an extended version. An example of such a script is visible below. The below script will set an extended version of ID in the `description` attribute.
+```
+POST /.kibana/_update/space:myspace
+{
+    "script": {
+       "source": "ctx._source.space.description = ctx['_id']",
+       "lang": "painless"
+    }
+}
+```
+- Error responses and error messages can contain ID with tenant scope. An example of such a response with extended ID `space:nonspace__sg_ten__-152937574_admintenant` is visible below. The genuine saved object ID is `space:nonspace`.
+```json
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "document_missing_exception",
+        "reason": "[space:nonspace__sg_ten__-152937574_admintenant]: document missing",
+        "index_uuid": "P-DqhmPUQQO8zzSt19nF7g",
+        "shard": "0",
+        "index": ".kibana_8.12.0_001"
+      }
+    ],
+    "type": "document_missing_exception",
+    "reason": "[space:nonspace__sg_ten__-152937574_admintenant]: document missing",
+    "index_uuid": "P-DqhmPUQQO8zzSt19nF7g",
+    "shard": "0",
+    "index": ".kibana_8.12.0_001"
+  },
+  "status": 404
+}
+```
+Additionally, limitations not related to ID extensions are
+- Saved objects contain an additional attribute `sg_tenant` which contains tenant identification.
+- An extended version of the document ID may be returned in the query result if the query reads the content of Kibana-related indices and the tenant is not selected via the appropriate HTTP header.
+  - Furthermore, the attribute should not be used and can be removed without warning in future versions of SearchGuard.
+- Multi-tenancy cannot be switched on or switched off without data lost.
+
+The system administration before usage multi-tenancy implementation provided with SearchGuard 2.x.x should consider if the above limitations are acceptable.
+
+
 ## Fixing curl issues
 
 If you experience problems with curl commands see [Fixing curl](../_troubleshooting/tls_troubleshooting.md#fixing-curl) first before reporting any issues.
