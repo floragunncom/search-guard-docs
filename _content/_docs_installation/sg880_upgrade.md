@@ -5,6 +5,7 @@
 For users who already used Multi Tenancy feature (called MT). To ensure if Multi Tenancy (MT)
 is enabled plase check Kibana configuration file and existance of indices dedicated to tanants
 (for more information please refer to [documentation](../_docs_kibana/kibana_multitenancy.md)).
+Keep in mind, that a user can also verify if tenant-related indices exist.
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
@@ -71,16 +72,7 @@ logged-in user and is not shared with others.
 
 1. Please be advised that it is mandatory to deactivate Kibana.
 
-2. Please execute the following script by entering the provided command:
-
-```bash
-./sgctl-1.5.0.sh special get-mt-data-migration-state-8.7-to-8.8
-```
-
-After executing the script, kindly copy and paste the entire output message. 
-Please share the output details in your next reply.
-
-3. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 
+2. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 
 with all Kibana Saved Objects (KSO) within those Tenants, have been successfully migrated.
 
 > Should you encounter any discrepancies or issues, kindly refrain from proceeding
@@ -88,7 +80,7 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 > Please provide detailed information regarding any missing elements or instances 
 > of incorrect placement within the Tenant. Your cooperation is greatly appreciated.
 
-4. Please download the new software versions from the following links:
+3. Please download the new software versions from the following links:
 
 - SG plugin for Elasticsearch 8.8.0:
 [Download](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.5.0-es-8.8.0/search-guard-flx-elasticsearch-plugin-1.5.0-es-8.8.0.zip)
@@ -96,21 +88,21 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 [Download](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.5.0-es-8.8.0/search-guard-flx-kibana-plugin-1.5.0-es-8.8.0.zip)
 
 
-5. Upgrade the Elasticsearch nodes to version 8.8.0
+4. Upgrade the Elasticsearch nodes to version 8.8.0
 
 Following the successful upgrade of Elasticsearch to version 8.8.0 using the provided
 SG snapshot, you are now ready to restart your Elasticsearch nodes in a standard manner.
 
-6. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
+5. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
 
 
-7. Upgrade Kibana to Version 8.8.0 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`)
+6. Upgrade Kibana to Version 8.8.0 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`)
 
 In this step, kindly proceed with the upgrade of Kibana to version 8.8.0, utilizing the provided SG plugin, specifically `search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`.
 Following the upgrade, restart Kibana in the usual manner. Subsequently, upon Kibana's successful restart, please collect the Kibana logs as well as the Elasticsearch logs. Ensure to maintain a copy or backup of these logs for reference.
 
 
-8. Assign roles in Kibana
+7. Assign roles in Kibana
 
 When MT is enabled, the Kibana user needs a role `SGS_KIBANA_MT_USER`  instead of `SGS_KIBANA_USER`. 
 
@@ -127,7 +119,7 @@ associated with each role, particularly in relation to multi-tenancy considerati
 > If a user has assigned direct access privileges to the Kibana-related indices, 
 > then the user can bypass MT restriction.
 
-9. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
+8. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
 
 Upon completing the upgrade, log in to Kibana and thoroughly verify that all SG-Tenants, along with all Kibana Saved Objects within those Tenants, have been accurately and completely migrated.
 After this verification process, kindly reach out to us again, providing details of your results.

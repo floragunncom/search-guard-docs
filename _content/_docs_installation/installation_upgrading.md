@@ -127,7 +127,7 @@ Follow the official Elasticsearch guideline for full cluster restart upgrades fo
 
 The same rules for the `curl` commands as above apply, you need to execute them by using an admin certificate or by providing credentials for a user that has full cluster management permissions.
 
-## Upgrade Elasticsearch and Kibana to 8.8.0
+# Upgrade SearchGuard FLX 1.x.x to 2.x.x/Elasticsearch and Kibana to 8.8.0
 
 Upgrading Elasticsearch and Kibana to 8.8.0 implies also upgrading Search Guard FLX plugin
 to at least version 2.0.0
@@ -135,7 +135,6 @@ to at least version 2.0.0
 For upgrading Elasticsearch and Kibana from version 8.7.x to 8.8.0 please refer to
 [upgrade manual](sg880_upgrade.md)
 
-# Upgrade SearchGuard FLX 1.x.x to 2.x.x
 
 > Please be informed, that backup of Kibana indices should be performed before
 > upgrading SearchGuard FLX 1.x.x to 2.x.x version
