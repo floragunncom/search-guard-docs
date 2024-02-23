@@ -67,6 +67,7 @@ logged-in user and is not shared with others.
 * legacy MT configuration should be not used with single index MT implementation
 * cannot switch off multi-tenancy
 * system administrator should consider if above limitations are acceptable for environment
+* for limitations in SearchGuard 2.x.x, please check [here](../_docs_kibana/kibana_multitenancy.md#limitations-of-multi-tenancy-implementation-in-searchguard-2xx)
 
 ## Upgrading steps
 
