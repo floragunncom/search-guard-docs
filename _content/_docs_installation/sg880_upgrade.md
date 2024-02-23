@@ -73,7 +73,42 @@ logged-in user and is not shared with others.
 
 1. Please be advised that it is mandatory to deactivate Kibana.
 
-2. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 
+2. Run data migration process. Please be informed, that for a small amount of data, 
+the migration is quite quick. However, the data migration process has not been tested 
+in a production environment on significant data volume, so it might be a long-running
+process in such an environment.
+
+```bash
+./sgctl.sh special start-mt-data-migration-8.7-to-8.8
+```
+
+or
+
+```bash
+curl -ik --request POST \
+  --cert kirk.pem \
+  --key kirk-key.pem \
+  -H "Content-Type: application/json" \
+  --url https://localhost:9200/_searchguard/config/fe_multi_tenancy/data_migration/8_8_0 \
+  -d '{"allow_yellow_indices":false}'
+```
+
+3. Check data migration status with the one of the following commands
+
+```bash
+./sgctl.sh special get-mt-data-migration-state-8.7-to-8.8
+```
+
+or 
+```bash
+curl -ik --request GET \
+  --cert kirk.pem \
+  --key kirk-key.pem \
+  -H "Content-Type: application/json" \
+  --url https://localhost:9200/_searchguard/config/fe_multi_tenancy/data_migration/8_8_0
+```
+
+4. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 
 with all Kibana Saved Objects (KSO) within those Tenants, have been successfully migrated.
 
 > Should you encounter any discrepancies or issues, kindly refrain from proceeding
@@ -81,7 +116,7 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 > Please provide detailed information regarding any missing elements or instances 
 > of incorrect placement within the Tenant. Your cooperation is greatly appreciated.
 
-3. Please download the new software versions from the following links:
+5. Please download the new software versions from the following links:
 
 - SG plugin for Elasticsearch 8.8.0:
 [Download](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/1.5.0-es-8.8.0/search-guard-flx-elasticsearch-plugin-1.5.0-es-8.8.0.zip)
@@ -89,21 +124,21 @@ with all Kibana Saved Objects (KSO) within those Tenants, have been successfully
 [Download](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/1.5.0-es-8.8.0/search-guard-flx-kibana-plugin-1.5.0-es-8.8.0.zip)
 
 
-4. Upgrade the Elasticsearch nodes to version 8.8.0
+6. Upgrade the Elasticsearch nodes to version 8.8.0
 
 Following the successful upgrade of Elasticsearch to version 8.8.0 using the provided
 SG snapshot, you are now ready to restart your Elasticsearch nodes in a standard manner.
 
-5. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
+7. In this instance, it is not necessary to initiate the data-migration process using the `sgctl` tool.
 
 
-6. Upgrade Kibana to Version 8.8.0 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`)
+8. Upgrade Kibana to Version 8.8.0 with the New SG Plugin (`search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`)
 
 In this step, kindly proceed with the upgrade of Kibana to version 8.8.0, utilizing the provided SG plugin, specifically `search-guard-flx-kibana-plugin-1.5.0-es-8.8.0`.
 Following the upgrade, restart Kibana in the usual manner. Subsequently, upon Kibana's successful restart, please collect the Kibana logs as well as the Elasticsearch logs. Ensure to maintain a copy or backup of these logs for reference.
 
 
-7. Assign roles in Kibana
+9. Assign roles in Kibana
 
 When MT is enabled, the Kibana user needs a role `SGS_KIBANA_MT_USER`  instead of `SGS_KIBANA_USER`. 
 
@@ -120,7 +155,7 @@ associated with each role, particularly in relation to multi-tenancy considerati
 > If a user has assigned direct access privileges to the Kibana-related indices, 
 > then the user can bypass MT restriction.
 
-8. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
+10. Verification of SG-Tenants and Kibana Saved Objects (KSO) Migration
 
 Upon completing the upgrade, log in to Kibana and thoroughly verify that all SG-Tenants, along with all Kibana Saved Objects within those Tenants, have been accurately and completely migrated.
 After this verification process, kindly reach out to us again, providing details of your results.
