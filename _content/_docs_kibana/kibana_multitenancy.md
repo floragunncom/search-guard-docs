@@ -19,19 +19,23 @@ resources:
 
 {% include toc.md %}
 
+> ### Important note
+> 
+> Any data created before implementing the
+> `multi-tenancy` module may be lost, necessitating a secure backup.
+
+
 ## Tenants: Definition
 
 A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. 
 A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
 The Global tenant serves as a shared platform for all users, acting as the default 
-when no specific tenant is designated. Any data created before implementing the 
-`multi-tenancy` module may be lost, necessitating a secure backup. It's crucial to 
-grant users access to the global tenant. By default, it remains inaccessible, 
-highlighting a clear distinction between newer and older Multi-Tenancy (MT) 
-implementations.
+when no specific tenant is designated. It's crucial to 
+grant users access to the global tenant. Write access to Global tenant can be achieved by assigning
+role `SGS_KIBANA_MT_USER`.
 
-The Private tenant is not shared.  It is only accessible for the currently logged in user.
+The Private tenant is not shared.  It is only accessible for the currently logged-in user.
 
 
 ### Elasticsearch: Configuration
