@@ -1,3 +1,17 @@
+---
+title: Upgrade to 8.8.0
+html_title: Migrating from Elasticsearch and Kibana 8.7.x versions to 8.8.0
+permalink: sg-880-upgrade
+category: installation
+order: 400
+layout: docs
+edition: community
+description: How to migrate Elasticsearch and Kibana from versions 8.7.x to 8.8.0
+---
+<!---
+Copyright 2024 floragunn GmbH
+-->
+
 # Upgrade from 8.7.x to 8.8.0
 
 ## Note
@@ -82,30 +96,10 @@ process in such an environment.
 ./sgctl.sh special start-mt-data-migration-8.7-to-8.8
 ```
 
-or
-
-```bash
-curl -ik --request POST \
-  --cert kirk.pem \
-  --key kirk-key.pem \
-  -H "Content-Type: application/json" \
-  --url https://localhost:9200/_searchguard/config/fe_multi_tenancy/data_migration/8_8_0 \
-  -d '{"allow_yellow_indices":false}'
-```
-
-3. Check data migration status with the one of the following commands
+3. Check data migration status with the following command:
 
 ```bash
 ./sgctl.sh special get-mt-data-migration-state-8.7-to-8.8
-```
-
-or 
-```bash
-curl -ik --request GET \
-  --cert kirk.pem \
-  --key kirk-key.pem \
-  -H "Content-Type: application/json" \
-  --url https://localhost:9200/_searchguard/config/fe_multi_tenancy/data_migration/8_8_0
 ```
 
 4. Log in to Kibana and verify that all Security-Tenants (SG-Tenants), along 

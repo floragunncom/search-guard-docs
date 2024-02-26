@@ -19,7 +19,7 @@ resources:
 
 {% include toc.md %}
 
-> ### Important note
+> ### Important note for SearchGuard in versions 2.x.x
 > 
 > Any data created before implementing the
 > `multi-tenancy` module may be lost, necessitating a secure backup.
