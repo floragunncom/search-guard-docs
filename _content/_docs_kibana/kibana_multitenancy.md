@@ -38,11 +38,26 @@ role `SGS_KIBANA_MT_USER`.
 The Private tenant is not shared.  It is only accessible for the currently logged-in user.
 
 
-### Elasticsearch: Configuration
+## Elasticsearch: Configuration
 
+### Multi tenancy configuration
 Multi tenancy is configured in `sg_frontend_multi_tenancy.yml`.
 
 The following configuration keys are available:
+
+#### For FLX v2.0.0 and higher
+
+| Name                   | Description                                                                                                                                        |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| enabled                | boolean, enable or disable multi tenancy. Default: false.                                                                                          |
+| server_user            | String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`. |
+| index                  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`.       |
+| global_tenant_enabled  | boolean, enable or disable the SGS_GLOBAL_TENANT. Default: true.                                                                                   |
+| private_tenant_enabled | boolean, enable or disable the user's private tenant. Default: true.                                                                               |
+| preferred_tenants      | List, a list of tenants to try to use if the user has not requested a tenant yet. Default empty.                                                   |
+{: .config-table}
+
+#### For versions prior to FLX v2.0.0
 
 | Name | Description |
 |---|---|
@@ -139,21 +154,15 @@ sg_own_index:
 
 
 
-### Kibana: Plugin Configuration
+## Kibana: Plugin Configuration
 
-Enable the multi tenancy feature in `kibana.yml` by adding:
-
-```yaml
-searchguard.multitenancy.enabled: true
-```
-
-In addition, Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named `sgtenant`. Add this header and also the standard `Authorization` header to the white list. If the `sgtenant` header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
+Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named `sgtenant`. Add this header and also the standard `Authorization` header to the white list. If the `sgtenant` header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: ["sgtenant", "Authorization", ...]
 ```
 
-Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
+Also, please check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
 
 Kibana server user:
 
@@ -169,13 +178,30 @@ kibana.yml: kibana.index
 sg_frontend_multi_tenancy.yml: index
 ```
 
+### Enable multi tenancy
+
+#### For FLX v2.0.0 and higher
+As of Search Guard FLX v2.0.0, the multi tenancy configuration has been removed from the Kibana plugin.
+Instead, multi tenancy is configured in the aforementioned `sg_frontend_multi_tenancy.yml`.
+
+#### For versions prior to FLX v2.0.0
+Enable the multi tenancy feature in `kibana.yml` by adding:
+
+```yaml
+searchguard.multitenancy.enabled: true
+```
+
 ### Kibana: Tenant Configuration
+
 
 By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
 
-
 The Private tenant is meant as a user's private space, thus is not shared.
 
+#### For FLX v2.0.0 and higher
+Please see the configuration section for ElasticSearch above.
+
+#### For versions prior to FLX v2.0.0
 You can enable and disable these tenants by the following `kibana.yml` configuration keys:
 
 | Name | Description |
@@ -195,7 +221,11 @@ If a user logs in the first time and has not chosen a tenant yet, Search Guard w
 * if enabled, add the global and private tenant on top 
 * choose the first tenant from this list  
 
+#### For FLX v2.0.0 and higher
+Please see the configuration section for ElasticSearch above.
 If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `kibana.yml`:
+
+#### For versions prior to FLX v2.0.0
 
 ```yaml
 searchguard.multitenancy.tenants.preferred: ["tenant1","tenant2",...]
@@ -233,40 +263,6 @@ curl \
 </pre>
 </div>
 
-
-### Filter bar for tenants
-
-If you have a huge amount of tenants, the tenant list can get long. You can use a filter bar to quickly filter the tenants list. Enable it in `kibana.yml`:
-
-```yaml
-searchguard.multitenancy.enable_filter: true
-```
-
-Which will display a filter bar in the top navigation of the page:
-
-<p align="center">
-<img src="
-kibana_filter_roles.png" style="width: 90%" class="md_image"/>
-</p>
-
-## Selecting tenants in Kibana
-
-If the plugin is installed correctly, you will see a new entry in the left navigation panel called "Tenants":
-
-<p align="center">
-<img src="
-kibana_mt_nav.png" style="width: 20%" class="md_image"/>
-</p>
-
-After clicking it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:
-
-<p align="center">
-<img src="
-kibana_select_tenants.png" style="width: 100%" class="md_image"/>
-</p>
-
-
-All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user.  So you do not need to change it every time you log in.
 
 
 ## Under the hood: Index rewriting, Snapshot & Restore
