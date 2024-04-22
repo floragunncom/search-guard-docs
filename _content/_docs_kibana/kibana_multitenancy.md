@@ -24,6 +24,8 @@ resources:
 > Any data created before implementing the
 > `multi-tenancy` module may be lost, necessitating a secure backup.
 
+<span style="color:red">If you're upgrading to SG 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).</span>
+{: .note .js-note .note-warning}
 
 ## Tenants: Definition
 
