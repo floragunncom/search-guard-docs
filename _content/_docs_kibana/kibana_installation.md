@@ -17,6 +17,9 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
+<span style="color:red">If you're upgrading to SG 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).</span>
+{: .note .js-note .note-warning}
+
 Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
 In the following description, we assume that you have already set up a Search Guard secured Elasticsearch cluster. We will walk through all additional steps needed for integrating Kibana with your setup.
