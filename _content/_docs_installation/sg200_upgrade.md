@@ -1,18 +1,20 @@
 ---
-title: Upgrade to 8.8.0
+title: Upgrade to 2.0.0
 html_title: Migrating from Elasticsearch and Kibana 8.7.x versions to 8.8.0
-permalink: sg-880-upgrade
+permalink: sg-200-upgrade
 category: installation
 order: 400
 layout: docs
 edition: community
-description: How to migrate Elasticsearch and Kibana from versions 8.7.x to 8.8.0
+description: How to migrate SearchGuard from versions 1.x.x to 2.x.x
 ---
 <!---
 Copyright 2024 floragunn GmbH
 -->
 
-# Upgrade from 8.7.x to 8.8.0
+# Upgrade from SearchGuard FLX 1.x.x to 2.0.0
+
+# TODO roles rename
 
 ## Note
 
