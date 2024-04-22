@@ -49,13 +49,23 @@ The following configuration keys are available:
 
 | Name                   | Description                                                                                                                                        |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| enabled                | boolean, enable or disable multi tenancy. Default: false.                                                                                          |
 | server_user            | String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`. |
 | index                  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`.       |
 | global_tenant_enabled  | boolean, enable or disable the SGS_GLOBAL_TENANT. Default: true.                                                                                   |
 | private_tenant_enabled | boolean, enable or disable the user's private tenant. Default: true.                                                                               |
 | preferred_tenants      | List, a list of tenants to try to use if the user has not requested a tenant yet. Default empty.                                                   |
 {: .config-table}
+
+Enabling / Disabling MT
+
+Please keep in mind that due to some technical limitations **once you enable MT, it cannot be easily disabled.** In such case please contact the support team. 
+
+
+In order to enabled MT you need to run the following command:
+
+```bash
+./sgctl.sh special enable-mt
+```
 
 #### For versions prior to FLX v2.0.0
 
@@ -182,7 +192,7 @@ sg_frontend_multi_tenancy.yml: index
 
 #### For FLX v2.0.0 and higher
 As of Search Guard FLX v2.0.0, the multi tenancy configuration has been removed from the Kibana plugin.
-Instead, multi tenancy is configured in the aforementioned `sg_frontend_multi_tenancy.yml`.
+Instead, multi tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
 
 #### For versions prior to FLX v2.0.0
 Enable the multi tenancy feature in `kibana.yml` by adding:
