@@ -35,7 +35,7 @@ A Kibana user selects the tenant that he or she wants to work with. Search Guard
 The Global tenant serves as a shared platform for all users, acting as the default 
 when no specific tenant is designated. It's crucial to 
 grant users access to the global tenant. Write access to Global tenant can be achieved by assigning
-role `SGS_KIBANA_MT_USER`.
+role `SGS_KIBANA_USER`.
 
 The Private tenant is not shared.  It is only accessible for the currently logged-in user.
 

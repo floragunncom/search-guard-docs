@@ -82,13 +82,14 @@ Following the upgrade, restart Kibana in the usual manner. Subsequently, upon Ki
 
 5. Assign roles in Kibana
 
-When MT is enabled, the Kibana user needs a role `SGS_KIBANA_MT_USER`  instead of `SGS_KIBANA_USER`. 
+When MT is enabled, the system administrator should assign one of predefined roles to users accessing the Kibana:
 
-Users possessing the `SGS_KIBANA_USER` role are granted the privilege to 
-bypass multi-tenancy checks. It is noteworthy to highlight that, in contrast, 
-the `SGS_KIBANA_MT_USER` role does not confer access to the global tenant. 
-This distinction underscores the importance of recognizing the nuanced capabilities 
-associated with each role, particularly in relation to multi-tenancy considerations.
+* SGS_KIBANA_USER_NO_GLOBAL_TENANT
+
+  Provides the minimum permissions for a kibana user in environment with enabled multi-tenancy, but without Global Tenant
+* SGS_KIBANA_USER
+
+  Provides the minimum permissions for a kibana user in environment with enabled multi-tenancy
 
 > Each user needs to have at least one tenant configured, otherwise Search Guard
 > does not know which tenant to use. If you disable the Global tenant,
