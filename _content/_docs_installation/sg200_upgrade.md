@@ -91,7 +91,7 @@ This distinction underscores the importance of recognizing the nuanced capabilit
 associated with each role, particularly in relation to multi-tenancy considerations.
 
 > Each user needs to have at least one tenant configured, otherwise Search Guard
-> does not know which tenant to use. If you disable both the Global and Private tenant,
+> does not know which tenant to use. If you disable the Global tenant,
 > and the user does not have any other tenants configured, login will not be possible.
 > 
 > If a user has assigned direct access privileges to the Kibana-related indices, 
