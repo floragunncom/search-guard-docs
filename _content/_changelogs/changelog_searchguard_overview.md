@@ -14,8 +14,6 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 ### [Search Guard FLX 2.0.0 Release Candidate](../_changelogs/changelog_searchguard_flx_2_0_0_rc.md)
 
-<span style="color:red">TODO: Maybe a MESSAGE ABOUT DATA MIGRATION HERE</span>
-
 Release Date: 2024-05-15
 
 ### [Search Guard 7.x-53.9.0](../_changelogs/changelog_searchguard_7_x_53_9_0.md)
