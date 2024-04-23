@@ -324,7 +324,14 @@ curl \
 
 
 ## Under the hood: Index rewriting, Snapshot & Restore
+### For FLX v2.0.0 and higher
+When the multitenancy is enabled, then all objects which does not belong to the global tenant are modified in the following way
+- The ID of the saved object is extended with the tenant ID on the storage level
+- Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
+When a HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is send to the Elasticsearch then Search Guard imposes additional filtering on saved object. Thus saved object which only belongs to the tenant specified in the header are processed. Futhermore Search Guard remove a part of the saved object ID which is related to multitenancy.
+
+### For versions prior to FLX v2.0.0: Index rewriting, Snapshot & Restore
 In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.
 
 For example, if your Kibana index is called ".kibana", and the currently selected tenant is "human_resources", Search Guard will create a new index called something like ".kibana\_1592542611\_humanresources", and places saved objects will in this index.
@@ -357,7 +364,7 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 <kibana index name>*
 ```
 
-## Limitations of multi-tenancy implementation in SearchGuard 2.x.x
+## Limitations of multi-tenancy implementation in For FLX v2.0.0 and higher
 Most of the limitations are related to how saved object IDs are modified by SearchGuard to map saved objects to tenants. SearchGuard appends to each saved object's ID a tenant ID. SearchGuard also replaces an extended version of the saved object ID with the genuine one before returning saved objects via API. The genuine version of the saved object ID is returned only when a tenant is selected via the appropriate HTTP header. However, this is not always possible. The inability to restore genuine saved object IDs results in the following limitations
 - Cannot use document ID in query. Such a query may not gain the desired result or gain incorrect results. Example of such a query:
 ```
