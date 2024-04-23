@@ -404,7 +404,7 @@ Additionally, limitations not related to ID extensions are
 - Saved objects contain an additional attribute `sg_tenant` which contains tenant identification.
 - An extended version of the document ID may be returned in the query result if the query reads the content of Kibana-related indices and the tenant is not selected via the appropriate HTTP header.
   - Furthermore, the attribute should not be used and can be removed without warning in future versions of SearchGuard.
-- Multi-tenancy cannot be switched on or switched off without data lost.
+- Multi-tenancy cannot be switched off without data lost.
 
 The system administration before usage multi-tenancy implementation provided with SearchGuard 2.x.x should consider if the above limitations are acceptable.
 
