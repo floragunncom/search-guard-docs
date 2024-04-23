@@ -63,7 +63,7 @@ Enabling / Disabling MT
 Please keep in mind that due to some technical limitations **once you enable MT, it cannot be easily disabled.** In such case please contact the support team. 
 
 
-In order to enabled MT you need to run the following command:
+In order to enable MT you need to run the following command:
 
 ```bash
 ./sgctl.sh special enable-mt
