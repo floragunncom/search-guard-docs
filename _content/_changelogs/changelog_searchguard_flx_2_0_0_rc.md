@@ -45,3 +45,11 @@ This applies to the settings prefixed `searchguard.multitenancy.`:
 Private tenants are no longer supported. 
 
 You can still use the Global tenant and define an arbitrary number of additional tenants in `sg_tenants.yml`.
+
+
+## Bug Fixes
+
+### Signals: Could not delete an alert from the execution history
+Deleting an alert from the watch execution history returned an error.
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/494)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/957)
