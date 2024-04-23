@@ -58,18 +58,20 @@ The following configuration keys are available:
 | preferred_tenants      | List, a list of tenants to try to use if the user has not requested a tenant yet. Default empty.                                                   |
 {: .config-table}
 
-Enabling / Disabling MT
+##### Enabling / Disabling MT
 
 Please keep in mind that due to some technical limitations **once you enable MT, it cannot be easily disabled.** In such case please contact the support team. 
 
-
-In order to enable MT you need to run the following command:
-
+1. Run the following command:
 ```bash
 ./sgctl.sh special enable-mt
 ```
+2. Header `sgtenant` needs to be forwarded to Elasticsearch, which can be achieved by adding the header name to the property `elasticsearch.requestHeadersWhitelist` in the `kibana.yml` file.
+3. Check roles assigned to users. Users with the role `SGS_KIBANA_USER_NO_MT` are not able to access the Kibana user interface when multitenacy is enabled. Therefore, an administrator should consider assigning to users the following build-in roles:
+   - `SGS_KIBANA_USER`
+   - `SGS_KIBANA_USER_NO_GLOBAL_TENANT`
 
-Additionally, header `sgtenant` needs to be forwarded to Elasticsearch, which can be achieved by adding the header name to the property `elasticsearch.requestHeadersWhitelist` in the `kibana.yml` file.
+It is also possible to use custom roles. However, it is important to ensure each user has access to at least one tenant. Otherwise, the user is unable to log into Kibana.
 
 #### For versions prior to FLX v2.0.0
 
