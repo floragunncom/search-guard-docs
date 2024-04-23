@@ -15,7 +15,8 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you're upgrading to SG 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).</span>
+<span style="color:red">If you're upgrading to SG FXL 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes to the multi tenancy feature.</span>
 {: .note .js-note .note-warning}
 
 If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](../_docs_installation/sg53_migration.md).

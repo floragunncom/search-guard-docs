@@ -13,7 +13,9 @@ description: Changelog for Search Guard FLX 2.0.0 Release Candidate
 
 **Release Date: 2024-05-15**
 
-<span style="color:red">If you're upgrading to SG 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).</span>
+<span style="color:red">If you're upgrading to SG FXL 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes to the multi tenancy feature.</span>
+{: .note .js-note .note-warning}
 
 ## Multi tenancy
 <span style="color:red">**Please make sure to read the documentation for [upgrading to Search Guard FLX 2.0.0](../_docs_installation/sg200_upgrade.md)**</span>

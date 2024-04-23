@@ -19,7 +19,8 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you're upgrading to SG 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).</span>
+<span style="color:red">If you're upgrading to SG FXL 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes to the multi tenancy feature.</span>
 {: .note .js-note .note-warning}
 
 This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](../_docs_quickstart/demo_installer.md)**. 
