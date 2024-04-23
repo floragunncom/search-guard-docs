@@ -22,22 +22,8 @@ elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
 
 ## Elasticsearch: Multi tenancy not enabled
 
-If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_mt_disabled.png" style="width: 80%" class="md_image"/>
-</p>
-
+If the Search Guard multitenancy module is not installed or is disabled, you will see an error message in the tenants menu.
 Make sure the enterprise module is installed, and also check that `enabled` is set to `true` in `sg_frontend_multi_tenancy.yml`.
 
-## Kibana and Elasticsearch: Configuration mismatch
-
-If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the respective settings match in `sg_frontend_multi_tenancy.yml` (Elasticsearch) and `kibana.yml` (Kibana).
 
 
