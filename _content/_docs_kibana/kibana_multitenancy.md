@@ -182,7 +182,23 @@ sg_own_index:
       - "SGS_KIBANA_ALL_WRITE"
 ```
 
+### Setting preferred / default tenants
 
+#### For FLX v2.0.0 and higher
+
+In order to choose user's preferred / default tenant Search Guard will:
+
+* return first tenant to which user has write access or user has read access and tenant exists
+* Search Guard checks tenants in the following order:
+  * list of preferred tenants 
+  * Global tenant
+  * tenants available to the user
+* Global tenant is not taken into account if it's disabled
+
+  
+#### For versions prior to FLX v2.0.0
+
+In older versions, configuration and selection of the preferred / default tenant is done on the Kibana plugin side as described below.
 
 ## Kibana: Plugin Configuration
 
@@ -245,6 +261,12 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 **Note that each user needs to have at least one tenant configured, otherwise Search Guard does not know which tenant to use. If you disable both the Global and Private tenant, and the user does not have any other tenants configured, login will not be possible.**
 
 ### Kibana: Setting preferred / default tenants
+
+#### For FLX v2.0.0 and higher
+As of Search Guard FLX v2.0.0, the multi tenancy configuration has been removed from the Kibana plugin.
+Instead, multi tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
+
+#### For versions prior to FLX v2.0.0
 
 If a user logs in the first time and has not chosen a tenant yet, Search Guard will
 
