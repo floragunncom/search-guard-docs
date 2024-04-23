@@ -54,7 +54,6 @@ The following configuration keys are available:
 | server_user            | String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`. |
 | index                  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`.       |
 | global_tenant_enabled  | boolean, enable or disable the SGS_GLOBAL_TENANT. Default: true.                                                                                   |
-| private_tenant_enabled | boolean, enable or disable the user's private tenant. Default: true.                                                                               |
 | preferred_tenants      | List, a list of tenants to try to use if the user has not requested a tenant yet. Default empty.                                                   |
 {: .config-table}
 
@@ -79,6 +78,24 @@ In order to enable MT you need to run the following command:
 {: .config-table}
 
 ### Defining tenants
+
+#### For FLX v2.0.0 and higher
+
+If you do not configure anything special, every user has access to the Global tenant by default, with read/write access.
+
+Private tenants are no longer supported.
+
+You can define an arbitrary number of additional tenants in `sg_tenants.yml`, for example:
+
+```yaml
+admin_tenant:
+  description: "The admin tenant"
+
+human_resources:
+  description: "The human resources tenant"
+```
+
+#### For versions prior to FLX v2.0.0
 
 If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.
 
@@ -205,15 +222,17 @@ searchguard.multitenancy.enabled: true
 
 ### Kibana: Tenant Configuration
 
+#### For FLX v2.0.0 and higher
+
+As of Search Guard FLX v2.0.0, the multi tenancy configuration has been removed from the Kibana plugin.
+Instead, multi tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
+
+#### For versions prior to FLX v2.0.0
 
 By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
 
 The Private tenant is meant as a user's private space, thus is not shared.
 
-#### For FLX v2.0.0 and higher
-Please see the configuration section for ElasticSearch above.
-
-#### For versions prior to FLX v2.0.0
 You can enable and disable these tenants by the following `kibana.yml` configuration keys:
 
 | Name | Description |

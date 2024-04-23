@@ -21,7 +21,7 @@ description: Changelog for Search Guard FLX 2.0.0 Release Candidate
 ### BREAKING: The Kibana multi tenancy configuration has moved to the backend plugin
 
 The multi tenancy configuration has been moved from the Kibana plugin to the Elasticsearch plugin, and will need to be removed from `kibana.yml`.
-Instead, some of the settings are now available in `sg_frontend_multi_tenancy.yml'.
+Instead, some of the settings are now available in `sg_frontend_multi_tenancy.yml`.
 Some settings have been removed, including support for the private tenant.
 This applies to the settings prefixed `searchguard.multitenancy.`:
 
@@ -35,6 +35,11 @@ This applies to the settings prefixed `searchguard.multitenancy.`:
 | show_roles                | removed         |                                                        |
 | enable_filter             | removed         |                                                        |
 | saved_objects_migration.* | removed         |                                                        |
-| debug                     | still available |   
+| debug                     | still available |
 
 
+### BREAKING: Support for Private tenants have been removed
+
+Private tenants are no longer supported. 
+
+You can still use the Global tenant and define an arbitrary number of additional tenants in `sg_tenants.yml`.
