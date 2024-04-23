@@ -69,6 +69,8 @@ In order to enable MT you need to run the following command:
 ./sgctl.sh special enable-mt
 ```
 
+Additionally, header `sgtenant` needs to be forwarded to Elasticsearch, which can be achieved by adding the header name to the property `elasticsearch.requestHeadersWhitelist` in the `kibana.yml` file.
+
 #### For versions prior to FLX v2.0.0
 
 | Name | Description |
