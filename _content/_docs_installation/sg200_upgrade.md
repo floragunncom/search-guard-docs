@@ -28,7 +28,7 @@ The upgrade procedure for environments with disabled multitenancy is straightfor
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
-> Before starting Search Guard's upgrade from version 1.x.x to a newer version along with Search Guard 2.0.0, you need to back up your whole cluster. Furthermore, it is strongly advised that the upgrade procedure is tested first in a test environment containing a copy of the production cluster. If everything goes well, repeat the same procedure for the production cluster. The upgrade procedure can only be performed when an upgraded environment works with installed Search Guard 1.4.0 and Elasticsearch 8.7.1.
+> Before starting Search Guard's upgrade from version 1.x.x to a newer version along with Search Guard 2.0.0, you need to back up your whole cluster. Furthermore, it is strongly advised that the upgrade procedure is tested first in a test environment containing a copy of the production cluster. If everything goes well, repeat the same procedure for the production cluster. The upgrade procedure can only be performed when an upgraded environment works with installed Search Guard 1.4.0 or 1.6.0 for Elasticsearch 8.7.x.
 > ### Troubleshooting
 > In case of any issues, if the cluster encounters problems, the administrator should consider reverting to the previously backed-up version.
 > ### Cluster Restoration
@@ -36,7 +36,7 @@ The upgrade procedure for environments with disabled multitenancy is straightfor
 
 ### Multitenancy feature
 
-Search Guard 2.0.0 contains a new multitenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](../_docs_kibana/kibana_multitenancy.md#limitations-of-multi-tenancy-implementation-in-searchguard-2xx) related to the new implementation. Furthermore, the implementation of the new multitenancy feature does not support private tenants.
+Search Guard 2.0.0 contains a new multitenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](../_docs_kibana/kibana_multitenancy.md#limitations-of-multi-tenancy-implementation-in-for-flx-v200-and-higher) related to the new implementation. Furthermore, the implementation of the new multitenancy feature does not support private tenants.
 
 ### Upgrading steps
 The upgrade procedure should first be carried out in the test environment, which is a copy of the production cluster. Once this test is accomplished successfully, you can upgrade the production environment.
@@ -44,7 +44,7 @@ The upgrade procedure should first be carried out in the test environment, which
 1. Backup.\
    Preparing a backup is a very important step due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. It is also worth testing if the created backup can be restored.
 
-2. Upgrade Search Guard to verion 1.4.0 and Elasticseare to version 8.7.1\
+2. Upgrade Search Guard to version 1.4.0 or 1.6.0 and Elasticseare to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](./installation_upgrading.md).
 3. Adjust multitenancy configuration.\
    Multitenancy configuration in Search Guard versions before 2.0.0 was present in the `kibana.yml` file, e.g.
@@ -87,7 +87,9 @@ The Kibana should not work during further steps related to the upgrade.
     When the new Kibana version is started, the Kibana carries out data migration of its saved objects.
 13. Upgrade verification\
     The upgrade procedure is almost complete. Please verify if your environment behaves correctly and all required features are available, check if other plugins work correctly, and integrate with external systems. You should also confirm that all required Kibana Saved Objects have been migrated correctly and that the Kibana user interface contains all required tenants, spaces, dashboards, etc. The test should be executed with users' accounts with various permission levels to access tenants.
----
+
+***
+
 Please take into consideration that Kibana in version 8.8.0 or newer uses some additional indices. You may need to adjust your backup strategy accordingly. Some indices used by the Kibana are listed below
 * .kibana 
 * .kibana_analytics

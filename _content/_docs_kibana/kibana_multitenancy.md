@@ -323,13 +323,15 @@ curl \
 
 
 
-## Under the hood: Index rewriting, Snapshot & Restore
+## Under the hood
 ### For FLX v2.0.0 and higher
 When the multitenancy is enabled, then all objects which does not belong to the global tenant are modified in the following way
 - The ID of the saved object is extended with the tenant ID on the storage level
 - Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
-When a HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is send to the Elasticsearch then Search Guard imposes additional filtering on saved object. Thus saved object which only belongs to the tenant specified in the header are processed. Futhermore Search Guard remove a part of the saved object ID which is related to multitenancy.
+When an HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is sent to Elasticsearch, the Search Guard imposes additional filtering on saved objects. Thus, saved objects that only belong to the tenant specified in the header (or query parameter) are processed. Furthermore, Search Guard removes a part of the saved object ID that is related to multitenancy. On the other hand, the attribute `sg_tenant` is not removed from responses.
+
+Search Guard treats the global tenant exceptionally. The tenant's saved object IDs are not extended, and the attribute `sg _tenant` is not added.
 
 ### For versions prior to FLX v2.0.0: Index rewriting, Snapshot & Restore
 In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.
