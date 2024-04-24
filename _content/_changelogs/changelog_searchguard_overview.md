@@ -22,7 +22,7 @@ Release Date: 2024-01-24
 
 ### [Search Guard FLX 1.5.0](../_changelogs/changelog_searchguard_flx_1_5_0.md)
 
-<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi Tenancy!</span>
+<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi-Tenancy!</span>
 
 Release Date: 2024-01-15
 

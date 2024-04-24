@@ -35,6 +35,6 @@ The Search Guard Kibana plugin supports the following authentication types:
 * [Kerberos](kibana_authentication_kerberos.md)
 * [Anonymous Authentication](kibana_authentication_anonymous.md)
 
-## Multi Tenancy
+## Multi-Tenancy
 
-Please refer to the [Multi Tenancy](kibana_multitenancy.md) guide.
+Please refer to the [Multi-Tenancy](kibana_multitenancy.md) guide.

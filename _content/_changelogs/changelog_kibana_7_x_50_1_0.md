@@ -18,7 +18,7 @@ This is a bugfix release for the Search Guard Kibana plugin. It fixes two major 
 
 See below for details.
 
-## Bugfix for setups where multitenancy is disabled
+## Bugfix for setups where Multi-Tenancy is disabled
 
 This fixes a bug that prevented Kibana pages from working properly if multi-tenancy in Search Guard is disabled and Kibana Spaces is enabled.
 

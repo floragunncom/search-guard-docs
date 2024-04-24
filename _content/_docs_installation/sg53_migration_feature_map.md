@@ -38,7 +38,7 @@ This section serves as a reference by config file and config name how the classi
 
 ### `kibana`
 
-The settings relating to Kibana multi tenancy have been moved to `sg_frontend_multi_tenancy.yml`.
+The settings relating to Kibana Multi-Tenancy have been moved to `sg_frontend_multi_tenancy.yml`.
 
 | Legacy Config | New Config | Details |
 |---|---|---|

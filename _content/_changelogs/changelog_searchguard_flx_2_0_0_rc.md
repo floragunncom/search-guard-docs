@@ -17,18 +17,18 @@ description: Changelog for Search Guard FLX 2.0.0 Release Candidate
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
-## Multi tenancy
+## Multi-Tenancy
 <span style="color:red">**Please make sure to read the documentation for [upgrading to Search Guard FLX 2.0.0](../_docs_installation/sg200_upgrade.md)**</span>
 
-### BREAKING: Multi tenancy has been reimplemented
+### BREAKING: Multi-Tenancy has been reimplemented
 
 Search Guard no longer maintains separate indices for each tenant. Instead, when multi-tenancy is enabled, it modifies saved objects
 on the storage level. The IDs of saved objects are extended with the tenant ID, and a new attribute `sg_tenant` is added 
 to each saved object, which contains the tenant ID. Search Guard modifies all saved objects except those belonging to the Global tenant.
 
-### BREAKING: The Kibana multi tenancy configuration has moved to the backend plugin
+### BREAKING: The Kibana Multi-Tenancy configuration has moved to the backend plugin
 
-The multi tenancy configuration has been moved from the Kibana plugin to the Elasticsearch plugin, and will need to be removed from `kibana.yml`.
+The Multi-Tenancy configuration has been moved from the Kibana plugin to the Elasticsearch plugin, and will need to be removed from `kibana.yml`.
 Instead, some of the settings are now available in `sg_frontend_multi_tenancy.yml`.
 Some settings have been removed, including support for the private tenant.
 This applies to the settings prefixed `searchguard.multitenancy.`:
@@ -53,7 +53,7 @@ Private tenants are no longer supported.
 You can still use the Global tenant and define an arbitrary number of additional tenants in `sg_tenants.yml`.
 
 ### BREAKING: Permissions required to authorize users to access the Kibana user interface have been changed
-If multitenancy is disabled, then the following roles `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT` and `SGS_KIBANA_USER_NO_DEFAULT_TENANT` are insufficient for a user to access the Kibana user interface. The role `SGS_KIBANA_USER_NO_MT` should be used instead. For more details, please see [Search Guard 2.0.0 Upgrade Guide](sg-200-upgrade#upgrading-environments-with-disabled-multitenancy).
+If Multi-Tenancy is disabled, then the following roles `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT` and `SGS_KIBANA_USER_NO_DEFAULT_TENANT` are insufficient for a user to access the Kibana user interface. The role `SGS_KIBANA_USER_NO_MT` should be used instead. For more details, please see [Search Guard 2.0.0 Upgrade Guide](sg-200-upgrade#upgrading-environments-with-disabled-multitenancy).
 
 ## Bug Fixes
 

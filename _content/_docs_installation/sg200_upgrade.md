@@ -14,16 +14,16 @@ Copyright 2024 floragunn GmbH
 
 # Upgrade from Search Guard FLX 1.x.x to 2.0.0
 
-Search Guard 2.0.0 is not backwards compatible with previous versions. If you want to upgrade from version 1.x.x to 2.0.0, you will need to follow some additional steps. However, the upgrade process will differ for environments with and without the multitenancy feature enabled. It is strongly recommended that you read the entire page and clarify all doubts before starting the upgrade.
+Search Guard 2.0.0 is not backwards compatible with previous versions. If you want to upgrade from version 1.x.x to 2.0.0, you will need to follow some additional steps. However, the upgrade process will differ for environments with and without the Multi-Tenancy feature enabled. It is strongly recommended that you read the entire page and clarify all doubts before starting the upgrade.
 
-## How to check if multitenancy is enabled
-To verify if multitenancy is enabled, please check the Kibana configuration file and the existence of indices dedicated to each tenant.
+## How to check if Multi-Tenancy is enabled
+To verify if Multi-Tenancy is enabled, please check the Kibana configuration file and the existence of indices dedicated to each tenant.
 (For future information, please refer to the [documentation](../_docs_kibana/kibana_multitenancy.md)).
 
-## Upgrading environments with disabled multitenancy 
-The upgrade procedure for environments with disabled multitenancy is straightforward, but if you are using Kibana, it may be necessary to change the Kibana users' roles. Search Guard provides predefined roles for users who are authorized to access the Kibana interface, such as `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT`, `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. However, if multitenancy is not enabled, users with these roles cannot access the Kibana user interface when Search Guard is upgraded to version 2.0.0. Instead, the system administrator should assign or map the `SGS_KIBANA_USER_NO_MT` role to users accessing Kibana.
+## Upgrading environments with disabled Multi-Tenancy 
+The upgrade procedure for environments with disabled Multi-Tenancy is straightforward, but if you are using Kibana, it may be necessary to change the Kibana users' roles. Search Guard provides predefined roles for users who are authorized to access the Kibana interface, such as `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT`, `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. However, if Multi-Tenancy is not enabled, users with these roles cannot access the Kibana user interface when Search Guard is upgraded to version 2.0.0. Instead, the system administrator should assign or map the `SGS_KIBANA_USER_NO_MT` role to users accessing Kibana.
 
-## Upgrading environments with enabled multitenancy
+## Upgrading environments with enabled Multi-Tenancy
 
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
@@ -34,9 +34,9 @@ The upgrade procedure for environments with disabled multitenancy is straightfor
 > ### Cluster Restoration
 > If needed, the administrator should restore the cluster to the version from which the upgrade was initiated. A full backup is necessary before the upgrade due to the impossibility of downgrading Elasticsearch.
 
-### Multitenancy feature
+### Multi-Tenancy feature
 
-Search Guard 2.0.0 contains a new multitenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](../_docs_kibana/kibana_multitenancy.md#limitations-of-multi-tenancy-implementation-in-for-flx-v200-and-higher) related to the new implementation. Furthermore, the implementation of the new multitenancy feature does not support private tenants.
+Search Guard 2.0.0 contains a new Multi-Tenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](../_docs_kibana/kibana_multitenancy.md#limitations-of-multi-tenancy-implementation-in-for-flx-v200-and-higher) related to the new implementation. Furthermore, the implementation of the new Multi-Tenancy feature does not support private tenants.
 
 ### Upgrading steps
 The upgrade procedure should first be carried out in the test environment, which is a copy of the production cluster. Once this test is accomplished successfully, you can upgrade the production environment.
@@ -46,8 +46,8 @@ The upgrade procedure should first be carried out in the test environment, which
 
 2. Upgrade Search Guard to version 1.4.0 or 1.6.0 and Elasticseare to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](./installation_upgrading.md).
-3. Adjust multitenancy configuration.\
-   Multitenancy configuration in Search Guard versions before 2.0.0 was present in the `kibana.yml` file, e.g.
+3. Adjust Multi-Tenancy configuration.\
+   Multi-Tenancy configuration in Search Guard versions before 2.0.0 was present in the `kibana.yml` file, e.g.
     ```yml
     searchguard.multitenancy.enabled: true
     searchguard.multitenancy.show_roles: true
@@ -55,7 +55,7 @@ The current step is associated with the usual Search Guard upgrade procedure con
     searchguard.multitenancy.tenants.enable_global: true
     searchguard.multitenancy.tenants.enable_private: true
     ```
-    Search Guard 2.0.0 does not use the `kibana.yml` file to store the multitenancy configuration. Instead, the configuration file `sg_frontend_multi_tenancy.yml` is used. Therefore, proper configuration needs to be transferred to the `sg_frontend_multi_tenancy.yml` and **removed from the `kibana.yml` file**. The file's `sg_frontend_multi_tenancy.yml` syntax is covered in the [Multitenancy configuration](../_docs_kibana/kibana_multitenancy.md#multi-tenancy-configuration) section. You will need the updated file version `sg_frontend_multi_tenancy.yml` later if the default configuration introduced in the Search Guard 2.0.0 is inappropriate for you. Example configuration which can be placed in the file `sg_frontend_multi_tenancy.yml`
+    Search Guard 2.0.0 does not use the `kibana.yml` file to store the Multi-Tenancy configuration. Instead, the configuration file `sg_frontend_multi_tenancy.yml` is used. Therefore, proper configuration needs to be transferred to the `sg_frontend_multi_tenancy.yml` and **removed from the `kibana.yml` file**. The file's `sg_frontend_multi_tenancy.yml` syntax is covered in the [Multi-Tenancy configuration](../_docs_kibana/kibana_multitenancy.md#multi-tenancy-configuration) section. You will need the updated file version `sg_frontend_multi_tenancy.yml` later if the default configuration introduced in the Search Guard 2.0.0 is inappropriate for you. Example configuration which can be placed in the file `sg_frontend_multi_tenancy.yml`
     ```yml
     enabled: true
     server_user: kibanaserver
@@ -68,11 +68,11 @@ The Kibana should not work during further steps related to the upgrade.
 6. Upgrade Search Guard and the Elasticsearch\
    Before performing the current step, you must review the Elasticsearch documentation for the proper version and check which additional steps and measures are required to upgrade Elasticsearch. Then, you can upgrade Elasticsearch and Search Guard on your cluster node. The upgrade procedure is described in the [Search Guard upgrade guide](upgrading#upgrading-elasticsearch-and-search-guard).
 7. Migrate frontend data\
-   The data structures used by the multitenancy implementation in SearchGuard 1.x.x and 2.0.0 are distinct. Therefore, running a data migration process is necessary to move Kibana Saved Objects (entities like data views and dashboards stored by Kibana in Elasticsearch). To conduct the data migration process, you need an up-to-date version of the `sgctl` tool. To carry out the data migration process, execute the command `sgctl special start-mt-data-migration-from-8.7`. The command execution should be above a few minutes, depending on the number of tenants defined in your environment and the volume of data stored in the Kibana indices. You can check the status of the data migration process using the command `sgctl special get-mt-data-migration-state-from-8.7`. The administrator must successfully execute data migration before proceeding with further upgrade steps. It is important to note that the system administrator should not run the data migration process in parallel, and the Kibana should be shut down during this process. Please note that multitenancy is disabled by default in the Search Guard 2.0.0 or newer. The command used for data migration will enable the multitenancy if needed.
+   The data structures used by the Multi-Tenancy implementation in SearchGuard 1.x.x and 2.0.0 are distinct. Therefore, running a data migration process is necessary to move Kibana Saved Objects (entities like data views and dashboards stored by Kibana in Elasticsearch). To conduct the data migration process, you need an up-to-date version of the `sgctl` tool. To carry out the data migration process, execute the command `sgctl special start-mt-data-migration-from-8.7`. The command execution should be above a few minutes, depending on the number of tenants defined in your environment and the volume of data stored in the Kibana indices. You can check the status of the data migration process using the command `sgctl special get-mt-data-migration-state-from-8.7`. The administrator must successfully execute data migration before proceeding with further upgrade steps. It is important to note that the system administrator should not run the data migration process in parallel, and the Kibana should be shut down during this process. Please note that Multi-Tenancy is disabled by default in the Search Guard 2.0.0 or newer. The command used for data migration will enable the Multi-Tenancy if needed.
 8. Upgrade Kibana\
    In this step, please proceed with upgrading Kibana to a version corresponding to Elasticsearch and install the Search Guard Kibana plugin in the appropriate version. The Kibana upgrade should be carried out in accordance with the Kibana documentation.
-9. Restore multitenancy configuration\
-   If the default multitenancy configuration is inappropriate for you, you can introduce customization by using `sg_frontend_multi_tenancy.yml`, a multitenancy configuration file. Available configuration options are described in the [Multitenancy configuration](kibana-multi-tenancy#elasticsearch-configuration) section. You can apply a new configuration using the following command `sgctl.sh update-config sg_frontend_multi_tenancy.yml`
+9. Restore Multi-Tenancy configuration\
+   If the default Multi-Tenancy configuration is inappropriate for you, you can introduce customization by using `sg_frontend_multi_tenancy.yml`, a Multi-Tenancy configuration file. Available configuration options are described in the [Multi-Tenancy configuration](kibana-multi-tenancy#elasticsearch-configuration) section. You can apply a new configuration using the following command `sgctl.sh update-config sg_frontend_multi_tenancy.yml`
 10. Disable telemetry\
     When you are going to grant read-only access to some tenants for some users then it is recomended to disable telemetry. This can be achieve by placing the following configuration in the `kibana.yml` file.
     ```yml
@@ -82,7 +82,7 @@ The Kibana should not work during further steps related to the upgrade.
       allowChangingOptInStatus: false
     ```
 11. Verify Kibana users' role assignment\
-    The role names intended for use in a multitenancy-enabled environment have not been modified between the 1.x.x and 2.0.0 versions of Search Guard. However, the role definitions were changed. Therefore, if you are using custom roles that allow users to access Kibana, you should upgrade your role definitions. Each user needs access to at least one tenant. Otherwise, the user lacking any tenant access cannot log into Kibana. This is especially important in the context of private tenant removal or when you deprive users of global tenant access. The privilege of accessing the global tenant can be revoked by disabling the global tenant in the multitenancy configuration file (`sg_frontend_multi_tenancy.yml`) or when you do not assign to your users a role, which grants access to the global tenant. The build-in role `SGS_KIBANA_USER` allows the global tenant access, whereas the role `SGS_KIBANA_USER_NO_GLOBAL_TENANT` does not.
+    The role names intended for use in a Multi-Tenancy-enabled environment have not been modified between the 1.x.x and 2.0.0 versions of Search Guard. However, the role definitions were changed. Therefore, if you are using custom roles that allow users to access Kibana, you should upgrade your role definitions. Each user needs access to at least one tenant. Otherwise, the user lacking any tenant access cannot log into Kibana. This is especially important in the context of private tenant removal or when you deprive users of global tenant access. The privilege of accessing the global tenant can be revoked by disabling the global tenant in the Multi-Tenancy configuration file (`sg_frontend_multi_tenancy.yml`) or when you do not assign to your users a role, which grants access to the global tenant. The build-in role `SGS_KIBANA_USER` allows the global tenant access, whereas the role `SGS_KIBANA_USER_NO_GLOBAL_TENANT` does not.
 12. Start Kibana\
     When the new Kibana version is started, the Kibana carries out data migration of its saved objects.
 13. Upgrade verification\

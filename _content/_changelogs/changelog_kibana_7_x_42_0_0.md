@@ -63,7 +63,7 @@ description: Changelog for Kibana 7.x-42.0.0
 <p />
 
 
-### Kibana Authentication and Multi Tenancy
+### Kibana Authentication and Multi-Tenancy
 
 * Fix incorrect warning on tenant page
   * The page for selecting the active tenant would show a bogus warning if the user does not have administration privileges.

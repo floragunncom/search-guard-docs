@@ -97,7 +97,7 @@ description: Changelog for Search Guard 7.x-42.0.0
 <p />
 
 
-### Multi Tenancy
+### Multi-Tenancy
 
 * Prevent access to saved objects definitions
   * The default permissions for Kibana users no longer grant access to indexes matching the pattern `.kibana_*`, as this would allow users to access the configuration indexes of Kibana tenants they don't have permission to access. 

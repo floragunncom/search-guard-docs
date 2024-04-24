@@ -167,7 +167,7 @@ elasticsearch.password: "kibanaserver"
 # Disable SSL verification because we use self-signed demo certificates
 elasticsearch.ssl.verificationMode: none
 
-# Whitelist the Search Guard Multi Tenancy Header
+# Whitelist the Search Guard Multi-Tenancy Header
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 ```
 
@@ -198,7 +198,7 @@ After Kibana is started, it will begin optimizing and caching browser bundles. T
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
 * Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
+* Tenants - to select a tenant for [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -229,4 +229,4 @@ For fine-grained access control on document- and field level, use the Search Gua
 
 If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
 
-And if you need to support multiple tenants in Kibana, use [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.
+And if you need to support multiple tenants in Kibana, use [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.

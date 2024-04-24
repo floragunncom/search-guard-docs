@@ -1,16 +1,16 @@
 ---
-title: Multitenancy Troubleshooting
-html_title: Multitenancy help
-permalink: troubleshooting-multitenancy
+title: Multi-Tenancy Troubleshooting
+html_title: Multi-Tenancy help
+permalink: troubleshooting-Multi-Tenancy
 category: troubleshooting
 order: 600
 layout: troubleshooting
-description: Step-by-step instructions on how to troubleshoot Multi Tenancy issues.
+description: Step-by-step instructions on how to troubleshoot Multi-Tenancy issues.
 ---
 
 <!--- Copyright 2022 floragunn GmbH -->
 
-# Troubleshooting Multitenancy
+# Troubleshooting Multi-Tenancy
 
 ## Headers not whitelisted
 
@@ -33,9 +33,9 @@ telemetry:
   allowChangingOptInStatus: false
 ```
 
-## Elasticsearch: Multi tenancy not enabled
+## Elasticsearch: Multi-Tenancy not enabled
 
-If the Search Guard multitenancy module is not installed or is disabled, you will see an error message in the tenants menu.
+If the Search Guard Multi-Tenancy module is not installed or is disabled, you will see an error message in the tenants menu.
 Make sure the enterprise module is installed, and also check that `enabled` is set to `true` in `sg_frontend_multi_tenancy.yml`.
 
 
