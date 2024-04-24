@@ -105,6 +105,7 @@ After you restart Kibana, it will start optimizing and caching browser bundles. 
 In order to upgrade the Search Guard Kibana Plugin:
 
 * Stop Kibana
+* Create a backup of the Kibana-related indices
 * Delete the Search Guard Kibana plugin from the `plugins` directory
 * Restart Kibana, which will clear all cached files
 * Stop Kibana, and install the new version of the plugin

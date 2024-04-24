@@ -52,6 +52,8 @@ Private tenants are no longer supported.
 
 You can still use the Global tenant and define an arbitrary number of additional tenants in `sg_tenants.yml`.
 
+### BREAKING: Permissions required to authorize users to access the Kibana user interface have been changed
+If multitenancy is disabled, then the following roles `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT` and `SGS_KIBANA_USER_NO_DEFAULT_TENANT` are insufficient for a user to access the Kibana user interface. The role `SGS_KIBANA_USER_NO_MT` should be used instead. For more details, please see [Search Guard 2.0.0 Upgrade Guide](sg-200-upgrade#upgrading-environments-with-disabled-multitenancy).
 
 ## Bug Fixes
 

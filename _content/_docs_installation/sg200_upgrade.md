@@ -1,6 +1,6 @@
 ---
-title: Upgrade to 2.0.0
-html_title: Upgrade to Search Guard FLX 2.0.0
+title: Upgrade Search Guard FLX to 2.0.0
+html_title: Upgrade to Search Guard FLX to 2.0.0
 permalink: sg-200-upgrade
 category: installation
 order: 400
@@ -91,10 +91,10 @@ The Kibana should not work during further steps related to the upgrade.
 ***
 
 Please take into consideration that Kibana in version 8.8.0 or newer uses some additional indices. You may need to adjust your backup strategy accordingly. Some indices used by the Kibana are listed below
-* .kibana 
-* .kibana_analytics
-* .kibana_ingest
-* .kibana_security_solution
-* .kibana_alerting_cases.
+* `.kibana` 
+* `.kibana_analytics`
+* `.kibana_ingest`
+* `.kibana_security_solution`
+* `.kibana_alerting_cases`
 
 Official Kibana [documentation](https://www.elastic.co/guide/en/kibana/current/saved-object-migrations.html)

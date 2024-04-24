@@ -326,7 +326,7 @@ curl \
 ## Under the hood
 ### For FLX v2.0.0 and higher
 When the multitenancy is enabled, then all Kibana saved objects which does not belong to the global tenant are modified in the following way on the storiage level.
-- The ID of the saved object is extended with the tenant ID on the storage level
+- The ID of the saved object is extended with the tenant ID.
 - Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
 The procedure described above applies only to the following indices
@@ -420,11 +420,13 @@ POST /.kibana/_update/space:myspace
   "status": 404
 }
 ```
+
 Additionally, limitations not related to ID extensions are
 - Saved objects contain an additional attribute `sg_tenant` which contains tenant identification.
 - An extended version of the document ID may be returned in the query result if the query reads the content of Kibana-related indices and the tenant is not selected via the appropriate HTTP header.
   - Furthermore, the attribute should not be used and can be removed without warning in future versions of SearchGuard.
 - Multi-tenancy cannot be switched off without data lost.
+- Legacy multitenancy configuration should not be used with Search Guard FLX 2.0.0 or newer.
 
 The system administration before usage multi-tenancy implementation provided with SearchGuard 2.x.x should consider if the above limitations are acceptable.
 
