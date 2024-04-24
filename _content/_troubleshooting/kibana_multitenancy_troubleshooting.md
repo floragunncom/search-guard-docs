@@ -20,6 +20,19 @@ During Kibana startup, Search Guard checks whether the `sgtenant` header has bee
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
 ```
 
+## Readonly tenants and write operations
+In some cases, Kibana tries to perform write operations even though the user is currently in a tenant for which they only have read access, which will result in errors.
+
+One such case may be Kibana's prompt for the user to opt in to telemetry. If the user accepts or rejects, an error may be thrown when Kibana tries to save the user action.
+For this particular case, it may be helpful to disable telemetry in `kibana.yml`:
+
+```yml
+telemetry:
+  enabled: false
+  optIn: false
+  allowChangingOptInStatus: false
+```
+
 ## Elasticsearch: Multi tenancy not enabled
 
 If the Search Guard multitenancy module is not installed or is disabled, you will see an error message in the tenants menu.
