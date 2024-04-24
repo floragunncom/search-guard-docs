@@ -20,6 +20,12 @@ This version introduces backwards-incompatible changes.</span>
 ## Multi tenancy
 <span style="color:red">**Please make sure to read the documentation for [upgrading to Search Guard FLX 2.0.0](../_docs_installation/sg200_upgrade.md)**</span>
 
+### BREAKING: Multi tenancy has been reimplemented
+
+Search Guard no longer maintains separate indices for each tenant. Instead, when multi-tenancy is enabled, it modifies saved objects
+on the storage level. The IDs of saved objects are extended with the tenant ID, and a new attribute `sg_tenant` is added 
+to each saved object, which contains the tenant ID. Search Guard modifies all saved objects except those belonging to the Global tenant.
+
 ### BREAKING: The Kibana multi tenancy configuration has moved to the backend plugin
 
 The multi tenancy configuration has been moved from the Kibana plugin to the Elasticsearch plugin, and will need to be removed from `kibana.yml`.
