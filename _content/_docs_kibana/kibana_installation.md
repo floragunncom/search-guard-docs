@@ -18,7 +18,7 @@ Copyright 2022 floragunn GmbH
 {% include toc.md %}
 
 <span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
-This version introduces backwards-incompatible changes to the multi tenancy feature.</span>
+This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
 Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Kibana, including SSO with Kerberos and JWT and DLS/FLS.

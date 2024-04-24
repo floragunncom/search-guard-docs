@@ -25,7 +25,7 @@ resources:
 > `multi-tenancy` module may be lost, necessitating a secure backup.
 
 <span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
-This version introduces backwards-incompatible changes to the multi tenancy feature.</span>
+This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
 ## Tenants: Definition
