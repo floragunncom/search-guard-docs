@@ -19,6 +19,10 @@ do not upgrade to this version. The feature will be available again in the next 
 Multi-Tenancy, you can upgrade to 1.5.0 safely.     
 {: .note .js-note .note-warning}
 
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes and is currently in the release candidate stage.</span>
+{: .note .js-note .note-warning}
+
 ## Search Guard FLX
 
 <table>
