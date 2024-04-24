@@ -325,11 +325,18 @@ curl \
 
 ## Under the hood
 ### For FLX v2.0.0 and higher
-When the multitenancy is enabled, then all objects which does not belong to the global tenant are modified in the following way
+When the multitenancy is enabled, then all Kibana saved objects which does not belong to the global tenant are modified in the following way on the storiage level.
 - The ID of the saved object is extended with the tenant ID on the storage level
 - Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
-When an HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is sent to Elasticsearch, the Search Guard imposes additional filtering on saved objects. Thus, saved objects that only belong to the tenant specified in the header (or query parameter) are processed. Furthermore, Search Guard removes a part of the saved object ID that is related to multitenancy. On the other hand, the attribute `sg_tenant` is not removed from responses.
+The procedure described above applies only to the following indices
+* `.kibana`
+* `.kibana_analytics`
+* `.kibana_ingest`
+* `.kibana_security_solution`
+* `.kibana_alerting_cases.`
+
+When an HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is sent to Elasticsearch, the Search Guard imposes additional filtering on saved objects. Thus, saved objects that only belong to the tenant specified in the header (or query parameter) are processed. Therefore, when multitenancy is enabled, the user authorized to use Kibana should not have assigned any permissions related to the above indices. Such index permissions allow users to circumvent checks imposed by the multitenancy module. An example of the role which grants such permission to users is `SGS_KIBANA_USER_NO_MT`. Thus, users should not be assigned the role in environments where multitenancy is enabled. Furthermore, the Search Guard removes a part of the saved object ID related to multitenancy before returning responses. On the other hand, the attribute `sg_tenant` is not removed from responses.
 
 Search Guard treats the global tenant exceptionally. The tenant's saved object IDs are not extended, and the attribute `sg _tenant` is not added.
 

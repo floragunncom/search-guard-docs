@@ -1,6 +1,6 @@
 ---
 title: Upgrade to 2.0.0
-html_title: Migrating from Elasticsearch and Kibana 8.7.x versions to 8.8.0
+html_title: Upgrade to Search Guard FLX 2.0.0
 permalink: sg-200-upgrade
 category: installation
 order: 400
@@ -21,7 +21,7 @@ To verify if multitenancy is enabled, please check the Kibana configuration file
 (For future information, please refer to the [documentation](../_docs_kibana/kibana_multitenancy.md)).
 
 ## Upgrading environments with disabled multitenancy 
-The upgrade procedure for environments with disabled multitenancy is straightforward and cannot be applied when the multitenancy feature is enabled. Additional actions are mandatory in environments where the Kibana operates. Search Guard provides predefined roles for users who are authorized to access the Kibana interface, such as `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT`, `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. Users with these roles cannot access the Kibana user interface when Search Guard is upgraded to version 2.0.0, and multitenancy is disabled. The system administrator should assign or map the `SGS_KIBANA_USER_NO_MT` role to users accessing the Kibana.
+The upgrade procedure for environments with disabled multitenancy is straightforward, but if you are using Kibana, it may be necessary to change the Kibana users' roles. Search Guard provides predefined roles for users who are authorized to access the Kibana interface, such as `SGS_KIBANA_USER`, `SGS_KIBANA_USER_NO_GLOBAL_TENANT`, `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. However, if multitenancy is not enabled, users with these roles cannot access the Kibana user interface when Search Guard is upgraded to version 2.0.0. Instead, the system administrator should assign or map the `SGS_KIBANA_USER_NO_MT` role to users accessing Kibana.
 
 ## Upgrading environments with enabled multitenancy
 
@@ -42,7 +42,7 @@ Search Guard 2.0.0 contains a new multitenancy feature implementation. This impl
 The upgrade procedure should first be carried out in the test environment, which is a copy of the production cluster. Once this test is accomplished successfully, you can upgrade the production environment.
 
 1. Backup.\
-   Preparing a backup is a very important step due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. It is also worth testing if the created backup can be restored.
+   Preparing a backup is crucial due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. Additionally, the system administrator should follow [Search Guard backup and restore guidance](search-guard-index-maintenance#backup-and-restore) to perform the backup of the Search Guard configuration. It is also worth testing if the created backups can be restored.
 
 2. Upgrade Search Guard to version 1.4.0 or 1.6.0 and Elasticseare to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](./installation_upgrading.md).
@@ -74,7 +74,7 @@ The Kibana should not work during further steps related to the upgrade.
 9. Restore multitenancy configuration\
    If the default multitenancy configuration is inappropriate for you, you can introduce customization by using `sg_frontend_multi_tenancy.yml`, a multitenancy configuration file. Available configuration options are described in the [Multitenancy configuration](kibana-multi-tenancy#elasticsearch-configuration) section. You can apply a new configuration using the following command `sgctl.sh update-config sg_frontend_multi_tenancy.yml`
 10. Disable telemetry\
-    When you are going to grant read-only access to some tenants for some users then it is recomended to disable telemetry. This can be achieve by placeing the following configuration in the `kibana.yml` file.
+    When you are going to grant read-only access to some tenants for some users then it is recomended to disable telemetry. This can be achieve by placing the following configuration in the `kibana.yml` file.
     ```yml
     telemetry:
       enabled: false
