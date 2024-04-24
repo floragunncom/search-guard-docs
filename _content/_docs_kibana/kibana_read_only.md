@@ -14,7 +14,7 @@ description: Use the Kibana read only mode to give users access to dashboards, b
 
 {% include toc.md %}
 
-Search Guard provides a read only mode for Kibana. When a user is assigned to this mode, only the dashboards and, if configured, the Multitenancy navigation entries are accessible.
+Search Guard provides a read only mode for Kibana. When a user is assigned to this mode, only the dashboards and, if configured, the Multi-Tenancy navigation entries are accessible.
 
 Thus, a user can view already configured dashboards and change tenants, but is not able to use any other functionalities of Kibana.
 
@@ -37,6 +37,6 @@ If a Search Guard user has either the role `sg_read_only_1` or `sg_read_only_2`,
 In read only mode:
 
 * Only the Dashboard application is accessible
-* Only the Dashboard and (if configured) the Multitenancy links are visible
+* Only the Dashboard and (if configured) the Multi-Tenancy links are visible
 * The controls to create, edit and delete dashboards are hidden
 * All tenants are switched to read only automatically

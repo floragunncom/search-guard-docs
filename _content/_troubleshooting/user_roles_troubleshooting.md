@@ -94,7 +94,7 @@ For security reasons, only the attribute names are listed, not their actual valu
 
 ## Kibana tenants
 
-If you are using Kibana multi tenancy, the `sg_tenants` section lists all available tenants:
+If you are using Kibana Multi-Tenancy, the `sg_tenants` section lists all available tenants:
 
 ```
 "sg_tenants" : {

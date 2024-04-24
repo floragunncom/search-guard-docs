@@ -13,17 +13,17 @@ description: Changelog for Search Guard FLX 1.4.0
 
 **Release Date: 2023-11-29**
 
-This is a security release of Search Guard FLX. The security issue applies to Multitenancy only. 
-If you have not enabled that Multitenancy, you are not affected.
+This is a security release of Search Guard FLX. The security issue applies to Multi-Tenancy only. 
+If you have not enabled that Multi-Tenancy, you are not affected.
 
-**We ask all users that leverage the Multitenancy features of Search Guard to update to Search Guard FLX 1.4.0 or above.** 
+**We ask all users that leverage the Multi-Tenancy features of Search Guard to update to Search Guard FLX 1.4.0 or above.** 
 
 If you are still using Search Guard Classic, please upgrade to Search [Guard Classic 53.8](changelog-searchguard-7x-53_8_0) or above, which contain
 a fix for the security issue as well.
 
 ## Security Fixes
 
-### Multi Tenancy: Users with read/only tenants can do destructive operations such as deleting the .kibana index
+### Multi-Tenancy: Users with read/only tenants can do destructive operations such as deleting the .kibana index
 
 A user with only READ access to a tenant cannot perform any updates to the corresponding tenant index, but can still issue destructive operations like DELETE. 
 This release fixes the issue.

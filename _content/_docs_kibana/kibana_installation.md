@@ -17,6 +17,10 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes.</span>
+{: .note .js-note .note-warning}
+
 Search Guard is compatible with [Kibana](https://www.elastic.co/products/kibana){:target="_blank"} and you can use nearly all features of Search Guard with Kibana, including SSO with Kerberos and JWT and DLS/FLS.
 
 In the following description, we assume that you have already set up a Search Guard secured Elasticsearch cluster. We will walk through all additional steps needed for integrating Kibana with your setup.
@@ -101,6 +105,7 @@ After you restart Kibana, it will start optimizing and caching browser bundles. 
 In order to upgrade the Search Guard Kibana Plugin:
 
 * Stop Kibana
+* Create a backup of the Kibana-related indices
 * Delete the Search Guard Kibana plugin from the `plugins` directory
 * Restart Kibana, which will clear all cached files
 * Stop Kibana, and install the new version of the plugin
@@ -130,8 +135,9 @@ auth_domains:
 
 ## Adding Kibana users
 
-All Kibana users must be mapped one of the built-in roles `SGS_KIBANA_USER` or `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. These roles have the minimum permissions to access Kibana. 
-If you do not multi-tenancy, or if the user is supposed to have access to the default tenant, use the role `SGS_KIBANA_USER`. If the user is not supposed to access the default tenant, you should use the role `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. 
+All Kibana users must be mapped to one of the built-in roles `SGS_KIBANA_USER_NO_MT`, `SGS_KIBANA_USER` or `SGS_KIBANA_USER_NO_GLOBAL_TENANT`. These roles have the minimum permissions to access Kibana.
+* If Multi-Tenancy is enabled, use `SGS_KIBANA_USER` if the user should have access to the global tenant, and otherwise `SGS_KIBANA_USER_NO_GLOBAL_TENANT`.
+* If Multi-Tenancy is not enabled, use the role `SGS_KIBANA_USER_NO_MT`.
 
 In addition, the users need to have READ permissions to all indices they should be allowed to use with Kibana. For this purpose, you should assign the users to additional roles.
 
@@ -166,4 +172,4 @@ searchguard.allow_client_certificates: true
 
 * [Set up Kibana authentication](../_docs_kibana/kibana_authentication.md)
 * [Use the config GUI for administering Search Guard](../_docs_configuration_changes/configuration_config_gui.md)
-* [Set up Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
+* [Set up Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)

@@ -1,50 +1,106 @@
 ---
-title: Multitenancy
-html_title: Kibana Multitenancy
+title: Multi-Tenancy
+html_title: Kibana Multi-Tenancy
 permalink: kibana-multi-tenancy
 category: kibana
 order: 300
 layout: docs
 edition: enterprise
-description: Search Guard adds true multi tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
+description: Search Guard adds true Multi-Tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
 resources:
   - "https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi Tenancy with Search Guard (blog post)"
   - "https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch and Kibana with Search Guard for free (blog post, external)"
-  - "troubleshooting-multitenancy|Multitenancy Troubleshooting (documentation)"
+  - "troubleshooting-Multi-Tenancy|Multitenancy Troubleshooting (documentation)"
 
 ---
 
-# Kibana Multitenancy
+# Kibana Multi-Tenancy
 {: .no_toc}
 
 {% include toc.md %}
 
+> ### Important note for SearchGuard in versions 2.x.x
+> 
+> Any data created before implementing the
+> `multi-tenancy` module may be lost, necessitating a secure backup.
+
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes.</span>
+{: .note .js-note .note-warning}
+
 ## Tenants: Definition
 
-A Kibana tenant is a named container for storing saved objects ("space"). A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. 
+A Kibana tenant is a named container for storing saved objects. A tenant can be assigned to one or more Search Guard roles.  The role can have read-write or read-only access to the tenant and thus the saved objects in it. 
 A Kibana user selects the tenant that he or she wants to work with. Search Guard ensures that the saved objects are placed in the selected tenant.
 
-Any Kibana user always has access to two pre-configured tenants: Global and Private.
+The Global tenant serves as a shared platform for all users, acting as the default 
+when no specific tenant is designated. It's crucial to 
+grant users access to the global tenant. Write access to Global tenant can be achieved by assigning
+role `SGS_KIBANA_USER`.
 
-The Global tenant is shared with every user. This is the default tenant if no other tenant is selected.  You'll find objects that you have created before installing the multi tenancy module there.
-
-The Private tenant is not shared.  It is only accessible for the currently logged in user.
+The Private tenant is not shared.  It is only accessible for the currently logged-in user.
 
 
-### Elasticsearch: Configuration
+## Elasticsearch: Configuration
 
-Multi tenancy is configured in `sg_frontend_multi_tenancy.yml`.
+### Multi-Tenancy configuration
+Multi-Tenancy is configured in `sg_frontend_multi_tenancy.yml`.
 
 The following configuration keys are available:
 
+#### For FLX v2.0.0 and higher
+
+| Name                   | Description                                                                                                                                        |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| server_user            | String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`. |
+| index                  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`.       |
+| global_tenant_enabled  | boolean, enable or disable the SGS_GLOBAL_TENANT. Default: true.                                                                                   |
+| preferred_tenants      | List, a list of tenants to try to use if the user has not requested a tenant yet. Default empty.                                                   |
+{: .config-table}
+
+##### Enabling / Disabling MT
+
+Please keep in mind that due to some technical limitations **once you enable MT, it cannot be easily disabled.** In such case please contact the support team. 
+
+1. Run the following command:
+```bash
+./sgctl.sh special enable-mt
+```
+2. Header `sgtenant` needs to be forwarded to Elasticsearch, which can be achieved by adding the header name to the property `elasticsearch.requestHeadersWhitelist` in the `kibana.yml` file.
+3. Check roles assigned to users. Users with the role `SGS_KIBANA_USER_NO_MT` are not able to access the Kibana user interface when multitenacy is enabled. Therefore, an administrator should consider assigning to users the following build-in roles:
+   - `SGS_KIBANA_USER`
+   - `SGS_KIBANA_USER_NO_GLOBAL_TENANT`
+
+It is also possible to use custom roles. However, it is important to ensure each user has access to at least one tenant. Otherwise, the user is unable to log into Kibana.
+
+#### For versions prior to FLX v2.0.0
+
 | Name | Description |
 |---|---|
-| enabled  |  boolean, enable or disable multi tenancy. Default: true.|
+| enabled  |  boolean, enable or disable Multi-Tenancy. Default: true.|
 | server_user |  String, the name of the Kibana server user as configured in your kibana.yml. The names must match in both configurations. Default: `kibanaserver`.|
 | index  | String, the name of the Kibana index as configured in your kibana.yml. The index name must match in both configurations. Default: `.kibana`. |
 {: .config-table}
 
 ### Defining tenants
+
+#### For FLX v2.0.0 and higher
+
+If you do not configure anything special, every user has access to the Global tenant by default, with read/write access.
+
+Private tenants are no longer supported.
+
+You can define an arbitrary number of additional tenants in `sg_tenants.yml`, for example:
+
+```yaml
+admin_tenant:
+  description: "The admin tenant"
+
+human_resources:
+  description: "The human resources tenant"
+```
+
+#### For versions prior to FLX v2.0.0
 
 If you do not configure anything special, every user has access to the Global and Private tenant by default, with read/write access.
 
@@ -130,23 +186,33 @@ sg_own_index:
       - "SGS_KIBANA_ALL_WRITE"
 ```
 
+### Setting preferred / default tenants
 
+#### For FLX v2.0.0 and higher
 
-### Kibana: Plugin Configuration
+In order to choose user's preferred / default tenant Search Guard will:
 
-Enable the multi tenancy feature in `kibana.yml` by adding:
+* return first tenant to which user has write access or user has read access and tenant exists
+* Search Guard checks tenants in the following order:
+  * list of preferred tenants 
+  * Global tenant
+  * tenants available to the user
+* Global tenant is not taken into account if it's disabled
 
-```yaml
-searchguard.multitenancy.enabled: true
-```
+  
+#### For versions prior to FLX v2.0.0
 
-In addition, Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The multi tenancy feature uses one specific header, named `sgtenant`. Add this header and also the standard `Authorization` header to the white list. If the `sgtenant` header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
+In older versions, configuration and selection of the preferred / default tenant is done on the Kibana plugin side as described below.
+
+## Kibana: Plugin Configuration
+
+Kibana requires you to whitelist all HTTP headers that should be passed from Kibana to Elasticsearch. The Multi-Tenancy feature uses one specific header, named `sgtenant`. Add this header and also the standard `Authorization` header to the white list. If the `sgtenant` header is not whitelisted, an error message is logged on startup and the status of Kibana will be red.
 
 ```yaml
 elasticsearch.requestHeadersWhitelist: ["sgtenant", "Authorization", ...]
 ```
 
-Check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
+Also, please check that the Kibana server user and the Kibana index name matches in both kibana.yml and sg_frontend_multi_tenancy.yml. The contents of the following keys must match:
 
 Kibana server user:
 
@@ -162,10 +228,29 @@ kibana.yml: kibana.index
 sg_frontend_multi_tenancy.yml: index
 ```
 
+### Enable Multi-Tenancy
+
+#### For FLX v2.0.0 and higher
+As of Search Guard FLX v2.0.0, the Multi-Tenancy configuration has been removed from the Kibana plugin.
+Instead, Multi-Tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
+
+#### For versions prior to FLX v2.0.0
+Enable the Multi-Tenancy feature in `kibana.yml` by adding:
+
+```yaml
+searchguard.multitenancy.enabled: true
+```
+
 ### Kibana: Tenant Configuration
 
-By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing multi tenancy can be found in this tenant.
+#### For FLX v2.0.0 and higher
 
+As of Search Guard FLX v2.0.0, the Multi-Tenancy configuration has been removed from the Kibana plugin.
+Instead, Multi-Tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
+
+#### For versions prior to FLX v2.0.0
+
+By default, Search Guard offers two default tenants for each user, Global and Private. The Global tenant is shared between all users and uses the Kibana index as configured in `kibana.yml`. Thus, all dashboards and visualizations that have been created prior to installing Multi-Tenancy can be found in this tenant.
 
 The Private tenant is meant as a user's private space, thus is not shared.
 
@@ -181,6 +266,12 @@ You can enable and disable these tenants by the following `kibana.yml` configura
 
 ### Kibana: Setting preferred / default tenants
 
+#### For FLX v2.0.0 and higher
+As of Search Guard FLX v2.0.0, the Multi-Tenancy configuration has been removed from the Kibana plugin.
+Instead, Multi-Tenancy is configured in the Elasticsearch plugin, as described in the [Elasticsearch: Configuration section](#elasticsearch-configuration) above.
+
+#### For versions prior to FLX v2.0.0
+
 If a user logs in the first time and has not chosen a tenant yet, Search Guard will
 
 * collect all available tenants for the logged in user
@@ -188,7 +279,11 @@ If a user logs in the first time and has not chosen a tenant yet, Search Guard w
 * if enabled, add the global and private tenant on top 
 * choose the first tenant from this list  
 
+#### For FLX v2.0.0 and higher
+Please see the configuration section for ElasticSearch above.
 If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `kibana.yml`:
+
+#### For versions prior to FLX v2.0.0
 
 ```yaml
 searchguard.multitenancy.tenants.preferred: ["tenant1","tenant2",...]
@@ -227,43 +322,25 @@ curl \
 </div>
 
 
-### Filter bar for tenants
 
-If you have a huge amount of tenants, the tenant list can get long. You can use a filter bar to quickly filter the tenants list. Enable it in `kibana.yml`:
+## Under the hood
+### For FLX v2.0.0 and higher
+When the Multi-Tenancy is enabled, then all Kibana saved objects which does not belong to the global tenant are modified in the following way on the storiage level.
+- The ID of the saved object is extended with the tenant ID.
+- Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
-```yaml
-searchguard.multitenancy.enable_filter: true
-```
+The procedure described above applies only to the following indices
+* `.kibana`
+* `.kibana_analytics`
+* `.kibana_ingest`
+* `.kibana_security_solution`
+* `.kibana_alerting_cases.`
 
-Which will display a filter bar in the top navigation of the page:
+When an HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is sent to Elasticsearch, the Search Guard imposes additional filtering on saved objects. Thus, saved objects that only belong to the tenant specified in the header (or query parameter) are processed. Therefore, when Multi-Tenancy is enabled, the user authorized to use Kibana should not have assigned any permissions related to the above indices. Such index permissions allow users to circumvent checks imposed by the Multi-Tenancy module. An example of the role which grants such permission to users is `SGS_KIBANA_USER_NO_MT`. Thus, users should not be assigned the role in environments where Multi-Tenancy is enabled. Furthermore, the Search Guard removes a part of the saved object ID related to Multi-Tenancy before returning responses. On the other hand, the attribute `sg_tenant` is not removed from responses.
 
-<p align="center">
-<img src="
-kibana_filter_roles.png" style="width: 90%" class="md_image"/>
-</p>
+Search Guard treats the global tenant exceptionally. The tenant's saved object IDs are not extended, and the attribute `sg _tenant` is not added.
 
-## Selecting tenants in Kibana
-
-If the plugin is installed correctly, you will see a new entry in the left navigation panel called "Tenants":
-
-<p align="center">
-<img src="
-kibana_mt_nav.png" style="width: 20%" class="md_image"/>
-</p>
-
-After clicking it, you will see all available tenants for the currently logged in user. Select the tenant you want to work with:
-
-<p align="center">
-<img src="
-kibana_select_tenants.png" style="width: 100%" class="md_image"/>
-</p>
-
-
-All saved objects will be placed in the selected tenant. Search Guard remembers the last selected tenant per user.  So you do not need to change it every time you log in.
-
-
-## Under the hood: Index rewriting, Snapshot & Restore
-
+### For versions prior to FLX v2.0.0: Index rewriting, Snapshot & Restore
 In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.
 
 For example, if your Kibana index is called ".kibana", and the currently selected tenant is "human_resources", Search Guard will create a new index called something like ".kibana\_1592542611\_humanresources", and places saved objects will in this index.
@@ -295,6 +372,64 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 ```
 <kibana index name>*
 ```
+
+## Limitations of multi-tenancy implementation in For FLX v2.0.0 and higher
+Most of the limitations are related to how saved object IDs are modified by SearchGuard to map saved objects to tenants. SearchGuard appends to each saved object's ID a tenant ID. SearchGuard also replaces an extended version of the saved object ID with the genuine one before returning saved objects via API. The genuine version of the saved object ID is returned only when a tenant is selected via the appropriate HTTP header. However, this is not always possible. The inability to restore genuine saved object IDs results in the following limitations
+- Cannot use document ID in query. Such a query may not gain the desired result or gain incorrect results. Example of such a query:
+```
+GET /.kibana/_search
+{
+    "query": {
+       "ids": {
+          "values": [
+             "space:custom"
+          ]
+       }
+    }
+}
+```
+- Scripts (e.g. painless scripts) may receive document ID in an extended version. An example of such a script is visible below. The below script will set an extended version of ID in the `description` attribute.
+```
+POST /.kibana/_update/space:myspace
+{
+    "script": {
+       "source": "ctx._source.space.description = ctx['_id']",
+       "lang": "painless"
+    }
+}
+```
+- Error responses and error messages can contain ID with tenant scope. An example of such a response with extended ID `space:nonspace__sg_ten__-152937574_admintenant` is visible below. The genuine saved object ID is `space:nonspace`.
+```json
+{
+  "error": {
+    "root_cause": [
+      {
+        "type": "document_missing_exception",
+        "reason": "[space:nonspace__sg_ten__-152937574_admintenant]: document missing",
+        "index_uuid": "P-DqhmPUQQO8zzSt19nF7g",
+        "shard": "0",
+        "index": ".kibana_8.12.0_001"
+      }
+    ],
+    "type": "document_missing_exception",
+    "reason": "[space:nonspace__sg_ten__-152937574_admintenant]: document missing",
+    "index_uuid": "P-DqhmPUQQO8zzSt19nF7g",
+    "shard": "0",
+    "index": ".kibana_8.12.0_001"
+  },
+  "status": 404
+}
+```
+
+Additionally, limitations not related to ID extensions are
+- Saved objects contain an additional attribute `sg_tenant` which contains tenant identification.
+- An extended version of the document ID may be returned in the query result if the query reads the content of Kibana-related indices and the tenant is not selected via the appropriate HTTP header.
+  - Furthermore, the attribute should not be used and can be removed without warning in future versions of SearchGuard.
+- Multi-tenancy cannot be switched off without data lost.
+- Legacy Multi-Tenancy configuration should not be used with Search Guard FLX 2.0.0 or newer.
+
+The system administration before usage multi-tenancy implementation provided with SearchGuard 2.x.x should consider if the above limitations are acceptable.
+
 
 ## Fixing curl issues
 

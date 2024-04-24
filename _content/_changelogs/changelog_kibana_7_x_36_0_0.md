@@ -26,7 +26,7 @@ n/a
 * Fixed an issue with index migrations when the internal Kibana server user is not configured to use HTTP Basic Authentication
   * [PR #260: Call tenantinfo with InternalUser](https://github.com/floragunncom/search-guard-kibana-plugin/pull/260){:target="_blank"}
 
-* Fixed an issue where multi tenancy would not work correctly when user impersonation was used
+* Fixed an issue where Multi-Tenancy would not work correctly when user impersonation was used
   * [PR #260: Handle user impersonation settings](https://github.com/floragunncom/search-guard-kibana-plugin/pull/227){:target="_blank"}
 
 

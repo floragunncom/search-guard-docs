@@ -89,7 +89,7 @@ If you also have started Kibana, you can test it as well:
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
 * Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multitenancy](../_docs_kibana/kibana_multitenancy.md)
+* Tenants - to select a tenant for [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -150,6 +150,6 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
 - If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
 - For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
 - If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
-- And if you need to support multiple tenants in Kibana, use [Multitenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.
+- And if you need to support multiple tenants in Kibana, use [Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.
 - Details on how to set up a production-ready TLS can be found in [Configuring TLS](../_docs_tls/tls_configuration.md) and [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
 

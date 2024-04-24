@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 ## Features
 
-* Port Multi Tenancy page to React
+* Port Multi-Tenancy page to React
   * Tracking number: SGD-397
 
 ## Fixes

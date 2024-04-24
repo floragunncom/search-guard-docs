@@ -35,7 +35,7 @@ description: Changelog for Kibana 7.x-43.0.0
 
 
 
-### Kibana Authentication and Multi Tenancy
+### Kibana Authentication and Multi-Tenancy
 
 * Added a configuration option `searchguard.auth.disable_authinfo_cache` to disable caching of the current user's auth info. Useful when the size of the authinfo response is too large to store in a cookie.
 <p />

@@ -34,7 +34,7 @@ Access control to the Signals API is governed by Search Guard roles. Signals shi
 
 Permissions for the Watch API are assigned to roles in the `tenant_permissions` section of the role definition. 
 
-If you do not use the Search Guard multi tenancy feature, permissions are assigned to the default SGS\_GLOBAL\_TENANT.
+If you do not use the Search Guard Multi-Tenancy feature, permissions are assigned to the default SGS\_GLOBAL\_TENANT.
 
 ```
 sg_signals_manager:
@@ -49,7 +49,7 @@ sg_signals_manager:
         - 'SGS_SIGNALS_WATCH_MANAGE'
 ```
 
-If you are using multi tenancy, API permissions can also be configured per tenant:
+If you are using Multi-Tenancy, API permissions can also be configured per tenant:
 
 ```
 sg_signals_multitenancy:

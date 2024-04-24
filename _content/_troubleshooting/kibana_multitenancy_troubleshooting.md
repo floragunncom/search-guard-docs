@@ -1,16 +1,16 @@
 ---
-title: Multitenancy Troubleshooting
-html_title: Multitenancy help
-permalink: troubleshooting-multitenancy
+title: Multi-Tenancy Troubleshooting
+html_title: Multi-Tenancy help
+permalink: troubleshooting-Multi-Tenancy
 category: troubleshooting
 order: 600
 layout: troubleshooting
-description: Step-by-step instructions on how to troubleshoot Multi Tenancy issues.
+description: Step-by-step instructions on how to troubleshoot Multi-Tenancy issues.
 ---
 
 <!--- Copyright 2022 floragunn GmbH -->
 
-# Troubleshooting Multitenancy
+# Troubleshooting Multi-Tenancy
 
 ## Headers not whitelisted
 
@@ -20,24 +20,23 @@ During Kibana startup, Search Guard checks whether the `sgtenant` header has bee
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant", ... ]
 ```
 
-## Elasticsearch: Multi tenancy not enabled
+## Readonly tenants and write operations
+In some cases, Kibana tries to perform write operations even though the user is currently in a tenant for which they only have read access, which will result in errors.
 
-If the Search Guard multitenancy module is not installed or is disabled, you will see an error message on the "Tenants" page, like:
+One such case may be Kibana's prompt for the user to opt in to telemetry. If the user accepts or rejects, an error may be thrown when Kibana tries to save the user action.
+For this particular case, it may be helpful to disable telemetry in `kibana.yml`:
 
-<p align="center">
-<img src="kibana_mt_disabled.png" style="width: 80%" class="md_image"/>
-</p>
+```yml
+telemetry:
+  enabled: false
+  optIn: false
+  allowChangingOptInStatus: false
+```
 
+## Elasticsearch: Multi-Tenancy not enabled
+
+If the Search Guard Multi-Tenancy module is not installed or is disabled, you will see an error message in the tenants menu.
 Make sure the enterprise module is installed, and also check that `enabled` is set to `true` in `sg_frontend_multi_tenancy.yml`.
 
-## Kibana and Elasticsearch: Configuration mismatch
-
-If either the configured Kibana server username or the configured Kibana index name do not match on Elasticsearch and Kibana, an error will be displayed on the "Tenants" page, like:
-
-<p align="center">
-<img src="kibana_config_mismatch.png" style="width: 80%" class="md_image"/>
-</p>
-
-Make sure the respective settings match in `sg_frontend_multi_tenancy.yml` (Elasticsearch) and `kibana.yml` (Kibana).
 
 
