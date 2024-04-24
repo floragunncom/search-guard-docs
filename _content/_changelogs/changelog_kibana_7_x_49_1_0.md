@@ -57,9 +57,9 @@ Details:
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/316)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/673)
 
-## Multi Tenancy Index Migration
+## Multi-Tenancy Index Migration
 
-Fixed a problem where multi tenancy index migration was unstable on setups with a large number of tenants. 
+Fixed a problem where Multi-Tenancy index migration was unstable on setups with a large number of tenants. 
 
 Details:
 

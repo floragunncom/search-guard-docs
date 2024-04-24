@@ -15,6 +15,10 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes.</span>
+{: .note .js-note .note-warning}
+
 If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](../_docs_installation/sg53_migration.md).
 {: .note .js-note .note-warning}
 
@@ -126,3 +130,12 @@ Follow the official Elasticsearch guideline for full cluster restart upgrades fo
 [Full cluster restart upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-upgrade.html){:target="_blank"}
 
 The same rules for the `curl` commands as above apply, you need to execute them by using an admin certificate or by providing credentials for a user that has full cluster management permissions.
+
+# Upgrade SearchGuard FLX 1.x.x to 2.x.x/Elasticsearch and Kibana to 8.8.0
+
+Upgrading Elasticsearch and Kibana to 8.8.0 implies also upgrading Search Guard FLX plugin
+to at least version 2.0.0
+
+For upgrading Elasticsearch and Kibana from version 8.7.x to 8.8.0 please refer to
+[upgrade manual](sg-200-upgrade)
+

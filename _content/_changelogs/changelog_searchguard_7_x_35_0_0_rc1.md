@@ -110,4 +110,4 @@ sgadmin now has this additional command line options:
 * `-backup <folder>` to backup the configuration, see [here for more details](../_docs_configuration_changes/configuration_sgadmin.md)
 
 ### Known Issues
-There is a known issue in this release with regards to Kibana multitenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.
+There is a known issue in this release with regards to Kibana Multi-Tenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.

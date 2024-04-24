@@ -16,7 +16,7 @@ description: Changelog for Kibana 7.x-46.0.0
 ## Bug Fixes
 
 
-### Kibana Authentication and Multi Tenancy
+### Kibana Authentication and Multi-Tenancy
 
 * Fixed read only mode for React based apps.
 <p />

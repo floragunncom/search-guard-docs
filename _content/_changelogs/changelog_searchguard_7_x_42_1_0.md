@@ -25,7 +25,7 @@ description: Changelog for Search Guard 7.x-42.1.0
 <p />
 
 
-### Multi Tenancy
+### Multi-Tenancy
 
 * Since SG 42, using Kibana with a non-default tenant could show the error `No index-level perm match for User ... Action [indices:data/read/mget[shard]]`. This would only happen if the corresponding `.kibana` index went through migration at least once.
 <p />

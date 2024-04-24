@@ -12,13 +12,17 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 # Search Guard Changelogs
 
+### [Search Guard FLX 2.0.0 Release Candidate](../_changelogs/changelog_searchguard_flx_2_0_0_rc.md)
+
+Release Date: 2024-05-15
+
 ### [Search Guard 7.x-53.9.0](../_changelogs/changelog_searchguard_7_x_53_9_0.md)
 
 Release Date: 2024-01-24
 
 ### [Search Guard FLX 1.5.0](../_changelogs/changelog_searchguard_flx_1_5_0.md)
 
-<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi Tenancy!</span>
+<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi-Tenancy!</span>
 
 Release Date: 2024-01-15
 

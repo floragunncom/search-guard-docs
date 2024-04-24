@@ -31,7 +31,7 @@ The remaining configuration for Kibana is rather simple; configure it as authent
 searchguard.auth.type: "kerberos"
 ```
 
-You can use all Search Guard features like multi tenancy and the configuration GUI with Kerberos. 
+You can use all Search Guard features like Multi-Tenancy and the configuration GUI with Kerberos. 
 
 Due to bugs and limitations in Kibana and X-Pack, not all X-Pack features will work however, please see below.
 {: .note .js-note .note-warning}

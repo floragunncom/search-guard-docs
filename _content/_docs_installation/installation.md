@@ -19,6 +19,10 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+This version introduces backwards-incompatible changes.</span>
+{: .note .js-note .note-warning}
+
 This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](../_docs_quickstart/demo_installer.md)**. 
 
 ## Community, Enterprise and Compliance Edition

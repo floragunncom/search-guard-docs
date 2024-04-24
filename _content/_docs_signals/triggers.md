@@ -54,7 +54,7 @@ Each trigger gets registered with the Trigger Execution Engine. The execution en
 * Each trigger is executed on exactly one node at a time
   * You can specify node filters to define on which nodes Signals Alerting should run
 * Triggers created in different tenants will not interfere with each other
-  * This applies only when you are using [Multi Tenancy](elasticsearch-alerting-security-multi-tenancy).   
+  * This applies only when you are using [Multi-Tenancy](elasticsearch-alerting-security-multi-tenancy).   
    
 ## Time zones
 

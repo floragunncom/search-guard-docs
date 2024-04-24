@@ -13,12 +13,12 @@ description: Changelog for Search Guard FLX 1.5.0
 
 **Release Date: 2024-01-15**
 
-## Multi Tenancy
+## Multi-Tenancy
 
-<span style="color:red">**Due to technical constraints, Kibana Multi Tenancy is not available in this version of Search Guard. We are working on this issue and will reintroduce
-Multi Tenancy in the next release of Search Guard.**</span>
+<span style="color:red">**Due to technical constraints, Kibana Multi-Tenancy is not available in this version of Search Guard. We are working on this issue and will reintroduce
+Multi-Tenancy in the next release of Search Guard.**</span>
 
-<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi Tenancy!</span>
+<span style="color:red">Do NOT upgrade to 1.5.0 if you are using Kibana Multi-Tenancy!</span>
 
 ## LDAP
 

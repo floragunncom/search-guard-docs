@@ -23,4 +23,4 @@ Copyright 2020 floragunn GmbH
 
 ### Fix
 
-Fix an issue with regards to Kibana multitenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may have failed with an "index template missing exception" error message.
+Fix an issue with regards to Kibana Multi-Tenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may have failed with an "index template missing exception" error message.

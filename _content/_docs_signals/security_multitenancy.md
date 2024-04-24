@@ -1,22 +1,22 @@
 ---
-title: Multi tenancy
+title: Multi-Tenancy
 html_title: Multi-Tenancy
 permalink: elasticsearch-alerting-security-multi-tenancy
 category: security
 order: 300
 layout: docs
 edition: community
-description: Signals Alerting is fully compatible with Search Guard multi tenancy so you can separate watch access by tenants.
+description: Signals Alerting is fully compatible with Search Guard Multi-Tenancy so you can separate watch access by tenants.
 ---
 
 <!--- Copyright 2022 floragunn GmbH -->
 
-# Multi tenancy
+# Multi-Tenancy
 {: .no_toc}
 
 {% include toc.md %}
 
-Signals is fully compatible with Search Guard multi tenancy. To use multi tenancy with Signals, make sure it is enabled in sg_frontend_multi_tenancy.yml first:
+Signals is fully compatible with Search Guard Multi-Tenancy. To use Multi-Tenancy with Signals, make sure it is enabled in sg_frontend_multi_tenancy.yml first:
 
 ```yaml
 enabled: true
@@ -26,9 +26,9 @@ server_user: "kibanaserver"
 
 ## How it works
 
-Signals multi tenancy works very similar to [Kibana multi tenancy](../_docs_kibana/kibana_multitenancy.md).
+Signals Multi-Tenancy works very similar to [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md).
 
-By using multi tenancy, you can separate the management and execution of watches by tenant: 
+By using Multi-Tenancy, you can separate the management and execution of watches by tenant: 
 
 1. Watches in one tenant will not be accessible for users in another tenant. 
 2. Execution of watches in one tenant will not interfere with execution of watches in another tenant.
@@ -57,6 +57,6 @@ sg_signals_multitenancy:
 
 In the example above, a user with the `sg_signals_multitenancy` role has `manage` permissions for watches in `tenant_1`, and `read` only permissions for watches in `tenant_2`.
 
-## Watch execution in multi tenancy mode
+## Watch execution in Multi-Tenancy mode
 
-When watches are executed in multi tenancy mode, a thread pool is created for each tenant. This means that execution of watches in one tenant will not interfere with execution of watches in other tenants.
+When watches are executed in Multi-Tenancy mode, a thread pool is created for each tenant. This means that execution of watches in one tenant will not interfere with execution of watches in other tenants.
