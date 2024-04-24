@@ -134,8 +134,9 @@ auth_domains:
 
 ## Adding Kibana users
 
-All Kibana users must be mapped one of the built-in roles `SGS_KIBANA_USER` or `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. These roles have the minimum permissions to access Kibana. 
-If you do not multi-tenancy, or if the user is supposed to have access to the default tenant, use the role `SGS_KIBANA_USER`. If the user is not supposed to access the default tenant, you should use the role `SGS_KIBANA_USER_NO_DEFAULT_TENANT`. 
+All Kibana users must be mapped to one of the built-in roles `SGS_KIBANA_USER_NO_MT`, `SGS_KIBANA_USER` or `SGS_KIBANA_USER_NO_GLOBAL_TENANT`. These roles have the minimum permissions to access Kibana.
+* If Multi-Tenancy is enabled, use `SGS_KIBANA_USER` if the user should have access to the global tenant, and otherwise `SGS_KIBANA_USER_NO_GLOBAL_TENANT`.
+* If Multi-Tenancy is not enabled, use the role `SGS_KIBANA_USER_NO_MT`.
 
 In addition, the users need to have READ permissions to all indices they should be allowed to use with Kibana. For this purpose, you should assign the users to additional roles.
 
