@@ -73,8 +73,8 @@ The Kibana should not work during further steps related to the upgrade.
    In this step, please proceed with upgrading Kibana to a version corresponding to Elasticsearch and install the Search Guard Kibana plugin in the appropriate version. The Kibana upgrade should be carried out in accordance with the Kibana documentation.
 9. Restore Multi-Tenancy configuration\
    If the default Multi-Tenancy configuration is inappropriate for you, you can introduce customization by using `sg_frontend_multi_tenancy.yml`, a Multi-Tenancy configuration file. Available configuration options are described in the [Multi-Tenancy configuration](kibana-multi-tenancy#elasticsearch-configuration) section. You can apply a new configuration using the following command `sgctl.sh update-config sg_frontend_multi_tenancy.yml`
-10. Disable telemetry\
-    When you are going to grant read-only access to some tenants for some users then it is recomended to disable telemetry. This can be achieve by placing the following configuration in the `kibana.yml` file.
+10. Read-only access to tenants\
+    When you grant read-only access to some tenants for some users, these users may encounter an error popup when they start accessing the tenant without the write privilege. In such a case, please evaluate whether using the Kibana telemetry is appropriate for your company. If you decide to turn off telemetry, you can do so by adding the configuration below to the `kibana.yml` file.
     ```yml
     telemetry:
       enabled: false
