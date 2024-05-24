@@ -44,14 +44,6 @@ It is now possible to manage proxies via an API and then reference them in watch
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/123)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/556)
 
-### Signals: Operator view
-
-Introduces a new separate operator view which gives an overview over the current status of the watches and focuses on current issues.
-
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/124)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/352)
-* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/467)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/874)
 
 ## Improvements
 
