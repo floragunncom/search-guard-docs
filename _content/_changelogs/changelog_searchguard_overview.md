@@ -12,7 +12,7 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 # Search Guard Changelogs
 
-### [Search Guard FLX 2.0.0 Release Candidate](../_changelogs/changelog_searchguard_flx_2_0_0_rc.md)
+### [Search Guard FLX 2.0.0](../_changelogs/changelog_searchguard_flx_2_0_0.md)
 
 Release Date: 2024-05-15
 
