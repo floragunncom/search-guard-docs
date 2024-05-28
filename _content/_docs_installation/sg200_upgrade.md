@@ -44,6 +44,8 @@ The upgrade procedure should first be carried out in the test environment, which
 1. Backup.\
    Preparing a backup is crucial due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. Additionally, the system administrator should follow [Search Guard backup and restore guidance](search-guard-index-maintenance#backup-and-restore) to perform the backup of the Search Guard configuration. It is also worth testing if the created backups can be restored.
 
+Moreover, support for users' private tenants has been removed, and the data associated with private tenants is not migrated to FLX 2.0.0. If data stored within the scope of private tenants is needed, the system administrator should prepare and test the procedure of exporting and importing such data via [Kibana Saved objects APIs](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html). However, due to the removal of private tenants, the data that belongs to users' private tenants in SG FLX 1.x.x must be assigned to the not-private tenant in SG 2.0.0.
+
 2. Upgrade Search Guard to version 1.4.0 or 1.6.0 and Elasticseare to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](./installation_upgrading.md).
 3. Adjust Multi-Tenancy configuration.\

@@ -373,7 +373,7 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 <kibana index name>*
 ```
 
-## Limitations of multi-tenancy implementation in For FLX v2.0.0 and higher
+## Limitations of multi-tenancy implementation in FLX v2.0.0 and higher
 Most of the limitations are related to how saved object IDs are modified by SearchGuard to map saved objects to tenants. SearchGuard appends to each saved object's ID a tenant ID. SearchGuard also replaces an extended version of the saved object ID with the genuine one before returning saved objects via API. The genuine version of the saved object ID is returned only when a tenant is selected via the appropriate HTTP header. However, this is not always possible. The inability to restore genuine saved object IDs results in the following limitations
 - Cannot use document ID in query. Such a query may not gain the desired result or gain incorrect results. Example of such a query:
 ```
@@ -427,6 +427,7 @@ Additionally, limitations not related to ID extensions are
   - Furthermore, the attribute should not be used and can be removed without warning in future versions of SearchGuard.
 - Multi-tenancy cannot be switched off without data lost.
 - Legacy Multi-Tenancy configuration should not be used with Search Guard FLX 2.0.0 or newer.
+- Private tenants are not supported; data associated with private tenants will not be migrated to version 2.0.0. 
 
 The system administration before usage multi-tenancy implementation provided with SearchGuard 2.x.x should consider if the above limitations are acceptable.
 
