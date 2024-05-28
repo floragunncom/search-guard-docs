@@ -144,6 +144,9 @@ Fixes a `java.lang.OutOfMemoryError` error that could occur when loading demo ce
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/259)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/559)
 
+### Signals trigger timestamps are incorrect.
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/626)
+
 ## More
 
 * See the complete changes in the [Gitlab Milestone](https://git.floragunn.com/groups/search-guard/-/milestones/15)
