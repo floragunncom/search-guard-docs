@@ -30,7 +30,9 @@
       {% capture demo_url %}
         https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}-demo-installer.sh      
       {% endcapture %}  
-
+      {% capture helm_url %}
+        https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/tags/{{ sgversions[6] }}  
+      {% endcapture %}  
 
   <tr>
     
@@ -47,7 +49,11 @@
     <td><a href="{{ demo_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <td>{{ sgversions[5] }}</td>
-    <td>{{ sgversions[6] }}</td>
+    {% if sgversions[6] == "N/A" %}
+    <td>N/A</td>
+    {% else %}
+    <td><a href="{{ helm_url }}" target="_blank">{{ sgversions[6] }}</a></td>
+    {% endif %}
     <!-- is EOL switch -->
     {% if sgversions[4] == "no" %}
     <td>Active</td>
