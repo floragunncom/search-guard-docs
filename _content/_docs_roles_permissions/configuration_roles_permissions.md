@@ -122,7 +122,10 @@ sg_finance:
     ...
 ```
 
-## Index-level permissions
+## Index-level permissions, alias-level permissions and data stream-level permissions
+
+<span>Please note that alias permissions and data stream permissions were added in TODO_VERSION</span>
+{: .note .js-note .note-warning}
 
 The `index_permissions` entry is used to allow/disallow actions that affect indices matching the configured index patterns.
 
@@ -168,9 +171,65 @@ To apply `READ` and `WRITE` permissions to two indices called `humanresources` a
         - WRITE
 ```
 
-### Dynamic index patterns: Wildcards and regular expressions
 
-When defining index patterns you can use wildcards and regular expressions:
+The permissions specified for `alias_permissions` and `data_stream_permissions` apply for these cases:
+
+- The user directly specifies an alias or data stream in a request (Like `GET /alias_a1/_search`).
+- The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` when `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1` then even though the configuration only has direct index permissions for `idx_a*`. The privileges from `alias_a1` will be projected onto the index.)
+- The user specifies a backing index of a data stream (Like `GET /.ds-ds_a1-2024.02.16-000001/_search`).
+
+On the other hand, privileges specified for `index_permissions` never apply for aliases or data streams.
+
+For creating aliases or for adding indices to existing aliases, you will need the permission `indices:admin/aliases` both for the alias and the referenced indices.
+This should look similar this:
+
+```
+test_role:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  index_permissions:
+  - index_patterns:
+    - "member_of_alias_a*"
+    allowed_actions:
+    - "indices:admin/aliases"
+    alias_permissions:
+    - alias_patterns:
+      - "alias_a"
+      allowed_actions:
+      - "*"
+```
+
+With this configuration, you can create an alias `alias_a` and add indices to it which match the pattern `member_of_alias_a*`.
+
+As the `alias_a` has full privileges (`allowed_actions: *`), you will also gain full privileges to all member indices after these were added.
+
+When working with data streams, you only have to consider privileges for the data streams themselves. You do not have to take care to add privileges to the backing indices. These are always implied.
+A role which gives a user the rights to create and access data streams can look like this:
+```
+ds_test_role:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+  - data_stream_patterns:
+    - "ds_a*"
+    allowed_actions:
+    - "*"  
+```
+
+Test user:
+```
+test:
+  hash: "$2y$12$NbU4RAs.0wwEOaSUldhECeTBUMAKka4ifO0oNjBr460Hn60F/acKO"
+  search_guard_roles:
+  - ds_test_role
+
+```
+
+Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
+
+### Dynamic patterns: Wildcards and regular expressions
+
+When defining patterns you can use wildcards and regular expressions:
 
 * An asterisk (`*`) will match any character sequence (or an empty sequence)
   * `*my*index` will match `my_first_index` as well as `myindex` but not `myindex1`. 
@@ -192,9 +251,9 @@ Example:
         - CRUD
 ```
 
-### Dynamic index patterns: User name substitution
+### Dynamic patterns: User name substitution
 
-When defining index patterns the placeholder `${user.name}` is allowed to support indices or aliases which contain the name of the user. 
+When defining patterns the placeholder `${user.name}` is allowed to support indices, aliases or data streams which contain the name of the user. 
 
 ```yaml
 <role_name>:
@@ -207,10 +266,10 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
         - CRUD
 ```
 
-### Dynamic index and tenant patterns: User attributes
+### Dynamic index, alias, data stream and tenant patterns: User attributes
 {: #user-attributes }
 
-Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index, alias, data stream patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
@@ -242,7 +301,7 @@ Suppose a Json Web Token contains a claim `department`:
 }
 ```
 
-To use it as variable in index patterns and tenant patterns, map it to a Search Guard user attribute in the JWT authenticator configuration:
+To use it as variable in patterns, map it to a Search Guard user attribute in the JWT authenticator configuration:
 
 ```yaml
 jwt_auth_domain:
@@ -411,6 +470,7 @@ sg_own_index:
         - SGS_CRUD
 ```
 
+## TODO Remove this section if we stick with the grouping above
 ## Alias- and data stream-level permissions
 
 The permissions specified for `alias_permissions` and `data_stream_permissions` apply for these cases:
