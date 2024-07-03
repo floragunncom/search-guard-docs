@@ -61,6 +61,9 @@ If you choose to disable the `ignore_unauthorized` feature, there are a couple o
 
 ## Index alias handling
 
+<span>This section only applies to versions prior to TODO_VERSION. Support for alias permissions and data stream permissions have since been added.</span>
+{: .note .js-note .note-warning}
+
 Before applying any security checks, Search Guard first resolves any alias to the concrete index name(s). Index aliases are thus transparent to Search Guard. The same is true for 
 
 * Index wildcards, also with multiple index names
