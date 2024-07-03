@@ -39,7 +39,14 @@ use_impl: flx
 
 This documentation describes the *new implementation*.
 
-## Example
+<span>
+You can also use DLS/FLS/FM for data streams and aliases. However, it is necessary to use the `flx` DLS/FLS implementation type.
+</span>
+{: .note .js-note .note-warning}
+
+## Examples
+
+It is possible to configure roles both on the data stream level, the alias level and on the backing index level.
 
 Let's imagine we have an index called `humanresources`. This index contains documents with type `employees`, and these documents have a field called `department`. We want to define a query that allows access to all employee documents, except those where the department is set to "Management". 
 
@@ -72,6 +79,51 @@ If a user has the role `hr_employee`, Search Guard now filters all documents whe
 The format of the query is the same as if it was used in a search request. The specified query expects the same format as if it was defined in the search request and supports ELasticsearch’s full Query DSL.
 
 This means that you can make the DSL query as complex as you want, but since it has to be executed for each query, this, of course, comes with a small performance penalty.
+
+On the data stream level this would look like this:
+
+```
+dls_test_role:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+  - data_stream_patterns:
+    - "ds_a*"
+    allowed_actions:
+    - "SGS_READ"  
+    dls: '{"term" : {"dls_attr" : "1"}}'
+``` 
+
+However, as DLS can be also configured on the index level, it is also possible to use this configuration, which will also apply to data streams:
+
+```
+dls_test_role_for_all_indices:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  index_permissions:
+  - index_patterns:
+    - "*"
+    allowed_actions:
+    - "SGS_READ"  
+    dls: '{"term" : {"dls_attr" : "1"}}'
+```     
+
+
+It is also possible to define aliases which have data streams as members. You can also define DLS rules for these aliases which then affect all members:
+
+```
+dls_test_role_for_all_indices:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  alias_permissions:
+  - alias_patterns:
+    - "datastream_alias"
+    allowed_actions:
+    - "SGS_READ"  
+    dls: '{"term" : {"dls_attr" : "1"}}'
+```     
+
+It is also possible to use DLS rules for data streams, aliases and indices at the same time. Search Guard will then compute the union of allowed documents from the rules (i.e., an OR conjunction will be used for these rules).
 
 ## Multiple roles and document-level security
 
