@@ -22,7 +22,7 @@ description: Changelog for Kibana 7.x-49.0.0
 
 #### Dynamic DLS Queries in Role configuration
 
-We added support for the [dynamic DLS queries](https://preview-docs.search-guard.com/latest/document-level-security#dynamic-queries-variable-substitution) on the Search Guard configuration Create Role page. With this feature, you can write dynamic queries based on the current users' attributes.
+We added support for the [dynamic DLS queries](https://test-docs.search-guard.com/latest/document-level-security#dynamic-queries-variable-substitution) on the Search Guard configuration Create Role page. With this feature, you can write dynamic queries based on the current users' attributes.
 
 ```
 {"query": {"term": {"manager": ${user.name|toJson }}}}
@@ -35,7 +35,7 @@ In addition to backend roles, it is now possible to specify Search Guard roles w
 
 ### OIDC Configuration
 
-With the new [backend improvements for OIDC](https://preview-docs.search-guard.com/latest/changelog-searchguard-7x-48_0_0), the following settings for Kibana are not necessary any more and have been deprecated. As the Search Guard backend should already have the necessary configuration, the options can and should be removed from `kibana.yml` without an explicit replacement.
+With the new [backend improvements for OIDC](https://test-docs.search-guard.com/latest/changelog-searchguard-7x-48_0_0), the following settings for Kibana are not necessary any more and have been deprecated. As the Search Guard backend should already have the necessary configuration, the options can and should be removed from `kibana.yml` without an explicit replacement.
 * `searchguard.openid.connect_url`
 * `searchguard.openid.root_ca`
 * `searchguard.openid.verify_hostnames`

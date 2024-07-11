@@ -70,7 +70,7 @@ Details:
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/44)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/130)
-* [Signals Settings REST API](https://preview-docs.search-guard.com/latest/elasticsearch-alerting-rest-api-settings-put)
+* [Signals Settings REST API](https://test-docs.search-guard.com/latest/elasticsearch-alerting-rest-api-settings-put)
 
 
 ### Support for Search Templates

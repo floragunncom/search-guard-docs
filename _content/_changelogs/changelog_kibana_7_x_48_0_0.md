@@ -35,9 +35,9 @@ In the future, this might allow tighter integration between Search Guard or Sign
 
 * The role editing page and the action group editing page in the Search Guard configuration UI now allows the specification of any permission. Before these pages would only allow using action groups known to the plugin.
 <p />
-* The Create Role page of the Search Guard configuration UI now supports the [permission exclusion feature](https://preview-docs.search-guard.com/latest/roles-permissions#permission-exclusions).
+* The Create Role page of the Search Guard configuration UI now supports the [permission exclusion feature](https://test-docs.search-guard.com/latest/roles-permissions#permission-exclusions).
 <p />
-* The internal user database editor now supports [complex user attributes](https://preview-docs.search-guard.com/latest/changelog-searchguard-7x-46_0_0#multi-valued-attributes-for-internal-user-database).
+* The internal user database editor now supports [complex user attributes](https://test-docs.search-guard.com/latest/changelog-searchguard-7x-46_0_0#multi-valued-attributes-for-internal-user-database).
 <p />
 
 

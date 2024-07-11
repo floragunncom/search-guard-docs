@@ -52,7 +52,7 @@ While earlier versions of Search Guard still worked with Search Guard 6 configur
 
 ##### Related:
 
-* [Upgrading from Search Guard 6 to Search Guard 7](https://preview-docs.search-guard.com/7.x-51/upgrading-6-7)
+* [Upgrading from Search Guard 6 to Search Guard 7](https://test-docs.search-guard.com/7.x-51/upgrading-6-7)
 * [Merge Request: Removed support for Search Guard 6 configuration](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/134)
 
 

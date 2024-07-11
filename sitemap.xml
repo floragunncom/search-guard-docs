@@ -10,14 +10,14 @@ layout: null
     {% assign docs = collection.docs | where_exp:'doc','doc.sitemap != false' | where_exp:'doc','doc.subcategory == null'%}
     {% for doc in docs %}
         <url>
-          <loc>https://preview-docs.search-guard.com{{site.baseurl}}{{ doc.url | xml_escape }}</loc>
+          <loc>https://test-docs.search-guard.com{{site.baseurl}}{{ doc.url | xml_escape }}</loc>
           {% if doc.last_modified_at or doc.date %}
             <lastmod>{{ doc.last_modified_at | default: doc.date | date_to_xmlschema }}</lastmod>
           {% endif %}
         </url>
       {% for resource in doc.sitemap_resources %}
         <url>
-          <loc>https://preview-docs.search-guard.com{{ resource | xml_escape }}</loc>
+          <loc>https://test-docs.search-guard.com{{ resource | xml_escape }}</loc>
           <lastmod>{{ doc.last_modified_at | default: doc.date | date_to_xmlschema }}</lastmod>
         </url>
       {% endfor %}
@@ -26,7 +26,7 @@ layout: null
     {% assign files = collection.files %}
     {% for file in files %}
     <url>
-      <loc>https://preview-docs.search-guard.com{{site.baseurl}}/{{ file.name }}</loc>
+      <loc>https://test-docs.search-guard.com{{site.baseurl}}/{{ file.name }}</loc>
       <lastmod>{{ file.modified_time | date_to_xmlschema }}</lastmod>
     </url>
     {% endfor %}

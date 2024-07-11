@@ -29,7 +29,7 @@ If you don't have them yet, you need to download a couple of software components
 * [Elasticsearch](https://www.elastic.co/downloads/elasticsearch)
 * [Kibana](https://www.elastic.co/downloads/kibana)
 * [Search Guard Elasticsearch Plugin](https://docs/search-guard.com/latest/search-guard-versions) 
-* [Search Guard Kibana Plugin](https://preview-docs.search-guard.com/latest/search-guard-versions) |
+* [Search Guard Kibana Plugin](https://test-docs.search-guard.com/latest/search-guard-versions) |
 
 <table>
 <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
