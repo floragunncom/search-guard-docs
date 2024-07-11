@@ -35,8 +35,8 @@ deploy:
   stage: deploy
   dependencies:
     - build
-  only:
-    - release
+  # only:
+  #   - release
   before_script:
     - apt-get update -yqq
     - apt-get install -yqq ncftp wget
