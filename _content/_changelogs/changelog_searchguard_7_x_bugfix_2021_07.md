@@ -164,7 +164,7 @@ Details:
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/36)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/106)
-* [Documentation](https://docs.search-guard.com/latest/elasticsearch-alerting-actions-email)
+* [Documentation](https://preview-docs.search-guard.com/latest/elasticsearch-alerting-actions-email)
 
 ### Signals Footprint
 
@@ -174,7 +174,7 @@ On clusters having many (about > 100) tenants, Signals creates a high amount of 
 
 Administrators who face this problem can now use the `elasticsearch.yml` setting `signals.all_tenants_active_by_default`. The setting is `true` by default. If you edit  `elasticsearch.yml` on all nodes and add `signals.all_tenants_active_by_default: false`, all tenants are disabled by default in Signals. 
 
-In order to have an Signals scheduler for a tenant, you then need to use the [Signals activate tenant API](https://docs.search-guard.com/latest/elasticsearch-alerting-rest-api-tenant-activate) to explicitly activate a tenant.
+In order to have an Signals scheduler for a tenant, you then need to use the [Signals activate tenant API](https://preview-docs.search-guard.com/latest/elasticsearch-alerting-rest-api-tenant-activate) to explicitly activate a tenant.
 
 Details:
 

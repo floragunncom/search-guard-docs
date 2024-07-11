@@ -136,7 +136,7 @@ This role definition restricts access to documents in `restricted_index`. For ea
 Details:
 
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/75)
-* [Documentation for DLS](https://docs.search-guard.com/latest/document-level-security)
+* [Documentation for DLS](https://preview-docs.search-guard.com/latest/document-level-security)
 
 ### JWT and OIDC: Proper support for subject_path queries which return arrays
 

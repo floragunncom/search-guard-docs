@@ -19,7 +19,7 @@ Copyright 2020 floragunn GmbH
 
 ## Changes 
 
-* This version is based on [6.7.x-25.0](https://docs.search-guard.com/6.x-25/changelog-searchguard-6-x-25_0) and contains all features from this version
+* This version is based on [6.7.x-25.0](https://preview-docs.search-guard.com/6.x-25/changelog-searchguard-6-x-25_0) and contains all features from this version
 * The code of the former [standalone SSL Plugin](https://github.com/floragunncom/search-guard-ssl) was merged into the [Search Guard codebase](https://github.com/floragunncom/search-guard). So for Search Guard 7 the `search-guard-ssl` github repository is no longer relevant. 
 
 ### BREAKING: Support for document types and tribe nodes removed
@@ -75,7 +75,7 @@ But in case you are upgrading from 6.x you have to do this one time manually. Pl
 
 ### BREAKING: Default changed for snapshot/restore handling
 
-The default of `searchguard.enable_snapshot_restore_privilege` changed from `false` to `true` (in elasticsearch.yml). This will allow restore operations also for regular users without an admin certificate as long as the snapshot does not contain the global cluster state or the searchguard index. See [Enabling snapshot and restore for regular users](https://docs.search-guard.com/latest/snapshot-restore#enabling-snapshot-and-restore-for-regular-users) for more details.
+The default of `searchguard.enable_snapshot_restore_privilege` changed from `false` to `true` (in elasticsearch.yml). This will allow restore operations also for regular users without an admin certificate as long as the snapshot does not contain the global cluster state or the searchguard index. See [Enabling snapshot and restore for regular users](https://preview-docs.search-guard.com/latest/snapshot-restore#enabling-snapshot-and-restore-for-regular-users) for more details.
 
 ### BREAKING: Default changed for permissions evaluation across different roles (multi-rolespan)
 

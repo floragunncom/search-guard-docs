@@ -191,7 +191,7 @@ relative_links:
   enabled:     true
   collections: true
 
-#domain: https://docs.search-guard.com
+#domain: https://preview-docs.search-guard.com
 #baseurl: /tech-preview
 
 collections_dir: _content

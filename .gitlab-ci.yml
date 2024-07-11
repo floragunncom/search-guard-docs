@@ -49,7 +49,7 @@ deploy:
 
       #set default SFTP server
       if [ ! ${sftp_server+x} ];  then
-        sftp_server=185.233.188.50
+        sftp_server=18.203.166.154
       fi
       #set default cloudflare zoneid
       if [ ! ${SG_CLOUDFLARE_ZONEID+x} ];  then
@@ -91,19 +91,19 @@ deploy:
        echo "SFTP upload is disabled"
       fi
 
-      if $REMOVE_CLOUDFLARE_CACHE ; then
-         echo "Deleting Cloudflare Cache"
-         curl  \
-         -X POST "https://api.cloudflare.com/client/v4/zones/$SG_CLOUDFLARE_ZONEID/purge_cache" \
-         -H "Authorization: Bearer $SG_CLOUDFLARE_DECACHE_TOKEN" \
-         -H "Content-Type: application/json" \
-         --data '{"purge_everything":true}'
-      fi
-
-      if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-        echo "## Skipping Search Index"
-      else
-        echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml,_versions.yml
-      fi
+      # if $REMOVE_CLOUDFLARE_CACHE ; then
+      #    echo "Deleting Cloudflare Cache"
+      #    curl  \
+      #    -X POST "https://api.cloudflare.com/client/v4/zones/$SG_CLOUDFLARE_ZONEID/purge_cache" \
+      #    -H "Authorization: Bearer $SG_CLOUDFLARE_DECACHE_TOKEN" \
+      #    -H "Content-Type: application/json" \
+      #    --data '{"purge_everything":true}'
+      # fi
+      # 
+      # if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
+      #   echo "## Skipping Search Index"
+      # else
+      #   echo "## Rebuilding Search Index"
+      #   bundle exec jekyll algolia push --config _config.yml,_versions.yml
+      # fi
 

@@ -31,8 +31,8 @@ The new mechanism makes changes both to the source and to the sink of the attrib
 The new mechanism is available for JWT and Proxy authenticators and the LDAP authc backends. It is not yet available for the internal user database. Support for this will follow soon.
 
 More details can be found here:
-- [Index Patterns](https://docs.search-guard.com/latest/roles-permissions)
-- [DLS](https://docs.search-guard.com/latest/document-level-security)
+- [Index Patterns](https://preview-docs.search-guard.com/latest/roles-permissions)
+- [DLS](https://preview-docs.search-guard.com/latest/document-level-security)
 <p />
 
 
