@@ -36,7 +36,6 @@ deploy:
   image: ubuntu:22.04
   variables:
     upload_dir: docs    
-    sftp_user_name: docs
   dependencies:
     - build
   # only:
@@ -51,6 +50,8 @@ deploy:
 
   script:
     - |
+      #8pc TODO replace 
+      sftp_user_name=docs
       # site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
       # sftp_directory=$(sed 's/^\///' <<< $site_dir )
 
@@ -76,8 +77,7 @@ deploy:
 
 
       lftp -u $sftp_user_name, -e "set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no'; mirror --reverse --delete --parallel=20 --verbose _site/ /var/www/$upload_dir/html/; quit" sftp://$sftp_server
-      echo "sleeppc" 
-      sleep 3600
+
 
       # if $REMOVE_CLOUDFLARE_CACHE ; then
       #    echo "Deleting Cloudflare Cache"
