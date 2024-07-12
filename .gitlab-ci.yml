@@ -73,7 +73,7 @@ deploy:
       echo "Uploading files to SFTP server $sftp_server for host: $website_host"
       lftp --version
       echo "Start SFTP upload"
-      lftp -u $sftp_user_name, -e "set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no'; mirror --reverse --delete --parallel=20 --verbose build/ /var/www/$website_host/html/; quit" sftp://$sftp_server
+      lftp -u $sftp_user_name, -e "set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no'; mirror --reverse --delete --parallel=20 --verbose _site/ /var/www/$website_host/html/; quit" sftp://$sftp_server
 
 
       # if $REMOVE_CLOUDFLARE_CACHE ; then
