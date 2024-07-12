@@ -51,14 +51,14 @@ deploy:
 
   script:
     - |
-      site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
-      sftp_directory=$(sed 's/^\///' <<< $site_dir )
-      sftp_root_directory='html'
+      # site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
+      # sftp_directory=$(sed 's/^\///' <<< $site_dir )
 
       #set default SFTP server
       if [ ! ${sftp_server+x} ];  then
         sftp_server=18.203.166.154
       fi
+      
       #set default cloudflare zoneid
       if [ ! ${SG_CLOUDFLARE_ZONEID+x} ];  then
         SG_CLOUDFLARE_ZONEID=21f0b97bf3df0f55bba6ca46b746da1f
@@ -73,6 +73,8 @@ deploy:
       echo "Uploading files to SFTP server $sftp_server for host: $website_host"
       lftp --version
       echo "Start SFTP upload"
+      sleep 3600
+      echo "sleeppc"
       lftp -u $sftp_user_name, -e "set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=no'; mirror --reverse --delete --parallel=20 --verbose _site/ /var/www/$website_host/html/; quit" sftp://$sftp_server
 
 
