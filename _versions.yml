@@ -1,6 +1,6 @@
 index: true
 
-baseurl: /latest
+baseurl: /docs/latest
 
 algolia:
   index_name: 'latest'
