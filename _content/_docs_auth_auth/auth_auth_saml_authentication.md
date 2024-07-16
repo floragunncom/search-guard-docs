@@ -339,7 +339,7 @@ Since most of the SAML specific configuration is done in Search Guard, just acti
 searchguard.auth.type: "saml"
 ```
 
-It is also required to set the isSameSite=None to enable Kibana to send the cookie in a third-party context. [Read more.](https://docs.search-guard.com/latest/kibana-in-iframe)
+It is also required to set the isSameSite=None to enable Kibana to send the cookie in a third-party context. [Read more.](https://search-guard.com/docs/latest/kibana-in-iframe)
 The setting requires HTTPS.
 ```
 searchguard.cookie.isSameSite: None
