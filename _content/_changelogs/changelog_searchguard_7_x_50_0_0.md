@@ -70,7 +70,7 @@ Note: Only the "new style" user attributes are supported here; "old style" attri
 Details:
 
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/116)
-* [Documentation](https://test-docs.search-guard.com/latest/roles-permissions)
+* [Documentation](https://search-guard.com/docs/latest/roles-permissions)
 
 ### Support for Composable Templates
 
@@ -87,12 +87,12 @@ Search Guard 50 brings significant improvements regarding stability and the reso
 
 ### Inclusion of Responsible Node in Watch State API
 
-The [watch state API](https://test-docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state) now always includes the name of the node that is responsible for executing the watch. This can be useful for debugging watch execution problems. 
+The [watch state API](https://search-guard.com/docs/latest/elasticsearch-alerting-rest-api-watch-state) now always includes the name of the node that is responsible for executing the watch. This can be useful for debugging watch execution problems. 
 
 Details:
 
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/113)
-* [Documentation](https://test-docs.search-guard.com/latest/elasticsearch-alerting-rest-api-watch-state)
+* [Documentation](https://search-guard.com/docs/latest/elasticsearch-alerting-rest-api-watch-state)
 
 ### Signals Stability
 
@@ -126,7 +126,7 @@ Details:
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite/-/issues/36)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/106)
-* [Documentation](https://test-docs.search-guard.com/latest/elasticsearch-alerting-actions-email)
+* [Documentation](https://search-guard.com/docs/latest/elasticsearch-alerting-actions-email)
 
 ## Audit Logging
 
@@ -141,7 +141,7 @@ Details:
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/3)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/58)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite/-/merge_requests/117)
-* [Documentation](https://test-docs.search-guard.com/latest/audit-logging-reference)
+* [Documentation](https://search-guard.com/docs/latest/audit-logging-reference)
 
 ### OutOfMemoryErrors when logging write history for large documents
 

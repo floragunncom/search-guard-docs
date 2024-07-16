@@ -39,5 +39,5 @@ Do not grant `msearch` privileges on indices protected by filter-level DLS.
 
 **Details:** 
 
-- [Documentation for DLS](https://test-docs.search-guard.com/latest/document-level-security)
+- [Documentation for DLS](https://search-guard.com/docs/latest/document-level-security)
 - [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/150)

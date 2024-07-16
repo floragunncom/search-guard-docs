@@ -19,7 +19,7 @@ This is the master branch of the official Search Guard 7.x documentation.
 
 The latest online version version can be found here:
 
-[Search Guard Documentation](https://test-docs.search-guard.com/latest/)
+[Search Guard Documentation](https://search-guard.com/docs/latest/)
 
 ## Contributions welcome!
 

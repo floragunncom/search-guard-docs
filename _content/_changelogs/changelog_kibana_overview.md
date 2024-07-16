@@ -12,7 +12,7 @@ description: Changelog overview for all releases of the Search Guard Kibana Plug
 
 # Search Guard Kibana Plugin Changelogs for FLX
 
-See [https://test-docs.search-guard.com/latest/changelogs-searchguard](https://test-docs.search-guard.com/latest/changelogs-searchguard)
+See [https://search-guard.com/docs/latest/changelogs-searchguard](https://search-guard.com/docs/latest/changelogs-searchguard)
 
 # Search Guard Kibana Plugin Changelogs
 
