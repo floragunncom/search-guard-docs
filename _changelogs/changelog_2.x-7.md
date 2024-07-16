@@ -33,7 +33,7 @@ Release Date: September 16, 2016
 * Fixed an LDAP serialization issue
  * Fix [#206](https://github.com/floragunncom/search-guard/issues/206)
 * Added tribe node support
- * [Tribe nodes](https://docs.search-guard.com/v5/tribe-nodes)
+ * [Tribe nodes](https://.search-guard.com/docs/v5/tribe-nodes)
 * Snapshot/restore now possible with admin certificate
  * Fix [#147](https://github.com/floragunncom/search-guard/issues/147)
 * Manual and automatic [replica shard management](https://floragunn.com/search-guard-index-replica-shards/)

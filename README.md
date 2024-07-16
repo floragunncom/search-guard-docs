@@ -19,7 +19,7 @@ This is the official documentation for Search Guard 5 and Search Guard 2. If you
 
 The online version version can be found here:
 
-[Search Guard 5 Documentation](http://docs.search-guard.com/v5/)
+[Search Guard 5 Documentation](http://search-guard.com/docs/v5/)
 
 Search Guard is a trademark of floragunn GmbH, registered in the U.S. and in other countries
 
