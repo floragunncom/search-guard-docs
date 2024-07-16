@@ -104,8 +104,8 @@ The new mechanism makes changes both to the source and to the sink of the attrib
 
 More details can be found here:
 
-- [Index Patterns](https://docs.search-guard.com/latest/roles-permissions)
-- [DLS](https://docs.search-guard.com/latest/document-level-security)
+- [Index Patterns](https://search-guard.com/docs/latest/roles-permissions)
+- [DLS](https://search-guard.com/docs/latest/document-level-security)
 
 
 
