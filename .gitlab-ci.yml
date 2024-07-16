@@ -30,7 +30,7 @@ build:
 
       echo "## building docs"
       bundle install
-      bundle exec jekyll build --config _config.yml,_versions.yml
+      bundle exec jekyll build --config _config.yml
 
 deploy:
   tags:
@@ -67,7 +67,7 @@ deploy:
       
       echo "Building branch $git_branch"
 
-      docs_version=$(cat config.yml | grep "^baseurl:" | cut -d ':' -f2 | tr -d " '" | sed 's/\/docs\///')
+      docs_version=$(cat _config.yml | grep "^baseurl:" | cut -d ':' -f2 | tr -d " '" | sed 's/\/docs\///')
       echo "Uploading files to SFTP server $sftp_server with user $sftp_user_name and upload_dir: $upload_dir and version $docs_version"
       lftp --version
       echo "Start SFTP upload"
