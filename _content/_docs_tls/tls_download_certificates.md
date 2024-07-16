@@ -66,7 +66,7 @@ This will enable TLS encryption on transport and on REST layer.
 
 ## Using sgadmin with the demo certificates
 
-The demo certificates contain an admin TLS certificate which you can use to run [sgadmin](https://docs.search-guard.com/latest/sgadmin){:target="_blank"}:
+The demo certificates contain an admin TLS certificate which you can use to run [sgadmin](https://search-guard.com/docs/latest/sgadmin){:target="_blank"}:
 
 <div class="file-tree">
 	<ul class="file-tree-list js-file-tree treeview" data-expanded="">

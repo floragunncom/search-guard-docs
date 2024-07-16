@@ -23,14 +23,14 @@ Search Guard 49 brings you the first general available version of the API Auth T
 
 This is especially useful if you have applications which need authenticated access to Elasticsearch. Before the auth token service, you would have to give the application your full credentials, i.e., username and password. Now, you can create an auth token and just use this for authentication; it is also possible to limit the permissions the auth token is granted. Search Guard makes it easy to revoke the auth token at any time.
 
-The auth token service is available in the Search Guard Kibana plugin and via a dedicated [REST API](https://docs.search-guard.com/latest/search-guard-auth-tokens#creating-auth-tokens).
+The auth token service is available in the Search Guard Kibana plugin and via a dedicated [REST API](https://search-guard.com/docs/latest/search-guard-auth-tokens#creating-auth-tokens).
 
-The auth token service is disabled by default. To use it, you need to [enable and configure](https://docs.search-guard.com/latest/search-guard-auth-tokens#configuring-the-search-guard-auth-token-service) it inside `sg_config.yml`.
+The auth token service is disabled by default. To use it, you need to [enable and configure](https://search-guard.com/docs/latest/search-guard-auth-tokens#configuring-the-search-guard-auth-token-service) it inside `sg_config.yml`.
 
 The service is an enterprise feature. You can try it with the trial license that comes with a new Search Guard installation. If you want to use it for production purposes, you need an enterprise license.
 
 More details:
-* [Documentation](https://docs.search-guard.com/latest/search-guard-auth-tokens)
+* [Documentation](https://search-guard.com/docs/latest/search-guard-auth-tokens)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/35)
 <p />
  
@@ -71,8 +71,8 @@ openid_auth_domain:
 Furthermore, with this release, the Kibana server will perform any communication with the IdP also via the Search Guard plugin. Thus, the Kibana configuration options `searchguard.openid.connect_url`,  `searchguard.openid.root_ca` and `searchguard.openid.verify_hostnames` inside  `kibana.yml` are no longer required and can be removed.
 
 More information:
-* [Documentation for backend configuration](https://docs.search-guard.com/latest/openid-json-web-keys)
-* [Documentation for frontent configuration](https://docs.search-guard.com/latest/kibana-authentication-openid)
+* [Documentation for backend configuration](https://search-guard.com/docs/latest/openid-json-web-keys)
+* [Documentation for frontent configuration](https://search-guard.com/docs/latest/kibana-authentication-openid)
 * [Merge request for backend](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/39)
 * [Merge request for frontend](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/646)
 <p />
@@ -85,9 +85,9 @@ For example, this can be used if your IdP provides user names in the format of e
 
 More information:
 
-* [Docs for JWT](https://docs.search-guard.com/latest/json-web-tokens)
-* [Docs for OIDC](https://docs.search-guard.com/latest/openid-json-web-keys)
-* [Docs for SAML](https://docs.search-guard.com/latest/saml-authentication)
+* [Docs for JWT](https://search-guard.com/docs/latest/json-web-tokens)
+* [Docs for OIDC](https://search-guard.com/docs/latest/openid-json-web-keys)
+* [Docs for SAML](https://search-guard.com/docs/latest/saml-authentication)
 * [Merge request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/44)
 
 
@@ -95,7 +95,7 @@ More information:
 
 ### Blocked IPs and X-Forward-For addresses from proxies
 
-The feature for blocking IPs did not work correctly when ES is only reachable by a proxy. While Search Guard can use IPs obtained from a `X-Forward-For` header for IP-based authentication (if `xff` is configured in `sg_config.yml`; see the [documentation](https://docs.search-guard.com/latest/authentication-authorization#http) for details), IP blocking did not take such IPs into account.
+The feature for blocking IPs did not work correctly when ES is only reachable by a proxy. While Search Guard can use IPs obtained from a `X-Forward-For` header for IP-based authentication (if `xff` is configured in `sg_config.yml`; see the [documentation](https://search-guard.com/docs/latest/authentication-authorization#http) for details), IP blocking did not take such IPs into account.
 
 This is now fixed; IPs considered for blocking are now the same IPs which are used for authentication.
 
