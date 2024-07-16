@@ -178,8 +178,8 @@ relative_links:
   enabled:     true
   collections: true
 
-domain: https://docs.search-guard.com
-baseurl: /latest
+domain: https://search-guard.com
+baseurl: /docs/7.x-52
 
 collections_dir: _content
 

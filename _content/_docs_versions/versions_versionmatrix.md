@@ -12,7 +12,7 @@ index_algolia: false
 
 # Search Guard Versions
 
-This page lists all Search Guard releases for Elasticsearch 7. We highly recommend to switch to [Search Guard FLX](https://docs.search-guard.com/latest/search-guard-versions).
+This page lists all Search Guard releases for Elasticsearch 7. We highly recommend to switch to [Search Guard FLX](https://search-guard.com/docs/latest/search-guard-versions).
 
 {: .note .js-note}
 

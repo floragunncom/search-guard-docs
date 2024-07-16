@@ -77,7 +77,7 @@ But in case you are upgrading from 6.x you have to do this one time manually. Pl
 
 ### BREAKING: Default changed for snapshot/restore handling
 
-The default of `searchguard.enable_snapshot_restore_privilege` changed from `false` to `true` (in elasticsearch.yml). This will allow restore operations also for regular users without an admin certificate as long as the snapshot does not contain the global cluster state or the searchguard index. See [Enabling snapshot and restore for regular users](https://docs.search-guard.com/latest/snapshot-restore#enabling-snapshot-and-restore-for-regular-users) for more details.
+The default of `searchguard.enable_snapshot_restore_privilege` changed from `false` to `true` (in elasticsearch.yml). This will allow restore operations also for regular users without an admin certificate as long as the snapshot does not contain the global cluster state or the searchguard index. See [Enabling snapshot and restore for regular users](https://search-guard.com/docs/latest/snapshot-restore#enabling-snapshot-and-restore-for-regular-users) for more details.
 
 ### BREAKING: Default changed for permissions evaluation across different roles (multi-rolespan)
 
