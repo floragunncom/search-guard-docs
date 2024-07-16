@@ -7,7 +7,7 @@ searchguard:
   islatestversion: true
   ispreliminaryversion: false
 
-baseurl: /7.x-48
+baseurl: /docs/7.x-48
 
 algolia:
   index_name: '7x-48'
