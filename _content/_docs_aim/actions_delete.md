@@ -10,6 +10,8 @@ description: How the delete action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Delete Action
 {: .no_toc}
 

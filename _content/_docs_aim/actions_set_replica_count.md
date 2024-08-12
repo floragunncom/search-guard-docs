@@ -10,6 +10,8 @@ description: How the set replica count action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Set Replica Count Action
 {: .no_toc}
 

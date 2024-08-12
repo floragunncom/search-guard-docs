@@ -10,6 +10,8 @@ description: How the set priority action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Set Priority Action
 {: .no_toc}
 

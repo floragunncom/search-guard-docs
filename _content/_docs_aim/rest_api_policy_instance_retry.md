@@ -10,6 +10,8 @@ description: Use the retry REST API to set the retry flag for a managed index
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Policy Instance Retry
 {: .no_toc}
 

@@ -10,6 +10,8 @@ description: How the allocation action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Allocation Action
 {: .no_toc}
 

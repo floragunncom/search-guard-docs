@@ -10,6 +10,8 @@ description: Use the execute REST API to execute a managed index
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Policy Instance Execute
 {: .no_toc}
 

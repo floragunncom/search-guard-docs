@@ -10,6 +10,8 @@ description: How the doc count condition works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Doc Count Condition
 {: .no_toc}
 
