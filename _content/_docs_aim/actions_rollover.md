@@ -10,6 +10,8 @@ description: How the rollover action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Rollover Action
 {: .no_toc}
 

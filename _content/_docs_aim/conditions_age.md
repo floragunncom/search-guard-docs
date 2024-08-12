@@ -10,6 +10,8 @@ description: How the age condition works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Age Condition
 {: .no_toc}
 

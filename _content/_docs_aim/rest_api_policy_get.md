@@ -10,6 +10,8 @@ description: Use the get policy REST API to get a policy
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Get Policy
 {: .no_toc}
 

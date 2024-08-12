@@ -10,6 +10,8 @@ description: Use the delete policy REST API to delete policies
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Delete Policy
 {: .no_toc}
 

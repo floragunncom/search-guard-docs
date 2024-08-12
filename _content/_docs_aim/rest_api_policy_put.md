@@ -10,6 +10,8 @@ description: Use the put policy REST API to create or update policies
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Put Policy
 {: .no_toc}
 

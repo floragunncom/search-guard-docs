@@ -10,6 +10,8 @@ description: Configure Automated Index Management to fit your requirements
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Settings
 {: .no_toc}
 

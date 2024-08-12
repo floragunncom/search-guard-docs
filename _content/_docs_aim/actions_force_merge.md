@@ -10,6 +10,8 @@ description: How the force merge action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Force Merge Action
 {: .no_toc}
 

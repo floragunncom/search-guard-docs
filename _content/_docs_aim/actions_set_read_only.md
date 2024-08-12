@@ -10,6 +10,8 @@ description: How the set read only action works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Set Read Only Action
 {: .no_toc}
 

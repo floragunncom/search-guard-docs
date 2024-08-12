@@ -14,6 +14,9 @@ sass:
 
 exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'README*']
 
+beta_warning: '<span style="color:red">!!!!This is a Technical Preview of BETA version and should not yet be used in production.</span>{: .note .js-note .note-warning}'
+
+
 plugins:
   - jekyll-relative-links
   - algoliasearch-jekyll

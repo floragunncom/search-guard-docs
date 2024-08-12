@@ -10,6 +10,8 @@ description: Configure Automated Index Management with Search Guard security fea
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Security Integration
 {: .no_toc}
 

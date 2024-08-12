@@ -10,6 +10,8 @@ description: Use the state REST API to get a state from a managed index
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Policy Instance State
 {: .no_toc}
 

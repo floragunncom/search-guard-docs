@@ -10,6 +10,8 @@ description: Use the put settings REST API to update dynamic AIM settings
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Put Settings
 {: .no_toc}
 

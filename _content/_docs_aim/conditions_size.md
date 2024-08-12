@@ -10,6 +10,8 @@ description: How the size condition works
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Size Condition
 {: .no_toc}
 

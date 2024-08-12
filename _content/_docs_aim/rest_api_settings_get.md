@@ -10,6 +10,8 @@ description: Use the get settings REST API to retrieve dynamic AIM settings
 ---
 <!--- Copyright 2023 floragunn GmbH -->
 
+{% include beta_warning.html %}
+
 # Get Settings
 {: .no_toc}
 
