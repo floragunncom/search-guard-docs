@@ -363,7 +363,7 @@ sgversions:
 
   search-guard-flx-7:
     - 7.17.23|1.6.0|1.6.0|yes|no|N/A|N/A
-    - 7.17.22|1.6.0|1.6.0|yes|no|N/A|N/A
+    - 7.17.22|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.21|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.20|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.19|1.6.0|1.6.0|yes|yes|N/A|N/A
