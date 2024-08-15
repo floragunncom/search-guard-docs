@@ -14,11 +14,6 @@ index_algolia: false
 
 This page lists all available versions of Search Guard.
 
-<b>Note:</b> The Kibana Multi-Tenancy feature is not available in Search Guard 1.5.0. If you are using Multi-Tenancy, please
-do not upgrade to this version. The feature will be available again in the next upcoming Search Guard version. If you are not using
-Multi-Tenancy, you can upgrade to 1.5.0 safely.     
-{: .note .js-note .note-warning}
-
 <span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
