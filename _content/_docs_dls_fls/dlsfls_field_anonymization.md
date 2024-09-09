@@ -39,6 +39,8 @@ As the new implementation is not backwards-compatible, it needs to be manually a
 use_impl: flx
 ```
 
+**Note:** `LogsDB` mode, introduced by Elasticsearch in version 8.15, is not supported with the legacy DLS/FLS implementation.
+
 This documentation describes the *new implementation*.
 
 ## Configuring fields to anonymize
