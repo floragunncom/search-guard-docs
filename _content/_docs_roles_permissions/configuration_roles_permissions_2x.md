@@ -1,9 +1,9 @@
 ---
-title: Search Guard roles
+title: Search Guard roles (2.x and below)
 html_title: Search Guard role-based authorization for Elasticsearch
-permalink: roles-permissions
+permalink: roles-permissions-2x
 category: rolespermissions
-order: 390
+order: 400
 layout: docs
 edition: community
 description: How to define role based access to Elasticsearch on index level with Search Guard.
@@ -11,9 +11,6 @@ description: How to define role based access to Elasticsearch on index level wit
 <!---
 Copyright 2022 floragunn GmbH
 -->
-
-The alias and data stream features are only supported in SG FLX version 3.0 and above
-{: .note}
 
 # Defining Search Guard roles
 {: .no_toc}
@@ -26,8 +23,6 @@ Search Guard roles are the central place to configure access permissions on:
 
 * Cluster level
 * Index level
-* Alias level
-* Data stream level
 * Document level
 * Field level
 * Kibana level
@@ -54,36 +49,6 @@ Search Guard roles and their associated permissions are defined in the file `sg_
         - ...
     - index_patterns:
       - ...
-  alias_permissions:
-    - alias_patterns:
-        - <alias pattern the allowed actions should be applied to>
-        - <alias pattern the allowed actions should be applied to>
-        - ...
-      allowed_actions:
-        - '<action group or single permission>'
-        - ...
-      dls: '<Document level security query>'
-      fls:
-        - '<field level security field>'
-        - '<field level security field>'
-        - ...
-    - alias_patterns:
-        - ...
-  data_stream_permissions:
-    - data_stream_patterns:
-        - <data stream pattern the allowed actions should be applied to>
-        - <data stream pattern the allowed actions should be applied to>
-        - ...
-      allowed_actions:
-        - '<action group or single permission>'
-        - ...
-      dls: '<Document level security query>'
-      fls:
-        - '<field level security field>'
-        - '<field level security field>'
-        - ...
-    - data_stream_patterns:
-        - ...
   tenant_permissions:
     - tenant_patterns:
       - <tenant pattern the allowed actions should be applied to>
@@ -101,11 +66,9 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cluster_permissions     | Permissions that apply on the cluster level, e.g. monitoring the cluster health                                                                                                                                   |
 | index_permissions       | Permissions that apply to one or more index patterns                                                                                                                                                              |
-| alias_permissions       | Permissions that apply to one or more alias patterns                                                                                                                                                              |
-| data_stream_permissions | Permissions that apply to one or more data stream patterns                                                                                                                                                        |
-| allowed_actions         | The actions that are allowed for the index, alias, data stream or tenant patterns                                                                                                                                 |
-| dls                     | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index, alias and data stream patterns. Used to filter documents from the result set.                     |
-| fls                     | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index, alias and data stream patterns. Used to filter fields from the documents in the result set. |
+| allowed_actions         | The actions that are allowed for the index or tenant patterns                                                                                                                                 |
+| dls                     | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set.                     |
+| fls                     | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
 | tenant_permissions      | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana.                                                                                             |
 {: .config-table}
 
@@ -197,7 +160,7 @@ Example:
 
 ### Dynamic index patterns: User name substitution
 
-When defining index patterns the placeholder `${user.name}` is allowed to support indices or aliases which contain the name of the user. 
+When defining index patterns the placeholder `${user.name}` is allowed to support indices which contain the name of the user. 
 
 ```yaml
 <role_name>:
@@ -414,142 +377,14 @@ sg_own_index:
         - SGS_CRUD
 ```
 
-## Alias and data stream-level permissions
 
-Support for aliases and data streams have been added in SG FLX 3.0
-{: .note}
+## Permission Exclusions
 
-The permissions specified for `alias_permissions` and `data_stream_permissions` apply for these cases:
+Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly define permissions a user may not have.
 
-- The user directly specifies an alias or data stream in a request (Like `GET /alias_a1/_search`).
-- The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` when `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1` then even though the configuration only has direct index permissions for `idx_a*`. The privileges from `alias_a1` will be projected onto the index.)
-- The user specifies a backing index of a data stream (Like `GET /.ds-ds_a1-2024.02.16-000001/_search`).
+For this purpose, you can add the entries `exclude_cluster_permissions` and `exclude_index_permissions` to your role definitions. Permissions defined here are **not** granted to the user, even if there are `cluster_permissions` or `index_permissions` properties which would grant these permissions.
 
-On the other hand, privileges specified for `index_permissions` never apply for aliases or data streams.
-
-### Creating or modifying aliases
-For creating aliases or for adding indices to existing aliases, you will need the permission `indices:admin/aliases` both for the alias and the referenced indices.
-This should look similar this:
-
-```
-test_role:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  index_permissions:
-  - index_patterns:
-    - "member_of_alias_a*"
-    allowed_actions:
-    - "indices:admin/aliases"
-    alias_permissions:
-    - alias_patterns:
-      - "alias_a"
-      allowed_actions:
-      - "*"
-```
-
-With this configuration, you can create an alias `alias_a` and add indices to it which match the pattern `member_of_alias_a*`.
-
-As the `alias_a` has full privileges (`allowed_actions: *`), you will also gain full privileges to all member indices after these were added.
-
-### Creating data streams
-When working with data streams, you only have to consider privileges for the data streams themselves. You do not have to take care to add privileges to the backing indices. These are always implied.
-A role which gives a user the rights to create and access data streams can look like this:
-```
-ds_test_role:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  data_stream_permissions:
-  - data_stream_patterns:
-    - "ds_a*"
-    allowed_actions:
-    - "*"  
-```
-
-Test user:
-```
-test:
-  hash: "$2y$12$NbU4RAs.0wwEOaSUldhECeTBUMAKka4ifO0oNjBr460Hn60F/acKO"
-  search_guard_roles:
-  - ds_test_role
-
-```
-
-Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
-
-### Document Level Security, Field Level Security and Field Masking
-
-You can also use DLS/FLS/FM for data streams and aliases. However, it is necessary to use the `flx` DLS/FLS implementation type. You can enable it by creating the config `sg_authz_dlsfls.yml` and adding this content:
-
-```
-use_impl: flx
-```
-
-For testing purposes, it is also helpful to add `debug: true`:
-
-```
-use_impl: flx
-debug: true
-```
-
-DLS/FLS/FM rules can be configured in `sg_roles.yml`. It is possible to configure roles both on the data stream level, the alias level and on the backing index level.
-
-On the data stream level this would look like this:
-
-```
-dls_test_role:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  data_stream_permissions:
-  - data_stream_patterns:
-    - "ds_a*"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-``` 
-
-However, as DLS can be also configured on the index level, it is also possible to use this configuration, which will also apply to data streams:
-
-```
-dls_test_role_for_all_indices:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  index_permissions:
-  - index_patterns:
-    - "*"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-```     
-
-
-It is also possible to define aliases which have data streams as members. You can also define DLS rules for these aliases which then affect all members:
-
-```
-dls_test_role_for_all_indices:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  alias_permissions:
-  - alias_patterns:
-    - "datastream_alias"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-```     
-
-It is also possible to use DLS rules for data streams, aliases and indices at the same time. Search Guard will then compute the union of allowed documents from the rules (i.e., an OR conjunction will be used for these rules).
-
-#### FLS/FM
-
-Field level security and field masking works completely the same as DLS. You can use `fls` and `field_masking` attributes for `data_stream_permissions` and `alias_permissions`.
-
-
-## Cluster Permission Exclusions
-
-Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly defined cluster permissions a user may not have.
-
-For this purpose, you can add the entry `exclude_cluster_permissions` to your role definitions. Permissions defined here are **not** granted to the user, even if there are `cluster_permissions` or `index_permissions` properties which would grant these permissions.
-
-This means, that you can use  `cluster_permissions` and `index_permissions` entries to define a broader set of permissions and then use `exclude_cluster_permissions` to selectively subtract permissions a user is not allowed to have.
+This means, that you can use  `cluster_permissions` and `index_permissions` entries to define a broader set of permissions and then use `exclude_cluster_permissions` and `exclude_index_permissions` to selectively subtract permissions a user is not allowed to have.
 
 For example, a role definition might now look like this:
 
@@ -564,29 +399,30 @@ my_role_using_exclusions:
         - "*"
       allowed_actions:
         - SGS_CRUD
+  exclude_index_permissions:
+    - index_patterns:
+       - "secret"
+      actions:
+       - "*"
 ```
 
-A user with this role is granted all cluster permissions except permissions for managing snapshots. 
+A user with this role is granted all cluster permissions except permissions for managing snapshots. Furthermore, the user gets access to all indexes except the index `secret`. 
 
 Permission exclusions do not only affect the permissions granted in the same role. Rather, permission exclusions also affect permissions granted by other roles. Thus, you can grant permissions in one role and use an additional role to selectively remove some of these permissions.
 
-Similarly to `cluster_permissions` entries, you can provide a list of cluster permissions to exclude. The list entries can contain wildcards or action groups.
+### Cluster Permission Exclusions
 
-## Support removed for exclude_index_permissions
+Cluster permission exclusions are defined using an entry with the key `exclude_cluster_permissions`. Just like it is the case for `cluster_permissions` entries, you can provide a list of permissions here. The list entries can contain wildcards or action groups.
 
-Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used.
+### Index Permission Exclusions
 
-If you are migrating to SG FLX 3.0 and have been previously using `exclude_index_permissions`, it is recommended to first retrieve the sg_roles.yml configuration and update the necessary roles, as `exclude_index_permissions` will no longer have any effect on the users privileges after migration. Retrieval of previous configuration is also possible post migration if necessary.
-{: .warning}
+Index permission exclusions are listed under the key `exclude_index_permissions`. For defining such an exclusion, you need to define an `index_pattern` and the excluded `actions`. 
 
-If a role with `exclude_index_permissions` is submitted using sgctl.sh tool, following message will be returned:
-```
-Invalid config files:
+For the `index_pattern` entries, you can use variable substitution as described above. It is however important to note that any errors during variable substitution are more critical for permission exclusions. Such an error would be for example trying to use a user attribute which does not exist. If such an error occurs while checking the permissions for an action, Search Guard will fail into the safe direction and immediately deny the execution of the action. Search Guard will also write a warning to the Elasticsearch logs about this error. 
 
-plugins/search-guard-flx/sgconfig/sg_roles.yml:
-  my_role.exclude_index_permissions:
-  	This attribute is no longer supported
-```
+Note: In `index_pattern`  entries for `exclude_index_permissions`, the deprecated user attribute syntax `${attr.internal...}` is not supported any more. You need to use the new-style user attributes as described above.
+
+The `action` key takes a list of actions to be excluded. The list entries can contain wildcards or action groups. Note that this entry is named `actions` - in contrast to the entry `allowed_actions` in the normal `index_permissions` entry.
 
 ## Built-in Roles
 
