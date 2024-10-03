@@ -344,6 +344,7 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-8:
+    - 8.15.2|2.0.0|2.0.0|yes|no|N/A|N/A
     - 8.15.1|2.0.0|2.0.0|yes|no|N/A|N/A
     - 8.15.0|2.0.0|2.0.0|yes|no|N/A|N/A
     - 8.14.3|2.0.0|2.0.0|yes|no|N/A|N/A
@@ -364,7 +365,8 @@ sgversions:
     - 8.5.0|1.1.1|1.1.0|yes|yes|1.23-1.29|2.5.0
 
   search-guard-flx-7:
-    - 7.17.23|1.6.0|1.6.0|yes|no|N/A|N/A
+    - 7.17.24|1.6.0|1.6.0|yes|no|N/A|N/A
+    - 7.17.23|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.22|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.21|1.6.0|1.6.0|yes|yes|N/A|N/A
     - 7.17.20|1.6.0|1.6.0|yes|yes|N/A|N/A
@@ -388,7 +390,8 @@ sgversions:
     - 7.17.3|1.0.0|1.0.0|yes|yes|N/A|N/A
     - 7.16.3|1.0.0|1.0.0|yes|yes|N/A|N/A
   search-guard-suite-7:
-    - 7.17.23|53.10.0|53.0.0|yes|no
+    - 7.17.24|53.10.0|53.0.0|yes|no
+    - 7.17.23|53.10.0|53.0.0|yes|yes
     - 7.17.22|53.9.0|53.0.0|yes|yes
     - 7.17.21|53.9.0|53.0.0|yes|yes
     - 7.17.20|53.9.0|53.0.0|yes|yes
