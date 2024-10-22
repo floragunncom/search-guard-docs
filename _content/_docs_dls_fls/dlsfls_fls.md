@@ -74,6 +74,43 @@ hr_employee:
         - '~salary'
 ```
 
+## FLS on data streams and aliases
+
+The alias and data stream features are only supported in SG FLX version 3.0 and above
+{: .note}
+
+You can also use FLS with data streams and aliases. 
+
+The following is example configuration of data streams with fls:
+
+```yaml
+hr_employee:
+  luster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+    - data_stream_patterns:
+      - "ds_a"
+      allowed_actions:
+        - "SGS_READ" 
+      fls:
+        - '~salary'
+```
+
+The following is example configuration of alias with fls:
+
+```yaml
+dls_test_role_for_all_indices:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  alias_permissions:
+  - alias_patterns:
+    - "datastream_alias"
+    allowed_actions:
+    - "SGS_READ"  
+    fls:
+      - '~salary'
+``` 
+
 ## Using wildcards
 
 You can use wildcards when defining FLS field, both for include and exclude mode.
