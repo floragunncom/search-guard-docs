@@ -100,10 +100,10 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 | Name                    | Description                                                                                                                                                                                                       |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cluster_permissions     | Permissions that apply on the cluster level, e.g. monitoring the cluster health                                                                                                                                   |
-| index_permissions       | Permissions that apply to one or more index patterns                                                                                                                                                              |
-| alias_permissions       | Permissions that apply to one or more alias patterns                                                                                                                                                              |
-| data_stream_permissions | Permissions that apply to one or more data stream patterns                                                                                                                                                        |
-| allowed_actions         | The actions that are allowed for the index, alias, data stream or tenant patterns                                                                                                                                 |
+| index_permissions       | Permissions that apply to one or more index patterns.                                                                                                                                                              |
+| alias_permissions       | Permissions that apply to one or more alias patterns, these permissions apply also to the underlying indices.                                                                                                                                                              |
+| data_stream_permissions | Permissions that apply to one or more data stream, these permissions apply also to the underlying indices.                                                                                                                                                         |
+| allowed_actions         | The actions that are allowed for the index, alias, data stream or tenant patterns.                                                                                                                                 |
 | dls                     | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index, alias and data stream patterns. Used to filter documents from the result set.                     |
 | fls                     | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index, alias and data stream patterns. Used to filter fields from the documents in the result set. |
 | tenant_permissions      | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana.                                                                                             |
@@ -476,68 +476,6 @@ test:
 
 Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
 
-### Document Level Security, Field Level Security and Field Masking
-
-You can also use DLS/FLS/FM for data streams and aliases. However, it is necessary to use the `flx` DLS/FLS implementation type. You can enable it by creating the config `sg_authz_dlsfls.yml` and adding this content:
-
-```
-use_impl: flx
-```
-
-For testing purposes, it is also helpful to add `debug: true`:
-
-```
-use_impl: flx
-debug: true
-```
-
-DLS/FLS/FM rules can be configured in `sg_roles.yml`. It is possible to configure roles both on the data stream level, the alias level and on the backing index level.
-
-On the data stream level this would look like this:
-
-```
-dls_test_role:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  data_stream_permissions:
-  - data_stream_patterns:
-    - "ds_a*"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-``` 
-
-However, as DLS can be also configured on the index level, it is also possible to use this configuration, which will also apply to data streams:
-
-```
-dls_test_role_for_all_indices:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  index_permissions:
-  - index_patterns:
-    - "*"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-```     
-
-
-It is also possible to define aliases which have data streams as members. You can also define DLS rules for these aliases which then affect all members:
-
-```
-dls_test_role_for_all_indices:
-  cluster_permissions:
-  - "SGS_CLUSTER_COMPOSITE_OPS"
-  alias_permissions:
-  - alias_patterns:
-    - "datastream_alias"
-    allowed_actions:
-    - "SGS_READ"  
-    dls: '{"term" : {"dls_attr" : "1"}}'
-```     
-
-It is also possible to use DLS rules for data streams, aliases and indices at the same time. Search Guard will then compute the union of allowed documents from the rules (i.e., an OR conjunction will be used for these rules).
-
 #### FLS/FM
 
 Field level security and field masking works completely the same as DLS. You can use `fls` and `field_masking` attributes for `data_stream_permissions` and `alias_permissions`.
@@ -574,7 +512,7 @@ Similarly to `cluster_permissions` entries, you can provide a list of cluster pe
 
 ## Support removed for exclude_index_permissions
 
-Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used.
+Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used. However the functionality is not identical. Previously `exclude_index_permissions` created an absolute global exclusion. Index negation, however, only affects the current index that is being evaluated.
 
 If you are migrating to SG FLX 3.0 and have been previously using `exclude_index_permissions`, it is recommended to first retrieve the sg_roles.yml configuration and update the necessary roles, as `exclude_index_permissions` will no longer have any effect on the users privileges after migration. Retrieval of previous configuration is also possible post migration if necessary.
 {: .warning}
@@ -599,6 +537,8 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
 | SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
 | SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
+| SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT | Permission for user to access kibana but not global tenant. |
+| SGS\_KIBANA\_USER\_NO\_MT | Permits users to access kibana UI only if multi tenancy is disabled. |
 | SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
 | SGS\_MANAGE\_SNAPSHOTS | Grants full permissions on snapshot, restore and repositories operations |
 | SGS\_OWN\_INDEX | Grants full permissions on an index named after the authenticated user's username. |
@@ -606,3 +546,16 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_XP\_ALERTING | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
 | SGS\_XP\_MACHINE\_LEARNING | Role for X-Pack Machine Learning. Users who wish to use X-Pack Machine Learning need this role in addition to the sg\_kibana role |
 {: .config-table}
+
+
+
+
+SGS_KIBANA_USER_NO_GLOBAL_TENANT
+SGS_KIBANA_USER_NO_MT
+
+
+
+
+
+
+
