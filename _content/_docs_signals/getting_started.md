@@ -58,6 +58,31 @@ The examples are based on the [Kibana sample data](https://www.elastic.co/guide/
 
 In order to get to speed with Signals quickly, we recommend following our [Signals Alerting: First Steps](https://search-guard.com/signals-elasticsearch-alerting/) blog post. We will release a series of articles describing all Signals features in detail.
 
+## Advanced configuration
+
+Following is advanced configuration for signals that can be added to `elasticsearch.yml` file:
+
+- `signals.all_tenants_active_by_default`: By default, each tenant gets an active Signals scheduler. Set this to false in order to disable this. In order to have an Signals scheduler for a tenant, you then need to use the Signals activate tenant API to explicitly activate a tenant.
+
+- `signals.worker_threads.pool.max_size`: Maximum number of Signals watch runner threads spawned by tenant. Defaults to `3`.
+
+- `signals.worker_threads.pool.keep_alive`: If a Signals watch runner thread is idle for more than the specified time, the thread will be automatically terminated. Defaults to `100` minutes.
+
+- `signals.worker_threads.prio`: The priority used by watch runner threads. Defaults to the normal priority (`5`)
+
+- `signals.watch_log.mapping_total_fields_limit`: The maximum number of field in signals index. Default is `2000`.
+
+- `signals.worker_threads.pool.max_size`: The maximum threads per tenant. Default is `10`.
+
+### MISFIRE STRATEGY
+
+Signals "misfire" can occur when there are not enough threads to execute the signal. You can configure the relevant strategy for interval and cron triggers using the following configuration.
+
+Simple trigger: `SIGNALS_SIMPLE_MISFIRE_STRATEGY`
+Cron trigger: `SIGNALS_CRON_MISFIRE_STRATEGY`
+
+The possible values are listed in [quartz scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
+
 ## Community support
 
 If you have any questions, please refer to our [Signals Community forum](https://forum.search-guard.com/c/alerting-signals/12).
