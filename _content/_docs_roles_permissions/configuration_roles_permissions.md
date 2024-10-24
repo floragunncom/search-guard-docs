@@ -37,9 +37,11 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 ```yaml
 <role_name>:
   cluster_permissions:
+    # Permissions that apply on the cluster level, e.g. monitoring the cluster health
     - '<action group or single permission>'
     - ...
   index_permissions:
+    # Permissions that apply to concrete indices, identified by the index_patterns below. The permissions specified here do not apply to aliases or data streams.
     - index_patterns:
       - <index pattern the allowed actions should be applied to>
       - <index pattern the allowed actions should be applied to>
@@ -55,6 +57,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
     - index_patterns:
       - ...
   alias_permissions:
+    # Permissions that apply to concrete aliases and their member indices. The aliases are identified by the alias_patterns below. 
     - alias_patterns:
         - <alias pattern the allowed actions should be applied to>
         - <alias pattern the allowed actions should be applied to>
@@ -70,6 +73,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
     - alias_patterns:
         - ...
   data_stream_permissions:
+    # Permissions that apply to data streams and their backing indices. The data streams are identified by the data_stream_patterns below. 
     - data_stream_patterns:
         - <data stream pattern the allowed actions should be applied to>
         - <data stream pattern the allowed actions should be applied to>
@@ -85,6 +89,7 @@ Search Guard roles and their associated permissions are defined in the file `sg_
     - data_stream_patterns:
         - ...
   tenant_permissions:
+    # Permissions that apply to kibana tenants. The tenants are identified by the tenant_patterns below.
     - tenant_patterns:
       - <tenant pattern the allowed actions should be applied to>
       - <tenant pattern the allowed actions should be applied to>
@@ -94,20 +99,6 @@ Search Guard roles and their associated permissions are defined in the file `sg_
     - tenant_patterns:
       - ...
 ```
-
-## Description
-
-| Name                    | Description                                                                                                                                                                                                       |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| cluster_permissions     | Permissions that apply on the cluster level, e.g. monitoring the cluster health                                                                                                                                   |
-| index_permissions       | Permissions that apply to one or more index patterns.                                                                                                                                                              |
-| alias_permissions       | Permissions that apply to one or more alias patterns, these permissions apply also to the underlying indices.                                                                                                                                                              |
-| data_stream_permissions | Permissions that apply to one or more data stream, these permissions apply also to the underlying indices.                                                                                                                                                         |
-| allowed_actions         | The actions that are allowed for the index, alias, data stream or tenant patterns.                                                                                                                                 |
-| dls                     | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index, alias and data stream patterns. Used to filter documents from the result set.                     |
-| fls                     | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index, alias and data stream patterns. Used to filter fields from the documents in the result set. |
-| tenant_permissions      | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana.                                                                                             |
-{: .config-table}
 
 ## Cluster-level permissions
 
@@ -427,6 +418,9 @@ The permissions specified for `alias_permissions` and `data_stream_permissions` 
 
 On the other hand, privileges specified for `index_permissions` never apply for aliases or data streams.
 
+For improved performance it is recommended to apply permissions on data stream and alias level, instead of directly on indices
+{: .note}
+
 ### Creating or modifying aliases
 For creating aliases or for adding indices to existing aliases, you will need the permission `indices:admin/aliases` both for the alias and the referenced indices.
 This should look similar this:
@@ -476,10 +470,9 @@ test:
 
 Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
 
-#### FLS/FM
+#### DLS/FLS/FM
 
-Field level security and field masking works completely the same as DLS. You can use `fls` and `field_masking` attributes for `data_stream_permissions` and `alias_permissions`.
-
+[Document level security](../_docs_dls_fls/dlsfls_dls.md#document-level-security-for-data-streams-and-aliases), [field level security](../_docs_dls_fls/dlsfls_fls.md#fls-on-data-streams-and-aliases) and [field masking](../_docs_dls_fls/dlsfls_field_anonymization.md) can be applied as normal.
 
 ## Cluster Permission Exclusions
 
@@ -517,6 +510,39 @@ Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. 
 If you are migrating to SG FLX 3.0 and have been previously using `exclude_index_permissions`, it is recommended to first retrieve the sg_roles.yml configuration and update the necessary roles, as `exclude_index_permissions` will no longer have any effect on the users privileges after migration. Retrieval of previous configuration is also possible post migration if necessary.
 {: .warning}
 
+### Example of role using index negation
+
+Previous configuration using `exclude_index_permissions`:
+
+```
+example_role:
+  index_permissions:
+  - index_patterns:
+    - "index_a*"
+    allowed_actions:
+    - "indices:admin/*"
+    excluded_index_permissions:
+    - index_patterns:
+      - "index_a1"
+      actions:
+    - "indices:admin/*"
+```
+
+New configuration using index negation:
+
+```
+example_role:
+  index_permissions:
+  - index_patterns:
+    - "index_a*"
+    - "-index_a1"
+    allowed_actions:
+    - "indices:admin/*"
+```
+
+Previously `excluded_index_permissions` configuration created global exclusion, meaning another role attached to the same user was not able to overwrite this exclusion. This is not the case with index negation. If another role mapped to the same user allows permission to the negated index, this permission will overwrite the negation.
+{: .warning}
+
 If a role with `exclude_index_permissions` is submitted using sgctl.sh tool, following message will be returned:
 ```
 Invalid config files:
@@ -537,8 +563,8 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
 | SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
 | SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
-| SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT | Permission for user to access kibana but not global tenant. |
-| SGS\_KIBANA\_USER\_NO\_MT | Permits users to access kibana UI only if multi tenancy is disabled. |
+| SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT | Permission for user to access kibana but not global tenant. Cannot be used together with SGS\_KIBANA\_USER\_NO\_MT |
+| SGS\_KIBANA\_USER\_NO\_MT | Permits users to access kibana UI only if multi tenancy is disabled. Cannot be used together with SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT |
 | SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
 | SGS\_MANAGE\_SNAPSHOTS | Grants full permissions on snapshot, restore and repositories operations |
 | SGS\_OWN\_INDEX | Grants full permissions on an index named after the authenticated user's username. |
@@ -546,16 +572,4 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_XP\_ALERTING | Role for X-Pack Alerting. Users who wish to use X-Pack Alerting need this role in addition to the sg\_kibana role |
 | SGS\_XP\_MACHINE\_LEARNING | Role for X-Pack Machine Learning. Users who wish to use X-Pack Machine Learning need this role in addition to the sg\_kibana role |
 {: .config-table}
-
-
-
-
-SGS_KIBANA_USER_NO_GLOBAL_TENANT
-SGS_KIBANA_USER_NO_MT
-
-
-
-
-
-
 
