@@ -43,6 +43,18 @@ The maximum default signals threads per tenant is now `10`. This can be configur
 * [Issue: Signals: increase default thread pool size](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/365)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/968)
 
+### Signals misfire strategy
+
+You can now assign misfire strategies to signals using following configuration in `elasticsearch.yml`:
+
+- `signals.cron_misfire_strategy`
+- `signals.simple_misfire_strategy`
+
+The default is `-1`. The possible options can be found on [quartz-scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
+
+* [Issue: Signals: allow setting misfire strategies](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/364)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/969)
+
 ## BREAKING: `exclude_index_permission` removed
 
 `exclude_index_permission` has been removed. Further details can be found here(TODO)
