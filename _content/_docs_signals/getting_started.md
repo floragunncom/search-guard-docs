@@ -78,10 +78,10 @@ Following is advanced configuration for signals that can be added to `elasticsea
 
 Signals "misfire" can occur when there are not enough threads to execute the signal. You can configure the relevant strategy for interval and cron triggers using the following configuration.
 
-Simple trigger: `SIGNALS_SIMPLE_MISFIRE_STRATEGY`
-Cron trigger: `SIGNALS_CRON_MISFIRE_STRATEGY`
+Simple trigger: `signals.simple_misfire_strategy` (Default is `-1`)
+Cron trigger: `signals.cron_misfire_strategy` (Default is `-1`)
 
-The possible values are listed in [quartz scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
+The possible values and further details can be found on [quartz scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
 
 ## Community support
 
