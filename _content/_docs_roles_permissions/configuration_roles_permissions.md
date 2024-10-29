@@ -416,12 +416,12 @@ The permissions specified for `alias_permissions` and `data_stream_permissions` 
 - The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` when `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1` then even though the configuration only has direct index permissions for `idx_a*`. The privileges from `alias_a1` will be projected onto the index.)
 - The user specifies a backing index of a data stream (Like `GET /.ds-ds_a1-2024.02.16-000001/_search`).
 
-On the other hand, privileges specified for `index_permissions` never apply for aliases or data streams.
+Permissions for aliases should always be listed under `alias_permissions`, similarly permissions for data streams should be listed under .
 
-For improved performance it is recommended to apply permissions on data stream and alias level, instead of directly on indices
+For improved performance it is recommended to apply permissions on data stream and alias level, instead of directly on indices.
 {: .note}
 
-### Creating or modifying aliases
+### Creating or modifying aliases permissions
 For creating aliases or for adding indices to existing aliases, you will need the permission `indices:admin/aliases` both for the alias and the referenced indices.
 This should look similar this:
 
@@ -434,18 +434,21 @@ test_role:
     - "member_of_alias_a*"
     allowed_actions:
     - "indices:admin/aliases"
-    alias_permissions:
-    - alias_patterns:
-      - "alias_a"
-      allowed_actions:
-      - "*"
+  alias_permissions:
+  - alias_patterns:
+    - "alias_a"
+    allowed_actions:
+    - "*"
 ```
 
 With this configuration, you can create an alias `alias_a` and add indices to it which match the pattern `member_of_alias_a*`.
 
 As the `alias_a` has full privileges (`allowed_actions: *`), you will also gain full privileges to all member indices after these were added.
 
-### Creating data streams
+If you only have permission to part of the underlying indices that alias contains and attempt to query this alias, you will get `403` error as permissions are missing for the remaining indices. Use `ignore_unavailable=true` to only receive hits from indices you have access to, example: `GET /alias/_search?ignore_unavailable=true`
+{: .note .js-note .note-warning}
+
+### Creating data streams permissions
 When working with data streams, you only have to consider privileges for the data streams themselves. You do not have to take care to add privileges to the backing indices. These are always implied.
 A role which gives a user the rights to create and access data streams can look like this:
 ```
@@ -505,10 +508,10 @@ Similarly to `cluster_permissions` entries, you can provide a list of cluster pe
 
 ## Support removed for exclude_index_permissions
 
-Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used. However the functionality is not identical. Previously `exclude_index_permissions` created an absolute global exclusion. Index negation, however, only affects the current index that is being evaluated.
+Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used. However the functionality is not identical. Previously `exclude_index_permissions` created an absolute global exclusion. Index negation, however, only affects the current index that is being evaluated. Therefore, other roles assigned to the user which give access to the negated index will still grant the configured access.
 
 If you are migrating to SG FLX 3.0 and have been previously using `exclude_index_permissions`, it is recommended to first retrieve the sg_roles.yml configuration and update the necessary roles, as `exclude_index_permissions` will no longer have any effect on the users privileges after migration. Retrieval of previous configuration is also possible post migration if necessary.
-{: .warning}
+{: .note .js-note .note-warning}
 
 ### Example of role using index negation
 
@@ -541,7 +544,7 @@ example_role:
 ```
 
 Previously `excluded_index_permissions` configuration created global exclusion, meaning another role attached to the same user was not able to overwrite this exclusion. This is not the case with index negation. If another role mapped to the same user allows permission to the negated index, this permission will overwrite the negation.
-{: .warning}
+{: .note .js-note .note-warning}
 
 If a role with `exclude_index_permissions` is submitted using sgctl.sh tool, following message will be returned:
 ```
