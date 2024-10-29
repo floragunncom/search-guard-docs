@@ -61,11 +61,23 @@ These settings can be set using the Signals settings REST API:
 
 ## Static Configuration Options
 
-The following configuration options can be made in the elasticsearch.yml configuration file. A restart of the respective node is necessary to bring these options into effect.
+The following configuration options can be made in the `elasticsearch.yml` configuration file. A restart of the respective node is necessary to bring these options into effect.
 
 **signals.enabled:** Can be used to enable or disable Signals. Optional, boolean, defaults to true. Take care that the value of this setting is consistent for all nodes in a cluster. It is not supported to enable Signals only on a subset of a cluster using this setting. Use the `node_filter` settings for this purpose instead.
 
 **signals.index_names.log:** Specifies the name of the watch log index. Optional, defaults to `<signals_log_{now/d}>`.
+
+**signals.all_tenants_active_by_default**: By default, each tenant gets an active Signals scheduler. Set this to false in order to disable this. In order to have an Signals scheduler for a tenant, you then need to use the Signals activate tenant API to explicitly activate a tenant.
+
+**signals.worker_threads.pool.max_size**: Maximum number of Signals watch runner threads spawned by tenant. Defaults to `3`.
+
+**signals.worker_threads.pool.keep_alive**: If a Signals watch runner thread is idle for more than the specified time, the thread will be automatically terminated. Defaults to `100` minutes.
+
+**signals.worker_threads.prio**: The priority used by watch runner threads. Defaults to the normal priority (`5`)
+
+**signals.watch_log.mapping_total_fields_limit**: The maximum number of field in signals index. Default is `2000`.
+
+**signals.worker_threads.pool.max_size**: The maximum threads per tenant. Default is `10`.
 
 **Note:** There are some further configuration options for configuring internal index names. These are not needed for normal operation and should be not used except in very special circumstances.
 
