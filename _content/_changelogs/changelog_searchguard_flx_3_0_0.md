@@ -28,7 +28,7 @@ Permissions can also be configured using Kibana UI.
 
 ## New DLS configuration option
 
-DLS can now be configured with additional option of `force_min_doc_count_to_1`, see following example:
+DLS can now be configured with additional option of `force_min_doc_count_to_1`, in order to work around cases where `min_doc_count` is `0`, see following example:
 
 ```
 dls:
@@ -48,7 +48,7 @@ Property `mapping.total_fields.limit` is added to signals configuration options 
 
 ### `signals.worker_threads.pool.max_size`
 
-The maximum default signals threads per tenant is now `10`. This can be configured using `signals.worker_threads.pool.max_size`.
+The maximum default signals threads per tenant is now `5`. This can be configured using `signals.worker_threads.pool.max_size`.
 
 * [Issue: Signals: increase default thread pool size](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/365)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/968)
