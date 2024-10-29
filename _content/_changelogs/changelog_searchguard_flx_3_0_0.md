@@ -26,12 +26,22 @@ Permissions can also be configured using Kibana UI.
 * [Issue: Extend roles ui for data streams and aliases](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/493)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/993)
 
+## New DLS configuration option
+
+DLS can now be configured with additional option of `force_min_doc_count_to_1`, see following example:
+
+```
+dls:
+  force_min_doc_count_to_1: false | true # Default is false
+```
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/827)
 
 ## Signals properties
 
-### `signals.watch_log.mapping_total_fields_limit`
+### Breaking change: `signals.watch_log.mapping_total_fields_limit` configuration option added to signals
 
-Property `mapping.total_fields.limit` is added to signals configuration options with default value of `2000`. This can be configured using `signals.watch_log.mapping_total_fields_limit`.
+Property `mapping.total_fields.limit` is added to signals configuration options with default value of `2000`. This can be configured using `signals.watch_log.mapping_total_fields_limit`. If you were previously querying runtime data in signals (which should only have been used for debugging), this will not be possible going forward and therefore this is marked as **Breaking change**.
 
 * [Issue: Signals: index template for signals logs](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/366)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/967)
@@ -42,18 +52,6 @@ The maximum default signals threads per tenant is now `10`. This can be configur
 
 * [Issue: Signals: increase default thread pool size](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/365)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/968)
-
-### Signals misfire strategy
-
-You can now assign misfire strategies to signals using following configuration in `elasticsearch.yml`:
-
-- `signals.cron_misfire_strategy`
-- `signals.simple_misfire_strategy`
-
-The default is `-1`. The possible options can be found on [quartz-scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
-
-* [Issue: Signals: allow setting misfire strategies](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/364)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/969)
 
 ## BREAKING: `exclude_index_permission` removed
 
@@ -66,7 +64,7 @@ The default is `-1`. The possible options can be found on [quartz-scheduler](htt
 
 When upgrading cluster to FLX 3.0. Any changes to auth-tokens are not supported and will potentially not work correctly. Ensure any changes like adding, updating or deleting auth-token are performed on the cluster either before or after the migration to FLX 3.0.
 
-## Bug fixes
+## Improvements
 
 ### Kibana dark mode 
 
@@ -81,3 +79,28 @@ Improved authentication error message if user doesn't have tenant assigned or ro
 
 * [Issue: Improve authentication error message when a user doesn't have any tenants or roles](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/480)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1005)
+
+## Bug fixes
+
+Bug in field anonimization in DLS/FLS fixed
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/988)
+
+## Read-only user and bulk updates
+
+Read-only user can now view bulk updates when dashboards are open
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/825)
+
+## Signals: Error detail fixed
+
+Signal Error Details button in Kibana now displays the correct error message
+
+* [Issue: Signals: Error detail seems to be broken](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/487)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1012)
+
+## Redirection to login page after token expired
+
+MT no longer redirects to the login page if the session token
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1011)
