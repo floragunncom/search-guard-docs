@@ -26,6 +26,17 @@ Audit logging is disabled by default. To enable it, you need to configure at lea
 searchguard.audit.type: internal_elasticsearch
 ```
 
+## Audit pre-built templates
+
+This feature is only available in FLX 3.0 and above
+{: .note .js-note .note-warning}
+
+You can install the pre-build audit log dashboard templates to generate generic visualizations all packaged together in one dashboard.
+
+To install these templates navigate to `Searchguard` -> `Configuration` -> `System Status` -> `Templates` and click `Install`
+
+This will create a new dashboard named `AuditLog Dashboard`, which you can access from Dashboards UI.
+ 
 ## Audit Categories
 
 Search Guard tracks the following types of events, on REST and Transport layer:
