@@ -37,6 +37,12 @@ dls:
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/827)
 
+## Augit log templates
+
+You can now install default audit log dashboard template available at:
+
+`Searchguard` -> `Configuration` -> `System Status` -> `Templates`
+
 ## Signals properties
 
 ### Breaking change: `signals.watch_log.mapping_total_fields_limit` configuration option added to signals
