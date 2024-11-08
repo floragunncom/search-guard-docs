@@ -43,6 +43,8 @@ You can now install default audit log dashboard template available at:
 
 `Searchguard` -> `Configuration` -> `System Status` -> `Templates`
 
+* [Issue: Add templates like the audit log templates to the website](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/499)
+
 ## Signals properties
 
 ### Breaking change: `signals.watch_log.mapping_total_fields_limit` configuration option added to signals
