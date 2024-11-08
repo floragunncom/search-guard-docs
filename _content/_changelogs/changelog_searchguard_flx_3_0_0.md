@@ -37,7 +37,7 @@ dls:
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/827)
 
-## Augit log templates
+## New audit log dashboard templates
 
 You can now install default audit log dashboard template available at:
 
