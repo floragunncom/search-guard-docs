@@ -90,24 +90,24 @@ Improved authentication error message if user doesn't have tenant assigned or ro
 
 ## Bug fixes
 
-Bug in field anonimization in DLS/FLS fixed
+Bug in field anonymization in DLS/FLS fixed
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/988)
 
-## Read-only user and bulk updates
+### Read-only user and bulk updates
 
 Read-only user can now view bulk updates when dashboards are open
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/825)
 
-## Signals: Error detail fixed
+### Signals: Error detail fixed
 
 Signal Error Details button in Kibana now displays the correct error message
 
 * [Issue: Signals: Error detail seems to be broken](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/487)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1012)
 
-## Redirection to login page after token expired
+### Redirection to login page after token expired
 
 MT no longer redirects to the login page if the session token
 
