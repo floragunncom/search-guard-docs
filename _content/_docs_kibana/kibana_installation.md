@@ -141,6 +141,9 @@ All Kibana users must be mapped to one of the built-in roles `SGS_KIBANA_USER_NO
 
 In addition, the users need to have READ permissions to all indices they should be allowed to use with Kibana. For this purpose, you should assign the users to additional roles.
 
+`SGS_KIBANA_USER_NO_GLOBAL_TENANT` and `SGS_KIBANA_USER_NO_MT` are mutually exclusive and together should never be assigned to the same user.
+{: .note .js-note .note-warning}
+
 ## Client certificates: elasticsearch.ssl.certificate
 
 In kibana.yml, you can configure Kibana to use a TLS certificate by setting the following options:
