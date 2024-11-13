@@ -344,6 +344,7 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-8:
+    - 8.15.3|3.0.0|3.0.0|yes|no|N/A|N/A
     - 8.15.2|2.0.0|2.0.0|yes|no|N/A|N/A
     - 8.15.1|2.0.0|2.0.0|yes|no|N/A|N/A
     - 8.15.0|2.0.0|2.0.0|yes|no|N/A|N/A
@@ -496,4 +497,4 @@ sgversions:
     - 6.4.1|25.5|19.0|yes|yes
     - 6.4.0|25.5|19.0|yes|yes
   tlstool: 2.0.0
-  sgctl: 2.0.0
+  sgctl: 3.0.0
