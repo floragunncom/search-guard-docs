@@ -405,7 +405,7 @@ sg_own_index:
         - SGS_CRUD
 ```
 
-## Alias and data stream-level permissions
+## Alias and data stream level permissions
 
 Support for aliases and data streams have been added in SG FLX 3.0
 {: .note}
