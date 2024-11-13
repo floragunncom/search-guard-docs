@@ -58,6 +58,15 @@ The examples are based on the [Kibana sample data](https://www.elastic.co/guide/
 
 In order to get to speed with Signals quickly, we recommend following our [Signals Alerting: First Steps](https://search-guard.com/signals-elasticsearch-alerting/) blog post. We will release a series of articles describing all Signals features in detail.
 
+### MISFIRE STRATEGY
+
+Signals "misfire" can occur when there are not enough threads to execute the signal. You can configure the relevant strategy for interval and cron triggers using the following configuration.
+
+Simple trigger: `signals.simple_misfire_strategy` (Default is `-1`)
+Cron trigger: `signals.cron_misfire_strategy` (Default is `-1`)
+
+The possible values and further details can be found on [quartz scheduler](https://www.quartz-scheduler.org/api/2.1.7/constant-values.html)
+
 ## Community support
 
 If you have any questions, please refer to our [Signals Community forum](https://forum.search-guard.com/c/alerting-signals/12).

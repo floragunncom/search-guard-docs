@@ -36,6 +36,9 @@ This trial license is valid for 60 days. If you want to extend it, just [contact
 
 ## License Handling
 
+Newly acquired license can be used no earlier than 30 days prior to start date of this license.
+{: .note .js-note .note-warning}
+
 ### Displaying your current license
 
 You have several ways to check the validity of your current license.
