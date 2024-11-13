@@ -63,7 +63,7 @@ The maximum default signals threads per tenant is now `5`. This can be configure
 
 ### BREAKING: `exclude_index_permission` removed
 
-`exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
+`exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions.md#support-removed-for-exclude_index_permissions)
 
 * [Issue: Remove exclude_index_permissions](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/359)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/928)
