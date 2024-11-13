@@ -416,7 +416,7 @@ The permissions specified for `alias_permissions` and `data_stream_permissions` 
 - The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` when `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1` then even though the configuration only has direct index permissions for `idx_a*`. The privileges from `alias_a1` will be projected onto the index.)
 - The user specifies a backing index of a data stream (Like `GET /.ds-ds_a1-2024.02.16-000001/_search`).
 
-Permissions for aliases should always be listed under `alias_permissions`, similarly permissions for data streams should be listed under .
+Permissions for aliases should always be listed under `alias_permissions`, similarly permissions for data streams should be listed under `data_stream_permissions`.
 
 For improved performance it is recommended to apply permissions on data stream and alias level, instead of directly on indices.
 {: .note}
