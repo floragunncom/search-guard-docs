@@ -385,6 +385,75 @@ For this purpose, you can add the entries `exclude_cluster_permissions` and `exc
 
 This means, that you can use  `cluster_permissions` and `index_permissions` entries to define a broader set of permissions and then use `exclude_cluster_permissions` and `exclude_index_permissions` to selectively subtract permissions a user is not allowed to have.
 
+Permissions for aliases should always be listed under `alias_permissions`, similarly permissions for data streams should be listed under `data_stream_permissions`.
+
+For improved performance it is recommended to apply permissions on data stream and alias level, instead of directly on indices.
+{: .note}
+
+### Creating or modifying aliases permissions
+For creating aliases or for adding indices to existing aliases, you will need the permission `indices:admin/aliases` both for the alias and the referenced indices.
+This should look similar this:
+
+```
+test_role:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  index_permissions:
+  - index_patterns:
+    - "member_of_alias_a*"
+    allowed_actions:
+    - "indices:admin/aliases"
+  alias_permissions:
+  - alias_patterns:
+    - "alias_a"
+    allowed_actions:
+    - "*"
+```
+
+With this configuration, you can create an alias `alias_a` and add indices to it which match the pattern `member_of_alias_a*`.
+
+As the `alias_a` has full privileges (`allowed_actions: *`), you will also gain full privileges to all member indices after these were added.
+
+If you only have permission to part of the underlying indices that alias contains and attempt to query this alias, you will get `403` error as permissions are missing for the remaining indices. Use `ignore_unavailable=true` to only receive hits from indices you have access to, example: `GET /alias/_search?ignore_unavailable=true`
+{: .note .js-note .note-warning}
+
+### Creating data streams permissions
+When working with data streams, you only have to consider privileges for the data streams themselves. You do not have to take care to add privileges to the backing indices. These are always implied.
+A role which gives a user the rights to create and access data streams can look like this:
+```
+ds_test_role:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+  - data_stream_patterns:
+    - "ds_a*"
+    allowed_actions:
+    - "*"  
+```
+
+Test user:
+```
+test:
+  hash: "$2y$12$NbU4RAs.0wwEOaSUldhECeTBUMAKka4ifO0oNjBr460Hn60F/acKO"
+  search_guard_roles:
+  - ds_test_role
+
+```
+
+Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
+
+#### DLS/FLS/FM
+
+[Document level security](../_docs_dls_fls/dlsfls_dls.md#document-level-security-for-data-streams-and-aliases), [field level security](../_docs_dls_fls/dlsfls_fls.md#fls-on-data-streams-and-aliases) and [field masking](../_docs_dls_fls/dlsfls_field_anonymization.md) can be applied as normal.
+
+## Cluster Permission Exclusions
+
+Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly defined cluster permissions a user may not have.
+
+For this purpose, you can add the entry `exclude_cluster_permissions` to your role definitions. Permissions defined here are **not** granted to the user, even if there are `cluster_permissions` or `index_permissions` properties which would grant these permissions.
+
+This means, that you can use  `cluster_permissions` and `index_permissions` entries to define a broader set of permissions and then use `exclude_cluster_permissions` to selectively subtract permissions a user is not allowed to have.
+
 For example, a role definition might now look like this:
 
 ```
