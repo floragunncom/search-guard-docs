@@ -17,7 +17,7 @@ description: Changelog for Search Guard FLX 3.0.0
 
 You can now use data steams and aliases instead of directly specifying indices. 
 
-* [Documentation](../_docs_roles_permissions/configure_roles_permissions.md#alias-and-data-stream-level-permissions)
+* [Documentation](../_docs_roles_permissions/configuration_roles_permissions.md#alias-and-data-stream-level-permissions)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/879)
 * [Issue: First class support for privileges on aliases and data streams](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/273)
 
@@ -54,21 +54,21 @@ Property `mapping.total_fields.limit` is added to signals configuration options 
 * [Issue: Signals: index template for signals logs](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/366)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/967)
 
-### `signals.worker_threads.pool.max_size`
+### signals.worker_threads.pool.max_size
 
 The maximum default signals threads per tenant is now `5`. This can be configured using `signals.worker_threads.pool.max_size`.
 
 * [Issue: Signals: increase default thread pool size](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/365)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/968)
 
-## BREAKING: `exclude_index_permission` removed
+### BREAKING: `exclude_index_permission` removed
 
-`exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions#support-removed-for-exclude_index_permissions)
+`exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions.md#support-removed-for-exclude_index_permissions)
 
 * [Issue: Remove exclude_index_permissions](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/359)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/928)
 
-## BREAKING: changes to auth-token in mix cluster not supported
+### BREAKING: changes to auth-token in mix cluster not supported
 
 When upgrading cluster to FLX 3.0. Any changes to auth-tokens are not supported and will potentially not work correctly. Ensure any changes like adding, updating or deleting auth-token are performed on the cluster either before or after the migration to FLX 3.0.
 
