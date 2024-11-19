@@ -13,7 +13,7 @@ Copyright 2022 floragunn GmbH
 
 
 <p align="center">
-<img src="img/logos/search-guard-frontmatter.png" alt="Search Guard - Security for Elasticsearch" style="width: 40%" />
+<img src="img/logos/search-guard-frontmatter.svg" alt="Search Guard - Security for Elasticsearch" style="width: 40%" />
 </p>
 
 <h2 align="center">Security and Alerting for Elasticsearch</h2>
