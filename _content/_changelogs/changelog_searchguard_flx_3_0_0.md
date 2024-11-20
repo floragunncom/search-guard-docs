@@ -13,7 +13,9 @@ description: Changelog for Search Guard FLX 3.0.0
 
 **Release Date: 2024-11-13**
 
-## Data streams and aliases
+## New Feature
+
+### Data streams and aliases
 
 You can now use data steams and aliases instead of directly specifying indices. 
 
@@ -26,7 +28,10 @@ Permissions can also be configured using Kibana UI.
 * [Issue: Extend roles ui for data streams and aliases](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/493)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/993)
 
-## New DLS configuration option
+
+## Improvements
+
+### New DLS configuration option
 
 DLS can now be configured with additional option of `force_min_doc_count_to_1`, in order to work around cases where `min_doc_count` is `0`, see following example:
 
@@ -37,7 +42,7 @@ dls:
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/827)
 
-## New audit log dashboard templates
+### New audit log dashboard templates
 
 You can now install default audit log dashboard template available at:
 
@@ -45,11 +50,9 @@ You can now install default audit log dashboard template available at:
 
 * [Issue: Add templates like the audit log templates to the website](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/499)
 
-## Signals properties
+### signals.watch_log.mapping_total_fields_limit configuration option added to signals
 
-### Breaking change: `signals.watch_log.mapping_total_fields_limit` configuration option added to signals
-
-Property `mapping.total_fields.limit` is added to signals configuration options with default value of `2000`. This can be configured using `signals.watch_log.mapping_total_fields_limit`. If you were previously querying runtime data in signals (which should only have been used for debugging), this will not be possible going forward and therefore this is marked as **Breaking change**.
+Property `mapping.total_fields.limit` is added to signals configuration options with default value of `2000`. This can be configured using `signals.watch_log.mapping_total_fields_limit`.
 
 * [Issue: Signals: index template for signals logs](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/366)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/967)
@@ -61,7 +64,7 @@ The maximum default signals threads per tenant is now `5`. This can be configure
 * [Issue: Signals: increase default thread pool size](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/365)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/968)
 
-### BREAKING: `exclude_index_permission` removed
+### BREAKING: exclude_index_permission removed
 
 `exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions.md#support-removed-for-exclude_index_permissions)
 
@@ -72,7 +75,22 @@ The maximum default signals threads per tenant is now `5`. This can be configure
 
 When upgrading cluster to FLX 3.0. Any changes to auth-tokens are not supported and will potentially not work correctly. Ensure any changes like adding, updating or deleting auth-token are performed on the cluster either before or after the migration to FLX 3.0.
 
-## Improvements
+### BREAKING: legacy implementation of DLSFLS removed
+
+In order to avoid data leaks, the DLS/FLS implementation must be switched before performing the upgrade to SG FLX 3.0
+
+To migrate safely follow the below procedure:
+
+  1. Edit sg_authz_dlsfls.yml and set `use_impl: flx`
+  2. If settings related to field masking were previously listed in `elasticsearch.yml`, these need to be moved to `sg_authz_dlsfls.yml`:
+  - `searchguard.compliance.mask_prefix` must be moved to `field_anonymization.prefix`
+  - If blake2b hashes shall remain consistent before and after the update:
+    - `searchguard.compliance.salt` must be moved to `field_anonymization.personalization`.
+    - If `dynamic.field_anonymization_salt2` in `sg_config.yml` is not set then `field_anonymization.salt` must be set to `null`, otherwise `field_anonymization.salt` must be set to relevant value.
+  - If consistency of blake2b hashes is not necessary before and after the update, `searchguard.compliance.salt` can be moved to `field_anonymization.salt`.
+
+If `use_impl: flx` is not configured before upgrading, DLS/FLS/FM can become inoperable in mixed clusters and can potentially expose information to unauthorized users.
+{: .note .js-note .note-warning}
 
 ### Kibana dark mode 
 
@@ -90,9 +108,25 @@ Improved authentication error message if user doesn't have tenant assigned or ro
 
 ## Bug fixes
 
-Bug in field anonymization in DLS/FLS fixed
+### Bug in field anonymization in DLS/FLS and MessageDiggest fixed
+
+MessageDiggest is no longer shared between threads. The field anonymization in DLS/FLS was affected.
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/988)
+
+### Stabilized scheduling for schedulers with overload
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1013)
+
+### Fixed OIDC response processing
+
+`expires_in` is no longer required in OIDC response
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/993)
+
+### Fixed permission needed for indices:data/read/close_point_in_time
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1027)
 
 ### Read-only user and bulk updates
 
@@ -109,6 +143,6 @@ Signal Error Details button in Kibana now displays the correct error message
 
 ### Redirection to login page after token expired
 
-MT no longer redirects to the login page if the session token
+MT no longer redirects to the login page if the session token is expired
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1011)
