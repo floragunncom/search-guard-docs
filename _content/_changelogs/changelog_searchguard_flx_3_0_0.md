@@ -53,6 +53,7 @@ You can now install default audit log dashboard template available at:
 ### signals.watch_log.mapping_total_fields_limit configuration option added to signals
 
 Property `mapping.total_fields.limit` is added to signals configuration options with default value of `2000`. This can be configured using `signals.watch_log.mapping_total_fields_limit`.
+Setting this value to `-1` will store the content of the `data` field in the log index but it will not be searchable.
 
 * [Issue: Signals: index template for signals logs](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/366)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/967)
