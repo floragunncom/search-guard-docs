@@ -32,3 +32,5 @@ We have fixed the sgctl connection issues.
 ### Node restart when SearchGuard is disabled
 
 Nodes are now successfully restarting when SearchGuard is disabled.
+
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1043)
