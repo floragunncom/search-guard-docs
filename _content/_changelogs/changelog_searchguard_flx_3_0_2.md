@@ -11,7 +11,7 @@ description: Changelog for Search Guard FLX 3.0.2
 
 # Search Guard FLX 3.0.2
 
-**Release Date: 2024-12-10**
+**Release Date: 2024-12-05**
 
 ## Improvements
 
@@ -25,6 +25,6 @@ Data stream .kibana-reporting* is now a part of the SGS_KIBANA_SERVER role.
 
 ### Multi-tenancy in data migration 
 
-Data migration is now possible in multi tenant environment.
+Data migration in multi tenant environment is fixed.
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1055)

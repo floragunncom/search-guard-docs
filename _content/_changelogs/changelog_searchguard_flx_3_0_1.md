@@ -11,7 +11,7 @@ description: Changelog for Search Guard FLX 3.0.1
 
 # Search Guard FLX 3.0.1
 
-**Release Date: 2024-12-10**
+**Release Date: 2024-11-28**
 
 ## Improvements
 
@@ -27,7 +27,6 @@ Additional improvements in Kibana UI Dark mode.
 
 We have fixed the sgctl connection issues.
 
-* [Issue: SGCTL 3.0.0 fails to connect to cluster](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/16)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/16)
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/224)
 
@@ -35,5 +34,4 @@ We have fixed the sgctl connection issues.
 
 Nodes are now successfully restarting when SearchGuard is disabled.
 
-* [Issue: Node won't start after disabling SG](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/15)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/15)
