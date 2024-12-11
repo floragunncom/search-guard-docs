@@ -27,11 +27,8 @@ Additional improvements in Kibana UI Dark mode.
 
 We have fixed the sgctl connection issues.
 
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/16)
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/224)
 
-### Node restart after disabling of SearchGuard
+### Node restart when SearchGuard is disabled
 
 Nodes are now successfully restarting when SearchGuard is disabled.
-
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-custom-requests/-/issues/15)
