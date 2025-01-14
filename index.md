@@ -22,6 +22,13 @@ Copyright 2022 floragunn GmbH
 
 Welcome to Search Guard FLX, the next generation of Search Guard! 
 
+## Try it
+
+{: .note .js-note .note-info}
+<pre><code>docker run -it --rm -p 5601:5601 -p 9200:9200 floragunncom/search-guard-flx-demo</code></pre>Point your browser to `http://localhost:5601` and login with username `admin` and password `admin`
+{: .note .js-note .note-info}
+
+
 ## What's New
 
 Search Guard FLX brings a number of fundamental improvements and updates to Search Guard. These require breaking changes in the configuration format.
@@ -46,7 +53,7 @@ You have several options to try Search Guard FLX:
 
 - If you want to start with a quick test of a fresh installation on your local system, you can use the [Search Guard Demo Installer](demo-installer).
 
-- If you have docker installed you can just simply run `docker run -it --rm -p 5601:5601 floragunncom/flx-7-demo` and point your browser to `http://localhost:5601` and login with username `admin` and password `admin`
+- If you have docker installed you can just simply run `docker run -it --rm -p 5601:5601 -p 9200:9200 floragunncom/search-guard-flx-demo` and point your browser to `http://localhost:5601` and login with username `admin` and password `admin`
 
 - If you have an existing Search Guard setup and want to test its configuration with Search Guard FLX, you can use the [migrate-config command](sg-classic-config-migration) of `sgctl`. Please also review the list of [release notes](changelog-searchguard-flx-1_0_0).
 
