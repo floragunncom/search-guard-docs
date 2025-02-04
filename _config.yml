@@ -140,7 +140,7 @@ labels:
     advanced-topics: Signals Advanced Topics
     sgadmin: sgadmin
     aim: Automated Index Management
-    cl: Cloud Lock
+    cl: Encryption at rest
     aim-conditions: Conditions
     aim-actions: Actions
     aim-rest: REST API
