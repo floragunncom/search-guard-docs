@@ -28,7 +28,7 @@ It is the missing piece to regain complete control over your data in Elasticsear
 1. Download Cloud Lock Control Tool (clctl) and unpack it
 
 2. Create a new cluster key pair on a client machine  
-   This is typically done by a system administrator and is only necessary once per cluster. You can use tools like openssl to generate the key pair, or simply use earctl like:
+   This is typically done by a system administrator and is only necessary once per cluster. You can use tools like openssl to generate the key pair, or simply use clctl like:
 
    ```bash
    clctl.sh create-cluster-keypair
