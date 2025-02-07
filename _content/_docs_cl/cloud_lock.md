@@ -28,6 +28,14 @@ It is the missing piece to regain complete control over your data in Elasticsear
 - The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh)
 - The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.0.zip)
 
+## SearchGuard plugin installation
+
+In order to install SearchGuard plugin, execute the following command:
+
+```bash
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-8-<version>.zip
+```
+
 ## Enable Cloud Lock
 
 1. Download Cloud Lock Control Tool ([clctl](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh))
@@ -50,8 +58,8 @@ It is the missing piece to regain complete control over your data in Elasticsear
 3. Add the following lines to elasticsearch.yml on each node:
 
    ```yaml
-   searchguard.cloud_lock.enabled: true
-   searchguard.cloud_lock.public_cluster_key: MIICIjAN...EAAQ==
+   cloud_lock.enabled: true
+   cloud_lock.public_cluster_key: MIICIjAN...EAAQ==
    ```
 
    The key can be found in the public_cluster_key_.pubkey file. There is also a "copy and paste" ready variant in elasticsearch_yaml_.yml.
@@ -61,10 +69,11 @@ It is the missing piece to regain complete control over your data in Elasticsear
 
 ## Initialize the Cloud Lock
 
-This needs only be done once after installing the plugin, or after a full cluster restart. It is usually performed by a system administrator from a client machine:
+This needs only be done once after installing the plugin, or after a full cluster restart. It is usually performed by a system administrator from a client machine. Admin certificate, key and root ca are needed in order to initialize the cluster.
 
 ```bash
-clctl.sh initialize-cluster -h esnode.company.com -p 9200 --pk-file secret_cluster_key_<uuid>.seckey
+./clctl.sh connect localhost --ca-cert ./config/root-ca.pem --cert ./config/kirk.pem --key ./config/kirk-key.pem
+./clctl.sh initialize-cluster --pk-file secret_cluster_key_<uuid>.seckey
 ```
 
 ## Create an Encrypted Index
@@ -100,7 +109,7 @@ This curl command creates an encrypted index named my_encrypted_index. Please no
 To list all your encrypted indices:
 
 ```bash
-$ clctl.sh -h esnode.company.com -p 9200 list-encrypted-indices
+$ clctl.sh list-encrypted-indices
 ```
 
 ## Create and Restore an Encrypted Snapshot
