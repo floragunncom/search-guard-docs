@@ -23,6 +23,11 @@ SearchGuard Cloud Lock provides encryption at rest for Elasticsearch indices and
 
 It is the missing piece to regain complete control over your data in Elasticsearch deployments, especially in public clouds. SearchGuard Cloud Lock can also be used in private clouds or on-premises installations to protect your data at rest.
 
+## Technical Preview Version Download
+
+- The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh)
+- The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.0.zip)
+
 ## Enable Cloud Lock
 
 1. Download Cloud Lock Control Tool ([clctl](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh))
@@ -161,8 +166,3 @@ The plugin also provides encrypted snapshots functionality for backing up data. 
 - After a full cluster restart, the plugin must be initialized again before accessing encrypted indices
 
 Apart from these preconditions, an encrypted index supports all queries and mappings like any other index.
-
-## Technical Preview Version Download
-
-- The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh)
-- The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.0.zip)
