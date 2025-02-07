@@ -28,12 +28,12 @@ It is the missing piece to regain complete control over your data in Elasticsear
 - The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.0.sh)
 - The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.0/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.0.zip)
 
-## SearchGuard plugin installation
+## Installation of Cloud Lock Plugin
 
-In order to install SearchGuard plugin, execute the following command:
+In order to install Cloud Lock plugin, execute the following command:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-8-<version>.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-cloud-lock-plugin.zip
 ```
 
 ## Enable Cloud Lock
