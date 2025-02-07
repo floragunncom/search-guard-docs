@@ -69,10 +69,17 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-8-<version>.zip
 
 ## Initialize the Cloud Lock
 
-This needs only be done once after installing the plugin, or after a full cluster restart. It is usually performed by a system administrator from a client machine. Admin certificate, key and root ca are needed in order to initialize the cluster.
+This needs only be done once after installing the plugin, or after a full cluster restart. It is usually performed by a system administrator from a client machine. 
+
+First connect the clctl.sh tool to the cluster using admin certificate, key and root ca, see following example:
 
 ```bash
 ./clctl.sh connect localhost --ca-cert ./config/root-ca.pem --cert ./config/kirk.pem --key ./config/kirk-key.pem
+```
+
+Once the clctl tool is connected to the cluster, execute the following command to initialize the Cloud Lock:
+
+```bash
 ./clctl.sh initialize-cluster --pk-file secret_cluster_key_<uuid>.seckey
 ```
 
@@ -106,7 +113,7 @@ This curl command creates an encrypted index named my_encrypted_index. Please no
 - The index settings encryption_enable: true and store.type: encrypted defines this index as an encrypted index.
 - The mapping _encrypted_tl_content with type binary is required and only used internally, as explained above.
 
-To list all your encrypted indices:
+To list all your encrypted indices, (connect clctl.sh tool to the cluster if not already done so and) execute the following command:
 
 ```bash
 $ clctl.sh list-encrypted-indices
