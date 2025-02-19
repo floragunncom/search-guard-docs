@@ -5,7 +5,7 @@ permalink: cloud-lock
 category: cl
 order: 100
 layout: docs
-edition: community
+edition: enterprise
 description: Cloud Lock - Encryption at Rest for ElasticSearch
 ---
 <!--- Copyright 2023 floragunn GmbH -->
