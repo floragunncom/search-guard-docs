@@ -349,8 +349,10 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-8:
-    - 8.17.0|3.0.3|3.0.3|yes|no|N/A|N/A
-    - 8.16.2|3.0.3|3.0.3|yes|no|N/A|N/A
+    - 8.17.2|3.0.3|3.0.3|yes|no|N/A|N/A
+    - 8.17.1|3.0.3|3.0.3|yes|no|N/A|N/A
+    - 8.17.0|3.0.3|3.0.3|yes|yes|N/A|N/A
+    - 8.16.2|3.0.3|3.0.3|yes|yes|N/A|N/A
     - 8.16.1|3.0.2|3.0.2|yes|yes|N/A|N/A
     - 8.16.0|3.0.2|3.0.2|yes|yes|N/A|N/A
     - 8.15.4|3.0.1|3.0.1|yes|yes|N/A|N/A
