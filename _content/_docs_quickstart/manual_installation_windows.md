@@ -81,7 +81,6 @@ searchguard.allow_unsafe_democertificates: true
 searchguard.allow_default_init_sgindex: true
 searchguard.authcz.admin_dn:
   - CN=kirk,OU=client,O=client,L=test,C=de
-searchguard.enable_snapshot_restore_privilege: true
 searchguard.check_snapshot_restore_write_privileges: true
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 xpack.security.enabled: false
