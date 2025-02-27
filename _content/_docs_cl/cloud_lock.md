@@ -88,10 +88,10 @@ Once the clctl tool is connected to the cluster, execute the following command t
 Creating an encrypted index is the same as creating any other index:
 
 ```bash
-curl "https://esnode.company.com:9200/my_encrypted_index?pretty" -H 'Content-Type: application/json' -d'
+curl -k -XPUT -u admin:admin "https://esnode.company.com:9200/my_encrypted_index1?pretty" -H 'Content-Type: application/json' -d'
 {
   "settings": {
-    "encryption_enabled": true,
+    "cloud_lock_enabled": true,
     "store.type": "encrypted",
     ...
     ...
@@ -103,6 +103,7 @@ curl "https://esnode.company.com:9200/my_encrypted_index?pretty" -H 'Content-Typ
         },
       ...
       ...
+    }
   }
 }
 '
@@ -118,18 +119,19 @@ To list all your encrypted indices, (connect clctl.sh tool to the cluster if not
 ```bash
 $ clctl.sh list-encrypted-indices
 ```
+**NOTE:** Successful clctl.sh command execution does not return any __success message__.
 
 ## Create and Restore an Encrypted Snapshot
 
 1. Register the encrypted snapshot repository:
 
     ```bash
-    curl "https://esnode.company.com:9200/_snapshot/my_encrypted_s3_backup?pretty" -H 'Content-Type: application/json' -d '
-    {
-      "type": "encrypted",
-      "settings": {
-        "delegate": "my_s3_backup"
-      }
+    curl -k -X PUT -u admin:admin "https://esnode.company.com:9200/_snapshot/my_encrypted_fs_backup?pretty" -H 'Content-Type: application/json' -d '
+    {                                   
+      "type": "encrypted",              
+      "settings": {               
+        "delegate": "my_fs_backup"
+      }                  
     }'
     ```
 
@@ -146,7 +148,7 @@ $ clctl.sh list-encrypted-indices
 For creating multiple encrypted indices:
 
 ```bash
-curl "https://esnode.company.com:9200/_index_template/encrypted_index_template?pretty" -H 'Content-Type: application/json' -d '
+curl -k -X PUT -u admin:admin "https://esnode.company.com:9200/_index_template/encrypted_index_template?pretty" -H 'Content-Type: application/json' -d '
 {
   "index_patterns": ["encrypted_*"],
   "priority": 300,
@@ -159,7 +161,7 @@ curl "https://esnode.company.com:9200/_index_template/encrypted_index_template?p
       }
     },
     "settings":{
-      "encryption_enabled": true,
+      "cloud_lock_enabled": true,
       "number_of_shards": 3,
       "number_of_replicas": 2,
       "store.type": "encrypted"
