@@ -25,8 +25,8 @@ It is the missing piece to regain complete control over your data in Elasticsear
 
 ## Technical Preview Version Download
 
-- The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.3.zip)
-- The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.3.zip)
+- The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.3.zip)
+- The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.3.zip)
 
 ## Installation of Cloud Lock Plugin
 
@@ -38,7 +38,7 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-cloud-lock-plug
 
 ## Enable Cloud Lock
 
-1. Download Cloud Lock Control Tool ([clctl](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-plugin/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-plugin-3.0.3-tp1-es-8.17.3.zip))
+1. Download Cloud Lock Control Tool ([clctl](https://maven.search-guard.com//search-guard-cloud-lock-release/com/floragunn/search-guard-cloud-lock/search-guard-cloud-lock-ctl/3.0.3-tp1-es-8.17.3/search-guard-cloud-lock-ctl-3.0.3-tp1-es-8.17.3.zip))
 
 2. Create a new cluster key pair on a client machine  
    This is typically done by a system administrator and is only necessary once per cluster. You can use tools like openssl to generate the key pair, or simply use clctl like:
