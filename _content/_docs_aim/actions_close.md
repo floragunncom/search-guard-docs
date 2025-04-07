@@ -2,8 +2,6 @@
 title: Close Action
 html_title: Close Action
 permalink: automated-index-management-actions-close
-category: aim-actions
-order: 302
 layout: docs
 edition: community
 description: How the close action works

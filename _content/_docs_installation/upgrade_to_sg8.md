@@ -2,9 +2,6 @@
 title: Upgrade to Search Guard FLX for Elasticsearch 8
 html_title: Upgrade Search Guard FLX to Elasticsearch 8
 permalink: sg-upgrade-7-8
-category: installation
-#subcategory: kibana-authentication-migration-overview
-order: 800
 layout: docs
 edition: community
 description: Upgrade Search Guard FLX to Elasticsearch 8

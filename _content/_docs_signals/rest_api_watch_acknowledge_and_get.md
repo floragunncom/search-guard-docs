@@ -2,14 +2,12 @@
 title: Acknowledge And Get
 html_title: Acknowledge And Get
 permalink: elasticsearch-alerting-rest-api-watch-acknowledge-and-get
-category: signals-rest
-order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and suppress notifications until the anomaly disappears. New watch state is also returned by request.
-
+description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging
+  a watch and suppress notifications until the anomaly disappears. New watch state
+  is also returned by request.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Acknowledge And Get Watch API

@@ -2,11 +2,10 @@
 title: Customizing the login page
 html_title: Customizing the Search Guard Kibana Plugin login page
 permalink: kibana-login-customizing
-category: kibana-authentication-basic-overview
-order: 250
 layout: docs
 edition: community
-description: How to customize the Kibana login page with your own logo, corporate identity and messages.
+description: How to customize the Kibana login page with your own logo, corporate
+  identity and messages.
 ---
 <!---
 Copyright 2022 floragunn GmbH

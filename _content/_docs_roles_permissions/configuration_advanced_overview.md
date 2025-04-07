@@ -2,14 +2,10 @@
 title: Advanced topics
 html_title: Advanced authorization configuration
 permalink: authorization-advanced-overview
-category: rolespermissions
-subcategory: authorization-advanced
-order: 1000
 layout: docs
 edition: community
 description: Advanced authorization topics
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

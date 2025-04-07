@@ -1,12 +1,9 @@
 ---
 title: Search Guard FLX 2.0.0
 permalink: changelog-searchguard-flx-2_0_0
-category: changelogs-searchguard
-order: -1080
 layout: changelogs
 description: Changelog for Search Guard FLX 2.0.0
 ---
-
 <!--- Copyright 2024 floragunn GmbH -->
 
 # Search Guard FLX 2.0.0

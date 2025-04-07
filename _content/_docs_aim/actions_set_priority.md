@@ -2,8 +2,6 @@
 title: Set Priority Action
 html_title: Set Priority Action
 permalink: automated-index-management-actions-set-priority
-category: aim-actions
-order: 306
 layout: docs
 edition: community
 description: How the set priority action works

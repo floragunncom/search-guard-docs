@@ -1,0 +1,31 @@
+{% assign is_current = false %}
+{% if include.item.slug == page.permalink %}
+  {% assign is_current = true %}
+{% else %}
+  {% if include.item.isroot == true and page.isroot == true %}
+    {% assign is_current = true %}
+  {% endif %}
+{% endif %}
+
+{{}}
+<li class="nav-item left-nav-level-{{ include.depth }} {% if include.item.children %}has-children{% endif %}">
+  {% if include.item.slug %}
+    <a href="{{ include.item.slug }}" class="{% if is_current %}selected{% endif %}">
+      {{ include.item.title }}
+    </a>
+  {% else %}
+    <span class="nav-section">{{ include.item.title }}</span>
+  {% endif %}
+  
+  {% if include.item.children %}
+    <ul class="nav-submenu">
+      {% for child in include.item.children %}
+        {% assign next_depth = include.depth | plus: 1 %}
+        {% include left_navigation_item.html
+           item=child 
+           depth=next_depth
+        %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>

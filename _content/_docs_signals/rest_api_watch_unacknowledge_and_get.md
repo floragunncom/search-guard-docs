@@ -2,14 +2,12 @@
 title: Un-acknowledge Watch And Get
 html_title: Un-acknowledge Watch And Get
 permalink: elasticsearch-alerting-rest-api-watch-un-acknowledge-and-get
-category: signals-rest
-order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch API provides an endpoint for un-acknowledging a watch to move it back to the initial state. The new watch state is also returned by the request.
-
+description: The Signals Alerting for Elasticsearch API provides an endpoint for un-acknowledging
+  a watch to move it back to the initial state. The new watch state is also returned
+  by the request.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Un-acknowledge And Get Watch API

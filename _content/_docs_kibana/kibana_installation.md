@@ -2,11 +2,10 @@
 title: Installing the Plugin
 html_title: Installing the Search Guard Kibana Plugin
 permalink: kibana-plugin-installation
-category: kibana
-order: 100
 layout: docs
 edition: community
-description: How to install the Search Guard Kibana plugin which adds authentication, multi-tenancy and the configuration UI.
+description: How to install the Search Guard Kibana plugin which adds authentication,
+  multi-tenancy and the configuration UI.
 ---
 <!---
 Copyright 2022 floragunn GmbH

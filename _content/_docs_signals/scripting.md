@@ -2,13 +2,10 @@
 title: Scripting
 html_title: Scripting in Signals Alerting
 permalink: signals-alerting-scripting
-category: signals
-order: 710
 layout: docs
 edition: community
-description: 
+description:
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Scripting in Signals

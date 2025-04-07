@@ -1,6 +1,0 @@
-{% assign items = site[include.collectionname] | where:'category', include.category | sort: 'order' %}
-<li>
-	{% for item in items %}
-	<a href="{{site.baseurl}}{{ item.url }}" class="main-nav-level-2">{{ item.title }}</a>
-	{% endfor %}											
-</li>

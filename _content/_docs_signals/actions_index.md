@@ -2,14 +2,11 @@
 title: Index Actions
 html_title: Index Actions
 permalink: elasticsearch-alerting-actions-index
-category: actions
-order: 100
 layout: docs
 edition: community
-description: Signals Alerting for Elasticsearch can write data back to an Elasticsearch  index if a watch is executed.
-
+description: Signals Alerting for Elasticsearch can write data back to an Elasticsearch  index
+  if a watch is executed.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Index Action

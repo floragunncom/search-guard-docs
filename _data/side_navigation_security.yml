@@ -1,0 +1,373 @@
+- title: Security
+  slug: security
+  isroot: true
+  children:
+
+    - title: Introduction to Search Guard
+      slug: search-guard-introduction
+      children:
+        - title: Overview
+          slug: security-for-elasticsearch
+        - title: Main Concepts
+          slug: main-concepts
+
+    - title: Quickstart
+      slug: quickstart
+      children:
+        - title: Demo Installer (Linux/Mac)
+          slug: demo-installer
+        - title: Manual Installation
+          slug: manual-installation
+        - title: Guided Tour
+          slug: guided_tour
+          children:
+            - title: Adding users
+              slug: first-steps-user-configuration
+            - title: Configuring roles
+              slug: first-steps-roles-configuration
+            - title: Mapping users to Search Guard roles
+              slug: first-steps-mapping-users-roles
+            - title: Testing the configuration
+              slug: first-steps-testing-configuration
+
+    - title: Search Guard Versions
+      slug: search-guard-versions
+      children:
+        - title: Releases
+          slug: search-guard-versions
+        - title: Community Edition
+          slug: search-guard-community-edition
+        - title: Enterprise and Compliance Edition
+          slug: search-guard-enterprise-edition
+        - title: Academic and Scientific Licensing
+          slug: search-guard-acadmic-scientic-licensing
+        - title: OEM Licensing
+          slug: oem-licenses
+        - title: End of life policy
+          slug: eol-policy
+
+    - title: Installing Search Guard
+      slug: search-guard-installation-section
+      children:
+        - title: Search Guard Installation
+          slug: search-guard-installation
+        - title: Updating Search Guard
+          slug: upgrading
+        - title: Disabling or Removing Search Guard
+          slug: disabling-removing-search-guard
+        - title: Search Guard Compatibility
+          slug: search-guard-compatibility
+        - title: Migrating from Classic to FLX
+          slug: search-guard-migration
+          children:
+            - title: Migrating to FLX
+              slug: sg-classic-config-migration-overview
+            - title: Quick Start
+              slug: sg-classic-config-migration-quick
+            - title: Production
+              slug: sg-classic-config-migration-prod
+            - title: FLX release notes
+              slug: sg-flx-release-notes
+            - title: Feature map
+              slug: config-migration-feature-map
+        - title: Upgrading Search Guard
+          slug: search-guard-upgrading
+          children:
+            - title: Upgrade from FLX 1.x to 2.x
+              slug: sg-200-upgrade
+            - title: Upgrade from SearchGuard 7.x to 8.x
+              slug: sg-upgrade-7-8
+
+    - title: TLS Setup
+      slug: tls-setup
+      children:
+        - title: Generating Certificates
+          slug: generating-certificates
+          children:
+            - title: Search Guard Installer
+              slug: tls-certificates-installer
+            - title: Offline TLS Tool
+              slug: offline-tls-tool
+        - title: Configuring TLS
+          slug: configuring-tls
+        - title: Production environments
+          slug: tls-in-production
+        - title: Certificate revocation
+          slug: elasticsearch-certificate-revocation
+        - title: TLS hot-reload
+          slug: hot-reload-tls
+
+    - title: Search Guard Configuration
+      slug: search-guard-configuration
+      children:
+        - title: Overview
+          slug: search-guard-index
+        - title: Using sgctl
+          slug: sgctl-overview
+          children:
+            - title: Basic Usage
+              slug: sgctl
+            - title: Examples
+              slug: sgctl-examples
+            - title: Configuration changes
+              slug: sgctl-configuration-changes
+            - title: System Administration
+              slug: sgctl-system-administration
+        - title: Search Guard configuration GUI
+          slug: configuration-gui
+        - title: Configuration variables
+          slug: configuration-password-handling
+        - title: Configuration index maintenance
+          slug: search-guard-index-maintenance
+
+    - title: Authentication
+      slug: authentication
+      children:
+        - title: Overview
+          slug: authentication-authorization
+        - title: General Configuration
+          slug: general-configuration
+          children:
+            - title: Introduction to sg_authc
+              slug: authentication-authorization-configuration
+            - title: Advanced user mapping
+              slug: authentication-authorization-configuration-advanced-user-mapping
+            - title: Other advanced options
+              slug: authc-advanced-options
+        - title: Password-based Authentication
+          slug: password-based-authentication
+          children:
+            - title: Overview
+              slug: http-basic-authorization
+            - title: Internal users database
+              slug: internal-users-database
+        - title: Active Directory and LDAP
+          slug: active-directory-and-ldap
+          children:
+            - title: Quick Start
+              slug: active-directory-ldap
+            - title: Advanced Configuration
+              slug: active-directory-ldap-advanced
+        - title: Kerberos / SPNEGO
+          slug: kerberos-spnego
+        - title: JWT
+          slug: json-web-tokens-overview
+          children:
+            - title: Quick Start
+              slug: json-web-tokens
+            - title: Advanced Configuration
+              slug: json-web-tokens-advanced
+        - title: Proxy authentication
+          slug: proxy-authentication-overview
+          children:
+            - title: Quick Start
+              slug: proxy-authentication
+            - title: Advanced Configuration
+              slug: proxy-authentication-advanced
+        - title: Client certificate authentication
+          slug: client-certificate-auth
+        - title: Anonymous authentication
+          slug: anonymous authentication
+        - title: Search Guard Auth Tokens
+          slug: search-guard-auth-tokens
+
+    - title: Authorization
+      slug: authorization
+      children:
+        - title: Demo users and roles
+          slug: demo-users-roles
+        - title: Mapping users to Search Guard roles
+          slug: mapping-users-roles
+        - title: Permissions and action groups
+          slug: action-groups
+        - title: Search Guard roles
+          slug: roles-permissions
+        - title: Search Guard roles (2.x and below)
+          slug: roles-permissions-2x
+        - title: Role mapping modes
+          slug: role-mapping-modes
+        - title: Runtime index privilege evaluation
+          slug: authorization-runtime-index-privilege-evaluation
+        - title: Advanced topics
+          slug: authorization-advanced-overview
+          children:
+            - title: User impersonation
+              slug: user-impersonation
+            - title: Snapshot and restore
+              slug: snapshot-restore
+
+    - title: Document-level security
+      slug: document-level-security-index
+      children:
+        - title: Basics
+          slug: document-level-security
+        - title: Attribute-based authorization
+          slug: attribute-based-dls
+        - title: Advanced topics
+          slug: advanced-dls
+
+    - title: Field-level security
+      slug: field-level-security-index
+      children:
+        - title: Field-level security
+          slug: field-level-security
+        - title: Field anonymization
+          slug: field-anonymization
+
+    - title: Audit Logging
+      slug: audit-logging
+      children:
+        - title: Configuring Audit Logging
+          slug: audit-logging-compliance
+        - title: Storage Types
+          slug: audit-logging-storage
+        - title: Event routing
+          slug: compliance-event-routing
+        - title: Field Reference
+          slug: audit-logging-reference
+        - title: Read History Audit Logging
+          slug: compliance-read-history
+        - title: Write History Audit Logging
+          slug: compliance-write-history
+        - title: Configuration change tracking
+          slug: configuration-integrity
+        - title: System change tracking
+          slug: integrity-elasticsearch
+        - title: Immutable indices
+          slug: immutable-indices
+
+    - title: Rest API
+      slug: rest-api
+      children:
+        - title: Access Control
+          slug: rest-api-access-control
+        - title: Usage and return values
+          slug: rest-api
+        - title: Internal users API
+          slug: rest-api-internalusers
+        - title: Roles API
+          slug: rest-api-roles
+        - title: Roles mapping API
+          slug: rest-api-roles-mapping
+        - title: Action groups API
+          slug: rest-api-actiongroups
+        - title: Blocks API
+          slug: rest-api-blocks
+        - title: Tenants API
+          slug: rest-api-tenants
+        - title: License API
+          slug: rest-api-license
+        - title: Cache API
+          slug: rest-api-cache
+        - title: Advanced Topics
+          slug: advanced-topics
+          children:
+            - title: Bulk Requests
+              slug: rest-api-bulk
+            - title: Reserved and hidden resources
+              slug: rest-api-reserved-hidden
+
+    - title: Kibana
+      slug: kibana
+      children:
+        - title: Installing the Plugin
+          slug: kibana-plugin-installation
+        - title: Authentication
+          slug: kibana-plugin-authentication
+          children:
+            - title: Overview
+              slug: kibana-authentication-types
+            - title: Password-based Authentication
+              slug: kibana-password-based-authentication
+              children:
+                - title: Quick Start
+                  slug: kibana-authentication-basicauth
+                - title: Customizing the login page
+                  slug: kibana-login-customizing
+            - title: OIDC
+              slug: kibana-oidc
+              children:
+                - title: Quick Start
+                  slug: kibana-authentication-openid
+                - title: Advanced Configuration
+                  slug: kibana-authentication-openid-advanced-config
+            - title: SAML
+              slug: kibana-saml
+              children:
+                - title: Quick Start
+                  slug: kibana-authentication-saml
+                - title: Advanced Configuration
+                  slug: kibana-authentication-saml-advanced
+                - title: Troubleshooting
+                  slug: troubleshooting-saml
+        - title: Proxy
+          slug: kibana-authentication-proxy
+        - title: Kerberos
+          slug: kibana-authentication-kerberos
+        - title: Multi-Tenancy
+          slug: kibana-multi-tenancy
+        - title: Advanced Topics
+          slug: kibana-advanced
+          children:
+            - title: Using multiple authentication methods
+              slug: kibana-multiple-authentication-methods
+            - title: Read Only mode
+              slug: kibana-read-only
+            - title: Using the Kibana API
+              slug: kibana-authentication-api
+            - title: JWT URL Parameters
+              slug: kibana-authentication-jwt
+            - title: Anonymous Authentication
+              slug: kibana-authentication-anonymous
+            - title: Kibana in IFrame
+              slug: kibana-in-iframe
+
+    - title: Integrations
+      slug: integrations
+      children:
+        - title: Logstash
+          slug: elasticsearch-logstash-search-guard
+        - title: Cross Cluster Search
+          slug: cross-cluster-tribe
+        - title: X-Pack Monitoring
+          slug: search-guard-xpack-monitoring
+        - title: X-Pack Alerting
+          slug: search-guard-xpack-alerting
+        - title: X-Pack Machine Learning
+          slug: search-guard-xpack-machine-learning
+        - title: Cerebro
+          slug: elasticsearch-cerebro-search-guard
+        - title: Fluentd
+          slug: elasticsearch-fluentd-search-guard
+        - title: Grafana
+          slug: elasticsearch-grafana-search-guard
+
+    - title: OEM Features
+      slug: oem-features
+      children:
+        - title: SSL only mode
+          slug: search-guard-oem-ssl-only
+        - title: Search Guard index restore
+          slug: search-guard-oem-index-restore
+        - title: Inter-node traffic evaluator
+          slug: search-guard-oem-inter-node-traffic
+        - title: Custom Principal Extractor
+          slug: search-guard-oem-principal-extractor
+        - title: Injecting an SSLContext
+          slug: search-guard-oem-inject-ssl-context
+
+    - title: Troubleshooting
+      slug: security-troubleshooting
+      children:
+        - title: Setting the log level
+          slug: troubleshooting-setting-log-level
+        - title: TLS
+          slug: troubleshooting-tls
+        - title: Users and Roles
+          slug: troubleshooting-search-guard-user-roles
+        - title: Permissions
+          slug: troubleshooting-search-guard-permission
+        - title: Kibana
+          slug: kibana-troubleshooting
+        - title: Multi Tenancy
+          slug: troubleshooting-Multi-Tenancy

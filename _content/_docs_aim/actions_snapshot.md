@@ -2,8 +2,6 @@
 title: Snapshot Action
 html_title: Snapshot Action
 permalink: automated-index-management-actions-snapshot
-category: aim-actions
-order: 309
 layout: docs
 edition: community
 description: How the snapshot action works

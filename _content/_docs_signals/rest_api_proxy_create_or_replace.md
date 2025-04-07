@@ -2,13 +2,10 @@
 title: Create or replace a proxy
 html_title: Create or replace proxy
 permalink: elasticsearch-alerting-rest-api-proxy-create-or-replace
-category: signals-rest
-order: 855
 layout: docs
 edition: community
 description: The request used to create or replace a proxy
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Create or replace proxy

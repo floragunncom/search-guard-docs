@@ -2,8 +2,6 @@
 title: Get Policy
 html_title: Get Policy
 permalink: automated-index-management-rest-policy-get
-category: aim-rest
-order: 401
 layout: docs
 edition: community
 description: Use the get policy REST API to get a policy

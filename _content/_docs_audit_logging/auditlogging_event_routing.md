@@ -2,11 +2,10 @@
 title: Compliance event routing
 html_title: Event routing
 permalink: compliance-event-routing
-category: auditlog
-order: 250
 layout: docs
 edition: compliance
-description: How to configure event routing to ship the compliance events to their correct storage destination
+description: How to configure event routing to ship the compliance events to their
+  correct storage destination
 ---
 <!---
 Copyright 2022 floragunn GmbH

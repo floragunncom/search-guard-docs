@@ -2,16 +2,12 @@
 title: Immutable indices
 html_title: Immutable indices
 permalink: immutable-indices
-category: auditlog
-order: 700
 layout: docs
 edition: compliance
 description: Use immutable indices to ensure a document cannot be changed once indexed.
 resources:
-  - "https://search-guard.com/immutable-indices-gdpr/|
-How Immutable Indices help you to stay GDPR compliant (blog post)"
-
-
+- https://search-guard.com/immutable-indices-gdpr/| How Immutable Indices help you
+  to stay GDPR compliant (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

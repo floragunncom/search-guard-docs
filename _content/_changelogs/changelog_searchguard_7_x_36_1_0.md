@@ -1,12 +1,9 @@
 ---
 title: Search Guard 7.x-36.1.0
 permalink: changelog-searchguard-7x-36_1_0
-category: changelogs-searchguard
-order: 820
 layout: changelogs
 description: Changelog for Search Guard 7.x-36.1.0
 ---
-
 <!--- Copyright 2020 floragunn GmbH -->
 
 # Changelog for Search Guard 7.x-36.1.0

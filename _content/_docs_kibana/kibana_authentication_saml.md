@@ -2,15 +2,13 @@
 title: Quick Start
 html_title: Kibana SAML Quick Start
 permalink: kibana-authentication-saml
-category: kibana-authentication-saml-overview
-order: 100
 layout: docs
 edition: enterprise
-description: How to configure Kibana for SAML Single Sign On authentication and IdP integrations.
+description: How to configure Kibana for SAML Single Sign On authentication and IdP
+  integrations.
 resources:
-- "https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single Sign-On (blogpost)"
-
-
+- https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single
+  Sign-On (blogpost)
 ---
 <!---
 Copyright 2022 floragunn GmbH

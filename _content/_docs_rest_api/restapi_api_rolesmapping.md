@@ -2,11 +2,10 @@
 title: Roles mapping API
 html_title: Roles mapping API
 permalink: rest-api-roles-mapping
-category: restapi
-order: 420
 layout: docs
 edition: enterprise
-description: How to use the roles mapping REST API endpoints to assign users to Search Guard roles.
+description: How to use the roles mapping REST API endpoints to assign users to Search
+  Guard roles.
 ---
 <!---
 Copyright 2022 floragunn GmbH

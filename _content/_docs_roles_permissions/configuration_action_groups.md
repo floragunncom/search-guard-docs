@@ -2,13 +2,11 @@
 title: Permissions and action groups
 html_title: Permissions and action groups in Search Guard
 permalink: action-groups
-category: rolespermissions
-order: 200
 layout: docs
 edition: community
-description: How to define and use Search Guard action groups for easy configuration of index-level permissions
+description: How to define and use Search Guard action groups for easy configuration
+  of index-level permissions
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

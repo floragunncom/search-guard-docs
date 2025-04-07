@@ -1,14 +1,13 @@
 ---
 title: Search Guard logging
 permalink: troubleshooting-setting-log-level
-category: troubleshooting
-order: 50
-layout: troubleshooting
-description: Hot to set the Search Guard log level in a running Elasticsearch cluster for debugging.
+layout: docs
+description: Hot to set the Search Guard log level in a running Elasticsearch cluster
+  for debugging.
 resources:
-  - https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|Elasticsearch logging configuration (website)
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html|Elasticsearch
+  logging configuration (website)
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Search Guard logging

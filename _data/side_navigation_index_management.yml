@@ -1,0 +1,67 @@
+- title: Index Management
+  slug: automated-index-management
+  children:
+    - title: How Automated Index Management Works
+      slug: automated-index-management
+
+    - title: Conditions
+      slug: automated-index-management-conditions
+      children:
+        - title: Age Condition
+          slug: automated-index-management-conditions-age
+        - title: Doc Count Condition
+          slug: automated-index-management-conditions-doc-count
+        - title: Conditions Overview
+          slug: automated-index-management-conditions-overview
+        - title: Size Condition
+          slug: automated-index-management-conditions-size
+
+    - title: Actions
+      slug: actions
+      children:
+        - title: Actions Overview
+          slug: automated-index-management-actions-overview
+        - title: Allocation Action
+          slug: automated-index-management-actions-allocation
+        - title: Close Action
+          slug: automated-index-management-actions-close
+        - title: Delete Action
+          slug: automated-index-management-actions-delete
+        - title: Force Merge Action
+          slug: automated-index-management-actions-force-merge
+        - title: Rollover Action
+          slug: automated-index-management-actions-rollover
+        - title: Set Priority Action
+          slug: automated-index-management-actions-set-priority
+        - title: Set Read Only Action
+          slug: automated-index-management-actions-set-read-only
+        - title: Set Replica Count Action
+          slug: automated-index-management-actions-set-replica-count
+        - title: Snapshot Action
+          slug: automated-index-management-actions-snapshot
+
+    - title: REST API
+      slug: automated-index-management-rest
+      children:
+        - title: Put Policy
+          slug: automated-index-management-rest-policy-put
+        - title: Get Policy
+          slug: automated-index-management-rest-policy-get
+        - title: Delete Policy
+          slug: automated-index-management-rest-policy-delete
+        - title: Policy Instance State
+          slug: automated-index-management-rest-policy-instance-state
+        - title: Policy Instance Execute
+          slug: automated-index-management-rest-policy-instance-execute
+        - title: Policy Instance Retry
+          slug: automated-index-management-rest-policy-instance-retry
+        - title: Put Settings
+          slug: automated-index-management-rest-settings-put
+        - title: Get Settings
+          slug: automated-index-management-rest-settings-get
+        - title: Delete Settings
+          slug: automated-index-management-rest-settings-delete
+        - title: Security Integration
+          slug: automated-index-management-security-integration
+        - title: Settings
+          slug: automated-index-management-settings

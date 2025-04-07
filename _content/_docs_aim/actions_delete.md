@@ -2,8 +2,6 @@
 title: Delete Action
 html_title: Delete Action
 permalink: automated-index-management-actions-delete
-category: aim-actions
-order: 303
 layout: docs
 edition: community
 description: How the delete action works

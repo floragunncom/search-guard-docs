@@ -2,12 +2,9 @@
 title: Using multiple authentication methods
 html_title: Using multiple authentication methods
 permalink: kibana-multiple-authentication-methods
-category: kibana-authentication
-order: 900
 layout: docs
 edition: community
 description: How to configure Kibana to use several authentication methods
-
 ---
 <!---
 Copyright 2022 floragunn GmbH

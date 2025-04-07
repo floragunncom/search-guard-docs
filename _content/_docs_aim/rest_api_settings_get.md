@@ -2,8 +2,6 @@
 title: Get Settings
 html_title: Get Settings
 permalink: automated-index-management-rest-settings-get
-category: aim-rest
-order: 421
 layout: docs
 edition: community
 description: Use the get settings REST API to retrieve dynamic AIM settings

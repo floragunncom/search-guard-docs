@@ -2,13 +2,10 @@
 title: Create or replace a trust store
 html_title: Create or replace trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-create-or-replace
-category: signals-rest
-order: 851
 layout: docs
 edition: community
 description: The request used to create or replace a trust store
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Create or replace trust store

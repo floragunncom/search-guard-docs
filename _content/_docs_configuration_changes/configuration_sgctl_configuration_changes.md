@@ -2,11 +2,10 @@
 title: Configuration changes
 html_title: Configuration Changes
 permalink: sgctl-configuration-changes
-category: sgctl
-order: 200
 layout: docs
 edition: community
-description: How to use sgctl to connect to an Elasticsearch cluster and upload configuration changes
+description: How to use sgctl to connect to an Elasticsearch cluster and upload configuration
+  changes
 ---
 <!---
 Copyright 2022 floragunn GmbH

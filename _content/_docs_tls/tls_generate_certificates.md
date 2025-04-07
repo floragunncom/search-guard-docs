@@ -1,17 +1,17 @@
 ---
 title: Generating certificates
 permalink: generating-tls-certificates
-category: tls
-subcategory: generating-certificates
-order: 100
 layout: docs
 edition: community
-description: Various options for generating TLS certificates that you can use with Search Guard.
+description: Various options for generating TLS certificates that you can use with
+  Search Guard.
 resources:
-  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready
+  certificates with the TLS tool (blog post)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

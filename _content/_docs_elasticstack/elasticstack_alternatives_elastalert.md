@@ -1,10 +1,9 @@
 ---
 title: Elastalert
 permalink: search-guard-elastalert
-category: elasticstack-alternatives
-order: 100
 layout: docs
-description: How to configure and use Search Guard and ElastAlert for Elasticsearch as an alternative to X-Pack.
+description: How to configure and use Search Guard and ElastAlert for Elasticsearch
+  as an alternative to X-Pack.
 ---
 <!---
 Copyright 2022 floragunn GmbH

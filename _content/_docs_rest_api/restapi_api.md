@@ -2,11 +2,10 @@
 title: Usage and return values
 html_title: REST API usage overview
 permalink: rest-api
-category: restapi
-order: 300
 layout: docs
 edition: enterprise
-description: General usage instructions for the Search Guard REST API which can be used to manage users, roles and permissions.
+description: General usage instructions for the Search Guard REST API which can be
+  used to manage users, roles and permissions.
 ---
 <!---
 Copyright 2022 floragunn GmbH

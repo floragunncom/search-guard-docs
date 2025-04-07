@@ -1,12 +1,10 @@
 ---
 title: Proxy authentication
 permalink: proxy-authentication-overview
-category: authauth
-subcategory: proxy
-order: 800
 layout: docs
 edition: community
-description: Use Search Guard's Proxy authentication feature to connect Elasticsearch to any third-party identity provider.
+description: Use Search Guard's Proxy authentication feature to connect Elasticsearch
+  to any third-party identity provider.
 ---
 <!---
 Copyright 2022 floragunn GmbH

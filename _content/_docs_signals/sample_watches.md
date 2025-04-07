@@ -2,13 +2,11 @@
 title: Sample Watches
 html_title: Sample Watches
 permalink: elasticsearch-alerting-watches-sample
-category: signals
-order: 210
 layout: docs
 edition: community
-description: Signals Alerting for Elasticsearch ships with several sample watches that you can use for a quickstart or proof of concept.
+description: Signals Alerting for Elasticsearch ships with several sample watches
+  that you can use for a quickstart or proof of concept.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Sample Watches

@@ -1,18 +1,16 @@
 ---
 title: TLS hot-reload
 permalink: hot-reload-tls
-category: tls
-order: 500
 layout: docs
 edition: community
-description: Search Guard supports hot-reload of TLS certificates 
+description: Search Guard supports hot-reload of TLS certificates
 resources:
-  - troubleshooting-tls|Troubleshooting TLS problems (docs)  
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- troubleshooting-tls|Troubleshooting TLS problems (docs)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
-
 # TLS certificate hot-reload
 
 TLS certificate hot-reload provides you the ability to change the TLS certificates and private keys used by Search Guard without having to restart the ES cluster.

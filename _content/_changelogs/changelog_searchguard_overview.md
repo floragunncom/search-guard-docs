@@ -2,12 +2,10 @@
 title: Overview
 html_title: Search Guard changelogs
 permalink: changelogs-searchguard
-category: changelogs-searchguard
-order: -10000
 layout: changelogs
-description: Changelog Overview for the Search Guard Elasticsearch security plugin. Protect your data from any unauthorized access.
+description: Changelog Overview for the Search Guard Elasticsearch security plugin.
+  Protect your data from any unauthorized access.
 ---
-
 <!--- Copyright 2024 floragunn GmbH -->
 
 # Search Guard Changelogs

@@ -2,11 +2,10 @@
 title: Mapping users to Search Guard roles
 html_title: Mapping users to Search Guard roles
 permalink: mapping-users-roles
-category: rolespermissions
-order: 150
 layout: docs
 edition: community
-description: How to map users and backend roles to Search Guard roles to implement flexible access control to an Elasticsearch cluster.
+description: How to map users and backend roles to Search Guard roles to implement
+  flexible access control to an Elasticsearch cluster.
 ---
 <!---
 Copyright 2022 floragunn GmbH

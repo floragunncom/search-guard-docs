@@ -1,12 +1,9 @@
 ---
 title: Search Guard Bugfix Release July 2021
 permalink: changelog-searchguard-7x-bugfix-20217-07
-category: changelogs-searchguard
-order: -315
 layout: changelogs
 description: Search Guard Bugfix Release July 2021
 ---
-
 <!--- Copyright 2021 floragunn GmbH -->
 
 # Search Guard Bugfix Release July 2021

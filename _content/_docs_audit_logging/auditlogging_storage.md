@@ -2,11 +2,10 @@
 title: Storage Types
 html_title: Audit Logging Storage
 permalink: audit-logging-storage
-category: auditlog
-order: 200
 layout: docs
 edition: enterprise
-description: How to store audit events in Elasticsearch, external SIEM or monitoring systems, or a custom storage.
+description: How to store audit events in Elasticsearch, external SIEM or monitoring
+  systems, or a custom storage.
 ---
 <!---
 Copyright 2022 floragunn GmbH

@@ -2,8 +2,6 @@
 title: Set Read Only Action
 html_title: Set Read Only Action
 permalink: automated-index-management-actions-set-read-only
-category: aim-actions
-order: 307
 layout: docs
 edition: community
 description: How the set read only action works

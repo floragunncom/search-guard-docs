@@ -2,8 +2,6 @@
 title: Feature map
 html_title: Feature map - Search Guard 53 to FLX
 permalink: config-migration-feature-map
-category: kibana-authentication-migration-overview
-order: 1100
 layout: docs
 description: How to migrate older authentication configurations to new configurations
 ---

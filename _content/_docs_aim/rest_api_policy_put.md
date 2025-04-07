@@ -2,8 +2,6 @@
 title: Put Policy
 html_title: Put Policy
 permalink: automated-index-management-rest-policy-put
-category: aim-rest
-order: 400
 layout: docs
 edition: community
 description: Use the put policy REST API to create or update policies

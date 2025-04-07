@@ -2,13 +2,11 @@
 title: Schedule Triggers
 html_title: Schedule Triggers
 permalink: elasticsearch-alerting-triggers-schedule
-category: triggers
-order: 100
 layout: docs
 edition: community
-description: Configure how often an Alerting watch is executed that scans data in Elasticsearch for anomalies.
+description: Configure how often an Alerting watch is executed that scans data in
+  Elasticsearch for anomalies.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Schedule Triggers

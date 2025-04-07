@@ -2,13 +2,10 @@
 title: Get all trust stores
 html_title: Get all trust stores
 permalink: elasticsearch-alerting-rest-api-trust-store-get-all
-category: signals-rest
-order: 852
 layout: docs
 edition: community
 description: Use to retrieve information about trust store.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Get all trust stores

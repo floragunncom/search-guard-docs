@@ -2,8 +2,6 @@
 title: FLX release notes
 html_title: Search Guard FLX release notes
 permalink: sg-flx-release-notes
-category: kibana-authentication-migration-overview
-order: 500
 layout: docs
 edition: community
 description: Search Guard FLX release notes

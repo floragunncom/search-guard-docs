@@ -1,16 +1,16 @@
 ---
 title: Certificate revocation
 permalink: elasticsearch-certificate-revocation
-category: tls
-order: 350
 layout: docs
 edition: community
-description: How to use certificate revocation lists to revoke TLS certificates used in your Elasticsearch cluster.
+description: How to use certificate revocation lists to revoke TLS certificates used
+  in your Elasticsearch cluster.
 resources:
-  - troubleshooting-tls|Troubleshooting TLS problems (docs)  
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- troubleshooting-tls|Troubleshooting TLS problems (docs)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

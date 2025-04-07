@@ -2,10 +2,9 @@
 title: Search Guard Compatibility
 html_title: Compatibility
 permalink: search-guard-compatibility
-category: installation
-order: 1000
 layout: docs
-description: Compatibility of Search Guard with other plugins and tools like Kibana, logstash, Beats, Grafana or Cerebro. 
+description: Compatibility of Search Guard with other plugins and tools like Kibana,
+  logstash, Beats, Grafana or Cerebro.
 ---
 <!---
 Copyright 2022 floragunn GmbH

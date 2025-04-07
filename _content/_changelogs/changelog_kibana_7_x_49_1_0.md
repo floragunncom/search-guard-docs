@@ -1,12 +1,9 @@
 ---
 title: Kibana 7.x-49.1.0
 permalink: changelog-kibana-7x-49_1_0
-category: changelogs-kibana
-order: -309
 layout: changelogs
-description: Changelog for Kibana 7.x-49.1.0	
+description: Changelog for Kibana 7.x-49.1.0
 ---
-
 <!--- Copyright 2021 floragunn GmbH -->
 
 

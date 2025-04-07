@@ -1,12 +1,9 @@
 ---
 title: Search Guard 7.x-35.0.0-rc1
 permalink: changelog-searchguard-7-x-35_0_0_rc1
-category: changelogs-searchguard
-order: 950
 layout: changelogs
 description: Changelog for Search Guard 7.x-35.0.0-rc1
 ---
-
 <!---
 Copyright 2020 floragunn GmbH
 -->

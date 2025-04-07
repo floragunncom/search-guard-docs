@@ -2,8 +2,6 @@
 title: Upgrade Search Guard FLX to 2.0.0
 html_title: Upgrade to Search Guard FLX to 2.0.0
 permalink: sg-200-upgrade
-category: installation
-order: 400
 layout: docs
 edition: community
 description: How to upgrade Search Guard from versions 1.x.x to 2.x.x

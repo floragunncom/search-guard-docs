@@ -2,10 +2,9 @@
 title: Advanced Configuration
 html_title: Active Directory and LDAP Advanced Configuration
 permalink: active-directory-ldap-advanced
-category: ldap
-order: 200
 layout: docs
-description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
+description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch
+  cluster against unauthorized access.
 ---
 <!---
 Copyright 2022 floragunn GmbH

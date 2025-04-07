@@ -1,12 +1,9 @@
 ---
 title: Search Guard 7.x-41.0.0
 permalink: changelog-searchguard-7x-41_0_0
-category: changelogs-searchguard
-order: 600
 layout: changelogs
 description: Changelog for Search Guard 7.x-41.0.0
 ---
-
 <!--- Copyright 2020 floragunn GmbH -->
 
 # Changelog for Search Guard 7.x-41.0.0

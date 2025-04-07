@@ -1,0 +1,55 @@
+- title: Search Guard for Kibana
+  slug: changelogs-kibana
+  children:
+    - title: Kibana 7.x-53.0.0
+      slug: changelog-kibana-7x-53_0_0
+    - title: Kibana 7.x-52.1.0
+      slug: changelog-kibana-7x-52_1_0
+    - title: Kibana 7.x-52.0.0
+      slug: changelog-kibana-7x-52_0_0
+    - title: Kibana 7.x-51.0.0
+      slug: changelog-kibana-7x-51_0_0
+    - title: Kibana 7.x-50.1.0
+      slug: changelog-kibana-7x-50_1_0
+    - title: Kibana 7.x-50.0.0
+      slug: changelog-kibana-7x-50_0_0
+    - title: Kibana 7.x-49.1.0
+      slug: changelog-kibana-7x-49_1_0
+    - title: Kibana 7.x-49.0.0
+      slug: changelog-kibana-7x-49_0_0
+    - title: Kibana 7.x-48.0.0
+      slug: changelog-kibana-7x-48_0_0
+    - title: Kibana 7.x-47.0.0
+      slug: changelog-kibana-7x-47_0_0
+    - title: Kibana 7.x-46.0.0
+      slug: changelog-kibana-7x-46_0_0
+    - title: Kibana 7.x-45.0.0
+      slug: changelog-kibana-7x-45_0_0
+    - title: Kibana 7.x-43.0.0
+      slug: changelog-kibana-7x-43_0_0
+    - title: Kibana 7.x-42.1.0
+      slug: changelog-kibana-7x-42_1_0
+    - title: Kibana 7.x-42.0.0
+      slug: changelog-kibana-7x-42_0_0
+    - title: Kibana 7.x-41.1.0
+      slug: changelog-kibana-7x-41_1_0
+    - title: Kibana 7.x-41.0.0
+      slug: changelog-kibana-7x-41_0_0
+    - title: Kibana 7.x-37.0.0
+      slug: changelog-kibana-7x-37_0_0
+    - title: Kibana 7.x-36.2.0
+      slug: changelog-kibana-7x-36_2_0
+    - title: Kibana 7.x-36.1.0
+      slug: changelog-kibana-7x-36_1_0
+    - title: Kibana 7.x-36.0.0
+      slug: changelog-kibana-7x-36_0_0
+    - title: Kibana 7.x-35.2.0
+      slug: changelog-kibana-7x-35_2_0
+    - title: Kibana 7.x-35.1.0
+      slug: changelog-kibana-7x-35_1_0
+    - title: Kibana 7.x-35.0.0-rc1
+      slug: changelog-kibana-7x-35_0_0_rc1
+    - title: Kibana 7.x-35.0.0-beta1
+      slug: changelog-kibana-7x-35_0_0_beta1
+    - title: Kibana 7.x-35.0.0
+      slug: changelog-kibana-7x-35_0_0

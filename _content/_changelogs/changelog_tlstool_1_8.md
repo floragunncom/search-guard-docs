@@ -1,12 +1,9 @@
 ---
 title: TLS Tool 1.8
 permalink: changelog-tlstool_1_8
-category: changelogs-tlstool
-order: 380
 layout: changelogs
 description: Changelog for the Search Guard TLS Tool 1.8
 ---
-
 <!---
 Copyright 2020 floragunn GmbH
 -->

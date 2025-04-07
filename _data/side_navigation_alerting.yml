@@ -1,0 +1,166 @@
+- title: Alerting
+  slug: alerting
+  children:
+    - title: Getting started with Signals Alerting
+      slug: elasticsearch-alerting-getting-started
+    - title: How Signals Alerting works
+      slug: elasticsearch-alerting-how-it-works
+    - title: Sample Watches
+      slug: elasticsearch-alerting-watches-sample
+    - title: Execution chain and payload
+      slug: elasticsearch-alerting-chaining-checks
+
+    - title: Triggers
+      slug: triggers
+      children:
+        - title: Triggers Overview
+          slug: elasticsearch-alerting-triggers-overview
+        - title: Schedule Triggers
+          slug: elasticsearch-alerting-triggers-schedule
+        - title: Handling Timezones
+          slug: elasticsearch-alerting-triggers-timezones
+
+    - title: Inputs
+      slug: inputs
+      children:
+        - title: Inputs Overview
+          slug: elasticsearch-alerting-inputs-overview
+        - title: Static Input
+          slug: elasticsearch-alerting-inputs-static
+        - title: Search Input
+          slug: elasticsearch-alerting-inputs-elasticsearch
+        - title: HTTP Input
+          slug: elasticsearch-alerting-inputs-http
+
+    - title: Transformations
+      slug: transformations
+      children:
+        - title: Transformations Overview
+          slug: elasticsearch-alerting-transformations-calculations-overview
+        - title: Transformations
+          slug: elasticsearch-alerting-transformations
+        - title: Calculations
+          slug: elasticsearch-alerting-calculations
+
+    - title: Conditions
+      slug: elasticsearch-alerting-conditions
+    - title: Severity Levels
+      slug: elasticsearch-alerting-severity
+
+    - title: Actions
+      slug: actions
+      children:
+        - title: Actions Overview
+          slug: elasticsearch-alerting-actions-overview
+        - title: Index Actions
+          slug: elasticsearch-alerting-actions-index
+        - title: Email Actions
+          slug: elasticsearch-alerting-actions-email
+        - title: Webhook Actions
+          slug: elasticsearch-alerting-actions-webhook
+        - title: Slack Actions
+          slug: elasticsearch-alerting-actions-slack
+        - title: Pagerduty Actions
+          slug: elasticsearch-alerting-actions-pagerduty
+        - title: JIRA Actions
+          slug: elasticsearch-alerting-actions-jira
+
+    - title: Accounts
+      slug: elasticsearch-alerting-accounts
+    - title: Scripting
+      slug: signals-alerting-scripting
+    - title: Throttling and Acknowledgement
+      slug: elasticsearch-alerting-throttling
+    - title: Trust Stores
+      slug: elasticsearch-alerting-trust-stores
+    - title: Proxies
+      slug: elasticsearch-alerting-proxies
+
+    - title: REST API
+      slug: rest-api
+      children:
+        - title: REST API Overview
+          slug: elasticsearch-alerting-rest-api-overview
+        - title: Get Watch
+          slug: elasticsearch-alerting-rest-api-watch-get
+        - title: Put Watch
+          slug: elasticsearch-alerting-rest-api-watch-put
+        - title: Delete Watch
+          slug: elasticsearch-alerting-rest-api-watch-delete
+        - title: Search Watch
+          slug: elasticsearch-alerting-rest-api-watch-search
+        - title: Activate and Deactivate Watch
+          slug: elasticsearch-alerting-rest-api-watch-activate
+        - title: Execute Watch
+          slug: elasticsearch-alerting-rest-api-watch-execute
+        - title: Acknowledge Watch
+          slug: elasticsearch-alerting-rest-api-watch-acknowledge
+        - title: Acknowledge And Get
+          slug: elasticsearch-alerting-rest-api-watch-acknowledge-and-get
+        - title: Un-acknowledge Watch
+          slug: elasticsearch-alerting-rest-api-watch-unacknowledge
+        - title: Un-acknowledge Watch And Get
+          slug: elasticsearch-alerting-rest-api-watch-un-acknowledge-and-get
+        - title: Convert ES Watch
+          slug: elasticsearch-alerting-rest-api-convert-es
+        - title: Get Watch State
+          slug: elasticsearch-alerting-rest-api-watch-state
+        - title: Search Watch States
+          slug: elasticsearch-alerting-rest-api-watch-state-search
+        - title: Get Account
+          slug: elasticsearch-alerting-rest-api-account-get
+        - title: Put Account
+          slug: elasticsearch-alerting-rest-api-account-put
+        - title: Search Accounts
+          slug: elasticsearch-alerting-rest-api-account-search
+        - title: Delete Account
+          slug: elasticsearch-alerting-rest-api-account-delete
+        - title: Create or replace a trust store
+          slug: elasticsearch-alerting-rest-api-trust-store-create-or-replace
+        - title: Get all trust stores
+          slug: elasticsearch-alerting-rest-api-trust-store-get-all
+        - title: Get one trust store
+          slug: elasticsearch-alerting-rest-api-trust-store-get-one
+        - title: Delete trust store
+          slug: elasticsearch-alerting-rest-api-trust-store-delete
+        - title: Create or replace a proxy
+          slug: elasticsearch-alerting-rest-api-proxy-create-or-replace
+        - title: Get all proxies
+          slug: elasticsearch-alerting-rest-api-proxy-get-all
+        - title: Get one proxy
+          slug: elasticsearch-alerting-rest-api-proxy-get-one
+        - title: Delete proxy
+          slug: elasticsearch-alerting-rest-api-proxy-delete
+        - title: Get Settings
+          slug: elasticsearch-alerting-rest-api-settings-get
+        - title: Put Settings
+          slug: elasticsearch-alerting-rest-api-settings-put
+        - title: Activate and Deactivate Tenant
+          slug: elasticsearch-alerting-rest-api-tenant-activate
+        - title: Activate and Deactivate Signals
+          slug: elasticsearch-alerting-rest-api-admin-activate
+
+    - title: Security Integration
+      slug: elasticsearch-alerting-security
+      children:
+        - title: Security Integration Overview
+          slug: elasticsearch-alerting-security-overview
+        - title: Signals Indices
+          slug: elasticsearch-alerting-security-indices
+        - title: Permissions
+          slug: elasticsearch-alerting-security-permissions
+        - title: Execution context
+          slug: elasticsearch-alerting-security-security-context
+        - title: Multi-Tenancy
+          slug: elasticsearch-alerting-security-multi-tenancy
+
+    - title: Status and Logging
+      slug: elasticsearch-alerting-status-logging
+    - title: Administration
+      slug: elasticsearch-alerting-administration
+
+    - title: Advanced Topics
+      slug: advanced-topics
+      children:
+        - title: Watch overview page query params
+          slug: elasticsearch-alerting-watch-overview-parameters

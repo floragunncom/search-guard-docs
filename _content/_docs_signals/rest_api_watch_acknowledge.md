@@ -2,14 +2,11 @@
 title: Acknowledge Watch
 html_title: Acknowledge Watch
 permalink: elasticsearch-alerting-rest-api-watch-acknowledge
-category: signals-rest
-order: 700
 layout: docs
 edition: community
-description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging a watch and suppress notifications until the anomaly disappears.
-
+description: The Signals Alerting for Elasticsearch API provides an endpoint for acknowledging
+  a watch and suppress notifications until the anomaly disappears.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Acknowledge Watch API

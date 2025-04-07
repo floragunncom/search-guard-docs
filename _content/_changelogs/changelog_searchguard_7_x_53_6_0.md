@@ -1,12 +1,9 @@
 ---
 title: Search Guard 7.x-53.6.0
 permalink: changelog-searchguard-7x-53_6_0
-category: changelogs-searchguard
-order: -460
 layout: changelogs
 description: Changelog for Search Guard 7.x-53.6.0
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Search Guard Suite 53.6

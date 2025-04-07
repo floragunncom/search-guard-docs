@@ -1,12 +1,9 @@
 ---
 title: Kibana 7.x-48.0.0
 permalink: changelog-kibana-7x-48_0_0
-category: changelogs-kibana
-order: -100
 layout: changelogs
-description: Changelog for Kibana 7.x-48.0.0	
+description: Changelog for Kibana 7.x-48.0.0
 ---
-
 <!--- Copyright 2020 floragunn GmbH -->
 
 **Release Date: 04.12.2020**

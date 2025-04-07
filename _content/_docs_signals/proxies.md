@@ -2,13 +2,10 @@
 title: Proxies
 html_title: Proxies
 permalink: elasticsearch-alerting-proxies
-category: signals
-order: 801
 layout: docs
 edition: community
 description: How to use proxies
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Proxies

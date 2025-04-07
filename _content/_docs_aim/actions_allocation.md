@@ -2,8 +2,6 @@
 title: Allocation Action
 html_title: Allocation Action
 permalink: automated-index-management-actions-allocation
-category: aim-actions
-order: 301
 layout: docs
 edition: community
 description: How the allocation action works

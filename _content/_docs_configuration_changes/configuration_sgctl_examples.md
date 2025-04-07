@@ -1,8 +1,6 @@
 ---
 title: Examples
 permalink: sgctl-examples
-category: sgctl
-order: 100
 layout: docs
 edition: community
 index: false

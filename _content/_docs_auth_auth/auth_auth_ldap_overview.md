@@ -2,11 +2,9 @@
 title: Active Directory and LDAP
 html_title: Active Directory and LDAP
 permalink: active-directory-ldap-overview
-category: authauth
-subcategory: ldap
-order: 300
 layout: docs
-description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
+description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch
+  cluster against unauthorized access.
 ---
 <!---
 Copyright 2022 floragunn GmbH

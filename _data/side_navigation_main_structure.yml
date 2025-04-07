@@ -1,0 +1,5 @@
+files:
+  - side_navigation_security
+  - side_navigation_alerting
+  - side_navigation_index_management
+  - side_navigation_encryption_at_rest

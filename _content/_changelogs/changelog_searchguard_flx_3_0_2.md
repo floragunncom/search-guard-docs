@@ -1,12 +1,9 @@
 ---
 title: Search Guard FLX 3.0.2
 permalink: changelog-searchguard-flx-3_0_2
-category: changelogs-searchguard
-order: -1120
 layout: changelogs
 description: Changelog for Search Guard FLX 3.0.2
 ---
-
 <!--- Copyright 2024 floragunn GmbH -->
 
 # Search Guard FLX 3.0.2

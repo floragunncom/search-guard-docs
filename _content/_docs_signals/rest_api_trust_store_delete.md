@@ -2,13 +2,10 @@
 title: Delete trust store
 html_title: Delete trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-delete
-category: signals-rest
-order: 854
 layout: docs
 edition: community
 description: Use to delete trust store by id
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Delete trust store
