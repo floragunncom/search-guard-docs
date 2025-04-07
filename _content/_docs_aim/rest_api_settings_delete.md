@@ -2,8 +2,6 @@
 title: Delete Settings
 html_title: Put Settings
 permalink: automated-index-management-rest-settings-delete
-category: aim-rest
-order: 422
 layout: docs
 edition: community
 description: Use the put settings REST API to update dynamic AIM settings

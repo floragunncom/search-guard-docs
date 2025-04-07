@@ -2,13 +2,11 @@
 title: Triggers Overview
 html_title: Triggers Overview
 permalink: elasticsearch-alerting-triggers-overview
-category: triggers
-order: 0
 layout: docs
 edition: community
-description: A trigger specifies when and how often a watch for Elasticsearch Alerting i executed.
+description: A trigger specifies when and how often a watch for Elasticsearch Alerting
+  i executed.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Triggers overview

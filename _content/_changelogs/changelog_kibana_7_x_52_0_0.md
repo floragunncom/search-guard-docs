@@ -1,12 +1,9 @@
 ---
 title: Kibana 7.x-52.0.0
 permalink: changelog-kibana-7x-52_0_0
-category: changelogs-kibana
-order: -330
 layout: changelogs
-description: Changelog for Kibana 7.x-52.0.0	
+description: Changelog for Kibana 7.x-52.0.0
 ---
-
 <!--- Copyright 2021 floragunn GmbH -->
 
 

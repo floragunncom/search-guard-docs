@@ -2,11 +2,10 @@
 title: Field anonymization
 html_title: Anonymize fields in Elasticsearch documents
 permalink: field-anonymization
-category: dlsfls
-order: 300
 layout: docs
 edition: compliance
-description: How to anonymize fields in Elasticsearch documents by using hashes or regular expressions.
+description: How to anonymize fields in Elasticsearch documents by using hashes or
+  regular expressions.
 ---
 <!---
 Copyright 2022 floragunn GmbH

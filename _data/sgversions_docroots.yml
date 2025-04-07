@@ -1,0 +1,53 @@
+versions:
+  - label: FLX
+    docroot: latest
+  - label: 7x-53
+    docroot: 7.x-53
+  - label: 7x-52
+    docroot: 7.x-52
+  - label: 7x-51
+    docroot: 7.x-51
+  - label: 7x-50
+    docroot: 7.x-50
+  - label: 7x-49
+    docroot: 7.x-49
+  - label: 7x-48
+    docroot: 7.x-48
+  - label: 7x-47
+    docroot: 7.x-47
+  - label: 7x-46
+    docroot: 7.x-46
+  - label: 7x-45
+    docroot: 7.x-45
+  - label: 7x-43
+    docroot: 7.x-43
+  - label: 7x-42
+    docroot: 7.x-42
+  - label: 7x-41
+    docroot: 7.x-41
+  - label: 7x-40
+    docroot: 7.x-40
+  - label: 7x-38
+    docroot: 7.x-38
+  - label: 7x-37
+    docroot: 7.x-37
+  - label: 7x-36
+    docroot: 7.x-36
+  - label: 7x-35
+    docroot: 7.x-35
+  - label: 6x-25
+    docroot: 6.x-25
+  - label: 6x-24
+    docroot: 6.x-24
+  - label: 6x-23
+    docroot: 6.x-23
+  - label: 6x-22
+    docroot: 6.x-22
+  - label: 6x-21
+    docroot: 6.x-21
+  - label: 6x-20
+    docroot: 6.x-20
+  - label: v5
+    docroot: v5
+  - label: v2
+    docroot: v2

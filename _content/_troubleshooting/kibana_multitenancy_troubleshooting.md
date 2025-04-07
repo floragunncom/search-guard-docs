@@ -2,12 +2,9 @@
 title: Multi-Tenancy Troubleshooting
 html_title: Multi-Tenancy help
 permalink: troubleshooting-Multi-Tenancy
-category: troubleshooting
-order: 600
-layout: troubleshooting
+layout: docs
 description: Step-by-step instructions on how to troubleshoot Multi-Tenancy issues.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Troubleshooting Multi-Tenancy

@@ -2,8 +2,6 @@
 title: Size Condition
 html_title: Size Condition
 permalink: automated-index-management-conditions-size
-category: aim-conditions
-order: 203
 layout: docs
 edition: community
 description: How the size condition works

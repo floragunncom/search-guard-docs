@@ -2,11 +2,10 @@
 title: Configuration change tracking
 html_title: Change tracking
 permalink: configuration-integrity
-category: auditlog
-order: 600
 layout: docs
 edition: compliance
-description: Track Search Guard configuration changes by using the advanced audit logging features.
+description: Track Search Guard configuration changes by using the advanced audit
+  logging features.
 ---
 <!---
 Copyright 2022 floragunn GmbH

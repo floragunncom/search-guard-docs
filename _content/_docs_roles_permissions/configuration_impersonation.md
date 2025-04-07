@@ -2,16 +2,14 @@
 title: User impersonation
 html_title: User impersonation in Search Guard
 permalink: user-impersonation
-category: authorization-advanced
-order: 700
 layout: docs
 edition: community
-description: How to use the Search Guard User Impersonation feature to submit requests on behalf of another user.
+description: How to use the Search Guard User Impersonation feature to submit requests
+  on behalf of another user.
 resources:
-  - "https://search-guard.com/elasticsearch-user-impersonation/|User Impersonation: Submit requests on behalf of another user (blog post)"
-
+- 'https://search-guard.com/elasticsearch-user-impersonation/|User Impersonation:
+  Submit requests on behalf of another user (blog post)'
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

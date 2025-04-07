@@ -1,11 +1,10 @@
 ---
 title: Kerberos / SPNEGO
 permalink: kerberos-spnego
-category: authauth
-order: 400
 layout: docs
 edition: enterprise
-description: How to configure Kerberos/SPNEGO with Search Guard to implement Single Sign On access to your Elasticsearch cluster.
+description: How to configure Kerberos/SPNEGO with Search Guard to implement Single
+  Sign On access to your Elasticsearch cluster.
 ---
 <!---
 Copyright 2022 floragunn GmbH

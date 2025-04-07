@@ -1,16 +1,16 @@
 ---
 title: Production environments
 permalink: tls-in-production
-category: tls
-order: 300
 layout: docs
 edition: community
-description: We explaining the different certificate types of Search Guard and how to generate them for a production system.
+description: We explaining the different certificate types of Search Guard and how
+  to generate them for a production system.
 resources:
-  - troubleshooting-tls|Troubleshooting TLS problems (docs)  
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- troubleshooting-tls|Troubleshooting TLS problems (docs)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

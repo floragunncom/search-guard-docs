@@ -2,11 +2,10 @@
 title: Action groups API
 html_title: Action groups API
 permalink: rest-api-actiongroups
-category: restapi
-order: 440
 layout: docs
 edition: enterprise
-description: How to use the action groups REST API endpoints to create, edit and delte Search Guard action groups.
+description: How to use the action groups REST API endpoints to create, edit and delte
+  Search Guard action groups.
 ---
 <!---
 Copyright 2022 floragunn GmbH

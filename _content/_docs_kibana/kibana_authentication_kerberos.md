@@ -2,11 +2,10 @@
 title: Kerberos
 html_title: Kerberos authentication
 permalink: kibana-authentication-kerberos
-category: kibana-authentication
-order: 400
 layout: docs
 edition: enterprise
-description: How to use Kerberos to implement Kibana Single Sign On and  to protect your data from any unauthorized access.
+description: How to use Kerberos to implement Kibana Single Sign On and  to protect
+  your data from any unauthorized access.
 ---
 <!---
 Copyright 2022 floragunn GmbH

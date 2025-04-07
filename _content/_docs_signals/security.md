@@ -2,15 +2,12 @@
 title: Security Integration
 html_title: Security Integration
 permalink: elasticsearch-alerting-security
-category: signals
-subcategory: security
-order: 950
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-security-overview
-description: Signals Alerting for Elasticsearch is fully integrated with all Search Guard Security features
+description: Signals Alerting for Elasticsearch is fully integrated with all Search
+  Guard Security features
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Security Integration

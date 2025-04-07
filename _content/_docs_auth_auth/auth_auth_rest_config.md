@@ -2,14 +2,13 @@
 title: Introduction to sg_authc
 html_title: Introduction to sg_authc
 permalink: authentication-authorization-configuration
-category: sg_authc
-order: 100
 layout: docs
 edition: community
-description: How to configure, mix and chain authentication and authorization domains for Search Guard.
+description: How to configure, mix and chain authentication and authorization domains
+  for Search Guard.
 resources:
-  - "search-guard-presentations#configuration-basics|Search Guard configuration basics (presentation)"
-
+- search-guard-presentations#configuration-basics|Search Guard configuration basics
+  (presentation)
 ---
 <!---
 Copyright 2022 floragunn GmbH

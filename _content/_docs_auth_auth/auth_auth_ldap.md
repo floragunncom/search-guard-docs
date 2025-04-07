@@ -2,10 +2,9 @@
 title: Quick Start
 html_title: Active Directory and LDAP Quick Start
 permalink: active-directory-ldap
-category: ldap
-order: 100
 layout: docs
-description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch cluster against unauthorized access.
+description: Use Search Guard's Active Directory and LDAP module to protect your Elasticsearch
+  cluster against unauthorized access.
 ---
 <!---
 Copyright 2022 floragunn GmbH

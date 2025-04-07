@@ -14,48 +14,7 @@
 						<nav class="right helper">
 							<ul class="menu sf-menu js-menu">
 								<li>
-									<!-- Just the first article in the collection -->
-									<a href="#" class="main-nav-level-1">Documentation</a>
-									<ul>
-
-										{% include main_nav_items.html collectionname="docs_quickstart" category="quickstart" %}
-										{% include main_nav_items.html collectionname="docs_versions" category="versions" %}								
-										{% include main_nav_items.html collectionname="docs_installation" category="installation" %}
-										{% include main_nav_items.html collectionname="docs_tls" category="tls" %}										
-										{% include main_nav_items.html collectionname="docs_configuration_changes" category="configuration" %}				
-										
-										{% include main_nav_items.html collectionname="docs_auth_auth" category="authauth" %}
-										
-
-										{% include main_nav_items.html collectionname="docs_roles_permissions" category="rolespermissions" %}
-
-										{% include main_nav_items.html collectionname="docs_dls_fls" category="dlsfls" %}
-
-										{% include main_nav_items.html collectionname="docs_audit_logging" category="auditlog" %}
-
-										{% include main_nav_items.html collectionname="docs_rest_api" category="restapi" %}
-
-										{% include main_nav_items.html collectionname="docs_kibana" category="kibana" %}
-
-										{% include main_nav_items.html collectionname="docs_signals" category="signals" %}
-
-										{% include left_nav_items.html collectionname="docs_aim" category="aim" %}
-
-										{% include left_nav_items.html collectionname="docs_cl" category="cl" %}
-
-										{% include main_nav_items.html collectionname="docs_elasticstack" category="elasticstack" %}
-																
-										{% include main_nav_items.html collectionname="docs_other_integrations" category="otherintegrations" %}
-										{% include main_nav_items.html collectionname="docs_systemintegrators" category="systemintegrators" %}
-										
-									</ul>
-								</li>
-
-								<li>
-									<a href="#" class="main-nav-level-1">Troubleshooting</a>
-									<ul>
-										{% include main_nav_items_flat.html collectionname="troubleshooting" category="troubleshooting" %}
-									</ul>
+									<a href="{{site.baseurl}}/" class="main-nav-level-1">Documentation</a>
 								</li>
 								<li>
 									<a href="#" class="main-nav-level-1">Changelogs</a>
@@ -74,9 +33,9 @@
 								<li>
 									<a href="#" class="main-nav-level-1">Versions</a>
 									<ul>
-										{% for version in site.searchguard.allversions %}
+										{% for version in site.data.sgversions_docroots.versions %}
 										<li>
-											<a href="/{{site.docroots[version]}}/">{{site.labels.navigation[version]}}</a>
+											<a href="/{{version.docroot}}/">{{version.label}}</a>
 										</li>
 										{% endfor %}
 									</ul>

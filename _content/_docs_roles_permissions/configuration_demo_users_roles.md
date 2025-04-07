@@ -2,11 +2,10 @@
 title: Demo users and roles
 html_title: Demo users and role
 permalink: demo-users-roles
-category: rolespermissions
-order: 50
 layout: docs
 edition: community
-description: Description of the demo users and roles Search Guard ships with. Use them as blueprint for your own permission schema.
+description: Description of the demo users and roles Search Guard ships with. Use
+  them as blueprint for your own permission schema.
 ---
 <!---
 Copyright 2022 floragunn GmbH

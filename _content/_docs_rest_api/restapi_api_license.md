@@ -2,13 +2,11 @@
 title: License API
 html_title: License API
 permalink: rest-api-license
-category: restapi
-order: 480
 layout: docs
 edition: enterprise
-description: How to use the license REST API endpoints to retrieve and apply a Search Guard license.
+description: How to use the license REST API endpoints to retrieve and apply a Search
+  Guard license.
 ---
-
 # License API
 {: .no_toc}
 

@@ -1,16 +1,16 @@
 ---
 title: Configuring TLS
 permalink: configuring-tls
-category: tls
-order: 200
 layout: docs
 edition: community
-description: Search Guard TLS configuration settings for the REST and the transport layer. Extended security options for hostname verification and DNS lookups. 
+description: Search Guard TLS configuration settings for the REST and the transport
+  layer. Extended security options for hostname verification and DNS lookups.
 resources:
-  - troubleshooting-tls|Troubleshooting TLS problems (docs)  
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- troubleshooting-tls|Troubleshooting TLS problems (docs)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

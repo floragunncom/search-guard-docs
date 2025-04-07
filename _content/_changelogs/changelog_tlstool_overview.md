@@ -2,12 +2,10 @@
 title: Overview
 html_title: TLS Tool changelogs
 permalink: changelogs-tlstool
-category: changelogs-tlstool
-order: 0
 layout: changelogs
-description: Changelog for the Search Guard TLS Tool which can be used to generate TLS certificates and CAs.
+description: Changelog for the Search Guard TLS Tool which can be used to generate
+  TLS certificates and CAs.
 ---
-
 <!---
 Copyright 2020 floragunn GmbH
 -->

@@ -2,11 +2,10 @@
 title: Tenants API
 html_title: Tenants API
 permalink: rest-api-tenants
-category: restapi
-order: 460
 layout: docs
 edition: enterprise
-description: How to use the tenants REST API endpoints to create, edit and delete Search Guard tenants.
+description: How to use the tenants REST API endpoints to create, edit and delete
+  Search Guard tenants.
 ---
 <!---
 Copyright 2022 floragunn GmbH

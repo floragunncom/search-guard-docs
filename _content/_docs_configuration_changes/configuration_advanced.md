@@ -2,11 +2,10 @@
 title: Configuration index maintenance
 html_title: Search Guard Configuration Index Maintenance
 permalink: search-guard-index-maintenance
-category: configuration
-order: 1000
 layout: docs
 edition: community
-description: Search Guard stores its configuration in an Elasticsearch index. This allows for configuration hot-reloading
+description: Search Guard stores its configuration in an Elasticsearch index. This
+  allows for configuration hot-reloading
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 

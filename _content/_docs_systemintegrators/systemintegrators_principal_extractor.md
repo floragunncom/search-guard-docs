@@ -2,13 +2,11 @@
 title: Custom Principal Extractor
 html_title: Principal Extractor
 permalink: search-guard-oem-principal-extractor
-category: systemintegrators
-order: 600
 layout: docs
 edition: community
-description: How implement a custom TLS principal extractor for a Search Guard secured Elasticsearch cluster.
+description: How implement a custom TLS principal extractor for a Search Guard secured
+  Elasticsearch cluster.
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

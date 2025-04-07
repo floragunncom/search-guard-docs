@@ -1,11 +1,10 @@
 ---
 title: Anonymous authentication
-permalink: anonymous authentication 
-category: authauth
-order: 1000
+permalink: anonymous-authentication
 layout: docs
 edition: community
-description: How to use Search Guard anonymous authentication to assign default permissions if a user is not authenticated.
+description: How to use Search Guard anonymous authentication to assign default permissions
+  if a user is not authenticated.
 ---
 <!---
 Copyright 2022 floragunn GmbH

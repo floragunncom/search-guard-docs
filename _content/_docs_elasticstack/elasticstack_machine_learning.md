@@ -1,11 +1,10 @@
 ---
 title: X-Pack Machine Learning
 permalink: search-guard-xpack-machine-learning
-category: elasticstack
-order: 800
 layout: docs
 edition: community
-description: How to configure Search Guard to integrate with the X-Pack Machine Learning for Elasticsearch
+description: How to configure Search Guard to integrate with the X-Pack Machine Learning
+  for Elasticsearch
 ---
 <!---
 Copyright 2022 floragunn GmbH

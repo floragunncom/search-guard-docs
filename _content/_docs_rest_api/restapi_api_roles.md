@@ -2,13 +2,10 @@
 title: Roles API
 html_title: Roles API
 permalink: rest-api-roles
-category: restapi
-order: 410
 layout: docs
 edition: enterprise
 description: How to use the roles REST API endpoints to manage roles and permissions.
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

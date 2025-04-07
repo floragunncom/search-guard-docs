@@ -2,13 +2,11 @@
 title: Administration
 html_title: Administration
 permalink: elasticsearch-alerting-administration
-category: signals
-order: 1100
 layout: docs
 edition: community
-description: How to configure and administer Signals Alerting for Elasticsearch and adapt it to your use cases.
+description: How to configure and administer Signals Alerting for Elasticsearch and
+  adapt it to your use cases.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Signals Administration

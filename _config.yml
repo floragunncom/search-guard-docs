@@ -20,179 +20,16 @@ plugins:
 
 elasticsearch:
   majorversion: 8
-  minorversion: 8.6
-  previousminorversion: 8.5
-  currentversion: 8.6.2
-  currentversionlastmajor: 7.17.9
+  minorversion: 8.17
+  previousminorversion: 8.16
+  currentversion: 8.17.2
+  currentversionlastmajor: 7.17.28
 
 searchguard:
   version: "SG FLX"
   islatestversion: true
-  allversions:
-    - flx
-    - 7x-53
-    - 7x-52
-    - 7x-51
-    - 7x-50
-    - 7x-49
-    - 7x-48
-    - 7x-47
-    - 7x-46
-    - 7x-45
-    - 7x-43
-    - 7x-42
-    - 7x-41
-    - 7x-40
-    - 7x-38
-    - 7x-37
-    - 7x-36
-    - 7x-35
-    - 6x-25
-    - 6x-24
-    - 6x-23
-    - 6x-22
-    - 6x-21
-    - 6x-20
-    - v5
-    - v2
-
-docroots:
-  flx: latest
-  7x-53: 7.x-53
-  7x-52: 7.x-52
-  7x-51: 7.x-51
-  7x-50: 7.x-50
-  7x-49: 7.x-49
-  7x-48: 7.x-48
-  7x-47: 7.x-47
-  7x-46: 7.x-46
-  7x-45: 7.x-45
-  7x-43: 7.x-43
-  7x-42: 7.x-42
-  7x-41: 7.x-41
-  7x-40: 7.x-40
-  7x-38: 7.x-38
-  7x-37: 7.x-37
-  7x-36: 7.x-36
-  7x-35: 7.x-35
-  6x-25: 6.x-25
-  6x-24: 6.x-24
-  6x-23: 6.x-23
-  6x-22: 6.x-22
-  6x-21: 6.x-21
-  6x-20: 6.x-20
-  v5: v5
-  v2: v2
 
 index: false
-
-labels:
-  navigation:
-    introduction: Introduction to Search Guard
-    quickstart: Quickstart
-    password-based: Password-based authentication
-    first_steps: First steps
-    versions: Search Guard Versions
-    installation: Installing Search Guard
-    upgrading: Upgrading Search Guard
-    tls: TLS Setup
-    ldap: Active Directory / LDAP
-    generating-certificates: "Generating certificates"
-    configuration: "Search Guard Configuration"
-    sgctl: "Search Guard CTL"
-    authauth: Authentication
-    rolespermissions: "Authorization"
-    eeadvanced: Advanced Security Features
-    jwt: "JSON web tokens"
-    proxy: "Proxy Authentication"
-    sg_authc: "Authentication"
-    authorization-advanced: "Advanced Authentication"
-    dlsfls: Document- and Field-Level Security
-    dls: "Document-Level Security"
-    kibana: Kibana
-    auditlog: Audit And Compliance Logging
-    compliance: Compliance
-    restapi: REST API
-    elasticstack: Integrating with the Elasticstack
-    elasticstack-alternatives: "Elasticstack alternatives"
-    kibana-authentication: "Kibana Authentication"
-    kibana-authentication-migration-overview: "Migration from v52"
-    kibana-advanced: "Kibana Advanced Settings"
-    kibana-authentication-basic-overview: "Password based authentication"
-    kibana-authentication-openid-overview: "OpenID authentication"
-    kibana-authentication-saml-overview: "SAML authentication"
-    otherintegrations: Other integrations
-    systemintegrators: Advanced system integrator features
-    troubleshooting: Troubleshooting
-    changelogs: Changelogs
-    changelogs-kibana: "Kibana Changelogs"
-    changelogs-searchguard: "Search Guard Changelogs"
-    changelogs-tlstool: "TLS Tool Changelogs"
-    resources: Resources
-    signals: Signals Alerting
-    actions: Alerting Actions
-    conditions: Conditions
-    inputs: Alerting inputs
-    signals-rest: REST API
-    security: Alerting Security
-    transformations: Transformations
-    triggers: Triggers
-    advanced-topics: Signals Advanced Topics
-    sgadmin: sgadmin
-    aim: Automated Index Management
-    cl: Encryption at rest
-    aim-conditions: Conditions
-    aim-actions: Actions
-    aim-rest: REST API
-    flx: Search Guard FLX
-    7x-53: Search Guard 7.x-53
-    7x-52: Search Guard 7.x-52
-    7x-51: Search Guard 7.x-51
-    7x-50: Search Guard 7.x-50
-    7x-49: Search Guard 7.x-49
-    7x-48: Search Guard 7.x-48
-    7x-47: Search Guard 7.x-47
-    7x-46: Search Guard 7.x-46
-    7x-45: Search Guard 7.x-45
-    7x-43: Search Guard 7.x-43
-    7x-42: Search Guard 7.x-42
-    7x-41: Search Guard 7.x-41
-    7x-40: Search Guard 7.x-40
-    7x-38: Search Guard 7.x-38
-    7x-37: Search Guard 7.x-37
-    7x-36: Search Guard 7.x-36
-    7x-35: Search Guard 7.x-35
-    6x-25: Search Guard 6.x-25
-    6x-24: Search Guard 6.x-24
-    6x-23: Search Guard 6.x-23
-    6x-22: Search Guard 6.x-22
-    6x-21: Search Guard 6.x-21
-    6x-20: Search Guard 6.x-20
-    v5: Search Guard 5
-    v2: Search Guard 2
-  collections:
-    docs_introduction: Introduction to Search Guard
-    docs_quickstart: Documentation
-    docs_first_steps: First steps
-    docs_versions: Documentation
-    docs_installation: Documentation
-    docs_tls: Documentation
-    docs_configuration_changes: Documentation
-    docs_auth_auth: Documentation
-    docs_roles_permissions: Documentation
-    docs_dls_fls: Documentation
-    docs_audit_logging: Documentation
-    docs_rest_api: Documentation
-    docs_kibana: Documentation
-    docs_elasticstack: Documentation
-    docs_other_integrations: Documentation
-    docs_systemintegrators: Documentation
-    docs_signals: Documentation
-    docs_aim: Documentation
-    docs_cl: Documentation
-    troubleshooting: Troubleshooting
-    changelogs: Changelogs
-    resources: Resources
 
 relative_links:
   enabled:     true
@@ -210,7 +47,7 @@ collections:
   docs_quickstart:
     output: true
     permalink: :name
-  docs_versions:
+  docs_search_guard_versions:
     output: true
     permalink: :name
   docs_installation:
@@ -262,9 +99,6 @@ collections:
     output: true
     permalink: :name
   changelogs:
-    output: true
-    permalink: :name
-  resources:
     output: true
     permalink: :name
   common:

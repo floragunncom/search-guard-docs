@@ -2,8 +2,6 @@
 title: Settings
 html_title: Settings
 permalink: automated-index-management-settings
-category: aim
-order: 600
 layout: docs
 edition: community
 description: Configure Automated Index Management to fit your requirements

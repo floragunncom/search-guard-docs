@@ -2,15 +2,14 @@
 title: Cerebro
 html_title: Cerebro
 permalink: elasticsearch-cerebro-search-guard
-category: otherintegrations
-order: 600
 layout: docs
 edition: community
-description: How to configure and use Cerebro with a Search Guard secured Elasticsearch cluster. Protect your data from any unauthorized access.
+description: How to configure and use Cerebro with a Search Guard secured Elasticsearch
+  cluster. Protect your data from any unauthorized access.
 resources:
-  - https://www.playframework.com/documentation/2.6.x/WsSSL|Configuring WS SSL (website)
-  - https://www.playframework.com/documentation/2.5.x/ExampleSSLConfig|Example configurations (website)
-
+- https://www.playframework.com/documentation/2.6.x/WsSSL|Configuring WS SSL (website)
+- https://www.playframework.com/documentation/2.5.x/ExampleSSLConfig|Example configurations
+  (website)
 ---
 <!---
 Copyright floragunn GmbH

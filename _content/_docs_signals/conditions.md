@@ -2,14 +2,12 @@
 title: Conditions
 html_title: Conditions
 permalink: elasticsearch-alerting-conditions
-category: signals
-order: 600
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-conditions-overview
-description: In Signals Alerting, conditions are used to check for threshold values, controlling the execution flow and trigger notifications.
+description: In Signals Alerting, conditions are used to check for threshold values,
+  controlling the execution flow and trigger notifications.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Conditions

@@ -1,11 +1,10 @@
 ---
 title: Overview
 permalink: http-basic-authorization
-category: password-based
-order: 100
 layout: docs
 edition: community
-description: How to set up HTTP Basic Authentication on the REST layer of Elasticsearch with Search Guard.
+description: How to set up HTTP Basic Authentication on the REST layer of Elasticsearch
+  with Search Guard.
 ---
 <!---
 Copyright 2022 floragunn GmbH

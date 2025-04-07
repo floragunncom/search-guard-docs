@@ -2,11 +2,10 @@
 title: Quick Start
 html_title: Quickly migrating from older Search Guard versions
 permalink: sg-classic-config-migration-quick
-category: kibana-authentication-migration-overview
-order: 100
 layout: docs
 edition: community
-description: How to migrate older Search Guard authentication configurations to sg_authc.yml and sg_frontend_authc.yml
+description: How to migrate older Search Guard authentication configurations to sg_authc.yml
+  and sg_frontend_authc.yml
 ---
 <!---
 Copyright 2022 floragunn GmbH

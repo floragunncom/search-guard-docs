@@ -1,12 +1,9 @@
 ---
 title: Kibana 7.x-36.1.0
 permalink: changelog-kibana-7x-36_1_0
-category: changelogs-kibana
-order: 760
 layout: changelogs
 description: Changelog for the Search Guard Kibana Plugin 7.x-36.1.0
 ---
-
 <!---
 Copyright 2020 floragunn GmbH
 -->

@@ -2,13 +2,11 @@
 title: Throttling and Acknowledgement
 html_title: Notification Throttling
 permalink: elasticsearch-alerting-throttling
-category: signals
-order: 800
 layout: docs
 edition: community
-description: How to throttle notifications in Signals Alerting for Elasticsearch to prevent alert flooding
+description: How to throttle notifications in Signals Alerting for Elasticsearch to
+  prevent alert flooding
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Throttling and Acknowledgement

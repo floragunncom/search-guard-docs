@@ -2,18 +2,17 @@
 title: Multi-Tenancy
 html_title: Kibana Multi-Tenancy
 permalink: kibana-multi-tenancy
-category: kibana
-order: 300
 layout: docs
 edition: enterprise
-description: Search Guard adds true Multi-Tenancy to Kibana. Separate your dashboards and visualizations by users and roles.
+description: Search Guard adds true Multi-Tenancy to Kibana. Separate your dashboards
+  and visualizations by users and roles.
 resources:
-  - "https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi Tenancy with Search Guard (blog post)"
-  - "https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch and Kibana with Search Guard for free (blog post, external)"
-  - "troubleshooting-Multi-Tenancy|Multitenancy Troubleshooting (documentation)"
-
+- https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi Tenancy
+  with Search Guard (blog post)
+- https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch
+  and Kibana with Search Guard for free (blog post, external)
+- troubleshooting-Multi-Tenancy|Multitenancy Troubleshooting (documentation)
 ---
-
 # Kibana Multi-Tenancy
 {: .no_toc}
 

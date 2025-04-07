@@ -1,11 +1,10 @@
 ---
 title: Configuring Audit Logging
 permalink: audit-logging-compliance
-category: auditlog
-order: 100
 layout: docs
 edition: enterprise
-description: Implement Audit Logging on your Elasticsearch cluster and stay compliant with GDPR, HIPAA, ISO, PCI and SOX.
+description: Implement Audit Logging on your Elasticsearch cluster and stay compliant
+  with GDPR, HIPAA, ISO, PCI and SOX.
 ---
 <!---
 Copyright 2022 floragunn GmbH

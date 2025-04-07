@@ -2,12 +2,10 @@
 title: Overview
 html_title: Kibana changelogs
 permalink: changelogs-kibana
-category: changelogs-kibana
-order: -10000
 layout: changelogs
-description: Changelog overview for all releases of the Search Guard Kibana Plugin that adds access control and session management.
+description: Changelog overview for all releases of the Search Guard Kibana Plugin
+  that adds access control and session management.
 ---
-
 <!--- Copyright 2024 floragunn GmbH -->
 
 # Search Guard Kibana Plugin Changelogs for FLX

@@ -2,14 +2,11 @@
 title: Transformations Overview
 html_title: Transformations / Calculations
 permalink: elasticsearch-alerting-transformations-calculations-overview
-category: transformations
-order: 0
 layout: docs
 edition: community
-description: 
+description:
 index: false
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Transformations and Calculations

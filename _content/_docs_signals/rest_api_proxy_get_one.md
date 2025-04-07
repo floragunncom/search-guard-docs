@@ -2,13 +2,10 @@
 title: Get one proxy
 html_title: Get one proxy
 permalink: elasticsearch-alerting-rest-api-proxy-get-one
-category: signals-rest
-order: 857
 layout: docs
 edition: community
 description: Use to retrieve one proxy.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Get one proxy

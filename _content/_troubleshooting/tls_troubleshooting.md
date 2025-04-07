@@ -2,12 +2,10 @@
 title: TLS troubleshooting
 html_title: TLS help
 permalink: troubleshooting-tls
-category: troubleshooting
-order: 100
-layout: troubleshooting
-description: Step-by-step instructions to troubleshoot Search Guard TLS and certificates issues
+layout: docs
+description: Step-by-step instructions to troubleshoot Search Guard TLS and certificates
+  issues
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # TLS troubleshooting

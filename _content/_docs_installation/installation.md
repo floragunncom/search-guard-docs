@@ -2,13 +2,11 @@
 title: Search Guard Installation
 html_title: Installation
 permalink: search-guard-installation
-category: installation
-order: 100
 layout: docs
-description: Step by step instructions for setting up Search Guard on a new or existing Elastcsearch cluster. 
+description: Step by step instructions for setting up Search Guard on a new or existing
+  Elastcsearch cluster.
 resources:
-  - "search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)"
-  
+- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
 ---
 <!---
 Copyright 2022 floragunn GmbH

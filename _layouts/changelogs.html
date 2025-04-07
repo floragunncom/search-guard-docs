@@ -18,9 +18,9 @@
 						<div class="col-md-3 hidden-sm hidden-xs">
 							<div class="sidebar">
 
-								{% include left_nav_search.html %}
-								
-								{% include left_nav_changelogs.html %}
+								{% include left_navigation.html
+									navigation_file=site.data.side_navigation_changelogs_structure
+								%}
 
 							</div>
 						</div>

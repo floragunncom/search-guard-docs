@@ -2,13 +2,10 @@
 title: Delete proxy
 html_title: Delete proxy
 permalink: elasticsearch-alerting-rest-api-proxy-delete
-category: signals-rest
-order: 858
 layout: docs
 edition: community
 description: Use to delete proxy by id
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Delete proxy

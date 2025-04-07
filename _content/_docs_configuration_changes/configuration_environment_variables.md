@@ -1,13 +1,11 @@
 ---
 title: Configuration variables
 permalink: configuration-password-handling
-category: configuration
-order: 210
 layout: docs
 edition: community
-description: How to use config variables to keep sensitive information like passwords separate from the Search Guard configuration.
+description: How to use config variables to keep sensitive information like passwords
+  separate from the Search Guard configuration.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Configuration variables

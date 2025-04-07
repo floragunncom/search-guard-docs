@@ -2,8 +2,6 @@
 title: Force Merge Action
 html_title: Force Merge Action
 permalink: automated-index-management-actions-force-merge
-category: aim-actions
-order: 304
 layout: docs
 edition: community
 description: How the force merge action works

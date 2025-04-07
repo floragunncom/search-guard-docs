@@ -2,15 +2,11 @@
 title: REST API
 html_title: REST API
 permalink: elasticsearch-alerting-rest-api
-category: signals
-subcategory: signals-rest
-order: 900
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-rest-api-overview
 description: Overview of the Elasticsearch Alerting REST API
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # REST API

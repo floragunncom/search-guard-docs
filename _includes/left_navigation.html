@@ -1,0 +1,13 @@
+<nav class="menu-vertical-wrapper">
+  <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu" >
+    {% for filename in include.navigation_file.files %}
+      {% assign navigation_main_section = site.data[filename] %}
+      {% for item in navigation_main_section %}
+        {% include left_navigation_item.html
+          item=item
+          depth=1
+        %}
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</nav>

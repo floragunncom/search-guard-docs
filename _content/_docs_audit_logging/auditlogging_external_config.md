@@ -2,8 +2,6 @@
 title: System change tracking
 html_title: System change tracking
 permalink: integrity-elasticsearch
-category: auditlog
-order: 700
 layout: docs
 edition: compliance
 description: How to use Search Guard to monitor changes in the Elasticsearch configuration.

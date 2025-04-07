@@ -2,11 +2,10 @@
 title: Internal users API
 html_title: Users API
 permalink: rest-api-internalusers
-category: restapi
-order: 400
 layout: docs
 edition: enterprise
-description: How to use the users REST API endpoints to create, update and delete Search Guard users.
+description: How to use the users REST API endpoints to create, update and delete
+  Search Guard users.
 ---
 <!---
 Copyright 2022 floragunn GmbH

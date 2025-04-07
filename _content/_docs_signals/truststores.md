@@ -2,13 +2,10 @@
 title: Trust Stores
 html_title: Trust Stores
 permalink: elasticsearch-alerting-trust-stores
-category: signals
-order: 800
 layout: docs
 edition: community
 description: How to use trust stores
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Trust stores

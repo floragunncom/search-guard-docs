@@ -2,13 +2,11 @@
 title: Transformations
 html_title: Transformation Scripts
 permalink: elasticsearch-alerting-transformations
-category: transformations
-order: 100
 layout: docs
 edition: community
-description: Signals Alerting uses the Elasticsearch Painless scripting language for transforming data.
+description: Signals Alerting uses the Elasticsearch Painless scripting language for
+  transforming data.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Transformations

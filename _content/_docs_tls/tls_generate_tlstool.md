@@ -1,16 +1,17 @@
 ---
 title: Offline TLS Tool
 permalink: offline-tls-tool
-category: generating-certificates
-order: 300
 layout: docs
 edition: community
-description: Use the Search Guard TLS tool to generate production-ready TLS certificates for your Elasticsearch cluster.
+description: Use the Search Guard TLS tool to generate production-ready TLS certificates
+  for your Elasticsearch cluster.
 resources:
-  - https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready certificates with the TLS tool (blog post)
-  - https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction to TLS (blog post)
-  - https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS certificates (blog post)
-
+- https://search-guard.com/generating-certificates-tls-tool/|Generating production-ready
+  certificates with the TLS tool (blog post)
+- https://search-guard.com/elasticsearch-searchguard-tls-introduction/|An introduction
+  to TLS (blog post)
+- https://search-guard.com/elasticsearch-tls-certificates/|An introduction to TLS
+  certificates (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

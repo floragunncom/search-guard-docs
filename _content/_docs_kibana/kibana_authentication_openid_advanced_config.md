@@ -2,12 +2,10 @@
 title: Advanced Configuration
 html_title: Kibana OIDC Advanced Configuration
 permalink: kibana-authentication-openid-advanced-config
-category: kibana-authentication-openid-overview
-order: 200
 layout: docs
 edition: enterprise
-description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
-
+description: How to use OpenID Connect and your favorite identity provider to implement
+  Kibana Single Sign-On.
 ---
 <!--- Copyright 2021 floragunn GmbH -->
 

@@ -2,8 +2,6 @@
 title: REST API - Bulk Requests
 html_title: REST API - Bulk Requests
 permalink: rest-api-bulk
-category: restapi
-order: 600
 layout: docs
 edition: enterprise
 description: How to perform REST API bulk requests

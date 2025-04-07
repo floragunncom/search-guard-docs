@@ -1,0 +1,25 @@
+{% for item in include.items %}
+
+  {% assign current_slug = item.slug  %}
+
+  {%- if include.current_path == "" -%}
+    {% assign new_path = current_slug %}
+  {%- else -%}
+    {% assign new_path = include.current_path | append: "/" | append: current_slug %}
+  {%- endif -%}
+
+  {%- comment -%}
+    Check if the current item is the one we are looking for.
+  {%- endcomment -%}
+  {% if item.slug and item.slug == include.input_slug %}
+   {{ new_path }}
+    {%- break -%}
+  {% elsif item.children %}
+    {%- capture child_result -%}{% include find_path_recursive.html items=item.children input_slug=include.input_slug current_path=new_path %}{%- endcapture -%}
+{% assign child_result = child_result | strip %}
+    {% if child_result != "" %}
+      {{ child_result }}
+      {%- break -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}

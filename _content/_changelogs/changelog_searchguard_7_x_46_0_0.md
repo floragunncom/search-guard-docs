@@ -1,12 +1,9 @@
 ---
 title: Search Guard 7.x-46.0.0
 permalink: changelog-searchguard-7x-46_0_0
-category: changelogs-searchguard
-order: 100
 layout: changelogs
-description: Changelog for Search Guard 7.x-46.0.0	
+description: Changelog for Search Guard 7.x-46.0.0
 ---
-
 <!--- Copyright 2020 floragunn GmbH -->
 
 **Release Date: 06.10.2020**

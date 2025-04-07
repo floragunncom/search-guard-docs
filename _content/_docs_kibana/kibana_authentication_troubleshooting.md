@@ -2,8 +2,6 @@
 title: Troubleshooting
 html_title: Authentication Troubleshooting
 permalink: kibana-authentication-troubleshooting
-category: kibana-authentication
-order: 1000
 layout: docs
 edition: community
 description: What to do when things do not work as they are supposed to

@@ -2,8 +2,6 @@
 title: Set Replica Count Action
 html_title: Set Replica Count Action
 permalink: automated-index-management-actions-set-replica-count
-category: aim-actions
-order: 308
 layout: docs
 edition: community
 description: How the set replica count action works

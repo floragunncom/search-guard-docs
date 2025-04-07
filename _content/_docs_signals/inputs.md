@@ -2,15 +2,12 @@
 title: Inputs
 html_title: Alerting Data Input
 permalink: elasticsearch-alerting-inputs
-category: signals
-subcategory: inputs
-order: 400
 layout: docs
 edition: community
 canonical: elasticsearch-alerting-inputs-overview
-description: Signals Alerting for Elasticsearch offers multiple data inputs like Elasticsearch queries and HTTP endpoints.
+description: Signals Alerting for Elasticsearch offers multiple data inputs like Elasticsearch
+  queries and HTTP endpoints.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Inputs

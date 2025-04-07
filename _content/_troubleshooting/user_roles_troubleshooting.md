@@ -2,12 +2,10 @@
 title: User and roles troubleshooting
 html_title: User and roles help
 permalink: troubleshooting-search-guard-user-roles
-category: troubleshooting
-order: 210
-layout: troubleshooting
-description: How to troubleshoot problems with users and roles in an Search Guard secured Elasticsearch cluster.
+layout: docs
+description: How to troubleshoot problems with users and roles in an Search Guard
+  secured Elasticsearch cluster.
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # User and roles troubleshooting

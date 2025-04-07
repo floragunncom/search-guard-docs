@@ -2,13 +2,11 @@
 title: Search Guard index restore
 html_title: Index restore
 permalink: search-guard-oem-index-restore
-category: systemintegrators
-order: 300
 layout: docs
 edition: community
-description: How to enable snapshot and restore of the Search Guard index for regular users.
+description: How to enable snapshot and restore of the Search Guard index for regular
+  users.
 ---
-
 <!---
 Copyright 2022 floragunn GmbH
 -->

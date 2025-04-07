@@ -2,11 +2,10 @@
 title: Kibana in IFrame
 html_title: Kibana in IFrame
 permalink: kibana-in-iframe
-category: kibana-advanced
-order: 200
 layout: docs
 edition: community
-description: How to run Kibana powered by SearchGuard in an iframe on a third party website.
+description: How to run Kibana powered by SearchGuard in an iframe on a third party
+  website.
 ---
 <!---
 Copyright 2022 floragunn GmbH

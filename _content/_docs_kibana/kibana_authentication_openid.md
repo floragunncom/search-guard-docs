@@ -2,14 +2,13 @@
 title: Quick Start
 html_title: Kibana OIDC Quick Start
 permalink: kibana-authentication-openid
-category: kibana-authentication-openid-overview
-order: 100
 layout: docs
 edition: enterprise
-description: How to use OpenID Connect and your favorite identity provider to implement Kibana Single Sign-On.
+description: How to use OpenID Connect and your favorite identity provider to implement
+  Kibana Single Sign-On.
 resources:
-  - "https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID and Keycloak"
-
+- https://search-guard.com/kibana-openid-keycloak/|Kibana Single Sign-On with OpenID
+  and Keycloak
 ---
 <!---
 Copyright 2022 floragunn GmbH 

@@ -2,11 +2,10 @@
 title: Blocks API
 html_title: Blocks API
 permalink: rest-api-blocks
-category: restapi
-order: 460
 layout: docs
 edition: enterprise
-description: How to use the Blocks REST API endpoints to create, edit and delete Search Guard blocks.
+description: How to use the Blocks REST API endpoints to create, edit and delete Search
+  Guard blocks.
 ---
 <!---
 Copyright 2022 floragunn GmbH

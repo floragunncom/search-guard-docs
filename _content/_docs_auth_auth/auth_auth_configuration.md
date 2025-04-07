@@ -2,14 +2,10 @@
 title: Overview
 html_title: Authentication
 permalink: authentication-authorization
-category: authauth
-order: 100
 layout: docs
 edition: community
-description: How to configure, mix and chain authentication and authorization domains for Search Guard.
-#resources:
-#  - "search-guard-presentations#configuration-basics|Search Guard configuration basics (presentation)"
-
+description: How to configure, mix and chain authentication and authorization domains
+  for Search Guard.
 ---
 <!---
 Copyright 2022 floragunn GmbH

@@ -2,13 +2,10 @@
 title: Get all proxies
 html_title: Get all proxies
 permalink: elasticsearch-alerting-rest-api-proxy-get-all
-category: signals-rest
-order: 856
 layout: docs
 edition: community
 description: Use to retrieve information about proxies.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Get all proxies

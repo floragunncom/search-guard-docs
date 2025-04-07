@@ -1,10 +1,9 @@
 ---
 title: Search Guard Documentation
 html_title: Documentation
-slug: index
+#permalink: security
 layout: docs
 description: Official documentation for Search Guard FLX, the enterprise security and alerting suite for Elasticsearch.
-showsearch: true
 isroot: true
 ---
 <!---
@@ -15,8 +14,6 @@ Copyright 2022 floragunn GmbH
 <p align="center">
 <img src="img/logos/search-guard-frontmatter.svg" alt="Search Guard - Security for Elasticsearch" style="width: 40%" />
 </p>
-
-<h2 align="center">Security and Alerting for Elasticsearch</h2>
 
 <h1 align="center">Search Guard FLX Documentation</h1>
 

@@ -2,8 +2,6 @@
 title: Age Condition
 html_title: Age Condition
 permalink: automated-index-management-conditions-age
-category: aim-conditions
-order: 201
 layout: docs
 edition: community
 description: How the age condition works

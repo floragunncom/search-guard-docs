@@ -2,11 +2,10 @@
 title: Search Guard roles (2.x and below)
 html_title: Search Guard role-based authorization for Elasticsearch
 permalink: roles-permissions-2x
-category: rolespermissions
-order: 400
 layout: docs
 edition: community
-description: How to define role based access to Elasticsearch on index level with Search Guard.
+description: How to define role based access to Elasticsearch on index level with
+  Search Guard.
 ---
 <!---
 Copyright 2022 floragunn GmbH

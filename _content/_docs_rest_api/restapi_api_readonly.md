@@ -2,11 +2,10 @@
 title: Reserved and hidden resources
 html_title: Reserved resources
 permalink: rest-api-reserved-hidden
-category: restapi
-order: 310
 layout: docs
 edition: enterprise
-description: How to use the reserved and hidden flag to protect Search Guard resources from being overwritten.
+description: How to use the reserved and hidden flag to protect Search Guard resources
+  from being overwritten.
 ---
 <!---
 Copyright 2022 floragunn GmbH

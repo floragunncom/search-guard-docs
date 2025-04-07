@@ -2,13 +2,10 @@
 title: Watch overview page query params
 html_title: Watch overview page query params
 permalink: elasticsearch-alerting-watch-overview-parameters
-category: advanced-topics
-order: 100
 layout: docs
 edition: community
-description: How to use query parameters to change 
+description: How to use query parameters to change
 ---
-
 Filtering and Sorting Watches in Kibana
 
 Introduced in Search Guard FLX 1.1.0

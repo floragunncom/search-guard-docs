@@ -2,12 +2,9 @@
 title: Inter-node traffic evaluator
 html_title: Inter-node traffic
 permalink: search-guard-oem-inter-node-traffic
-category: systemintegrators
-order: 500
 layout: docs
 edition: community
 description: How implement a custom inter-node traffic evaluator for Search Guard.
-
 ---
 <!---
 Copyright 2022 floragunn GmbH

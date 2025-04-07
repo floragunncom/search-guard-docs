@@ -2,8 +2,6 @@
 title: Rollover Action
 html_title: Rollover Action
 permalink: automated-index-management-actions-rollover
-category: aim-actions
-order: 305
 layout: docs
 edition: community
 description: How the rollover action works

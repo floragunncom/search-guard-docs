@@ -2,16 +2,16 @@
 title: Field-level security
 html_title: Field-level security
 permalink: field-level-security
-category: dlsfls
-order: 100
 layout: docs
 edition: enterprise
-description: Include or exclude individual fields from your documents by using the Field-level security module of Search Guard.
+description: Include or exclude individual fields from your documents by using the
+  Field-level security module of Search Guard.
 resources:
-  - "search-guard-presentations#dls-fls|Document- and Field-level security (presentation)"
-  - https://search-guard.com/document-field-level-security-search-guard/|Document- and field-level security with Search Guard (blog post)
-  - https://search-guard.com/attribute-based-document-access/|Attribute based document access (blog post)
-
+- search-guard-presentations#dls-fls|Document- and Field-level security (presentation)
+- https://search-guard.com/document-field-level-security-search-guard/|Document- and
+  field-level security with Search Guard (blog post)
+- https://search-guard.com/attribute-based-document-access/|Attribute based document
+  access (blog post)
 ---
 <!---
 Copyright 2022 floragunn GmbH

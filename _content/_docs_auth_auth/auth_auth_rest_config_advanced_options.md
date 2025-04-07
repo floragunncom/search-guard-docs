@@ -1,8 +1,6 @@
 ---
 title: Other advanced options
 permalink: authc-advanced-options
-category: sg_authc
-order: 300
 layout: docs
 edition: community
 ---

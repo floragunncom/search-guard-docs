@@ -2,11 +2,10 @@
 title: SSL only mode
 html_title: SSL only mode
 permalink: search-guard-oem-ssl-only
-category: systemintegrators
-order: 100
 layout: docs
 edition: community
-description: How to enable Search Guard SSL only mode. This adds TLS encryption to Elasticsearch, but skips authentication and authorization.
+description: How to enable Search Guard SSL only mode. This adds TLS encryption to
+  Elasticsearch, but skips authentication and authorization.
 ---
 <!---
 Copyright 2022 floragunn GmbH

@@ -2,13 +2,10 @@
 title: Get one trust store
 html_title: Get one trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-get-one
-category: signals-rest
-order: 853
 layout: docs
 edition: community
 description: Use to retrieve all trust stores.
 ---
-
 <!--- Copyright 2023 floragunn GmbH -->
 
 # Get one trust store

@@ -2,13 +2,11 @@
 title: Execution context
 html_title: Execution context
 permalink: elasticsearch-alerting-security-security-context
-category: security
-order: 200
 layout: docs
 edition: community
-description: Understanding the security execution context of Signals Alerting for Elasticsearch
+description: Understanding the security execution context of Signals Alerting for
+  Elasticsearch
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # Security execution context

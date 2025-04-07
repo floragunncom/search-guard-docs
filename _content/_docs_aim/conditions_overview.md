@@ -2,8 +2,6 @@
 title: Conditions Overview
 html_title: Conditions Overview
 permalink: automated-index-management-conditions-overview
-category: aim-conditions
-order: 200
 layout: docs
 edition: community
 description: How conditions work in AIM

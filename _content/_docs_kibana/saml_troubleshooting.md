@@ -2,13 +2,11 @@
 title: Troubleshooting
 permalink: troubleshooting-saml
 html_title: Kibana SAML Advanced Troubleshooting
-category: kibana-authentication-saml-overview
-order: 300
 layout: docs
 edition: enterprise
-description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML issues
+description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML
+  issues
 ---
-
 <!--- Copyright 2022 floragunn GmbH -->
 
 # SAML troubleshooting

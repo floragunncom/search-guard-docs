@@ -2,8 +2,6 @@
 title: Doc Count Condition
 html_title: Doc Count Condition
 permalink: automated-index-management-conditions-doc-count
-category: aim-conditions
-order: 202
 layout: docs
 edition: community
 description: How the doc count condition works

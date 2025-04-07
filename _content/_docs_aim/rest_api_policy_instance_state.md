@@ -2,8 +2,6 @@
 title: Policy Instance State
 html_title: Policy Instance State
 permalink: automated-index-management-rest-policy-instance-state
-category: aim-rest
-order: 410
 layout: docs
 edition: community
 description: Use the state REST API to get a state from a managed index
