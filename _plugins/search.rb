@@ -7,6 +7,7 @@ class AlgoliaSearchRecordExtractor
     headings.map { |heading| data[heading.to_sym] }.compact.join(' > ')
   end
 
+
   def custom_hook_each(item, node)
     # `node` is a Nokogiri HTML node, so you can access its type through `node.name`
     # or its classname through `node.attr('class')` for example
@@ -20,13 +21,12 @@ class AlgoliaSearchRecordExtractor
       return nil
     end
 
-    collection_name = @file.collection.label
+    algolia_hierarchy = @file.site.config["collections"][@file.collection.label]["algolia_hierarchy"]
+
 
     # In Jekyll v3, posts are actually a collection
-    return item if collection_name == 'posts'
-    item[:collection_name] = @file.site.config["labels"]["collections"][collection_name]
-    item[:category_name] = @file.site.config["labels"]["navigation"][item[:category]]
-    item[:unique_hierarchy] = item[:collection_name] + " > " + item[:category_name] + " > " + item[:unique_hierarchy]
+    return item if @file.collection.label == 'posts'
+    item[:unique_hierarchy] = algolia_hierarchy + " > " + unique_hierarchy(item)
     item[:text_all_raw] = node_text_all_raw(node)
     item[:text_all] = node_text_all(node)
     item

@@ -2,7 +2,7 @@
   slug: automated-index-management
   children:
     - title: How Automated Index Management Works
-      slug: automated-index-management
+      slug: how-automated-index-management-works
 
     - title: Conditions
       slug: automated-index-management-conditions
@@ -17,7 +17,7 @@
           slug: automated-index-management-conditions-size
 
     - title: Actions
-      slug: actions
+      slug: automated-index-management-actions
       children:
         - title: Actions Overview
           slug: automated-index-management-actions-overview

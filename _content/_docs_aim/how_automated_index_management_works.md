@@ -1,7 +1,9 @@
 ---
 title: How Automated Index Management Works
 html_title: How Automated Index Management Works
-permalink: automated-index-management
+permalink: how-automated-index-management-works
+category: aim
+order: 100
 layout: docs
 edition: community
 description: How Automated Index Management works

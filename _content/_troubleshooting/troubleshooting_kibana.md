@@ -1,6 +1,6 @@
 ---
 title: Kibana Troubleshooting
-slug: troubleshooting-kibana
+permalink: troubleshooting-kibana
 layout: docs
 description: Step-by-step instructions on how to troubleshoot Kibana issues with the Search Guard plugin.
 ---

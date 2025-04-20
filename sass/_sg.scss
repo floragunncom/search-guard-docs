@@ -135,3 +135,40 @@ relnotes {
   font-weight:500;
   font-size:1.0em;
 }
+
+.breadcrumb {
+  padding: 0.75rem 1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
+
+  .breadcrumb-item {
+    display: inline-block;
+    
+    + .breadcrumb-item {
+      padding-left: 0.5rem;
+      
+      &::before {
+        display: inline-block;
+        padding-right: 0.5rem;
+        color: $navyBlue;
+        content: "/";
+      }
+    }
+    
+    &.active {
+      color: $navyBlue;
+    }
+    
+    a {
+      color: $navyBlueActive;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

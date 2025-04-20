@@ -1,9 +1,7 @@
 ---
 title: Using the Kibana API
 html_title: Using the Kibana API
-slug: kibana-authentication-api
-category: kibana-advanced
-order: 100
+permalink: kibana-authentication-api
 layout: docs
 edition: community
 description: How to use the Kibana saved objects API when authentication is configured.

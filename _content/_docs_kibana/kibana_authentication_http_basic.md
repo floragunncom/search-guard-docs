@@ -1,9 +1,7 @@
 ---
 title: Quick Start
 html_title: Username/password based authentication for Kibana
-slug: kibana-authentication-http-basic
-category: kibana-authentication-basic-overview
-order: 100
+permalink: kibana-authentication-http-basic
 layout: docs
 edition: community
 description: How to configure Kibana for Username/password based authentication. Secure Kibana access with a login screen.

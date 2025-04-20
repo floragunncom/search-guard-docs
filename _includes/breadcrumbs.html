@@ -1,0 +1,41 @@
+{% comment %}
+  Breadcrumb navigation include file for Jekyll documentation site
+
+  Usage: {% include breadcrumbs.html %}
+
+  This include file:
+  1. Takes the current page's permalink
+  2. Looks up the pre-generated breadcrumb path in site.data.breadcrumbs
+  3. Renders breadcrumbs with appropriate links and structured data for SEO
+{% endcomment %}
+
+{% assign current_permalink = page.permalink %}
+{% assign breadcrumb_path = site.data.breadcrumbs[current_permalink] %}
+
+{% if breadcrumb_path %}
+  <nav aria-label="Breadcrumb" class="breadcrumbs">
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+      {% comment %} Always include home link as first item {% endcomment %}
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ item.slug | prepend: '/' | relative_url }}" itemprop="item">
+          <span itemprop="name">Home</span>
+        </a>
+        <meta itemprop="position" content="1" />
+      </li>
+
+      {% comment %} Render breadcrumb items from the pre-generated path {% endcomment %}
+      {% for item in breadcrumb_path %}
+        {% assign position = forloop.index | plus: 1 %}
+        <li class="breadcrumb-item{% if forloop.last %} active{% endif %}"
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem">
+              <a href="{{ item.slug | prepend: '/' | relative_url }}" itemprop="item">
+                <span itemprop="name">{{ item.title }}</span>
+              </a>
+          <meta itemprop="position" content="{{ position }}" />
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}
