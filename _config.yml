@@ -35,75 +35,99 @@ relative_links:
   enabled:     true
   collections: true
 
-#domain: https://docs.search-guard.com
-#baseurl: /tech-preview
-
 collections_dir: _content
 
 collections:
+  # These pages are auto-generated
+  docs_category_pages:
+    output: true
+    permalink: :name
+    index: false
+    algolia_hierarchy: "None"
   docs_introduction:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Introduction"
   docs_quickstart:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Quickstart"
   docs_search_guard_versions:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Search Guard Versions"
   docs_installation:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Installation"
   docs_tls:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > TLS Setup"
   docs_configuration_changes:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Configuration Changes"
   docs_auth_auth:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Authentication and Authorization"
   docs_roles_permissions:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Roles and Permissions"
   docs_dls_fls:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Document- and Field-Level Security"
   docs_audit_logging:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Audit Logging"
   docs_rest_api:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Security REST API"
   docs_kibana:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Kibana"
   docs_elasticstack:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Elastic Stack"
   docs_other_integrations:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > Other Integrations"
   docs_systemintegrators:
     output: true
     permalink: :name
+    algolia_hierarchy: "Security > System Integrators"
   docs_signals:
     output: true
     permalink: :name
+    algolia_hierarchy: "Alerting"
   docs_aim:
     output: true
     permalink: :name
+    algolia_hierarchy: "Index Management"
   docs_cl:
     output: true
     permalink: :name
+    algolia_hierarchy: "Encryption at Rest"
   troubleshooting:
     output: true
     permalink: :name
+    algolia_hierarchy: "Troubleshooting"
   changelogs:
     output: true
     permalink: :name
+    algolia_hierarchy: "Changelogs"
   common:
     output: true
     permalink: :name
+    algolia_hierarchy: "Common"
 
 algolia:
   application_id: '2ESDTH812Y'

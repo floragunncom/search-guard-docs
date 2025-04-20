@@ -4,3 +4,5 @@
 .jekyll-cache
 /vendor/
 .jekyll-metadata
+_data/breadcrumbs.yml
+_content/_docs_category_pages/*.md

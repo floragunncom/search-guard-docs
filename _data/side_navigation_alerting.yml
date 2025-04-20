@@ -1,5 +1,5 @@
 - title: Alerting
-  slug: alerting
+  slug: elasticsearch-alerting
   children:
     - title: Getting started with Signals Alerting
       slug: elasticsearch-alerting-getting-started
@@ -11,7 +11,7 @@
       slug: elasticsearch-alerting-chaining-checks
 
     - title: Triggers
-      slug: triggers
+      slug: elasticsearch-alerting-triggers
       children:
         - title: Triggers Overview
           slug: elasticsearch-alerting-triggers-overview
@@ -21,7 +21,7 @@
           slug: elasticsearch-alerting-triggers-timezones
 
     - title: Inputs
-      slug: inputs
+      slug: elasticsearch-alerting-inputs
       children:
         - title: Inputs Overview
           slug: elasticsearch-alerting-inputs-overview
@@ -33,7 +33,7 @@
           slug: elasticsearch-alerting-inputs-http
 
     - title: Transformations
-      slug: transformations
+      slug: elasticsearch-alerting-transformations
       children:
         - title: Transformations Overview
           slug: elasticsearch-alerting-transformations-calculations-overview
@@ -48,7 +48,7 @@
       slug: elasticsearch-alerting-severity
 
     - title: Actions
-      slug: actions
+      slug: elasticsearch-alerting-actions
       children:
         - title: Actions Overview
           slug: elasticsearch-alerting-actions-overview
@@ -77,7 +77,7 @@
       slug: elasticsearch-alerting-proxies
 
     - title: REST API
-      slug: rest-api
+      slug: elasticsearch-alerting-rest-api
       children:
         - title: REST API Overview
           slug: elasticsearch-alerting-rest-api-overview
@@ -160,7 +160,7 @@
       slug: elasticsearch-alerting-administration
 
     - title: Advanced Topics
-      slug: advanced-topics
+      slug: elasticsearch-alerting-advanced-topics
       children:
         - title: Watch overview page query params
           slug: elasticsearch-alerting-watch-overview-parameters

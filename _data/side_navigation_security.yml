@@ -1,6 +1,5 @@
 - title: Security
   slug: security
-  isroot: true
   children:
 
     - title: Introduction to Search Guard
@@ -12,14 +11,14 @@
           slug: main-concepts
 
     - title: Quickstart
-      slug: quickstart
+      slug: search-guard-security-quickstart
       children:
         - title: Demo Installer (Linux/Mac)
           slug: demo-installer
         - title: Manual Installation
           slug: manual-installation
         - title: Guided Tour
-          slug: guided_tour
+          slug: search-guard-security-guided-tour
           children:
             - title: Adding users
               slug: first-steps-user-configuration
@@ -31,7 +30,7 @@
               slug: first-steps-testing-configuration
 
     - title: Search Guard Versions
-      slug: search-guard-versions
+      slug: search-guard-security-search-guard-versions
       children:
         - title: Releases
           slug: search-guard-versions
@@ -79,10 +78,10 @@
               slug: sg-upgrade-7-8
 
     - title: TLS Setup
-      slug: tls-setup
+      slug: search-guard-security-tls-setup
       children:
         - title: Generating Certificates
-          slug: generating-certificates
+          slug: search-guard-security-generating-certificates
           children:
             - title: Search Guard Installer
               slug: tls-certificates-installer
@@ -121,12 +120,12 @@
           slug: search-guard-index-maintenance
 
     - title: Authentication
-      slug: authentication
+      slug: search-guard-security-authentication
       children:
         - title: Overview
           slug: authentication-authorization
         - title: General Configuration
-          slug: general-configuration
+          slug: search-guard-security-general-configuration
           children:
             - title: Introduction to sg_authc
               slug: authentication-authorization-configuration
@@ -135,14 +134,14 @@
             - title: Other advanced options
               slug: authc-advanced-options
         - title: Password-based Authentication
-          slug: password-based-authentication
+          slug: search-guard-security-password-based-authentication
           children:
             - title: Overview
               slug: http-basic-authorization
             - title: Internal users database
               slug: internal-users-database
         - title: Active Directory and LDAP
-          slug: active-directory-and-ldap
+          slug: search-guard-security-active-directory-and-ldap
           children:
             - title: Quick Start
               slug: active-directory-ldap
@@ -151,14 +150,14 @@
         - title: Kerberos / SPNEGO
           slug: kerberos-spnego
         - title: JWT
-          slug: json-web-tokens-overview
+          slug: search-guard-security-json-web-tokens
           children:
             - title: Quick Start
               slug: json-web-tokens
             - title: Advanced Configuration
               slug: json-web-tokens-advanced
         - title: Proxy authentication
-          slug: proxy-authentication-overview
+          slug: search-guard-security-proxy-authentication
           children:
             - title: Quick Start
               slug: proxy-authentication
@@ -172,7 +171,7 @@
           slug: search-guard-auth-tokens
 
     - title: Authorization
-      slug: authorization
+      slug: search-guard-security-authorization
       children:
         - title: Demo users and roles
           slug: demo-users-roles
@@ -197,7 +196,7 @@
               slug: snapshot-restore
 
     - title: Document-level security
-      slug: document-level-security-index
+      slug: search-guard-security-document-level-security
       children:
         - title: Basics
           slug: document-level-security
@@ -207,7 +206,7 @@
           slug: advanced-dls
 
     - title: Field-level security
-      slug: field-level-security-index
+      slug: search-guard-security-field-level-security
       children:
         - title: Field-level security
           slug: field-level-security
@@ -215,7 +214,7 @@
           slug: field-anonymization
 
     - title: Audit Logging
-      slug: audit-logging
+      slug: search-guard-security-audit-logging
       children:
         - title: Configuring Audit Logging
           slug: audit-logging-compliance
@@ -237,7 +236,7 @@
           slug: immutable-indices
 
     - title: Rest API
-      slug: rest-api
+      slug: search-guard-security-rest-api
       children:
         - title: Access Control
           slug: rest-api-access-control
@@ -260,7 +259,7 @@
         - title: Cache API
           slug: rest-api-cache
         - title: Advanced Topics
-          slug: advanced-topics
+          slug: search-guard-security-rest-api-advanced-topics
           children:
             - title: Bulk Requests
               slug: rest-api-bulk
@@ -268,7 +267,7 @@
               slug: rest-api-reserved-hidden
 
     - title: Kibana
-      slug: kibana
+      slug: search-guard-security-kibana
       children:
         - title: Installing the Plugin
           slug: kibana-plugin-installation
@@ -323,7 +322,7 @@
               slug: kibana-in-iframe
 
     - title: Integrations
-      slug: integrations
+      slug: search-guard-security-integrations
       children:
         - title: Logstash
           slug: elasticsearch-logstash-search-guard
@@ -343,7 +342,7 @@
           slug: elasticsearch-grafana-search-guard
 
     - title: OEM Features
-      slug: oem-features
+      slug: search-guard-security-oem-features
       children:
         - title: SSL only mode
           slug: search-guard-oem-ssl-only
@@ -357,7 +356,7 @@
           slug: search-guard-oem-inject-ssl-context
 
     - title: Troubleshooting
-      slug: security-troubleshooting
+      slug: search-guard-security-troubleshooting
       children:
         - title: Setting the log level
           slug: troubleshooting-setting-log-level
