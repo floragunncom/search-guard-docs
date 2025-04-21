@@ -27,11 +27,12 @@ class AlgoliaSearchRecordExtractor
     # In Jekyll v3, posts are actually a collection
     return item if @file.collection.label == 'posts'
     item[:unique_hierarchy] = algolia_hierarchy + " > " + unique_hierarchy(item)
-    #item[:text_all_raw] = node_text_all_raw(node)
+    item[:text_all_raw] = node_text_all_raw(node)
     item[:text_all] = node_text_all(node)
 
-    if item.to_s.bytesize > 30000
+    if item.to_s.bytesize > 20000
       puts "Item with permalink #{item[:permalink]} is too large (> 20K). Probably the headings are not on hierarchy."
+      item
     end
     item
   end

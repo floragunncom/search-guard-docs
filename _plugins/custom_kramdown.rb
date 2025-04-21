@@ -16,7 +16,7 @@ module Kramdown
         # For example, wrapping the code block in an extra div.
         custom_html =  "<div class=\"code-highlight\" data-label=\"\">\n"
         custom_html <<  "<span class=\"js-copy-to-clipboard copy-code\">copy</span>\n"
-        custom_html << "<pre class=\"language-#{language}\"><code class=\"js-code language-#{language}\">#{code}</code></pre>"
+        custom_html << "<pre class=\"language-#{language}\"><code class=\"js-code language-#{language}\">#{code}</code></pre></div>"
       end
     end
   end
