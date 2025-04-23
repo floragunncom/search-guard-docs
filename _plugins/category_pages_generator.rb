@@ -82,6 +82,7 @@ module Jekyll
         File.open(file_path, 'w') do |file|
           file.write(content)
         end
+        puts "Generated page for slug #{item[:slug]}: #{file_path}"
       end
     end
 
