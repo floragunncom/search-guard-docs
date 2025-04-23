@@ -5,36 +5,33 @@ layout: docs
 description: How Search Guard extracts credentials from a request and how they are
   mapped to users, roles and permissions.
 resources:
-- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
-- search-guard-presentations#architecture-request-flow|Architecture and Request Flow
-  (presentation)
-- search-guard-presentations#configuration-basics|Configuration Basics (presentation)
+  - search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
+  - search-guard-presentations#architecture-request-flow|Architecture and Request Flow
+    (presentation)
+  - search-guard-presentations#configuration-basics|Configuration Basics (presentation)
 ---
-<!---
-Copyright 2022 floragunn GmbH
--->
+<!--- Copyright floragunn GmbH -->
 
 # Search Guard Main Concepts
 {: .no_toc}
 
 {% include toc.md %}
 
-Search Guard can be used to secure your Elasticsearch cluster by working with different industry standard authentication techniques, like Kerberos, LDAP / Active Directory, JSON web tokens, TLS certificates and Proxy authentication / SSO.
+## Introduction
 
-Regardless of what authentication method you use, the basic flow is as follows:
+Search Guard secures your Elasticsearch cluster using industry-standard authentication methods including Kerberos, LDAP/Active Directory, JSON Web Tokens (JWT), TLS certificates, and Proxy authentication/Single Sign-On (SSO).
 
-* A user wants to **access** an Elasticsearch cluster, for example by issuing  a simple query.
-* Search Guard retrieves the user's **credentials** from the request
-  * How the credentials are retrieved depends on the authentication method. For example, they can be extracted from HTTP Basic Authentication headers, from a JSON web token or from a Kerberos ticket.
-* Search Guard **authenticates** the credentials against the configured authentication backend(s).  
-* Search Guard **authorizes** the user by retrieving a list of the user's roles from the configured authorization backend
-  * Roles retrieved from authorization backends are called **backend roles**. 
-  * For example, roles can be fetched from LDAP/AD, from a JSON web token or from the Search Guard internal user database.
-* Search Guard **maps** the user and backend roles to **Search Guard roles**.
-* Search Guard determines the **permissions** associated with the Search Guard role and decides whether the action the user wants to perform is allowed or not.
-* If your are using [Document- and Field-Level-Security](../_docs_dls_fls/dlsfls_dls.md), you can also apply more fine grained permissions based on documents and individual fields.  
+Regardless of the authentication method you choose, Search Guard follows a consistent security flow:
 
-## Authentication flow
+1. A user attempts to **access** an Elasticsearch cluster (e.g., by submitting a query)
+2. Search Guard extracts the user's **credentials** from the request
+3. Search Guard **authenticates** these credentials against configured authentication backends
+4. Search Guard **authorizes** the user by retrieving their roles from the authorization backend
+5. Search Guard **maps** the user and their backend roles to **Search Guard roles**
+6. Search Guard determines the **permissions** associated with these roles and decides whether to allow the requested action
+7. If [Document and Field-Level Security](../_docs_dls_fls/dlsfls_dls.md) is enabled, additional fine-grained permissions can be applied to specific documents and fields
+
+## Authentication Flow
 
 <p align="center">
 <img src="authentication_flow.png" style="width: 40%" class="md_image"/>
@@ -42,61 +39,63 @@ Regardless of what authentication method you use, the basic flow is as follows:
 
 ## Credentials
 
-In order to **identify** the user who wants to interact with the cluster, Search Guard first needs the user's **credentials**. 
+Search Guard begins by identifying the user through their **credentials**. The nature of these credentials varies depending on the authentication technology:
 
-What the term credential means depends on the technology you use for user identification. For example, if you use HTTP basic auth, then the credentials are username and password.
+* With HTTP Basic Authentication: credentials are `username` and `password`
+* With JSON Web Tokens (JWT): credentials are embedded within the token itself
+* With TLS certificates: credentials are the Distinguished Name (DN) of the certificate
 
-If you use a JSON web token, the credentials are contained in the token itself.
+Credential providers fall into two categories:
 
-If you use TLS certificates for identifying clients, the credentials are the DN of the certificate.
+| Provider Type | Behavior |
+|---------------|----------|
+| **Challenging** | Actively prompts the user for credentials if they're missing from the request (e.g., displaying an HTTP Basic Auth dialog) |
+| **Non-challenging** | Assumes credentials are already present in the request and won't prompt if they're missing |
 
-A credential provider can either be **challenging** or **non-challenging**. A challenging provider actively asks the user for his or her credentials if they are not already present in the request. A common way is to display an HTTP basic auth dialogue. 
+## Authentication (Authc)
 
-A non-challenging authenticator always assumes that the credentials are present in the request, and will not ask the user for it in case they are missing.
+Once credentials are extracted, Search Guard **authenticates** them against configured backend authentication modules such as LDAP, Active Directory, Kerberos, or JWT.
 
-## Authentication AKA Authc
+Search Guard supports authentication chaining, where multiple authenticators can be configured in sequence. When a request arrives, Search Guard tries each authenticator in order until one succeeds. A common implementation combines the Search Guard internal user database with external systems like LDAP/Active Directory.
 
-Search Guard then **authenticates** the credentials **against a backend authentication module**, for example LDAP, Active Directory, Kerberos or JWT.
+Additionally, Search Guard supports **user information backends** that can enrich an authenticated user's profile with additional roles or attributes. For example:
 
-Search Guard supports chaining multiple authenticators. If more than one authenticator is configured, Search Guard will try to authenticate the user against all authenticators in the chain, until one authenticator succeeds. 
+* A user might authenticate via JWT (which already contains some role information)
+* An LDAP user information backend can then provide additional roles for this authenticated user
 
-A common use case is to combine the Search Guard internal user database with LDAP / Active Directory.
+For enterprises using **external authentication or Single Sign-On (SSO)** solutions that act as proxies or store authentication data in HTTP headers, Search Guard provides an HTTP proxy authenticator that can interpret these header fields.
 
-Additionally, Search Guard supports so-called user information backends which can enrich the data of an already authenticated user by additional roles or attributes. Thus, you can get authentication from JWT. This JWT might also already carry role information. Using an LDAP user information backend, you can retrieve additional roles for the authenticated user.
+## Users and Roles
 
+After successful authentication and role retrieval, Search Guard **maps** the user and any **backend roles** to **Search Guard roles**.
 
-Search Guard also supports **external authentication and Single Sign On (SSO) solutions**. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. 
+This mapping can be configured in various ways:
 
+* One-to-one mapping: Each backend role maps directly to a corresponding Search Guard role
+* Many-to-one mapping: Multiple backend roles map to a single Search Guard role
+* Custom mapping: Combinations of users and roles mapped to specific Search Guard roles
 
-## Users and roles
-
-After the user is verified and roles have been retrieved, Search Guard will **map** the **user and any backend roles** to **Search Guard roles**. 
-
-In some cases you want to map the backend roles 1:1 to Search Guard roles, but more often you want to map different backend roles and users to one Search Guard role.
+This flexible mapping system allows administrators to align security permissions with organizational structures without modifying the backend authentication systems.
 
 ## Permissions
 
-Each interaction with Elasticsearch means that a particular **user** wants to **execute** an **action** on an Elasticsearch **cluster** and **one or more indices**. 
+Every interaction with Elasticsearch involves a **user** attempting to execute an **action** on a specific **cluster** and one or more **indices**.
 
 A permission defines:
 
-* which role,
-* can perform which action,
-* against which cluster or index.
+* Which role
+* Can perform which action
+* Against which cluster or index
 
-A definition of a permission that allows searching a particular index looks like:
+For example, a permission allowing search operations on an index would be expressed as:
 
-* `indices:data/read/search*`
+`indices:data/read/search*`
 
-Permissions are defined per role and can be applied on a cluster or index level.
+Permissions are defined per role and can be applied at either the cluster or index level. Search Guard includes built-in permission groups like `SGS_READ`, `SGS_WRITE`, and `SGS_SEARCH` to simplify configuration.
 
-Search Guard ships with built-in groups of permissions like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc.
+## Action Groups
 
-## Action groups
-
-An action group is an **alias for a set of permissions**. Action groups can be **nested**. 
-
-For example, the following snippet shows two action groups, where the `SGS_SUGGEST` action group is referenced by the `SGS_SEARCH` action group:
+Action groups serve as **aliases for sets of permissions** and can be **nested** for more modular configuration. For example:
 
 ```yaml
 SGS_SEARCH:
@@ -107,39 +106,46 @@ SGS_SUGGEST:
   - "indices:data/read/suggest*"
 ```
 
-Action groups can be used in the role configuration instead of or in combination with fine-grained permissions like `indices:data/read/search*`.
+In this example, the `SGS_SEARCH` action group includes several direct permissions and also incorporates all permissions from the `SGS_SUGGEST` action group.
 
-Search Guard ships with a built-in set of useful action groups like `SGS_READ`, `SGS_WRITE`, `SGS_SEARCH` etc. We always keep the action groups up to date, so the **preferred way of configuring your roles is to use the built-in action groups**.
+Action groups can be used in role configurations either instead of or alongside fine-grained permissions. Search Guard provides a comprehensive set of built-in action groups that are regularly updated, making them the **recommended approach for role configuration**.
 
-## The Search Guard index
+## The Search Guard Index
 
-All configuration settings for Search Guard, such as users, roles and permissions, are stored as documents in a special Search Guard index. This index is secured so that only an admin user with a special SSL certificate may write or read this index. You can define one or more of these certificates, called **admin certificates**, in elasticsearch.yml.
+All Search Guard configuration settings—including users, roles, and permissions—are stored as documents in a dedicated Search Guard index. This index is secured so that only admin users with special SSL certificates can read from or write to it. These **admin certificates** are defined in the `elasticsearch.yml` configuration file.
 
-Keeping the configuration settings in an Elasticsearch index enables hot config reloading. This means that you can **change any of the user, role and permission settings at runtime, without restarting your nodes**. Configuration changes will **take effect immediately**. 
+Storing configuration in an Elasticsearch index enables **hot config reloading**, allowing you to:
 
-Also the authenticator configuration is hot reloadable, so you can add, remove or change authenticators at runtime as well.
-
-You can load and change the settings from any machine which has access to your Elasticsearch cluster.  You do not need to keep any configuration files on the nodes themselves. 
+* Change user, role, and permission settings without restarting nodes
+* Apply configuration changes immediately
+* Modify authenticator configurations at runtime
+* Manage your security settings from any machine with cluster access
 
 The core configuration consists of the following files:
 
-* `sg_authc.yml` - configure authentication
-* `sg_roles.yml` - define roles and the associated permissions.
-* `sg_internal_users.yml` - stores users, roles and hashed passwords (hash with hash.sh) in the internal user database.
-* `sg_action_groups.yml` - define named permission groups.
+| Configuration File | Purpose |
+|-------------------|---------|
+| `sg_authc.yml` | Configures authentication mechanisms |
+| `sg_roles.yml` | Defines roles and their associated permissions |
+| `sg_internal_users.yml` | Stores users, roles, and hashed passwords for the internal user database |
+| `sg_action_groups.yml` | Defines named permission groups |
 
-If you are running Kibana, you might also need the following configuration:
+For Kibana deployments, additional configuration files are needed:
 
-* `sg_frontend_authc.yml` - authentication for Kibana
-* `sg_frontend_multi_tenancy.yml` - basic multi-tenancy settings for Kibana
-* `sg_tenants.yml` - defines tenants for configuring Kibana access
+| Configuration File | Purpose |
+|-------------------|---------|
+| `sg_frontend_authc.yml` | Authentication settings for Kibana |
+| `sg_frontend_multi_tenancy.yml` | Basic multi-tenancy settings for Kibana |
+| `sg_tenants.yml` | Defines tenants for configuring Kibana access |
 
-For special features or configuration, you have also the following files:
+Special features require these additional configuration files:
 
-* `sg_authz.yml` - authorization-specific settings
-* `sg_auth_token_service.yml` - for configuring the API auth token service
-* `sg_blocks.yml` - defines blocked users and IP addresses
+| Configuration File | Purpose |
+|-------------------|---------|
+| `sg_authz.yml` | Authorization-specific settings |
+| `sg_auth_token_service.yml` | Configures the API authentication token service |
+| `sg_blocks.yml` | Defines blocked users and IP addresses |
 
-You can find sample templates for all files in the Search Guard download.
+Sample templates for all configuration files are included in the Search Guard download package.
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgctl](../_docs_configuration_changes/configuration_sgctl.md). 
+Configuration changes are applied by pushing the content of one or more configuration files to the Search Guard secured cluster using the `sgctl` tool. For detailed instructions, refer to the [sgctl documentation](../_docs_configuration_changes/configuration_sgctl.md).

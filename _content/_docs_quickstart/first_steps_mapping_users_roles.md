@@ -6,12 +6,12 @@ layout: docs
 description: How to map users to Search Guard roles to assign cluster- and index-level
   access permissions.
 resources:
-- mapping-users-roles|Mapping users to roles (docs)
-- sgctl|Using sgctl (docs)
+  - mapping-users-roles|Mapping users to roles (docs)
+  - sgctl|Using sgctl (docs)
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 
-# Mapping users to Search Guard roles
+# Mapping Users to Search Guard Roles
 {: .no_toc}
 
 {% include toc.md %}
@@ -19,32 +19,32 @@ resources:
 This guide assumes that you have already installed Search Guard in your cluster using the [demo installer](demo-installer).
 {: .note .js-note .note-info}
 
-## Roles mapping concept
+## Understanding Role Mapping
 
-In the last two chapters we created new Search Guard users and Search Guard roles.
+After creating Search Guard users and roles, you need to connect them together through role mapping. This crucial step establishes which users have access to specific permissions defined in your roles.
 
-As a next step, we need to connect the users with the Search Guard roles. This is where the roles mapping come into play. In order to map a user to a Search Guard role, you can use
+When mapping users to Search Guard roles, you can use:
 
-* the username
-* the user's backend roles
-* the hostname or IP the request originated from (advanced)
+* The username directly
+* The user's backend roles (recommended for flexibility)
+* The source hostname or IP address (for advanced use cases)
 
-The most flexible way is to use backend roles. Depending on what authentication method you use, backend roles can be:
+Backend roles provide the most flexible approach to role mapping. Depending on your authentication method, backend roles can come from:
 
 * LDAP/Active Directory groups
 * JWT claims
 * SAML assertions
-* Internal user database backend roles 
+* Backend roles defined in the internal user database
 
 <p align="center">
 <img src="rolemapping.png" style="width: 70%" class="md_image"/>
 </p>
 
-Since we leverage the internal user database in this example, we will use the  backend roles we configured in the first chapter.
+In this guide, we'll use backend roles configured in the internal user database to demonstrate the mapping process.
 
-## Recap: Backend roles of the users
+## User Backend Roles Overview
 
-In the first chapter of this guide we configured three users. Two of them have the backend role `hr_department` one has the backend role `devops `.
+In the previous chapter, we configured three users with the following backend roles:
 
 ```
 jdoe:
@@ -63,14 +63,14 @@ cmaddock:
     - devops
 ```
 
-We want to assign 
+Our goal is to implement the following mapping:
 
-* all users that have the backend role `hr_department` to the Search Guard role `sg_human_resources`
-* all users that have the backend role `devops` to the Search Guard role `sg_devops`
+* Map all users with the `hr_department` backend role to the `sg_human_resources` Search Guard role
+* Map all users with the `devops` backend role to the `sg_devops` Search Guard role
 
-## Configuring the roles mapping
+## Configuring Role Mapping
 
-The mapping between users and Search Guard roles is configured in the `sg_roles_mapping.yml` file. The structure is straight-forward:
+Role mapping is defined in the `sg_roles_mapping.yml` file using a straightforward structure:
 
 ```
 <Search Guard role name>:
@@ -85,7 +85,7 @@ The mapping between users and Search Guard roles is configured in the `sg_roles_
     - ...
 ```
 
-We use the backend roles of the users configured in `sg_internal_users.yml` and thus define like the roles mapping like:
+Since we're using backend roles for mapping, our configuration will look like this:
 
 ```
 sg_human_resources:
@@ -97,19 +97,49 @@ sg_devops:
     - devops
 ```
 
-This in effect maps the user `jdoe` and `psmith` to the Search Guard role `sg_human_resources` because they have the backend role `hr_department`.
+This configuration creates the following mappings:
 
-And it maps the user `cmaddock` to the Search Guard role `sg_devops` because the user has the backend role `devops`.
+* Users `jdoe` and `psmith` → `sg_human_resources` role (via their `hr_department` backend role)
+* User `cmaddock` → `sg_devops` role (via the `devops` backend role)
+
+The diagram below illustrates how backend roles connect users to Search Guard roles:
 
 <p align="center">
 <img src="rolemapping.png" style="width: 70%" class="md_image"/>
 </p>
 
-## Uploading configuration changes
+## Applying Your Configuration
 
-In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the `sgctl` command line tool:
+To activate your role mapping configuration, you must upload it to the Search Guard configuration index using the `sgctl` command line tool:
 
 ```
 ./sgctl.sh update-config /path/to/changed/config_files/
 ```
 
+After running this command, your user-to-role mappings will become active, and users will receive the permissions defined in their assigned roles.
+
+## Configuration Options
+
+The table below shows the available mapping options in the `sg_roles_mapping.yml` file:
+
+| Configuration Option | Description |
+|---------------------|-------------|
+| `users` | List of usernames to directly map to the role |
+| `backend_roles` | List of backend role names that grant access to this role |
+| `hosts` | List of hostnames or IP addresses from which users must connect to be mapped to this role |
+
+## Best Practices
+
+* **Use backend roles whenever possible** - They provide more flexibility than direct username mapping
+* **Follow the principle of least privilege** - Assign users only to roles with permissions they need
+* **Keep role mappings organized** - Document the purpose of each mapping for easier maintenance
+* **Regularly audit role mappings** - Review periodically to ensure they reflect current organizational needs
+
+## Troubleshooting
+
+If users are not receiving expected permissions after mapping:
+
+1. Verify the user has the correct backend roles assigned
+2. Confirm the `sg_roles_mapping.yml` file correctly maps those backend roles to Search Guard roles
+3. Check that you've uploaded the updated configuration with `sgctl`
+4. Examine the Search Guard logs for any error messages related to role mapping

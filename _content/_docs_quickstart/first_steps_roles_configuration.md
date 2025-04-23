@@ -6,13 +6,13 @@ layout: docs
 description: How to configure Search Guard roles to control access to indices, documents
   and fields.
 resources:
-- roles-permissions|Roles and permissions (docs)
-- action-groups|Action groups (docs)
-- sgctl|Using sgctl (docs)
+  - roles-permissions|Roles and permissions (docs)
+  - action-groups|Action groups (docs)
+  - sgctl|Using sgctl (docs)
 ---
 <!--- Copyright 2022 floragunn GmbH-->
 
-# Configuring roles and permissions
+# Configuring Roles and Permissions
 {: .no_toc}
 
 {% include toc.md %}
@@ -20,65 +20,81 @@ resources:
 This guide assumes that you have already installed Search Guard in your cluster using the [demo installer](demo-installer).
 {: .note .js-note .note-info}
 
-## Configuring roles and permissions
+## Understanding Roles and Permissions
 
-Search Guard roles define what access permissions a user with this role has. This includes
+Search Guard roles are the core component for implementing access control in your Elasticsearch cluster. Each role defines a specific set of permissions that determine what actions users can perform.
 
-* Permissions on the cluster level (Community)
-  * e.g. accessing the cluster health 
-* Permissions on index level (Community)
-  * e.g. if a user has read permissions for a dedicated index
-* Permissions on document level (Enterprise)
-  * e.g. what documents a user is allowed to see
-* Permissions on field level (Enterprise)
-  * e.g. what fields in documents a user is allowed to see
+A comprehensive role definition can include permissions across four distinct levels:
 
-As with users, you can configure roles by using `sgctl`, the [REST API](rest-api-internalusers) or the [Search Guard Config GUI](configuration-gui).
-     
-Users are assigned to Search Guard roles by using the roles mapping. We will first define our roles, and then map users to them in the next chapter.
-     
-## Structure of a role definition
+* **Cluster-level permissions** (Community Edition)
+  * Control access to cluster-wide operations
+  * Example: Checking cluster health, creating snapshots
 
-As with internal users, you define Search Guard roles in the `sg_roles.yml` file:
+* **Index-level permissions** (Community Edition)
+  * Define what operations users can perform on specific indices
+  * Example: Read or write access to particular indices
+
+* **Document-level permissions** (Enterprise Edition)
+  * Control which specific documents within an index users can access
+  * Example: HR personnel can only view employee documents from their department
+
+* **Field-level permissions** (Enterprise Edition)
+  * Restrict access to specific fields within documents
+  * Example: Support staff can view customer contact information but not payment details
+
+You can manage roles through multiple interfaces:
+* `sgctl` command-line tool
+* [REST API](rest-api-internalusers)
+* [Search Guard Config GUI](configuration-gui)
+
+Before you can assign permissions to users, you must first define your roles. User-to-role assignments happen through role mapping, which we'll cover in the next chapter.
+
+## Role Definition Structure
+
+Search Guard roles are defined in the `sg_roles.yml` file located at:
 
 ```
 <ES installation directory>/plugins/search-guard-flx/sgconfig/sg_roles.yml
 ```
 
-After that you upload this file to the cluster by using the sgctl command line tool for the configuration changes to become effective. 
-
-The basic structure of a role looks like:
+A basic role definition follows this structure:
 
 ```
-<rolename>:
+<role_name>:
   cluster_permissions:
-    - <cluster permission>
+    - <cluster_permission>
   index_permissions:
     - index_patterns:
-      - <index pattern>
+      - <index_pattern>
       allowed_actions:
-        - <index permissions>
+        - <index_permission>
 ```
 
-Search Guard ships with built-in sets of actions ("action groups") which cover the most common use cases:
+### Permission Components
 
-[Search Guard action groups](action-groups#built-in-action-groups)
+| Component | Description |
+|-----------|-------------|
+| `role_name` | A unique identifier for the role |
+| `cluster_permissions` | List of permissions for cluster-wide operations |
+| `index_permissions` | Container for index-specific permissions |
+| `index_patterns` | Patterns that identify which indices the permissions apply to |
+| `allowed_actions` | Specific operations permitted on the matching indices |
 
-We will use those action groups to assign access permissions to our indices.
+## Using Action Groups
 
-## Configuring Search Guard roles
+To simplify permission management, Search Guard provides pre-configured sets of related permissions called "action groups." These groups bundle common operations together, making role configuration more intuitive.
 
-In this example, we want to create two roles:
+For example, instead of listing individual index operations like `indices:data/read/search`, you can use the `SGS_READ` action group, which includes all read operations.
 
-* sg\_human\_resources:
-  * Grants read-only access to an index `humanresources` 
-* sg\_devops:
-  * Grants read and write access to an index `infrastructure`
-  * Grants read-only access to all indices starting with `logs-`
+For a complete list of available action groups, see the [Search Guard action groups documentation](action-groups#built-in-action-groups).
 
-The role definitions look like:
+## Creating Sample Roles
 
-**sg\_human\_resources**
+Let's create two example roles to demonstrate how role configuration works in practice:
+
+### Example 1: Human Resources Role
+
+This role provides read-only access to HR data:
 
 ```
 sg_human_resources:
@@ -91,12 +107,15 @@ sg_human_resources:
         - "SGS_READ"
 ```  
 
-Here we applied the default `SGS_CLUSTER_COMPOSITE_OPS` on cluster level, and granted `SGS_READ` permissions to the index `humanresources`. If a user has only this role, then no index other than `humanresources` is accessible.
+In this configuration:
+* `SGS_CLUSTER_COMPOSITE_OPS` grants basic cluster operations needed for normal usage
+* `SGS_READ` provides read-only access to the `humanresources` index
+* Users with this role cannot access any other indices
 
-The **index name(s) can also contain regular expressions and wildcards**, which we will use in the second role:
+### Example 2: DevOps Role
 
-**sg\_devops**
-  
+This role provides varying levels of access to infrastructure and log data:
+
 ```
 sg_devops:
   cluster_permissions:
@@ -113,13 +132,35 @@ sg_devops:
         - SGS_READ
 ```  
 
-This role grants read and write permissions to the `infrastructure` index, and read-only access to all indices starting with `logs-`. The latter can for example be used for date-based indices, like daily rolling log data indices. 
+In this configuration:
+* The role grants read and write access to the `infrastructure` index
+* It provides read-only access to any index whose name starts with `logs-`
+* The wildcard pattern (`logs-*`) is particularly useful for time-based indices like daily logs
 
-## Uploading configuration changes
+## Pattern Matching for Index Names
 
-In order to activate the changed configuration, we need to upload it to the Search Guard configuration index by using the `sgctl` command line tool:
+Search Guard supports flexible index pattern matching, including:
+
+* Exact matches: `humanresources`
+* Wildcards: `logs-*` matches all indices starting with "logs-"
+* Regular expressions: For more complex matching patterns
+
+This flexibility allows you to create dynamic permission schemes that automatically apply to new indices that match your patterns.
+
+## Applying Your Configuration
+
+To activate your role definitions, upload the configuration file to the Search Guard configuration index using the `sgctl` command line tool:
 
 ```
 ./sgctl.sh update-config /path/to/changed/sg_roles.yml
 ```
 
+After running this command, your new roles will be active and ready to be assigned to users through role mapping.
+
+## Best Practices
+
+* **Follow the principle of least privilege**: Grant only the permissions necessary for each role
+* **Use descriptive role names**: Names like `sg_human_resources` clearly indicate the role's purpose
+* **Leverage action groups**: Use pre-defined action groups when possible to simplify configuration
+* **Document your roles**: Maintain documentation about what each role is intended for
+* **Audit regularly**: Review roles periodically to ensure they align with current security requirements

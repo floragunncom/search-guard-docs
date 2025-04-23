@@ -4,108 +4,123 @@ html_title: Security for Elasticsearch Overview
 permalink: security-for-elasticsearch
 layout: docs
 description: Search Guard is an Enterprise Security Suite for Elasticsearch that encrypts
-  and protects your data in the entire Elastic Stack, including Kibana, Logstash and
-  Beats.
+ and protects your data in the entire Elastic Stack, including Kibana, Logstash and
+ Beats.
 resources:
-- https://search-guard.com/security-for-elasticsearch/|Elasticsearch security overview
+ - https://search-guard.com/security-for-elasticsearch/|Elasticsearch security overview
   (website)
-- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
-- search-guard-presentations#architecture-request-flow|Architecture and Request Flow
+ - search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
+ - search-guard-presentations#architecture-request-flow|Architecture and Request Flow
   (presentation)
-- search-guard-presentations#configuration-basics|Configuration Basics (presentation)
+ - search-guard-presentations#configuration-basics|Configuration Basics (presentation)
 ---
-<!---
-Copyright 2022 floragunn GmbH
--->
+<!--- Copyright floragunn GmbH -->
 
 # Security for Elasticsearch
 {: .no_toc}
 
 {% include toc.md %}
 
-## Security Overview 
+## Security Overview
 
-Search Guard is an Enterprise Security and Alerting suite for Elasticsearch. It provides TLS encryption, Role Based
-Access Control (RBAC) to Elasticsearch indices, Document- and Field-level security controls and Audit Logging and Alerting capabilities.
+Search Guard is a comprehensive Enterprise Security and Alerting suite for Elasticsearch. It provides robust protection for your data through multiple security layers, including:
 
-Search Guard provides all the tools you need to encrypt, secure and monitor access to data stored in Elasticsearch, including Kibana, Logstash and Beats.
+* TLS encryption for secure data transmission
+* Role-Based Access Control (RBAC) for precise management of index access
+* Document and Field-level security controls for granular data protection
+* Comprehensive Audit Logging for compliance and security monitoring
+* Alerting capabilities for proactive threat detection
 
-Search Guard comes in three editions:
+With Search Guard, you can secure, monitor, and control access to all data stored in your Elasticsearch ecosystem, including connected components like Kibana, Logstash, and Beats.
 
-* Free Community Edition (Apache 2 licensed, open source and free of charge)
-* Enterprise Edition (requires license)
-* Compliance Edition for covering regulations like PCI, GDPR, HIPAA or SOX (requires license)
+Search Guard is available in three distinct editions:
 
-The most recent versions of Search Guard are called Search Guard FLX. 
+* **Community Edition** - Open source and free of charge (Apache 2 licensed)
+* **Enterprise Edition** - Advanced features with additional capabilities (requires license)
+* **Compliance Edition** - Enhanced security features for regulatory compliance with PCI, GDPR, HIPAA, or SOX (requires license)
 
-## TLS Encryption 
+The latest version of the software is branded as Search Guard FLX.
 
-Search Guard encrypts all data flows in your cluster, both on REST and on Transport layer. This ensures that:
+## TLS Encryption
 
-* No one can sniff any data
-* No once can tamper with your data
-* Only trusted nodes can join your cluster
+Search Guard implements comprehensive encryption across your entire cluster, protecting both REST and Transport layer communications. This multi-layer encryption ensures:
 
-Search Guard supports all modern cipher suites including Elliptic Curve Cryptography (ECC) and let's you choose the allowed TLS versions.
+* Complete protection against data interception
+* Prevention of data tampering or modification
+* Secure cluster membership limited to trusted nodes only
 
-Search Guard provides hostname validation and DNS lookups to ensure the validity and integrity of your certificates. Certificates can be
- changed by hot-reloading them on a running cluster without any downtimes. Search Guard supports both CRL and OCSP for revoking compromised certificates.
+The system supports state-of-the-art cryptographic standards, including:
 
-## Authentication and authorization
-  
-Search Guard supports all major industry standards for authentication and authorization like:
-  
-* [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md)
-* [JSON Web token](../_docs_auth_auth/auth_auth_jwt.md)
-* [TLS client certificates](../_docs_auth_auth/auth_auth_clientcert.md)
-* [Proxy authentication](../_docs_auth_auth/auth_auth_proxy_overview.md)
-* [Kerberos](../_docs_auth_auth/auth_auth_kerberos.md)
-* [OpenID Connect](../_docs_kibana/kibana_authentication_openid.md)
-* [SAML](../_docs_kibana/kibana_authentication_saml.md)
-  
-If you do not want or need any external authentication tool you can also use the built-in user database:
-   
-* [Search Guard Internal user database](../_docs_auth_auth/internalusers.md)
- 
+* Modern cipher suites with Elliptic Curve Cryptography (ECC)
+* Configurable TLS protocol versions to match your security requirements
+* Hostname validation and DNS lookups for certificate verification
+* Certificate hot-reloading for zero-downtime updates
+* Certificate revocation through both CRL and OCSP mechanisms for immediate security response
+
+## Authentication and Authorization
+
+Search Guard integrates with industry-standard authentication and authorization systems, providing flexible security options:
+
+* **Directory Services**: [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md) for enterprise user management
+* **Token-Based**: [JSON Web Token (JWT)](../_docs_auth_auth/auth_auth_jwt.md) for modern application architectures
+* **Certificate-Based**: [TLS client certificates](../_docs_auth_auth/auth_auth_clientcert.md) for strong cryptographic identity verification
+* **Infrastructure**: [Proxy authentication](../_docs_auth_auth/auth_auth_proxy_overview.md) for gateway and reverse proxy scenarios
+* **Enterprise Authentication**: [Kerberos](../_docs_auth_auth/auth_auth_kerberos.md) for integrated Windows authentication
+* **Single Sign-On**: [OpenID Connect](../_docs_kibana/kibana_authentication_openid.md) and [SAML](../_docs_kibana/kibana_authentication_saml.md) for seamless authentication experiences
+
+For environments without external authentication requirements, Search Guard provides a built-in user management system:
+
+* [Search Guard Internal user database](../_docs_auth_auth/internalusers.md) with complete user lifecycle management
+
 ## Security Controls
- 
-Search Guard adds Role-Based Access Control (RBAC) to your cluster and indices. Search Guard roles define and
-control what actions a user is allowed to perform on any given index. Roles can be defined and assigned to users on-the-fly 
-without the need for any node or cluster restart.
- 
-You can use pre-defined action groups like READ, WRITE or DELETE to define access permissions. You can also mix action groups
-with *single permissions* to implement very fine-grained access controls if required. For example, grant a user the right to read data
-in an index, but deny the permission to create an index alias.
- 
-Index names are dynamic and support wildcards, regular expressions, date/math expressions and variable substitution for dynamic role definitions.
- 
-## Document- and Field-level access to your data
 
-Search Guard also controls access to documents and fields in your indices. You can use Search Guard roles to define:
+Search Guard enhances Elasticsearch with powerful Role-Based Access Control (RBAC) capabilities. These controls define and limit what operations users can perform on specific indices within your cluster. Key features include:
 
-* To what documents in an index a user has access to
-* What fields a user can access and what other fields should be removed
-* What fields should be anonymized
-  
-This can be defined at runtime. You do not need to decide upfront at ingest time but can apply all security controls to already existing indices and data.   
-  
+* Dynamic role management without service disruption or cluster restarts
+* Pre-defined action groups (`READ`, `WRITE`, `DELETE`) for simplified permission management
+* Fine-grained control through combination of action groups and individual permissions
+* Flexible index pattern matching with support for:
+ * Wildcards and regular expressions
+ * Date/math expressions for time-based data
+ * Variable substitution for dynamic role definitions
+
+This approach allows for precise security definitions, such as allowing a user to read data from an index while preventing them from creating index aliases.
+
+## Document and Field-Level Security
+
+Beyond index-level permissions, Search Guard offers granular control over data access at the document and field levels. This allows you to:
+
+* Restrict access to specific documents within an index based on security attributes
+* Control which fields a user can view, hiding sensitive information
+* Apply field-level anonymization for privacy protection while preserving data utility
+
+A key advantage of Search Guard is its ability to apply these security controls to existing data. This means you can implement security measures on already indexed content without reingestion or restructuring.
+
 ## Audit Logging
-  
-Search Guard tracks and monitors all data flows inside your cluster and can produce audit trails on
-several levels. This includes
 
-* Security related events like failed login attempts, missing privileges, spoofed headers or invalid TLS certificates
-* Successfully executed queries
-* Read-access to documents
-* Write-access to documents including the changes in JSON patch format
+Search Guard provides comprehensive visibility into your cluster's security posture through detailed audit logging. The system tracks and records:
 
-The Audit Logging capabilities of Search Guard especially help to keep your Elasticsearch cluster compliant with regulations like GDPR, PCI, SOX or HIPAA.
+* Security-related events, including:
+ * Failed authentication attempts
+ * Privilege violations
+ * Header spoofing attempts
+ * TLS certificate issues
+* Query execution details for accountability
+* Document access tracking for sensitive information
+* Write operations with detailed JSON patch format change records
 
-## Alerting - Anomaly detection for your data
+These audit capabilities are essential for maintaining compliance with regulatory frameworks like GDPR, PCI, SOX, and HIPAA by providing the necessary evidence of security controls and data access patterns.
 
-Search Guard comes with an [Alerting module](elasticsearch-alerting-getting-started) that periodically scans the data in your cluster for anomalies and send out
-notifications on various channels like Email, PagerDuty, Slack, JIRA or any endpoint that provides a Webhook.
+## Alerting - Monitoring for Your Data
 
-The Signals Alerting module provides a fully fledged escalation model so you can choose to send notifications on different channels based on
-the severity of the incident. Search Guard will also notify you once an anomaly is not detected anymore and everything is back to normal.
+The integrated [Alerting module](elasticsearch-alerting-getting-started) enhances your security posture through proactive monitoring. This feature:
 
+* Continuously scans cluster data to identify anomalies or security incidents
+* Sends notifications through multiple channels:
+ * Email for standard communications
+ * PagerDuty for urgent operational alerts
+ * Slack for team collaboration
+ * JIRA for issue tracking and workflow integration
+ * Custom Webhook support for integration with other systems
+
+The Signals Alerting module includes a sophisticated escalation framework that routes notifications to different channels based on incident severity. The system also provides resolution notifications when anomalies are no longer detected, confirming a return to normal operations.

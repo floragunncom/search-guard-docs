@@ -112,7 +112,7 @@ collections:
     output: true
     permalink: :name
     algolia_hierarchy: "Index Management"
-  docs_cl:
+  docs_encryption_at_rest:
     output: true
     permalink: :name
     algolia_hierarchy: "Encryption at Rest"
@@ -195,6 +195,10 @@ algolia:
     alternativesAsExact:
       - ignorePlurals
       - singleWordSynonym
+
+current_versions:
+  search_guard: 3.0.3
+  elasticsearch: 8.17.4
 
 eol:
   features:
