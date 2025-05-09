@@ -27,7 +27,11 @@ build:
 
       echo "## building docs"
       bundle install
-      bundle exec jekyll build --config _config.yml,_versions.yml
+      echo "2-pass build to get auto-generated pages in the build"
+      echo "Starting first pass"
+      bundle exec jekyll build --config _config.yml,_versions.yml --incremental
+      echo "Starting second pass"
+      bundle exec jekyll build --config _config.yml,_versions.yml --incremental
 
 deploy:
   tags:
