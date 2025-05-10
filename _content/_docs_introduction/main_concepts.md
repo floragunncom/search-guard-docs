@@ -5,10 +5,10 @@ layout: docs
 description: How Search Guard extracts credentials from a request and how they are
   mapped to users, roles and permissions.
 resources:
-- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
-- search-guard-presentations#architecture-request-flow|Architecture and Request Flow
+- https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
+- https://search-guard.com/presentations/|Architecture and Request Flow
   (presentation)
-- search-guard-presentations#configuration-basics|Configuration Basics (presentation)
+- https://search-guard.com/presentations/|Configuration Basics (presentation)
 ---
 <!---
 Copyright 2022 floragunn GmbH

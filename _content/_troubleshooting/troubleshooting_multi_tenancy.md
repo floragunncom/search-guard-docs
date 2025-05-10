@@ -1,7 +1,7 @@
 ---
 title: Multi-Tenancy Troubleshooting
 html_title: Multi-Tenancy help
-permalink: troubleshooting-Multi-Tenancy
+permalink: troubleshooting-multi-tenancy
 layout: docs
 description: Step-by-step instructions on how to troubleshoot Multi-Tenancy issues.
 ---
