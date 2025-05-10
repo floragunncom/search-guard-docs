@@ -7,9 +7,9 @@
 			{% assign urlparts = resource[0] | split: "#" %}
 			<li>
 				{%if urlparts[1] != null %}
-				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}#{{ urlparts[1] }}" target="_blank">{{ resource[1] }}</a>
+				<a href="{{ urlparts[0] }}" target="_blank">{{ resource[1] }}</a>
 				{% else %}
-				<a href="{{ urlparts[0] }}?utm_source=sgdocs&utm_medium=additional_resources&utm_content={{page.slug}}" target="_blank">{{ resource[1] }}</a>
+				<a href="{{ urlparts[0] }}" target="_blank">{{ resource[1] }}</a>
 				{% endif %}
 			</li>
 			{% endfor %}

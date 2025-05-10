@@ -7,7 +7,7 @@ edition: community
 description: How to configure, mix and chain authentication and authorization domains
   for Search Guard.
 resources:
-- search-guard-presentations#configuration-basics|Search Guard configuration basics
+- https://search-guard.com/presentations/|Search Guard configuration basics
   (presentation)
 ---
 <!---

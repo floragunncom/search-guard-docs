@@ -9,10 +9,10 @@ description: Search Guard is an Enterprise Security Suite for Elasticsearch that
 resources:
 - https://search-guard.com/security-for-elasticsearch/|Elasticsearch security overview
   (website)
-- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
-- search-guard-presentations#architecture-request-flow|Architecture and Request Flow
+- https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
+- https://search-guard.com/presentations/|Architecture and Request Flow
   (presentation)
-- search-guard-presentations#configuration-basics|Configuration Basics (presentation)
+- https://search-guard.com/presentations/|Configuration Basics (presentation)
 ---
 <!---
 Copyright 2022 floragunn GmbH

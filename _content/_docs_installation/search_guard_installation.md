@@ -6,7 +6,7 @@ layout: docs
 description: Step by step instructions for setting up Search Guard on a new or existing
   Elastcsearch cluster.
 resources:
-- search-guard-presentations#quickstart|Search Guard Quickstart and First Steps (presentation)
+- https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
 ---
 <!---
 Copyright 2022 floragunn GmbH
