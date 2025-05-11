@@ -6,43 +6,46 @@ layout: docs
 edition: enterprise
 description: Encryption at Rest for ElasticSearch
 ---
-<!--- Copyright 2023 floragunn GmbH -->
+<!--- Copyright 2025 floragunn GmbH -->
 
 {% include beta_warning.html %}
 
 
-# SearchGuard Encryption at Rest
+# Search Guard Encryption at Rest
 
 {: .no_toc}
 
 {% include toc.md %}
 
-SearchGuard Encryption at Rest provides encryption at rest for Elasticsearch indices and snapshots – encrypting your Elasticsearch data that resides on disk.
+Search Guard Encryption at Rest provides encryption at rest for Elasticsearch indices and snapshots – encrypting your Elasticsearch data that resides on disk.
 
-It is the missing piece to regain complete control over your data in Elasticsearch deployments, especially in public clouds. SearchGuard Encryption at Rest can also be used in private clouds or on-premises installations to protect your data at rest.
+It is the missing piece to regain complete control over your data in Elasticsearch deployments, especially in public clouds. Search Guard Encryption at Rest can also be used in private clouds or on-premises installations to protect your data at rest.
 
 ## Technical Preview Version Download
 
-- The Technical Preview version of the clctl tool is available [here](https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/3.0.3-tp2-es-8.17.3/search-guard-encryption-at-rest-ctl-3.0.3-tp2-es-8.17.3.zip)
-- The Technical Preview version of the SearchGuard plugin is available [here](https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-plugin/3.0.3-tp2-es-8.17.3/search-guard-encryption-at-rest-plugin-3.0.3-tp2-es-8.17.3.zip)
+**At the moment, the technical preview of Encryption at Rest is available for Elasticsearch 8.17.3.**
+
+- Download the technical preview of the [Encryption at Rest plugin](https://maven.search-guard.com:443//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-plugin/3.0.3-tp2-es-8.17.3/search-guard-encryption-at-rest-plugin-3.0.3-tp2-es-8.17.3.zip)
+- Download the technical preview of the [Encryption at Rest command line tool for](https://maven.search-guard.com:443//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/3.0.3-tp2-es-8.17.3/search-guard-encryption-at-rest-ctl-3.0.3-tp2-es-8.17.3.zip)
 
 ## Installation of Encryption at Rest Plugin
 
 In order to install the Encryption at Rest plugin, execute the following command:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-cloud-lock-plugin.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-encryption-at-rest-plugin-3.0.3-tp2-es-8.17.3.zip
 ```
 
 ## Enable Encryption at Rest
 
-1. Download Encryption at Rest Control Tool ([clctl](https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/3.0.3-tp2-es-8.17.3/search-guard-encryption-at-rest-ctl-3.0.3-tp2-es-8.17.3.zip))
+1. Unzip the Encryption at Rest Control Tool (*enctl*) in any directory
 
-2. Create a new cluster key pair on a client machine  
-   This is typically done by a system administrator and is only necessary once per cluster. You can use tools like openssl to generate the key pair, or simply use clctl like:
+2. Create a new cluster key pair on a client machine
+
+This is typically done by a system administrator and is only necessary once per cluster. You can use tools like openssl to generate the key pair, or simply use enctl like:
 
    ```bash
-   clctl.sh create-cluster-keypair
+   enctl.sh create-cluster-keypair
    
 
    Created a new RSA key pair with UUID:
@@ -55,30 +58,29 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-cloud-lock-plug
 
 3. Add the following lines to elasticsearch.yml on each node:
 
-   ```yaml
-   cloud_lock.enabled: true
-   cloud_lock.public_cluster_key: MIICIjAN...EAAQ==
-   ```
+```yaml
+encryption_at_rest.enabled: true
+encryption_at_rest.public_cluster_key: MIICIjAN...EAAQ==
+```
 
-   The key can be found in the public_cluster_key_.pubkey file. There is also a "copy and paste" ready variant in elasticsearch_yaml_.yml.
+The key can be found in the public_cluster_key_.pubkey file. There is also a "copy and paste" ready variant in elasticsearch_yaml_.yml.
 
 4. Restart each node.
-
 
 ## Initialize Encryption at Rest
 
 This needs only be done once after installing the plugin, or after a full cluster restart. It is usually performed by a system administrator from a client machine. 
 
-First connect the clctl.sh tool to the cluster using admin certificate, key and root ca, see following example:
+First connect the enctl.sh tool to the cluster using admin certificate, key and root ca, see following example:
 
 ```bash
-./clctl.sh connect localhost --ca-cert ./config/root-ca.pem --cert ./config/kirk.pem --key ./config/kirk-key.pem
+./enctl.sh connect localhost --ca-cert ./config/root-ca.pem --cert ./config/kirk.pem --key ./config/kirk-key.pem
 ```
 
-Once the clctl tool is connected to the cluster, execute the following command to initialize Encryption at Rest:
+Once the enctl tool is connected to the cluster, execute the following command to initialize Encryption at Rest:
 
 ```bash
-./clctl.sh initialize-cluster --pk-file secret_cluster_key_<uuid>.seckey
+./enctl.sh initialize-cluster --pk-file secret_cluster_key_<uuid>.seckey
 ```
 
 ## Create an Encrypted Index
@@ -89,7 +91,7 @@ Creating an encrypted index is the same as creating any other index:
 curl -k -XPUT -u admin:admin "https://esnode.company.com:9200/my_encrypted_index1?pretty" -H 'Content-Type: application/json' -d'
 {
   "settings": {
-    "cloud_lock_enabled": true,
+    "encryption_at_rest_enabled": true,
     "store.type": "encrypted",
     ...
     ...
@@ -112,12 +114,12 @@ This curl command creates an encrypted index named my_encrypted_index. Please no
 - The index settings encryption_enable: true and store.type: encrypted defines this index as an encrypted index.
 - The mapping _encrypted_tl_content with type binary is required and only used internally, as explained above.
 
-To list all your encrypted indices, (connect clctl.sh tool to the cluster if not already done so and) execute the following command:
+To list all your encrypted indices, (connect enctl.sh tool to the cluster if not already done so and) execute the following command:
 
 ```bash
-$ clctl.sh list-encrypted-indices
+$ enctl.sh list-encrypted-indices
 ```
-**NOTE:** Successful clctl.sh command execution does not return any __success message__.
+**NOTE:** Successful enctl.sh command execution does not return any __success message__.
 
 ## Create and Restore an Encrypted Snapshot
 
@@ -159,7 +161,7 @@ curl -k -X PUT -u admin:admin "https://esnode.company.com:9200/_index_template/e
       }
     },
     "settings":{
-      "cloud_lock_enabled": true,
+      "encryption_at_rest_enabled": true,
       "number_of_shards": 3,
       "number_of_replicas": 2,
       "store.type": "encrypted"

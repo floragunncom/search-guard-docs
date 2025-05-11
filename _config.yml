@@ -112,7 +112,7 @@ collections:
     output: true
     permalink: :name
     algolia_hierarchy: "Index Management"
-  docs_cl:
+  docs_encryption_at_rest:
     output: true
     permalink: :name
     algolia_hierarchy: "Encryption at Rest"
