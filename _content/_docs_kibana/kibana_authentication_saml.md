@@ -115,10 +115,10 @@ searchguard.cookie.secure: true
 ```
 
 Finally, you need to exempt the Kibana endpoints with which the IdP interacts from the Kibana XSRF protection. If your `kibana.yml` does not contain the key
-`server.xsrf.whitelist`, please add this:
+`server.xsrf.allowlist`, please add this:
 
 ```yaml
-server.xsrf.whitelist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
+server.xsrf.allowlist: ["/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 
 If `kibana.yml`  already contains the key, make sure that the array contains the values `"/searchguard/saml/acs", "/searchguard/saml/logout"`.

@@ -73,7 +73,7 @@ To use IdP initiated SSO, you need to complete the following steps:
 Then add this endpoint to the xsrf whitelist in `kibana.yml`:
 
 ```yaml
-server.xsrf.whitelist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
+server.xsrf.allowlist: ["/searchguard/saml/acs/idpinitiated", "/searchguard/saml/acs", "/searchguard/saml/logout"]
 ```
 
 ## Request signing

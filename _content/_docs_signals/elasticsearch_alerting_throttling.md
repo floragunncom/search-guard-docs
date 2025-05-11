@@ -56,12 +56,6 @@ This is useful in a situation where a watch condition is met, and you want to ac
 
 A watch will remain in the `acknowledged` state until the watch condition evaluates to `false`, i.e. the condition is not met. This will move the watch out of the `acknowledged` state, so the next time the condition is met, the actions will be executed again.
 
-### Throttling flow
-
-<p align="center">
-<img src="throttling.png" style="width: 30%" class="md_image"/>
-</p>
-
 ### Kibana deeplinks for acknowledging actions
 
 Introduced in Search Guard FLX 1.1.0
