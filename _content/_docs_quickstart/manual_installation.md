@@ -14,7 +14,7 @@ description: How to download and install Search Guard and all required TLS certi
 
 {% include toc.md %}
 
-This guide describes the steps necessary for a manual installation of a Search Guard secured Elasticsearch test installation. It is possible to set up this installation as a single node on your local computer.
+This guide describes the steps necessary for a manual installation of a Search Guard secured Elasticsearch test installation. 
 
 ## Prerequisites
 
@@ -27,18 +27,10 @@ If you don't have them yet, you need to download a couple of software components
 * [Elasticsearch](https://www.elastic.co/downloads/elasticsearch)
 * [Kibana](https://www.elastic.co/downloads/kibana)
 * [Search Guard Elasticsearch Plugin](https://docs/search-guard.com/latest/search-guard-versions) 
-* [Search Guard Kibana Plugin](https://docs.search-guard.com/latest/search-guard-versions) |
+* [Search Guard Kibana Plugin](https://docs.search-guard.com/latest/search-guard-versions)
+* [Search Guard Command Line Tool](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/)
 
-<table>
-<tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
-<tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/">Search Guard Control Tool sgctl</a></td></tr>
-</table>
-
-**Note:** Kibana is optional. You can also just install the backend partElasticsearch.
-
-**Note:** While the core downloads for Elasticsearch are usually OS-specific, the Search Guard plugin downloads are independent of the operating system.
-
-Preparing a local test installation of Elasticsearch is quite easy: Just unzip/untar the downloads. The following sections assume that you have these components ready.
+**Note:** While the downloads of Elasticsearch are usually OS-specific, the Search Guard plugin downloads are independent of the operating system.
 
 ## Install Search Guard on Elasticsearch
 
@@ -63,10 +55,7 @@ Download the [certificates zip file](https://maven.search-guard.com//downloads/s
 
 Add the following minimal Search Guard configuration to `elasticsearch.yml`:
 
-<div class="code-highlight " data-label="">
-<span class="js-copy-to-clipboard copy-code">copy</span> 
-<pre class="language-yml">
-<code class=" js-code language-markup">
+```yaml
 searchguard.ssl.transport.pemcert_filepath: esnode.pem
 searchguard.ssl.transport.pemkey_filepath: esnode-key.pem
 searchguard.ssl.transport.pemtrustedcas_filepath: root-ca.pem
@@ -82,9 +71,7 @@ searchguard.authcz.admin_dn:
 searchguard.check_snapshot_restore_write_privileges: true
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 xpack.security.enabled: false
-</code>
-</pre>
-</div>
+```
 
 Restart your node(s) for the changes to take effect.
 
@@ -136,7 +123,6 @@ You can also just specify single files using
 ```bash
 $ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml
 ```
-
 
 ## Install Search Guard on Kibana
 
@@ -191,12 +177,6 @@ After Kibana is started, it will begin optimizing and caching browser bundles. T
 * Open `http://localhost:5601/`.
 * You should be redirected to the Kibana login page
 * On the login dialogue, use `admin` as username and `admin` as password.
-
-If everything is set up correctly, you should see three new navigation entries on the left pane:
-
-* Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)
-* Logout - to end your current session
 
 ## Applying configuration changes
 

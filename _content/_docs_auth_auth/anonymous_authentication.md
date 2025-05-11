@@ -60,9 +60,9 @@ sg_anonymous:
 
 ```
 sg_anonymous:
-  cluster:
+  cluster_permissions:
     - SGS_CLUSTER_COMPOSITE_OPS_RO
-  indices:
+  indices_permissions:
     'public':
       - SGS_READ
 ```

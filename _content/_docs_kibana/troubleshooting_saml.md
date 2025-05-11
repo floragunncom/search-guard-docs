@@ -59,7 +59,7 @@ Okta example:
 Kibana also requires you to whitelist this endpoint. Make sure you have the following entry in your `kibana.yml`:
 
 ```
-server.xsrf.whitelist: [/searchguard/saml/acs]
+server.xsrf.allowlist: [/searchguard/saml/acs]
 ```
 
 ## Make sure all documents are signed
