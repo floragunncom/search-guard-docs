@@ -20,7 +20,7 @@ A transformation is a script that
 * performs one or more painless statements
 * replaces the runtime data in the `target` context  
 
-As opposed to [Calculations](transformations_calculations.md), Transformation scripts have a return statement and need to define the target context where the transformed values are written back to.
+As opposed to [Calculations](elasticsearch-alerting-calculations), Transformation scripts have a return statement and need to define the target context where the transformed values are written back to.
 
 If the target context already exists, it is overwritten. If not, a new one is created.
 
@@ -61,7 +61,7 @@ All scripts have full access to the runtime data. The data in the execution cont
 
 Transformations can also be used with actions. Each action can define it's own chain of `check`s, including transformation.
 
-The next example runs a transformation that extracts the hits from an Elasticsearch result set prior to writing it back to another Elasticsearch index via an [Index Action](actions_index.md).
+The next example runs a transformation that extracts the hits from an Elasticsearch result set prior to writing it back to another Elasticsearch index via an [Index Action](elasticsearch-alerting-actions-index).
 
 ```
 {

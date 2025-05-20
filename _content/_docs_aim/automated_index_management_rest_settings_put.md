@@ -54,7 +54,7 @@ PUT /_aim/settings/execution.delay
 "5m"
 ```
 
-This sets the execution delay setting to 5 minutes (see [settings](settings.md)).
+This sets the execution delay setting to 5 minutes (see [settings](automated-index-management-settings)).
 
 ## Privileges
 

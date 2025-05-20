@@ -21,7 +21,7 @@ Copyright 2022 floragunn GmbH
 
 Search Guard supports user authentication via SAML Single Sign-On. Search Guard implements the Web Browser SSO profile of the SAML 2.0 protocol.
 
-This chapter describes the basic setup of SAML with Search Guard. This will work in many cases; some setups, however, require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_saml_advanced_config.md) for this.
+This chapter describes the basic setup of SAML with Search Guard. This will work in many cases; some setups, however, require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana-authentication-saml-advanced) for this.
 
 ## Prerequisites
 

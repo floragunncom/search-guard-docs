@@ -45,7 +45,7 @@ Both the GET and the POST HTTP method can be used with the same effect.
 
 ## Request Body
 
-The request body specifies search options like the ElasticSearch document search REST API. Refer to [Get Watch State API](rest_api_watch_state.md) for an overview over the searchable attributes.
+The request body specifies search options like the ElasticSearch document search REST API. Refer to [Get Watch State API](elasticsearch-alerting-rest-api-watch-state) for an overview over the searchable attributes.
 
 If no request body is specified, the states for all watches of the currently selected tenant will be returned; limited to the amount specified to the `size` query parameter.
 
@@ -73,7 +73,7 @@ The user does not have the required to access the endpoint for the selected tena
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch:state/search` for the currently selected tenant.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ALL 
 * SGS\_SIGNALS\_WATCH\_MANAGE

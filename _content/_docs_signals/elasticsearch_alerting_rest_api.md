@@ -14,7 +14,7 @@ description: Overview of the Elasticsearch Alerting REST API
 
 {% include toc.md %}
 
-Signals can be configured by using the Signals REST API. To use the API, make sure that the user has [sufficient permissions](security_permissions.md). 
+Signals can be configured by using the Signals REST API. To use the API, make sure that the user has [sufficient permissions](elasticsearch-alerting-security-permissions). 
 
 For a quick start, you can either use the Search Guard [admin demo user](demo-users-roles#demo-users), or assign the `SGS_SIGNALS_ALL` action group on cluster- and tenant-level to a Search Guard role, e.g.:
 
@@ -38,40 +38,40 @@ This will give this role complete access to all Signals features and indices.
 
 ## Watches APIs
 
-* [Get Watch](rest_api_watch_get.md)
-* [Search Watch](rest_api_watch_search.md)
-* [Put Watch](rest_api_watch_put.md)
-* [Delete Watch](rest_api_watch_delete.md)
-* [Activate and Deactivate Watch](rest_api_watch_activate.md)
-* [Execute Watch](rest_api_watch_execute.md)
-* [Acknowledge Watch](rest_api_watch_acknowledge.md)
-* [Un-Acknowledge Watch](rest_api_watch_unacknowledge.md)
-* [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md)
-* [Un-Acknowledge And Get Watch](./rest_api_watch_unacknowledge_and_get.md)
+* [Get Watch](elasticsearch-alerting-rest-api-watch-get)
+* [Search Watch](elasticsearch-alerting-rest-api-watch-search)
+* [Put Watch](elasticsearch-alerting-rest-api-watch-put)
+* [Delete Watch](elasticsearch-alerting-rest-api-watch-delete)
+* [Activate and Deactivate Watch](elasticsearch-alerting-rest-api-watch-activate)
+* [Execute Watch](elasticsearch-alerting-rest-api-watch-execute)
+* [Acknowledge Watch](elasticsearch-alerting-rest-api-watch-acknowledge)
+* [Un-Acknowledge Watch](elasticsearch-alerting-rest-api-watch-unacknowledge)
+* [Acknowledge And Get Watch](elasticsearch-alerting-rest-api-watch-acknowledge-and-get)
+* [Un-Acknowledge And Get Watch](elasticsearch-alerting-rest-api-watch-un-acknowledge-and-get)
 
 ## Watch State APIs
 
-* [Get Watch State](rest_api_watch_state.md)
-* [Search Watch State](rest_api_watch_state_search.md)
+* [Get Watch State](elasticsearch-alerting-rest-api-watch-state)
+* [Search Watch State](elasticsearch-alerting-rest-api-watch-state-search)
 
 
 ## Accounts APIs
 
-* [Get Account](rest_api_watch_get.md)
-* [Search Account](rest_api_account_search.md)
-* [Put Account](rest_api_account_put.md)
-* [Delete Account](rest_api_account_delete.md)
+* [Get Account](elasticsearch-alerting-rest-api-account-get)
+* [Search Account](elasticsearch-alerting-rest-api-account-search)
+* [Put Account](elasticsearch-alerting-rest-api-account-put)
+* [Delete Account](elasticsearch-alerting-rest-api-account-delete)
 
 ## Settings APIs
 
-* [Get Settings](rest_api_settings_get.md)
-* [Put Settings](rest_api_settings_put.md)
+* [Get Settings](elasticsearch-alerting-rest-api-settings-get)
+* [Put Settings](elasticsearch-alerting-rest-api-settings-put)
 
 ## Administration APIs
 
-* [Activate and Deactivate Execution for Tenant](rest_api_tenant_activate.md)
-* [Activate and Deactivate Execution Globally](rest_api_admin_activate.md)
+* [Activate and Deactivate Execution for Tenant](elasticsearch-alerting-rest-api-tenant-activate)
+* [Activate and Deactivate Execution Globally](elasticsearch-alerting-rest-api-admin-activate)
 
 ## Other APIs
 
-* [Convert Watch](rest_api_convert_es.md)
+* [Convert Watch](elasticsearch-alerting-rest-api-convert-es)

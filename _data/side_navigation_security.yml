@@ -166,7 +166,7 @@
         - title: Client certificate authentication
           slug: client-certificate-auth
         - title: Anonymous authentication
-          slug: anonymous authentication
+          slug: anonymous-authentication
         - title: Search Guard Auth Tokens
           slug: search-guard-auth-tokens
 
@@ -280,7 +280,7 @@
               slug: kibana-password-based-authentication
               children:
                 - title: Quick Start
-                  slug: kibana-authentication-basicauth
+                  slug: kibana-authentication-http-basic
                 - title: Customizing the login page
                   slug: kibana-login-customizing
             - title: OIDC
@@ -367,6 +367,6 @@
         - title: Permissions
           slug: troubleshooting-search-guard-permission
         - title: Kibana
-          slug: kibana-troubleshooting
+          slug: troubleshooting-kibana
         - title: Multi Tenancy
-          slug: troubleshooting-Multi-Tenancy
+          slug: troubleshooting-multi-tenancy

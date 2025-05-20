@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Instead of removing sensitive fields from a document with [field-level security](../_docs_dls_fls/dlsfls_fls.md), you can also choose to anonymize them. At the moment this features is available for String based fields only. 
+Instead of removing sensitive fields from a document with [field-level security](field-level-security), you can also choose to anonymize them. At the moment this features is available for String based fields only. 
 
 You can choose between several methods for anonymization:
 
@@ -64,7 +64,7 @@ hr_employee:
 By default, Search Guard uses the blake2b hash algorithm to calculate the hash. This algorithm strives a very good balance between speed and security and has built-in support for a salt for randomized hashing. If you use the blake2b algorithm, you should [configure a custom hash salt](#configuring-the-hash-salt).
 
 
-Field masking plays well together with [field-level security](../_docs_dls_fls/dlsfls_fls.md). You just need to make sure that the fields you want to mask are not excluded from the result by the field-level security configuration.
+Field masking plays well together with [field-level security](field-level-security). You just need to make sure that the fields you want to mask are not excluded from the result by the field-level security configuration.
 
 ### Example
 

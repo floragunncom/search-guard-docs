@@ -12,9 +12,9 @@ canonical: elasticsearch-alerting-transformations-calculations-overview
 # Transformations and Calculations
 {: .no_toc}
 
-In many cases, you will want to run transformations and calculations on the raw data pulled in by [inputs](inputs.md).
+In many cases, you will want to run transformations and calculations on the raw data pulled in by [inputs](elasticsearch-alerting-inputs-overview).
 
-For example, you may want to calculate an average value over some fields, or clean up data before [storing it back to Elasticsearch](actions_index.md).
+For example, you may want to calculate an average value over some fields, or clean up data before [storing it back to Elasticsearch](elasticsearch-alerting-actions-index).
 
 You can use painless scripts to either
 

@@ -10,7 +10,7 @@ description: Changelog for Search Guard 7.x-40.0.0
 
 **Release Date: 22.01.2020**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## Signals Alerting GA
 
@@ -22,7 +22,7 @@ Signals Highlights:
 * Create datafeeds from the [local or remote Elasticsearch clusters](elasticsearch-alerting-inputs-elasticsearch)
 * Create datafeeds from [HTTP endpoints](elasticsearch-alerting-inputs-http)
 * Combine and transform data by [using Painless scripting](elasticsearch-alerting-transformations-calculations-overview)
-* Create [conditions](elasticsearch-alerting-conditions-overview) and [severity](elasticsearch-alerting-severity) levels to control execution of actions
+* Create [conditions](elasticsearch-alerting-conditions) and [severity](elasticsearch-alerting-severity) levels to control execution of actions
 * [Throttle or acknowledge](elasticsearch-alerting-throttling) watches
 * Create notifications via 
   * [Slack](elasticsearch-alerting-actions-slack)
@@ -57,7 +57,7 @@ signals.enabled: false
 
 As Search Guard, Signals stores all configuration settings in protected Elasticsearch   indices.  Upon startup, Signals will create five indexes, all starting with the prefix `.signals_`.
 
-Since those indices store confidential information, for regular users they are only accessible by using the [REST API](elasticsearch-alerting-rest-api-overview). In order to fully access the indices, please use an Admin TLS certificate with tools like curl or [sgamin](sgadmin).
+Since those indices store confidential information, for regular users they are only accessible by using the [REST API](elasticsearch-alerting-rest-api-overview). In order to fully access the indices, please use an Admin TLS certificate with tools like curl or sgadmin.
 
 The Signals configuration indices are implemented and behave in the same way as the [Search Guard configuration index](search-guard-index)
 

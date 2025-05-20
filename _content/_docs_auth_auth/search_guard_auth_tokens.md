@@ -100,9 +100,9 @@ The settings of the cache can be adjusted by using the following configuration p
 
 **max_tokens_per_user:** This setting limits the number of valid tokens a user can have at the same time. For performance reasons, Search Guard keeps all auth tokens in heap. Thus, it is not possible to have an arbitrarily large number of auth tokens. This settings defaults to 100. 
 
-**exclude_cluster_permissions:** You can specify cluster permissions here, which an auth token may never grant. This option defaults to `cluster:admin:searchguard:authtoken/_own/create`, which means that auth tokens cannot grant the permission to create new auth tokens. The format of this option is a list of action names; like in [role definitions](../_docs_roles_permissions/configuration_roles_permissions.md), wildcards are supported as well. 
+**exclude_cluster_permissions:** You can specify cluster permissions here, which an auth token may never grant. This option defaults to `cluster:admin:searchguard:authtoken/_own/create`, which means that auth tokens cannot grant the permission to create new auth tokens. The format of this option is a list of action names; like in [role definitions](action-groups), wildcards are supported as well. 
 
-**exclude_index_permissions:** You can specify index permissions here, which an auth token may never grant. This option is empty by default. The format of this option is identical to the `exclude_index_permissions` setting in  in [role definitions](../_docs_roles_permissions/configuration_roles_permissions.md).
+**exclude_index_permissions:** You can specify index permissions here, which an auth token may never grant. This option is empty by default. The format of this option is identical to the `exclude_index_permissions` setting in  in [role definitions](action-groups).
 
 **freeze_privileges:** This option controls how users can use the `freeze_privileges` attribute in create auth token request bodies. This defaults to `user_chooses` which allows users to choose whether they want to create a config snapshot or not. If you specify `always`, all auth token creation requests will create a snapshot the role configuration; the user won't be able to choose. If you specify `never`, no auth token creation requests will create such a snapshot. Note that changes to this config option won't affect auth tokens which have been already created.
 
@@ -299,6 +299,6 @@ This is especially important if users are deleted or have their privileges lower
 
 ### Auth Tokens and the Search Guard REST Management API
 
-The REST API provided by Search Guard to manage the Search Guard configuration (the [Search Guard REST Management API](../_docs_rest_api/rest_api_access.md)), does not use normal privileges for access control. Instead, access to the API is granted by special roles. If a user owns such a role, they can also use the Auth Token Service to create auth tokens which can be used for accessing the REST Management API. For creating such a token, you have to set the request attribute `requested.cluster_permissions` to either `*` or `cluster:admin:searchguard:configrestapi` when calling the create auth token API.
+The REST API provided by Search Guard to manage the Search Guard configuration (the [Search Guard REST Management API](rest-api-access-control)), does not use normal privileges for access control. Instead, access to the API is granted by special roles. If a user owns such a role, they can also use the Auth Token Service to create auth tokens which can be used for accessing the REST Management API. For creating such a token, you have to set the request attribute `requested.cluster_permissions` to either `*` or `cluster:admin:searchguard:configrestapi` when calling the create auth token API.
 
 To create auth tokens, which cannot use the REST management API, put  `cluster:admin:searchguard:configrestapi` into `requested.exclude_cluster_permissions`. 

@@ -27,7 +27,7 @@ In order to use PagerDuty actions, you need to get a Service integration key fro
 
 If you don't have any service in PagerDuty yet, go in PagerDuty to *Configuration* > *Services* and click on the *New Service* button. In the next screen, you will also have the configuration elements for the *Integration Settings*. Select 	*Use our API directly* as *Integration Type* and select the *Events API v2* in the dropdown below.
 
-After creating the integration, PagerDuty will show an Integration Key. You will then need to configure a PagerDuty account in Signals using this integration key. See the [accounts registry documentation](accounts.md) for more on that.
+After creating the integration, PagerDuty will show an Integration Key. You will then need to configure a PagerDuty account in Signals using this integration key. See the [accounts registry documentation](elasticsearch-alerting-accounts) for more on that.
 
 ## Basic Functionality
 

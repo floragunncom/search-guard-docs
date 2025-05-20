@@ -51,7 +51,7 @@ These settings can be set using the Signals settings REST API:
 
 **tenant.{tenant_name}.active:** If this flag is false, Signals will not execute any scheduled watches of the respective tenant.
 
-**tenant.{tenant_name}.node_filter:** Specifies the nodes watches shall be executed on. See [Nodes on which Signals watches are executed](#Nodes-on-which-Signals-watches-are-executed) for details.
+**tenant.{tenant_name}.node_filter:** Specifies the nodes watches shall be executed on. See [Nodes on which Signals watches are executed](#nodes-on-which-signals-watches-are-executed) for details.
 
 
 

@@ -53,7 +53,7 @@ Certificates carry no role information. In order to define authorization informa
 
 - Assign roles to concrete users in `sg_role_mapping.yml`.
 - Use a user information backend to retrieve roles.
-- If the client is capable and trustworthy to define the roles by itself, you can use the same mechanism as described for [proxy authentication](./auth_auth_proxy.md).
+- If the client is capable and trustworthy to define the roles by itself, you can use the same mechanism as described for [proxy authentication](proxy-authentication).
 
 #### Using `sg_role_mapping.yml`
 

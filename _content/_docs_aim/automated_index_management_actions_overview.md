@@ -28,15 +28,15 @@ Every action has a `type` field that defines the action type. Some actions have 
 ## Available Actions
 
 Supported actions are:
-- [allocation](actions_allocation.md): Changes the allocation settings for the index.
-- [close](actions_close.md): Closes the index.
-- [delete](actions_delete.md): Deletes the index permanently.
-- [force_merge](actions_force_merge.md): Force merges the index shards.
-- [rollover](actions_rollover.md): Rolls the index over.
-- [set_priority](actions_set_priority.md): Sets the priority of the index.
-- [set_read_only](actions_set_read_only.md): Changes the index to read only mode.
-- [set_replica_count](actions_set_replica_count.md): Sets the number of replicas the index should have.
-- [snapshot](actions_snapshot.md): Takes a snapshot of the entire index.
+- [allocation](automated-index-management-actions-allocation): Changes the allocation settings for the index.
+- [close](automated-index-management-actions-close): Closes the index.
+- [delete](automated-index-management-actions-delete): Deletes the index permanently.
+- [force_merge](automated-index-management-actions-force-merge): Force merges the index shards.
+- [rollover](automated-index-management-actions-rollover): Rolls the index over.
+- [set_priority](automated-index-management-actions-set-priority): Sets the priority of the index.
+- [set_read_only](automated-index-management-actions-set-read-only): Changes the index to read only mode.
+- [set_replica_count](automated-index-management-actions-set-replica-count): Sets the number of replicas the index should have.
+- [snapshot](automated-index-management-actions-snapshot): Takes a snapshot of the entire index.
 
 ## Example
 

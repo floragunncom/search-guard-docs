@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard supports [anonymous authentication](../_docs_auth_auth/auth_auth_anon.md) to enable access to specific indices for unauthenticated users. 
+Search Guard supports [anonymous authentication](anonymous-authentication) to enable access to specific indices for unauthenticated users. 
 
 ## Backend configuration
 
@@ -30,11 +30,11 @@ auth_domains:
   user_mapping.roles.static: SGS_KIBANA_USER
 ```
 
-See the [documentation](../_docs_auth_auth/auth_auth_anon.md) for more details on the backend configuration.
+See the [documentation](anonymous-authentication) for more details on the backend configuration.
 
 The role `SGS_KIBANA_USER` is needed because a certain set of permissions is necessary to access Kibana. If anonymous users shall not be able to access the default tenant, you should use the role `SGS_KIBANA_USER_NO_DEFAULT_TENANT` instead.
 
-**Note:** Do not forget that the anonymous user also needs to have privileges for the indices they are supposed to access. For this, you need to map the user to more roles. See the [backend documentation](../_docs_auth_auth/auth_auth_anon.md) for details on this.
+**Note:** Do not forget that the anonymous user also needs to have privileges for the indices they are supposed to access. For this, you need to map the user to more roles. See the [backend documentation](anonymous-authentication) for details on this.
 
 **Note:** If you want to allow anonymous authentication only for Kibana, you can restrict the `anonymous` auth domain to the IPs that Kibana uses to connect to the backend. This can look like this:
 

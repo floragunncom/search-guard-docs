@@ -20,7 +20,7 @@ A calculation is a script that
 * performs one or more painless statements
 * writes data back to the execution context
 
-As opposed to [Transformations](transformations_transformations.md), Calculation scripts do not have a return statement and do not need to define a target.
+As opposed to [Transformations](elasticsearch-alerting-transformations), Calculation scripts do not have a return statement and do not need to define a target.
 
 Instead, they access and manipulate the watch runtime data directly.
 

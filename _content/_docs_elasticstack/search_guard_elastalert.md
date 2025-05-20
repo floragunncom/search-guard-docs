@@ -105,7 +105,7 @@ The required permissions of this user depend on the indices you want to run your
 * The ElastAlert user needs full permissions on the configured `writeback_index` index. This is where ElastAlert will store its data.
 * The ElastAlert user needs at least READ permissions on the indices against which the rules and alerts should be executed
 
-For example, if you collect audit events with the [Search Guard audit log](../_docs_audit_logging/auditlogging.md) module in an index called `auditlog`, and your `writeback_index` is called `elastalert_status`, the corresponding role definition looks like:
+For example, if you collect audit events with the [Search Guard audit log](audit-logging-compliance) module in an index called `auditlog`, and your `writeback_index` is called `elastalert_status`, the corresponding role definition looks like:
 
 ```yaml
 sg_elastalert:

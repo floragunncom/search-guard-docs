@@ -14,11 +14,11 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
-If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](../_docs_installation/sg53_migration.md).
+If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](sg-classic-config-migration-overview).
 {: .note .js-note .note-warning}
 
 The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.
@@ -38,18 +38,18 @@ Before starting the upgrade, check if there are any breaking changes either in E
 
 [Elasticsearch Breaking Changes](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes.html){:target="_blank"}
 
-[Search Guard Change Log](../_changelogs/changelog_searchguard_overview.md){:target="_blank"}
+[Search Guard Change Log](changelogs-searchguard){:target="_blank"}
 
 
 ## Check permission schema
 
-The permission schema can change from Elasticsearch version to Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](../_docs_roles_permissions/configuration_action_groups.md)  instead of assigning single permissions to roles directly.
+The permission schema can change from Elasticsearch version to Elasticsearch version. If there are any known changes in the permission schema, they will be reflected in the `sg_roles.yml` and `sg_action_groups.yml` file that ships with Search Guard. Therefore always prefer using [action groups](action-groups)  instead of assigning single permissions to roles directly.
 
 This applies for all Elasticsearch upgrades.
 
 ## Upgrading Search Guard Only
 
-Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the [Search Guard changelog](../_changelogs/changelog_searchguard.md), you don't need to adapt any configuration files. 
+Upgrades from one version of Search Guard to another can be done with a rolling restart. If there are no breaking changes mentioned in the [Search Guard changelog](changelogs-searchguard), you don't need to adapt any configuration files. 
 
 Given there are no breaking changes, you can directly upgrade to the latest Search Guard version and do not need to upgrade one version at a time. To do so:
 
@@ -57,7 +57,7 @@ Given there are no breaking changes, you can directly upgrade to the latest Sear
 * Remove the old version of Search Guard
   * `bin/elasticsearch-plugin remove search-guard-flx`
 * Install the new version of Search Guard
-  * See the chapter [Installing Search Guard](../_docs_installation/installation.md)
+  * See the chapter [Installing Search Guard](search-guard-installation)
  for instructions
 
 After that, restart your node and check that Elasticsearch and Search Guard are starting without errors.

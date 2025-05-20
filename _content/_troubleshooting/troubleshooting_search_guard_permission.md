@@ -10,7 +10,7 @@ description: Step-by-step instructions on how to troubleshoot issues with Search
 
 # Roles and permissions troubleshooting
 
-If a user has insufficient privileges to execute a particular request, or cannot be authenticated, Search Guard will print log statements on WARN level to the log file which help to identify the root cause. If this information is not enough to pinpoint the problem, please set the [Search Guard log level to debug](logging_troubleshooting.md).  
+If a user has insufficient privileges to execute a particular request, or cannot be authenticated, Search Guard will print log statements on WARN level to the log file which help to identify the root cause. If this information is not enough to pinpoint the problem, please set the [Search Guard log level to debug](troubleshooting-setting-log-level).  
 
 ## Authentication issues
 
@@ -117,7 +117,7 @@ Please check
 
 * that the user has the expected Search Guard roles
 
-If Search Guard roles are missing or are incorrect, check that the [mapping between users/backend roles and Search Guard](../_docs_roles_permissions/configuration_roles_mapping.md) roles are correct.
+If Search Guard roles are missing or are incorrect, check that the [mapping between users/backend roles and Search Guard](mapping-users-roles) roles are correct.
 
 ## Executed action / missing permissions
 
@@ -130,7 +130,7 @@ Action [indices:data/read/search]
 Please check
 
 * that the Search Guard role(s) for this user allow the execution of this request against the affected indices (see below)
-  * the permission can be either granted by [assigning an action group](../_docs_roles_permissions/configuration_action_groups.md) like READ
+  * the permission can be either granted by [assigning an action group](action-groups) like READ
   * or by assigning the single permission `indices:data/read/search` directly
 
 **Using an action group:**

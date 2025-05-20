@@ -114,7 +114,7 @@ that in this case it should be prefixed with <em>audit_custom_</em>
 
 ### Adding custom static values fields to the Audit Logs
 
-The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](auditlogging_storage.md).
+The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](audit-logging-storage).
 
 ### Logging the request body
 
@@ -238,7 +238,7 @@ If `searchguard.audit.resolve_bulk_requests` is set to true, all sub requests in
 
 ### External storage types
 
-Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you don't put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](auditlogging_storage.md) for a list of available storage endpoints.
+Due to the amount of information stored, the audit log index can grow quite big. It's recommended to use an external storage for the audit messages, like `external_elasticsearch` or `webhook`, so you don't put your production cluster in jeopardy. See chapter [Audit Logging Storage Types](audit-logging-storage) for a list of available storage endpoints.
 
 
 ## Configuring retries

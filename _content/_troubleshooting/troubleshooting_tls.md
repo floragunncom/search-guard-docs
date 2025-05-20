@@ -22,7 +22,7 @@ Just copy and paste the content of your yaml file there and check for any errors
 
 ## Viewing the contents of PEM certificates
 
-The content of PEM certificates can either be displayed by using OpenSSL or by the [diagnose function of the Search Guard TLS tool](../_docs_tls/tls_generate_tlstool.md#validating-certificates){:target="_blank"}.
+The content of PEM certificates can either be displayed by using OpenSSL or by the [diagnose function of the Search Guard TLS tool](offline-tls-tool#validating-certificates){:target="_blank"}.
 
 OpenSSL:
 
@@ -36,7 +36,7 @@ TLS diagnose tool:
 ./sgtlsdiag.sh -ca root-ca.pem -crt node1.pem
 ```
 
-The [TLS diagnose tool](../_docs_tls/tls_generate_tlstool.md#validating-certificates){:target="_blank"} will also check the validity of the certificate chain.
+The [TLS diagnose tool](offline-tls-tool#validating-certificates){:target="_blank"} will also check the validity of the certificate chain.
 
 ## Viewing the contents of your Key- and Truststore
 

@@ -46,14 +46,14 @@ If you run older versions of Elasticsearch and/or Search Guard, please upgrade f
 Upgrading from Search Guard 7 classic (i.e., Search Guard versions 53 and before) is not supported. You need first to [migrate Search Guard classic to Search Guard FLX](sg-classic-config-migration-overview).
 {: .note .js-note .note-warning}
 
-After upgrading a node from ES 7 to 8, simply [install](installation.md) the [correct version of Search Guard](../_docs_versions/versions_versionmatrix.md) on this node.
+After upgrading a node from ES 7 to 8, simply [install](search-guard-installation) the [correct version of Search Guard](search-guard-versions) on this node.
 
 No changes in `elasticsearch.yml` are required
 
 
 ## Upgrading Kibana
 
-Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](../_docs_versions/versions_versionmatrix.md) the correct version of the Search Guard plugin to Kibana.
+Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](search-guard-versions) the correct version of the Search Guard plugin to Kibana.
 
 The following changes in `kibana.yml` are required:
 

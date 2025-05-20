@@ -20,37 +20,37 @@ It brings some new features especially for the Audit Log, some bug fixes and upd
 
 If a users logs in into Kibana a `KIBANA_LOGIN` event is generated and when the user logs out a `KIBANA_LOGOUT` event is generated.
 
-* [Documentation](../_docs_audit_logging/auditlogging.md)
+* [Documentation](audit-logging-compliance)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/228)
 
 ### Audit Log: Custom fields
 
 You can now add custom fields with static values, that should be stored in Audit Logs.
 
-* [Documentation](../_docs_audit_logging/auditlogging_storage.md)
+* [Documentation](audit-logging-storage)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/220)
 
 ### Audit Log: New field in the Audit Logs containing the Elasticsearch version 
 
 A new field `audit_node_elasticsearch_version`, which contains the Elasticsearch version when the event was created, is now logged.
 
-* [Documentation](../_docs_audit_logging/auditlogging_fields.md)
+* [Documentation](audit-logging-compliance)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/221)
 
 ### Audit Log: New events in Audit Logs for index template creation/update/deletion
 
 Add new category `COMPLIANCE_INDEX_TEMPLATE_WRITE` to track modification on index templates.
 
-* [Documentation](../_docs_audit_logging/auditlogging.md)
-* [Documentation](../_docs_audit_logging/auditlogging_fields.md)
+* [Documentation](audit-logging-compliance)
+* [Documentation](audit-logging-compliance)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/190)
 
 ### Audit Log: New events in Audit Logs for operations on indices (create, delete, update settings/mappings)
 
 Add new category `INDEX_WRITE` to track modification on indices (created index, updated index settings/mappings or deleted index).
 
-* [Documentation](../_docs_audit_logging/auditlogging.md)
-* [Documentation](../_docs_audit_logging/auditlogging_fields.md)
+* [Documentation](audit-logging-compliance)
+* [Documentation](audit-logging-compliance)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/189)
 
 ## Improvements
@@ -66,7 +66,7 @@ Search Guard implements OIDC which is not the same as OpenID. To avoid confusion
 
 Simplify the management for trusted certificates with Webhook action and HTTP input and Jira actions. It is now possible to manage truststores via an API and then reference them in watches.
 
-* [Documentation](../_docs_signals/truststores.md)
+* [Documentation](elasticsearch-alerting-trust-stores)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/46)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/37)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/355)
@@ -77,15 +77,15 @@ Simplify the management for trusted certificates with Webhook action and HTTP in
 
 Make it possible to directly convert runtime data to JSON in Webhook action and HTTP input.
 
-* [Documentation](../_docs_signals/actions_webhook.md)
-* [Documentation](../_docs_signals/inputs_http.md)
+* [Documentation](elasticsearch-alerting-actions-webhook)
+* [Documentation](elasticsearch-alerting-inputs-http)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/179)
 
 ### Signals: Global setting to configure a lower bound for throttling
 
 Introduces a configurable lower bound for throttling. This can serve as a rate limiting feature for watches.
 
-* [Documentation](../_docs_signals/administration.md)
+* [Documentation](elasticsearch-alerting-administration)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/171)
 
 ## Bug fixes

@@ -95,11 +95,11 @@ searchguard.nodes_dn:
   - '/CN=.*regex/'
 ```
 
-If your node certificates have an OID identifier in the SAN section, you can omit this configuration completely. See [TLS for production environments](../_docs_tls/tls_certificates_production.md) for more details regarding this option.
+If your node certificates have an OID identifier in the SAN section, you can omit this configuration completely. See [TLS for production environments](tls-in-production) for more details regarding this option.
 
 ## Configuring Admin certificates
 
-Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgctl](sgctl-configuration-changes) command line tool, or to use the [REST management API](../_docs_rest_api/restapi_api_access.md). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
+Admin certificates are regular client certificates that have elevated rights to perform administrative tasks. You need an admin certificate to change the Search Guard configuration via the [sgctl](sgctl-configuration-changes) command line tool, or to use the [REST management API](rest-api-access-control). Admin certificates are configured in `elasticsearch.yml` by simply stating their DN(s).
 
 ```yaml
 searchguard.authcz.admin_dn:

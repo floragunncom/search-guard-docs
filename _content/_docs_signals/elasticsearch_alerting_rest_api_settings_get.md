@@ -30,7 +30,7 @@ Retrieves all Signals settings or a single settings item.
 
 ## Path Parameters
 
-**{key}** The configuration setting to be retrieved. See [Signals Administration](administration.md) for a list of the available settings.
+**{key}** The configuration setting to be retrieved. See [Signals Administration](elasticsearch-alerting-administration) for a list of the available settings.
 
 ## Responses
 
@@ -50,7 +50,7 @@ A setting does not exist for the particular key.
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:settings/put`.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ALL
 

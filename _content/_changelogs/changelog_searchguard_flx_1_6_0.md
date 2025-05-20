@@ -21,7 +21,7 @@ some new features, some bug fixes, and updates a number of dependencies.
 
 You can now configure the Auth Token cache.
 
-* [Documentation](../_docs_auth_auth/auth_auth_sg_auth_token.md#auth-token-cache)
+* [Documentation](search-guard-auth-tokens)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/13)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/617)
 
@@ -29,7 +29,7 @@ You can now configure the Auth Token cache.
 
 Pipe expressions can be used to transform values of configuration variables.
 
-* [Documentation](../_docs_configuration_changes/configuration_environment_variables.md#using-pipe-expressions)
+* [Documentation](configuration-password-handling#using-pipe-expressions)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/57)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/618)
 
@@ -37,7 +37,7 @@ Pipe expressions can be used to transform values of configuration variables.
 
 It is now possible to manage proxies via an API and then reference them in watches.
 
-* [Documentation](../_docs_signals/proxies.md)
+* [Documentation](elasticsearch-alerting-proxies)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/123)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/556)
 
@@ -78,7 +78,7 @@ Adds explicit metrics about LDAP search operations.
 
 Improves login page branding images validation so that only absolute paths are accepted.
 
-* [Documentation](../_docs_kibana/kibana_customize_login.md)
+* [Documentation](kibana-login-customizing)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/109)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/565)
 
@@ -86,7 +86,7 @@ Improves login page branding images validation so that only absolute paths are a
 
 Auth tokens are signed with default signing key in case of no explicit configuration.
 
-* [Documentation](../_docs_auth_auth/auth_auth_sg_auth_token.md#configuring-keys)
+* [Documentation](search-guard-auth-tokens)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/79)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/535)
 

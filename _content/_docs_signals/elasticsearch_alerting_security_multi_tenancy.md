@@ -24,7 +24,7 @@ server_user: "kibanaserver"
 
 ## How it works
 
-Signals Multi-Tenancy works very similar to [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md).
+Signals Multi-Tenancy works very similar to [Kibana Multi-Tenancy](kibana-multi-tenancy).
 
 By using Multi-Tenancy, you can separate the management and execution of watches by tenant: 
 
@@ -33,7 +33,7 @@ By using Multi-Tenancy, you can separate the management and execution of watches
 
 ## API permissions
 
-Access to the [Watch REST API](rest_api.md) can be [granted per tenant](security_permissions.md) as well.
+Access to the [Watch REST API](elasticsearch-alerting-rest-api-overview) can be [granted per tenant](elasticsearch-alerting-security-permissions) as well.
 
 ```
 sg_signals_multitenancy:

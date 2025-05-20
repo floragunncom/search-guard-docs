@@ -141,7 +141,7 @@ module Jekyll
           next unless child.key?('slug') && child.key?('title')
 
           # Add a list item with a link to the child page
-          content += "* [#{child['title']}](/#{child['slug']})\n"
+          content += "* [#{child['title']}](#{child['slug']})\n"
 
           # If this child has nested children, add them as a nested list
           if child.key?('children') && !child['children'].nil? && !child['children'].empty?
@@ -150,7 +150,7 @@ module Jekyll
               next unless grandchild.key?('slug') && grandchild.key?('title')
 
               # Add a nested list item
-              content += "  * [#{grandchild['title']}](/#{grandchild['slug']})\n"
+              content += "  * [#{grandchild['title']}](#{grandchild['slug']})\n"
             end
           end
         end

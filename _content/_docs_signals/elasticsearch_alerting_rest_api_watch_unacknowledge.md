@@ -26,9 +26,9 @@ DELETE /_signals/watch/{tenant}/{watch_id}/_ack
 DELETE /_signals/watch/{tenant}/{watch_id}/_ack/{action_id}
 ```
 
-These endpoints can be used to withdraw acknowledgements done by the [Acknowledge Watch API](rest_api_watch_acknowledge.md) or [Acknowledge And Get Watch](rest_api_watch_acknowledge_and_get.md). The un-acknowledged actions will afterwards be in normal state and start executing again.
+These endpoints can be used to withdraw acknowledgements done by the [Acknowledge Watch API](elasticsearch-alerting-rest-api-watch-acknowledge) or [Acknowledge And Get Watch](elasticsearch-alerting-rest-api-watch-acknowledge-and-get). The un-acknowledged actions will afterwards be in normal state and start executing again.
 
-Please also see the extended version of the requests which returns additional information [Un-Acknowledge And Get Watch](./rest_api_watch_unacknowledge_and_get.md).
+Please also see the extended version of the requests which returns additional information [Un-Acknowledge And Get Watch](elasticsearch-alerting-rest-api-watch-un-acknowledge-and-get).
 
 
 ## Path Parameters
@@ -65,7 +65,7 @@ The specified action is not acknowledged. Thus, it cannot be un-acknowledged.
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/ack` for the currently selected tenant.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_WATCH\_ACKNOWLEDGE
 

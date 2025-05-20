@@ -20,13 +20,13 @@ Signals is integrated with all security related features of Search Guard. This m
 
 ## Signals Indices
 
-The [Signals configuration index](security_indices.md) may store sensitive data and is only accessible by using the Signals API. Direct access is not possible.
+The [Signals configuration index](elasticsearch-alerting-security-indices) may store sensitive data and is only accessible by using the Signals API. Direct access is not possible.
 
 ## API Access
 
 Access to the API to create, update, execute and delete watches and accounts is controlled by a user's Search Guard roles and permissions.
 
-Signals ships with [pre-defined action groups](security_permissions.md) that you can use when defining Signals roles. 
+Signals ships with [pre-defined action groups](elasticsearch-alerting-security-permissions) that you can use when defining Signals roles. 
 
 ## Security execution context
 

@@ -53,6 +53,6 @@ The user does not have the permission to activate or deactivate the execution of
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:tenant/start_stop` .
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ALL

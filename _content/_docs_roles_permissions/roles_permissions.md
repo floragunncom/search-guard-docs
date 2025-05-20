@@ -19,7 +19,7 @@ The alias and data stream features are only supported in SG FLX version 3.0 and 
 
 {% include toc.md %}
 
-Hint: You can also use the [Search Guard Configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
+Hint: You can also use the [Search Guard Configuration GUI](configuration-gui) for configuring Roles and Permissions.
 
 Search Guard roles are the central place to configure access permissions on:
 
@@ -203,14 +203,14 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
 ### Dynamic index and tenant patterns: User attributes
 {: #user-attributes }
 
-Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](kibana-multi-tenancy#user-attributes). 
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
-- [Internal User Database](../_docs_roles_permissions/configuration_internalusers.md#user-attributes)
-- [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
-- [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
-- [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
+- [Internal User Database](internal-users-database#attribute-mapping)
+- [JWT](json-web-tokens)
+- [LDAP](active-directory-ldap#user-entry-attributes)
+- [Proxy](proxy-authentication)
 
 If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
@@ -474,7 +474,7 @@ Note: This user will not be able to use normal indices, as the `index_permission
 
 #### DLS/FLS/FM
 
-[Document level security](../_docs_dls_fls/dlsfls_dls.md#document-level-security-for-data-streams-and-aliases), [field level security](../_docs_dls_fls/dlsfls_fls.md#fls-on-data-streams-and-aliases) and [field masking](../_docs_dls_fls/dlsfls_field_anonymization.md) can be applied as normal.
+[Document level security](document-level-security#document-level-security-for-data-streams-and-aliases), [field level security](field-level-security#fls-on-data-streams-and-aliases) and [field masking](field-anonymization) can be applied as normal.
 
 ## Cluster Permission Exclusions
 
@@ -576,7 +576,7 @@ Similarly to `cluster_permissions` entries, you can provide a list of cluster pe
 
 ## Support removed for exclude_index_permissions
 
-Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. To achieve similar functionality on index level [index negation](../changelog-searchguard-flx-1_0_0#using-negation-for-index-and-action-patterns) can be used. However the functionality is not identical. Previously `exclude_index_permissions` created an absolute global exclusion. Index negation, however, only affects the current index that is being evaluated. Therefore, other roles assigned to the user which give access to the negated index will still grant the configured access.
+Support for `exclude_index_permissions` has been removed in SG FLX version 3.0. 
 
 If you are migrating to SG FLX 3.0 and have been previously using `exclude_index_permissions`, it is recommended to first retrieve the sg_roles.yml configuration and update the necessary roles, as `exclude_index_permissions` will no longer have any effect on the users privileges after migration. Retrieval of previous configuration is also possible post migration if necessary.
 {: .note .js-note .note-warning}
@@ -632,7 +632,7 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_ALL\_ACCESS | All cluster permissions and all index permissions on all indices |
 | SGS\_READALL | Read permissions on all indices, but no write permissions |
 | SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
-| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
+| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](kibana-plugin-installation) chapter for explanation |
 | SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
 | SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT | Permission for user to access kibana but not global tenant. Cannot be used together with SGS\_KIBANA\_USER\_NO\_MT |
 | SGS\_KIBANA\_USER\_NO\_MT | Permits users to access kibana UI only if multi tenancy is disabled. Cannot be used together with SGS\_KIBANA\_USER\_NO\_GLOBAL\_TENANT |

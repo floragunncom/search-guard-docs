@@ -2,8 +2,7 @@
 title: Main concepts
 permalink: main-concepts
 layout: docs
-description: How Search Guard extracts credentials from a request and how they are
-  mapped to users, roles and permissions.
+description: How Search Guard extracts credentials from a request and how they are mapped to users, roles and permissions.
 resources:
 - https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
 - https://search-guard.com/presentations/|Architecture and Request Flow
@@ -32,7 +31,7 @@ Regardless of what authentication method you use, the basic flow is as follows:
   * For example, roles can be fetched from LDAP/AD, from a JSON web token or from the Search Guard internal user database.
 * Search Guard **maps** the user and backend roles to **Search Guard roles**.
 * Search Guard determines the **permissions** associated with the Search Guard role and decides whether the action the user wants to perform is allowed or not.
-* If your are using [Document- and Field-Level-Security](../_docs_dls_fls/dlsfls_dls.md), you can also apply more fine grained permissions based on documents and individual fields.  
+* If your are using [Document- and Field-Level-Security](document-level-security), you can also apply more fine grained permissions based on documents and individual fields.  
 
 ## Authentication flow
 
@@ -142,4 +141,4 @@ For special features or configuration, you have also the following files:
 
 You can find sample templates for all files in the Search Guard download.
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgctl](../_docs_configuration_changes/configuration_sgctl.md). 
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the chapter [sgctl](sgctl). 

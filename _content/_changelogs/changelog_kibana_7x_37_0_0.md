@@ -12,7 +12,7 @@ Copyright 2020 floragunn GmbH
 
 **Release Date: 11.12.2019**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## Security Fixes
 

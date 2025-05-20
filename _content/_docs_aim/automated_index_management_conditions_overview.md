@@ -26,9 +26,9 @@ Every condition has a `type` field that defines the condition type and one addit
 ## Available Conditions
 
 Supported conditions are:
-- [age](conditions_age.md): Triggers the step execution if the index is older than the configured time period.
-- [doc_count](conditions_doc_count.md): Triggers the step execution if the number of documents the index contains is larger than the configured number.
-- [size](conditions_size.md): Triggers the step execution if the memory size of the index is larger than the configured size.
+- [age](automated-index-management-conditions-age): Triggers the step execution if the index is older than the configured time period.
+- [doc_count](automated-index-management-conditions-doc-count): Triggers the step execution if the number of documents the index contains is larger than the configured number.
+- [size](automated-index-management-conditions-size): Triggers the step execution if the memory size of the index is larger than the configured size.
 
 
 ## Advanced logic

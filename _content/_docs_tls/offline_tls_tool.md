@@ -105,7 +105,7 @@ Options:
 
 | Name | Description |
 |---|---|
-| dn | The complete Distinguished Name of the Root CA. If you have special characters in the DN, you need to [quote them correctly](../_troubleshooting/tls_troubleshooting.md#checking-for-special-characters-in-dns){:target="_blank"}. Mandatory. |
+| dn | The complete Distinguished Name of the Root CA. If you have special characters in the DN, you need to [quote them correctly](troubleshooting-tls#checking-for-special-characters-in-dns){:target="_blank"}. Mandatory. |
 | keysize | The size of the private key. Default: 2048 |
 | pkPassword | Password of the private key. One of: "none", "auto" or a self chosen password. Default: auto |
 | file | File name of the certificate, optional. Default: "root-ca" |
@@ -212,8 +212,8 @@ Options:
 | nodeOid | If you want to use OIDs to mark legitimate node certificates instead of listing them in `searchguard.nodes_dn`, set the OID here. It will be included in the SAN section of all node certificates. Default: Don't add the OID to the SAN section. |
 | httpsEnabled | Whether to enable TLS on the REST layer or not. Default: true |
 | reuseTransportCertificatesForHttp | If set to false, individual certificates for REST and Transport are generated. If set to true, the node certificates are also used on the REST layer. Default: false |
-| verifyHostnames | Set this to true to [enable hostname verification](../_docs_tls/tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
-| resolveHostnames | Set this to true to [resolve hostnames against DNS](../_docs_tls/tls_configuration.md#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
+| verifyHostnames | Set this to true to [enable hostname verification](configuring-tls#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
+| resolveHostnames | Set this to true to [resolve hostnames against DNS](configuring-tls#advanced-hostname-verification-and-dns-lookup){:target="_blank"}. Default: false |
 | signatureAlgorithm | Signature algorithm (for RSA default is SHA256withRSA, for EC its SHA256withECDSA) |
 | useEllipticCurves | If set to true use elliptic curves instead of RSA. Default is false  (since 1.7)|
 | ellipticCurve | The curve to be used. Default is: NIST P-384 (since 1.7)|
@@ -247,7 +247,7 @@ Options:
 | Name | Description |
 |---|---|
 | name | Name of the node, will become part of the filenames. Mandatory |
-| dn | The Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](../_troubleshooting/tls_troubleshooting.md#checking-for-special-characters-in-dns){:target="_blank"}. Mandatory |
+| dn | The Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](troubleshooting-tls#checking-for-special-characters-in-dns){:target="_blank"}. Mandatory |
 | dns | The hostname(s) this certificate is valid for. Should match the `hostname` of the node. Optional, but recommended.  |
 | ip | The IP(s) this certificate is valid for. Optional. Prefer hostnames if possible.  |
 {: .config-table}
@@ -303,7 +303,7 @@ Options:
 | Name | Description |
 |---|---|
 | name | Name of the certificate, will become part of the file name |
-| dn | The complete Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](../_troubleshooting/tls_troubleshooting.md#checking-for-special-characters-in-dns){:target="_blank"} |
+| dn | The complete Distinguished Name of the certificate. If you have special characters in the DN, you need to [quote them correctly](troubleshooting-tls#checking-for-special-characters-in-dns){:target="_blank"} |
 | admin  | If set to true, this certificate will be marked as admin certificate in the generated configuration snippet.  |
 {: .config-table}
 

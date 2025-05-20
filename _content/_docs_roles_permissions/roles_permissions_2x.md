@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Search Guard Configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring Roles and Permissions.
+Hint: You can also use the [Search Guard Configuration GUI](configuration-gui) for configuring Roles and Permissions.
 
 Search Guard roles are the central place to configure access permissions on:
 
@@ -66,9 +66,9 @@ Search Guard roles and their associated permissions are defined in the file `sg_
 | cluster_permissions     | Permissions that apply on the cluster level, e.g. monitoring the cluster health                                                                                                                                   |
 | index_permissions       | Permissions that apply to one or more index patterns                                                                                                                                                              |
 | allowed_actions         | The actions that are allowed for the index or tenant patterns                                                                                                                                 |
-| dls                     | The [Document-level security filter query](../_docs_dls_fls/dlsfls_dls.md) that should be applied to the index patterns. Used to filter documents from the result set.                     |
-| fls                     | The [fields that should be excluded or included](../_docs_dls_fls/dlsfls_fls.md) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
-| tenant_permissions      | Permissions that apply to [Kibana tenants](../_docs_kibana/kibana_multitenancy.md). Used to control access to Kibana.                                                                                             |
+| dls                     | The [Document-level security filter query](document-level-security) that should be applied to the index patterns. Used to filter documents from the result set.                     |
+| fls                     | The [fields that should be excluded or included](field-level-security) that should be applied to the index patterns. Used to filter fields from the documents in the result set. |
+| tenant_permissions      | Permissions that apply to [Kibana tenants](kibana-multi-tenancy). Used to control access to Kibana.                                                                                             |
 {: .config-table}
 
 ## Cluster-level permissions
@@ -175,14 +175,14 @@ When defining index patterns the placeholder `${user.name}` is allowed to suppor
 ### Dynamic index and tenant patterns: User attributes
 {: #user-attributes }
 
-Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](../_docs_kibana/kibana_multitenancy.md#user-attributes). 
+Any authentication and authorization domain can provide additional user attributes that you can use for variable substitution in index patterns and [tenant patterns for Kibana multi-tenancy](kibana-multi-tenancy#user-attributes). 
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
-- [Internal User Database](../_docs_roles_permissions/configuration_internalusers.md#user-attributes)
-- [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
-- [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
-- [Proxy](../_docs_auth_auth/auth_auth_proxy2.md#using-further-headers-as-search-guard-user-attributes)
+- [Internal User Database](internal-users-database#attribute-mapping)
+- [JWT](json-web-tokens)
+- [LDAP](active-directory-ldap#user-entry-attributes)
+- [Proxy](proxy-authentication)
 
 If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 
@@ -432,7 +432,7 @@ Search Guard ships with the following built-in (static) roles:
 | SGS\_ALL\_ACCESS | All cluster permissions and all index permissions on all indices |
 | SGS\_READALL | Read permissions on all indices, but no write permissions |
 | SGS\_READALL\_AND\_MONITOR | Read and monitor permissions on all indices, but no write permissions |
-| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](../_docs_kibana/kibana_installation.md) chapter for explanation |
+| SGS\_KIBANA\_SERVER | Role for the internal Kibana server user, please refer to the [Kibana setup](kibana-plugin-installation) chapter for explanation |
 | SGS\_KIBANA\_USER | Minimum permission set for regular Kibana users. In addition to this role, you need to also grant READ permissions on indices the user should be able to access in Kibana.|
 | SGS\_LOGSTASH | Role for logstash and beats users, grants full access to all logstash and beats indices. |
 | SGS\_MANAGE\_SNAPSHOTS | Grants full permissions on snapshot, restore and repositories operations |

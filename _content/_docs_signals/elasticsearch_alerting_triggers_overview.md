@@ -18,11 +18,11 @@ description: A trigger specifies when and how often a watch for Elasticsearch Al
 
 Every watch has to define a trigger. A trigger specifies when a watch gets executed ("triggered"). Currently the following trigger types are supported:
 
-* Date and time using [hourly](triggers_schedule.md#hourly-triggers), [daily](triggers_schedule.md#daily-triggers), [weekly](triggers_schedule.md#weekly-triggers) or [monthly](triggers_schedule.md#monthly-triggers) triggers
+* Date and time using [hourly](elasticsearch-alerting-triggers-schedule#hourly-triggers), [daily](elasticsearch-alerting-triggers-schedule#daily-triggers), [weekly](elasticsearch-alerting-triggers-schedule#weekly-triggers) or [monthly](elasticsearch-alerting-triggers-schedule#monthly-triggers) triggers
   * for example, every Wednesday at 2pm 
-* [Interval triggers](triggers_schedule.md#interval-triggers)
+* [Interval triggers](elasticsearch-alerting-triggers-schedule#interval-triggers)
   * for example, every 10 minutes 
-* [cron triggers](triggers_schedule.md#cron-triggers)
+* [cron triggers](elasticsearch-alerting-triggers-schedule#cron-triggers)
   * gives you the full power of cron expressions
 
 Example:
@@ -54,4 +54,4 @@ Each trigger gets registered with the Trigger Execution Engine. The execution en
    
 ## Time zones
 
-Signals supports different [time zones](triggers_timezones.md). If no time zone is specified, the default JVM time zone is used. 
+Signals supports different [time zones](elasticsearch-alerting-triggers-timezones). If no time zone is specified, the default JVM time zone is used. 

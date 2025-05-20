@@ -4,7 +4,7 @@ html_title: Conditions
 permalink: elasticsearch-alerting-conditions
 layout: docs
 edition: community
-canonical: elasticsearch-alerting-conditions-overview
+canonical: elasticsearch-alerting-conditions
 description: In Signals Alerting, conditions are used to check for threshold values,
   controlling the execution flow and trigger notifications.
 ---
@@ -41,7 +41,7 @@ The following condition tests whether the total hits of a search, stored in the 
 
 ## Accessing the runtime data
 
-All scripts have full access to the runtime data, gathered for example by [Elasticsearch](inputs_elasticsearch.md) or [HTTP](inputs_http.md) inputs.
+All scripts have full access to the runtime data, gathered for example by [Elasticsearch](elasticsearch-alerting-inputs-elasticsearch) or [HTTP](elasticsearch-alerting-inputs-http) inputs.
 
 The runtime data is available via the `data` prefix.
 

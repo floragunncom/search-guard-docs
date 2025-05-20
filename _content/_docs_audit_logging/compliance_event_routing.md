@@ -59,11 +59,11 @@ searchguard:
 | Name | Description |
 |---|---|
 | endpoint name | A telling name for the endpoint used to reference it in the routing configuration. Must be unique.|
-| endpoint type | Any [supported endpoint type](auditlogging_storage.md) |
+| endpoint type | Any [supported endpoint type](audit-logging-storage) |
 | endpoint configuration | The configuration for the configured endpoint, individual for each type. |
 {: .config-table}
 
-The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](auditlogging_storage.md).
+The configuration settings are specific for each endpoint. For a reference, please refer to the [audit storage documentation](audit-logging-storage).
 
 ### Example
 

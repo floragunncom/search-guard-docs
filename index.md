@@ -52,8 +52,6 @@ You have several options to try Search Guard FLX:
 
 - If you have docker installed you can just simply run `docker run -it --rm -p 5601:5601 -p 9200:9200 floragunncom/search-guard-flx-demo` and point your browser to `http://localhost:5601` and login with username `admin` and password `admin`
 
-- If you have an existing Search Guard setup and want to test its configuration with Search Guard FLX, you can use the [migrate-config command](sg-classic-config-migration) of `sgctl`. Please also review the list of [release notes](changelog-searchguard-flx-1_0_0).
-
 You might want to read the following sections of the documentation to get a comprehensive overview over the new possibilities of Search Guard:
 
 * [Using sgctl](sgctl) (See also the [repository README](https://git.floragunn.com/search-guard/sgctl/)). 
@@ -61,7 +59,7 @@ You might want to read the following sections of the documentation to get a comp
 * [Configuring authentication](authentication-authorization)
 * [Configuring Kibana authentication](kibana-authentication-types) 
 * [Search Guard FLX release notes](changelog-searchguard-flx-1_0_0)
-* [Migrating from Search Guard 53 and before](sg-classic-config-migration)
+* [Migrating from Search Guard 53 and before](sg-classic-config-migration-quick)
 * [SG 53 to FLX feature map](config-migration-feature-map)
 
 

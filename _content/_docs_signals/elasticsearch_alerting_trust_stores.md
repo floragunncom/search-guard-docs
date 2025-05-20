@@ -52,10 +52,10 @@ It is worth mentioning that the configuration options `trusted_certs` and `trust
 ## Trust store management
 
 The following REST API is defined to perform CRUD (create, read, update, delete) operations on the trust stores.
-* [Get one trust store](./rest_api_trust_store_get_one.md)
-* [Get all trust stores](./rest_api_trust_store_get_all.md)
-* [Create or replace trust store](./rest_api_trust_store_create_or_replace.md)
-* [Delete truststore](./rest_api_trust_store_delete.md)
+* [Get one trust store](elasticsearch-alerting-rest-api-trust-store-get-one)
+* [Get all trust stores](elasticsearch-alerting-rest-api-trust-store-get-all)
+* [Create or replace trust store](elasticsearch-alerting-rest-api-trust-store-create-or-replace)
+* [Delete truststore](elasticsearch-alerting-rest-api-trust-store-delete)
  
 ## TLS session timeout
 To increase performance Java is able to reuse a single TLS session multiple times in some circumstances. If an existing TLS session is reused

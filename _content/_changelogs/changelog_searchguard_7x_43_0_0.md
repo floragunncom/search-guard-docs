@@ -10,7 +10,7 @@ description: Changelog for Search Guard 7.x-43.0.0
 
 **Release Date: 06.07.2020**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## New Features
 
@@ -18,7 +18,7 @@ description: Changelog for Search Guard 7.x-43.0.0
 
 ### Search Guard Core
 
-* Search Guard now provides functionality which allows reloading the used TLS certificates without restarting ES. This API is not enabled by default, but it can be enabled with a configuration setting. See [TLS Hot Reload](tls_hot_reload) for details.
+* Search Guard now provides functionality which allows reloading the used TLS certificates without restarting ES. This API is not enabled by default, but it can be enabled with a configuration setting. See [TLS Hot Reload](hot-reload-tls) for details.
 <p />
 
 

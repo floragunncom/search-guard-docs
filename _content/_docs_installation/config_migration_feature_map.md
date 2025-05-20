@@ -28,8 +28,8 @@ This section serves as a reference by config file and config name how the classi
 |`dynamic.filtered_alias_mode` |  No longer supported | Search Guard no longer restricts the use of filtered aliases |
 |`dynamic.multi_rolespan_enabled` | No longer supported | Multi-rolespan is now always active |
 |`dynamic.hosts_resolver_mode` | No longer necessary | Search Guard will automatically lookup host names when any are specified in `sg_roles_mapping.yml`. Lookups can be avoided by specifying IP addresses in the new `ip` attribute in `sg_roles_mapping.yml`. |
-|`dynamic.http.anonymous_auth_enabled` | Authentication domain of type `anonymous` in `sg_authc.yml` | See [Anonymous authentication](../_docs_auth_auth/auth_auth_anon.md) |
-|`dynamic.http.xff.internalProxies` | Property `network.trusted_proxies` in `sg_authc.yml` | While `xff.internalProxies` expects a regular expression, you can specify subnets in  `network.trusted_proxies` using CIDR expressions. See also [IP addresses of users behind proxies](../_docs_auth_auth/auth_auth_configuration.md#ip-addresses-of-users-behind-proxies). 
+|`dynamic.http.anonymous_auth_enabled` | Authentication domain of type `anonymous` in `sg_authc.yml` | See [Anonymous authentication](anonymous-authentication) |
+|`dynamic.http.xff.internalProxies` | Property `network.trusted_proxies` in `sg_authc.yml` | While `xff.internalProxies` expects a regular expression, you can specify subnets in  `network.trusted_proxies` using CIDR expressions. See also [IP addresses of users behind proxies](authentication-authorization-configuration#ip-addresses-of-users-behind-proxies). 
 |`dynamic.http.xff.remoteIpHeader` | Property `network.http.remote_ip_header` in `sg_authc.yml` | |
 |`dynamic.http.xff.enabled` | No longer necessary |  Just specify `network.trusted_proxies` in `sg_authc.yml` |
 |`dynamic.auth_token_provider` | Config file `sg_auth_token_service.yml` | Structure of the configuration remains the same. |
@@ -113,27 +113,27 @@ SAML configuration is now performed in `sg_frontend_authc.yml`.
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`challenge` | No longer necessary | - |
-|`config.idp.metadata_url` | Property `idp.metadata_url` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.idp.metadata_file` | Property `idp.metadata_xml` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | Files can be referenced with the special syntax `idp.metadata_xml: "${file:/path/to/file}"`. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.entity_id` | Property `idp.entity_id` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.sp.entity_id` | Property `sp.entity_id` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.sp.signature_private_key` | Property `sp.signature_private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.sp.signature_algorithm` | Property `sp.signature_algorithm` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.kibana_url` | Property `server.publicBaseUrl` or `searchguard.frontend_base_url` in `kibana.yml` | See [SAML](kibana_authentication_saml.md) |
-|`config.subject_key` | Property `user_mapping.subject` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana_authentication_saml.md) |
-|`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana_authentication_saml.md) |
-|`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana_authentication_saml.md) |
+|`config.idp.metadata_url` | Property `idp.metadata_url` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`config.idp.metadata_file` | Property `idp.metadata_xml` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | Files can be referenced with the special syntax `idp.metadata_xml: "${file:/path/to/file}"`. See [SAML](kibana-authentication-saml) |
+|`config.idp.entity_id` | Property `idp.entity_id` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`config.sp.entity_id` | Property `sp.entity_id` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`config.sp.signature_private_key` | Property `sp.signature_private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`config.sp.signature_algorithm` | Property `sp.signature_algorithm` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`config.kibana_url` | Property `server.publicBaseUrl` or `searchguard.frontend_base_url` in `kibana.yml` | See [SAML](kibana-authentication-saml) |
+|`config.subject_key` | Property `user_mapping.subject` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana-authentication-saml) |
+|`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana-authentication-saml) |
+|`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana-authentication-saml) |
 |`config.exchange_key` |  No longer necessary  | |
-|`config.idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana_authentication_saml.md) |
-|`config.idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemkey_content` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana_authentication_saml.md) |
-|`config.idp.pemkey_password` |  Property `idp.tls.client_auth.private_key_password` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana_authentication_saml.md) |
+|`config.idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
+|`config.idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | See [SAML](kibana-authentication-saml) |
+|`config.idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [SAML](kibana-authentication-saml) |
+|`config.idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
+|`config.idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
+|`config.idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [SAML](kibana-authentication-saml) |
+|`config.idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
+|`config.idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [SAML](kibana-authentication-saml) |
+|`config.idp.pemkey_content` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
+|`config.idp.pemkey_password` |  Property `idp.tls.client_auth.private_key_password` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
 
 
 ### `http_authenticator` of type `openid`
@@ -144,25 +144,25 @@ OIDC configuration is now performed in `sg_frontend_authc.yml`.
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`challenge` | No longer necessary | - |
-|`config.openid_connect_url` | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_openid.md) |
+|`config.openid_connect_url` | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
 |`config.jwt_header` |  No longer necessary  |  |
 |`config.jwt_url_parameter` | No longer necessary |  |
-|`config.proxy` | Property `proxy` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_oidc.md) |
-|`config.subject_key` | Property `user_mapping.subject` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| See [OIDC](kibana_authentication_openid.md) |
-|`config.subject_path` | Property `user_mapping.subject` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| See [OIDC](kibana_authentication_openid.md) |
-|`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana_authentication_openid.md) |
-|`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana_authentication_openid.md) |
-|`config.roles_path` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana_authentication_saml.md) |
-|`config.openid_connect_idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemkey_content` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana_authentication_openid.md) |
-|`config.openid_connect_idp.pemkey_password` |  Property `idp.tls.client_auth.private_key_password` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana_authentication_openid.md) |
+|`config.proxy` | Property `proxy` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`config.subject_key` | Property `user_mapping.subject` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| See [OIDC](kibana-authentication-openid) |
+|`config.subject_path` | Property `user_mapping.subject` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| See [OIDC](kibana-authentication-openid) |
+|`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
+|`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
+|`config.roles_path` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-saml) |
+|`config.openid_connect_idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemkey_content` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.pemkey_password` |  Property `idp.tls.client_auth.private_key_password` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-openid) |
 
 
 ### `authentication_backend` of type `internal`
@@ -251,25 +251,25 @@ The functionality provided by the `ldap` authorization backend can be now used i
 
 | Legacy Config | New Config | Details |
 |---|---|---|
-|`searchguard.auth.anonymous_auth_enabled` | Unchanged | See [Anonymous authentication](kibana_authentication_anonymous.md) |
-|`searchguard.auth.type: "basicauth"` | `auth_domain` entry of type `basic` in `sg_frontend_authc.yml` | See [Username based authentication](kibana_authentication_basicauth.md) |
+|`searchguard.auth.anonymous_auth_enabled` | Unchanged | See [Anonymous authentication](kibana-authentication-anonymous) |
+|`searchguard.auth.type: "basicauth"` | `auth_domain` entry of type `basic` in `sg_frontend_authc.yml` | See [Username based authentication](kibana-authentication-http-basic) |
 |`searchguard.auth.type: "jwt"` | Multiple possibilities | Depends on the further configuration of `searchguard.jwt.url_parameter` and `searchguard.jwt.header`. See there. |
-|`searchguard.auth.type: "kerberos"` | Unchanged | See [Kerberos authentication](kibana_authentication_kerberos.md) |
-|`searchguard.auth.type: "openid"` | `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.auth.type: "proxy"` | Unchanged | See [Proxy authentication](kibana_authentication_proxy.md) |
-|`searchguard.auth.type: "proxycache"` | No longer supported | Use [proxy authentication](kibana_authentication_proxy.md) instead |
-|`searchguard.auth.type: "saml"` | `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana_authentication_saml.md) |
-|`searchguard.basicauth.login.*` | Equally named properties in `sg_frontend_authc.yml`  in the section `login_page` | See [Customizing the login page](kibana_customize_login.md) |
+|`searchguard.auth.type: "kerberos"` | Unchanged | See [Kerberos authentication](kibana-authentication-kerberos) |
+|`searchguard.auth.type: "openid"` | `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.auth.type: "proxy"` | Unchanged | See [Proxy authentication](kibana-authentication-anonymous) |
+|`searchguard.auth.type: "proxycache"` | No longer supported | Use [proxy authentication](kibana-authentication-anonymous) instead |
+|`searchguard.auth.type: "saml"` | `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
+|`searchguard.basicauth.login.*` | Equally named properties in `sg_frontend_authc.yml`  in the section `login_page` | See [Customizing the login page](kibana-login-customizing) |
 |`searchguard.basicauth.forbidden_usernames` | Role `SGS_KIBANA_USER` | The configuration was changed from a blacklist to a whitelist: All users which shall be able to log into Kibana, must have the Search Guard role Role `SGS_KIBANA_USER`  |
-|`searchguard.jwt.header` | Use proxy authentication to forward the JWT header | See [Proxy authentication](kibana_authentication_proxy.md) |
-|`searchguard.jwt.url_parameter` | `searchguard.auth.jwt_param.enabled: true` and `searchguard.auth.jwt_param.url_param: ...` | See [JWT URL Parameters](kibana_authentication_jwt.md) |
+|`searchguard.jwt.header` | Use proxy authentication to forward the JWT header | See [Proxy authentication](kibana-authentication-anonymous) |
+|`searchguard.jwt.url_parameter` | `searchguard.auth.jwt_param.enabled: true` and `searchguard.auth.jwt_param.url_param: ...` | See [JWT URL Parameters](kibana-authentication-jwt) |
 |`searchguard.jwt.login_endpoint` | `auth_domain` of type `link` in `sg_frontend_authc.yml` | See TODO |
-|`searchguard.openid.connect_url`  | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.openid.client_id`  | Property `client_id` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.openid.client_secret`  | Property `client_secret` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana_authentication_oidc.md) |
+|`searchguard.openid.connect_url`  | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.client_id`  | Property `client_id` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.client_secret`  | Property `client_secret` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
 |`searchguard.openid.scope`  | none | No longer necessary |
 |`searchguard.openid.header`  | none | No longer necessary |
-|`searchguard.openid.base_redirect_url`  | `server.publicBaseUrl` or `searchguard.frontend_base_url` |See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.openid.logout_url`  | Property `logout_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.openid.root_ca`  | Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana_authentication_oidc.md) |
-|`searchguard.proxycache.*`  | No longer supported | Use [proxy authentication](kibana_authentication_proxy.md) instead |
+|`searchguard.openid.base_redirect_url`  | `server.publicBaseUrl` or `searchguard.frontend_base_url` |See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.logout_url`  | Property `logout_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.root_ca`  | Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
+|`searchguard.proxycache.*`  | No longer supported | Use [proxy authentication](kibana-authentication-anonymous) instead |

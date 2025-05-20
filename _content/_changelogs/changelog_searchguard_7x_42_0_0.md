@@ -10,7 +10,7 @@ description: Changelog for Search Guard 7.x-42.0.0
 
 **Release Date: 01.06.2020**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## New Features
 
@@ -33,17 +33,17 @@ description: Changelog for Search Guard 7.x-42.0.0
 
 ### Document- and Field-Level-Security
 
-* [Add a static prefix to anonymized fields](field-anonymization#prefixing-anonymized-fields)
+* [Add a static prefix to anonymized fields](field-anonymization)
   * This can be set in elasticsearch.yml via `searchguard.compliance.mask_prefix: "<prefix>"`
 <p />
 * Make it possible for a role without filters to overwrite other roles
   * If a role has no DLS / FLS or FA filters, you can choose that this role overwrites restrictions from other roles
   * This can be enabled in elasticsearch.yml via: `searchguard.dfm_empty_overrides_all: true`
   * [Effects on DLS](document-level-security#multiple-roles-and-document-level-security)
-  * [Effects on FLS](field-level-security#multiple-roles-and-field-level-security)
-  * [Effects on Field Anonymization](field-anonymization#multiple-roles-and-field-anonymization)
+  * [Effects on FLS](field-level-security)
+  * [Effects on Field Anonymization](field-anonymization)
 <p />
-* [Field anonymization: Configure salt dynamically](field-anonymization#setting-a-dynamic-salt)
+* [Field anonymization: Configure salt dynamically](field-anonymization#configuring-the-hash-salt)
   * Until this release the salt for field anonymization had to be set in elasticsearch.yml and was not changeable at runtime
   * You can now specify a salt also in sg_config.yml which is changeable at runtime
   * The salt can be set via the key `sg_config.dynamic.field_anonymization_salt2: "<salt>"`

@@ -19,5 +19,5 @@ By default, Search Guard does not allow to take a snapshot and restore the Searc
 searchguard.unsupported.restore.sgindex.enabled: true
 ```
 
-Please also refer to the [snapshot and restore configuration](../_docs_roles_permissions/configuration_snapshots.md) documentation.
+Please also refer to the [snapshot and restore configuration](snapshot-restore) documentation.
 

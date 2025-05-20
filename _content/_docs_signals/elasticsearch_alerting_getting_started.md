@@ -48,7 +48,7 @@ Note that Signals is fully compatible with [Search Guard multi-tenancy](kibana-m
 
 ## Sample watches
 
-To start quickly with Signals, we have [prepared sample watches](sample_watches.md) that can be either installed by using the REST API, or the Kibana plugin.
+To start quickly with Signals, we have [prepared sample watches](elasticsearch-alerting-watches-sample) that can be either installed by using the REST API, or the Kibana plugin.
 
 The examples are based on the [Kibana sample data](https://www.elastic.co/guide/en/kibana/current/add-sample-data.html), so you need to import it first.
 

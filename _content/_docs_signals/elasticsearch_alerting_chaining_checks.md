@@ -59,11 +59,11 @@ Each step in the execution chain is called a *check*. Example:
 
 All checks and actions operate on the watch runtime data.
 
-[Input](inputs.md) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before.
+[Input](elasticsearch-alerting-inputs-overview) checks can add data to the context; either under a specific property name or at the top level, replacing all data that was possibly stored before.
 
-[Transformations](transformations_transformations.md) transform existing data, [Calculations](transformations_calculations.md) add data based on existing data, and [Conditions](conditions.md) control the execution flow based on the runtime data.
+[Transformations](elasticsearch-alerting-transformations) transform existing data, [Calculations](elasticsearch-alerting-calculations) add data based on existing data, and [Conditions](elasticsearch-alerting-conditions) control the execution flow based on the runtime data.
 
-[Actions](actions.md) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like Elasticsearch.
+[Actions](elasticsearch-alerting-actions-overview) send out notifications based on the runtime data, or store all or parts of the runtime data on a data sink, like Elasticsearch.
 
 <p align="center">
 <img src="runtime_context.png" style="width: 50%" class="md_image"/>
@@ -71,7 +71,7 @@ All checks and actions operate on the watch runtime data.
 
 ### Adding data to the runtime data
 
-[Inputs](inputs.md) and [Transformations](transformations_transformations.md) fetch data and place it in the runtime data under a name specified by the `target` of the check. Example:
+[Inputs](elasticsearch-alerting-inputs-overview) and [Transformations](elasticsearch-alerting-transformations) fetch data and place it in the runtime data under a name specified by the `target` of the check. Example:
 
 ```
 {

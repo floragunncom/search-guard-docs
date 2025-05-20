@@ -15,14 +15,14 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Hint: You can also use the [Kibana Configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for configuring the Roles Mapping.
+Hint: You can also use the [Kibana Configuration GUI](configuration-gui) for configuring the Roles Mapping.
 
 After a user is authenticated, Search Guard uses the role mappings to determine which Search Guard roles should be assigned to the user.
 
 You can use the following data to assign a user to one or more Search Guard roles:
 
 * the username
-* the backend roles of the user as collected by [authentication modules or user information backends](../docs_auth_auth/auth_auth_rest_config_overview.md)
+* the backend roles of the user as collected by authentication modules or user information backends
   * e.g. backend roles defined in the internal user database
   * e.g. LDAP groups
   * e.g. JWT claims or SAML assertions

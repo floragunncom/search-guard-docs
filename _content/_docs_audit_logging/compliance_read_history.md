@@ -19,9 +19,9 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
+Search Guard can monitor read access to sensitive data and fields in Elasticsearch, and produce an audit trail of all access activity. It uses the [Audit Logging storage](audit-logging-storage) engine to ship the emitted audit events to one or more storage endpoints.
 
-Search Guard emits read events if one or more of the configured watched fields was part of the search result. If the watched fields are filtered from the result, for example by source filtering or applying [field-level security](../_docs_dls_fls/dlsfls_fls.md), no events are emitted. 
+Search Guard emits read events if one or more of the configured watched fields was part of the search result. If the watched fields are filtered from the result, for example by source filtering or applying [field-level security](field-level-security), no events are emitted. 
 
 This can be used to track access to PII or otherwise sensitive data. The audit trail will contain date of access, the username, the document id, and a list of the watched fields that were contained in the result. This makes it extremely easy to implement GDPR, HIPAA, PCI or SOX compliance.
 

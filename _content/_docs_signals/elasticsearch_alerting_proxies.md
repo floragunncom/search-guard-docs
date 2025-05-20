@@ -47,10 +47,10 @@ The global proxy can be configured via [REST API](elasticsearch-alerting-rest-ap
 ## Proxy management
 
 The following REST API is defined to perform CRUD (create, read, update, delete) operations on the proxies.
-* [Get one proxy](./rest_api_proxy_get_one.md)
-* [Get all proxies](./rest_api_proxy_get_all.md)
-* [Create or replace proxy](./rest_api_proxy_create_or_replace.md)
-* [Delete proxy](./rest_api_proxy_delete.md)
+* [Get one proxy](elasticsearch-alerting-rest-api-proxy-get-one)
+* [Get all proxies](elasticsearch-alerting-rest-api-proxy-get-all)
+* [Create or replace proxy](elasticsearch-alerting-rest-api-proxy-create-or-replace)
+* [Delete proxy](elasticsearch-alerting-rest-api-proxy-delete)
 
 REST API for managing global Signals settings.
 * [Put global setting](elasticsearch-alerting-rest-api-settings-put)

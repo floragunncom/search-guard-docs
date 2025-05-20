@@ -32,7 +32,12 @@ build:
       bundle exec jekyll build --config _config.yml,_versions.yml --incremental
       echo "Starting second pass"
       bundle exec jekyll build --config _config.yml,_versions.yml --incremental
-
+      echo "Check for broken links"
+      # --assume-extension: Needed because links use the permalink, but the files have HTML extension
+      # --url-ignore: ignore links to old versions
+      # --alt-ignore: ignore missing alt in images
+      # --allow_hash_href: <a href='#'> is valid
+      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true
 deploy:
   tags:
     - docs
