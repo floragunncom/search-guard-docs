@@ -543,7 +543,7 @@ Note: This user will not be able to use normal indices, as the `index_permission
 
 #### DLS/FLS/FM
 
-[Document level security](../_docs_dls_fls/dlsfls_dls.md#document-level-security-for-data-streams-and-aliases), [field level security](../_docs_dls_fls/dlsfls_fls.md#fls-on-data-streams-and-aliases) and [field masking](../_docs_dls_fls/dlsfls_field_anonymization.md) can be applied as normal.
+[Document level security](document-level-security#document-level-security-for-data-streams-and-aliases), [field level security](field-level-security#fls-on-data-streams-and-aliases) and [field masking](field-anonymization) can be applied as normal.
 
 ## Cluster Permission Exclusions
 
