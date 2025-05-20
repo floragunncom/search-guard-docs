@@ -12,7 +12,7 @@ description: Signals Alerting for Elasticsearch supports different timezones for
 # Handling Timezones for Alerting triggers
 {: .no_toc}
 
-Signals supports different [time zones](triggers_timezones.md). If no time zone is specified, the default JVM time zone is used.
+Signals supports different [time zones](elasticsearch-alerting-triggers-timezones). If no time zone is specified, the default JVM time zone is used.
 
 You can specify the timezone of each trigger by adding a `timezone` ID  to the schedule of a trigger:
 

@@ -18,7 +18,7 @@ Copyright 2022 floragunn GmbH
 
 ## Prerequisites
 
-To user Kerberos-based authentication with Kibana, you first need to configure [Kerberos authentication](../_docs_auth_auth/auth_auth_kerberos.md) for the Elasticsearch backend.
+To user Kerberos-based authentication with Kibana, you first need to configure [Kerberos authentication](kerberos-spnego) for the Elasticsearch backend.
 
 Depending on the browser you are using, make sure you have configured the Kibana domain correctly for Kerberos authentication. Please refer to the documentation of your browser for further instructions.
 

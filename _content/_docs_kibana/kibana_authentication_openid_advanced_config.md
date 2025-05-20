@@ -104,7 +104,7 @@ default:
 
 ## Mapping user attributes
 
-Search Guard allows to use any attribute available in the JWT claims to construct [dynamic index patterns](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-patterns-user-name-substitution) and [dynamic queries for document and field level security](../_docs_dls_fls/dlsfls_dls.md#dynamic-queries-variable-subtitution). In order to use these attributes, you need to use the configuration option `user_mapping.attrs` to provide a mapping from JWT claim attributes to Search Guard user attributes.
+Search Guard allows to use any attribute available in the JWT claims to construct dynamic index patterns and [dynamic queries for document and field level security](document-level-security). In order to use these attributes, you need to use the configuration option `user_mapping.attrs` to provide a mapping from JWT claim attributes to Search Guard user attributes.
 
 This configuration options accepts a mapping of the form `search_guard_user_attribute: json_path_to_jwt_claim_attribute`. You can use JSON path expressions to specify what part of the claims you want to extract exactly.
 

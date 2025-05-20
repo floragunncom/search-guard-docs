@@ -8,7 +8,7 @@ description: Changelog for Search Guard 7.x-49.0.0
 
 **Release Date: 02.02.2021**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## New Features
 

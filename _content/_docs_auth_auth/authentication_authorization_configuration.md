@@ -31,7 +31,7 @@ auth_domains:
 - type: basic/internal_users_db
 ```
 
-This way, you configure Search Guard to expect credentials by Basic HTTP authentication. This means, you need to supply a username and password to authenticate. The credentials are checked by Search Guard using its [internal users database](../_docs_roles_permissions/configuration_internalusers.md). If the password is correct, Search Guard allows the user to access Elasticsearch. The user will have the roles that are configured in the internal users database.
+This way, you configure Search Guard to expect credentials by Basic HTTP authentication. This means, you need to supply a username and password to authenticate. The credentials are checked by Search Guard using its [internal users database](internal-users-database). If the password is correct, Search Guard allows the user to access Elasticsearch. The user will have the roles that are configured in the internal users database.
 
 Thus, the `type` attribute defines a two-dimensional value: The part in front of the slash - `basic` in the example - identifies the HTTP authentication frontend. It is responsible for retrieving credentials from the request. The part after the slash is the authentication backend. It is responsible for validating the extracted credentials using a backend system. 
 
@@ -52,9 +52,9 @@ auth_domains:
 
 This configuration contains three *authentication domains*. When Search Guard receives a request, it goes through the list of authentication domains - from top to the bottom - and checks for each authentication domain if it can authenticate the request. When a domain successfully authenticates a request, this process ends. The request passes without checking the succeeding authentication domains.
 
-We already know the first authentication domain of type `basic/internal_users_db`. The second one, `basic/ldap` also uses Basic HTTP authentication to retrieve the supplied user name and password. However, it connects to an external LDAP server to check the credentials. Here, you can see some more configuration properties that specify how to connect to the external LDAP server. See the [LDAP documentation](../_docs_auth_auth/auth_auth_ldap.md) for more details on this.
+We already know the first authentication domain of type `basic/internal_users_db`. The second one, `basic/ldap` also uses Basic HTTP authentication to retrieve the supplied user name and password. However, it connects to an external LDAP server to check the credentials. Here, you can see some more configuration properties that specify how to connect to the external LDAP server. See the [LDAP documentation](active-directory-ldap) for more details on this.
 
-The third authentication domain has type `jwt`. This type only consists of one part, the authentication frontend. The second part, the authentication backend, is not specified here. This means that the authentication frontend is sufficient to authenticate the request. This is because cryptographic signatures are used to verify the authenticity of a user with JWT. When Search Guard is initialized, it loads the public keys for verification as JWKS file from the URL specified using the `jwt.jwks_endpoint.url` property. However, the necessary keys can be also specified directly inside the configuration. See the [JWT documentation](../_docs_auth_auth/auth_auth_jwt.md) for more on this.
+The third authentication domain has type `jwt`. This type only consists of one part, the authentication frontend. The second part, the authentication backend, is not specified here. This means that the authentication frontend is sufficient to authenticate the request. This is because cryptographic signatures are used to verify the authenticity of a user with JWT. When Search Guard is initialized, it loads the public keys for verification as JWKS file from the URL specified using the `jwt.jwks_endpoint.url` property. However, the necessary keys can be also specified directly inside the configuration. See the [JWT documentation](json-web-tokens) for more on this.
 
 ## Debugging the authc configuration
 
@@ -156,7 +156,7 @@ In this case, the user needs to provide their `uid` as user name in the login fo
 
 ### More details on user mapping
 
-See the section [advanced user mapping](auth_auth_rest_config_advanced_user_mapping.md) for a comprehensive overview over all options.
+See the section [advanced user mapping](authentication-authorization-configuration-advanced-user-mapping) for a comprehensive overview over all options.
 
 ## Restricting authentication domains
 
@@ -269,9 +269,9 @@ Remember that the expressions used for retrieving the role and attribute values 
 
 There are a number of additional advanced options in `sg_authc.yml`. These allow you to customize the following things:
 
-- [Advanced user mapping](auth_auth_rest_config_advanced_user_mapping.md)
-- [Global restrictions for IP addresses](auth_auth_rest_config_advanced_options.md)
-- [Authentication cache settings](auth_auth_rest_config_advanced_options.md)
+- [Advanced user mapping](authentication-authorization-configuration-advanced-user-mapping)
+- [Global restrictions for IP addresses](authc-advanced-options)
+- [Authentication cache settings](authc-advanced-options)
 
 
 

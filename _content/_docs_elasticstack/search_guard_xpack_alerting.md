@@ -20,7 +20,7 @@ Search Guard provides [**free Alerting for Elasticsearch**](elasticsearch-alerti
 
 Search Guard is compatible with the X-Pack Alerting component. 
 
-This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](../_docs_kibana/kibana_installation.md) plugin.
+This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](kibana-plugin-installation) plugin.
 
 ## Elasticsearch: Enable Alerting
 

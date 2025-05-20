@@ -28,7 +28,7 @@ The old environment variable substitution mechanism using the syntaxes `${env...
 
 ##### Related:
 
-* [Documentation](../_docs_configuration_changes/configuration_environment_variables.md)
+* [Documentation](configuration-password-handling)
 * [Merge Request: Infrastructure for storing configuration secrets](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/99)
 * [Merge Request: Extended SecretsService into a more general ConfigVarService](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/140)
 
@@ -67,9 +67,9 @@ In most cases, the conversion from `sg_config.yml` to the new config files can b
 
 ##### Related:
 
-* [Documentation: sgctl migrate-config](sg53_migration_quick.md)
-* [Documentation: Authentication configuration](../_docs_auth_auth/auth_auth_configuration.yml)
-* [Documentation: Authentication configuration for Kibana](../_docs_kibana/kibana_authentication.yml)
+* [Documentation: sgctl migrate-config](sg-classic-config-migration-quick)
+* [Documentation: Authentication configuration](authentication-authorization-configuration)
+* [Documentation: Authentication configuration for Kibana](kibana-authentication-types)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -86,7 +86,7 @@ When using `sg_authc.yml`, you have access to a completely new LDAP authenticati
 
 ##### Related:
 
-* [Documentation: LDAP](../_docs_auth_auth/auth_auth_ldap.md)
+* [Documentation: LDAP](active-directory-ldap)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -99,7 +99,7 @@ Keys can be obtained from certificates, from JWKS, or dynamically from OIDC conf
 
 ##### Related:
 
-* [Documentation: JWT](../_docs_auth_auth/auth_auth_jwt.md)
+* [Documentation: JWT](json-web-tokens)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -111,8 +111,8 @@ The IPs of trusted origins can be now configured in `sg_authc.yml` in the proper
 
 ##### Related:
 
-* [Documentation: Proxy authentication](../_docs_auth_auth/auth_auth_proxy.md)
-* [Documentation: Client certificate authentication](../_docs_auth_auth/auth_auth_clientcert.md)
+* [Documentation: Proxy authentication](proxy-authentication)
+* [Documentation: Client certificate authentication](client-certificate-auth)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 ### HTTP authentication challenges
@@ -130,7 +130,7 @@ The Search Guard authentication components now support a debug mode. If you are 
 
 ##### Related:
 
-* [Documentation: Debugging the authc configuration](../_docs_auth_auth/auth_auth_rest_config.md#debugging-the-authc-configuration)
+* [Documentation: Debugging the authc configuration](authentication-authorization-configuration#mapping-user-information)
 
 
 ### Metrics
@@ -161,7 +161,7 @@ You can retrieve metrics for the user cache using `sgctl component-state`.
 
 ##### Related:
 
-* [Documentation: User cache settings](../_docs_auth_auth/auth_auth_rest_advanced_options.md#user-cache-settings)
+* [Documentation: User cache settings](authc-advanced-options#user-cache-settings)
 * [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
 
 
@@ -192,8 +192,8 @@ See the documentation for details on the functionality.
 
 ##### Related:
 
-* [Documentation: Migrating the configuration](sg53_migration_quick.md)
-* [Documentation: Kibana authentication](../_docs_kibana/kibana_authentication_types.md)
+* [Documentation: Migrating the configuration](sg-classic-config-migration-quick)
+* [Documentation: Kibana authentication](kibana-authentication-types)
 * [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/71)
 * [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/742)
 
@@ -209,7 +209,7 @@ See the documentation for details.
 
 ##### Related:
 
-* [Documentation: Kerberos authentication for Kibana](../_docs_kibana/kibana_authentication_kerberos.md)
+* [Documentation: Kerberos authentication for Kibana](kibana-authentication-kerberos)
 * [Merge Request: Let Kerberos authenticated request also start a session](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/781)
 * [Merge Request: New API for creating sessions working on normal authenticated requests ](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/196)
 * [Merge Request: Kerberos authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/184)
@@ -244,12 +244,12 @@ See the documentation links below for the behavior in the different modes.
 If you choose to disable `ignore_unauthorized`, you might need further action in order to make queries with wildcards (like `/_search/_all`) to work. This is necessary because legacy Search Guard
 versions created the `searchguard` index, which is non-hidden and thus also matched by wildcards. If you disable `ignore_unauthorized` and still have the `searchguard` index, any wildcard query matching the `searchguard` index will fail with a 403 Forbidden error, because normal users are not allowed to access the `searchguard` index, and - as `ignore_unauthorized`  is disabled - it is no longer ignored.
 
-We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achieve this. See the [documentation](../docs_configuration_changes/configuration_advanced.md#index-name-migration) for more information on how to achieve this.
+We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achieve this. 
 
 ##### Related:
 
-* [Documentation: Runtime index privilege evaluation](../docs_roles_permissions/runtime_privilege_evaluation.md)
-* [Documentation: Index name migration](../docs_configuration_changes/configuration_advanced.md#index-name-migration)
+* [Documentation: Runtime index privilege evaluation](authorization-runtime-index-privilege-evaluation)
+* [Documentation: Index name migration](sgctl)
 * [Merge Request: New approach at privilege evaluation for indices with focus on DNFOF mode.](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/146)
 * [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
 * [Merge Request: Added more action eligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220)
@@ -359,9 +359,9 @@ Search Guard FLX comes with a revised implementation for DLS/FLS and field anony
 
 ##### Related:
 
-* [Documentation: DLS](../_docs_dls_fls/dlsfls_dls.md)
-* [Documentation: FLS](../_docs_dls_fls/dlsfls_fls.md)
-* [Documentation: Field anonymization](../_docs_dls_fls/dlsfls_field_anonymization.md)
+* [Documentation: DLS](document-level-security)
+* [Documentation: FLS](field-level-security)
+* [Documentation: Field anonymization](field-anonymization)
 * [Merge Request: New DLS/FLS implementation](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/223)
 
 

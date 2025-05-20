@@ -23,7 +23,7 @@ PUT /_signals/watch/{tenant}/{watch_id}
 
 Stores or updates a watch identified by the `{watch_id}` path parameter. By default, the watch will be active and scheduled for execution.
 
-**Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch. See also the chapter on the [security execution context](security_execution_context.md).
+**Important** When a watch is created or updated, a snapshot of the privileges of the user performing the operation will be stored with the watch. When the stored watch is executed, it will have exactly these privileges. If a user modifies a watch created by another user, the user must ensure that they still have enough privileges to allow successful execution of the watch. See also the chapter on the [security execution context](elasticsearch-alerting-security-security-context).
 
 ## Path Parameters
 
@@ -65,7 +65,7 @@ The watch was not encoded as JSON document. Watches need to be sent using the me
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/put` for the currently selected tenant.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ALL
 * SGS\_SIGNALS\_WATCH\_MANAGE

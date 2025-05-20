@@ -12,7 +12,7 @@ Copyright 2020 floragunn GmbH
 
 **Release Date: 30.04.2019**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## Changes 
 
@@ -44,12 +44,12 @@ With Search Guard 7 we introduce a new configuration format to fix a few longsta
 
 The new format is documented here:
 
-* [Search Guard Configuration](../_docs_auth_auth/auth_auth_configuration.md)
-* [Internal users](../_docs_roles_permissions/configuration_internalusers.md)
-* [Roles Mapping](../_docs_roles_permissions/configuration_roles_mapping.md)
-* [Action Groups](../_docs_roles_permissions/configuration_action_groups.md)
-* [Search Guard Roles](../_docs_roles_permissions/configuration_roles_permissions.md)
-* [Kibana Tenants](../_docs_kibana/kibana_multitenancy.md)
+* [Search Guard Configuration](authentication-authorization-configuration)
+* [Internal users](internal-users-database)
+* [Roles Mapping](mapping-users-roles)
+* [Action Groups](action-groups)
+* [Search Guard Roles](action-groups)
+* [Kibana Tenants](kibana-multi-tenancy)
 
 Notable changes and improvements at a glance:
 
@@ -58,7 +58,7 @@ Notable changes and improvements at a glance:
 * Structure and wording is now more precise, aligned and extensible
 * Additional config file for tenants (`sg_tenants.yml`)
 
-If you do a migration from Elasticsearch/Search Guard 6.x please refer to the [upgrade instructions](../_docs_installation/installation_upgrading_6_7.md) to learn how to migrate the configuration to it's new format.
+If you do a migration from Elasticsearch/Search Guard 6.x please refer to the [upgrade instructions](sg-upgrade-6-7) to learn how to migrate the configuration to it's new format.
 
 If you are using the REST API, you will likely need to change the payload processing of your calls slightly.
 
@@ -68,7 +68,7 @@ For the final release we will also provide a standalone tool to migrate the conf
 
 Search Guard 6 and before the configuration syntax check were lenient. This can easily lead to misconfiguration. With Search Guard 7 there is now a strict config syntax validation which rejects invalid syntax as well as configuration parameters which do not exist. The REST API and sgadmin will automatically apply these checks. 
 
-But in case you are upgrading from 6.x you have to do this one time manually. Please refer to the [upgrade instructions](../_docs_installation/installation_upgrading_6_7.md) in this case. If you miss this step your cluster can become uninitialized which will result in a downtime.
+But in case you are upgrading from 6.x you have to do this one time manually. Please refer to the [upgrade instructions](sg-upgrade-6-7) in this case. If you miss this step your cluster can become uninitialized which will result in a downtime.
 
 ### BREAKING: Default changed for snapshot/restore handling
 
@@ -88,23 +88,23 @@ The default changed from `xff.enabled: true` to `xff.enabled: false` (in sg_conf
 Search Guard 7 ships with built-in roles and actiongroups. Those are static and unchangeable and will be maintained from release to release by us.
 We strongly recommend to use them where ever possible and prefer them over your own roles and actiongroups. Albeit recommended their usage is not mandatory.
 
-* [Built-in Roles](../_docs_roles_permissions/configuration_roles_permissions.md#built-in-roles)
-* [Built-in Action Groups](../_docs_roles_permissions/configuration_action_groups.md#built-in-action-groups)
+* [Built-in Roles](roles-permissions#built-in-roles)
+* [Built-in Action Groups](action-groups#built-in-action-groups)
 
 All built-in resource are uppercase and start with `SGS_`.
 
 ### New feature: Tenant endpoint for REST management API
 
 For the new tenant file there is now also a corresponding tenant REST API endpoint `/_searchguard/api/tenants/`.
-Please refer to the [documentation](../_docs_rest_api/restapi_api_tenants.md) for any details.
+Please refer to the [documentation](rest-api-tenants) for any details.
 
 ### New feature: New options for sgadmin to support migration and backups
 
 sgadmin now has this additional command line options:
 
-* `-migrate <folder>` to automatically migrate configuration to the new format when upgrading from 6.x to 7.x., see [here for more details](../_docs_installation/installation_upgrading_6_7.md)
-* `-vc <version>` to validate the configuration, see [here for more details](../_docs_configuration_changes/configuration_sgadmin.md)
-* `-backup <folder>` to backup the configuration, see [here for more details](../_docs_configuration_changes/configuration_sgadmin.md)
+* `-migrate <folder>` to automatically migrate configuration to the new format when upgrading from 6.x to 7.x., see [here for more details](sg-upgrade-6-7)
+* `-vc <version>` to validate the configuration
+* `-backup <folder>` to backup the configuration
 
 ### Known Issues
 There is a known issue in this release with regards to Kibana Multi-Tenancy when upgrading from Elasticsearch 6. After upgrading the cluster the first attempt to start Kibana 7 may fail with an "index template missing exception" error message. In this case, the workaround is to stop Kibana and start it again. The second attempt to start Kibana 7 will then be successful.

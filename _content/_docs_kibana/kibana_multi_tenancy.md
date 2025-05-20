@@ -11,7 +11,7 @@ resources:
   with Search Guard (blog post)
 - https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch
   and Kibana with Search Guard for free (blog post, external)
-- troubleshooting-Multi-Tenancy|Multitenancy Troubleshooting (documentation)
+- troubleshooting-multi-tenancy|Multitenancy Troubleshooting (documentation)
 ---
 # Kibana Multi-Tenancy
 {: .no_toc}
@@ -23,7 +23,7 @@ resources:
 > Any data created before implementing the
 > `multi-tenancy` module may be lost, necessitating a secure backup.
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
@@ -168,7 +168,7 @@ sg_own_index:
 ### User attributes in tenant patterns
 {: #user-attributes }
 
-You can use [user attributes](../_docs_roles_permissions/configuration_roles_permissions.md#user-attributes) when defining tenant patterns to make them more dynamic.
+You can use user attributes when defining tenant patterns to make them more dynamic.
 
 For example, if the user has an attribute `department`, you can define a tenant pattern like:
 
@@ -362,7 +362,7 @@ The structure of the index name for the Global tenants is:
 <kibana index name>
 ```
 
-Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](../_docs_kibana/kibana_installation.md) for further information.
+Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana-plugin-installation) for further information.
 
 **If you use snapshot / restore, you need to include all tenant indices, otherwise you will loose data!**
 
@@ -433,4 +433,4 @@ The system administration before usage multi-tenancy implementation provided wit
 
 ## Fixing curl issues
 
-If you experience problems with curl commands see [Fixing curl](../_troubleshooting/tls_troubleshooting.md#fixing-curl) first before reporting any issues.
+If you experience problems with curl commands see [Fixing curl](troubleshooting-tls#fixing-curl) first before reporting any issues.

@@ -16,7 +16,7 @@ description: Changelog for Search Guard FLX 3.0.0
 
 You can now use data steams and aliases instead of directly specifying indices. 
 
-* [Documentation](../_docs_roles_permissions/configuration_roles_permissions.md#alias-and-data-stream-level-permissions)
+* [Documentation](action-groups)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/879)
 * [Issue: First class support for privileges on aliases and data streams](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/273)
 
@@ -64,7 +64,7 @@ The maximum default signals threads per tenant is now `5`. This can be configure
 
 ### BREAKING: exclude_index_permission removed
 
-`exclude_index_permission` has been removed. Further details can be found at [support removed for exclude_index_permissions](../_docs_roles_permissions/configuration_roles_permissions.md#support-removed-for-exclude_index_permissions)
+`exclude_index_permission` has been removed. 
 
 * [Issue: Remove exclude_index_permissions](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/359)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/928)

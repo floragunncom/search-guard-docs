@@ -51,7 +51,7 @@ curl \
 
 ## Multi-Tenancy: Setting the tenant
 
-If you are using [Search Guard Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md), you can also specify the tenant by adding the `sgtenant` HTTP header:
+If you are using [Search Guard Multi-Tenancy](kibana-multi-tenancy), you can also specify the tenant by adding the `sgtenant` HTTP header:
 
 <div class="code-highlight " data-label="">
 <span class="js-copy-to-clipboard copy-code">copy</span> 

@@ -16,7 +16,7 @@ description: Configure how often an Alerting watch is executed that scans data i
 
 A schedule trigger defines when a watch is executed based on date and time. 
 
-Triggers support different [time zones](triggers_timezones.md). If no time zone is specified, the default JVM time zone is used, which is based on the system clock. Thus,  the time on all nodes should be synchronized via NTP.
+Triggers support different [time zones](elasticsearch-alerting-triggers-timezones). If no time zone is specified, the default JVM time zone is used, which is based on the system clock. Thus,  the time on all nodes should be synchronized via NTP.
 
 At the moment, the following schedule types are supported:
 

@@ -26,13 +26,13 @@ Search Guard supports variable substitution for all configuration files. The sub
 
 **Note:** Search Guard supports encryption of configuration variables. Naturally, Search Guard also needs to be able to access the decrypted values. This requires the encryption key to be available on each node of the cluster. Thus, this encryption should be considered as a basic protection against accidental exposure. However, users with administration access to a cluster node will be always able to access decrypted values if they really want to.
 
-You can define configuration variables using the `sgctl` tool. After [having established a connection profile with your cluster](configuration_sgctl_basics.md), you can do the following:
+You can define configuration variables using the `sgctl` tool. After [having established a connection profile with your cluster](sgctl), you can do the following:
 
 ```
 $ ./sgctl.sh add-var ldap_password secret123 --encrypt 
 ```
 
-This will store the value under the key `ldap_password` in encrypted form in a protected index, that cannot be accessed by normal users. By default, the encryption key is the hard-coded value `v9hGHVFiTgj+eAhjJrDgAEy5GUoTBUwXkAKEpfCL6dQ`. Thus, you should consider rather as obfuscation than an encryption. However, if you want, you can also [configure your own encryption key](TODO). TODO
+This will store the value under the key `ldap_password` in encrypted form in a protected index, that cannot be accessed by normal users. By default, the encryption key is the hard-coded value `v9hGHVFiTgj+eAhjJrDgAEy5GUoTBUwXkAKEpfCL6dQ`. Thus, you should consider rather as obfuscation than an encryption. However, if you want, you can also configure your own encryption key. TODO
 
 You can also use configuration variables to store non-sensitive information. Just omit the `--encrypt` switch and the data won't be stored in encrypted form.
 

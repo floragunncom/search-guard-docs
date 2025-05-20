@@ -19,7 +19,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard can monitor write access to sensitive data in Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](auditlogging_storage.md) engine to ship the emitted audit events to one or more storage endpoints.
+Search Guard can monitor write access to sensitive data in Elasticsearch, and produce an audit trail of all write activity. It uses the [Audit Logging storage](audit-logging-storage) engine to ship the emitted audit events to one or more storage endpoints.
 
 Search Guard tracks
 

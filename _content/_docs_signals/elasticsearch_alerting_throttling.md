@@ -50,7 +50,7 @@ On other words, if you define a throttle period, the action will not fire if the
 
 ## Acknowledgement
 
-Acknowledging a watch that currently fires will prevent any action from being executed again. If a watch is [acknowledged via the REST API](rest_api_watch_acknowledge.md), it will move into the `acknowledged` state. As long as a watch is in `acknowledged` state, no actions will be executed.
+Acknowledging a watch that currently fires will prevent any action from being executed again. If a watch is [acknowledged via the REST API](elasticsearch-alerting-rest-api-watch-acknowledge), it will move into the `acknowledged` state. As long as a watch is in `acknowledged` state, no actions will be executed.
 
 This is useful in a situation where a watch condition is met, and you want to acknowledge that someone has noticed it and is working on solving the issue. 
 

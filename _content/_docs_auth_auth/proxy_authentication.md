@@ -23,7 +23,7 @@ Most of these solutions work as a proxy in front of Elasticsearch. Usually the r
 Several components of the Search Guard REST authentication feature can be composed to integrate with such a solution:
 
 - The `trusted_origin` authentication frontend together with the `network.trusted_proxies` configuration makes sure that the requests come from the SSO proxy.
-- Alternatively, if the proxy is capable of client certificate authentication, you can also use the `clientcert` authentication frontend. See [Client certificate authentication](./auth_auth_clientcert.md) for more on this.
+- Alternatively, if the proxy is capable of client certificate authentication, you can also use the `clientcert` authentication frontend. See [Client certificate authentication](client-certificate-auth) for more on this.
 - The user information, i.e., user name, roles and attributes, can be extracted using the standard `user_mapping` functionality of Search Guard. By default, Search Guard makes the headers of the source request available to `user_mapping` below the attribute `request.headers`. 
 
 ## Prerequisites
@@ -56,4 +56,4 @@ Finally, the `user_mapping` configuration reads user name and roles from the con
 
 ## Where to go next
 
-* Check the  [advanced configuration options for proxy authentication](../_docs_auth_auth/auth_auth_proxy_advanced.md)
+* Check the  [advanced configuration options for proxy authentication](proxy-authentication-advanced)

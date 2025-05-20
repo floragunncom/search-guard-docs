@@ -24,7 +24,7 @@ Copyright 2022 floragunn GmbH
 
 Search Guard supports variables in the DLS query. With this feature, you can write dynamic queries based on the current users's attributes. This allows you to construct a permission scheme that is more flexible than bare role-based authorization.
 
-In addition to the simple user name and the roles of a user, Search Guard allows you to use arbitrary user attributes, which are defined inside your `sg_authc` configuration with the `user_mapping.attributes` [settings](../_docs_auth_auth/auth_auth_rest_config.md#mapping-user-information). These attributes can be extracted from all information that is available during authentication, such as claims from JWT tokes, LDAP roles, request headers, etc.
+In addition to the simple user name and the roles of a user, Search Guard allows you to use arbitrary user attributes, which are defined inside your `sg_authc` configuration with the `user_mapping.attributes` [settings](authentication-authorization-configuration#mapping-user-information). These attributes can be extracted from all information that is available during authentication, such as claims from JWT tokes, LDAP roles, request headers, etc.
 
 Search Guard provides a number of functions which can be used to construct complex queries from user attributes.
 
@@ -87,12 +87,12 @@ Any authentication and authorization domain can provide additional user attribut
 
 For this, the auth domains need to configure a mapping from attributes specific to the particular domain to Search Guard user attributes. See the documentation of the respective auth method for details and examples:
 
-- [Internal User Database](../_docs_auth_auth/internalusers.md)
-- [JWT](../_docs_auth_auth/auth_auth_jwt.md#using-further-attributes-from-the-jwt-claims)
-- [LDAP](../_docs_auth_auth/auth_auth_ldap_authentication.md#using-further-active-directory-attributes)
-- [Trusted Origin](../_docs_auth_auth/auth_auth_proxy.md#using-further-headers-as-search-guard-user-attributes)
-- [OIDC](../_docs_kibana/kibana_authentication_openid.md)
-- [SAML](../_docs_kibana/kibana_authentication_saml.md)
+- [Internal User Database](internal-users-database)
+- [JWT](json-web-tokens)
+- [LDAP](active-directory-ldap#user-entry-attributes)
+- [Trusted Origin](proxy-authentication)
+- [OIDC](kibana-authentication-openid)
+- [SAML](kibana-authentication-saml)
 
 If you're unsure what attributes are available, you can always access the `/_searchguard/authinfo` REST endpoint to check. The endpoint will list all attribute names for the currently logged in user.
 

@@ -124,7 +124,7 @@ The watch was not encoded as JSON document. Watches need to be sent using the me
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/execute` for the currently selected tenant.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_WATCH\_EXECUTE
 

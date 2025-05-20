@@ -168,4 +168,4 @@ A TLS configuration might look like this:
 
 ## Security Considerations
 
-Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](administration.md) for details.
+Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](elasticsearch-alerting-administration) for details.

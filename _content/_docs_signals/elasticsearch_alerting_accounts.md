@@ -111,9 +111,9 @@ The attribute `url` references the base URL of your Jira instance. The attribute
 
 Accounts may be managed using these REST API endpoints:
 
-* [Get Account](rest_api_account_get.md)
-* [Put Account](rest_api_account_put.md)
-* [Delete Account](rest_api_account_delete.md)
-* [Search Account](rest_api_account_search.md)
+* [Get Account](elasticsearch-alerting-rest-api-account-get)
+* [Put Account](elasticsearch-alerting-rest-api-account-put)
+* [Delete Account](elasticsearch-alerting-rest-api-account-delete)
+* [Search Account](elasticsearch-alerting-rest-api-account-search)
 
 

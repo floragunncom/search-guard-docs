@@ -24,14 +24,14 @@ The Search Guard Kibana plugin provides you the possibility to authenticate requ
 
 This is intended for embedding read-only Kibana instances using IFrames in dashboards or similar applications.
 
-If in your setup, the JWT gets transmitted via an HTTP header, check out the [Kibana proxy authentication](kibana_authentication_proxy.md).
+If in your setup, the JWT gets transmitted via an HTTP header, check out the [Kibana proxy authentication](kibana-authentication-anonymous).
 {: .note .js-note .note-warning}
 
 ## Search Guard Backend Setup
 
 In order to use proxy authentication with Kibana, you have to also set up an JWT authenticator in the Search Guard backend configuration `sg_authc.yml`.
 
-See the [JWT authenticator documentation](../_docs_auth_auth/auth_auth_jwt.md) for details.
+See the [JWT authenticator documentation](json-web-tokens) for details.
 
 ## Kibana Setup
 

@@ -8,7 +8,7 @@ description: Changelog for Search Guard 7.x-46.0.0
 
 **Release Date: 06.10.2020**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## New Features
 
@@ -46,7 +46,7 @@ A user with this role gets granted all cluster permission except permissions for
 
 See here for details:
 
-- [Defining Search Guard Roles](../_docs_roles_permissions/configuration_roles_permissions.md)
+- [Defining Search Guard Roles](action-groups)
 
 ### Using Regular Expressions for Supporting Multi-Valued Attributes in Index Patterns
 

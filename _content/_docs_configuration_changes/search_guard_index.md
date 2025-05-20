@@ -22,25 +22,25 @@ You can load and change the settings from any machine which has access to your E
 
 The core configuration consists of the following files:
 
-* `sg_authc.yml`: [authentication](../_docs_auth_auth/auth_auth_configuration.md)
-* `sg_roles.yml`: [roles and the associated permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
-* `sg_roles_mapping.yml`: [mapping users to roles](../_docs_roles_permissions/configuration_roles_mapping.md)
-* `sg_internal_users.yml`: [locally defined users, roles and attributes](../_docs_roles_permissions/configuration_internalusers.md)
-* `sg_action_groups.yml`: [named permission groups](../_docs_roles_permissions/configuration_action_groups.md)
+* `sg_authc.yml`: [authentication](authentication-authorization-configuration)
+* `sg_roles.yml`: [roles and the associated permissions](action-groups)
+* `sg_roles_mapping.yml`: [mapping users to roles](mapping-users-roles)
+* `sg_internal_users.yml`: [locally defined users, roles and attributes](internal-users-database)
+* `sg_action_groups.yml`: [named permission groups](action-groups)
 
 If you are running Kibana you might also need the following configuration:
 
-* `sg_frontend_authc.yml`: [authentication for Kibana](../_docs_kibana/kibana_authentication.md)
-* `sg_frontend_multi_tenancy.yml`: [basic multi-tenancy settings for Kibana](../_docs_kibana/kibana_multitenancy.md)
-* `sg_tenants.yml`: [tenants for multi-tenancy](../_docs_kibana/kibana_multitenancy.md)
+* `sg_frontend_authc.yml`: [authentication for Kibana](kibana-authentication-types)
+* `sg_frontend_multi_tenancy.yml`: [basic multi-tenancy settings for Kibana](kibana-multi-tenancy)
+* `sg_tenants.yml`: [tenants for multi-tenancy](kibana-multi-tenancy)
 * `sg_license_key.yml`: [enterprise license key](changelog-searchguard-flx-1_0_0#sg_license_key)
 
 For special features or configuration, you have also the following files:
 
 * `sg_authz.yml`: authorization-specific settings
-* `sg_auth_token_service.yml`: [API auth token service](../_docs_auth_auth/auth_auth_configuration.md)
+* `sg_auth_token_service.yml`: [API auth token service](authentication-authorization-configuration)
 * `sg_blocks.yml`: defines blocked users and IP addresses
 
 
-Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the [sgctl docs](configuration_sgctl_basics.md).
+Configuration settings are applied by pushing the content of one or more configuration files to the Search Guard secured cluster by using the `sgctl` tool. For details, refer to the [sgctl docs](sgctl).
 

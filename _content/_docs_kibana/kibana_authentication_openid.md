@@ -21,7 +21,7 @@ Copyright 2022 floragunn GmbH
 
 You can use the OpenID Connect (OIDC) protocol to authenticate users in Kibana using external Identity Providers (IdP).
 
-This chapter describes the basic setup of OIDC with Search Guard. This will work in most cases. However, some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana_authentication_openid_advanced_config.md) for this.
+This chapter describes the basic setup of OIDC with Search Guard. This will work in most cases. However, some setups require special configurations for TLS, proxies, or similar things. Please refer to the section [Advanced Configuration](kibana-authentication-openid-advanced-config) for this.
 
 ## Prerequisites
 

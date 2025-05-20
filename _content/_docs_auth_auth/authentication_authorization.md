@@ -21,11 +21,10 @@ The basic configuration is often very simple; still, Search Guard offers powerfu
 You can choose now:
 
 - Do you want to jump directly to one of the "Quick Start" docs for a particular authentication mode?
-  - [Password-based authentication](./auth_auth_httpbasic.md)
-  - [LDAP and Active Directory](../_docs_auth_auth/auth_auth_ldap.md)
-  - [JWT](../_docs_auth_auth/auth_auth_jwt.md)
-- Or do you want to learn more about the [general configuration approach](../_docs_auth_auth/auth_auth_rest_config.md)?
+  - [Password-based authentication](http-basic-authorization)
+  - [LDAP and Active Directory](active-directory-ldap)
+  - [JWT](json-web-tokens)
 
-**Note:** OIDC and SAML based authentication is only available for Kibana. See the documentation on [Kibana authentication](../docs_kibana/kibana_authentication.md) for details.
+**Note:** OIDC and SAML based authentication is only available for Kibana. See the documentation on [Kibana authentication](kibana-authentication) for details.
 
 

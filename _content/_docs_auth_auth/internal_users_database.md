@@ -18,9 +18,9 @@ Copyright 2022 floragunn GmbH
 
 Search Guard ships with an internal user database. You can use this user database if you do not have any external authentication system like LDAP or Active Directory in place. Users, their hashed passwords and roles are stored in the internal Search Guard configuration index on your cluster.
 
-You can use `sgctl` or the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md) for adding users to the internal users database. You can also directly edit the file `sg_internal_users.yml` and upload it as a whole with `sgctl`. 
+You can use `sgctl` or the [Search Guard configuration GUI](configuration-gui) for adding users to the internal users database. You can also directly edit the file `sg_internal_users.yml` and upload it as a whole with `sgctl`. 
 
-**Note:** You should prefer to use `sgctl` or the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md). If you choose to directly edit `sg_internal_users.yml`, keep in mind that you might overwrite changes if you work on an old copy. Thus, before modifying `sg_internal_users.yml`, be sure to get an up-to-date version of the file from the cluster. 
+**Note:** You should prefer to use `sgctl` or the [Search Guard configuration GUI](configuration-gui). If you choose to directly edit `sg_internal_users.yml`, keep in mind that you might overwrite changes if you work on an old copy. Thus, before modifying `sg_internal_users.yml`, be sure to get an up-to-date version of the file from the cluster. 
 
 ## Initial `sg_authc.yml` configuration 
 
@@ -37,7 +37,7 @@ For basic use, no further configuration is necessary. Users authenticated via th
 
 ### Attribute mapping
 
-If you want to use [user-attribute-based authorization](../docs_roles_permissions/configuration_roles_permissions.md), you have to define an attribute mapping. This mapping maps the attributes stored in the internal user database to the attributes the logged-in user will have.  Suppose users in the internal user database are defined like this:
+If you want to use user-attribute-based authorization, you have to define an attribute mapping. This mapping maps the attributes stored in the internal user database to the attributes the logged-in user will have.  Suppose users in the internal user database are defined like this:
 
 ```yaml
 hr_employee:
@@ -84,11 +84,11 @@ Syntax:
 
 | Name | Description |
 |---|---|
-| username | The name of the user. Can be used to [map the user to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md).|
+| username | The name of the user. Can be used to [map the user to Search Guard roles](mapping-users-roles).|
 | password | The BCrypt hash of the user's password.|
-| search\_guard\_roles | The [Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md). this user is assigned to.|
-| backend_roles | The backend roles of the user. Backend roles can be used to group users and them [map the groups to Search Guard roles](../_docs_roles_permissions/configuration_roles_permissions.md). This provides more flexibility than using Search Guard roles directly, but introduces a level on indirection.|
-| attributes | Any additional attributes of the user. Can be used for [variable substitution in index names](../_docs_roles_permissions/configuration_roles_permissions.md#dynamic-index-names-user-attributes) and DLS queries. You can also use arrays and nested objects here.|
+| search\_guard\_roles | The [Search Guard roles](mapping-users-roles). this user is assigned to.|
+| backend_roles | The backend roles of the user. Backend roles can be used to group users and them [map the groups to Search Guard roles](action-groups). This provides more flexibility than using Search Guard roles directly, but introduces a level on indirection.|
+| attributes | Any additional attributes of the user. Can be used for variable substitution in index names and DLS queries. You can also use arrays and nested objects here.|
 | description | A description of the user. Optional.|
 {: .config-table}
 
@@ -115,7 +115,7 @@ finance_employee:
 
 ## Using `sgctl` to directly add new users
 
-You can use `sgctl` to modify the internal users database if your cluster is already running and you have connected `sgctl` to the cluster. See the [general `sgctl` docs](../_docs_configuration_changes/configuration_sgctl.md) for more on this.
+You can use `sgctl` to modify the internal users database if your cluster is already running and you have connected `sgctl` to the cluster. See the [general `sgctl` docs](sgctl) for more on this.
 
 ### Adding users
 

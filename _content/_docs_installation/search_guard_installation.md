@@ -17,17 +17,17 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
-This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](../_docs_quickstart/demo_installer.md)**. 
+This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](demo-installer)**. 
 
 ## Community, Enterprise and Compliance Edition
 
-Search Guard ships with all Enterprise and Compliance features already installed and enabled by default. Just install the [Enterprise Edition matching the version of your Elasticsearch installation](../_docs_versions/versions_versionmatrix.md) and you are good to go.
+Search Guard ships with all Enterprise and Compliance features already installed and enabled by default. Just install the [Enterprise Edition matching the version of your Elasticsearch installation](search-guard-versions) and you are good to go.
 
-If you just want to use the free Community Edition, install Search Guard Enterprise and then [disable all commercial features](../_docs_versions/versions_community.md). 
+If you just want to use the free Community Edition, install Search Guard Enterprise and then [disable all commercial features](search-guard-community-edition). 
 
 ## Prerequisites
 
@@ -42,9 +42,8 @@ Make sure you have TLS certificates for all nodes and at least one admin certifi
 
 If this is not the case, you have the following options to generate certificates:
 
-* Use the [Search Guard demo installation script](../_docs_tls/tls_generate_installation_script.md)  (not safe for production)
-* Use the [Offline TLS Tool](../_docs_tls/tls_generate_tlstool.md) (safe for production)
-* Use and customize the [example PKI scripts](../_docs_tls/tls_generate_example_scripts.md) (safe for production)
+* Use the [Search Guard demo installation script](demo-installer)  (not safe for production)
+* Use the [Offline TLS Tool](offline-tls-tool) (safe for production)
 * Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
 * Using tools like OpenSSL and/or keytool (safe for production)
 
@@ -57,7 +56,7 @@ It's possible to use the same certificate on each node, however this is less sec
 
 ## First time installation: Full cluster restart
 
-A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our [upgrade instructions](../_docs_installation/installation_upgrading.md).
+A first time installation of Search Guard on a cluster always requires a full cluster restart. TLS encryption is mandatory on the transport layer of Elasticsearch, and thus all nodes must have Search Guard installed in order to be able to talk to each other. If you already have Search Guard installed and want to upgrade, follow our [upgrade instructions](upgrading).
 
 ## General
 
@@ -66,7 +65,7 @@ The first time installation procedure on a production cluster is to:
 1. Disable shard allocation
 2. Stop all nodes
 3. Install the Search Guard plugin on all nodes
-4. Add at least the [TLS configuration](../_docs_tls/tls_configuration.md) to `elasticsearch.yml`
+4. Add at least the [TLS configuration](configuring-tls) to `elasticsearch.yml`
 5. Restart Elasticsearch and check that the nodes come up
 6. Re-enable shard allocation
 7. Configure authentication/authorization, users, roles and permissions by uploading the Search Guard configuration with [sgctl](sgctl-configuration-changes)
@@ -100,7 +99,7 @@ curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
 
 Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
 
-* Download the [Search Guard version](../_docs_versions/versions_versionmatrix.md) matching your Elasticsearch version
+* Download the [Search Guard version](search-guard-versions) matching your Elasticsearch version
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
@@ -165,7 +164,7 @@ In order to use the REST management API, configure the Search Guard roles that s
 searchguard.restapi.roles_enabled: ["SGS_ALL_ACCESS"]
 ```
 
-If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](../_docs_rest_api/restapi_api_access.md).
+If you want to further restrict access to certain API endpoints, please refer to the [REST management API documentation chapter](rest-api-access-control).
 
 The REST management API is an Enterprise feature.
 
@@ -181,7 +180,7 @@ After the cluster is up again, re-enable shard allocation so that the Search Gua
 
 All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reasons. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
 
-You initialize Search Guard by using the [sgctl command line tool](../_docs_configuration_changes/configuration_sgctl.md) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication modules](../_docs_auth_auth/auth_auth_configuration.md) to use.
+You initialize Search Guard by using the [sgctl command line tool](sgctl) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication modules](authentication-authorization-configuration) to use.
 
 Once initialized, you can also use the Search Guard configuration GUI to edit roles and permissions.
 
@@ -205,4 +204,4 @@ It returns a JSON snippet like:
 
 ## Fixing curl issues
 
-If you experience problems with curl commands see [Fixing curl](../_troubleshooting/tls_troubleshooting.md#fixing-curl) first before reporting any issues.
+If you experience problems with curl commands see [Fixing curl](troubleshooting-tls#fixing-curl) first before reporting any issues.

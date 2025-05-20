@@ -18,7 +18,7 @@ Use e-mail actions to send e-mail notifications from watches. You can use Mustac
 
 ## Prerequisites
 
-In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](accounts.md) of Signals.
+In order to use e-mail actions, you need to configure an SMTP server using the [accounts registry](elasticsearch-alerting-accounts) of Signals.
 
 ## Basic Functionality
 
@@ -60,7 +60,7 @@ The basic configuration attributes are:
 
 **throttle_period:** The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour.
 
-**account:** Identifies the SMTP server and account which shall be used for sending the email. See the [accounts registry documentation](accounts.md).
+**account:** Identifies the SMTP server and account which shall be used for sending the email. See the [accounts registry documentation](elasticsearch-alerting-accounts).
 
 **to:** Specifies the e-mail address and display name of the recipient of the mail. Multiple recipients can be specified by using an array. Optional. Falls backs to defaults set in the account configuration. Starting with Search Guard FLX 1.2, you can include a real name with a [syntax](https://www.rfc-editor.org/rfc/rfc5322#section-3.4) like `Emily Example <emily@example.com>`. 
 
@@ -194,4 +194,4 @@ A TLS configuration might look like this:
 
 ### Security Considerations
 
-Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](administration.md) for details.
+Keep in mind that webhook actions allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](elasticsearch-alerting-administration) for details.

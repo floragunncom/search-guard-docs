@@ -15,7 +15,7 @@ description:
 
 ## Basics
 
-Scripts are used in many parts of Signals. Examples are [conditions](conditions.md), [transformations](transformations.md), [severity mappings](severity.md). These scripts are typically implemented using the Painless language. Mustache templates which are used for generating text content, for example in [e-mail actions](actions_email.md), are technically speaking also scripts and share the same runtime environment.
+Scripts are used in many parts of Signals. Examples are [conditions](elasticsearch-alerting-conditions), [transformations](elasticsearch-alerting-transformations), [severity mappings](elasticsearch-alerting-severity). These scripts are typically implemented using the Painless language. Mustache templates which are used for generating text content, for example in [e-mail actions](elasticsearch-alerting-actions-email), are technically speaking also scripts and share the same runtime environment.
 
 Stored scripts are not supported by Signals because the owner semantics of stored scripts don't integrate well with the owner semantics of Signals watches.
 
@@ -23,13 +23,13 @@ Stored scripts are not supported by Signals because the owner semantics of store
 
 Elasticsearch comes out of the box with support for the scripting languages Painless and Mustache. You can get support for more scripting languages using [Elasticsearch plugins](https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting-engine.html).
 
-In many cases, Signals allows using the `lang` attribute to choose the language to be used. Examples are [conditions](conditions.md) and [transformations](transformations_overview.md). In some cases, however, changing the language is not supported. This includes text templates in actions such as email or slack.
+In many cases, Signals allows using the `lang` attribute to choose the language to be used. Examples are [conditions](elasticsearch-alerting-conditions) and [transformations](elasticsearch-alerting-transformations-calculations-overview). In some cases, however, changing the language is not supported. This includes text templates in actions such as email or slack.
 
 ## Runtime Environment
 
 All scripts share the same runtime environment. However, some attributes in these environments might be only available in certain situations or features.
 
-To have a look at the actual attribute values during the execution of a watch, you can use the [Execute Watch REST API](rest_api_watch_execute.md) with `show_all_runtime_attributes` set to `true`. 
+To have a look at the actual attribute values during the execution of a watch, you can use the [Execute Watch REST API](elasticsearch-alerting-rest-api-watch-execute) with `show_all_runtime_attributes` set to `true`. 
 
 ### `data` 
 

@@ -24,7 +24,7 @@ The Jira action type is an enterprise feature; you need to have an enterprise li
 In order to use Jira actions, you need to obtain an API token from Jira and store it as Jira account in Signals. To get an API token from Jira, click on the user icon in the bottom left of the Jira web application. In the appearing pop-up, choose *Account Settings*; afterwards go to *Security* and *Create and manage API tokens*.
 
 The resulting token needs to be registered together with your Jira login email address in the Signals account registry. 
-See the [accounts registry documentation](accounts.md) for more details.
+See the [accounts registry documentation](elasticsearch-alerting-accounts) for more details.
 
 Note that Jira API tokens are always tied to the user who created the token. Thus, issues created using such a token normally show the owner of the token as *Reporter*.
 

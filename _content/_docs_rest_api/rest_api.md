@@ -24,12 +24,12 @@ The API provides `GET`, `PUT` and `DELETE` handlers for users, roles, roles mapp
 
 The `configuration type` can be one of:
 
-* [internalusers](restapi_api_internalusers.md)
-* [roles](restapi_api_roles.md)
-* [rolesmapping](restapi_api_rolesmapping.md)
-* [actiongroups](restapi_api_actiongroups.md)
-* [tenants](restapi_api_tenants.md)
-* [blocks](restapi_api_blocks.md)
+* [internalusers](rest-api-internalusers)
+* [roles](rest-api-roles)
+* [rolesmapping](rest-api-roles-mapping)
+* [actiongroups](rest-api-actiongroups)
+* [tenants](rest-api-tenants)
+* [blocks](rest-api-blocks)
 
 The resource name specifies the entry in the `configuration type` you want to operate on. In case of the internal user database, it specifies a user. In case of roles, it specifies the role name, and so on.
 

@@ -20,7 +20,7 @@ It brings some new features, some bug fixes and updates a number of dependencies
 
 If you are using more then one auth method for Kibana, you can now mark one of them as the default auth domain using the `auto_select` attribute. Users opening Kibana will be then directed directly to the respective IdP for that auth method. Other auth methods are still available by predefined links.
 
-* [Documentation](../_docs_kibana/kibana_authentication_multi_auth.md)
+* [Documentation](kibana-multiple-authentication-methods)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/428)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/830)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/383)
@@ -42,7 +42,7 @@ example_role:
 
 This allows you to give permissions to a certain set of indices matched by one pattern except for a subset matched by another pattern. The latter pattern is marked by prefixing a `-` to it.
 
-* [Documentation](../_docs_roles_permissions/configuration_roles_permissions.md)
+* [Documentation](action-groups)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/194)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/367)
 
@@ -50,8 +50,8 @@ This allows you to give permissions to a certain set of indices matched by one p
 
 You can now use Mustache templates to provide dynamic values for HTTP request headers which are used by webhook actions and HTTP inputs.
 
-* [Documentation](../docs_signals/actions_webhook.md)
-* [Documentation](../docs_signals/inputs_http.md)
+* [Documentation](elasticsearch-alerting-actions-webhook)
+* [Documentation](elasticsearch-alerting-inputs-http)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/84)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/343)
 
@@ -60,7 +60,7 @@ You can now use Mustache templates to provide dynamic values for HTTP request he
 
 The Signals email action allows you now to use real names in E-Mail addresses by using the syntax `Emily Example <emily@example.com>`. 
 
-* [Documentation](../docs_signals/actions_email.md)
+* [Documentation](elasticsearch-alerting-actions-email)
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/158)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/342)
 

@@ -99,4 +99,4 @@ cat example-pki-scripts/kirk.crt.pem example-pki-scripts/ca/chain-ca.pem > chain
 
 ## Fixing curl issues
 
-If you experience problems with curl commands see [Fixing curl](../_troubleshooting/tls_troubleshooting.md#fixing-curl) first before reporting any issues.
+If you experience problems with curl commands see [Fixing curl](troubleshooting-tls#fixing-curl) first before reporting any issues.

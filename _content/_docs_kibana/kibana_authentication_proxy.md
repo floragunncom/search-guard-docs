@@ -28,8 +28,8 @@ To use proxy authentication with Kibana, you have to also set up a suitable auth
 
 The type of the setup depends on the information provided by the proxy in the HTTP headers:
 
-- If the proxy transmits username and role information as plain headers, go for a [trusted_origin](../_docs_auth_auth/auth_auth_proxy.md) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Kibana, which also acts as a proxy in this case.
-- If the proxy transmits authorization as a JWT in a header, go for a  [JWT](../_docs_auth_auth/auth_auth_jwt.md) authenticator in the backend.
+- If the proxy transmits username and role information as plain headers, go for a [trusted_origin](proxy-authentication) authenticator in the backend. When configuring `network.trusted_proxies` inside `sg_authc.yml`, you need to make sure that you both include the IP of the outer proxy and the IP of Kibana, which also acts as a proxy in this case.
+- If the proxy transmits authorization as a JWT in a header, go for a  [JWT](json-web-tokens) authenticator in the backend.
 
 ## Kibana Setup
 

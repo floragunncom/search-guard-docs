@@ -17,7 +17,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Search Guard is compatible with the free X-Pack monitoring component. This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](../_docs_kibana/kibana_installation.md) plugin.
+Search Guard is compatible with the free X-Pack monitoring component. This documentation assumes that you already installed and configured Kibana and the [Search Guard Kibana](kibana-plugin-installation) plugin.
 
 ## Elasticsearch: Enable Monitoring
 

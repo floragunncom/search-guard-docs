@@ -55,4 +55,4 @@ Each trigger gets registered with the Trigger Execution Engine. The execution en
    
 ## Time zones
 
-Signals supports different [time zones](triggers_timezones.md). If no time zone is specified, the default JVM time zone is used. 
+Signals supports different [time zones](elasticsearch-alerting-triggers-timezones). If no time zone is specified, the default JVM time zone is used. 

@@ -215,7 +215,7 @@ In contrast to normal actions, resolve actions are not executed repeatedly. They
 
 If `resolves_severity` defines several levels, the action is executed each time the severity level drops below one of the configured levels.
 
-For resolve actions, you can use any action type you can also use for normal actions. See [here](actions.md) for an overview over all available action types.
+For resolve actions, you can use any action type you can also use for normal actions. See [here](elasticsearch-alerting-actions-overview) for an overview over all available action types.
 
 ## Data Available to Scripts of Resolve Actions
 

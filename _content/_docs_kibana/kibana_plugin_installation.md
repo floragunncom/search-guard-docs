@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](../_docs_installation/sg200_upgrade.md).
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
@@ -40,7 +40,7 @@ xpack.security.enabled: false
 
 ## Installing the Search Guard Plugin
 
-* Download the [Search Guard Kibana plugin zip](../_docs_versions/versions_versionmatrix.md) matching your exact Kibana version from Maven
+* Download the [Search Guard Kibana plugin zip](search-guard-versions) matching your exact Kibana version from Maven
 * Stop Kibana
 * cd into your Kibana installation directory
 * Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip`
@@ -172,6 +172,6 @@ searchguard.allow_client_certificates: true
 
 ## Where to go next
 
-* [Set up Kibana authentication](../_docs_kibana/kibana_authentication.md)
-* [Use the config GUI for administering Search Guard](../_docs_configuration_changes/configuration_config_gui.md)
-* [Set up Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)
+* [Set up Kibana authentication](kibana-authentication-types)
+* [Use the config GUI for administering Search Guard](configuration-gui)
+* [Set up Kibana Multi-Tenancy](kibana-multi-tenancy)

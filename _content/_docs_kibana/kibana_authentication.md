@@ -18,20 +18,20 @@ In addition, Search Guard adds multi-tenancy to Kibana which makes it possible t
 
 ## Installation
 
-Please refer to the [Kibana plugin installation](kibana_installation.md) guide.
+Please refer to the [Kibana plugin installation](kibana-plugin-installation) guide.
 
 ## Authentication
 
 The Search Guard Kibana plugin supports the following authentication types:
 
-* [HTTP Basic Authentication](kibana_authentication_basicauth.md)
-* [Proxy Authentication](kibana_authentication_proxy.md)
-* [JSON web tokens](kibana_authentication_jwt.md)
-* [OpenID Connect](kibana_authentication_openid.md)
-* [SAML](kibana_authentication_saml.md)
-* [Kerberos](kibana_authentication_kerberos.md)
-* [Anonymous Authentication](kibana_authentication_anonymous.md)
+* [HTTP Basic Authentication](kibana-authentication-http-basic)
+* [Proxy Authentication](kibana-authentication-anonymous)
+* [JSON web tokens](kibana-authentication-jwt)
+* [OpenID Connect](kibana-authentication-openid)
+* [SAML](kibana-authentication-saml)
+* [Kerberos](kibana-authentication-kerberos)
+* [Anonymous Authentication](kibana-authentication-anonymous)
 
 ## Multi-Tenancy
 
-Please refer to the [Multi-Tenancy](kibana_multitenancy.md) guide.
+Please refer to the [Multi-Tenancy](kibana-multi-tenancy) guide.

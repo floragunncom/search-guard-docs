@@ -51,19 +51,19 @@ After a watch has been *triggered*, it *checks* for specific conditions and take
 
 These three elements also form the three major building blocks of a Signals watch:
 
-* **[Triggers](triggers.md)** define when a watch will be executed. Each watch should have at least one trigger
+* **[Triggers](elasticsearch-alerting-triggers-overview)** define when a watch will be executed. Each watch should have at least one trigger
 * **Checks** are constructs meant for analyzing the situation to be watched. For doing so, Signals offers
-  * *[Inputs](inputs.md)* which pull in data from a source such as an Elasticsearch index or an HTTP service;
-  * *[Conditions](conditions.md)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
-  * *[Transformations and calculations](transformations_overview.md)* to transform the gathered data into a format that subsequent operations may require.
+  * *[Inputs](elasticsearch-alerting-inputs-overview)* which pull in data from a source such as an Elasticsearch index or an HTTP service;
+  * *[Conditions](elasticsearch-alerting-conditions)* to analyze the gathered data using scripts and decide whether to proceed with execution or to abort;
+  * *[Transformations and calculations](elasticsearch-alerting-transformations-calculations-overview)* to transform the gathered data into a format that subsequent operations may require.
   * Each watch can have several checks, which are executed as a chain. Each action of a watch can also have a chain of checks.
-* **[Actions](actions.md)** are executed if all preceding conditions are met.
-  * Actions can be used to alert users via [Email](actions_email.md), [Slack](actions_slack.md) or [PagerDuty](actions_pagerduty.md).
-  * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](actions_index.md).
-  * Using the [Webhook action](actions_webhook.md), it is possible to invoke any HTTP service as a result of a Signals watch.
+* **[Actions](elasticsearch-alerting-actions-overview)** are executed if all preceding conditions are met.
+  * Actions can be used to alert users via [Email](elasticsearch-alerting-actions-email), [Slack](elasticsearch-alerting-actions-slack) or [PagerDuty](elasticsearch-alerting-actions-pagerduty).
+  * Actions can be used to write the runtime data back to data sinks like an [Elasticsearch index](elasticsearch-alerting-actions-index).
+  * Using the [Webhook action](elasticsearch-alerting-actions-webhook), it is possible to invoke any HTTP service as a result of a Signals watch.
   * Each watch can have several actions. Action-specific checks can be used to decide which actions are executed in which situation.
 
-Optionally, you can use a **[Severity Mapping](severity.md)** in order to map the data gathered by the checks to a simple severity scale (consisting of the levels info, warning, error, critical). If you do so, you can configure actions to be executed only for specific severity levels. This can greatly simplify the definition of conditions for actions if you are modeling escalation schemes or similar structures.
+Optionally, you can use a **[Severity Mapping](elasticsearch-alerting-severity)** in order to map the data gathered by the checks to a simple severity scale (consisting of the levels info, warning, error, critical). If you do so, you can configure actions to be executed only for specific severity levels. This can greatly simplify the definition of conditions for actions if you are modeling escalation schemes or similar structures.
 Using a severity mapping also enables you to define **Resolve Actions**. These actions can be used to trigger notifications in case the severity determined by a watch decreases - or in other words - the watch finds that a previously discovered situation does not exist any more.  
 
 The Signals dashboard also displays the current severity levels determined by the configured watches. Opposed to watches without a severity mapping, this gives you a clearer and quicker way to see what is happening right now.

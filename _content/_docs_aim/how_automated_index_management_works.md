@@ -21,9 +21,9 @@ Automated Index Management can be used to create policies that perform managemen
 
 A policy acts as a template that describes the lifecycle of one, or multiple, indices.
 Once an index with a policy assigned is created, AIM internally creates a *policy instance* with a corresponding *state* for this index.
-The state can now be retrieved using the [state API](rest_api_policy_instance_state.md).
+The state can now be retrieved using the [state API](automated-index-management-rest-policy-instance-state).
 
-If not otherwise configured (see `execution.period` in the [settings](settings.md) section), AIM automatically checks every 5 minutes for each managed index if one condition of the current step is met.
+If not otherwise configured (see `execution.period` in the [settings](automated-index-management-settings) section), AIM automatically checks every 5 minutes for each managed index if one condition of the current step is met.
 If one condition is met all actions of the current *step* get executed in their defined order and the next step is entered.
 
 ## Technical Preview Version Download

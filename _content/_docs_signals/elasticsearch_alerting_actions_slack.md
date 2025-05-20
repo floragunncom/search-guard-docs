@@ -19,7 +19,7 @@ Use Slack actions to send notifications via Slack. You can use Mustache template
 
 ## Prerequisites
 
-In order to use Slack actions, you need to configure a Slack webhook using the accounts registry of Signals. See the [accounts registry documentation](accounts.md) for more on that.
+In order to use Slack actions, you need to configure a Slack webhook using the accounts registry of Signals. See the [accounts registry documentation](elasticsearch-alerting-accounts) for more on that.
 
 ## Basic Functionality
 
@@ -49,7 +49,7 @@ The basic configuration attributes are:
 
 **checks:** Further checks which can gather or transform data and decide whether to execute the actual action. Optional.
 
-**account:** Identifies the Slack application which shall be used for sending the message. See the [accounts registry documentation](accounts.md).
+**account:** Identifies the Slack application which shall be used for sending the message. See the [accounts registry documentation](elasticsearch-alerting-accounts).
 
 **text:** Defines the content of the message. Mustache templates can be used to render attributes from the watch runtime data. Optional. See the [Slack documentation](https://api.slack.com/messaging/composing/formatting) for details on how to format the message.
 

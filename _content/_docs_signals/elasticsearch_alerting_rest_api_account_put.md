@@ -34,7 +34,7 @@ Stores or updates an account of type `{account_type}`identified by the `{account
 
 The account needs to be specified as JSON document in the request body. 
 
-See the chapter [accounts](accounts.md) for details on the structure of accounts.
+See the chapter [accounts](elasticsearch-alerting-accounts) for details on the structure of accounts.
 
 ## Responses
 
@@ -67,7 +67,7 @@ The account was not encoded as JSON document. Accounts need to be sent using the
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/put`.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ACCOUNT\_MANAGE
 

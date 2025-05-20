@@ -102,7 +102,7 @@ class Releasenotes
 
 		file.write("**Release Date: #{t.strftime("%d.%m.%Y")}**\n\n")
 
-		file.write("* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)\n\n")
+		file.write("* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)\n\n")
 
 	end
 

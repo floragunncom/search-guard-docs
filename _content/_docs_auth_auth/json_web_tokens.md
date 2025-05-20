@@ -70,7 +70,7 @@ auth_domains:
 
 Note that you must specify a `curve` for EC, which is either `P-256`, `P-384` or `P-521`. 
 
-For options on how to retrieve the keys from external endpoints, see [advanced configuration](./auth_auth_jwt_advanced.md).
+For options on how to retrieve the keys from external endpoints, see [advanced configuration](json-web-tokens-advanced).
 
 ### Audience validation
 
@@ -113,4 +113,4 @@ $ curl -H "Authorization: Bearer ${JWT}" "https://node.example.com:9200/_searchg
 
 ## Where to go next
 
-* Check the  [advanced configuration options for JWT](../_docs_auth_auth/auth_auth_jwt_advanced.md)
+* Check the  [advanced configuration options for JWT](json-web-tokens-advanced)

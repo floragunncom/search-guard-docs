@@ -26,7 +26,7 @@ Updates a Signals configuration setting.
 
 ## Path Parameters
 
-**{key}** The configuration setting to be updated. See (Signals Administration)[administration.md] for a list of the available settings.
+**{key}** The configuration setting to be updated. See (Signals Administration)[elasticsearch-alerting-administration] for a list of the available settings.
 
 ## Request Body
 
@@ -53,7 +53,7 @@ The user does not have the permission to set settings.
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:settings/put`.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ALL
 

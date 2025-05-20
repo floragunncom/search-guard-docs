@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 This chapter describes how to quickly migrate legacy Search Guard configuration to the new structure. This is useful for testing - possibly as a preparatory step for updating a production cluster.
 
-**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](sg53_migration_prod.md).
+**Note:** If you need to update a production cluster with only minimal outage, refer to [the corresponding guide](sg-classic-config-migration-prod).
 
 ## Prerequisites
 
@@ -55,7 +55,7 @@ You can then open the URL `https://your-cluster.example.com:9200/_searchguard/au
 
 **Note:** This mode might reveal sensitive data. Only use this mode on test clusters. Do not forget to switch the debug mode off before going into production.
 
-More on this: [Debugging the authc configuration](../_docs_auth_auth/auth_auth_rest_config.md#debugging-the-authc-configuration).
+More on this: [Debugging the authc configuration](authentication-authorization-configuration#mapping-user-information).
 
 ## Kibana
 
@@ -69,5 +69,5 @@ $ ./sgctl.sh set frontend_config debug --true
 
 When debug mode is active, again open Kibana in your browser and try to log in. If you encounter a login failure, you should see more detailed information about the login process. 
 
-More more details refer to the [Troubleshooting](kibana_authentication_troubleshooting.md) section.
+More more details refer to the [Troubleshooting](troubleshooting-kibana) section.
 

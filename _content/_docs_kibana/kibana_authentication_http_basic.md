@@ -19,7 +19,7 @@ This approach is the most simple and most commonly used authentication type. If 
 * If so, the user is allowed to access Kibana and the underlying Elasticsearch cluster.
 * If the user does not have an active session, Search Guard will show a login form. The user now has to log in using their username and password.
 
-This approach can be used to authenticate users using the [Search Guard internal user database](../_docs_roles_permissions/configuration_internalusers.md)  or using [LDAP](../_docs_auth_auth/auth_auth_ldap.md).
+This approach can be used to authenticate users using the [Search Guard internal user database](internal-users-database)  or using [LDAP](active-directory-ldap).
 
 Suppose the Search Guard Elasticsearch backend has been already configured with username/password-based authentication. In that case, this should also work out of the box for Kibana.<br>You only have to make sure that users who are supposed to log into Kibana have the role `SGS_KIBANA_USER`.
 
@@ -38,7 +38,7 @@ auth_domains:
   - type: basic/internal_users_db
 ```
 
-See the chapters on the [Search Guard internal user database](../_docs_roles_permissions/configuration_internalusers.md) and [LDAP](../_docs_auth_auth/auth_auth_ldap.md) for more details on setting up such auth domains.
+See the chapters on the [Search Guard internal user database](internal-users-database) and [LDAP](active-directory-ldap) for more details on setting up such auth domains.
 
 The Kibana-specific part of the authentication configuration is done in the file `sg_frontend_authc.yml`. By default, this file contains this entry:
 

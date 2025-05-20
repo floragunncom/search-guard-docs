@@ -33,9 +33,9 @@ When an action is acknowledged, its checks will be still executed on schedule. T
 
 The user who acknowledged a watch or action is tracked and can be obtained using the watch state REST API.
 
-It is possible to withdraw the acknowledgement using the `DELETE` verb on this endpoint. See [Un-acknowledge And Get Watch API](./rest_api_watch_unacknowledge_and_get.md) for details.
+It is possible to withdraw the acknowledgement using the `DELETE` verb on this endpoint. See [Un-acknowledge And Get Watch API](elasticsearch-alerting-rest-api-watch-un-acknowledge-and-get) for details.
 
-The request's response contains in its body the new state of the acknowledged actions. Therefore, the REST operation can be treated as an extended version of the request [Acknowledge Watch](rest_api_watch_acknowledge.md).
+The request's response contains in its body the new state of the acknowledged actions. Therefore, the REST operation can be treated as an extended version of the request [Acknowledge Watch](elasticsearch-alerting-rest-api-watch-acknowledge).
 
 ## Path Parameters
 
@@ -71,7 +71,7 @@ The specified action was not executed during its last scheduled run. Thus, it ca
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:tenant:signals:watch/ack` for the currently selected tenant.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_WATCH\_ACKNOWLEDGE
 

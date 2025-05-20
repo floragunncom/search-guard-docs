@@ -50,7 +50,7 @@ An account with the given id does not exist.
 
 For being able to access the endpoint, the user needs to have the privilege `cluster:admin:searchguard:signals:account/get`.
 
-This permission is included in the following [built-in action groups](security_permissions.md):
+This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ACCOUNT\_MANAGE
 * SGS\_SIGNALS\_ACCOUNT\_READ

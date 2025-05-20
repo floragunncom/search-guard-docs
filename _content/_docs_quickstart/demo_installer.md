@@ -86,8 +86,8 @@ If you also have started Kibana, you can test it as well:
 
 If everything is set up correctly, you should see three new navigation entries on the left pane:
 
-* Search Guard - the [Search Guard configuration GUI](../_docs_configuration_changes/configuration_config_gui.md)
-* Tenants - to select a tenant for [Kibana Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md)
+* Search Guard - the [Search Guard configuration GUI](configuration-gui)
+* Tenants - to select a tenant for [Kibana Multi-Tenancy](kibana-multi-tenancy)
 * Logout - to end your current session
 
 ## Applying configuration changes
@@ -108,7 +108,7 @@ If you want to use the sgctl tool:
 
 This will read the contents of the configuration files in `my-sg-config` and upload the contents to the Search Guard index. 
 
-If you also have started Kibana, you can also edit the configuration via the Search Guard Config GUI. Click on the hamburger icon and then on the "Search Guard" menu item to get directed to the [Search Guard Config GUI](../_docs_configuration_changes/configuration_config_gui.md).
+If you also have started Kibana, you can also edit the configuration via the Search Guard Config GUI. Click on the hamburger icon and then on the "Search Guard" menu item to get directed to the [Search Guard Config GUI](configuration-gui).
 
 ## Review the generated configuration
 
@@ -138,16 +138,16 @@ searchguard.ssl.http.pemtrustedcas_filepath: root-ca.pem
 
 ## Where to go next
 
-- If you have not already done so, make yourself familiar with the [Search Guard Main Concepts](../_docs_introduction/main_concepts.md). 
+- If you have not already done so, make yourself familiar with the [Search Guard Main Concepts](main-concepts). 
 - After that, configure roles and access permissions by either modifying the configuration files and uploading them via `sgctl`, or use the Search Guard configuration GUI to change them directly. 
-  - [Using and defining action groups](../_docs_roles_permissions/configuration_action_groups.md)
-  - [Defining roles and permissions](../_docs_roles_permissions/configuration_roles_permissions.md)
-  - [Mapping users to Search Guard roles](../_docs_roles_permissions/configuration_roles_mapping.md)
-  - [Adding users to the internal user database](../_docs_roles_permissions/configuration_internalusers.md)
+  - [Using and defining action groups](action-groups)
+  - [Defining roles and permissions](action-groups)
+  - [Mapping users to Search Guard roles](mapping-users-roles)
+  - [Adding users to the internal user database](internal-users-database)
   
-- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](../_docs_auth_auth/auth_auth_configuration.md) in `sg_authc.yml`.
-- For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](../_docs_dls_fls/dlsfls_dls.md).
-- If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](../_docs_audit_logging/auditlogging.md) to generate and store audit trails.
-- And if you need to support multiple tenants in Kibana, use [Multi-Tenancy](../_docs_kibana/kibana_multitenancy.md) to separate visualizations and dashboards by tenant.
-- Details on how to set up a production-ready TLS can be found in [Configuring TLS](../_docs_tls/tls_configuration.md) and [Moving TLS to production](../_docs_tls/tls_certificates_production.md).
+- If you want to use more sophisticated authentication methods like Active Directory, LDAP, Kerberos or JWT, [configure your existing authentication and authorization backends](authentication-authorization-configuration) in `sg_authc.yml`.
+- For fine-grained access control on document- and field level, use the Search Guard [Document and field level security module](document-level-security).
+- If you need to stay compliant with security regulations like GDPR, HIPAA, PCI, ISO or SOX, use the [Search Guard Audit Logging](audit-logging-compliance) to generate and store audit trails.
+- And if you need to support multiple tenants in Kibana, use [Multi-Tenancy](kibana-multi-tenancy) to separate visualizations and dashboards by tenant.
+- Details on how to set up a production-ready TLS can be found in [Configuring TLS](configuring-tls) and [Moving TLS to production](tls-in-production).
 

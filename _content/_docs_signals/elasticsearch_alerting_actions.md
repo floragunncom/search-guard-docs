@@ -20,7 +20,7 @@ description: Actions are used to send notifications by Email or other services l
 
 When the checks configured in a watch found a situation to be noteworthy, it's time to take action. This is done using the equally named watch building block: Actions.
 
-Actions can be used to send notifications by e-mail or other messaging services such as [Slack](actions_slack.md). Also, actions allow to write data to [Elasticsearch indices](actions_index.md). A general purpose mechanism to invoke external services is the [webhook action](actions_webhook.md) which allows making HTTP requests to configurable endpoints.
+Actions can be used to send notifications by e-mail or other messaging services such as [Slack](elasticsearch-alerting-actions-slack). Also, actions allow to write data to [Elasticsearch indices](elasticsearch-alerting-actions-index). A general purpose mechanism to invoke external services is the [webhook action](elasticsearch-alerting-actions-webhook) which allows making HTTP requests to configurable endpoints.
 
 A watch can have several actions; either for sending notifications via different media, or for acting differently depending on the situation.
 
@@ -30,7 +30,7 @@ Actions are generally invoked if all checks configured for a watch ran with a po
 
 Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will only be triggered when certain values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
 
-**Note:** By using the severity feature, you can configure actions to be executed only if a certain problem severity was determined before. Also, you can configure resolve actions which get executed if the problem severity decreased. See [Severity](severity.md) for details.
+**Note:** By using the severity feature, you can configure actions to be executed only if a certain problem severity was determined before. Also, you can configure resolve actions which get executed if the problem severity decreased. See [Severity](elasticsearch-alerting-severity) for details.
 
 
 
@@ -38,19 +38,19 @@ Still, it is possible to configure further action-specific checks. This way, it 
 
 These action types are available at the moment:
 
-**[E-Mail Action Type](actions_email.md):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
+**[E-Mail Action Type](elasticsearch-alerting-actions-email):** Sends e-mails to configurable recipients. Mail content can be defined using templating.
 
-**[Slack Action Type](actions_slack.md):** Sends Slack messages to configurable recipients. Message content is templateable as well.
+**[Slack Action Type](elasticsearch-alerting-actions-slack):** Sends Slack messages to configurable recipients. Message content is templateable as well.
 
-**[Webhook Action Type](actions_webhook.md):** Sends HTTP requests to external services.
+**[Webhook Action Type](elasticsearch-alerting-actions-webhook):** Sends HTTP requests to external services.
 
-**[Index Action Type](actions_index.md):** Writes data to an Elasticsearch index.
+**[Index Action Type](elasticsearch-alerting-actions-index):** Writes data to an Elasticsearch index.
 
 These action types are only available in the Enterprise Edition:
 
-**[Pager Duty Action Type](actions_pagerduty.md):** Triggers and resolves incidents in PagerDuty.
+**[Pager Duty Action Type](elasticsearch-alerting-actions-pagerduty):** Triggers and resolves incidents in PagerDuty.
 
-**[Jira Action Type](actions_jira.md):** Creates issues in Jira.
+**[Jira Action Type](elasticsearch-alerting-actions-jira):** Creates issues in Jira.
 
 ## Suppressing Execution of Actions
 
@@ -68,7 +68,7 @@ Supported units for simple throttle periods and exponential throttle periods are
 
 A throttle period can be also specified on the level of a watch. This then serves as a default throttle period for all actions. Actions can still define specific throttle periods, though.
 
-If no explicit throttle period is configured, a default throttle period of 10 seconds is used. This default can be adjusted using the Signals settings. See the section on [Administration](administration.md) for details.
+If no explicit throttle period is configured, a default throttle period of 10 seconds is used. This default can be adjusted using the Signals settings. See the section on [Administration](elasticsearch-alerting-administration) for details.
 
 ### Acknowledging Actions
 
@@ -76,7 +76,7 @@ A manual way of suppressing the execution of actions is acknowledging actions.
 
 If an action is acknowledged, its execution is suppressed for an indefinite amount of time. Still, the watch continues to be executed on its normal schedule. During each watch execution, all checks are executed to determine if a watch is still in alert state. If the watch remains in alert state, the action remains acknowledged and thus execution is suppressed. Only if the watch leaves alert state, the acknowledge state of the action is reset. Thus, if the situation changes again that the watch reaches alert state, the action would be actually executed again.
 
-A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](rest_api_watch_acknowledge.md). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](rest_api_watch_state.md).
+A watch can be acknowledged via the Signals Kibana plugin, or via the [REST API](elasticsearch-alerting-rest-api-watch-acknowledge). The user who acknowledged a watch is recorded in the watch logs and the watch state. The watch state can be retrieved with the [Watch State REST API](elasticsearch-alerting-rest-api-watch-state).
 
 ## Processing Collections of Objects in Actions
 
@@ -192,9 +192,9 @@ Alert actions (i.e., non-resolve actions) additionally support  these properties
 
 **throttle_period:** The throttle period. Optional. Specify the time duration using an *amount*, followed by its *unit*. Alternatively, specify an exponential throttle period using the syntax *duration*`**`*basis of exponentiation*`|` *maximum duration*. Supported units are m (minutes), h (hours), d (days), w (weeks). For example, `1h` means one hour.  
 
-**severity:** Selects the severity levels in which this action shall be executed. Optional. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](severity.md) for details.
+**severity:** Selects the severity levels in which this action shall be executed. Optional. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](elasticsearch-alerting-severity) for details.
 
 
 Resolve actions additionally support these properties:
 
-**resolves_severity:** Selects the severity levels which need to be resolved in order to execute this action. Mandatory. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](severity.md) for details.
+**resolves_severity:** Selects the severity levels which need to be resolved in order to execute this action. Mandatory. An array of `info`, `warning`, `error`, `fatal`. See the section on [Severity](elasticsearch-alerting-severity) for details.

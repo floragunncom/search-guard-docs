@@ -17,9 +17,9 @@ description: Signals Alerting for Elasticsearch can pull in data from any REST H
 
 An HTTP input pulls in data by accessing an HTTP endpoint. Most commonly, this will be a REST API.
 
-All data from all inputs can be combined by using [Transformation](transformations_transformations.md) and [Calculations](transformations_calculations.md), used in [Conditions](conditions.md) and pushed to [action endpoints](actions.md).
+All data from all inputs can be combined by using [Transformation](elasticsearch-alerting-transformations) and [Calculations](elasticsearch-alerting-calculations), used in [Conditions](elasticsearch-alerting-conditions) and pushed to [action endpoints](elasticsearch-alerting-actions-overview).
 
-For example, if you aggregate data from the [Search Guard Audit Log](auditlog), you can  use an HTTP input to retrieve Geo Data information for the logged IP addresses and enrich the data from the audit log.
+For example, if you aggregate data from the [Search Guard Audit Log](audit-logging-compliance), you can  use an HTTP input to retrieve Geo Data information for the logged IP addresses and enrich the data from the audit log.
 
 ## Example
 
@@ -168,4 +168,4 @@ A TLS configuration might look like this:
 
 ## Security Considerations
 
-Keep in mind that HTTP inputs allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](administration.md) for details.
+Keep in mind that HTTP inputs allow to send arbitrary HTTP requests from Elasticsearch nodes. This can be limited using the Signals setting `http.allowed_endpoints`. See the section on [Administration](elasticsearch-alerting-administration) for details.

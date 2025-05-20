@@ -10,7 +10,7 @@ description: Changelog for Search Guard 7.x-37.1.0
 
 **Release Date: 04.10.2019**
 
-* [Upgrade Guide from 6.x to 7.x](../_docs_installation/installation_upgrading_6_7.md)
+* [Upgrade Guide from 6.x to 7.x](sg-upgrade-6-7)
 
 ## Security Fixes 
 
