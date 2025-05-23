@@ -116,6 +116,10 @@ collections:
     output: true
     permalink: :name
     algolia_hierarchy: "Encryption at Rest"
+  docs_ad:
+    output: true
+    permalink: :name
+    algolia_hierarchy: "Anomaly Detection"
   troubleshooting:
     output: true
     permalink: :name
