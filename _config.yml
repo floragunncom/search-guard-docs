@@ -385,4 +385,4 @@ sgversions:
     - 6.4.1|25.5|19.0|yes|yes
     - 6.4.0|25.5|19.0|yes|yes
   tlstool: 3.0.2
-  sgctl: 3.0.3
+  sgctl: 3.1.0
