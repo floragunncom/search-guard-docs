@@ -1,0 +1,15 @@
+- title: Anomaly detection
+  slug: anomaly-detection
+  children:
+    - title: Introduction
+      slug: anomaly-detection-introduction
+    - title: API
+      slug: anomaly-detection-api
+    - title: Settings
+      slug: anomaly-detection-settings
+    - title: Result mapping
+      slug: anomaly-detection-result-mapping
+    - title: Security
+      slug: anomaly-detection-security
+#    - title: Dashboards and visualizations
+#      slug: anomaly-detection-dashboard-visualization
