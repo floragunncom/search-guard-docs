@@ -66,4 +66,4 @@ Supported actions are:
 ```
 
 In the example above, the index would be rolled over when `my-rollover-step` is entered.
-After the index is rolled over successfully, it would be set the read only mode and force merge into one segment.
+After the index is rolled over successfully, it would be set the read-only mode and force merge into one segment.

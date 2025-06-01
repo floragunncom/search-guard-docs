@@ -15,7 +15,7 @@ description: How the set read only action works
 
 {% include toc.md %}
 
-Setting an index into read only mode.
+Setting an index into read-only mode.
 This will block any write operations on the index.
 
 ## Example

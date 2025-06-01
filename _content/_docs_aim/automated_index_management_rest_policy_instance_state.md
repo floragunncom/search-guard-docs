@@ -18,15 +18,15 @@ description: Use the state REST API to get a state from a managed index
 ## Endpoint
 
 ```
-GET /_aim/state/{index_name}
+GET /_aim/policyinstance/{index_name}/state
 ```
 
 Retrieves the state of a managed index.
 
 ## Path Parameters
 
-| Parameter      | Note                      |
-|----------------|---------------------------|
+| Parameter    | Note                      |
+|--------------|---------------------------|
 | `index_name` | Name of the managed index |
 
 ## Responses

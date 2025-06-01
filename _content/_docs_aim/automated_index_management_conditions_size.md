@@ -19,9 +19,9 @@ This condition checks the current size of the index and triggers the action exec
 
 ## Parameters
 
-| Parameter | Optional | Note                                              |
-|-----------|----------|---------------------------------------------------|
-| `max_size`  | false    | positive integer with unit ending (b, kb, mb, gb) |
+| Parameter  | Optional | Note                                              |
+|------------|----------|---------------------------------------------------|
+| `max_size` | false    | positive integer with unit ending (b, kb, mb, gb) |
 
 ## Example
 

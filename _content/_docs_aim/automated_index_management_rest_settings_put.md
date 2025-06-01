@@ -27,7 +27,7 @@ Updates a setting.
 
 | Parameter | Note                |
 |-----------|---------------------|
-| `key` | Name of the setting |
+| `key`     | Name of the setting |
 
 ## Request Body
 

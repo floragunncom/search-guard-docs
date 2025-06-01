@@ -25,8 +25,8 @@ Deletes a Policy
 
 ## Path Parameters
 
-| Parameter       | Note               |
-|-----------------|--------------------|
+| Parameter     | Note               |
+|---------------|--------------------|
 | `policy_name` | Name of the policy |
 
 ## Responses
