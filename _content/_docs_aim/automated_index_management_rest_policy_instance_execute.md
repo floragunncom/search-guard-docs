@@ -18,15 +18,15 @@ description: Use the execute REST API to execute a managed index
 ## Endpoint
 
 ```
-POST /_aim/execute/{index_name}
+POST /_aim/policyinstance/{index_name}/execute
 ```
 
 Executes the policy instance for the specified index immediately.
 
 ## Path Parameters
 
-| Parameter      | Note                      |
-|----------------|---------------------------|
+| Parameter    | Note                      |
+|--------------|---------------------------|
 | `index_name` | Name of the managed index |
 
 ## Responses

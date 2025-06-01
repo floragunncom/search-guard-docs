@@ -19,9 +19,9 @@ The doc count condition requests the current number of documents in the index an
 
 ## Parameters
 
-| Parameter   | Optional | Note             |
-|-------------|----------|------------------|
-| `max_count` | false    | positive integer |
+| Parameter       | Optional | Note             |
+|-----------------|----------|------------------|
+| `max_doc_count` | false    | positive integer |
 
 ## Example
 
@@ -35,7 +35,7 @@ The doc count condition requests the current number of documents in the index an
         ...
         {
           "type": "doc_count",
-          "max_count": 1000000
+          "max_doc_count": 1000000
         },
         ...
       ],

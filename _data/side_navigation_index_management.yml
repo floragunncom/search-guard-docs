@@ -7,14 +7,16 @@
     - title: Conditions
       slug: automated-index-management-conditions
       children:
+        - title: Conditions Overview
+          slug: automated-index-management-conditions-overview
         - title: Age Condition
           slug: automated-index-management-conditions-age
         - title: Doc Count Condition
           slug: automated-index-management-conditions-doc-count
-        - title: Conditions Overview
-          slug: automated-index-management-conditions-overview
         - title: Size Condition
           slug: automated-index-management-conditions-size
+        - title: Index Count Condition
+          slug: automated-index-management-conditions-index-count
 
     - title: Actions
       slug: automated-index-management-actions
@@ -61,7 +63,9 @@
           slug: automated-index-management-rest-settings-get
         - title: Delete Settings
           slug: automated-index-management-rest-settings-delete
-        - title: Security Integration
-          slug: automated-index-management-security-integration
-        - title: Settings
-          slug: automated-index-management-settings
+
+    - title: Security Integration
+      slug: automated-index-management-security-integration
+
+    - title: Settings
+      slug: automated-index-management-settings

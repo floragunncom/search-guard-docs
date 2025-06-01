@@ -18,15 +18,15 @@ description: Use the retry REST API to set the retry flag for a managed index
 ## Endpoint
 
 ```
-POST /_aim/retry/{index_name}
+POST /_aim/policyinstance/{index_name}/retry
 ```
 
-Sets the retry flag to `true` for the specified managed index. If the policy instance failed, it will be retried on next execution.
+Sets the retry flag to `true` for the specified managed index. If the policy instance failed, it will be retried on the next execution.
 
 ## Path Parameters
 
-| Parameter      | Note                      |
-|----------------|---------------------------|
+| Parameter    | Note                      |
+|--------------|---------------------------|
 | `index_name` | Name of the managed index |
 
 ## Responses

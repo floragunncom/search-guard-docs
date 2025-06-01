@@ -27,13 +27,13 @@ Retrieves a dynamic setting and includes the current value in the response body.
 
 | Parameter | Note                |
 |-----------|---------------------|
-| `key` | Name of the setting |
+| `key`     | Name of the setting |
 
 ## Responses
 
 ### 200 OK
 
-The settings key exists and the user has sufficient privileges to access it. The response body contains the settings value in JSON format.
+The settings key exists, and the user has sufficient privileges to access it. The response body contains the settings value in JSON format.
 
 ### 403 Forbidden
 

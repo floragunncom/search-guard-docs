@@ -31,8 +31,8 @@ Retrieves a policy in JSON format including internal steps.
 
 ## Path Parameters
 
-| Parameter       | Note               |
-|-----------------|--------------------|
+| Parameter     | Note               |
+|---------------|--------------------|
 | `policy_name` | Name of the policy |
 
 ## Responses

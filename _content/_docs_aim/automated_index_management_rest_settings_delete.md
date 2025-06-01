@@ -21,13 +21,13 @@ description: Use the put settings REST API to update dynamic AIM settings
 DELETE /_aim/settings/{key}
 ```
 
-Deletes a setting. AIM will fall back to default configuration for the specified setting.
+Deletes a setting. AIM will fall back to the default configuration for the specified setting.
 
 ## Path Parameters
 
 | Parameter | Note                |
 |-----------|---------------------|
-| `key` | Name of the setting |
+| `key`     | Name of the setting |
 
 ## Responses
 

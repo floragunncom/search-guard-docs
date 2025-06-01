@@ -19,7 +19,7 @@ description: How conditions work in AIM
 
 Conditions check index parameters to determine if the step actions have to be executed and if the next step can be entered.
 Steps can contain no, one or multiple conditions.
-If a step has multiple conditions at least one condition has to be met in order to execute the step.
+If a step has multiple conditions, at least one condition has to be met to execute the step.
 
 Every condition has a `type` field that defines the condition type and one additional threshold parameter.
 
@@ -29,13 +29,14 @@ Supported conditions are:
 - [age](automated-index-management-conditions-age): Triggers the step execution if the index is older than the configured time period.
 - [doc_count](automated-index-management-conditions-doc-count): Triggers the step execution if the number of documents the index contains is larger than the configured number.
 - [size](automated-index-management-conditions-size): Triggers the step execution if the memory size of the index is larger than the configured size.
+- [index_count](automated-index-management-conditions-index-count): Triggers the step execution if the number of indices related to an alias exceeds the threshold and the current index is the oldest
 
 
 ## Advanced logic
 
 By default, the results of multiple conditions of a step are connected with a logical *or* to determine if a step gets executed.
 
-In case you need two or more conditions to be met in order to execute actions, you can introduce separate check steps that only contain conditions.
+In case you need two or more conditions to be met to execute actions, you can introduce separate check steps that only contain conditions.
 This acts as a logic *and*.
 
 ### Example
