@@ -24,6 +24,10 @@ Additionally, if you’re using Helm charts, make sure to follow the [Helm upgra
   <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
 </table>
 
+### Search Guard FLX for Elasticsearch 9
+
+{% include sgversions.html versions="search-guard-flx-9"%}
+
 ### Search Guard FLX for Elasticsearch 8
 
 {% include sgversions.html versions="search-guard-flx-8"%}

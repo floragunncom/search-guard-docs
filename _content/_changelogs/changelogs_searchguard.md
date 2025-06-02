@@ -10,6 +10,10 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 # Search Guard Changelogs
 
+### [Search Guard FLX 3.1.1](../_changelogs/changelog_searchguard_flx_3_1_1.md)
+
+Release Date: 2025-06-02
+
 ### [Search Guard FLX 3.1.0](../_changelogs/changelog_searchguard_flx_3_1_0.md)
 
 Release Date: 2025-05-19
