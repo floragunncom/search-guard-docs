@@ -27,7 +27,6 @@ class AlgoliaSearchRecordExtractor
     # In Jekyll v3, posts are actually a collection
     return item if @file.collection.label == 'posts'
     item[:unique_hierarchy] = algolia_hierarchy + " > " + unique_hierarchy(item)
-    item[:text_all_raw] = node_text_all_raw(node)
     item[:text_all] = node_text_all(node)
 
     if item.to_s.bytesize > 20000
