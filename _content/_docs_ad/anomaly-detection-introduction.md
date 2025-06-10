@@ -47,6 +47,14 @@ Anomaly detection automatically detects anomalies in your Elasticsearch data in 
 You can pair the Anomaly Detection plugin with [Signals Alerting](elasticsearch-alerting-getting-started) to notify you as soon as an anomaly is detected.
 {: .note}
 
+## Technical Preview Version Download
+
+**At the moment, the technical preview of Anomaly Detection is available for Elasticsearch 8.17.0.**
+
+- Download the technical preview of the [Anomaly Detection elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
+- Download the technical preview of the [Anomaly Detection kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-kibana-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
+- Download the technical preview of the [Anomaly Detection scheduler plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/1.0.0-tp1-es-8.17.0/search-guard-ad-scheduler-1.0.0-tp1-es-8.17.0-plugin.zip)
+
 ## Getting started with anomaly detection in Kibana
 
 To get started, go to **Kibana** > **Search Guard** > **Anomaly Detection**.
