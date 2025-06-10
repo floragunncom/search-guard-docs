@@ -1,4 +1,4 @@
-- title: Anomaly detection
+- title: Anomaly Detection
   slug: anomaly-detection
   children:
     - title: Introduction
@@ -7,7 +7,7 @@
       slug: anomaly-detection-api
     - title: Settings
       slug: anomaly-detection-settings
-    - title: Result mapping
+    - title: Result Mapping
       slug: anomaly-detection-result-mapping
     - title: Security
       slug: anomaly-detection-security
