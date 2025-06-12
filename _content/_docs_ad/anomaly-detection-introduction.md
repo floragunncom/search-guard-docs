@@ -32,7 +32,7 @@ GitHub history for details.
 {% include beta_warning.html %}
 
 
-# SearchGuard Anomaly Detection
+# Search Guard Anomaly Detection
 
 {: .no_toc}
 
@@ -51,9 +51,30 @@ You can pair the Anomaly Detection plugin with [Signals Alerting](elasticsearch-
 
 **At the moment, the technical preview of Anomaly Detection is available for Elasticsearch 8.17.0.**
 
-- Download the technical preview of the [Anomaly Detection elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
-- Download the technical preview of the [Anomaly Detection kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-kibana-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
+- Download the technical preview of the [Anomaly Detection Elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
+- Download the technical preview of the [Anomaly Detection Kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-kibana-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
 - Download the technical preview of the [Anomaly Detection scheduler plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/1.0.0-tp1-es-8.17.0/search-guard-ad-scheduler-1.0.0-tp1-es-8.17.0-plugin.zip)
+
+## Install Search Guard Anomaly Detection
+
+Search Guard Anomaly Detection can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command.
+
+It is important to install the Anomaly Detection scheduler plugin before installing the Anomaly Detection Elasticsearch plugin.
+{: .note}
+
+Change to the directory of your Elasticsearch installation and type:
+
+```bash
+bin/elasticsearch-plugin install -b file:///path/to/anomaly-detection-scheduler-plugin.zip
+bin/elasticsearch-plugin install -b file:///path/to/anomaly-detection-elasticsearch-plugin.zip
+```
+
+Once this is ready, you can also install the Anomaly Detection Kibana plugin.
+To do this, change to the directory of your Kibana installation and type:
+
+```bash
+bin/kibana-plugin install file:///path/to/anomaly-detection-kibana-plugin.zip
+```
 
 ## Getting started with anomaly detection in Kibana
 
