@@ -31,7 +31,7 @@ GitHub history for details.
 
 {% include beta_warning.html %}
 
-# SearchGuard Anomaly Detection security
+# Search Guard Anomaly Detection security
 
 {: .no_toc}
 

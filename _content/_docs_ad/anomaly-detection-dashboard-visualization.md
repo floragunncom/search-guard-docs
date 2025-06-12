@@ -32,7 +32,7 @@ GitHub history for details.
 
 {% include beta_warning.html %}
 
-# SearchGuard Anomaly Detection dashboards and visualizations
+# Search Guard Anomaly Detection dashboards and visualizations
 
 {: .no_toc}
 

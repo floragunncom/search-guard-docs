@@ -32,7 +32,7 @@ GitHub history for details.
 {% include beta_warning.html %}
 
 
-# SearchGuard Anomaly Detection result mapping
+# Search Guard Anomaly Detection result mapping
 
 {: .no_toc}
 
