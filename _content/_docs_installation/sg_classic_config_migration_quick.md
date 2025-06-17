@@ -26,13 +26,13 @@ In order to perform the migration, you need the following:
 - Sometimes, `sg_config.yml` references further files, such as PEM files. You need these as well.
 - If you are also using Kibana, you need the file `kibana.yml` from the `config` directory of the existing Kibana setup.
 - A system to run the test setup. This can a remote system or your local computer. 
-- You need to download the `sgctl` tool. It does not require any special installation, just copy it to a suitable place and execute it.
+- You need to download the `sgctl` tool. Navigate to [version matrix](https://docs.search-guard.com/latest/search-guard-versions) to download the latest version of `sgctl` tool. It does not require any special installation, just copy it to a suitable place and execute it.
 
 ## Migrating the configuration
 
 Open a shell and perform the following steps:
 
-- Create a work directly 
+- Create a work directory 
 - Call `sgctl migrate-config /path/to/legacy/sg_config.yml /path/to/legacy/kibana.yml -o /path/to/your/work/directory`. Be sure to specify the correct paths to the files `sg_config.yml` and `kibana.yml`. If you are using Elasticsearch 7.11 or newer, additionally specify the option `--target-platform es711`. If you are not using Kibana, just omit the path to  `kibana.yml`.
 - `sgctl` will now create new configuration files and print additional information to the console. Carefully review the printed information and the produced configuration.
 - The new Search Guard version requires that users who shall be allowed to log into Kibana have a certain privilege. If your users are mapped to the role `SGS_KIBANA_USER` (which was already a recommended practice before), the users will automatically have that privilege. If your users are not mapped to the role, you need to edit your role mapping accordingly.
