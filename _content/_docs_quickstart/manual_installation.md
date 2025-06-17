@@ -26,7 +26,7 @@ If you don't have them yet, you need to download a couple of software components
 
 * [Elasticsearch](https://www.elastic.co/downloads/elasticsearch)
 * [Kibana](https://www.elastic.co/downloads/kibana)
-* [Search Guard Elasticsearch Plugin](https://docs/search-guard.com/latest/search-guard-versions) 
+* [Search Guard Elasticsearch Plugin](https://docs.search-guard.com/latest/search-guard-versions) 
 * [Search Guard Kibana Plugin](https://docs.search-guard.com/latest/search-guard-versions)
 * [Search Guard Command Line Tool](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/)
 
