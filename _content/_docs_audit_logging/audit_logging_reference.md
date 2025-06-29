@@ -46,23 +46,23 @@ The following attributes are logged for all event categories, independent of the
 | audit\_rest\_request\_path | The REST endpoint URI |
 | audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
 | audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
-| audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
-| audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+| audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
+| audit\_request\_body | The HTTP body, if any and if [request body logging is enabled](audit-logging-compliance#logging-the-request-body) Optional.|
 {: .config-table}
 
 ## REST AUTHENTICATED attributes
 
 
-| Name | Description |
-|---|---|
-| audit\_request\_effective\_user | The username / principal that failed authentication. |
-| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt" |  
-| audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.  |
+| Name | Description                                                                                                                                           |
+|---|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| audit\_request\_effective\_user | The username / principal that failed authentication.                                                                                                  |
+| audit\_request\_effective\_user\_auth\_domain | The domain that authenticated the user, as defined in `sg_authc.yml`. E.g. "ldap", "jwt"                                                              |  
+| audit\_request\_initiating\_user | The user that initiated the request. Only logged if it differs from the effective user, for example when using impersonation. Optional.               |
 | audit\_request\_initiating\_user\_auth\_domain | The domain that authenticated the initiating user. Only logged if it differs from the effective user, for example when using impersonation. Optional. |
-| audit\_rest\_request\_path | The REST endpoint URI |
-| audit\_rest\_request\_params | The HTTP request parameters, if any. Optional. |
-| audit\_rest\_request\_headers | The HTTP headers, if any. Optional. |
-| audit\_request\_body | The HTTP body, if any and if request body logging is enabled. Optional.|
+| audit\_rest\_request\_path | The REST endpoint URI                                                                                                                                 |
+| audit\_rest\_request\_params | The HTTP request parameters, if any. Optional.                                                                                                        |
+| audit\_rest\_request\_headers | The HTTP headers, if any. Optional.                                                                                                                   |
+| audit\_request\_body | The HTTP body, if any and if [request body logging is enabled](audit-logging-compliance#logging-the-request-body). Optional.                                                                           |
 {: .config-table}
 
 ## REST SSL_EXCEPTION attributes

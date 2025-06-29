@@ -118,7 +118,7 @@ The configuration settings are specific for each endpoint. For a reference, plea
 
 ### Logging the request body
 
-By default Search Guard includes the body of the request (if available) for both REST and transport layer. 
+By default, Search Guard includes the body of the request (if available) for both REST and transport layer. 
 
 For the REST layer, this is the body of the HTTP request and contains e.g. the query that the user has submitted:
 
@@ -138,6 +138,9 @@ If you do not want or need the request body, you can disable it like:
 # Enable/disable request body logging (default: true)
 searchguard.audit.log_request_body: false
 ```
+
+For Elasticsearch 8.18.0 and above, logging the request body for bulk requests is not possible.
+{: .note .js-note .note-warning}
 
 ### Resolving and logging index names
 
