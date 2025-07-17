@@ -22,7 +22,7 @@ It is the missing piece needed to regain complete control over your data in Elas
 
 Encryption at Rest is available for Elasticsearch 8.18.2 or later:
 
-- Download the [Encryption at Rest plugin](https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/)
+- Download the [Encryption at Rest plugin](https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-plugin/1.0.0-es-8.18.2/search-guard-encryption-at-rest-plugin-1.0.0-es-8.18.2.zip)
 - Download the [Encryption at Rest command line tool (enctl)](https://maven.search-guard.com:443//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/)
 
 ## Installation of Encryption at Rest Plugin
