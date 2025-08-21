@@ -30,6 +30,8 @@ The `ldap` authentication backend offers a number of options for controlling the
 
 **ldap.idp.connection_pool.max_size:** Maximum size of LDAP connection pool. Default: 10.
 
+**ldap.idp.follow_referrals:** Whether to follow referrals or not. Default: true.
+
 
 ## TLS Settings
 
