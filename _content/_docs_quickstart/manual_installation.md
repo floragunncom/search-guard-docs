@@ -96,7 +96,7 @@ For using the Kibana Configuration GUI you need to install the Search Guard Kiba
 If you want to use the `sgctl` tool, you initially need to create a connection configuration for the running cluster. You can do so by executing the `sgctl connect` command like this. You need to adapt the path specifications to the PEM files you [downloaded earlier](#download-and-install-the-search-guard-demo-certificates) in the demo certificates zip file:
 
 ```bash
-$ ./sgctl.sh connect localhost --ca-cart /path/to/root-ca.pem --cert /path/to/kirk.pem --key /path/to/kirk-key.pem
+$ ./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/kirk.pem --key /path/to/kirk-key.pem
 ```
 
 If the connection is successful, the command should print `Connected as CN=kirk,OU=client,O=client,L=test,C=de` and store the connection configuration for future
