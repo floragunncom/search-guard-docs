@@ -44,7 +44,7 @@ $ ./sgctl.sh update-config /etc/sgbackup/
 To upload the files to another cluster, either create a separate connection profile or directly specify the connection configuration on the `sgtl update-config` command line. This may look like this:
 
 ```
-$ ./sgctl.sh connect production.example.com -p 9301 --ca-cart /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
+$ ./sgctl.sh connect production.example.com -p 9301 --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 
 $ ./sgctl.sh update-config /etc/sgbackup/
 ```

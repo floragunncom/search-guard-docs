@@ -121,7 +121,7 @@ $ ./sgctl.sh update-config /path/to/the/changed/sg_internal_users.yml
 If you have not yet set up the `sgctl` connection, you have to do this once:
 
 ```bash
-$ ./sgctl.sh connect localhost --ca-cart /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
+$ ./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
 ```
 
 The configuration changes are active immediately. There is no need to restart your cluster.
