@@ -412,6 +412,6 @@ sgversions:
     - 6.4.0|25.5|19.0|yes|yes
   search-guard-encryption-at-rest:
     # esv |sgv |kbv |available| eol
-    - 8.18.2|1.0.0|1.0.0|yes|no
+    - 9.1.5|1.0.0|1.0.0|yes|no
   tlstool: 3.1.2
   sgctl: 3.1.2
