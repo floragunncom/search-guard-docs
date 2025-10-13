@@ -202,3 +202,6 @@ It is possible to DOS attack an OpenID-based infrastructure by sending tokens wi
 **refresh_rate_limit_count:**  The maximum number of unknown key ids in the time window. Default: 10
 
 **refresh_rate_limit_time_window_ms:** The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000
+
+## Other settings
+**oidc.max_clock_skew_seconds** **jwt.max_clock_skew_seconds** The maximum allowed clock skew between Search Guard and the IdP is specified in seconds. Default: 0. The property affects only the `nbf` (not before) JWT claim.
