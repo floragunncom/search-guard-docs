@@ -9,6 +9,8 @@
       slug: elasticsearch-alerting-watches-sample
     - title: Execution chain and payload
       slug: elasticsearch-alerting-chaining-checks
+    - title: Signals operator view
+      slug: elasticsearch-alerting-operator-view
 
     - title: Triggers
       slug: elasticsearch-alerting-triggers

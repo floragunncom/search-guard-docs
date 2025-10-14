@@ -1,6 +1,8 @@
 - title: Search Guard for Elasticsearch
   slug: changelogs-searchguard
   children:
+    - title: Search Guard FLX 4.0.0
+      slug: changelog-searchguard-flx-4_0_0
     - title: Search Guard FLX 3.1.3
       slug: changelog-searchguard-flx-3_1_3
     - title: Search Guard FLX 3.1.2

@@ -28,12 +28,17 @@ The file structure is very simple:
 <action group name>:
   reserved: true|false #optional
   description: "..." #optional
-  type: "index" #or cluster or kibana, is optional
+  type: "index" # is required
   allowed_actions:
     - '<permission or action group>'
     - '<permission or action group>'
     - ...
 ```
+
+The type attribute is required and must be one of `index`, `cluster`, `kibana`.
+- `index` \- for a group which contains [index-level permissions](roles-permissions#index-level-permissions)
+- `cluster` \- for a group which contains [cluster-level permissions](roles-permissions#cluster-level-permissions)
+- `kibana` \- for a group which contains permissions related to Kibana multi tenancy.
 
 Example:
 
