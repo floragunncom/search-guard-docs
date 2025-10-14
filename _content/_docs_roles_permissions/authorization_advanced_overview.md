@@ -27,7 +27,7 @@ The file structure is very simple:
 <action group name>:
   reserved: true|false #optional
   description: "..." #optional
-  type: "index" #or cluster or kibana, is optional
+  type: "index" #or cluster or kibana, is required
   allowed_actions:
     - '<permission or action group>'
     - '<permission or action group>'

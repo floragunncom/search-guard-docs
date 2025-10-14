@@ -18,6 +18,8 @@ This version introduces backwards-incompatible changes.</span>
 ### TLS on the REST layer is enabled by default
 The new value of configuration parameter `searchguard.ssl.http.enabled` is `true` by default. If you want to disable TLS on the REST layer, set it to `false`. However, we strongly recommend keeping it enabled in production environments.
 
+### Action groups type attribute is mandatory
+The `type` attribute in action groups is now mandatory. If it is not specified, then a validation error will be reported. System administrators should upgrade all `yml` files that store action groups so the new required `type` attribute is present before upgrading to Search Guard FLX 4.0.0. A similar validation is employed on the REST API level.
 
 ## New Features
 
