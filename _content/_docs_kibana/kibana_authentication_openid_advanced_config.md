@@ -203,5 +203,6 @@ It is possible to DOS attack an OpenID-based infrastructure by sending tokens wi
 
 **refresh_rate_limit_time_window_ms:** The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000
 
-## Other settings
-**oidc.max_clock_skew_seconds** The maximum allowed clock skew between Search Guard and the IdP is specified in seconds. Default: 10s. The property affects only the `nbf` (not before) JWT claim.
+## Maximum clock skew
+
+The `oidc.max_clock_skew_seconds` parameter controls how much time difference is tolerated between server and token issuer clocks. The default is `10` seconds.

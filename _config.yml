@@ -212,6 +212,13 @@ sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-9:
     - 9.0.8|3.1.3|3.1.3|yes|no|N/A|N/A
+    - 9.1.6|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.5|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.4|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.3|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.2|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.1|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.0|4.0.0|4.0.0|yes|no|N/A|N/A
     - 9.0.7|3.1.2|3.1.2|yes|no|N/A|N/A
     - 9.0.6|3.1.2|3.1.2|yes|no|N/A|N/A
     - 9.0.5|3.1.2|3.1.2|yes|no|N/A|N/A
@@ -424,6 +431,6 @@ sgversions:
     - 9.1.0|1.0.0|yes|no
     - 8.19.6|1.0.0|yes|no
     - 8.19.5|1.0.0|yes|yes
-  tlstool: 3.1.3
-  sgctl: 3.1.3
+  tlstool: 4.0.0
+  sgctl: 4.0.0
   enctl: 1.0.0-es-9.1.5

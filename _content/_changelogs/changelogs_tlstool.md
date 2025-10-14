@@ -12,6 +12,10 @@ Copyright 2020 floragunn GmbH
 
 # TLS Tool Changelogs
 
+### [TLS Tool 4.0](changelog-tlstool_4_0)
+
+Release Date: 31.10.2025
+
 ### [TLS Tool 1.9](changelog-tlstool_1_9)
 
 Release Date: 04.08.2022
