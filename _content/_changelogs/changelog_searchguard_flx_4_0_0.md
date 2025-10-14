@@ -15,6 +15,8 @@ This version introduces backwards-incompatible changes.</span>
 ## Breaking Changes
 ### BC removal
 ### Legacy code removal
+### TLS on the REST layer is enabled by default
+The new value of configuration parameter `searchguard.ssl.http.enabled` is `true` by default. If you want to disable TLS on the REST layer, set it to `false`. However, we strongly recommend keeping it enabled in production environments.
 
 
 ## New Features
