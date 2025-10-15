@@ -22,6 +22,23 @@ This results in a reduced number of supported cryptographic algorithms. Cryptogr
 - Any other cryptographic operation performed by Search Guard
 
 ### Legacy code removal
+Support for configuration stored in `sg_config.yml` (the format used before SG FLX 1.0.0) and all related features has been removed. APIs deprecated in SG FLX 1.0.0 and earlier are no longer available, including but not limited to:
+
+- `GET /_searchguard/auth_domain/{authdomain}/openid/{endpoint}`
+- `POST /_searchguard/auth_domain/{authdomain}/openid/{endpoint}`
+- `POST /_searchguard/api/authtoken`
+- `GET /_searchguard/api/sgconfig/`
+- `GET /_searchguard/api/sg_config/`
+- `PUT /_searchguard/api/sgconfig/{name}`
+- `PUT /_searchguard/api/sg_config/`
+- `PUT /_searchguard/api/sg_config/{name}`
+- `PATCH /_searchguard/api/sgconfig/`
+- `PATCH /_searchguard/api/sg_config/`
+- etc.
+
+For migration guidance, see [Migrating to FLX](sg-classic-config-migration-overview).
+
+**Before upgrading to Search Guard FLX 4.0.0 or newer, ensure you are not using any of the removed features or APIs.**
 ### TLS on the REST layer is enabled by default
 The new value of configuration parameter `searchguard.ssl.http.enabled` is `true` by default. If you want to disable TLS on the REST layer, set it to `false`. However, we strongly recommend keeping it enabled in production environments.
 
