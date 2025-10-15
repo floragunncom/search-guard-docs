@@ -13,7 +13,14 @@ description: Changelog for Search Guard FLX 4.0.0
 This version introduces backwards-incompatible changes.</span>
 
 ## Breaking Changes
-### BC removal
+### Removing the Bouncy Castle security provider
+This results in a reduced number of supported cryptographic algorithms. Cryptographic algorithms are now provided by the default Java Cryptography Extension (JCE). Before upgrading to Search Guard FLX 4.0.0 or newer, perform tests (e.g., in a test environment) to ensure that all required cryptographic algorithms are still supported. This change may affect:
+- TLS connections (e.g., between nodes, between clients and nodes, between Kibana and Elasticsearch, connections with LDAP, Kerberos, HTTP requests sent by Signals, etc.)
+- JWT signature verification
+- Authentication with OIDC and SAML
+- Supported formats of X.509 certificates and other operations on X.509 certificates
+- Any other cryptographic operation performed by Search Guard
+
 ### Legacy code removal
 ### TLS on the REST layer is enabled by default
 The new value of configuration parameter `searchguard.ssl.http.enabled` is `true` by default. If you want to disable TLS on the REST layer, set it to `false`. However, we strongly recommend keeping it enabled in production environments.
