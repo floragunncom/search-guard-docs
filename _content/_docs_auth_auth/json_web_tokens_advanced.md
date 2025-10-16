@@ -63,4 +63,4 @@ The `tls` settings mentioned above offer the following configuration options:
 **tls.start_tls:** Use StartTLS to initiate the TLS connection to the remote host.
 
 ## Other settings
-**jwt.max_clock_skew_seconds** The maximum allowed clock skew between Search Guard and the IdP is specified in seconds. Default: 0. The property affects only the `nbf` (not before) JWT claim.
+**jwt.max_clock_skew_seconds** The maximum allowed clock skew between Search Guard and the IdP is specified in seconds. Default: 10s. The property affects only the `nbf` (not before) JWT claim.
