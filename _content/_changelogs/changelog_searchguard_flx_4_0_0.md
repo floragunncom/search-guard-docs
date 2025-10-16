@@ -87,6 +87,13 @@ These improvements make it easier to monitor and manage watches in complex deplo
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/521)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1203)
 
+## New Feature
+
+### JWT And OIDC Authenticators: Configurable Maximum Clock Skew
+Added support for configuring the maximum allowed clock skew for JWT authentication in both JWT and OIDC authenticators. System administrators can now set the `jwt.max_clock_skew_seconds` and `oidc.max_clock_skew_seconds` parameters to control how much time difference is tolerated between server and token issuer clocks. Default maximum clock skew is set to 10 seconds, but this can be adjusted as needed for your environment.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/540)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1305)
 
 ## Improvements
 ### LDAP - TLS Setup Improvements
