@@ -9,8 +9,7 @@ description: Changelog for Search Guard FLX 4.0.0
 
 **Release Date: TBD**
 
-<span style="color:red">
-This version introduces backwards-incompatible changes.</span> The system administrator must confirm that none of changes introduced in the version 4.0.0 will impact their deployment before upgrading to Search Guard FLX 4.0.0 or a newer version. It is strongly recommended to conduct testing in a non-production environment. Additionally, all necessary backup and rollback procedures should be established before initiating the upgrade.
+This version introduces backwards-incompatible changes. The system administrator must confirm that none of changes introduced in the version 4.0.0 will impact their deployment before upgrading to Search Guard FLX 4.0.0 or a newer version. It is strongly recommended to conduct testing in a non-production environment. Additionally, all necessary backup and rollback procedures should be established before initiating the upgrade.
 
 ## Breaking Changes
 ### Removing The Bouncy Castle Security Provider
@@ -161,17 +160,7 @@ Search Guard has been enhanced to support the asynchronous search status request
 - The `SGS_CLUSTER_COMPOSITE_OPS_RO` action group now includes the `cluster:monitor/async_search/status` permission
 - Users with the special permission `indices:searchguard:async_search/_all_owners` can bypass ownership checks and view the status of any async search
 
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1275)
 
-### Fixed Issues With On-Demand Watch Execution When The Watch Uses A Truststore
-Fixed an issue where executing a watch that uses a stored truststore could fail with an unexpected error.
-Enhanced the system to ensure that watches using stored truststores are now properly supported when executed via the API POST `/_signals/watch/{tenant}/_execute`
+### More fixes
 
-
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1175)
-
-### Signals Watch Acknowledgment Behavior Corrected
-When an acknowledgment is made for a watch, it acknowledges all actions related to that watch. If the watch contains actions that have already been acknowledged, further acknowledgment will not affect the state of those previously acknowledged actions. The purpose of this change is not to update the state of already acknowledged actions.
-
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/125)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1150)
+This update includes a number of further minor fixes. See [the Gitlab milestone](https://git.floragunn.com/groups/search-guard/-/milestones/17) for all details.
