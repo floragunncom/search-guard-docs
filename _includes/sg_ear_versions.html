@@ -8,7 +8,6 @@
   <tr>
     <th>Elasticsearch</th>
     <th>Search Guard Encryption at Rest Plugin</th>
-    <th>Search Guard Encryption at Rest enctl</th>
     <th>Status</th>
   </tr>
   </thead>
@@ -20,26 +19,20 @@
     
       {% capture sg_url %}
         https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-encryption-at-rest-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}.zip
-      {% endcapture %}    
-      {% capture enctl_url %}
-        https://maven.search-guard.com//search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-encryption-at-rest-ctl-{{ sgversions[1] }}-es-{{ sgversions[0] }}.sh
       {% endcapture %}
-
 
   <tr>
     
     <td>{{ sgversions[0] }} </td>
 
-    {% if sgversions[3] == "yes" %}
+    {% if sgversions[2] == "yes" %}
 
     <!-- available version -->
 
     <td><a href="{{ sg_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
-    <td><a href="{{ enctl_url }}" target="_blank">{{ sgversions[2] }}</a></td>
-
     <!-- is EOL switch -->
-    {% if sgversions[4] == "no" %}
+    {% if sgversions[3] == "no" %}
     <td>Active</td>
     {% else %}
     <td>EOL</td>
@@ -50,8 +43,6 @@
     <!-- unavailable version -->
 
     <td>{{ sgversions[1] }}</td>
-
-    <td>{{ sgversions[2] }}</td>
 
     <td>{{ sgversions[1] }}</td>
 

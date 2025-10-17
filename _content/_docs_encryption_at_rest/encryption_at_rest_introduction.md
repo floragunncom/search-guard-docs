@@ -19,6 +19,10 @@ Search Guard Encryption at Rest provides encryption at rest for Elasticsearch in
 It is the missing piece needed to regain complete control over your data in Elasticsearch deployments, especially in public cloud environments. Search Guard Encryption at Rest can also be used in private cloud or on-premises installations to protect your data at rest.
 
 ## Download
+<table>
+  <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
+  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-ctl/{{ site.sgversions.enctl }}/search-guard-encryption-at-rest-ctl-{{ site.sgversions.enctl }}.sh">Encryption at Rest command line tool (enctl)</a></td></tr>
+</table>
 
 {% include sg_ear_versions.html versions="search-guard-encryption-at-rest"%}
 

@@ -1,0 +1,5 @@
+- title: Search Guard Encryption at Rest
+  slug: changelogs-ear
+  children:
+    - title: Search Guard Encryption at Rest 1.0.0
+      slug: changelog-ear_1_0_0
