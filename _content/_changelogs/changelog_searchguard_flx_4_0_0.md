@@ -72,13 +72,28 @@ These changes help ensure compliance with modern security standards and reduce t
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/449)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1152)
 
-## New Feature
+## New Features
 
 ### JWT And OIDC Authenticators: Configurable Maximum Clock Skew
 Added support for configuring the maximum allowed clock skew for JWT authentication in both JWT and OIDC authenticators. System administrators can now set the `jwt.max_clock_skew_seconds` and `oidc.max_clock_skew_seconds` parameters to control how much time difference is tolerated between server and token issuer clocks. Default maximum clock skew is set to 10 seconds, but this can be adjusted as needed for your environment.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/540)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1305)
+
+### Signals Alerting Operator View in Kibana
+Signals Alerting has a new "Operator View" that highlights the current state of existing watches, rather than focusing on watch management.
+The Operator View is now the default Signals Alerting view.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/523)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1064)
+
+### Signals Alerting Watch Status panel in Kibana dashboards
+There is a new Signals Alerting watch status panel that can be added to Kibana dashboards. Each panel shows the status
+of the given watch, and any watch that has severity levels defined can be added.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/482)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1072)
+
 
 ## Improvements
 
@@ -101,6 +116,14 @@ Please see [the documentation](active-directory-ldap-advanced#connection-setting
 When a login attempt fails because an OIDC/JWT token is not yet valid, the system now logs the token's "not before" (nbf) timestamp so the reason is explicit in the logs.
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1254)
+
+### Signals Alerting - Allow disabling of HTML body in email actions
+It is now possible to disable the html_body attribute in email actions.
+If disabled, the html_body attribute will be omitted instead of returned as an empty string.
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/321)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1063)
+
+
 
 ## Bug Fixes
 
