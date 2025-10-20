@@ -126,6 +126,12 @@ Improved detection and handling of mixed `ldap://` and `ldaps://` host configura
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/258)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1303)
 
-### More fixes
+### SGCTL: Improved Support for Empty Configuration Files
+The `sgctl` tool was previously unable to correctly process configuration files that contained YAML documents consisting only of a document separator (i.e., document start marker) `---` and comments. This has now been fixed.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/323)
+* [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/310)
+
+## More fixes
 
 This update includes a number of further minor fixes. See [the Gitlab milestone](https://git.floragunn.com/groups/search-guard/-/milestones/17) for all details.
