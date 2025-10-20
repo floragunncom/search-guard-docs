@@ -139,7 +139,16 @@ If you do not want or need the request body, you can disable it like:
 searchguard.audit.log_request_body: false
 ```
 
-For Elasticsearch 8.18.0 and above, logging the request body for bulk requests is not possible.
+### Excluding request bodies
+
+You can exclude certain request bodies from being logged by configuring actions (for Transport requests) and/or REST request paths (for REST requests). Request bodies for these actions/request paths will not be logged.
+
+```yaml
+# Disable request body logging for search requests
+searchguard.audit.ignore_request_bodies: ["indices:data/read/search"]
+```
+
+For Elasticsearch 8.18.0 and above, logging the request body for bulk requests is disabled by default.
 {: .note .js-note .note-warning}
 
 ### Resolving and logging index names

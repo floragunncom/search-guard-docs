@@ -61,6 +61,12 @@ REST request bodies are now only included in audit logs for authenticated reques
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/550)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1285)
 
+### Audit Log Bulk Request Body Logging Is Disabled By Default
+The new configuration parameter `searchguard.audit.ignore_request_bodies` is set to `["BulkRequest", "indices:data/write/bulk"]` by default. If you want to enable logging of bulk request bodies, overwrite this parameter with an empty list.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/588)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1291)
+
 ### Support For TLS 1.0 And TLS 1.1 Has Been Dropped.
 - Outdated and insecure SSL/TLS protocols are now blocked to enhance system security. The administrator is unable to enable obsolete protocols.
 - Administrators will receive a clear error message if they attempt to enable deprecated protocols in the configuration.
