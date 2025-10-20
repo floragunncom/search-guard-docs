@@ -2,3 +2,4 @@ files:
   - side_navigation_changelog_search_guard_elasticsearch
   - side_navigation_changelog_search_guard_kibana
   - side_navigation_changelog_tlstool
+  - side_navigation_changelog_ear
