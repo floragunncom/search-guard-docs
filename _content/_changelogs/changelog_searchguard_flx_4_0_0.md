@@ -56,7 +56,7 @@ The `type` attribute in action groups is now mandatory. If it is not specified, 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1292)
 
 ### Audit Log REST Request Body Handling Changes
-REST request bodies are now only included in audit logs for authenticated requests. In other cases, the audit log will not contain the HTTP request body. The new behavior is present in the Search Guard FLX 4.0.0 and does not depend on the Elasticsearch version used.
+REST request bodies are now only included in audit logs for authenticated requests. In other cases, the audit log will not contain the HTTP request body.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/550)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1285)
