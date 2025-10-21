@@ -13,7 +13,7 @@ This version introduces backwards-incompatible changes. The system administrator
 
 ## Breaking changes
 ### Removed the Bouncy Castle security provider
-This results in a reduced number of supported cryptographic algorithms. Cryptographic algorithms are now provided by the default Java Cryptography Extension (JCE). In the most common deployments, this should not cause issues. However, before upgrading to Search Guard FLX 4.0.0 or newer, we recommend performing tests (e.g., in a test environment) to ensure that all required cryptographic algorithms are still supported. This change may affect:
+This results in a reduced number of supported cryptographic algorithms. Cryptographic algorithms are now provided by the default Java Cryptography Extension (JCE). **In the most common deployments, this should not cause issues**. However, before upgrading to Search Guard FLX 4.0.0 or newer, we recommend performing tests (e.g., in a test environment) to ensure that all required cryptographic algorithms are still supported. This change may affect:
 - TLS connections (e.g., between nodes, between clients and nodes, between Kibana and Elasticsearch, connections with LDAP, Kerberos, HTTP requests sent by Signals, etc.)
 - JWT signature verification
 - Authentication with OIDC and SAML
