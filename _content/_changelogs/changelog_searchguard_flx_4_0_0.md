@@ -79,16 +79,24 @@ These changes help ensure compliance with modern security standards and reduce t
 
 ## New features
 
-### Signals alerting Operator View in Kibana
-Signals Alerting has a new "Operator View" that highlights the current state of existing watches, rather than focusing on watch management.
-The Operator View is now the default Signals Alerting view.
+### Signals Alerting operator view in Kibana
+Signals Alerting has a new "operator view" that highlights the current state of existing watches, rather than focusing on watch management.
+The operator view is now the default Signals Alerting view.
+
+<p align="center">
+    <img src="signals-alerting-operator-view.jpg" alt="Signals Alerting operator view" class="md_image" style="max-width: 100%"/>
+</p>
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/523)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1064)
 
-### Signals alerting watch status panel in Kibana dashboards
+### Signals Alerting watch status panel in Kibana dashboards
 There is a new Signals Alerting watch status panel that can be added to Kibana dashboards. Each panel shows the status
 of the given watch, and any watch that has severity levels defined can be added.
+
+<p align="center">
+    <img src="signals-alerting-watch-panels.jpg" alt="Signals Alerting dashboard watch status panels" class="md_image" style="max-width: 100%"/>
+</p>
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/482)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1072)
@@ -121,8 +129,8 @@ When a login attempt fails because an OIDC/JWT token is not yet valid, the syste
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1254)
 
-### Signals Alerting - allow disabling of HTML body in email actions
-It is now possible to disable the html_body attribute in email actions.
+### Signals Alerting - allow disabling of HTML body in email actions in the UI
+It is now possible to disable the html_body attribute in email actions in the Signals Alerting UI.
 If disabled, the html_body attribute will be omitted instead of returned as an empty string.
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/321)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1063)
