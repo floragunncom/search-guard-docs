@@ -167,6 +167,12 @@ The `sgctl` tool was previously unable to correctly process configuration files 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/323)
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/310)
 
+### `sgctl`: corrected a bug that occurred during user creation with uncommon characters in the username
+The `sgctl` did not apply URL encoding to usernames when some commands were used. Therefore, the tool was unable to create, get, update, or delete users whose usernames contain URL-reserved, unsafe, or invalid characters (e.g., `/`, `?`, `&`, etc.). The bug has been corrected, and such a character in the username does not cause the problem.
+
+* [Issue](https://git.floragunn.com/search-guard/sgctl/-/issues/71)
+* [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/311)
+
 ## More fixes
 
 This update includes a number of further minor fixes. See [the Gitlab milestone](https://git.floragunn.com/groups/search-guard/-/milestones/17) for all details.
