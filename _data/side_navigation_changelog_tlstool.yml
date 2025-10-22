@@ -1,6 +1,8 @@
 - title: Search Guard TLS Tool
   slug: changelogs-tlstool
   children:
+    - title: TLS Tool 4.0
+      slug: changelog-tlstool_4_0
     - title: TLS Tool 1.9
       slug: changelog-tlstool_1_9
     - title: TLS Tool 1.8
