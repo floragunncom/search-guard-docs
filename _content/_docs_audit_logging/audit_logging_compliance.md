@@ -148,7 +148,7 @@ You can exclude certain request bodies from being logged by configuring actions 
 searchguard.audit.ignore_request_bodies: ["indices:data/read/search"]
 ```
 
-For Elasticsearch 8.18.0 and above, logging the request body for bulk requests is disabled by default.
+For Search Guard FLX 4.0.0 and above, logging the request body for bulk requests is disabled by default.
 {: .note .js-note .note-warning}
 
 ### Resolving and logging index names
