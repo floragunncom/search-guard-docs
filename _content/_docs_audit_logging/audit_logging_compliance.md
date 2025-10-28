@@ -141,11 +141,17 @@ searchguard.audit.log_request_body: false
 
 ### Excluding request bodies
 
-You can exclude certain request bodies from being logged by configuring actions (for Transport requests) and/or REST request paths (for REST requests). Request bodies for these actions/request paths will not be logged.
+You can exclude certain request bodies from being logged by configuring actions or request class names for transport layer requests and request paths for REST layer requests.
+Reqeust bodies will then not be logged for request where at least one of the configured actions, class names or request paths matches.
 
+Example: Disabling request body logging for transport layer search requests:
 ```yaml
-# Disable request body logging for search requests
-searchguard.audit.ignore_request_bodies: ["indices:data/read/search"]
+searchguard.audit.ignore_request_bodies: ["indices:data/read/search", "SearchRequest"]
+```
+
+Example: Disabling request body logging for REST layer requests:
+```yaml
+searchguard.audit.ignore_request_bodies: ["*/_search*"]
 ```
 
 For Search Guard FLX 4.0.0 and above, logging the request body for bulk requests is disabled by default.

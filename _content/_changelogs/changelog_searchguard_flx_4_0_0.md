@@ -62,7 +62,7 @@ REST request bodies are now only included in audit logs for authenticated reques
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1285)
 
 ### Audit log bulk request body logging is disabled by default
-The new configuration parameter `searchguard.audit.ignore_request_bodies` is set to `["BulkRequest", "indices:data/write/bulk"]` by default. If you want to enable logging of bulk request bodies, overwrite this parameter with an empty list.
+The new configuration parameter `searchguard.audit.ignore_request_bodies` is set to `["BulkRequest", "indices:data/write/bulk", "*/_bulk*"]` by default. If you want to enable logging of bulk request bodies, overwrite this parameter with an empty list.
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1291)
 
