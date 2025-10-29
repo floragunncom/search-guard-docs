@@ -19,4 +19,6 @@ This release fixed two security issues that could allow unauthorized data access
 Regarding the issue relating to objects, if you cannot upgrade immediately and FLS exclusion rules are used for object valued attributes (like ~object), add an additional exclusion rule for the members of the object (like ~object.*).
 If you effected by the field masking issue and you cannot upgrade immediately, you can avoid the problem by using field level security (FLS) protection on fields of the affected types instead of field masking.
 
+Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
+
 * [FLS/FM security fix related to objects and IPs](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1250)
