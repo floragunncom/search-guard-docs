@@ -13,7 +13,7 @@ This version introduces backwards-incompatible changes. The system administrator
 
 ## Breaking changes
 ### Removed the Bouncy Castle security provider
-This results in a reduced number of supported cryptographic algorithms. Cryptographic algorithms are now provided by the default Java Cryptography Extension (JCE). **In the most common deployments, this should not cause issues**. However, before upgrading to Search Guard FLX 4.0.0 or newer, we recommend performing tests (e.g., in a test environment) to ensure that all required cryptographic algorithms are still supported. This change may affect:
+Search Guard now defaults to using the Java Cryptography Extensions (JCE) for providing cryptographic functionality instead of using the "Bouncy Castle" library. In most common deployments, this should not cause issues. However, if obscure or obsolete cyphers or formats are being used, these might no longer be supported by the JCE. Thus, thorough testing is recommended. The change may affect:
 - TLS connections (e.g., between nodes, between clients and nodes, between Kibana and Elasticsearch, connections with LDAP, Kerberos, HTTP requests sent by Signals, etc.)
 - JWT signature verification
 - Authentication with OIDC and SAML
@@ -26,19 +26,7 @@ This results in a reduced number of supported cryptographic algorithms. Cryptogr
 ### Removed legacy configuration format
 Support for configuration stored in `sg_config.yml` (the format used before SG FLX 1.0.0) has been removed. If you have already migrated to the new Search Guard FLX configuration format using `sg_authc.yml`, you do not have to do anything. If you are still using `sg_config.yml`, follow the [migration guide](sg-classic-config-migration-overview). This needs to be completed **before** you update to FLX 4.0.0 or newer.
 
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/426)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1101)
-
-### Removed legacy REST API
-APIs deprecated in SG FLX 1.0.0 and earlier are no longer available, including but not limited to:
-- `POST /_searchguard/api/authtoken`
-- `GET /_searchguard/api/sgconfig/`
-- `GET /_searchguard/api/sg_config/`
-- `PUT /_searchguard/api/sgconfig/{name}`
-- `PUT /_searchguard/api/sg_config/`
-- `PUT /_searchguard/api/sg_config/{name}`
-- `PATCH /_searchguard/api/sgconfig/`
-- `PATCH /_searchguard/api/sg_config/`
+All APIs dedicated to modifying the `sg_config` version type have been removed.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/426)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1101)
@@ -58,7 +46,6 @@ The `type` attribute in action groups is now mandatory. If it is not specified, 
 ### Audit log REST request body handling changes
 REST request bodies are now only included in audit logs for authenticated requests. In other cases, the audit log will not contain the HTTP request body.
 
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/550)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1285)
 
 ### Audit log bulk request body logging is disabled by default
@@ -140,7 +127,7 @@ If disabled, the html_body attribute will be omitted instead of returned as an e
 ## Bug fixes
 
 ### FLS rules which grant access to object subfields did not work correctly
-Search Guard has been enhanced to properly handle nested fields in documents when using Field Level Security (FLS). FLS rules like `object.nested_field` did not work correctly. The user cannot access the subfield `nested_field` of the object field `object` unless they have explicitly granted access to the entire object field `object`. This behavior has now been fixed. FLS rules like `object.nested_field` are sufficient to grant user access to the subfield `nested_field`. Permissions related to parent objects are not required anymore.
+Inclusive FLS rules for object-valued properties were not properly supported in previous versions of Search Guard. In addition to the rule for the object-valued property itself, additional rules for the sub-properties were needed to properly allow access to the whole object. This has been fixed. Now, an inclusive rule for the top-level property is sufficient.
 
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1256)
 
@@ -161,14 +148,8 @@ Improved detection and handling of mixed `ldap://` and `ldaps://` host configura
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/258)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1303)
 
-### `sgctl`: improved support for empty configuration files
-The `sgctl` tool was previously unable to correctly process configuration files that contained YAML documents consisting only of a document separator (i.e., document start marker) `---` and comments. This has now been fixed.
-
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/323)
-* [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/310)
-
 ### `sgctl`: corrected a bug that occurred during user creation with uncommon characters in the username
-The `sgctl` did not apply URL encoding to usernames when some commands were used. Therefore, the tool was unable to create, get, update, or delete users whose usernames contain URL-reserved, unsafe, or invalid characters (e.g., `/`, `?`, `&`, etc.). The bug has been corrected, and such a character in the username does not cause the problem.
+The `sgctl` command did not allow creating users with certain special characters (e.g., `/`, `?`, `&`, etc.) when the user name was specified on the command line. This has been fixed.
 
 * [Issue](https://git.floragunn.com/search-guard/sgctl/-/issues/71)
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/311)
