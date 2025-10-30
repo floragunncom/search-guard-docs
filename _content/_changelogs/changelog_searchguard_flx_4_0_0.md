@@ -122,7 +122,11 @@ If disabled, the html_body attribute will be omitted instead of returned as an e
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/321)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1063)
 
+### Preventing unnecessary decryption attempts of JWTs
+During authentication with JSON Web Tokens, or JWTs, Search Guard attempts to decrypt the token when the token is actually encrypted.
 
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/419)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1313)
 
 ## Bug fixes
 
