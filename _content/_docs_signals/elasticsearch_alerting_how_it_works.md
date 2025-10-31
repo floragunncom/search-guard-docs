@@ -257,3 +257,19 @@ The checks of a watch subsequently modify the runtime data. If action-specific c
 }
 ```
 <!-- {% endraw %} -->
+
+## Signals Alerting Operator View
+
+When a watch is created with **severity enabled** it will appear in the Operator View. This is the default signals alerting view which highlights the current state of the existing watches.
+
+<p align="center">
+    <img src="{{ '/img/signals-alerting-operator-view.jpg' | relative_url }}" alt="Signals Alerting operator view" class="md_image" style="max-width: 100%"/>
+</p>
+
+## Adding watch to kibana panel
+
+The signals watch can be added to any dashboard using **Add panel** button and selecting **Add signals watch** option.
+
+<p align="center">
+    <img src="{{ '/img/signals-alerting-watch-panels.jpg' | relative_url }}" alt="Signals Alerting operator view" class="md_image" style="max-width: 100%"/>
+</p>

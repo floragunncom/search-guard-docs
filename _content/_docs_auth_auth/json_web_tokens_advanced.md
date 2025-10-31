@@ -61,3 +61,7 @@ The `tls` settings mentioned above offer the following configuration options:
 **tls.trust_all:** Disable all certificate checks. You should only use this for quick tests. *Never use this for production systems.*
 
 **tls.start_tls:** Use StartTLS to initiate the TLS connection to the remote host.
+
+## Maximum clock skew
+
+The `jwt.max_clock_skew_seconds` parameter controls how much time difference is tolerated between server and token issuer clocks. The default is `10` seconds.

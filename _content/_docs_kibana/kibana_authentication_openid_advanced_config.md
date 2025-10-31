@@ -202,3 +202,7 @@ It is possible to DOS attack an OpenID-based infrastructure by sending tokens wi
 **refresh_rate_limit_count:**  The maximum number of unknown key ids in the time window. Default: 10
 
 **refresh_rate_limit_time_window_ms:** The time window to use when checking the maximum number of unknown key ids, in milliseconds. Default: 10000
+
+## Maximum clock skew
+
+The `oidc.max_clock_skew_seconds` parameter controls how much time difference is tolerated between server and token issuer clocks. The default is `10` seconds.
