@@ -142,7 +142,7 @@ searchguard.audit.log_request_body: false
 ### Excluding request bodies
 
 You can exclude certain request bodies from being logged by configuring actions or request class names for transport layer requests and request paths for REST layer requests.
-Reqeust bodies will then not be logged for request where at least one of the configured actions, class names or request paths matches.
+Request bodies will then not be logged for request where at least one of the configured actions, class names or request paths matches.
 
 Example: Disabling request body logging for transport layer search requests:
 ```yaml
