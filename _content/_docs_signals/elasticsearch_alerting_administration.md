@@ -76,7 +76,7 @@ The below parameters should not be changed under normal circumstances and extrem
 
 **signals.worker_threads.prio:** The priority used by watch runner threads. Defaults to the normal priority (`5`)
 
-**signals.watch_log.mapping_total_fields_limit:** The maximum number of field in signals index. Default is `2000`.
+**signals.watch_log.mapping_total_fields_limit:** The maximum number of field in Signals index. Default is `2000`.
 
 **Note:** There are some further configuration options for configuring internal index names. These are not needed for normal operation and should be not used except in very special circumstances.
 
