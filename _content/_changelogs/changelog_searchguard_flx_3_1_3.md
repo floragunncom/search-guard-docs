@@ -13,7 +13,7 @@ description: Changelog for Search Guard FLX 3.1.3
 ## Bug fixes
 
 ### Security Fixes
-This release fixes the issue where the DLS rules were not applied correctly when Singal's watch was executing. Revealing information in the alerts that the user does not have permissions for. The DLS is now applied correctly preventing any information leak.
+This release fixes the issue where the DLS rules were not applied correctly when Signals watch was executing. Revealing information in the alerts that the user does not have permissions for. The DLS is now applied correctly preventing any information leak.
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
 

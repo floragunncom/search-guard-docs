@@ -13,7 +13,7 @@ description: How to use trust stores
 
 {% include toc.md %}
 
-Some signals' actions (e.g. [Webhook action](elasticsearch-alerting-actions-webhook)) and [HTTP Input](elasticsearch-alerting-inputs-http)
+Some Signals' actions (e.g. [Webhook action](elasticsearch-alerting-actions-webhook)) and [HTTP Input](elasticsearch-alerting-inputs-http)
 need to establish a TLS connection to do their jobs. If no additional TLS related configuration is provided for the action or input then 
 the TLS certificate used by the destination server is considered to be trusted when the server's certificate is issued by a trusted CA 
 (certificate authority). JVM considers CA to be trusted when its, so-called, root certificate is placed in the Java trust store. 
