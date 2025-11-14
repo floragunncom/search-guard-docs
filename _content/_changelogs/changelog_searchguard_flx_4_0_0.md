@@ -160,6 +160,13 @@ The `sgctl` command did not allow creating users with certain special characters
 * [Issue](https://git.floragunn.com/search-guard/sgctl/-/issues/71)
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/311)
 
+### Security Fixes
+This release fixes the issue where the DLS rules were not applied correctly when Singal's watch was executing. Revealing information in the alerts that the user does not have permissions for. The DLS is now applied correctly preventing any information leak.
+
+Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
+
+* [DLS Role Parsing Fails with AuthTokens Fix](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1312)
+
 ## More fixes
 
 This update includes a number of further minor fixes. See [the Gitlab milestone](https://git.floragunn.com/groups/search-guard/-/milestones/17) for all details.
