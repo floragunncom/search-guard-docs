@@ -161,7 +161,7 @@ The `sgctl` command did not allow creating users with certain special characters
 * [Merge Request](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/311)
 
 ### Security Fixes
-This release fixes the issue where the DLS rules were not applied correctly when Signals watch was executing. Revealing information in the alerts that the user does not have permissions for. The DLS is now applied correctly preventing any information leak.
+This release resolves an issue where DLS rules were not correctly applied during Signals watch execution, which could result in alerts exposing information beyond a user’s permissions. DLS is now enforced properly, preventing any unauthorized data from being revealed.
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
 
