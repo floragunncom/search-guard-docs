@@ -33,7 +33,7 @@ default:
   - type: basic
 ```
 
-Alternatively, you can use base64 encoded image string using the following configuration:
+Alternatively, you can configure `login_page.brand_image` with a Base64-encoded data URL:
 
 ```yaml
 default:
