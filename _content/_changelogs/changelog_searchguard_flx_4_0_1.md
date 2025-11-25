@@ -17,4 +17,4 @@ This version addresses a security issue present in Search Guard FLX 4.0.0 and ea
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
 
-* [Improve predicate for remote index recognition](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1362)
+* [Improve predicate for remote index recognition](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1363)
