@@ -211,14 +211,14 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-9:
-    - 9.1.7|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.6|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.5|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.4|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.3|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.2|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.1|4.0.0|4.0.0|yes|no|N/A|N/A
-    - 9.1.0|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 9.1.7|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.6|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.5|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.4|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.3|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.2|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.1|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 9.1.0|4.0.1|4.0.1|yes|no|N/A|N/A
     - 9.0.8|3.1.3|3.1.3|yes|yes|N/A|N/A
     - 9.0.7|3.1.3|3.1.3|yes|yes|N/A|N/A
     - 9.0.6|3.1.3|3.1.3|yes|yes|N/A|N/A
@@ -228,7 +228,7 @@ sgversions:
     - 9.0.2|3.1.3|3.1.3|yes|yes|N/A|N/A
     - 9.0.1|3.1.3|3.1.3|yes|yes|N/A|N/A
   search-guard-flx-8:
-    - 8.19.7|4.0.0|4.0.0|yes|no|N/A|N/A
+    - 8.19.7|4.0.1|4.0.1|yes|no|N/A|N/A
     - 8.19.6|4.0.0|4.0.0|yes|yes|N/A|N/A
     - 8.19.5|3.1.2|3.1.2|yes|yes|N/A|N/A
     - 8.19.4|3.1.2|3.1.2|yes|yes|N/A|N/A
