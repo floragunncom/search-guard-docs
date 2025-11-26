@@ -33,6 +33,14 @@ default:
   - type: basic
 ```
 
+Alternatively, you can configure `login_page.brand_image` with a Base64-encoded data URL:
+
+```yaml
+default:
+  login_page:
+    brand_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAABVCAQAAAB6dUCWAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAX..."
+```
+
 These options are available:
 
 **login_page.brand_image:** An absolute URL to your brand image.
