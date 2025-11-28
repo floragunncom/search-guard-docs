@@ -1,4 +1,4 @@
-image: ruby:2.5
+image: ruby:3.0
 
 docs:
   tags:
@@ -6,10 +6,11 @@ docs:
   stage: build
   script:
     - | 
-      if [[ ! $CI_COMMIT_BRANCH =~ ^5.x$ ]]; then
-        echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
-        exit 0
-      fi
+      # if [[ ! $CI_COMMIT_BRANCH =~ ^5.x$ ]]; then
+      #   echo "Branch $CI_COMMIT_BRANCH does not seem to be a release branch, exiting gracefully"
+      #   exit 0
+      # fi
+
       cat /etc/debian_version || true 
       uname -a
       export LC_ALL="C.UTF-8"
@@ -32,9 +33,7 @@ docs:
       sftp_root_directory='html'
   
       #set default SFTP server
-      if [ ! ${sftp_server+x} ];  then
-        sftp_server=185.233.188.50
-      fi
+      sftp_server=3.252.254.116
     
       echo "Building branch $git_branch"
 
@@ -69,10 +68,10 @@ docs:
        echo "SFTP upload is disabled"    
       fi
       
-      if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-        echo "## Skipping Search Index"
-      else
-        echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml
-      fi
+      # if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
+      #   echo "## Skipping Search Index"
+      # else
+      #   echo "## Rebuilding Search Index"
+      #   bundle exec jekyll algolia push --config _config.yml
+      # fi
   
