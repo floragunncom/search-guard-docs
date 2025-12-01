@@ -83,6 +83,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_INDICES_MONITOR | Grants permission to execute all actions regarding index monitoring, e.g. recovery, segments info, index stats & status |
 | SGS_MANAGE | Grants all monitor and index administration permissions | 
 | SGS_INDICES_MANAGE_ILM | Grants permission to use the index lifecycle management APIs for this index | 
+| SGS_SQL_READ | Grants permission to perform SQL search. SQL search also requires cluster-level permissions, which can be granted by assigning the SGS_CLUSTER_SQL_READ group. | 
 {: .config-table}
 
 ### Cluster-level action groups
@@ -98,6 +99,7 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 | SGS_CLUSTER_READ_ILM | Grants read-only permissions to use the index lifecycle management APIs. |
 | SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | Grants permission to manage index templates. |
 | SGS_CLUSTER_MANAGE_PIPELINES | Grants permissions to manage pipelines. |
+| SGS_CLUSTER_SQL_READ | Grants permission to perform SQL search and asynchronous SQL search. SQL search also requires index-level permissions, which can be granted by assigning the SGS_SQL_READ group. |
 {: .config-table}
 
 ### Multi- and bulk requests
