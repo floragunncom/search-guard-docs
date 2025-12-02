@@ -36,7 +36,10 @@ sg_signals_manager:
     - SGS_SIGNALS_ACCOUNT_MANAGE
     - SGS_CLUSTER_COMPOSITE
   index_permissions:
-    ...
+    - index_patterns:
+        - '.signals_log*'
+      allowed_actions:
+        - 'SGS_READ'
   tenant_permissions:
     - tenant_patterns:
         - 'SGS_GLOBAL_TENANT'
