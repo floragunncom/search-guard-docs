@@ -13,7 +13,7 @@ description: Changelog for Search Guard FLX 4.0.1
 
 ### Security Fixes
 
-This version addresses a security issue present in Search Guard FLX 4.0.0 and earlier. When the DLS/FLS module is disabled, queries using selector syntax against data streams may incorrectly return documents that should not be accessible. Before upgrading to Search Guard FLX 4.0.1, system administrators should carefully review their use of selector-based queries and data streams, and validate access control behavior in a non-production environment. As always, ensure that appropriate backup and rollback procedures are in place prior to performing the upgrade.
+In Search Guard FLX versions from 3.1.0 up to 4.0.0 with enterprise modules being disabled, there exists an issue which allows authenticated users to use specially crafted requests to read documents from data streams without having the respective privileges. As always, ensure that appropriate backup and rollback procedures are in place prior to performing the upgrade.
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
 
