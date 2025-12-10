@@ -347,19 +347,19 @@ For example, if your Kibana index is called ".kibana", and the currently selecte
 The structure of the index name for a regular tenant is:
 
 ```
-<kibana index name>_<tenant hashcode>_<tenant name>
+{kibana index name}_{tenant hashcode}_{tenant name}
 ```
 
 There are two default tenants in additions, Global and Private. The structure of the index name for the Private tenants is:
 
 ```
-<kibana index name>_<username hashcode>_<username>
+{kibana index name}_{username hashcode}_{username}
 ```
 
 The structure of the index name for the Global tenants is:
 
 ```
-<kibana index name>
+{kibana index name}
 ```
 
 Search Guard automatically makes sure that the index names do not contain any illegal characters. Search Guard also checks the user's permissions for the selected tenant index. You do not need to configure anything special in `sg_roles.yml`, apart from the standard permissions for the Kibana index. See [Using Search Guard with Kibana](kibana-plugin-installation) for further information.
