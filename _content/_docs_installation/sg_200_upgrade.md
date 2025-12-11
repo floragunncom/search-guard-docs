@@ -34,7 +34,7 @@ The upgrade procedure for environments with disabled Multi-Tenancy is straightfo
 
 ### Multi-Tenancy feature
 
-Search Guard 2.0.0 contains a new Multi-Tenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](elasticsearch-alerting-conditions) related to the new implementation. Furthermore, the implementation of the new Multi-Tenancy feature does not support private tenants.
+Search Guard 2.0.0 contains a new Multi-Tenancy feature implementation. This implementation is not backwards compatible, and its behaviour might differ slightly from that used in Search Guard 1.x.x. Therefore, the system administrator is advised to familiarize themselves with the [limitations](kibana-multi-tenancy#limitations-of-multi-tenancy-implementation-in-flx-v200-and-higher) related to the new implementation. Furthermore, the implementation of the new Multi-Tenancy feature does not support private tenants.
 
 ### Upgrading steps
 The upgrade procedure should first be carried out in the test environment, which is a copy of the production cluster. Once this test is accomplished successfully, you can upgrade the production environment.
