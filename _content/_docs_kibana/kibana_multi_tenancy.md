@@ -369,7 +369,7 @@ Search Guard automatically makes sure that the index names do not contain any il
 In order to include all Kibana indices in your backup / snapshot, the easiest way is to simply use wildcards:
 
 ```
-<kibana index name>*
+{kibana index name}*
 ```
 
 ## Limitations of multi-tenancy implementation in FLX v2.0.0 and higher
