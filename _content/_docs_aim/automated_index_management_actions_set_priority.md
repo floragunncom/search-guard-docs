@@ -3,6 +3,7 @@ title: Set Priority Action
 html_title: Set Priority Action
 permalink: automated-index-management-actions-set-priority
 layout: docs
+section: index_management
 edition: community
 description: How the set priority action works
 ---

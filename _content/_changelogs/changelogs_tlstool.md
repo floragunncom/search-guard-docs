@@ -2,7 +2,8 @@
 title: Overview
 html_title: TLS Tool changelogs
 permalink: changelogs-tlstool
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for the Search Guard TLS Tool which can be used to generate
   TLS certificates and CAs.
 ---

@@ -3,6 +3,7 @@ title: Get Policy
 html_title: Get Policy
 permalink: automated-index-management-rest-policy-get
 layout: docs
+section: index_management
 edition: community
 description: Use the get policy REST API to get a policy
 ---

@@ -3,6 +3,7 @@ title: Snapshot Action
 html_title: Snapshot Action
 permalink: automated-index-management-actions-snapshot
 layout: docs
+section: index_management
 edition: community
 description: How the snapshot action works
 ---

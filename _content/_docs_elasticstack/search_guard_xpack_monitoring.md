@@ -2,6 +2,7 @@
 title: X-Pack Monitoring
 permalink: search-guard-xpack-monitoring
 layout: docs
+section: security
 edition: community
 description: How to configure Search Guard to integrate with the free X-Pack Monitoring
   for Elasticsearch

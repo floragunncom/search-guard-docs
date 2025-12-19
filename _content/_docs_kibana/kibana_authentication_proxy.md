@@ -3,6 +3,7 @@ title: Proxy
 html_title: Kibana Proxy Authentication
 permalink: kibana-authentication-proxy
 layout: docs
+section: security
 edition: community
 description: How to use an authenticating proxy in front of Kibana to implement Single-Sign-On.
 ---

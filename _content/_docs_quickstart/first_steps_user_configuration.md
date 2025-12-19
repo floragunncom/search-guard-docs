@@ -3,6 +3,7 @@ title: Adding users
 html_title: Adding users
 permalink: first-steps-user-configuration
 layout: docs
+section: security
 description: How to add new Search Guard users by using sgctl and the Search Guard
   configuration.
 resources:

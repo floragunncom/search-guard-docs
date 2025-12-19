@@ -3,6 +3,7 @@ title: Search Guard Installation
 html_title: Installation
 permalink: search-guard-installation
 layout: docs
+section: security
 description: Step by step instructions for setting up Search Guard on a new or existing
   Elastcsearch cluster.
 resources:

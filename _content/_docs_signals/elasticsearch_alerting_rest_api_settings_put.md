@@ -3,6 +3,7 @@ title: Put Settings
 html_title: Put Settings
 permalink: elasticsearch-alerting-rest-api-settings-put
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Put Settings API to update the Signals
   Settings

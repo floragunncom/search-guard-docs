@@ -3,6 +3,7 @@ title: Quick Start
 html_title: JSON web tokens Quick Start
 permalink: json-web-tokens
 layout: docs
+section: security
 edition: enterprise
 description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access
   to your Elasticsearch cluster.

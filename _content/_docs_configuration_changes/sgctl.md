@@ -2,6 +2,7 @@
 title: Basic Usage
 permalink: sgctl
 layout: docs
+section: security
 edition: community
 index: false
 description: Use the powerful and easy-to-use sgctl command line tool to manage and

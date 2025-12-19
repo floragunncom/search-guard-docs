@@ -1,7 +1,8 @@
 ---
 title: Search Guard FLX 1.6.0
 permalink: changelog-searchguard-flx-1_6_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Search Guard FLX 1.6.0
 ---
 <!--- Copyright 2024 floragunn GmbH -->

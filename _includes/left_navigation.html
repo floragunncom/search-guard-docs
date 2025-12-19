@@ -1,13 +1,46 @@
 <nav class="menu-vertical-wrapper">
-  <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu" >
-    {% for filename in include.navigation_file.files %}
-      {% assign navigation_main_section = site.data[filename] %}
-      {% for item in navigation_main_section %}
-        {% include left_navigation_item.html
-          item=item
-          depth=1
-        %}
+  <ul class="menu-vertical js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
+    {% if page.section %}
+      {% comment %} Load navigation for active section {% endcomment %}
+      {% assign section_found = false %}
+      {% for section in site.data.main_navigation_sections.sections %}
+        {% if section.key == page.section %}
+          {% assign nav_data = site.data[section.nav_file] %}
+          {% assign section_found = true %}
+          {% break %}
+        {% endif %}
       {% endfor %}
-    {% endfor %}
+
+      {% if section_found %}
+        {% for item in nav_data %}
+          {% include left_navigation_item.html
+            item=item
+            depth=1
+          %}
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      {% comment %} Homepage: show simplified flat list of main sections {% endcomment %}
+      {% if page.isroot %}
+        {% for section in site.data.main_navigation_sections.sections %}
+          <li class="nav-item left-nav-level-1">
+            <a href="{{ section.slug }}">
+              {{ section.title }}
+            </a>
+          </li>
+        {% endfor %}
+      {% else %}
+        {% comment %} Fallback for other pages without section: show all sections {% endcomment %}
+        {% for filename in site.data.side_navigation_main_structure.files %}
+          {% assign navigation_main_section = site.data[filename] %}
+          {% for item in navigation_main_section %}
+            {% include left_navigation_item.html
+              item=item
+              depth=1
+            %}
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
   </ul>
 </nav>

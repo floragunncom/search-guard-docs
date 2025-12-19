@@ -3,6 +3,7 @@ title: REST API
 html_title: REST API
 permalink: elasticsearch-alerting-rest-api
 layout: docs
+section: alerting
 edition: community
 canonical: elasticsearch-alerting-rest-api-overview
 description: Overview of the Elasticsearch Alerting REST API

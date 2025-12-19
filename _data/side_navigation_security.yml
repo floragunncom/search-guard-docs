@@ -370,3 +370,15 @@
           slug: troubleshooting-kibana
         - title: Multi Tenancy
           slug: troubleshooting-multi-tenancy
+
+    - title: Changelogs
+      slug: changelogs-section
+      children:
+        - title: Search Guard Security
+          slug: changelogs-searchguard
+        - title: Kibana
+          slug: changelogs-kibana
+        - title: TLS Tool
+          slug: changelogs-tlstool
+        - title: Encryption at Rest
+          slug: changelogs-ear

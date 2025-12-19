@@ -3,6 +3,7 @@ title: Cache API
 html_title: Cache API
 permalink: rest-api-cache
 layout: docs
+section: security
 edition: enterprise
 description: How to use the cache REST API endpoint to flush the Search Guard cache.
 ---

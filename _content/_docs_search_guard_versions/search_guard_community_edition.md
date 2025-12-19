@@ -2,6 +2,7 @@
 title: Community Edition
 permalink: search-guard-community-edition
 layout: docs
+section: security
 edition: community
 description: The Search Guard Community Edition provides TLS encryption and index-level
   permissions on REST and transport for free.

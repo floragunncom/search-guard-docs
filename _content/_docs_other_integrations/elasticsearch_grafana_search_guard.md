@@ -3,6 +3,7 @@ title: Grafana
 html_title: Grafana
 permalink: elasticsearch-grafana-search-guard
 layout: docs
+section: security
 edition: community
 description: How to configure and use Grafana with a Search Guard secured cluster.
   Protect your data from any unauthorized access.

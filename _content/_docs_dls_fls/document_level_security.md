@@ -3,6 +3,7 @@ title: Basics
 html_title: Search Guard document-level security basics
 permalink: document-level-security
 layout: docs
+section: security
 edition: enterprise
 description: Use Document- and Field-Level Security to implement fine grained access
   control to documents and fields in your Elasticsearch cluster.

@@ -3,6 +3,7 @@ title: Convert ES Watch
 html_title: Import Elasticsearch Watch
 permalink: elasticsearch-alerting-rest-api-convert-es
 layout: docs
+section: alerting
 edition: beta
 description: How to automatically convert an existing Elasticsearch Alerting watch
   to the Signals format and import it.

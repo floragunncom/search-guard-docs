@@ -3,6 +3,7 @@ title: Set Replica Count Action
 html_title: Set Replica Count Action
 permalink: automated-index-management-actions-set-replica-count
 layout: docs
+section: index_management
 edition: community
 description: How the set replica count action works
 ---

@@ -3,6 +3,7 @@ title: REST API Overview
 html_title: REST API
 permalink: elasticsearch-alerting-rest-api-overview
 layout: docs
+section: alerting
 edition: community
 description: Overview of the Alerting for Elasticsearch REST API for configuring watches,
   alerts and accounts.

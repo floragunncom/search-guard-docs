@@ -3,6 +3,7 @@ title: Transformations Overview
 html_title: Transformations / Calculations
 permalink: elasticsearch-alerting-transformations-calculations-overview
 layout: docs
+section: alerting
 edition: community
 description:
 index: false

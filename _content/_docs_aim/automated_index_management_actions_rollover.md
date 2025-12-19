@@ -3,6 +3,7 @@ title: Rollover Action
 html_title: Rollover Action
 permalink: automated-index-management-actions-rollover
 layout: docs
+section: index_management
 edition: community
 description: How the rollover action works
 ---

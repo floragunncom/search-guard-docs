@@ -3,6 +3,7 @@ title: Security Integration
 html_title: Security Integration
 permalink: elasticsearch-alerting-security
 layout: docs
+section: alerting
 edition: community
 canonical: elasticsearch-alerting-security-overview
 description: Signals Alerting for Elasticsearch is fully integrated with all Search

@@ -3,6 +3,7 @@ title: Security Integration
 html_title: Security Integration
 permalink: automated-index-management-security-integration
 layout: docs
+section: index_management
 edition: community
 description: Configure Automated Index Management with Search Guard security features
 ---

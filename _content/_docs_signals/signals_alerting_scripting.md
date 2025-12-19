@@ -3,6 +3,7 @@ title: Scripting
 html_title: Scripting in Signals Alerting
 permalink: signals-alerting-scripting
 layout: docs
+section: alerting
 edition: community
 description:
 ---

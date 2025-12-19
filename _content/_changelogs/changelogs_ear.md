@@ -2,7 +2,8 @@
 title: Overview
 html_title: Search Guard Encryption at Rest
 permalink: changelogs-ear
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for the Search Guard Encryption at Rest.
 ---
 <!---

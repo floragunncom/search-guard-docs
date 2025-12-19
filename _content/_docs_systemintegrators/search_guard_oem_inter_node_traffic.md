@@ -3,6 +3,7 @@ title: Inter-node traffic evaluator
 html_title: Inter-node traffic
 permalink: search-guard-oem-inter-node-traffic
 layout: docs
+section: security
 edition: community
 description: How implement a custom inter-node traffic evaluator for Search Guard.
 ---

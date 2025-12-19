@@ -1,0 +1,25 @@
+sections:
+  - title: Security
+    slug: security
+    key: security
+    nav_file: side_navigation_security
+
+  - title: Alerting
+    slug: elasticsearch-alerting
+    key: alerting
+    nav_file: side_navigation_alerting
+
+  - title: Index Management
+    slug: automated-index-management
+    key: index_management
+    nav_file: side_navigation_index_management
+
+  - title: Encryption at Rest
+    slug: encryption-at-rest
+    key: encryption_at_rest
+    nav_file: side_navigation_encryption_at_rest
+
+  - title: Anomaly Detection
+    slug: anomaly-detection
+    key: anomaly_detection
+    nav_file: side_navigation_anomaly_detection

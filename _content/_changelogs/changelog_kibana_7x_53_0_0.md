@@ -1,7 +1,8 @@
 ---
 title: Kibana 7.x-53.0.0
 permalink: changelog-kibana-7x-53_0_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for the Search Guard Kibana Plugin 7.x-53.0.0
 ---
 <!--- Copyright 2021 floragunn GmbH -->

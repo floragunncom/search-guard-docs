@@ -1,7 +1,8 @@
 ---
 title: Kibana 7.x-35.0.0
 permalink: changelog-kibana-7x-35_0_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for the Search Guard Kibana Plugin 7.x-35.0.0
 ---
 <!---

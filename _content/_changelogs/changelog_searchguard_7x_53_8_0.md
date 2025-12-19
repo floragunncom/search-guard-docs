@@ -1,7 +1,8 @@
 ---
 title: Search Guard 7.x-53.8.0
 permalink: changelog-searchguard-7x-53_8_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Search Guard 7.x-53.8.0
 ---
 <!--- Copyright 2024 floragunn GmbH -->

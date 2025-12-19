@@ -3,6 +3,7 @@ title: Actions Overview
 html_title: Actions Overview
 permalink: automated-index-management-actions-overview
 layout: docs
+section: index_management
 edition: community
 description: How actions work in AIM
 ---

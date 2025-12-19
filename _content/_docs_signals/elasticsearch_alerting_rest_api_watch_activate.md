@@ -3,6 +3,7 @@ title: Activate and Deactivate Watch
 html_title: Activate Watch
 permalink: elasticsearch-alerting-rest-api-watch-activate
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Activate Watch API activate and deactivate
   watches.

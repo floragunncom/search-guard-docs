@@ -2,6 +2,7 @@
 title: OEM Licensing
 permalink: oem-licenses
 layout: docs
+section: security
 description: Search Guard offers OEM licenses for system integrators that want to
   ship Search Guard as part of their own products.
 resources:

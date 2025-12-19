@@ -3,6 +3,7 @@ title: Cerebro
 html_title: Cerebro
 permalink: elasticsearch-cerebro-search-guard
 layout: docs
+section: security
 edition: community
 description: How to configure and use Cerebro with a Search Guard secured Elasticsearch
   cluster. Protect your data from any unauthorized access.

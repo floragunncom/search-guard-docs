@@ -1,7 +1,8 @@
 ---
 title: TLS Tool 1.5
 permalink: changelog-tlstool_1_5
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for the Search Guard TLS Tool 1.5
 ---
 <!---

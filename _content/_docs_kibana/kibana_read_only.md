@@ -3,6 +3,7 @@ title: Read Only mode
 html_title: Kibana Read Only mode
 permalink: kibana-read-only
 layout: docs
+section: security
 edition: enterprise
 description: Use the Kibana read only mode to give users access to dashboards, but
   prevent them from accessing anything else.

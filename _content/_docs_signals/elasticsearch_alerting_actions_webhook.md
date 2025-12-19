@@ -3,6 +3,7 @@ title: Webhook Actions
 html_title: Webhook Actions
 permalink: elasticsearch-alerting-actions-webhook
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch can send notifications to webhooks
   in case it detects anomalies in your data

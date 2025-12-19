@@ -3,6 +3,7 @@ title: Inputs
 html_title: Alerting Data Input
 permalink: elasticsearch-alerting-inputs
 layout: docs
+section: alerting
 edition: community
 canonical: elasticsearch-alerting-inputs-overview
 description: Signals Alerting for Elasticsearch offers multiple data inputs like Elasticsearch

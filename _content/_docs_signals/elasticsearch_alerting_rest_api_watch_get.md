@@ -3,6 +3,7 @@ title: Get Watch
 html_title: Get Watch
 permalink: elasticsearch-alerting-rest-api-watch-get
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Get Watch API to retrieve configured
   watches by watch ID

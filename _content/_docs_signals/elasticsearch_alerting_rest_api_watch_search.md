@@ -3,6 +3,7 @@ title: Search Watch
 html_title: Search Watch
 permalink: elasticsearch-alerting-rest-api-watch-search
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Search REST API to search for configured
   watches

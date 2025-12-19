@@ -3,6 +3,7 @@ title: Search Watch States
 html_title: Search Watch State
 permalink: elasticsearch-alerting-rest-api-watch-state-search
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Search API to search for watch state
   documents

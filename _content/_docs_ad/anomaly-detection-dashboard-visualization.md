@@ -4,6 +4,7 @@ title: Anomaly Detection dashboards and visualizations
 html_title: Anomaly Detection dashboards and visualizations
 permalink: anomaly-detection-dashboard-visualization
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection dashboards and visualizations
 ---

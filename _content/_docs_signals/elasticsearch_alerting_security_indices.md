@@ -3,6 +3,7 @@ title: Signals Indices
 html_title: Alerting Indices
 permalink: elasticsearch-alerting-security-indices
 layout: docs
+section: alerting
 edition: community
 description: How Signals for Elasticsearch uses a protected configuration index to
   protect sensitive data

@@ -3,6 +3,7 @@ title: Authentication
 html_title: Kibana Authentication
 permalink: kibana-authentication
 layout: docs
+section: security
 edition: community
 description: Use the Search Guard Kibana plugin to add authentication and session management to Kibana.
 ---

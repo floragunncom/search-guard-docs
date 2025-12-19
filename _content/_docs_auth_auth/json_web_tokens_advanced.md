@@ -3,6 +3,7 @@ title: Advanced Configuration
 html_title: JWT Advanced Configuration
 permalink: json-web-tokens-advanced
 layout: docs
+section: security
 edition: enterprise
 description: How to configure JSON web tokens (JWT) to implement Single-Sign-On access
   to your Elasticsearch cluster.

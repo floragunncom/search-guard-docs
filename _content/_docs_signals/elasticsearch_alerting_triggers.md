@@ -3,6 +3,7 @@ title: Alerting Triggers
 html_title: Triggers
 permalink: elasticsearch-alerting-triggers
 layout: docs
+section: alerting
 edition: community
 canonical: triggers-overview
 description: How to create triggers for Signals Alerting for Elasticsearch that control

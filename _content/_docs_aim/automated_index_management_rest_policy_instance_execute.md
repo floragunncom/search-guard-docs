@@ -3,6 +3,7 @@ title: Policy Instance Execute
 html_title: Policy Instance Execute
 permalink: automated-index-management-rest-policy-instance-execute
 layout: docs
+section: index_management
 edition: community
 description: Use the execute REST API to execute a managed index
 ---

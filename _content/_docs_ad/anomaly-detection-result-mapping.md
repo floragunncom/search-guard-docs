@@ -3,6 +3,7 @@ title: Anomaly Detection result mapping
 html_title: Anomaly Detection result mapping
 permalink: anomaly-detection-result-mapping
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection result mapping
 ---

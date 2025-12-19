@@ -3,6 +3,7 @@ title: Demo users and roles
 html_title: Demo users and role
 permalink: demo-users-roles
 layout: docs
+section: security
 edition: community
 description: Description of the demo users and roles Search Guard ships with. Use
   them as blueprint for your own permission schema.

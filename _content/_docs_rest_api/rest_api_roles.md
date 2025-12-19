@@ -3,6 +3,7 @@ title: Roles API
 html_title: Roles API
 permalink: rest-api-roles
 layout: docs
+section: security
 edition: enterprise
 description: How to use the roles REST API endpoints to manage roles and permissions.
 ---

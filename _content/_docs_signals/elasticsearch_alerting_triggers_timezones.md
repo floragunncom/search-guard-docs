@@ -3,6 +3,7 @@ title: Handling Timezones
 html_title: Timezones
 permalink: elasticsearch-alerting-triggers-timezones
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch supports different timezones for triggers
   that control when a watch is executed.

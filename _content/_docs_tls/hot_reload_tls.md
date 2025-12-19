@@ -2,6 +2,7 @@
 title: TLS hot-reload
 permalink: hot-reload-tls
 layout: docs
+section: security
 edition: community
 description: Search Guard supports hot-reload of TLS certificates
 resources:

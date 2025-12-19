@@ -3,6 +3,7 @@ title: Age Condition
 html_title: Age Condition
 permalink: automated-index-management-conditions-age
 layout: docs
+section: index_management
 edition: community
 description: How the age condition works
 ---

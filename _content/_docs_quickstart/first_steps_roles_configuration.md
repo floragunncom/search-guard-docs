@@ -3,6 +3,7 @@ title: Configuring roles and permissions
 html_title: Configuring roles
 permalink: first-steps-roles-configuration
 layout: docs
+section: security
 description: How to configure Search Guard roles to control access to indices, documents
   and fields.
 resources:

@@ -2,6 +2,7 @@
 title: Generating certificates
 permalink: generating-tls-certificates
 layout: docs
+section: security
 edition: community
 description: Various options for generating TLS certificates that you can use with
   Search Guard.

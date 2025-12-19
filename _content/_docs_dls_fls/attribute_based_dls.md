@@ -3,6 +3,7 @@ title: Attribute-based authorization
 html_title: Attribute-based DLS authorization with Search Guard
 permalink: attribute-based-dls
 layout: docs
+section: security
 edition: enterprise
 description: Use Document- and Field-Level Security to implement fine grained access
   control to documents and fields in your Elasticsearch cluster.

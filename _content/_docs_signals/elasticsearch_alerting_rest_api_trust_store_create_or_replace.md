@@ -3,6 +3,7 @@ title: Create or replace a trust store
 html_title: Create or replace trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-create-or-replace
 layout: docs
+section: alerting
 edition: community
 description: The request used to create or replace a trust store
 ---

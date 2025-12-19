@@ -1,7 +1,8 @@
 ---
 title: Search Guard 7.x-40.0.0
 permalink: changelog-searchguard-7x-40_0_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Search Guard 7.x-40.0.0
 ---
 <!--- Copyright 2020 floragunn GmbH -->

@@ -2,6 +2,7 @@
 title: Search Guard Installer
 permalink: tls-certificates-installer
 layout: docs
+section: security
 edition: community
 description: How to generate TLS certificates by using the demo installation script
   that ships with Search Guard.

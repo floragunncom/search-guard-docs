@@ -3,6 +3,7 @@ title: Email Actions
 html_title: Email Actions
 permalink: elasticsearch-alerting-actions-email
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch can send notifications via email in
   case it detects anomalies in your data.

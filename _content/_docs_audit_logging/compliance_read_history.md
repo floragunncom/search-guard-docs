@@ -3,6 +3,7 @@ title: Read History Audit Logging
 html_title: Read History
 permalink: compliance-read-history
 layout: docs
+section: security
 edition: compliance
 description: Use the Read History Audit Logging to monitor read access to sensitive
   data and stay compliant with GDRP, HIPAA, PCI and SOX.

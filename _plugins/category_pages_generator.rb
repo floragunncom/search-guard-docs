@@ -33,18 +33,38 @@ module Jekyll
         FileUtils.mkdir_p(category_dir)
       end
 
+      # Load section mappings from main_navigation_sections.yml
+      section_mappings = build_section_mappings(site)
+
       # Process each navigation file listed in the main structure
       main_nav_file['files'].each do |file_key|
         next unless site.data.key?(file_key)
 
         nav_data = site.data[file_key]
-        process_nav_items(site, nav_data, category_dir)
+        section_key = section_mappings[file_key]
+        process_nav_items(site, nav_data, category_dir, section_key)
       end
     end
 
     private
 
-    def process_nav_items(site, items, category_dir)
+    def build_section_mappings(site)
+      # Build a mapping from navigation file names to section keys
+      # e.g., "side_navigation_security" => "security"
+      mappings = {}
+
+      if site.data.key?('main_navigation_sections')
+        sections = site.data['main_navigation_sections']['sections']
+        sections.each do |section|
+          # Map nav_file to section key
+          mappings[section['nav_file']] = section['key']
+        end
+      end
+
+      mappings
+    end
+
+    def process_nav_items(site, items, category_dir, section_key = nil)
       # Array of navigation items or single item
       items_array = items.is_a?(Array) ? items : [items]
 
@@ -54,15 +74,15 @@ module Jekyll
 
         # Create a category page if this item has children
         if item.key?('children') && !item['children'].nil? && !item['children'].empty?
-          create_category_page(site, item, category_dir)
+          create_category_page(site, item, category_dir, section_key)
 
           # Process children recursively
-          process_nav_items(site, item['children'], category_dir)
+          process_nav_items(site, item['children'], category_dir, section_key)
         end
       end
     end
 
-    def create_category_page(site, item, category_dir)
+    def create_category_page(site, item, category_dir, section_key = nil)
       # Create the file path, replacing hyphens with underscores in the filename
       filename = "#{item['slug'].gsub('-', '_')}.md"
       file_path = File.join(category_dir, filename)
@@ -76,13 +96,13 @@ module Jekyll
       # Only generate the category page if no existing content file was found
       unless existing_file
         # Build content for the file
-        content = build_category_page_content(item)
+        content = build_category_page_content(item, section_key)
 
         # Write the file
         File.open(file_path, 'w') do |file|
           file.write(content)
         end
-        puts "Generated page for slug #{item[:slug]}: #{file_path}"
+        puts "Generated page for slug #{item['slug']} with section #{section_key}: #{file_path}"
       end
     end
 
@@ -112,18 +132,17 @@ module Jekyll
       nil
     end
 
-    def build_category_page_content(item)
-      # Build the frontmatter
-      frontmatter = <<~FRONTMATTER
-        ---
-        title: #{item['title']}
-        html_title: #{item['title']}
-        permalink: #{item['slug']}
-        layout: docs
-        index: false
-        description: All pages in the category #{item['title']}
-        ---
-      FRONTMATTER
+    def build_category_page_content(item, section_key = nil)
+      # Build the frontmatter with section field if available
+      frontmatter = "---\n"
+      frontmatter += "title: #{item['title']}\n"
+      frontmatter += "html_title: #{item['title']}\n"
+      frontmatter += "permalink: #{item['slug']}\n"
+      frontmatter += "layout: docs\n"
+      frontmatter += "section: #{section_key}\n" if section_key
+      frontmatter += "index: false\n"
+      frontmatter += "description: All pages in the category #{item['title']}\n"
+      frontmatter += "---\n"
 
       # Start building the content with the frontmatter
       content = frontmatter

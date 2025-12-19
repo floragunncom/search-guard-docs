@@ -3,6 +3,7 @@ title: Inputs Overview
 html_title: Inputs Overview
 permalink: elasticsearch-alerting-inputs-overview
 layout: docs
+section: alerting
 edition: community
 description: In Signals Alerting for Elasticsearch, each watch can have one or more
   data inputs that collect data for further processing.
