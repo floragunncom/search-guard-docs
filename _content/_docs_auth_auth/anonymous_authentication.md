@@ -64,9 +64,9 @@ sg_anonymous:
     - SGS_CLUSTER_COMPOSITE_OPS_RO
   indices_permissions:
     - index_patterns:
-      - 'public'
-    allowed_actions:
-      - SGS_READ
+        - "public"
+      allowed_actions:
+        - SGS_READ
 ```
 
 ### Client IP specific anonymous users
