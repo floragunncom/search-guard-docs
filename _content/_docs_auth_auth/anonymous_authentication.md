@@ -63,7 +63,9 @@ sg_anonymous:
   cluster_permissions:
     - SGS_CLUSTER_COMPOSITE_OPS_RO
   indices_permissions:
-    'public':
+    - index_patterns:
+      - 'public'
+    allowed_actions:
       - SGS_READ
 ```
 
