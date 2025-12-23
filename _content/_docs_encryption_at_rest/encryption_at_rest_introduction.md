@@ -104,6 +104,7 @@ curl -k -XPUT -u admin:admin "https://esnode.company.com:9200/my_encrypted_index
          "type": "binary"
        }
      }
+  }
 }
 '
 ```
