@@ -569,7 +569,7 @@ search-guard-introduction:
 
 ### Build Stage
 
-1. **Merge conflict detection:** Checks for merge markers (`<<<<<<`, `>>>>>>`)
+1. **Merge conflict detection:** Checks for merge markers
 2. **Clean build:** Removes old `_site` directory
 3. **2-pass Jekyll build:**
    - First pass generates basic pages
