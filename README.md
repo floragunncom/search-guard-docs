@@ -2,259 +2,666 @@
 
 Welcome to the Search Guard Documentation System.
 
-The latest online version can be found here:
+The latest online version can be found here: [Search Guard Documentation](https://docs.search-guard.com/latest/)
 
-[Search Guard Documentation](https://docs.search-guard.com/latest/)
+## Table of Contents
+
+- [Technologies](#technologies)
+- [Quick Start](#quick-start)
+- [Available Commands](#available-commands)
+- [Project Structure](#project-structure)
+- [Navigation System](#navigation-system)
+- [Adding Content](#adding-content)
+- [Adding Changelogs](#adding-changelogs)
+- [Conventions](#conventions)
+- [Jekyll Plugins](#jekyll-plugins)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Troubleshooting](#troubleshooting)
 
 ## Technologies
 
 The documentation is based on:
 
-* [Ruby](https://www.ruby-lang.org/en/)
-* [Jekyll static site generator](https://jekyllrb.com/)
-* [VSDocs Documentation Templates](https://themeforest.net/item/vsdocs-online-documentation-template/11418861)
-* [Algolia Search Engine](https://www.algolia.com/)
+* **[Ruby 3.0](https://www.ruby-lang.org/en/)** - Programming language
+* **[Jekyll 4.2.0](https://jekyllrb.com/)** - Static site generator
+* **[Kramdown](https://kramdown.gettalong.org/)** - Markdown parser with GitHub Flavored Markdown (GFM) support
+* **[Sass](https://sass-lang.com/)** - CSS preprocessor
+* **[Algolia](https://www.algolia.com/)** - Full-text search engine
+* **[HTMLProofer](https://github.com/gjtorikian/html-proofer)** - Link validation tool
+* **[VSDocs Documentation Templates](https://themeforest.net/item/vsdocs-online-documentation-template/11418861)** - Base template
 
-## Quickstart
+## Quick Start
 
-Clone the repository and in the project directory execute:
+### Installation
 
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd search-guard-docs
 ```
+
+2. Install Ruby dependencies:
+```bash
 bundle install
 ```
 
-```
+3. Start the development server:
+```bash
 bundle exec jekyll serve --watch
 ```
 
-The `watch` command line parameter tells Jekyll to watch the directories for file changes and regenerate the documentation upon changes.
+The site will be available at `http://localhost:4000`. The `--watch` flag tells Jekyll to automatically regenerate the site when files change.
 
-After the command completes:
+## Available Commands
 
-* A static version of the site is generated in the `_site` directory
-* A version of the site is served under `localhost:4000`
+### Development
 
-## Main directory structure
-
-```
-search-guard-docs ~/Projects/search-guard-docs
-├── _content
-├── _data
-├── _diagrams
-├── _includes
-├── _layouts
-├── _plugins
-├── css
-├── fonts
-├── img
-├── js
-├── sass
+**Start development server:**
+```bash
+bundle exec jekyll serve --watch
 ```
 
-* **_content**: The actual documentation files in Markdown format. The files are organized in subfolders, which in Jekyll's terminology is called **collections**.
-* **_data**: Additional data in YAML and/or JSON format that is related to the documentation. At the moment, these are primarily YAML files that represent the navigation structure.
-* **_diagrams**: Diagrams that are being used in the docs, in PNG and [draw.io](https://app.diagrams.net/) format. The draw.io files are the source files to render the PNG version.
-* **_includes**: Jekyll include files that can be included from various files. For example, contains the includes for rendering the navigation.
-* **_layouts**: All layouts for the main sections of the docs:
-    * Documentation
-    * Changelogs
-    * Search
-    * Versionmatrix ("Search Guard Versions")
-* **_plugins**: All plugins used for building the website and populating the Algolia search index.
-* **css, fonts, img, js**: The name speaks for itself.
-* **sass**: The final CSS is built with [Sass](https://sass-lang.com/). All Sass files go here.
+**Build the site (production):**
+```bash
+bundle exec jekyll build
+```
 
-## Adding content
+**Build with version configuration:**
+```bash
+bundle exec jekyll build --config _config.yml,_versions.yml
+```
 
-### Adding a new main section
+### Testing
 
-At the moment we have four main sections:
+**Check for broken links:**
+```bash
+# Build the site first
+bundle exec jekyll build
 
-* Security
-* Alerting
-* Index Management
-* Encryption at Rest
+# Run HTMLProofer
+bundle exec htmlproofer ./_site --assume-extension .html --disable-external \
+  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" \
+  --alt-ignore '/.*/' --allow_hash_href true
+```
 
-If you want to add a new main section to the docs, say, "My awesome new feature", do the following:
+### Search Index
 
-* Add a new collection folder in the `_content` directory. The name is not important but should resemble the content. So, we call it `docs_my_new_feature`. All documentation files go in this folder.
-* Declare this new collection folder in the `config.yml` file, which is located at the top-level directory:
+**Rebuild Algolia search index:**
+```bash
+bundle exec jekyll algolia push --config _config.yml,_versions.yml
+```
+
+**Note:** To skip search indexing during deployment, include "noindex" in your commit message.
+
+### Helper Scripts
+
+**Add section fields to all pages (bulk update):**
+```bash
+./add_section_fields.sh
+```
+
+## Project Structure
 
 ```
+search-guard-docs/
+├── _content/                   # All documentation markdown files
+│   ├── _changelogs/           # Changelog entries
+│   ├── _docs_introduction/    # Introduction documentation
+│   ├── _docs_installation/    # Installation guides
+│   ├── _docs_tls/            # TLS/encryption configuration
+│   ├── _docs_auth_auth/      # Authentication and authorization
+│   ├── _docs_roles_permissions/ # RBAC documentation
+│   ├── _docs_kibana/         # Kibana integration
+│   ├── _docs_signals/        # Alerting (Signals feature)
+│   ├── _docs_aim/            # Automated Index Management
+│   ├── _docs_dls_fls/        # Document and Field-Level Security
+│   ├── _docs_audit_logging/  # Audit logging
+│   ├── _docs_encryption_at_rest/ # Encryption at rest
+│   ├── _docs_ad/             # Anomaly Detection
+│   ├── _docs_category_pages/ # Auto-generated category pages
+│   └── ...                   # Other collections
+├── _data/                     # YAML/JSON data files
+│   ├── main_navigation_sections.yml  # Main nav section definitions
+│   ├── side_navigation_main_structure.yml # Side nav orchestrator
+│   ├── side_navigation_security.yml # Security section navigation
+│   ├── side_navigation_alerting.yml # Alerting section navigation
+│   ├── side_navigation_index_management.yml
+│   ├── side_navigation_encryption_at_rest.yml
+│   ├── side_navigation_anomaly_detection.yml
+│   ├── sgversions_docroots.yml # Version dropdown data
+│   └── breadcrumbs.yml        # Auto-generated (git-ignored)
+├── _diagrams/                 # Diagrams (PNG + draw.io sources)
+├── _includes/                 # Reusable template fragments
+│   ├── main_navigation.html   # Top navigation bar
+│   ├── left_navigation.html   # Side navigation
+│   ├── left_navigation_item.html # Recursive nav item renderer
+│   ├── breadcrumbs.html       # Breadcrumb navigation
+│   └── ...                    # Other includes
+├── _layouts/                  # Page layout templates
+│   ├── docs.html             # Main documentation layout
+│   ├── search.html           # Search results layout
+│   └── versionmatrix.html    # Version compatibility layout
+├── _plugins/                  # Custom Jekyll plugins
+│   ├── category_pages_generator.rb # Auto-generate category pages
+│   ├── breadcrumbs_generator.rb    # Generate breadcrumb data
+│   ├── search.rb                   # Algolia search integration
+│   ├── custom_kramdown.rb          # Custom code block rendering
+│   └── file_normalizer.rb          # File name normalization
+├── sass/                      # Sass/SCSS source files
+│   ├── _sg_navigation.scss   # Navigation styles
+│   ├── _sg_code.scss         # Code block styles
+│   └── ...                   # 60+ other style modules
+├── css/                       # Compiled CSS output
+├── js/                        # JavaScript files
+├── fonts/                     # Font files
+├── img/                       # Images and graphics
+├── _site/                     # Generated static site (git-ignored)
+├── _config.yml               # Main Jekyll configuration
+├── _versions.yml             # Version-specific configuration
+├── Gemfile                   # Ruby dependencies
+└── index.md                  # Homepage
+```
+
+### Key Directories
+
+**`_content/`** - All documentation markdown files organized by Jekyll collections. Each subdirectory represents a logical grouping of related documentation.
+
+**`_data/`** - YAML files containing structured data, primarily navigation structures and metadata.
+
+**`_includes/`** - Reusable template components that can be included in layouts and pages.
+
+**`_layouts/`** - Page templates that wrap content with HTML structure.
+
+**`_plugins/`** - Custom Ruby plugins that extend Jekyll's functionality.
+
+**`sass/`** - Sass source files that compile to CSS.
+
+**`_site/`** - Generated static HTML (not tracked in git).
+
+## Navigation System
+
+The documentation uses a **section-based navigation system** with two levels:
+
+### Main Navigation (Top Bar)
+
+Displays 5 clickable section tabs plus Versions and Contact:
+
+**Security | Alerting | Index Management | Encryption at Rest | Anomaly Detection | Versions | Contact**
+
+Configuration: `_data/main_navigation_sections.yml`
+
+```yaml
+sections:
+  - title: Security
+    slug: security              # Landing page permalink
+    key: security               # Used in page frontmatter
+    nav_file: side_navigation_security  # Side nav file to load
+
+  - title: Alerting
+    slug: elasticsearch-alerting
+    key: alerting
+    nav_file: side_navigation_alerting
+
+  # ... additional sections
+```
+
+### Side Navigation (Left Sidebar)
+
+Shows a hierarchical tree of pages within the active section. The displayed navigation is determined by the page's `section` field.
+
+**Behavior:**
+- **Pages with `section` field**: Shows only that section's navigation tree
+- **Homepage (`isroot: true`)**: Shows a flat list of the 5 main sections
+- **Pages without section**: Fallback to showing all sections
+
+**Configuration:** Each section has its own navigation YAML file in `_data/`:
+- `side_navigation_security.yml`
+- `side_navigation_alerting.yml`
+- `side_navigation_index_management.yml`
+- `side_navigation_encryption_at_rest.yml`
+- `side_navigation_anomaly_detection.yml`
+
+**Navigation Structure:**
+```yaml
+- title: Security
+  slug: security
+  children:
+    - title: Introduction to Search Guard
+      slug: search-guard-introduction
+      children:
+        - title: Overview
+          slug: security-for-elasticsearch
+        - title: Main Concepts
+          slug: main-concepts
+    - title: TLS Setup
+      slug: search-guard-security-tls-setup
+      children:
+        - title: Configuring TLS
+          slug: configuring-tls
+```
+
+**Important:** The `slug` in navigation files MUST match the `permalink` in page frontmatter exactly (1:1 match).
+
+### Breadcrumbs
+
+Breadcrumbs are auto-generated from the navigation structure by the `breadcrumbs_generator.rb` plugin. The plugin inverts the navigation tree to create a lookup table mapping each page to its ancestor path.
+
+## Adding Content
+
+### Adding a New Page to an Existing Section
+
+1. **Create a markdown file** in the appropriate collection directory:
+   - Security pages → `_content/_docs_*` (auth_auth, tls, roles_permissions, etc.)
+   - Alerting pages → `_content/_docs_signals/`
+   - Index Management → `_content/_docs_aim/`
+   - Encryption at Rest → `_content/_docs_encryption_at_rest/`
+   - Anomaly Detection → `_content/_docs_ad/`
+
+2. **Add frontmatter** to the markdown file:
+
+```yaml
+---
+title: Configuring TLS
+html_title: TLS Configuration Guide  # Optional
+permalink: configuring-tls            # Required, lowercase with dashes
+layout: docs                          # Required
+section: security                     # Required (security, alerting, index_management, encryption_at_rest, anomaly_detection)
+description: How to configure TLS for Search Guard  # Optional but recommended
+edition: enterprise                   # Optional (community or enterprise)
+---
+```
+
+3. **Add the page to navigation** in the appropriate `_data/side_navigation_*.yml` file:
+
+```yaml
+- title: TLS Setup
+  slug: search-guard-security-tls-setup
+  children:
+    - title: Configuring TLS
+      slug: configuring-tls    # Must match permalink exactly!
+```
+
+4. **Write your content** using Markdown with GitHub Flavored Markdown (GFM) syntax.
+
+### Adding a New Main Section
+
+To add a new main section (e.g., "Machine Learning"):
+
+1. **Create a collection directory:**
+```bash
+mkdir _content/_docs_ml
+```
+
+2. **Declare the collection** in `_config.yml`:
+
+```yaml
 collections:
-  docs_my_new_feature:
+  docs_ml:
     output: true
     permalink: :name
-    algolia_hierarchy: "Security > My New Feature"
-    ...
-``` 
-
-The `algolia_hierarchy` key is used for rendering a unique and hierarchical identifier for the search result pages.
-
-In the file `side_navigation_main_structure.yml`, add a new main navigation entry:
-
+    algolia_hierarchy: "Machine Learning"
 ```
+
+3. **Add section to main navigation** in `_data/main_navigation_sections.yml`:
+
+```yaml
+sections:
+  # ... existing sections ...
+
+  - title: Machine Learning
+    slug: machine-learning
+    key: machine_learning
+    nav_file: side_navigation_machine_learning
+```
+
+4. **Create side navigation file** `_data/side_navigation_machine_learning.yml`:
+
+```yaml
+- title: Machine Learning
+  slug: machine-learning
+  children:
+    - title: Getting Started
+      slug: ml-getting-started
+    - title: Configuration
+      slug: ml-configuration
+```
+
+5. **Add to side navigation orchestrator** in `_data/side_navigation_main_structure.yml`:
+
+```yaml
 files:
   - side_navigation_security
   - side_navigation_alerting
   - side_navigation_index_management
   - side_navigation_encryption_at_rest
-  - side_navigation_my_new_feature 
+  - side_navigation_anomaly_detection
+  - side_navigation_machine_learning  # Add here
 ```
 
-Create the file `side_navigation_my_new_feature.yaml` and define the navigation structure for the new main section.
+6. **Create the landing page** at `_content/_docs_category_pages/machine_learning.md`:
 
-### Adding pages to an existing section
-
-For adding new pages to an existing section, create a markdown document in one of the existing collections, or create a new collection as described above.
-
-*Note: It is not relevant in which collection the file is placed. We use collections only to structure the content on an abstract logical level.*
-
-#### Frontmatter
-
-At minimum, the frontmatter needs to include these settings:
-
-```
+```yaml
 ---
-title: Configuring TLS
-permalink: configuring-tls
+title: Machine Learning
+html_title: Machine Learning
+permalink: machine-learning
 layout: docs
+section: machine_learning
+index: false
+description: All pages in the category Machine Learning
+---
+# Machine Learning
+
+Browse all documentation pages in the Machine Learning category:
+
+* [Getting Started](ml-getting-started)
+* [Configuration](ml-configuration)
+```
+
+7. **Create your documentation pages** in `_content/_docs_ml/` with `section: machine_learning` in their frontmatter.
+
+## Adding Changelogs
+
+Changelogs are integrated into the Security section's navigation.
+
+### Adding a New Changelog Entry
+
+1. **Create a markdown file** in `_content/_changelogs/`:
+
+```bash
+_content/_changelogs/changelog_searchguard_flx_4_0_0.md
+```
+
+2. **Add frontmatter:**
+
+```yaml
+---
+title: Search Guard FLX 4.0.0
+permalink: changelog-searchguard-flx-4_0_0
+layout: docs
+section: security
+description: Changelog for Search Guard FLX 4.0.0
+index: false
+sitemap: false
 ---
 ```
 
-Choose the permalink wisely, since we will not change it later. The permalink is important for search engine optimization and should contain the keywords of the page while omitting stopwords like "and," "or," etc.
+3. **Write changelog content** using markdown.
 
-#### Navigation
+4. **Add to changelog navigation** in the appropriate changelog main page (e.g., `_content/_changelogs/changelogs_searchguard_main.md`).
 
-Add the new page to the navigation.
+### Changelog Organization
 
+Changelogs are accessible via:
+- **Main Navigation:** Security → Changelogs (in side nav)
+- **Side Navigation Structure:** Defined in `_data/side_navigation_security.yml`:
+
+```yaml
+- title: Changelogs
+  slug: changelogs-section
+  children:
+    - title: Search Guard Security
+      slug: changelogs-searchguard
+    - title: Kibana
+      slug: changelogs-kibana
+    - title: TLS Tool
+      slug: changelogs-tlstool
+    - title: Encryption at Rest
+      slug: changelogs-ear
 ```
-    - title: Introduction to Search Guard
-      slug: search-guard-introduction
-      children:
-        - title: Overview
-          slug: security-for-elasticsearch
-        - title: Configuring TLS
-          slug: configuring-tls
-```
-
-The title here is used to render the item in the left navbar, and it can differ from the title in the frontmatter. **However, make sure that the "slug" value in the navigation file matches the permalink entry in the frontmatter 1:1!**
-
 
 ## Conventions
 
 ### Permalinks and Filenames
-* Permalinks are lowercase and use a dash as word delimiter, like "troubleshooting-tls"
-* Filenames are lowercase and use an underscore as word delimiter, like "troubleshooting_tls.md"
-* **Never change a permalink without a 301 redirect!**
 
-Permalinks are very relevant for SEO, so do not simply change them because you think another permalink sounds better. If you have a good reason to change the permalink, please contact your friendly colleagues from DevOps and request a 301 redirect.
+**Permalinks:**
+- Lowercase only
+- Use dashes (`-`) as word delimiters
+- Example: `configuring-tls`
+- **NEVER change a permalink without coordinating a 301 redirect!**
 
-### Navigation
-* The "slug" in the navigation file must match the permalink entry in the frontmatter 1:1
+**Filenames:**
+- Lowercase only
+- Use underscores (`_`) as word delimiters
+- Example: `configuring_tls.md`
 
-### Linking
-* When linking from one page to another, use the slug/permalink, and not the path to the file.
-* Permalinks/slugs are unlikely to change (see above), so this is the more robust approach.
+**SEO Importance:** Permalinks are critical for SEO. Do not change them unless absolutely necessary and only after coordinating with DevOps for 301 redirect setup.
 
-Instead of using this:
+### Section Field Values
 
-```
-### [Search Guard FLX 3.0.0](../_changelogs/changelog_searchguard_flx_3_0_0.md)
-```
+Use these exact values for the `section` field in frontmatter:
 
-Use the permalink like:
+- `security` - Security documentation
+- `alerting` - Alerting/Signals documentation
+- `index_management` - Index Management documentation
+- `encryption_at_rest` - Encryption at Rest documentation
+- `anomaly_detection` - Anomaly Detection documentation
 
-```
-### [Search Guard FLX 3.0.0](changelog-searchguard-flx-3_0_0)
-```
+### Navigation Slugs
 
-## Check for broken links
+**Critical Rule:** The `slug` value in navigation YAML files MUST match the `permalink` in the page's frontmatter exactly (1:1 match).
 
-We are using HTMLProofer to check for broken links. This tool is integrated in the CI/CD pipeline. If a broken link is detected, the deployment is aborted. You will see the offending link in the pipeline output. Fix it, and try again ;)
-
-At the moment HTMLProofer is not run automatically when you build the docs on your local machine, because that would slow down the build process tremendously. However, you can run it manually before committing and pushing:
-
-```
-# build the docs, the resulting HTML files can be found in the _site directory
-bundle exec jekyll build
-
-# Check for broken links
-# --assume-extension: Needed because links use the permalink, but the files have HTML extension
-# --url-ignore: ignore links to old versions
-# --alt-ignore: ignore missing alt in images
-# --allow_hash_href: <a href='#'> is valid
-bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true
-
+Navigation file:
+```yaml
+- title: Configuring TLS
+  slug: configuring-tls
 ```
 
-## Plugins and Extensions
-
-We are using plugins and extensions to help build the site.
-
-### Algolia
-
-**Location: _plugins/search.rb**
-
-We use Algolia as our search engine. Besides the documentation, we also index other content, like blog posts, to make them searchable.
-
-Excerpt from Gemfile:
-
-```
-group :jekyll_plugins do
-  gem 'algoliasearch-jekyll', '~> 0.9.0'
-end
+Page frontmatter:
+```yaml
+permalink: configuring-tls
 ```
 
-Note: The plugin is deprecated, but still works reliably. We need to switch to some alternative at some point.
+### Internal Linking
 
-We use a custom hook to help chunk the content of each page better than the built-in approach. We break down the page into chunks by using the headings (h1-h5) and index each chunk as a new document.
+Always use the permalink/slug, NOT the file path:
 
-### Category Page Generator
-
-**Location: _plugins/category_pages_generator.rb**
-
-This is a Jekyll Generator that renders category pages automatically if missing. In the navigation structure, we oftentimes have nav items with children, e.g.:
-
-
-```
-    - title: Introduction to Search Guard
-      slug: search-guard-introduction
-      children:
-        - title: Overview
-          slug: security-for-elasticsearch
-        - title: Configuring TLS
-          slug: configuring-tls
+**✅ Correct:**
+```markdown
+[Search Guard FLX 3.0.0](changelog-searchguard-flx-3_0_0)
 ```
 
-In this example, the nav item "Introduction to Search Guard" may not have an actual documentation page backing it, so the slug "search-guard-introduction" would be a 404. This plugin would then generate a page for "search-guard-introduction" automatically, listing all the children.
-
-### Breadcrumb Generator
-
-This plugin generates an inverted version of our navigation file definitions. This is done so that the breadcrumb can be rendered more easily. The generated breadcrumb.yaml (located in the "data" directory) is git ignored.
-
-
-Example:
-
+**❌ Incorrect:**
+```markdown
+[Search Guard FLX 3.0.0](../_changelogs/changelog_searchguard_flx_3_0_0.md)
 ```
-security:
-- &1
-  title: Security
-  slug: security
-search-guard-introduction:
-- *1
-- &2
-  title: Introduction to Search Guard
+
+### Frontmatter Fields
+
+**Required:**
+- `title` - Page title
+- `permalink` - URL slug
+- `layout` - Usually `docs`
+- `section` - Section identifier
+
+**Optional but Recommended:**
+- `html_title` - SEO-optimized title
+- `description` - Meta description for search engines
+- `edition` - `community` or `enterprise`
+- `resources` - Array of external resource links
+- `index_algolia` - Set to `false` to exclude from search (default: `true`)
+
+## Jekyll Plugins
+
+### 1. Category Pages Generator
+
+**Location:** `_plugins/category_pages_generator.rb`
+
+**Purpose:** Automatically generates landing pages for navigation items that have children but no corresponding content file.
+
+**How it works:**
+1. Reads all navigation YAML files
+2. For each nav item with children, checks if a content file exists with that permalink
+3. If no file exists, generates a category page listing all children
+4. **NEW:** Automatically adds the correct `section` field to generated pages based on which navigation file they belong to
+
+**Generated pages are placed in:** `_content/_docs_category_pages/`
+
+**Example:** If your navigation has:
+```yaml
+- title: Introduction to Search Guard
   slug: search-guard-introduction
-security-for-elasticsearch:
-- *1
-- *2
-- title: Overview
-  slug: security-for-elasticsearch
+  children:
+    - title: Overview
+      slug: security-for-elasticsearch
 ```
 
-### Code Blocks
+And no file exists with `permalink: search-guard-introduction`, the plugin auto-generates one.
 
-**Location: _plugins/custom_kramdown.rb**
+### 2. Breadcrumbs Generator
 
-For fenced code blocks, we need to render a specific HTML structure so the code can be simply copied to clipboard with the push of a button. This is where the magic happens.
+**Location:** `_plugins/breadcrumbs_generator.rb`
+
+**Purpose:** Generates an inverted lookup table of the navigation structure for efficient breadcrumb rendering.
+
+**How it works:**
+1. Reads `side_navigation_main_structure.yml`
+2. Recursively processes each navigation tree
+3. Creates a hash mapping each slug to its full ancestor path
+4. Writes to `_data/breadcrumbs.yml` (git-ignored)
+
+**Example output:**
+```yaml
+security:
+  - title: Security
+    slug: security
+search-guard-introduction:
+  - title: Security
+    slug: security
+  - title: Introduction to Search Guard
+    slug: search-guard-introduction
+```
+
+### 3. Algolia Search Integration
+
+**Location:** `_plugins/search.rb`
+
+**Purpose:** Custom hook to chunk documentation content for better search granularity.
+
+**How it works:**
+1. Breaks down each page into chunks by headings (h1-h5)
+2. Each chunk becomes a separate searchable record in Algolia
+3. Records include hierarchical categorization via `algolia_hierarchy`
+4. 20KB size limit per chunk
+
+**Note:** The `algoliasearch-jekyll` gem is deprecated but still functional.
+
+### 4. Custom Kramdown Renderer
+
+**Location:** `_plugins/custom_kramdown.rb`
+
+**Purpose:** Renders fenced code blocks with special HTML structure for copy-to-clipboard functionality.
+
+**Features:**
+- Adds wrapper elements around code blocks
+- Enables "Copy Code" button functionality
+- Preserves syntax highlighting
+
+### 5. File Normalizer
+
+**Location:** `_plugins/file_normalizer.rb`
+
+**Purpose:** Normalizes file names to ensure consistency.
+
+## CI/CD Pipeline
+
+**Location:** `.gitlab-ci.yml`
+
+### Build Stage
+
+1. **Merge conflict detection:** Checks for merge markers
+2. **Clean build:** Removes old `_site` directory
+3. **2-pass Jekyll build:**
+   - First pass generates basic pages
+   - Second pass includes auto-generated category pages
+4. **Link validation:** Runs HTMLProofer to check for broken internal links
+
+### Deploy Stage
+
+**Triggers:** Only on `release` branch
+
+1. **SFTP Upload:** Deploys `_site` to production server
+2. **Cloudflare Cache Purge:** Clears CDN cache
+3. **Algolia Index Rebuild:** Updates search index (unless commit message contains "noindex")
+
+### Environment Variables
+
+- `sftp_server` - SFTP server address
+- `sftp_user_name` - SFTP username
+- `sftp_user_private_key_base64` - SSH private key (base64 encoded)
+- `SG_CLOUDFLARE_ZONEID` - Cloudflare zone ID
+- `SG_CLOUDFLARE_DECACHE_TOKEN` - Cloudflare API token
+- `ALGOLIA_APPLICATION_ID` - Algolia application ID
+- `ALGOLIA_API_KEY` - Algolia admin API key
+
+## Troubleshooting
+
+### Ruby Version Issues
+
+Jekyll 4.2.0 is compatible with Ruby 3.0-3.2. If you have Ruby 3.3+, you may encounter errors.
+
+**Solution:**
+```bash
+# Use rbenv or rvm to switch Ruby version
+rvm use 3.0.0
+# or
+rbenv local 3.0.0
+
+# Reinstall dependencies
+bundle install
+```
+
+### Build Errors
+
+**Common issues:**
+
+1. **Missing gems:** Run `bundle install`
+2. **Sass compilation errors:** Check syntax in `sass/*.scss` files
+3. **Plugin errors:** Check Ruby syntax in `_plugins/*.rb` files
+4. **YAML parsing errors:** Validate YAML files in `_data/` directory
+
+### Navigation Not Displaying
+
+**Checklist:**
+1. Verify `section` field in page frontmatter matches a key in `main_navigation_sections.yml`
+2. Check that navigation YAML file is listed in `side_navigation_main_structure.yml`
+3. Ensure `slug` in navigation matches `permalink` in page frontmatter exactly
+4. Rebuild the site to regenerate breadcrumbs
+
+### Search Not Working
+
+1. Rebuild Algolia index: `bundle exec jekyll algolia push`
+2. Check that `index_algolia: false` is not set in frontmatter
+3. Verify Algolia credentials in `_config.yml`
+
+### Broken Links
+
+Run HTMLProofer:
+```bash
+bundle exec jekyll build
+bundle exec htmlproofer ./_site --assume-extension .html --disable-external \
+  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" \
+  --alt-ignore '/.*/' --allow_hash_href true
+```
+
+### CSS Changes Not Appearing
+
+1. **Rebuild the site:** Sass files need recompilation
+2. **Hard refresh browser:** Ctrl+F5 or Cmd+Shift+R
+3. **Check file location:** Ensure changes are in `sass/` not `css/`
+4. **Verify import:** Check that SCSS file is imported in main stylesheet
+
+## Additional Resources
+
+- [Jekyll Documentation](https://jekyllrb.com/docs/)
+- [Kramdown Syntax](https://kramdown.gettalong.org/syntax.html)
+- [Sass Documentation](https://sass-lang.com/documentation)
+- [Algolia Jekyll Plugin](https://community.algolia.com/jekyll-algolia/)
+- [HTMLProofer](https://github.com/gjtorikian/html-proofer)
+
+## Support
+
+For issues or questions:
+- Internal documentation team
+- [Search Guard Forum](https://forum.search-guard.com)
+- [Search Guard Contact](https://search-guard.com/contacts/)

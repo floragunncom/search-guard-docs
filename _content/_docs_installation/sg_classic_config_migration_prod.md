@@ -3,6 +3,7 @@ title: Production
 html_title: Migrating from older Search Guard versions with minimal outage
 permalink: sg-classic-config-migration-prod
 layout: docs
+section: security
 edition: community
 description: How to migrate older Kibana authentication configurations to sg_frontend_authc.yml
   with minimal outage

@@ -3,6 +3,7 @@ title: Severity Levels
 html_title: Severity Levels
 permalink: elasticsearch-alerting-severity
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch can be configured using severity levels,
   making it simple to implement an escalation schema

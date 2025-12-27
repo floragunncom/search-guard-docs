@@ -2,6 +2,7 @@
 title: Upgrading from 6.x to 7.x
 permalink: sg-upgrade-6-7
 layout: docs
+section: security
 description: Step-by-step upgrade instructions from Search Guard 6.x to Search Guard 7.x. 
 ---
 <!---

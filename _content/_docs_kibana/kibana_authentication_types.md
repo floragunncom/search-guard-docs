@@ -3,6 +3,7 @@ title: Overview
 html_title: Authentication Types
 permalink: kibana-authentication-types
 layout: docs
+section: security
 edition: community
 description: A list of all Kibana authentication types supported by Search Guard.
   Protect Kibana from any unauthorized access.

@@ -3,6 +3,7 @@ title: Delete Watch
 html_title: Deleting Watch
 permalink: elasticsearch-alerting-rest-api-watch-delete
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Delete Watch API to delete watches
   by their watch ID.

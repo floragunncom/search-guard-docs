@@ -3,6 +3,7 @@ title: Advanced topics
 html_title: Search Guard document-level security advanced topics
 permalink: advanced-dls
 layout: docs
+section: security
 edition: enterprise
 description: Use Document- and Field-Level Security to implement fine grained access
   control to documents and fields in your Elasticsearch cluster.

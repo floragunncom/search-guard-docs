@@ -3,6 +3,7 @@ title: Kibana in IFrame
 html_title: Kibana in IFrame
 permalink: kibana-in-iframe
 layout: docs
+section: security
 edition: community
 description: How to run Kibana powered by SearchGuard in an iframe on a third party
   website.

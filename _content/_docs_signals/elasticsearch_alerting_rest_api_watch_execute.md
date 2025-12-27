@@ -3,6 +3,7 @@ title: Execute Watch
 html_title: Execute Watch
 permalink: elasticsearch-alerting-rest-api-watch-execute
 layout: docs
+section: alerting
 edition: community
 description: The Signals Alerting for Elasticsearch REST API provides an endpoint
   to manually execute watches.

@@ -2,6 +2,7 @@
 title: Role mapping modes
 permalink: role-mapping-modes
 layout: docs
+section: security
 edition: community
 description: Different ways to use the Search Guard role mapping feature to map users,
   backend roles and hosts to Search Guard roles.

@@ -2,6 +2,7 @@
 title: X-Pack Alerting
 permalink: search-guard-xpack-alerting
 layout: docs
+section: security
 edition: community
 description: How to configure Search Guard to integrate with the X-Pack Alerting for
   Elasticsearch

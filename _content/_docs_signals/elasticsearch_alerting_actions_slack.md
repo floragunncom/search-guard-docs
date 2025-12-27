@@ -3,6 +3,7 @@ title: Slack Actions
 html_title: Slack Actions
 permalink: elasticsearch-alerting-actions-slack
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch can send notifications to Slack when
   a watch detects data anomalies in any index

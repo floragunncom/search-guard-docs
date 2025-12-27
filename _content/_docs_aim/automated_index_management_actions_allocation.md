@@ -3,6 +3,7 @@ title: Allocation Action
 html_title: Allocation Action
 permalink: automated-index-management-actions-allocation
 layout: docs
+section: index_management
 edition: community
 description: How the allocation action works
 ---

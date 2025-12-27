@@ -3,6 +3,7 @@ title: Getting started with Signals Alerting
 html_title: Getting started
 permalink: elasticsearch-alerting-getting-started
 layout: docs
+section: alerting
 edition: community
 description: How to get started with Signals Alerting for Elasticsearch to find anomalies
   in your data and send alerts

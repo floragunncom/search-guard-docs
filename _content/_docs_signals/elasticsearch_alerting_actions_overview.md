@@ -3,6 +3,7 @@ title: Actions Overview
 html_title: Actions Overview
 permalink: elasticsearch-alerting-actions-overview
 layout: docs
+section: alerting
 edition: community
 description: The Alerting for Elasticsearch plugin supports multiple connectors like
   email, Slack, PagerDuty, JIRA or webhooks for sending notifications.

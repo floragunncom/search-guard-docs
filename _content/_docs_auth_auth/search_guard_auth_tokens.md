@@ -2,6 +2,7 @@
 title: Search Guard Auth Tokens
 permalink: search-guard-auth-tokens
 layout: docs
+section: security
 edition: enterprise
 description: Creating API auth tokens for accessing Elasticsearch using Search Guard
 ---

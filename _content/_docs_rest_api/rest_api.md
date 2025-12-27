@@ -3,6 +3,7 @@ title: Usage and return values
 html_title: REST API usage overview
 permalink: rest-api
 layout: docs
+section: security
 edition: enterprise
 description: General usage instructions for the Search Guard REST API which can be
   used to manage users, roles and permissions.

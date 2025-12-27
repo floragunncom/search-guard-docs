@@ -3,6 +3,7 @@ title: Introduction to sg_authc
 html_title: Introduction to sg_authc
 permalink: authentication-authorization-configuration
 layout: docs
+section: security
 edition: community
 description: How to configure, mix and chain authentication and authorization domains
   for Search Guard.

@@ -3,6 +3,7 @@ title: Overview
 html_title: Search Guard Configuration Overview
 permalink: search-guard-index
 layout: docs
+section: security
 edition: community
 description: Search Guard stores its configuration in an Elasticsearch index. This
   allows for configuration hot-reloading

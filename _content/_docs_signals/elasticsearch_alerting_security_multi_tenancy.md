@@ -3,6 +3,7 @@ title: Multi-Tenancy
 html_title: Multi-Tenancy
 permalink: elasticsearch-alerting-security-multi-tenancy
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting is fully compatible with Search Guard Multi-Tenancy
   so you can separate watch access by tenants.

@@ -3,6 +3,7 @@ title: Overview
 html_title: Authentication
 permalink: authentication-authorization
 layout: docs
+section: security
 edition: community
 description: How to configure, mix and chain authentication and authorization domains
   for Search Guard.

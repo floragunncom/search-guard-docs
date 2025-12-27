@@ -3,3 +3,6 @@
   children:
     - title: Introduction
       slug: encryption-at-rest-introduction
+
+    - title: Changelog
+      slug: changelogs-ear

@@ -3,6 +3,7 @@ title: Demo Installer (Linux/Mac)
 html_title: Demo Installer
 permalink: demo-installer
 layout: docs
+section: security
 edition: community
 description: Search Guard ships with a demo installer for quickly setting up a working
   configuration. Use it for PoCs or checking out our features.

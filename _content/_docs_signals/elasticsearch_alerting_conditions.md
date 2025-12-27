@@ -3,6 +3,7 @@ title: Conditions
 html_title: Conditions
 permalink: elasticsearch-alerting-conditions
 layout: docs
+section: alerting
 edition: community
 canonical: elasticsearch-alerting-conditions
 description: In Signals Alerting, conditions are used to check for threshold values,

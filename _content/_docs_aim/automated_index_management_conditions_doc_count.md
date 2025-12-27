@@ -3,6 +3,7 @@ title: Doc Count Condition
 html_title: Doc Count Condition
 permalink: automated-index-management-conditions-doc-count
 layout: docs
+section: index_management
 edition: community
 description: How the doc count condition works
 ---

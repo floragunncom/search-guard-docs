@@ -2,6 +2,7 @@
 title: System Administration
 permalink: sgctl-system-administration
 layout: docs
+section: security
 edition: community
 description: sgctl offers some handy and powerful tools for administering a Search
   Guard secured Elasticsearch custer

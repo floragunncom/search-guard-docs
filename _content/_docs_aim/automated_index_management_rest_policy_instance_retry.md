@@ -3,6 +3,7 @@ title: Policy Instance Retry
 html_title: Policy Instance Retry
 permalink: automated-index-management-rest-policy-instance-retry
 layout: docs
+section: index_management
 edition: community
 description: Use the retry REST API to set the retry flag for a managed index
 ---

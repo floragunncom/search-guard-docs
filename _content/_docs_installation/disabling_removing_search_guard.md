@@ -3,6 +3,7 @@ title: Disabling or Removing Search Guard
 html_title: Disabling Search Guard
 permalink: disabling-removing-search-guard
 layout: docs
+section: security
 edition: community
 description: How to handle disable Search Guard temporarily without removing the complete
   installation.

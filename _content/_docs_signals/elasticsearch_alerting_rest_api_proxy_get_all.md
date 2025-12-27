@@ -3,6 +3,7 @@ title: Get all proxies
 html_title: Get all proxies
 permalink: elasticsearch-alerting-rest-api-proxy-get-all
 layout: docs
+section: alerting
 edition: community
 description: Use to retrieve information about proxies.
 ---

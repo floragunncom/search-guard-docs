@@ -3,6 +3,7 @@ title: JWT URL Parameters
 html_title: JWT URL Parameter Authentication with the Search Guard Kibana Plugin
 permalink: kibana-authentication-jwt
 layout: docs
+section: security
 edition: enterprise
 description: How to use JSON web tokens to implement Kibana and Elasticsearch Single
   Sign on.

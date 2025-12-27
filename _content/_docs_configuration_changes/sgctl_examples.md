@@ -2,6 +2,7 @@
 title: Examples
 permalink: sgctl-examples
 layout: docs
+section: security
 edition: community
 index: false
 description: Examples for sgctl command line tool

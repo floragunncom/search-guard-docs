@@ -2,6 +2,7 @@
 title: Updating Search Guard
 permalink: upgrading
 layout: docs
+section: security
 description: How to upgrade Search Guard and Elasticsearch by rolling restarts or
   a full cluster restart.
 ---

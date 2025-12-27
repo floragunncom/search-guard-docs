@@ -1,7 +1,8 @@
 ---
 title: Kibana 7.x-49.0.0
 permalink: changelog-kibana-7x-49_0_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Kibana 7.x-49.0.0
 ---
 <!--- Copyright 2021 floragunn GmbH -->

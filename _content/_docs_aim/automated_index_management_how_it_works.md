@@ -3,6 +3,7 @@ title: How Automated Index Management Works
 html_title: How Automated Index Management Works
 permalink: how-automated-index-management-works
 layout: docs
+section: index_management
 edition: community
 description: How Automated Index Management works
 ---

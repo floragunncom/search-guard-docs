@@ -3,6 +3,7 @@ title: Upgrade to Search Guard FLX for Elasticsearch 8
 html_title: Upgrade Search Guard FLX to Elasticsearch 8
 permalink: sg-upgrade-7-8
 layout: docs
+section: security
 edition: community
 description: Upgrade Search Guard FLX to Elasticsearch 8
 ---

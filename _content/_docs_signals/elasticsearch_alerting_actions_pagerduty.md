@@ -3,6 +3,7 @@ title: Pagerduty Actions
 html_title: Pagerduty Actions
 permalink: elasticsearch-alerting-actions-pagerduty
 layout: docs
+section: alerting
 edition: enterprise
 description: How to create PagerDuty incidents from Signals Alerting for Elasticsearch
   if anomalies are detected.

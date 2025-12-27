@@ -3,6 +3,7 @@ title: User impersonation
 html_title: User impersonation in Search Guard
 permalink: user-impersonation
 layout: docs
+section: security
 edition: community
 description: How to use the Search Guard User Impersonation feature to submit requests
   on behalf of another user.

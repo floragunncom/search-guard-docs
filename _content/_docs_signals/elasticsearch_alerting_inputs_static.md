@@ -3,6 +3,7 @@ title: Static Input
 html_title: Static Data Input
 permalink: elasticsearch-alerting-inputs-static
 layout: docs
+section: alerting
 edition: community
 description: A static input can be used to define global constant values that can
   be used anywhere in the Alerting execution chain

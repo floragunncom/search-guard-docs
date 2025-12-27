@@ -3,6 +3,7 @@ title: Runtime index privilege evaluation
 html_title: Search Guard runtime index privilege evaluation
 permalink: authorization-runtime-index-privilege-evaluation
 layout: docs
+section: security
 edition: community
 description: Understanding how Search Guard performs privilege evaluation at runtime
 ---

@@ -3,6 +3,7 @@ title: Anomaly Detection API
 html_title: Anomaly Detection API
 permalink: anomaly-detection-api
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection API
 ---

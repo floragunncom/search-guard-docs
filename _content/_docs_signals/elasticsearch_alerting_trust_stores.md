@@ -3,6 +3,7 @@ title: Trust Stores
 html_title: Trust Stores
 permalink: elasticsearch-alerting-trust-stores
 layout: docs
+section: alerting
 edition: community
 description: How to use trust stores
 ---

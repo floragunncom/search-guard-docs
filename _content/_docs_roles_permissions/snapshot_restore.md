@@ -3,6 +3,7 @@ title: Snapshot and restore
 html_title: Authorization for snapshot and restore in Search Guard
 permalink: snapshot-restore
 layout: docs
+section: security
 edition: community
 description: Control access to the snapshot and restore features of Elasticsearch
   by using Search Guard.

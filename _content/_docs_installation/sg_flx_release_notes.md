@@ -3,6 +3,7 @@ title: FLX release notes
 html_title: Search Guard FLX release notes
 permalink: sg-flx-release-notes
 layout: docs
+section: security
 edition: community
 description: Search Guard FLX release notes
 ---

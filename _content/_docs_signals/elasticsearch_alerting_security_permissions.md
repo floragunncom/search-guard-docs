@@ -3,6 +3,7 @@ title: Permissions
 html_title: API Permissions
 permalink: elasticsearch-alerting-security-permissions
 layout: docs
+section: alerting
 edition: community
 description: Configure access permissions for the Alerting API running on Elasticsearch,
   including Watches and Accounts.

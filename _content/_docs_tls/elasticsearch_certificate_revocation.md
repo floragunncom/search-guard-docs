@@ -2,6 +2,7 @@
 title: Certificate revocation
 permalink: elasticsearch-certificate-revocation
 layout: docs
+section: security
 edition: community
 description: How to use certificate revocation lists to revoke TLS certificates used
   in your Elasticsearch cluster.

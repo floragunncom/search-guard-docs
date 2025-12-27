@@ -3,6 +3,7 @@ title: Policy Instance State
 html_title: Policy Instance State
 permalink: automated-index-management-rest-policy-instance-state
 layout: docs
+section: index_management
 edition: community
 description: Use the state REST API to get a state from a managed index
 ---

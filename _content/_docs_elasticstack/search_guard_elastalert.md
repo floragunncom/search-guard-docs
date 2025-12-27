@@ -2,6 +2,7 @@
 title: Elastalert
 permalink: search-guard-elastalert
 layout: docs
+section: security
 description: How to configure and use Search Guard and ElastAlert for Elasticsearch
   as an alternative to X-Pack.
 ---

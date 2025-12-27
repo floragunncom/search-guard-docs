@@ -3,6 +3,7 @@ title: Security Integration Overview
 html_title: Security Overview
 permalink: elasticsearch-alerting-security-overview
 layout: docs
+section: alerting
 edition: community
 description: Signals is integrated with all security related features of Search Guard.
   This means that access to watches and also the underlying Elasticsearch indices

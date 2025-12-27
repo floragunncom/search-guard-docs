@@ -3,6 +3,7 @@ title: Actions
 html_title: Actions
 permalink: elasticsearch-alerting-actions
 layout: docs
+section: alerting
 edition: community
 canonical: elasticsearch-alerting-actions-overview
 description: Actions are used to send notifications by Email or other services like

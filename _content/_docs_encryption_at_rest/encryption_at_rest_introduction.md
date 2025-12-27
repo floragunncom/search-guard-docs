@@ -3,6 +3,7 @@ title: Encryption at Rest
 html_title: Encryption at Rest
 permalink: encryption-at-rest-introduction
 layout: docs
+section: encryption_at_rest
 edition: enterprise
 description: Encryption at Rest for ElasticSearch
 ---

@@ -3,6 +3,7 @@ title: Configuration change tracking
 html_title: Change tracking
 permalink: configuration-integrity
 layout: docs
+section: security
 edition: compliance
 description: Track Search Guard configuration changes by using the advanced audit
   logging features.

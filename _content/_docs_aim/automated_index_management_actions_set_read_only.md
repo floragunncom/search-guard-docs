@@ -3,6 +3,7 @@ title: Set Read Only Action
 html_title: Set Read Only Action
 permalink: automated-index-management-actions-set-read-only
 layout: docs
+section: index_management
 edition: community
 description: How the set read only action works
 ---

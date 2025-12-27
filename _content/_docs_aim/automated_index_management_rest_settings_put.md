@@ -3,6 +3,7 @@ title: Put Settings
 html_title: Put Settings
 permalink: automated-index-management-rest-settings-put
 layout: docs
+section: index_management
 edition: community
 description: Use the put settings REST API to update dynamic AIM settings
 ---

@@ -3,6 +3,7 @@ title: Get one proxy
 html_title: Get one proxy
 permalink: elasticsearch-alerting-rest-api-proxy-get-one
 layout: docs
+section: alerting
 edition: community
 description: Use to retrieve one proxy.
 ---

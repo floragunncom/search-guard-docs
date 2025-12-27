@@ -3,6 +3,7 @@ title: Index Count Condition
 html_title: Index Count Condition
 permalink: automated-index-management-conditions-index-count
 layout: docs
+section: index_management
 edition: community
 description: How the index count condition works
 ---

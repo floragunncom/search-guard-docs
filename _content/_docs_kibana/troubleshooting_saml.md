@@ -3,6 +3,7 @@ title: Troubleshooting
 permalink: troubleshooting-saml
 html_title: Kibana SAML Advanced Troubleshooting
 layout: docs
+section: security
 edition: enterprise
 description: Step-by-step guide on how to troubleshoot Elasticsearch and Kibana SAML
   issues

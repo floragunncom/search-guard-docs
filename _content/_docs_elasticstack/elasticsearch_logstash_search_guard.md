@@ -3,6 +3,7 @@ title: Logstash
 html_title: Logstash
 permalink: elasticsearch-logstash-search-guard
 layout: docs
+section: security
 edition: community
 description: How to configure and use logstash with a Search Guard secured cluster.
 ---

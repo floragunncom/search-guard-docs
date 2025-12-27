@@ -2,6 +2,7 @@
 title: Configuring TLS
 permalink: configuring-tls
 layout: docs
+section: security
 edition: community
 description: Search Guard TLS configuration settings for the REST and the transport
   layer. Extended security options for hostname verification and DNS lookups.

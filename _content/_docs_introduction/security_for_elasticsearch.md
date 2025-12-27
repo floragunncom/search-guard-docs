@@ -3,6 +3,7 @@ title: Overview
 html_title: Security for Elasticsearch Overview
 permalink: security-for-elasticsearch
 layout: docs
+section: security
 description: Search Guard is an Enterprise Security Suite for Elasticsearch that encrypts
   and protects your data in the entire Elastic Stack, including Kibana, Logstash and
   Beats.

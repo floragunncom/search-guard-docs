@@ -1,7 +1,8 @@
 ---
 title: Search Guard FLX 3.0.1
 permalink: changelog-searchguard-flx-3_0_1
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Search Guard FLX 3.0.1
 ---
 <!--- Copyright 2024 floragunn GmbH -->

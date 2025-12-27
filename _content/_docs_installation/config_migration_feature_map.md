@@ -3,6 +3,7 @@ title: Feature map
 html_title: Feature map - Search Guard 53 to FLX
 permalink: config-migration-feature-map
 layout: docs
+section: security
 description: How to migrate older authentication configurations to new configurations
 ---
 <!---

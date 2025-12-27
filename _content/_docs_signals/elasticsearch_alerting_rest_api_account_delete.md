@@ -3,6 +3,7 @@ title: Delete Account
 html_title: Delete Account
 permalink: elasticsearch-alerting-rest-api-account-delete
 layout: docs
+section: alerting
 edition: community
 description: Use the Delete REST API endpoint to remove PagerDuty, Email, Slack and
   Webhook connectors by ID.
