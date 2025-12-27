@@ -3,6 +3,7 @@ title: Put Watch
 html_title: Put Watch
 permalink: elasticsearch-alerting-rest-api-watch-put
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Put Watch API to create new watches
   in JSON format.

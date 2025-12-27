@@ -2,6 +2,7 @@
 title: Internal users database
 permalink: internal-users-database
 layout: docs
+section: security
 edition: community
 description: How to store and manage Search Guard users directly in Elasticsearch
   by using the Internal Users Database.

@@ -3,6 +3,7 @@ title: Transformations
 html_title: Transformation Scripts
 permalink: elasticsearch-alerting-transformations
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting uses the Elasticsearch Painless scripting language for
   transforming data.

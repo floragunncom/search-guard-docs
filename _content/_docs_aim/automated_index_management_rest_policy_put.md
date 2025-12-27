@@ -3,6 +3,7 @@ title: Put Policy
 html_title: Put Policy
 permalink: automated-index-management-rest-policy-put
 layout: docs
+section: index_management
 edition: community
 description: Use the put policy REST API to create or update policies
 ---

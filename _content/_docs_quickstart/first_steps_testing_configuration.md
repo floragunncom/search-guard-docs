@@ -3,6 +3,7 @@ title: Testing the configuration
 html_title: Testing the configuration
 permalink: first-steps-testing-configuration
 layout: docs
+section: security
 description: How to test the user and role configuration we set up in the last steps.
 resources:
 - troubleshooting-search-guard-user-roles|Troubleshooting user problems

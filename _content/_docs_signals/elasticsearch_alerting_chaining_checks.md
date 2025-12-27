@@ -3,6 +3,7 @@ title: Execution chain and payload
 html_title: Execution chain
 permalink: elasticsearch-alerting-chaining-checks
 layout: docs
+section: alerting
 edition: community
 description: Each watch can define as many inputs, transformations, calculations and
   conditions as required. Each step in the execution chain is called a check

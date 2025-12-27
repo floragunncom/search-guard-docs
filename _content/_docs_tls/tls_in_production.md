@@ -2,6 +2,7 @@
 title: Production environments
 permalink: tls-in-production
 layout: docs
+section: security
 edition: community
 description: We explaining the different certificate types of Search Guard and how
   to generate them for a production system.

@@ -3,6 +3,7 @@ title: Injecting an SSLContext
 html_title: Injecting an SSLContext
 permalink: search-guard-oem-inject-ssl-context
 layout: docs
+section: security
 edition: community
 description: How to inject an SSL context into a Search Guard secured Elasticsearch
   cluster. This can be used to integrate with

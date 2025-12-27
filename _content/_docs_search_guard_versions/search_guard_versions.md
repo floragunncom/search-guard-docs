@@ -2,6 +2,7 @@
 title: Latest Releases
 permalink: search-guard-versions
 layout: docs
+section: security
 description: A list of the current Search Guard releases for all Elasticsearch 7 and
   Kibana 7 versions.
 index_algolia: false

@@ -3,6 +3,7 @@ title: Academic and Scientific Licensing
 html_title: Academic Licensing
 permalink: search-guard-acadmic-scientic-licensing
 layout: docs
+section: security
 description: Search Guard offers free licenses to non-commercial academic and scientific
   usage.
 resources:

@@ -3,6 +3,7 @@ title: Settings
 html_title: Settings
 permalink: automated-index-management-settings
 layout: docs
+section: index_management
 edition: community
 description: Configure Automated Index Management to fit your requirements
 ---

@@ -3,6 +3,7 @@ title: Advanced Configuration
 html_title: Kibana SAML Advanced Configuration
 permalink: kibana-authentication-saml-advanced
 layout: docs
+section: security
 edition: enterprise
 description: How to configure Kibana for SAML Single Sign On authentication and IdP
   integrations.

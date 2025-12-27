@@ -3,6 +3,7 @@ title: Anomaly Detection
 html_title: Anomaly Detection
 permalink: anomaly-detection-introduction
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection for ElasticSearch
 ---

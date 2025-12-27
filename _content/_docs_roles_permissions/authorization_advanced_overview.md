@@ -3,6 +3,7 @@ title: Advanced topics
 html_title: Advanced authorization configuration
 permalink: authorization-advanced-overview
 layout: docs
+section: security
 edition: community
 description: Advanced authorization topics
 ---

@@ -3,6 +3,7 @@ title: Quick Start
 html_title: Kibana SAML Quick Start
 permalink: kibana-authentication-saml
 layout: docs
+section: security
 edition: enterprise
 description: How to configure Kibana for SAML Single Sign On authentication and IdP
   integrations.

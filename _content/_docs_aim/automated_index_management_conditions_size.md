@@ -3,6 +3,7 @@ title: Size Condition
 html_title: Size Condition
 permalink: automated-index-management-conditions-size
 layout: docs
+section: index_management
 edition: community
 description: How the size condition works
 ---

@@ -3,6 +3,7 @@ title: Advanced user mapping
 html_title: sg_authc advanced user mapping
 permalink: authentication-authorization-configuration-advanced-user-mapping
 layout: docs
+section: security
 edition: community
 description: How to configure, mix and chain authentication and authorization domains
   for Search Guard.

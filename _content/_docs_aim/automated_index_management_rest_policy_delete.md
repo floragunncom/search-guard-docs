@@ -3,6 +3,7 @@ title: Delete Policy
 html_title: Delete Policy
 permalink: automated-index-management-rest-policy-delete
 layout: docs
+section: index_management
 edition: community
 description: Use the delete policy REST API to delete policies
 ---

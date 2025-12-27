@@ -3,6 +3,7 @@ title: Quick Start
 html_title: Kibana OIDC Quick Start
 permalink: kibana-authentication-openid
 layout: docs
+section: security
 edition: enterprise
 description: How to use OpenID Connect and your favorite identity provider to implement
   Kibana Single Sign-On.

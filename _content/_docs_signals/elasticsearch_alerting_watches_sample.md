@@ -3,6 +3,7 @@ title: Sample Watches
 html_title: Sample Watches
 permalink: elasticsearch-alerting-watches-sample
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch ships with several sample watches
   that you can use for a quickstart or proof of concept.

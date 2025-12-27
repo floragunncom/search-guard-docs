@@ -1,7 +1,8 @@
 ---
 title: Search Guard 7.x-35.0.0
 permalink: changelog-searchguard-7-x-35_0_0
-layout: changelogs
+layout: docs
+section: security
 description: Changelog for Search Guard 7.x-35.0.0
 ---
 <!---

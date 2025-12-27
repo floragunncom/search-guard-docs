@@ -3,6 +3,7 @@ title: Force Merge Action
 html_title: Force Merge Action
 permalink: automated-index-management-actions-force-merge
 layout: docs
+section: index_management
 edition: community
 description: How the force merge action works
 ---

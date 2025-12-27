@@ -2,7 +2,8 @@
 title: Overview
 html_title: Kibana changelogs
 permalink: changelogs-kibana
-layout: changelogs
+layout: docs
+section: security
 description: Changelog overview for all releases of the Search Guard Kibana Plugin
   that adds access control and session management.
 ---

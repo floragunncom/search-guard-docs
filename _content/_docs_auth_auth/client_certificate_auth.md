@@ -3,6 +3,7 @@ title: Client certificate authentication
 html_title: TLS authentication
 permalink: client-certificate-auth
 layout: docs
+section: security
 edition: community
 description: How to use client side TLS certificates to protect Elasticsearch against
   unauthorized access.

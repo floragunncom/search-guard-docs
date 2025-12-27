@@ -3,6 +3,7 @@ title: Get Watch State
 html_title: Get Watch State
 permalink: elasticsearch-alerting-rest-api-watch-state
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Get Watch API to retrieve a watch
   in JSON format.

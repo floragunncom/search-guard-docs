@@ -3,6 +3,7 @@ title: Immutable indices
 html_title: Immutable indices
 permalink: immutable-indices
 layout: docs
+section: security
 edition: compliance
 description: Use immutable indices to ensure a document cannot be changed once indexed.
 resources:

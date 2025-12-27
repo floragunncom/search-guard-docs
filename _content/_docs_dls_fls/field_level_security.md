@@ -3,6 +3,7 @@ title: Field-level security
 html_title: Field-level security
 permalink: field-level-security
 layout: docs
+section: security
 edition: enterprise
 description: Include or exclude individual fields from your documents by using the
   Field-level security module of Search Guard.

@@ -3,6 +3,7 @@ title: Field Reference
 html_title: Audit Log Field Reference
 permalink: audit-logging-reference
 layout: docs
+section: security
 edition: enterprise
 description: Field reference for the Search Guard audit logging module which can be
   used to track security and compliance related events in an Elasticsearch cluster.

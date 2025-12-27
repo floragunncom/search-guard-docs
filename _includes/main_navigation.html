@@ -13,26 +13,15 @@
 						<!-- Menu -->
 						<nav class="right helper">
 							<ul class="menu sf-menu js-menu">
-								<li>
-									<a href="{{site.baseurl}}/" class="main-nav-level-1">Documentation</a>
-								</li>
-								<li>
-									<a href="#" class="main-nav-level-1">Changelogs</a>
-									<ul>
-										<li>
-											<a href="{{site.baseurl}}/changelogs-searchguard" class="main-nav-level-2">Search Guard Security</a>
-										</li>
-										<li>
-											<a href="{{site.baseurl}}/changelogs-kibana" class="main-nav-level-2">Kibana</a>
-										</li>
-										<li>
-											<a href="{{site.baseurl}}/changelogs-tlstool" class="main-nav-level-2">TLS Tool</a>
-										</li>
-										<li>
-											<a href="{{site.baseurl}}/changelogs-ear" class="main-nav-level-2">Search Guard Encryption at Rest</a>
-										</li>
-									</ul>
-								</li>
+								{% for section in site.data.main_navigation_sections.sections %}
+									<li>
+										<a href="{{site.baseurl}}/{{ section.slug }}"
+										   class="main-nav-level-1 {% if page.section == section.key %}active{% endif %}">
+											{{ section.title }}
+										</a>
+									</li>
+								{% endfor %}
+
 								<li>
 									<a href="#" class="main-nav-level-1">Versions</a>
 									<ul>
@@ -43,11 +32,9 @@
 										{% endfor %}
 									</ul>
 								</li>
+
 								<li>
-									<a href="https://forum.search-guard.com" target="_blank" class="main-nav-level-1">Forum</a>
-								</li>
-								<li>
-									<a href="https://search-guard.com/contacts/" target="_blank" class="main-nav-level-1-bold">Contact Us</a>
+									<a href="https://search-guard.com/contacts/" target="_blank" class="main-nav-level-1">Contact</a>
 								</li>
 							</ul>
 						</nav>

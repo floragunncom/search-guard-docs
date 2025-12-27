@@ -3,6 +3,7 @@ title: Migrating to FLX
 html_title: Migrating from older Search Guard versions to FLX
 permalink: sg-classic-config-migration-overview
 layout: docs
+section: security
 edition: community
 description: How to migrate older Search Guard authentication configurations
 ---

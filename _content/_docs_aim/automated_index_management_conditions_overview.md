@@ -3,6 +3,7 @@ title: Conditions Overview
 html_title: Conditions Overview
 permalink: automated-index-management-conditions-overview
 layout: docs
+section: index_management
 edition: community
 description: How conditions work in AIM
 ---

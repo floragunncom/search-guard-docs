@@ -3,6 +3,7 @@ title: Quick Start
 html_title: HTTP Proxy Quick Start
 permalink: proxy-authentication
 layout: docs
+section: security
 edition: community
 description: Use Search Guard's Proxy authentication feature to connect Elasticsearch
   to any third-party identity provider.

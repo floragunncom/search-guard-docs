@@ -3,6 +3,7 @@ title: Search Guard roles
 html_title: Search Guard role-based authorization for Elasticsearch
 permalink: roles-permissions
 layout: docs
+section: security
 edition: community
 description: How to define role based access to Elasticsearch on index level with
   Search Guard.

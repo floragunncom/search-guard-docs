@@ -3,6 +3,7 @@ title: Activate and Deactivate Signals
 html_title: Activate / Deactivate Signals
 permalink: elasticsearch-alerting-rest-api-admin-activate
 layout: docs
+section: alerting
 edition: community
 description: How to globally activate and deactivate all alerting watches for Elasticsearch.
 ---

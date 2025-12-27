@@ -3,6 +3,7 @@ title: Compliance event routing
 html_title: Event routing
 permalink: compliance-event-routing
 layout: docs
+section: security
 edition: compliance
 description: How to configure event routing to ship the compliance events to their
   correct storage destination

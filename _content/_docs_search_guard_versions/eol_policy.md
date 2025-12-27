@@ -3,6 +3,7 @@ title: Search Guard end of life policy
 html_title: End of life
 permalink: eol-policy
 layout: docs
+section: security
 description: The Search Guard End Of Life policy. Use this list to make sure you do
   not run any unsupported Search Guard or Elasticsearch version in production.
 ---

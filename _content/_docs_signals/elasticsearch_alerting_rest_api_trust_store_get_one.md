@@ -3,6 +3,7 @@ title: Get one trust store
 html_title: Get one trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-get-one
 layout: docs
+section: alerting
 edition: community
 description: Use to retrieve all trust stores.
 ---

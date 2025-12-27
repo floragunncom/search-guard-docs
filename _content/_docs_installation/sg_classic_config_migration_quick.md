@@ -3,6 +3,7 @@ title: Quick Start
 html_title: Quickly migrating from older Search Guard versions
 permalink: sg-classic-config-migration-quick
 layout: docs
+section: security
 edition: community
 description: How to migrate older Search Guard authentication configurations to sg_authc.yml
   and sg_frontend_authc.yml

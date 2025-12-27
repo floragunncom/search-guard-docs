@@ -3,6 +3,7 @@ title: Delete proxy
 html_title: Delete proxy
 permalink: elasticsearch-alerting-rest-api-proxy-delete
 layout: docs
+section: alerting
 edition: community
 description: Use to delete proxy by id
 ---

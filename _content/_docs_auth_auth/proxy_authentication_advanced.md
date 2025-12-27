@@ -3,6 +3,7 @@ title: Advanced Configuration
 html_title: HTTP Proxy Advanced Configuration
 permalink: proxy-authentication-advanced
 layout: docs
+section: security
 edition: community
 description: Use Search Guard's Proxy authentication feature to connect Elasticsearch
   to any third-party identity provider.

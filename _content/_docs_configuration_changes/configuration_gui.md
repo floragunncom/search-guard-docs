@@ -3,6 +3,7 @@ title: Search Guard configuration GUI
 html_title: Configuration GUI
 permalink: configuration-gui
 layout: docs
+section: security
 edition: enterprise
 description: Use the Kibana configuration GUI to quickly and easily setup and configure
   Search Guard.

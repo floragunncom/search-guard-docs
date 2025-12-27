@@ -3,6 +3,7 @@ title: Anomaly Detection security
 html_title: Anomaly Detection security
 permalink: anomaly-detection-security
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection security
 ---

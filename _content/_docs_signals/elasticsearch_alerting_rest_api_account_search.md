@@ -3,6 +3,7 @@ title: Search Accounts
 html_title: Search Accounts
 permalink: elasticsearch-alerting-rest-api-account-search
 layout: docs
+section: alerting
 edition: community
 description: Use the Signals for Alerting Search Accounts REST API to search for email,
   PagerDuty, Slack and webhook accounts.

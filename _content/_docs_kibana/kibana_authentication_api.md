@@ -3,6 +3,7 @@ title: Using the Kibana API
 html_title: Using the Kibana API
 permalink: kibana-authentication-api
 layout: docs
+section: security
 edition: community
 description: How to use the Kibana saved objects API when authentication is configured.
 ---

@@ -3,6 +3,7 @@ title: Anomaly Detection settings
 html_title: Anomaly Detection settings
 permalink: anomaly-detection-settings
 layout: docs
+section: anomaly_detection
 edition: enterprise
 description: Anomaly Detection settings
 ---

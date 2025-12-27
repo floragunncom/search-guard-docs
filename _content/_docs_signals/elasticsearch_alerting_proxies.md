@@ -3,6 +3,7 @@ title: Proxies
 html_title: Proxies
 permalink: elasticsearch-alerting-proxies
 layout: docs
+section: alerting
 edition: community
 description: How to use proxies
 ---

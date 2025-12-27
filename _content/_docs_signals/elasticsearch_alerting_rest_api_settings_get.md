@@ -3,6 +3,7 @@ title: Get Settings
 html_title: Get settings
 permalink: elasticsearch-alerting-rest-api-settings-get
 layout: docs
+section: alerting
 edition: community
 description: Use the Alerting for Elasticsearch Get Settings API to retrieve the current
   Signals configuration

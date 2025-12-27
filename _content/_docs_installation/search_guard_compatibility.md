@@ -3,6 +3,7 @@ title: Search Guard Compatibility
 html_title: Compatibility
 permalink: search-guard-compatibility
 layout: docs
+section: security
 description: Compatibility of Search Guard with other plugins and tools like Kibana,
   logstash, Beats, Grafana or Cerebro.
 ---

@@ -3,6 +3,7 @@ title: Delete trust store
 html_title: Delete trust store
 permalink: elasticsearch-alerting-rest-api-trust-store-delete
 layout: docs
+section: alerting
 edition: community
 description: Use to delete trust store by id
 ---

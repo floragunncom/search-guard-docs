@@ -2,6 +2,7 @@
 title: Configuration variables
 permalink: configuration-password-handling
 layout: docs
+section: security
 edition: community
 description: How to use config variables to keep sensitive information like passwords
   separate from the Search Guard configuration.

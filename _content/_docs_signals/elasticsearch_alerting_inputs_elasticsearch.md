@@ -3,6 +3,7 @@ title: Search Input
 html_title: Signals Search Input
 permalink: elasticsearch-alerting-inputs-elasticsearch
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting executes Elasticsearch queries and use the query result
   to check for anomalies.

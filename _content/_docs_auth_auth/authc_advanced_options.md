@@ -2,6 +2,7 @@
 title: Other advanced options
 permalink: authc-advanced-options
 layout: docs
+section: security
 edition: community
 ---
 <!---

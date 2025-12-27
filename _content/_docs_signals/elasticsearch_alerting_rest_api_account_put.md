@@ -3,6 +3,7 @@ title: Put Account
 html_title: Put Account
 permalink: elasticsearch-alerting-rest-api-account-put
 layout: docs
+section: alerting
 edition: community
 description: Use the Signals for Alerting API to create PagerDuty, Email, Slack and
   Webhook connectors.

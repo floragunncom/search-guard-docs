@@ -3,6 +3,7 @@ title: Un-acknowledge Watch
 html_title: Un-acknowledge Watch
 permalink: elasticsearch-alerting-rest-api-watch-unacknowledge
 layout: docs
+section: alerting
 edition: community
 description: The Signals Alerting for Elasticsearch API provides an endpoint for un-acknowledging
   a watch to move it back to the initial state

@@ -3,6 +3,7 @@ title: Manual Installation
 html_title: Manual Installation
 permalink: manual-installation
 layout: docs
+section: security
 edition: community
 description: How to download and install Search Guard and all required TLS certificates
   on a Windows machine.

@@ -3,6 +3,7 @@ title: Mapping users to Search Guard roles
 html_title: Roles mapping
 permalink: first-steps-mapping-users-roles
 layout: docs
+section: security
 description: How to map users to Search Guard roles to assign cluster- and index-level
   access permissions.
 resources:

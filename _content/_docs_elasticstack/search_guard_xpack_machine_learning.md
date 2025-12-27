@@ -2,6 +2,7 @@
 title: X-Pack Machine Learning
 permalink: search-guard-xpack-machine-learning
 layout: docs
+section: security
 edition: community
 description: How to configure Search Guard to integrate with the X-Pack Machine Learning
   for Elasticsearch

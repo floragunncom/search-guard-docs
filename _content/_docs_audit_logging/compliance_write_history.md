@@ -3,6 +3,7 @@ title: Write History Audit Logging
 html_title: Write History
 permalink: compliance-write-history
 layout: docs
+section: security
 edition: compliance
 description: Use the Write History Audit Logging to monitor changes to sensitive data
   and stay compliant with GDRP, HIPAA, PCI and SOX.

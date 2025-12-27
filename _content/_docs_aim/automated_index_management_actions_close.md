@@ -3,6 +3,7 @@ title: Close Action
 html_title: Close Action
 permalink: automated-index-management-actions-close
 layout: docs
+section: index_management
 edition: community
 description: How the close action works
 ---

@@ -2,6 +2,7 @@
 title: Access Control
 permalink: rest-api-access-control
 layout: docs
+section: security
 edition: enterprise
 description: Configure role-based access control to different endpoints and methods
   of the REST API.

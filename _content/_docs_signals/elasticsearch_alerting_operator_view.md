@@ -3,6 +3,7 @@ title: Signals operator view
 html_title: Signals operator view and Kibana panel
 permalink: elasticsearch-alerting-operator-view
 layout: docs
+section: alerting
 edition: community
 description: How Signals Alerting operator view works
 ---

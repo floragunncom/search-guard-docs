@@ -3,6 +3,7 @@ title: Tenants API
 html_title: Tenants API
 permalink: rest-api-tenants
 layout: docs
+section: security
 edition: enterprise
 description: How to use the tenants REST API endpoints to create, edit and delete
   Search Guard tenants.

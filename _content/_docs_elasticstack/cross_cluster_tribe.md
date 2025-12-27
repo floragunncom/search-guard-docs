@@ -3,6 +3,7 @@ title: Cross Cluster Search
 html_title: Cross Cluster Search
 permalink: cross-cluster-tribe
 layout: docs
+section: security
 edition: community
 description: Search Guard fully supports the Cross Cluster Search feature of Elasticsearch.
   Implement access control on distributed clusters.

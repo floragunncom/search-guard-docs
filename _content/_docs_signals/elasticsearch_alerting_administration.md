@@ -3,6 +3,7 @@ title: Administration
 html_title: Administration
 permalink: elasticsearch-alerting-administration
 layout: docs
+section: alerting
 edition: community
 description: How to configure and administer Signals Alerting for Elasticsearch and
   adapt it to your use cases.

@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Feature Icons on Homepage
+   ========================================================================== */
+
+.feature-section {
+  margin-bottom: 2em;
+}
+
+.feature-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 1.5em;
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  flex-shrink: 0;
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: $navyBlue;
+}

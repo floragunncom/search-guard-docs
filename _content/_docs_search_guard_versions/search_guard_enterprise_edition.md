@@ -3,6 +3,7 @@ title: Enterprise and Compliance Edition
 html_title: Enterprise Edition
 permalink: search-guard-enterprise-edition
 layout: docs
+section: security
 edition: enterprise
 description: The Search Guard Enterprise and Compliance license offers enterprise
   security for Elasticsearch and Kibana.

@@ -3,6 +3,7 @@ title: Action groups API
 html_title: Action groups API
 permalink: rest-api-actiongroups
 layout: docs
+section: security
 edition: enterprise
 description: How to use the action groups REST API endpoints to create, edit and delte
   Search Guard action groups.

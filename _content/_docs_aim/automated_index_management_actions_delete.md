@@ -3,6 +3,7 @@ title: Delete Action
 html_title: Delete Action
 permalink: automated-index-management-actions-delete
 layout: docs
+section: index_management
 edition: community
 description: How the delete action works
 ---

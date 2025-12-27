@@ -3,6 +3,7 @@ title: Calculations
 html_title: Data Calculations
 permalink: elasticsearch-alerting-calculations
 layout: docs
+section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch uses Painless scripting for performing
   calculations on the data used by watches

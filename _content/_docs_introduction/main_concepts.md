@@ -2,6 +2,7 @@
 title: Main concepts
 permalink: main-concepts
 layout: docs
+section: security
 description: How Search Guard extracts credentials from a request and how they are mapped to users, roles and permissions.
 resources:
 - https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
