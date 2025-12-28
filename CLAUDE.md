@@ -222,3 +222,7 @@ Permalinks are stable and less likely to change than file paths.
 - `sass/` - Sass source files (60+ SCSS modules)
 - `css/`, `js/`, `fonts/`, `img/` - Static assets
 - `_site/` - Generated output (git-ignored)
+
+## Formatting Rules
+
+* Every table should be formatted as a config-table. To do so, add the following line at the end of the table: {: .config-table}

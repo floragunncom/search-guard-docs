@@ -10,7 +10,7 @@ description: Anomaly Detection dashboards and visualizations
 ---
 
 <!---  
-Copyright (c) 2025 floragunn GmH
+Copyright (c) 2025 floragunn GmbH
 
 This file contains content originally licensed under Apache-2.0.
 Original license header and notices preserved below.
@@ -31,77 +31,81 @@ Modifications Copyright OpenSearch Contributors. See
 GitHub history for details.
 -->
 
-{% include beta_warning.html %}
-
-# Search Guard Anomaly Detection dashboards and visualizations
+# Search Guard Anomaly Detection Dashboards and Visualizations
 
 {: .no_toc}
 
 {% include toc.md %}
 
-OpenSearch provides an automated means of detecting harmful outliers and protecting your data when you enable anomaly detection. When applied to metrics, OpenSearch uses algorithms to continuously analyze systems and applications, determine normal baselines, and surface anomalies.
+Anomaly detection helps you automatically identify harmful outliers and protect your data. When applied to metrics, the system uses algorithms to continuously analyze systems and applications, determine normal baselines, and surface anomalies.
 
-You can connect data visualizations to OpenSearch datasets and then create, run, and view real-time anomaly results from visualizations in the **Dashboard** interface. With only a couple of steps, you can bring together traces, metrics, and logs to make your applications and infrastructure fully observable.
+You can connect data visualizations to OpenSearch datasets and then create, run, and view real-time anomaly results directly from the **Dashboard** interface. With just a few steps, you can bring together traces, metrics, and logs to make your applications and infrastructure fully observable.
 
-## Getting started
+## Getting Started
 
-Before getting started, you must have:
+Before you begin, make sure you have the following components installed:
 
-- Installed OpenSearch and OpenSearch Dashboards version 2.9 or later. See [Installing OpenSearch]({{site.url}}{{site.baseurl}}/install-and-configure/install-opensearch/index/).
-- Installed the Anomaly Detection plugin version 2.9 or later. See [Installing OpenSearch plugins]/({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
-- Installed the Anomaly Detection Dashboards plugin version 2.9 or later. See [Managing OpenSearch Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/) to get started.
+- OpenSearch and OpenSearch Dashboards version 2.9 or later. See [Installing OpenSearch]({{site.url}}{{site.baseurl}}/install-and-configure/install-opensearch/index/).
+- Anomaly Detection plugin version 2.9 or later. See [Installing OpenSearch plugins]({{site.url}}{{site.baseurl}}/install-and-configure/plugins/).
+- Anomaly Detection Dashboards plugin version 2.9 or later. See [Managing OpenSearch Dashboards plugins]({{site.url}}{{site.baseurl}}/install-and-configure/install-dashboards/plugins/).
 
-## General requirements for anomaly detection visualizations
+## Requirements for Anomaly Detection Visualizations
 
-Anomaly detection visualizations are displayed as time-series charts that give you a snapshot of when anomalies have occurred from different anomaly detectors you have configured for the visualization. You can display up to 10 metrics on your chart, and each series can be shown as a line on the chart. Note that only real-time anomalies will be visible on the chart. For more information about real-time and historical anomaly detection, see [Anomaly detection, Step 3: Set up detector jobs]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/#step-3-setting-up-detector-jobs).
+Anomaly detection visualizations display as time-series charts that show you when anomalies occurred across the detectors you've configured. You can display up to 10 metrics on your chart, with each series shown as a separate line. Note that only real-time anomalies appear on the chart. For more information about real-time and historical anomaly detection, see [Anomaly detection, Step 3: Set up detector jobs]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/#step-3-setting-up-detector-jobs).
 
-Keep in mind the following requirements when setting up or creating anomaly detection visualizations. The visualization:
+Your visualization must meet the following requirements:
 
-- Must be a [Vizlib line chart](https://community.vizlib.com/support/solutions/articles/35000107262-vizlib-line-chart-introduction)
-- Must contain at least a Y-axis metric aggregation
-- Must not have non-Y-axis metric aggregation types
-- Must use the date histogram aggregation type for the X-axis bucket
-- Must have an X-axis on the bottom
-- Must define one X-axis aggregation bucket
-- Must have a valid time-based X-axis
+- Uses a [Vizlib line chart](https://community.vizlib.com/support/solutions/articles/35000107262-vizlib-line-chart-introduction)
+- Contains at least one Y-axis metric aggregation
+- Does not include non-Y-axis metric aggregation types
+- Uses the date histogram aggregation type for the X-axis bucket
+- Positions the X-axis on the bottom
+- Defines exactly one X-axis aggregation bucket
+- Has a valid time-based X-axis
 
-## Configuring admin settings
+## Configuring Admin Settings
 
-Users can only access, create, or manage anomaly detectors for resources for which they have permissions. Access to anomaly detection dashboards and visualizations is controlled by OpenSearch and OpenSearch Dashboards permissions. It is enabled by default and appears as a feature under **Dashboards Management** > **Advanced Settings** > **Visualization**. If the setting is disabled, it does not appear under **Dashboards Management**. You can disable the setting at the cluster level in the `opensearch-dashboards.yml` file.
+Users can only access, create, or manage anomaly detectors for resources they have permissions to use. OpenSearch and OpenSearch Dashboards permissions control access to anomaly detection dashboards and visualizations.
 
-## Creating anomaly detectors
+The feature is enabled by default and appears under **Dashboards Management** > **Advanced Settings** > **Visualization**. When disabled, it doesn't appear under **Dashboards Management**. To disable the setting at the cluster level, update the `opensearch-dashboards.yml` file.
 
-To start, first create an anomaly detector:
+## Creating Anomaly Detectors
+
+Follow these steps to create an anomaly detector from the Dashboard interface:
 
 1. Select **Dashboard** from the OpenSearch Dashboards main menu.
 2. From the **Dashboards** window, select **Create** and then choose **Dashboard**.
-3. Select **Add an existing**, then select the appropriate visualization from the **Add panels** list. The visualization is added to the dashboard.
-4. From the visualization panel, choose the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}).
-5. From the **Options** menu, choose **Anomaly Detection** > **Add anomaly detector**.
+3. Select **Add an existing**, then choose the appropriate visualization from the **Add panels** list. The visualization is added to the dashboard.
+4. From the visualization panel, select the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}).
+5. From the **Options** menu, select **Anomaly Detection** > **Add anomaly detector**.
 6. Select **Create new detector**.
-7. Input information for **Detector details** and **Model features**. Up to five model features are allowed.
+7. Enter information for **Detector details** and **Model features**. You can configure up to five model features.
 8. To preview the visualization within the flyout, toggle the **Show visualization** button.
-9. Select **Create detector**. Once you have created a new detector, the detector is added to the visualization, as shown in the following image.
+9. Select **Create detector**.
+
+Once you create the detector, it appears in your visualization as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/add-detector.png" alt="Interface of adding a detector" width="800" height="800">
 
-## Adding anomaly detectors to visualizations
+## Adding Existing Detectors to Visualizations
 
-Use a single interface to add, view, and edit anomaly detectors that you want to associate with a visualization. Continuing with the visualization and dashboard in the preceding tutorial, follow these steps to associate an anomaly detector with a visualization:
+You can use a single interface to add, view, and edit anomaly detectors associated with a visualization. To associate an existing detector with a visualization:
 
-1. Select the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}) from the visualization panel, then select **Anomaly Detection**.
+1. From the visualization panel, select the ellipsis icon ({::nomarkdown}<img src="{{site.url}}{{site.baseurl}}/images/ellipsis-icon.png" class="inline-icon" alt="ellipsis icon"/>{:/}), then select **Anomaly Detection**.
 2. Select **Associate a detector**.
-3. From the **Select detector to associate** dropdown menu, select the detector. Only eligible detectors are listed in the dropdown menu.
-4. View basic information about the detectors. To view comprehensive details, select **View detector page** to open the Anomaly Detection plugin page.
-5. Select **Associate detector**. An existing detector is now associated to the visualization, as shown in the following image.
+3. From the **Select detector to associate** dropdown menu, choose the detector you want to use. Only eligible detectors appear in the dropdown menu.
+4. Review the basic detector information. To see comprehensive details, select **View detector page** to open the Anomaly Detection plugin page.
+5. Select **Associate detector**.
+
+The detector is now associated with your visualization, as shown in the following image.
 
 <img src="{{site.url}}{{site.baseurl}}/images/dashboards/anomaly-detect-dashboard.png" alt="Interface and confirmation message of associating a detector" width="800" height="800">
 
-## Refreshing the visualization
+## Refreshing the Visualization
 
-Depending on the threshold settings, the visualization refreshes automatically at the specified interval. To manually refresh the visualization, select the **Refresh** button on the Dashboard page.
+The visualization refreshes automatically at the interval you specify in your threshold settings. To manually refresh the visualization, select the **Refresh** button on the Dashboard page.
 
-## Next steps
+## Next Steps
 
-- [Learn more about the Dashboard application]({{site.url}}{{site.baseurl}}/dashboards/dashboard/index/).
-- [Learn more about anomaly detection]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/).
+- [Learn more about the Dashboard application]({{site.url}}{{site.baseurl}}/dashboards/dashboard/index/)
+- [Learn more about anomaly detection]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/)
