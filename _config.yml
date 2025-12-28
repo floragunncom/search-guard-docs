@@ -438,6 +438,10 @@ sgversions:
     - 9.1.0|1.0.0|yes|no
     - 8.19.6|1.0.0|yes|no
     - 8.19.5|1.0.0|yes|yes
+adversions:
+  anomaly-detection:
+    # esv | adv | available | eol
+    - 8.17.0|1.0.0-tp1|yes|no
   tlstool: 4.0.1
   sgctl: 4.0.1
   enctl: 1.0.0-es-9.1.5
