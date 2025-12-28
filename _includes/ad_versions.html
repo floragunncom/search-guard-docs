@@ -1,0 +1,70 @@
+{% assign adversions = site.adversions[include.versions] %}
+
+<table>
+  <thead>
+  <tr>
+    <th>Elasticsearch</th>
+    <th>AD Version</th>
+    <th>Job Scheduler Plugin</th>
+    <th>AD Elasticsearch Plugin</th>
+    <th>AD Kibana Plugin</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  {% for version in adversions %}
+
+    {% assign adversions_split = version | split: "|" %}
+
+      {% capture scheduler_url %}
+        https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/{{ adversions_split[1] }}-es-{{ adversions_split[0] }}/search-guard-ad-scheduler-{{ adversions_split[1] }}-es-{{ adversions_split[0] }}.zip
+      {% endcapture %}
+      {% capture es_plugin_url %}
+        https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/{{ adversions_split[1] }}-es-{{ adversions_split[0] }}/search-guard-anomaly-detection-{{ adversions_split[1] }}-es-{{ adversions_split[0] }}.zip
+      {% endcapture %}
+      {% capture kibana_url %}
+        https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/{{ adversions_split[1] }}-es-{{ adversions_split[0] }}/search-guard-kibana-anomaly-detection-{{ adversions_split[1] }}-es-{{ adversions_split[0] }}.zip
+      {% endcapture %}
+
+  <tr>
+
+    <td>{{ adversions_split[0] }} </td>
+
+    <td>{{ adversions_split[1] }}</td>
+
+    {% if adversions_split[2] == "yes" %}
+
+    <!-- available version -->
+
+    <td><a href="{{ scheduler_url }}" target="_blank">{{ adversions_split[1] }}</a></td>
+
+    <td><a href="{{ es_plugin_url }}" target="_blank">{{ adversions_split[1] }}</a></td>
+
+    <td><a href="{{ kibana_url }}" target="_blank">{{ adversions_split[1] }}</a></td>
+
+    <!-- is EOL switch -->
+    {% if adversions_split[3] == "no" %}
+    <td>Active</td>
+    {% else %}
+    <td>EOL</td>
+    {% endif %}
+
+    {% else %}
+
+    <!-- unavailable version -->
+
+    <td>{{ adversions_split[1] }}</td>
+
+    <td>{{ adversions_split[1] }}</td>
+
+    <td>{{ adversions_split[1] }}</td>
+
+    <td>EOL</td>
+
+    {% endif %}
+
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>

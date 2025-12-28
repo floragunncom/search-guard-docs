@@ -1,15 +1,42 @@
 - title: Anomaly Detection
   slug: anomaly-detection
   children:
-    - title: Introduction
-      slug: anomaly-detection-introduction
-    - title: API
-      slug: anomaly-detection-api
-    - title: Settings
-      slug: anomaly-detection-settings
-    - title: Result Mapping
-      slug: anomaly-detection-result-mapping
-    - title: Security
-      slug: anomaly-detection-security
+    - title: Overview
+      slug: anomaly-detection-overview
+    - title: Versions
+      slug: anomaly-detection-versions
+    - title: Getting Started
+      slug: anomaly-detection-getting-started
+    - title: Detector Configuration
+      slug: detector-configuration
+      children:
+        - title: Creating Detectors
+          slug: anomaly-detection-creating-detectors
+        - title: Configuring Features
+          slug: anomaly-detection-features
+        - title: Advanced Configuration
+          slug: anomaly-detection-advanced-config
+    - title: Running Detectors
+      slug: anomaly-detection-running-detectors
+    - title: Alerts and Integration
+      slug: anomaly-detection-alerts
+    - title: API Reference
+      slug: api-reference
+      children:
+        - title: Detector Operations
+          slug: anomaly-detection-api-detectors
+        - title: Job Operations
+          slug: anomaly-detection-api-jobs
+        - title: Result Operations
+          slug: anomaly-detection-api-results
+    - title: Configuration Reference
+      slug: configuration-reference
+      children:
+        - title: Settings
+          slug: anomaly-detection-settings
+        - title: Security
+          slug: anomaly-detection-security
+        - title: Result Mapping
+          slug: anomaly-detection-result-mapping
 #    - title: Dashboards and visualizations
 #      slug: anomaly-detection-dashboard-visualization

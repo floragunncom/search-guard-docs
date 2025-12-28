@@ -1,15 +1,15 @@
 ---
-title: Anomaly Detection security
-html_title: Anomaly Detection security
+title: Anomaly Detection Security
+html_title: Anomaly Detection Security
 permalink: anomaly-detection-security
 layout: docs
 section: anomaly_detection
 edition: enterprise
-description: Anomaly Detection security
+description: Security configuration for Anomaly Detection
 ---
 
-<!---  
-Copyright (c) 2025 floragunn GmH
+<!---
+Copyright (c) 2025 floragunn GmbH
 
 This file contains content originally licensed under Apache-2.0.
 Original license header and notices preserved below.
@@ -30,94 +30,174 @@ Modifications Copyright OpenSearch Contributors. See
 GitHub history for details.
 -->
 
-{% include beta_warning.html %}
-
-# Search Guard Anomaly Detection security
+# Anomaly Detection Security
 
 {: .no_toc}
 
 {% include toc.md %}
 
-You can use the Search Guard Security plugin with anomaly detection in Elasticsearch to limit non-admin users to specific actions. For example, you might want some users to only be able to create, update, or delete detectors, while others to only view detectors.
+You can use the Search Guard Security plugin to control access to anomaly detection features. This lets you limit which users can create, update, delete, or view detectors.
 
-All anomaly detection indexes are protected as system indexes. Only a super admin user or an admin user with a TLS certificate can access system indexes.
+All anomaly detection indices are protected as system indices. Only super admin users or admin users with TLS certificates can access system indices directly.
 
-## Basic permissions
+## Basic Permissions
 
-As an admin user, you can use the Security plugin to assign specific permissions to users based on which APIs they need access to. For a list of supported APIs, see [Anomaly detection API](anomaly-detection-api).
+As an admin, you assign specific permissions to users based on which APIs they need. This follows the principle of least privilege—give users only the access they require to do their work.
 
-To create and manage detectors, the user may need the following permissions:
-* "cluster:admin/searchguard/ad/detector/search"
-* "cluster:admin/searchguard/ad/detector/info"
-* "indices:monitor/settings/get"
-* "indices:monitor/stats"
-* "cluster:monitor/state"
-* "indices:admin/mappings/get":
-* "cluster:admin/searchguard/ad/detector/preview"
-* "cluster:admin/searchguard/ad/detector/validate"
-* "cluster:admin/searchguard/ad/detector/write":
-* "cluster:admin/searchguard/ad/detectors/get"
-* "cluster:admin/searchguard/ad/tasks/search"
-* "cluster:admin/searchguard/ad/result/search"
-* "cluster:admin/searchguard/ad/detector/delete"
-* "cluster:admin/searchguard/ad/detector/jobmanagement"
+### Required Permissions for Detector Management
+
+Users who create and manage detectors need both cluster-level and index-level permissions. The following tables describe each permission.
+
+**Cluster-level permissions:**
+
+Permission | Description
+:--- | :---
+`cluster:admin/searchguard/ad/detector/search` | Search for detectors.
+`cluster:admin/searchguard/ad/detector/info` | Get detector information.
+`cluster:admin/searchguard/ad/detector/preview` | Preview detector results.
+`cluster:admin/searchguard/ad/detector/validate` | Validate detector configuration.
+`cluster:admin/searchguard/ad/detector/write` | Create and update detectors.
+`cluster:admin/searchguard/ad/detectors/get` | Retrieve detector details.
+`cluster:admin/searchguard/ad/tasks/search` | Search detector tasks.
+`cluster:admin/searchguard/ad/result/search` | Search anomaly results.
+`cluster:admin/searchguard/ad/detector/delete` | Delete detectors.
+`cluster:admin/searchguard/ad/detector/jobmanagement` | Start and stop detector jobs.
+`cluster:monitor/state` | Monitor cluster state.
+{: .config-table}
+
+**Index-level permissions:**
+
+Permission | Description
+:--- | :---
+`indices:monitor/settings/get` | Get index settings.
+`indices:monitor/stats` | Get index statistics.
+`indices:admin/mappings/get` | Get index mappings.
+{: .config-table}
+
+Together, these permissions let users perform complete detector lifecycle management.
 
 {% comment %}
-The Security plugin has two built-in roles that cover most anomaly detection use cases: `anomaly_full_access` and `anomaly_read_access`. For descriptions of each, see [Predefined roles]({{site.url}}{{site.baseurl}}/security/access-control/users-roles#predefined-roles).
+## Pre-Configured Roles
 
-If you use OpenSearch Dashboards to create your anomaly detectors, you may experience access issues even with `anomaly_full_access`. This issue has been resolved in OpenSearch 2.17, but for earlier versions, the following additional permissions need to be added:
+The Security plugin includes two built-in roles for common anomaly detection scenarios:
 
-- `indices:data/read/search` -- You need this permission because the Anomaly Detection plugin needs to search the data source in order to validate whether there is enough data to train the model.
-- `indices:admin/mappings/fields/get` and `indices:admin/mappings/fields/get*` -- You need these permissions to validate whether the given data source has a valid timestamp field and categorical field (in the case of creating a high-cardinality detector).
+**anomaly_full_access**: Full permissions to create, read, update, and delete detectors.
 
-If these roles don't meet your needs, mix and match individual anomaly detection [permissions]({{site.url}}{{site.baseurl}}/security/access-control/permissions/) to suit your use case. Each action corresponds to an operation in the REST API. For example, the `cluster:admin/opensearch/ad/detector/delete` permission lets you delete detectors.
+**anomaly_read_access**: Read-only access to view detectors and results.
 
-### A note on alerts and fine-grained access control
+See the Search Guard documentation for descriptions of all predefined roles.
 
-When a trigger generates an alert, the detector and monitor configurations, the alert itself, and any notification that is sent to a channel may include metadata describing the index being queried. By design, the plugin must extract the data and store it as metadata outside of the index. [Document-level security]({{site.url}}{{site.baseurl}}/security/access-control/document-level-security) (DLS) and [field-level security]({{site.url}}{{site.baseurl}}/security/access-control/field-level-security) (FLS) access controls are designed to protect the data in the index. But once the data is stored outside the index as metadata, users with access to the detector and monitor configurations, alerts, and their notifications will be able to view this metadata and possibly infer the contents and quality of data in the index, which would otherwise be concealed by DLS and FLS access control.
+### Additional Permissions for Kibana
 
-To reduce the chances of unintended users viewing metadata that could describe an index, we recommend that administrators enable role-based access control and keep these kinds of design elements in mind when assigning permissions to the intended group of users. See [Limit access by backend role](#advanced-limit-access-by-backend-role) for details.
+If you use Kibana to create detectors, you may need additional permissions beyond the built-in roles. Search Guard 2.17+ includes these automatically, but earlier versions require manual configuration.
 
-### Selecting remote indexes with fine-grained access control
+**Required additional permissions:**
 
-To use a remote index as a data source for a detector, see the setup steps in [Authentication flow]({{site.url}}{{site.baseurl}}/search-plugins/cross-cluster-search/#authentication-flow) in [Cross-cluster search]({{site.url}}{{site.baseurl}}/search-plugins/cross-cluster-search/). You must use a role that exists in both the remote and local clusters. The remote cluster must map the chosen role to the same username as in the local cluster.
+`indices:data/read/search`: Search data sources to validate sufficient data for model training.
 
----
+`indices:admin/mappings/fields/get` and `indices:admin/mappings/fields/get*`: Validate timestamp fields and categorical fields for high-cardinality detectors.
 
-#### Example: Create a new user on the local cluster
+Without these permissions, detector creation in Kibana may fail.
 
-1. Create a new user on the local cluster to use for detector creation:
+### Custom Permission Combinations
 
-```
+Mix and match individual permissions to create custom roles for your specific use cases. Each permission corresponds to a REST API operation.
+
+**Example**: The `cluster:admin/searchguard/ad/detector/delete` permission lets users delete detectors but nothing else.
+
+## Security Considerations for Alerts
+
+When triggers generate alerts, metadata about the queried index may be included in:
+
+**Detector configurations**
+
+**Monitor configurations**
+
+**Alert contents**
+
+**Notification messages**
+
+By design, the plugin extracts data and stores it as metadata outside the index. Document-level security (DLS) and field-level security (FLS) protect data inside indices. However, once extracted as metadata, these controls no longer apply.
+
+Users with access to detector configurations, alerts, or notifications can view this metadata. This might reveal information about index contents that would otherwise be concealed by DLS and FLS.
+
+### Mitigation Strategy
+
+Use role-based access control to limit who can access detector configurations and alerts. Consider these design principles:
+
+**Assign permissions carefully**: Only give users the minimum access they need.
+
+**Use backend role filtering**: Limit detector access to users with matching backend roles. See [Limit Access by Backend Role](#advanced-limit-access-by-backend-role) below.
+
+**Educate users**: Inform users that anomaly detection results may contain metadata from protected indices.
+
+## Selecting Remote Indices
+
+To use a remote index as a data source for a detector, you need to configure cross-cluster authentication properly.
+
+### Setup Requirements
+
+**Same role on both clusters**: Use a role that exists in both remote and local clusters.
+
+**Username mapping**: The remote cluster must map the chosen role to the same username as the local cluster.
+
+See the Search Guard cross-cluster search documentation for detailed setup steps.
+
+### Example: Create a User for Remote Access
+
+This example creates a user on both local and remote clusters.
+
+**Step 1: Create user on local cluster**
+
+```bash
 curl -XPUT -k -u 'admin:<custom-admin-password>' 'https://localhost:9200/_plugins/_security/api/internalusers/anomalyuser' -H 'Content-Type: application/json' -d '{"password":"password"}'
 ```
 
-2. Map the new user to the `anomaly_full_access` role:
+**Step 2: Map user to role on local cluster**
 
-```
+```bash
 curl -XPUT -k -u 'admin:<custom-admin-password>' -H 'Content-Type: application/json' 'https://localhost:9200/_plugins/_security/api/rolesmapping/anomaly_full_access' -d '{"users" : ["anomalyuser"]}'
 ```
 
-3. On the remote cluster, create the same user and map `anomaly_full_access` to that role:
+**Step 3: Create same user on remote cluster**
 
-```
+```bash
 curl -XPUT -k -u 'admin:<custom-admin-password>' 'https://localhost:9250/_plugins/_security/api/internalusers/anomalyuser' -H 'Content-Type: application/json' -d '{"password":"password"}'
+```
+
+**Step 4: Map user to role on remote cluster**
+
+```bash
 curl -XPUT -k -u 'admin:<custom-admin-password>' -H 'Content-Type: application/json' 'https://localhost:9250/_plugins/_security/api/rolesmapping/anomaly_full_access' -d '{"users" : ["anomalyuser"]}'
 ```
 
----
+Replace `<custom-admin-password>` with your actual admin password. Adjust port `9250` to match your remote cluster's port.
 
-### Custom results index
+## Custom Results Indices
 
-To use a custom results index, you need additional permissions not included in the default roles provided by the OpenSearch Security plugin. To add these permissions, see [Step 1: Define a detector]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/#step-1-define-a-detector) in the [Anomaly detection]({{site.url}}{{site.baseurl}}/observing-your-data/ad/index/) documentation.
+To use custom results indices, you need additional permissions beyond the default roles.
 
-## (Advanced) Limit access by backend role
+See [Advanced Configuration](anomaly-detection-advanced-config#custom-result-indices) for required permissions and setup details.
 
-Use backend roles to configure fine-grained access to individual detectors based on roles. For example, users of different departments in an organization can view detectors owned by their own department.
+## (Advanced) Limit Access by Backend Role
 
-First, make sure your users have the appropriate [backend roles]({{site.url}}{{site.baseurl}}/security/access-control/index/). Backend roles usually come from an [LDAP server]({{site.url}}{{site.baseurl}}/security/configuration/ldap/) or [SAML provider]({{site.url}}{{site.baseurl}}/security/configuration/saml/), but if you use the internal user database, you can use the REST API to [add them manually]({{site.url}}{{site.baseurl}}/security/access-control/api#create-user).
+Use backend roles to configure fine-grained access to individual detectors. Users only see detectors created by users who share at least one backend role.
 
-Next, enable the following setting:
+This is useful when different departments need to manage their own detectors separately.
+
+### Prerequisites
+
+Users must have appropriate backend roles configured. Backend roles typically come from:
+
+**LDAP servers**: See Search Guard LDAP documentation.
+
+**SAML providers**: See Search Guard SAML documentation.
+
+**Internal user database**: Use the REST API to add backend roles manually.
+
+### Enable Backend Role Filtering
+
+Enable the setting to activate backend role filtering:
 
 ```json
 PUT _cluster/settings
@@ -128,10 +208,13 @@ PUT _cluster/settings
 }
 ```
 
-Now when users view anomaly detection resources in OpenSearch Dashboards (or make REST API calls), they only see detectors created by users who share at least one backend role.
-For example, consider two users: `alice` and `bob`.
+Once enabled, users only see detectors created by users with shared backend roles.
 
-`alice` has an analyst backend role:
+### Example Scenario
+
+Consider two users: `alice` and `bob`.
+
+**Alice's configuration:**
 
 ```json
 PUT _plugins/_security/api/internalusers/alice
@@ -144,7 +227,9 @@ PUT _plugins/_security/api/internalusers/alice
 }
 ```
 
-`bob` has a human-resources backend role:
+Alice has the `analyst` backend role.
+
+**Bob's configuration:**
 
 ```json
 PUT _plugins/_security/api/internalusers/bob
@@ -157,7 +242,9 @@ PUT _plugins/_security/api/internalusers/bob
 }
 ```
 
-Both `alice` and `bob` have full access to anomaly detection:
+Bob has the `human-resources` backend role.
+
+**Both users have full anomaly detection access:**
 
 ```json
 PUT _plugins/_security/api/rolesmapping/anomaly_full_access
@@ -171,8 +258,14 @@ PUT _plugins/_security/api/rolesmapping/anomaly_full_access
 }
 ```
 
-Because they have different backend roles, `alice` and `bob` cannot view each other's detectors or their results.
+Because alice and bob have different backend roles, they cannot view each other's detectors or results.
 
-If users do not have backend roles, they still can view other users' anomaly detection results as long as they have `anomaly_read_access`. This is the same for users who have `anomaly_full_access`, as it includes all of the permissions as `anomaly_read_access`. Administrators should inform users that having `anomaly_read_access` allows for viewing of the results from any detector in the cluster, including data not directly accessible to them. To limit access to the detector results, administrators should use backend role filters at the time the detector is created. This ensures only users with matching backend roles can access results from those particular detectors.
+### Users Without Backend Roles
+
+Users without backend roles can still view other users' anomaly detection results if they have read access permissions. This applies to both read-only and full-access roles.
+
+**Important**: Administrators should inform users that read access allows viewing results from any detector in the cluster. This includes data not directly accessible through other means.
+
+**Best practice**: Use backend role filters when creating detectors. This ensures only users with matching backend roles can access results from those detectors.
 
 {% endcomment %}
