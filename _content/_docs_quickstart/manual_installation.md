@@ -41,7 +41,7 @@ Search Guard can be installed like any other Elasticsearch plugin by using the `
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-{{site.elasticsearch.majorversion}}-<version>.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-elasticsearch-plugin-{{site.elasticsearch.currentversion}}-es-{{site.searchguard.currentversion}}.zip
 ```
 
 ## Download and install the Search Guard demo certificates

@@ -29,10 +29,10 @@ The following paragraphs will guide you through the installation process.
 - Download the demo installer script for the setup you want to test:
   - [All Search Guard Releases](search-guard-versions)
 - If you want, feel invited to review the script. The single steps are also explained as comments in the file.
-- Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-flx-elasticsearch-plugin-1.0.0-es-7.16.3-demo-installer.sh`. Then, execute the script:
+- Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversionlastmajor }}-es-{{ site.elasticsearch.currentversionlastmajor }}-demo-installer.sh`. Then, execute the script:
 
 ```bash
-$ ./search-guard-flx-elasticsearch-plugin-1.0.0-es-7.16.3-demo-installer.sh
+$ ./search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversionlastmajor }}-es-{{ site.elasticsearch.currentversionlastmajor }}-demo-installer.sh
 ```
 
 - The script will download the Search Guard plugins and the `sgctl` tool. Additionally, it will download the matching version of Elasticsearch, which will be automatically extracted to the working directory. The same will be done for Kibana.
@@ -45,13 +45,13 @@ total 677M
 -rw-rw-r--  1 sg sg 1,7K Sep 15 12:35 admin-key.pem
 -rw-rw-r--  1 sg sg 1,6K Sep 15 12:35 admin.pem
 drwxrwxr-x 10 sg sg 4,0K Sep 15 12:35 elasticsearch
--rw-rw-r--  1 sg sg 329M Sep 15 12:35 elasticsearch-7.16.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 sg sg 329M Sep 15 12:35 elasticsearch-{{ site.elasticsearch.currentversionlastmajor }}-linux-x86_64.tar.gz
 drwxrwxr-x 10 sg sg 4,0K Sep 15 12:35 kibana
--rw-rw-r--  1 sg sg 273M Sep 15 12:35 kibana-7.16.3-linux-x86_64.tar.gz
+-rw-rw-r--  1 sg sg 273M Sep 15 12:35 kibana-{{ site.elasticsearch.currentversionlastmajor }}-linux-x86_64.tar.gz
 drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
--rw-rw-r--  1 sg sg  14M Sep 15 12:35 search-guard-flx-kibana-plugin-1.0.0-es-7.16.3.zip
--rw-rw-r--  1 sg sg  49M Sep 15 12:35 search-guard-elasticsearch-plugin-1.0.0-es-7.16.3.zip
--rwxrwxr-x  1 sg sg  22K Sep 15 12:35 search-guard-elasticsearch-plugin-1.0.0-es-7.16.3-demo-installer.sh
+-rw-rw-r--  1 sg sg  14M Sep 15 12:35 search-guard-flx-kibana-plugin-{{ site.searchguard.currentversionlastmajor }}-es-{{ site.elasticsearch.currentversionlastmajor }}.zip
+-rw-rw-r--  1 sg sg  49M Sep 15 12:35 search-guard-elasticsearch-plugin-{{ site.searchguard.currentversionlastmajor }}-es-{{ site.elasticsearch.currentversionlastmajor }}.zip
+-rwxrwxr-x  1 sg sg  22K Sep 15 12:35 search-guard-elasticsearch-plugin-{{ site.searchguard.currentversionlastmajor }}-es-{{ site.elasticsearch.currentversionlastmajor }}-demo-installer.sh
 -rwxrw-r--  1 sg sg  14M Sep 15 12:35 sgctl.sh
 ```
 

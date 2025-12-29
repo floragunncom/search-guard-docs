@@ -85,7 +85,7 @@ Ready to detect anomalies in your data? Follow these steps to get up and running
 
 ### Install the Plugins
 
-Download and install the Anomaly Detection plugins for both Elasticsearch and Kibana. The plugins are currently available as a technical preview for Elasticsearch 8.17.0. See [Getting Started](anomaly-detection-getting-started) for installation instructions.
+Download and install the Anomaly Detection plugins for both Elasticsearch and Kibana. The plugins are currently available as a technical preview for Elasticsearch {{ site.adversions.currentversionelasticsearch }}. See [Getting Started](anomaly-detection-getting-started) for installation instructions.
 
 ### Learn the Concepts
 
@@ -137,7 +137,7 @@ Find the documentation you need based on what you're trying to accomplish.
 
 ## Support and Feedback
 
-Anomaly Detection is currently available as a technical preview for Elasticsearch 8.17.0. We welcome your feedback as we continue developing this feature. For questions, issues, or feature requests, contact Search Guard support.
+Anomaly Detection is currently available as a technical preview for Elasticsearch {{ site.adversions.currentversionelasticsearch }}. We welcome your feedback as we continue developing this feature. For questions, issues, or feature requests, contact Search Guard support.
 
 ## Next Steps
 
