@@ -44,7 +44,7 @@ default:
 
 These options are available:
 
-**login_page.brand_image:** An absolute URL to your brand image.
+**login_page.brand_image:** An absolute URL to your brand image or a Base64-encoded String of your image
 
 **login_page.show_brand_image:** Set this to `false` when you want to have no brand image at all on the login page.
 

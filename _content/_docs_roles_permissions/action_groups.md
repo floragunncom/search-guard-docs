@@ -88,17 +88,19 @@ Search Guard ships with a list of built-in action groups that are suitable for m
 
 ### Cluster-level action groups
 
-| Name | Description |
-|---|---|
-| SGS_CLUSTER_ALL | Grants all cluster permissions. Equates to `cluster:*`|
-| SGS_CLUSTER_MONITOR | Grants all cluster monitoring permissions. Equates to `cluster:monitor/*`|
-| SGS_CLUSTER\_COMPOSITE\_OPS\_RO | Grants read-only permissions to execute multi requests like mget, msearch or mtv, plus permission to query for aliases. |
-| SGS_CLUSTER\_COMPOSITE\_OPS | Same as `CLUSTER_COMPOSITE_OPS_RO`, but also grants bulk write permissions and all aliases permissions. |
-| SGS_MANAGE_SNAPSHOTS | Grants full permissions to manage snapshots and repositories. |
-| SGS_CLUSTER_MANAGE_ILM | Grants the permissions to use the index lifecycle management APIs. |
-| SGS_CLUSTER_READ_ILM | Grants read-only permissions to use the index lifecycle management APIs. |
-| SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | Grants permission to manage index templates. |
-| SGS_CLUSTER_MANAGE_PIPELINES | Grants permissions to manage pipelines. |
+| Name | Description                                                                                                                                                                    |
+|---|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SGS_CLUSTER_ALL | Grants all cluster permissions. Equates to `cluster:*`                                                                                                                         |
+| SGS_CLUSTER_MONITOR | Grants all cluster monitoring permissions. Equates to `cluster:monitor/*`                                                                                                      |
+| SGS_CLUSTER\_COMPOSITE\_OPS\_RO | Grants read-only permissions to execute multi requests like mget, msearch or mtv, plus permission to query for aliases.                                                        |
+| SGS_CLUSTER\_COMPOSITE\_OPS | Same as `CLUSTER_COMPOSITE_OPS_RO`, but also grants bulk write permissions and all aliases permissions.                                                                        |
+| SGS_MANAGE_SNAPSHOTS | Grants full permissions to manage snapshots and repositories.                                                                                                                  |
+| SGS_CLUSTER_MANAGE_ILM | Grants the permissions to use the index lifecycle management APIs.                                                                                                             |
+| SGS_CLUSTER_READ_ILM | Grants read-only permissions to use the index lifecycle management APIs.                                                                                                       |
+| SGS_CLUSTER_MANAGE_INDEX_TEMPLATES | Grants permission to manage index templates.                                                                                                                                   |
+| SGS_CLUSTER_MANAGE_PIPELINES | Grants permissions to manage pipelines.                                                                                                                                        |
+| SGS_CLUSTER_SQL_READ | Grants permission to perform SQL search and asynchronous SQL search. SQL search also requires index-level permissions, which can be granted by assigning the SGS_SQL_READ group. |
+| SGS_SEARCH_TEMPLATES | Grants permission to use [Search Templates](https://www.elastic.co/docs/solutions/search/search-templates){:target="_blank"}                                                                     |
 {: .config-table}
 
 ### Multi- and bulk requests

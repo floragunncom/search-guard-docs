@@ -32,7 +32,7 @@ It is the missing piece needed to regain complete control over your data in Elas
 To install the Encryption at Rest plugin, run the following command:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-encryption-at-rest-plugin-1.0.0-es-8.18.2.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-encryption-at-rest-plugin-{{ site.encryptionatrest.currentversion }}-es-{{ site.encryptionatrest.currentversionelasticsearch }}.zip
 ```
 
 This plugin requires either the [Search Guard Security Plugin](https://docs.search-guard.com/latest/search-guard-versions) or Elasticsearch X-Pack Security to be installed and configured.
@@ -215,7 +215,7 @@ The plugin also provides encrypted snapshot functionality for backing up data. A
 
 - Real-time get actions are executed as non-real-time actions
 - Field names, index mappings, and some metadata are not stored encrypted (because they are part of the cluster state)
-- Do not use multiple `path.data` locations in elasticsearch.yml [as advised here](https://www.elastic.co/guide/en/elasticsearch/reference/8.18/path-settings-overview.html#multiple-data-paths)
+- Do not use multiple `path.data` locations in elasticsearch.yml [as advised here](https://www.elastic.co/guide/en/elasticsearch/reference/{{ site.elasticsearch.minorversion }}/path-settings-overview.html#multiple-data-paths)
 - There is a performance impact when indexing and searching encrypted indices
 - The mapping for every encrypted index must include a metadata field `_encrypted_tl_content` of type binary as explained above
 - After a full cluster restart, the plugin must be initialized again before encrypted indices can be accessed
