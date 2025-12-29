@@ -106,7 +106,7 @@ auth_domains:
   jwt.jwks_endpoint.url: "https://idp.example.com/public-keys.jwks"
   user_mapping.user_name.from: jwt.preferred_user_name
   user_mapping.roles.from: jwt.roles
-  user_mapping.attributes.from:
+  user_mapping.attrs.from:
     dept_no: jwt.department.number
     level: jwt.department.access_level
 ```
@@ -117,20 +117,20 @@ Moving on to `user_mapping.roles.from`: This specifies to retrieve roles from an
 
 Often, it might be the case that roles are specified only as a comma-separated string. In this case, you can write instead `user_mapping.roles.from_comma_separated_value: jwt.roles`.
 
-Finally, `user_mapping.attributes.from` is the most complex setting. In Search Guard, user attributes are used for dynamically defining the data a user has access to - based on index names or document attribute values. A Search Guard user can have an arbitrary number of named attributes. Each attribute can be a string, number, boolean or a complex type such as an array or an object with further attributes. However, it is not desirable to map all possible attributes coming from the request to user attributes. This is both for security and for performance reasons. Thus, the user attribute mapping should just map the attributes that are really necessary. 
+Finally, `user_mapping.attrs.from` is the most complex setting. In Search Guard, user attributes are used for dynamically defining the data a user has access to - based on index names or document attribute values. A Search Guard user can have an arbitrary number of named attributes. Each attribute can be a string, number, boolean or a complex type such as an array or an object with further attributes. However, it is not desirable to map all possible attributes coming from the request to user attributes. This is both for security and for performance reasons. Thus, the user attribute mapping should just map the attributes that are really necessary. 
 
 In the example, the attribute `department.number` is retrieved from the JWT and put into the Search Guard user with the attribute name `dept_no`. Additionally, the attribute `level` is retrieved from `jwt.department.access_level`. 
 
 ### Using static information for user mapping
 
-You can also define constant values to be used for user name, roles or attributes. For this, use the properties `user_mapping.user_name.static`, `user_mapping.roles.static` and `user_mapping.attributes.static`. A case, where this is very useful, is anonymous authentication. See the following example configuration for this:
+You can also define constant values to be used for user name, roles or attributes. For this, use the properties `user_mapping.user_name.static`, `user_mapping.roles.static` and `user_mapping.attrs.static`. A case, where this is very useful, is anonymous authentication. See the following example configuration for this:
 
 ```yaml
 auth_domains:
 - type: anonymous
   user_mapping.user_name.static: anon
   user_mapping.roles.static: anon_role
-  user_mapping.attributes.static:
+  user_mapping.attrs.static:
     dept_no: 0
     level: 0
 ```
@@ -259,7 +259,7 @@ auth_domains:
   - type: ldap
     [...]
     user_mapping.groups.from: ldap_group_entries[*].cn
-    user_mapping.attributes.from:
+    user_mapping.attrs.from:
        biz_cat: ldap_group_entries[*].businessCategory
 ```
    

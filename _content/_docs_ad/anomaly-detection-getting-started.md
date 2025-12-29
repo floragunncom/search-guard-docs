@@ -38,13 +38,13 @@ GitHub history for details.
 
 This guide walks you through installing the Anomaly Detection plugins and creating your first detector. By the end, you'll have a working anomaly detector monitoring your data in real time.
 
-## Downloading the Technical Preview
+## Downloading the Plugins
 
-The Anomaly Detection technical preview is currently available for Elasticsearch 8.17.0. You need to download three plugins:
+The Anomaly Detection preview is currently available for Elasticsearch {{ site.adversions.currentversionelasticsearch }}. You need to download three plugins:
 
-- [Anomaly Detection Elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
-- [Anomaly Detection Kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/1.0.0-tp1-es-8.17.0/search-guard-kibana-anomaly-detection-1.0.0-tp1-es-8.17.0.zip)
-- [Anomaly Detection scheduler plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/1.0.0-tp1-es-8.17.0/search-guard-ad-scheduler-1.0.0-tp1-es-8.17.0-plugin.zip)
+- [Anomaly Detection scheduler plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-ad-scheduler-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}-plugin.zip)
+- [Anomaly Detection Elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip)
+- [Anomaly Detection Kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-kibana-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip)
 
 ## Installing the Plugins
 

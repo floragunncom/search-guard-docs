@@ -22,10 +22,10 @@ Search Guard supports running a mixed cluster of 7.7.x and 8.x.x nodes and is th
 
 If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
 
-* [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/8.7/upgrading-elastic-stack.html){:target="_blank"}
-* [Upgrade Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/8.7/setup-upgrade.html){:target="_blank"}
-* [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/7.17/upgrade-assistant.html){:target="_blank"}
-* [Rolling Upgrades](https://www.elastic.co/guide/en/elastic-stack/8.7/upgrading-elasticsearch.html){:target="_blank"}
+* [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/{{ site.elasticsearch.minorversion }}/upgrading-elastic-stack.html){:target="_blank"}
+* [Upgrade Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/{{ site.elasticsearch.minorversion }}/setup-upgrade.html){:target="_blank"}
+* [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/{{ site.elasticsearch.minorversion }}/upgrade-assistant.html){:target="_blank"}
+* [Rolling Upgrades](https://www.elastic.co/guide/en/elastic-stack/{{ site.elasticsearch.minorversion }}/upgrading-elasticsearch.html){:target="_blank"}
 
 ## Review breaking changes
 

@@ -123,7 +123,7 @@ After having defined the severity mapping, you can assign severity levels to act
             "name": "slack_info",
             "severity": [ "error", "critical" ],
             "channel": "#notifications",
-            "text": "Severity level is now {{severity.level}} because {{severity.value}} >= {{severity.threshold}}"
+            "text": "Severity level is now {{severity.level.name}} because {{severity.value}} >= {{severity.threshold}}"
         }
     ]
 }
@@ -205,7 +205,7 @@ This might look like this:
             "name": "slack_resolve_info",
             "resolves_severity": [ "error" ],
             "channel": "#notifications",
-            "text": "Severity level is now {{severity.level}}; it was before: {{resolved.severity.level}}. The value has decreased from {{resolved.severity.value}} to {{severity.value}}"
+            "text": "Severity level is now {{severity.level.name}}; it was before: {{resolved.severity.level.name}}. The value has decreased from {{resolved.severity.value}} to {{severity.value}}"
         }
     ]
 }
@@ -231,4 +231,4 @@ So, you can access this information via the `resolved` property:
 **resolved.trigger:** The time when the previous execution was scheduled and when it was triggered.
 
 
-When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level` will be `NONE` and `severity.threshold` will be `null`.
+When using resolve actions, you should be aware that the current severity might have dropped to a level which is not covered by the severity mapping. If this is the case `severity.level.name` will be `NONE` and `severity.threshold` will be `null`.

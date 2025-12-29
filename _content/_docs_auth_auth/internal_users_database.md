@@ -55,7 +55,7 @@ The `internal_users_db` makes the attributes available for mapping below the key
 ```yaml
 auth_domains:
 - type: basic/internal_users_db
-  user_mapping.attributes.from:
+  user_mapping.attrs.from:
     dept_no: user_entry.attributes.department.number
 ```
 

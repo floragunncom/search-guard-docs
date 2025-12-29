@@ -25,7 +25,7 @@ Copyright 2022 floragunn GmbH
 
 Search Guard supports variables in the DLS query. With this feature, you can write dynamic queries based on the current users's attributes. This allows you to construct a permission scheme that is more flexible than bare role-based authorization.
 
-In addition to the simple user name and the roles of a user, Search Guard allows you to use arbitrary user attributes, which are defined inside your `sg_authc` configuration with the `user_mapping.attributes` [settings](authentication-authorization-configuration#mapping-user-information). These attributes can be extracted from all information that is available during authentication, such as claims from JWT tokes, LDAP roles, request headers, etc.
+In addition to the simple user name and the roles of a user, Search Guard allows you to use arbitrary user attributes, which are defined inside your `sg_authc` configuration with the `user_mapping.attrs` [settings](authentication-authorization-configuration#mapping-user-information). These attributes can be extracted from all information that is available during authentication, such as claims from JWT tokes, LDAP roles, request headers, etc.
 
 Search Guard provides a number of functions which can be used to construct complex queries from user attributes.
 
@@ -51,7 +51,7 @@ Then, you need to map it to a Search Guard user attribute in the JWT authenticat
 auth_domains:
 - type: jwt
   ...
-  user_mapping.attributes.from:
+  user_mapping.attrs.from:
     dept_no: jwt.department.number
 ```
 

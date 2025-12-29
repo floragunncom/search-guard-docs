@@ -297,12 +297,12 @@ jdoe:
     departmentName: "operations"
 ```
 
-In order to use this attribute, you need map it in the `user_mapping.attributes` configuration inside `sg_authc.yml`: 
+In order to use this attribute, you need map it in the `user_mapping.attrs` configuration inside `sg_authc.yml`: 
 
 ```yaml
 auth_domains:
 - type: basic/internal_users_db
-  user_mapping.attributes.from:
+  user_mapping.attrs.from:
     department: user_entry.attributes.departmentName
 ```
 
