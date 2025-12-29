@@ -413,7 +413,7 @@ Support for aliases and data streams have been added in SG FLX 3.0
 The permissions specified for `alias_permissions` and `data_stream_permissions` apply for these cases:
 
 - The user directly specifies an alias or data stream in a request (Like `GET /alias_a1/_search`).
-- The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` when `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1` then even though the configuration only has direct index permissions for `idx_a*`. The privileges from `alias_a1` will be projected onto the index.)
+- The user specifies an index which is member of an alias (Like `GET /idx_b1/_search` where `idx_b1` is member of `alias_a1`. The user will have privileges for `idx_b1`, as the privileges from `alias_a1` will be projected onto the underlying index as long as permission `indices:admin/aliases` for the underlying index is applied. See example in the section "Creating or modifying aliases permissions" below.)
 - The user specifies a backing index of a data stream (Like `GET /.ds-ds_a1-2024.02.16-000001/_search`).
 
 Permissions for aliases should always be listed under `alias_permissions`, similarly permissions for data streams should be listed under `data_stream_permissions`.
