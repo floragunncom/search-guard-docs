@@ -40,3 +40,6 @@
           slug: anomaly-detection-result-mapping
 #    - title: Dashboards and visualizations
 #      slug: anomaly-detection-dashboard-visualization
+
+    - title: Anomaly Detection Glossary
+      slug: anomaly-detection-glossary

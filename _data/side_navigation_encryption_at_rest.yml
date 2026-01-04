@@ -6,3 +6,6 @@
 
     - title: Changelog
       slug: changelogs-ear
+
+    - title: Encryption at Rest Glossary
+      slug: encryption-at-rest-glossary

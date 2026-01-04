@@ -166,3 +166,6 @@
       children:
         - title: Watch overview page query params
           slug: elasticsearch-alerting-watch-overview-parameters
+
+    - title: Alerting Glossary
+      slug: alerting-glossary
