@@ -32,7 +32,7 @@ Regardless of what authentication method you use, the basic flow is as follows:
   * For example, roles can be fetched from LDAP/AD, from a JSON web token or from the Search Guard internal user database.
 * Search Guard **maps** the user and backend roles to **Search Guard roles**.
 * Search Guard determines the **permissions** associated with the Search Guard role and decides whether the action the user wants to perform is allowed or not.
-* If your are using [Document- and Field-Level-Security](document-level-security), you can also apply more fine grained permissions based on documents and individual fields.  
+* If you are using [Document- and Field-Level-Security](document-level-security), you can also apply more fine grained permissions based on documents and individual fields.  
 
 ## Authentication flow
 

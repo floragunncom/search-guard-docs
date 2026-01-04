@@ -471,7 +471,7 @@ test:
 
 ```
 
-Note: This user will not be able to use normal indices, as the `index_permissions section does not exist!
+Note: This user will not be able to use normal indices, as the `index_permissions` section does not exist!
 
 #### DLS/FLS/FM
 
