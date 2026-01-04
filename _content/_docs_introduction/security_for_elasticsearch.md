@@ -44,7 +44,7 @@ The most recent versions of Search Guard are called Search Guard FLX.
 Search Guard encrypts all data flows in your cluster, both on REST and on Transport layer. This ensures that:
 
 * No one can sniff any data
-* No once can tamper with your data
+* No one can tamper with your data
 * Only trusted nodes can join your cluster
 
 Search Guard supports all modern cipher suites including Elliptic Curve Cryptography (ECC) and let's you choose the allowed TLS versions.

@@ -73,7 +73,7 @@ hr_employee:
 
 If a user has the role `hr_employee`, Search Guard now filters all documents where the `department` field is set to "Management" from any search result before passing it back to the user.
 
-The format of the query is the same as if it was used in a search request. The specified query expects the same format as if it was defined in the search request and supports ELasticsearch’s full Query DSL.
+The format of the query is the same as if it was used in a search request. The specified query expects the same format as if it was defined in the search request and supports Elasticsearch's full Query DSL.
 
 This means that you can make the DSL query as complex as you want, but since it has to be executed for each query, this, of course, comes with a small performance penalty.
 

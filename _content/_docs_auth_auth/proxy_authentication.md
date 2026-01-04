@@ -48,7 +48,7 @@ network:
 
 The authentication frontend `trusted_origin` checks whether the IP address of the connecting host is contained in the `trusted_proxies` network specified in the `network`settings. Authentication succeeds only if this is the case.
 
-**Important:** Make sure that you configure the `trusted_proxies` attribute correctly. In you include untrusted IP addresses, access by unauthorized clients might be possible.
+**Important:** Make sure that you configure the `trusted_proxies` attribute correctly. If you include untrusted IP addresses, access by unauthorized clients might be possible.
 
 Finally, the `user_mapping` configuration reads user name and roles from the configured HTTP request headers.
 

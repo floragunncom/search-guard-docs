@@ -5,7 +5,7 @@ permalink: search-guard-installation
 layout: docs
 section: security
 description: Step by step instructions for setting up Search Guard on a new or existing
-  Elastcsearch cluster.
+  Elasticsearch cluster.
 resources:
 - https://search-guard.com/presentations/|Search Guard Quickstart and First Steps (presentation)
 ---
@@ -110,7 +110,7 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-<version>.z
 ### Additional permissions dialogue
 
 
-You will see the following warning message when installating Search Guard. Confirm it by pressing 'y':
+You will see the following warning message when installing Search Guard. Confirm it by pressing 'y':
 
 ```bash
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

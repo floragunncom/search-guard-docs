@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-Active Directory and LDAP can be used as authentication backend and user information backend. Thus, you can choose whether you want to authenticate your uses with LDAP or just want to retrieve roles and attributes by LDAP.
+Active Directory and LDAP can be used as authentication backend and user information backend. Thus, you can choose whether you want to authenticate your users with LDAP or just want to retrieve roles and attributes by LDAP.
 
 This chapter describes the basic setup of LDAP with Search Guard. This will work in most cases. However, some setups require special configurations for TLS, proxies, or similar things. Please refer to the section Advanced Configuration for this.
 
