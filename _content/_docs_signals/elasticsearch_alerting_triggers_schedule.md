@@ -222,7 +222,7 @@ You can also specify arrays for the `on` and `at` attributes. Then, the trigger 
 		"schedule": {
 			"monthly": {
 			    "on": [1, 15],
-				"at": ["8:00:00, "14:00:00"]
+				"at": ["8:00:00", "14:00:00"]
 			}
 		}
 	},

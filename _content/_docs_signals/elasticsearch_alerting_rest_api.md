@@ -22,7 +22,7 @@ For a quick start, you can either use the Search Guard [admin demo user](demo-us
 ```
 sg_signals_all:
   cluster_permissions:
-    - 'GS_SIGNALS_ALL
+    - 'SGS_SIGNALS_ALL
   index_permissions:
     - index_patterns:
         - 'signal*'
