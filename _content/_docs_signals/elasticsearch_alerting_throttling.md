@@ -47,7 +47,7 @@ To throttle the execution of an action, you can set a `throttle_period` in the a
 
 In this example, regardless how often the condition in the watch definition fires, the email action will be executed only once per hour.
 
-On other words, if you define a throttle period, the action will not fire if the last time the action was executed is withing the timeframe of the throttle period.
+In other words, if you define a throttle period, the action will not fire if the last time the action was executed is withing the timeframe of the throttle period.
 
 ## Acknowledgement
 

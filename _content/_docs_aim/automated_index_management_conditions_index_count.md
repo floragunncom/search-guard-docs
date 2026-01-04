@@ -18,7 +18,7 @@ description: How the index count condition works
 
 This condition counts the number of indices assigned to a configured alias. If the number exceeds the configured maximum, this condition triggers if the current index is the oldest.
 
-To determent which alias to check this condition requires an alias key configured in the `index.aim.alias_mapping` part of the index settings.
+To determine which alias to check this condition requires an alias key configured in the `index.aim.alias_mapping` part of the index settings.
 
 ## Index Settings Example
 

@@ -48,7 +48,7 @@ A basic Jira action might look like this:
 			"issue": {
 				"type": "Bug",
 				"summary": "Cheese stock < {{data.cheese_stock}}",
-				"description:" "Please take action",
+				"description": "Please take action",
 			}
 		}
 	]

@@ -5,7 +5,7 @@ permalink: encryption-at-rest-introduction
 layout: docs
 section: encryption_at_rest
 edition: enterprise
-description: Encryption at Rest for ElasticSearch
+description: Encryption at Rest for Elasticsearch
 ---
 <!--- Copyright 2025 floragunn GmbH -->
 
@@ -111,7 +111,7 @@ curl -k -XPUT -u admin:admin "https://esnode.company.com:9200/my_encrypted_index
 ```
 
 This curl command creates an encrypted index named `my_encrypted_index`. Please note the two settings and one mapping:
-- The index settings `encryption_enable: true` and `store.type: encrypted` define this index as an encrypted index.
+- The index settings `encryption_at_rest_enabled: true` and `store.type: encrypted` define this index as an encrypted index.
 - The mapping `_encrypted_tl_content` with type `binary` is required and used only internally. If the mapping is missing, translog recovery may fail.
 
 
@@ -231,7 +231,7 @@ Apart from these preconditions, an encrypted index supports all queries and mapp
 
 ## API
 
-Initialize Encryption at rest
+Initialize Encryption at Rest
 ```json
 POST _encryption_at_rest/api/_initialize_key
 {
