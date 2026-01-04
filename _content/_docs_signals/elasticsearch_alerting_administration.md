@@ -25,13 +25,13 @@ If a cluster changes, for example because a node joins the cluster, all watches 
 
 If you want to have a closer control over the distribution of the watches, you can use the Signals configuration setting `tenant.{tenant_name}.node_filter`. You can configure this setting using the settings REST API.
 
-A node filter specifies the nodes on which the watches of a tenant shall be distributed. It uses the same node specification syntax as the Nodes Stats and Nodes Info REST APIs of Elasticsearch. The syntax is documented in detail in the chapter [No specification](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html) of the Elasticsearch docs.
+A node filter specifies the nodes on which the watches of a tenant shall be distributed. It uses the same node specification syntax as the Nodes Stats and Nodes Info REST APIs of Elasticsearch. The syntax is documented in detail in the chapter [Node specification](https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html) of the Elasticsearch docs.
 
 For example, using the node filter `signals:true` limits the watch execution to nodes which have `node.attr.signals: true` set in their `elasticsearch.yml`. You can also list node names like `node1,node2,node3`. 
 
 The setting is tenant-specific. So, you can do assign different nodes to each tenant.
 
-**Note:** Don't use the elasticsearch.yml option `signals.enabled` for controlling the distribution. Setting this flag to false will use disable watch execution on a particular node without affecting the distribution. Thus, watches may be assigned to that node. As Signals is disabled, the watch won't be executed, though.
+**Note:** Don't use the elasticsearch.yml option `signals.enabled` for controlling the distribution. Setting this flag to false will disable watch execution on a particular node without affecting the distribution. Thus, watches may be assigned to that node. As Signals is disabled, the watch won't be executed, though.
 
 
 ## Dynamic Configuration Options
@@ -66,7 +66,7 @@ The following configuration options can be made in the `elasticsearch.yml` confi
 
 **signals.index_names.log:** Specifies the name of the watch log index. Optional, defaults to `<signals_log_{now/d}>`.
 
-The below parameters should not be changed under normal circumstances and extreme caution should be taken if these are being changed, as this will effect all users and can negatively impact the cluster health.
+The below parameters should not be changed under normal circumstances and extreme caution should be taken if these are being changed, as this will affect all users and can negatively impact the cluster health.
 {: .note .js-note .note-warning}
 
 **signals.all_tenants_active_by_default:** By default, each tenant gets an active Signals scheduler. Set this to false in order to disable this. In order to have an Signals scheduler for a tenant, you then need to use the Signals activate tenant API to explicitly activate a tenant.

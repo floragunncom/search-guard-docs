@@ -27,7 +27,7 @@ A watch can have several actions; either for sending notifications via different
 
 ## Invoking actions
 
-Actions are generally invoked if all checks configured for a watch ran with a positive result. Thus, if a condition configured in the checks evaluates to false, watch execution is aborted an no actions are invoked. The actions operate on the runtime data collected by these checks.
+Actions are generally invoked if all checks configured for a watch ran with a positive result. Thus, if a condition configured in the checks evaluates to false, watch execution is aborted and no actions are invoked. The actions operate on the runtime data collected by these checks.
 
 Still, it is possible to configure further action-specific checks. This way, it is for example possible to configure different escalation levels: Certain actions will only be triggered when certain values exceed a further threshold. Also, action-specific checks can be used to prepare further runtime data for the action. Modifications of the runtime data done by action-specific checks are always scoped to this action and are invisible to other actions.
 

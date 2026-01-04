@@ -6,7 +6,7 @@ layout: docs
 section: alerting
 edition: community
 description: A trigger specifies when and how often a watch for Elasticsearch Alerting
-  i executed.
+  is executed.
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 
