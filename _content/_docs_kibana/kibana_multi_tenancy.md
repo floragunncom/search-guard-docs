@@ -139,7 +139,7 @@ In this example, a user that has the role `sg_human_resources` has access to the
 At the moment the only allowed values for `allowed_actions` are `SGS_KIBANA_ALL_WRITE` and `SGS_KIBANA_ALL_READ`. The option to assign finer-grained permissions will follow soon.
 {: .note .js-note .note-info}
 
-### Widcards and regular expressions in tenant patterns
+### Wildcards and regular expressions in tenant patterns
 
 You can use wildcards and regular expression in tenant names to make them more dynamic.
 
@@ -325,7 +325,7 @@ curl \
 
 ## Under the hood
 ### For FLX v2.0.0 and higher
-When the Multi-Tenancy is enabled, then all Kibana saved objects which does not belong to the global tenant are modified in the following way on the storiage level.
+When the Multi-Tenancy is enabled, then all Kibana saved objects which do not belong to the global tenant are modified in the following way on the storiage level.
 - The ID of the saved object is extended with the tenant ID.
 - Attribute `sg_tenant`, which contains tenant ID, is added to each saved object. Please keep in mind that this is only an implementation detail and can be changed without warning in the future. Therefore, software integrated with Search Guard and Elasticsearch should not rely on this behaviour.
 
@@ -338,7 +338,7 @@ The procedure described above applies only to the following indices
 
 When an HTTP request with header `sgtenant` or `sg_tenant` or proper query parameter is sent to Elasticsearch, the Search Guard imposes additional filtering on saved objects. Thus, saved objects that only belong to the tenant specified in the header (or query parameter) are processed. Therefore, when Multi-Tenancy is enabled, the user authorized to use Kibana should not have assigned any permissions related to the above indices. Such index permissions allow users to circumvent checks imposed by the Multi-Tenancy module. An example of the role which grants such permission to users is `SGS_KIBANA_USER_NO_MT`. Thus, users should not be assigned the role in environments where Multi-Tenancy is enabled. Furthermore, the Search Guard removes a part of the saved object ID related to Multi-Tenancy before returning responses. On the other hand, the attribute `sg_tenant` is not removed from responses.
 
-Search Guard treats the global tenant exceptionally. The tenant's saved object IDs are not extended, and the attribute `sg _tenant` is not added.
+Search Guard treats the global tenant exceptionally. The tenant's saved object IDs are not extended, and the attribute `sg_tenant` is not added.
 
 ### For versions prior to FLX v2.0.0: Index rewriting, Snapshot & Restore
 In a plain vanilla Kibana installation, all saved objects are stored in one global index.  Search Guard maintains separate indices for each tenant.

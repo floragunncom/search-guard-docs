@@ -16,6 +16,14 @@ This is the Search Guard Documentation System - a Jekyll-based static site gener
 
 ## Common Commands
 
+### Ruby version
+
+For this project to build and run, you need to use a compatible Ruby version. This project is using rvm to manage ruby versions. Use this command to choose a compatible Ruby version:
+
+```
+rvm use ruby-3.0.7
+```
+
 ### Development
 
 Start the local development server with live reloading:

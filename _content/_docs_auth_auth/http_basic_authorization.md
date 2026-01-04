@@ -20,5 +20,5 @@ If you want to use a user name and password to log into Elasticsearch, you need 
 
 * If you want to use **Active Directory/LDAP** for authenticating users, you can use the `ldap` authentication backend. This requires a bit more configuration; see the [LDAP and Active Directory docs](active-directory-ldap) for more information.
 
-**Note:** Users of older Search Guard versions might know the `challenge` flag which controls whether Search Guards sends HTTP Basic challenges for unauthenticated requests. The new version of Search Guard is capable of sending multiple challenges at once. Thus, this flag is no longer needed.
+**Note:** Users of older Search Guard versions might know the `challenge` flag which controls whether Search Guard sends HTTP Basic challenges for unauthenticated requests. The new version of Search Guard is capable of sending multiple challenges at once. Thus, this flag is no longer needed.
 

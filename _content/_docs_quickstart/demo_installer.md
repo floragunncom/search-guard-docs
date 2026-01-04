@@ -113,9 +113,9 @@ If you also have started Kibana, you can also edit the configuration via the Sea
 
 ## Review the generated configuration
 
-If you want to know how things work under the hood, have a look at the automatically generated configuration in the files 
+If you want to know how things work under the hood, have a look at the automatically generated configuration in the files
 
-- `elaticsearch/config/elaticsearch.yml`
+- `elasticsearch/config/elasticsearch.yml`
 - `kibana/config/kibana.yml`
 
 

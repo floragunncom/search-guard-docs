@@ -94,6 +94,10 @@ collections:
     output: true
     permalink: :name
     algolia_hierarchy: "Security > Kibana"
+  docs_production:
+    output: true
+    permalink: :name
+    algolia_hierarchy: "Security > Production"
   docs_elasticstack:
     output: true
     permalink: :name
