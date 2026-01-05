@@ -1,55 +1,111 @@
-# Search Guard FLX Documentation (Elasticsearch plugin suite)
+# Search Guard Documentation
 
-> Official documentation for Search Guard FLX (floragunn), an enterprise security and feature suite for Elasticsearch. Includes security (authn/authz, TLS, audit, DLS/FLS, Kibana integration), plus additional modules like alerting, automated index management, encryption at rest, and anomaly detection. Use the links below as the canonical entry points.
+> Search Guard is an Enterprise Security Suite for Elasticsearch and OpenSearch, providing authentication, authorization, encryption, audit logging, and compliance features. Official documentation at https://docs.search-guard.com/latest/
 
-Notes for LLMs/tools:
-- This documentation site includes multiple “versions” in the UI; the `/latest/` paths are the current FLX docs unless otherwise noted.
-- If you need compatibility details (Elasticsearch/Kibana/Search Guard versions, EOL), start with the Versions page.
-- For configuration changes, prefer `sgctl` and the REST API docs; for cluster setup, start with Quickstart → Installation → TLS.
+Search Guard protects your Elasticsearch and OpenSearch clusters with a comprehensive security solution. It offers TLS encryption, multiple authentication methods (LDAP, Active Directory, Kerberos, JWT, SAML, OpenID Connect), fine-grained access control, Document-Level Security, Field-Level Security, audit logging, and compliance features.
 
-## Start here
+This documentation covers all Search Guard features across Community and Enterprise editions, including the Signals Alerting plugin, Automated Index Management (AIM), Encryption at Rest, and Anomaly Detection modules.
 
-- [Documentation Home](https://docs.search-guard.com/latest/): Top-level entry point and module navigation.
-- [Security Overview](https://docs.search-guard.com/latest/security): Full Security documentation tree (authn/authz, TLS, Kibana, audit, DLS/FLS, troubleshooting).
-- [Quickstart](https://docs.search-guard.com/latest/search-guard-quickstart): Fast path to a working setup.
-- [Available Versions / Releases](https://docs.search-guard.com/latest/search-guard-versions): Version list and release mapping for Elasticsearch/Kibana/Search Guard.
+## Core Documentation
 
-## Install, upgrade, migrate
+[Security for Elasticsearch](security-for-elasticsearch): Overview of Search Guard's security features and architecture
+[Main Concepts](main-concepts): Core security concepts including users, roles, permissions, and tenants
+[Getting Started](search-guard-getting-started): Quick start guide for new users
+[Installation and Setup](search-guard-installation-setup): Complete installation guide for Search Guard
+[Demo Installer](demo-installer): Quickly set up Search Guard with sample configuration
 
-- [Installation (Security module)](https://docs.search-guard.com/latest/search-guard-installation): Install & initialize Search Guard on Elasticsearch.
-- [Manual Installation](https://docs.search-guard.com/latest/manual-installation): Step-by-step manual secured test installation.
-- [TLS Certificate Setup](https://docs.search-guard.com/latest/search-guard-tls-setup): Generate/configure TLS certificates for Search Guard.
-- [Upgrades and Migrations](https://docs.search-guard.com/latest/search-guard-upgrades): Upgrade paths and migration guidance (including FLX and major version moves).
-- [Upgrading Search Guard (general)](https://docs.search-guard.com/latest/upgrading): Rolling upgrades vs full upgrades (where applicable).
+## Installation and Configuration
 
-## Administration and configuration
+[Search Guard Installation](search-guard-installation): Detailed installation instructions
+[TLS Configuration](configuring-tls): Configure TLS/SSL encryption for node-to-node and client communication
+[Configuration Tools](search-guard-configuration-tools): Overview of sgctl CLI, GUI, and REST API
+[Search Guard Index](search-guard-index): Understanding the Search Guard configuration index
 
-- [sgctl (CLI) – Basic Usage](https://docs.search-guard.com/latest/sgctl): Command-line tool for administration and config changes.
-- [Configuration Variables / Secret Handling](https://docs.search-guard.com/latest/configuration-password-handling): Variable mechanism and secure credential patterns.
-- [REST API Overview](https://docs.search-guard.com/latest/rest-api-overview): REST endpoints for users, roles, role mappings, action groups, tenants, blocks, license, cache, bulk ops.
+## Authentication and Authorization
 
-## Security: authentication and authorization
+[Authentication Methods](authentication-methods): Overview of all supported authentication methods
+[Active Directory and LDAP](active-directory-ldap): Authenticate users against Active Directory or LDAP
+[HTTP Basic Authorization](http-basic-authorization): Simple username/password authentication
+[JSON Web Tokens (JWT)](jwt-json-web-tokens): Token-based authentication
+[SAML](saml): SAML 2.0 Single Sign-On integration
+[OpenID Connect](openid-connect): OpenID Connect authentication
+[Authorization Overview](authorization-overview): Role-based access control (RBAC)
+[Roles and Permissions](roles-permissions): Defining roles and assigning permissions
+[Action Groups](action-groups): Reusable permission sets
 
-- [Security category index](https://docs.search-guard.com/latest/security): Jump into authentication, authorization, DLS/FLS, audit/compliance, Kibana integration.
-- [Troubleshooting (Security)](https://docs.search-guard.com/latest/search-guard-troubleshooting): Common issues (TLS/auth/authz/Kibana) and remedies.
+## Fine-Grained Access Control
 
-## Release notes and changelogs
+[Document-Level Security](document-level-security): Restrict access to specific documents
+[Field-Level Security](field-level-security): Hide or anonymize specific fields
+[Advanced DLS](advanced-dls): Advanced Document-Level Security features
 
-- [FLX Release Notes](https://docs.search-guard.com/latest/sg-flx-release-notes): High-level FLX release notes.
-- [Changelog Overview](https://docs.search-guard.com/latest/changelogs-searchguard): Changelog index for Search Guard components.
+## Kibana Integration
 
-## Alerting (Signals)
+[Kibana Multi-Tenancy](kibana-multi-tenancy): Separate dashboards by users and roles
+[Kibana Authentication](kibana-authentication): Authentication options for Kibana
+[Kibana Plugin Installation](kibana-plugin-installation): Install and configure the Kibana plugin
 
-- [Alerting Overview](https://docs.search-guard.com/latest/elasticsearch-alerting): Signals Alerting documentation hub.
+## Audit Logging and Compliance
 
-## Index Management
+[Audit Logging and Compliance](search-guard-audit-compliance): Comprehensive audit logging for compliance
+[Audit Log Configuration](audit-logging): Configure audit logging settings
+[Compliance Features](compliance-read-history): Track read access to sensitive data
 
-- [Automated Index Management](https://docs.search-guard.com/latest/automated-index-management): Policies, conditions/actions, REST API for automated lifecycle operations.
+## Signals Alerting
+
+[Signals Alerting Overview](elasticsearch-alerting-getting-started): Getting started with Signals Alerting
+[How Signals Works](elasticsearch-alerting-how-it-works): Architecture and execution model
+[Triggers](elasticsearch-alerting-triggers-overview): Schedule-based and event-based triggers
+[Actions Overview](elasticsearch-alerting-actions-overview): Send notifications and execute actions
+[Email Actions](elasticsearch-alerting-actions-email): Send email notifications
+[Slack Actions](elasticsearch-alerting-actions-slack): Send Slack messages
+[Webhook Actions](elasticsearch-alerting-actions-webhook): Call external HTTP endpoints
+[PagerDuty Actions](elasticsearch-alerting-actions-pagerduty): Create PagerDuty incidents
+[Jira Actions](elasticsearch-alerting-actions-jira): Create Jira issues
+
+## Automated Index Management
+
+[Automated Index Management Overview](automated-index-management-getting-started): Getting started with AIM
+[Index Policies](automated-index-management-policies): Define lifecycle policies for indices
+[Conditions](automated-index-management-conditions-overview): Time-based and metric-based conditions
+[Actions](automated-index-management-actions-overview): Rollover, delete, snapshot, and more
 
 ## Encryption at Rest
 
-- [Encryption at Rest](https://docs.search-guard.com/latest/encryption-at-rest): Transparent at-rest encryption module docs.
+[Encryption at Rest Introduction](encryption-at-rest-introduction): Encrypt data at rest in Elasticsearch
+[Key Management](encryption-at-rest-key-management): Manage encryption keys
+[Configuration](encryption-at-rest-configuration): Configure encryption at rest
+[Performance](encryption-at-rest-performance): Performance impact and optimization
 
 ## Anomaly Detection
 
-- [Anomaly Detection](https://docs.search-guard.com/latest/anomaly-detection): Module overview and usage.
+[Anomaly Detection Overview](anomaly-detection-overview): Machine learning-based anomaly detection
+[Getting Started](anomaly-detection-getting-started): Set up anomaly detection
+[Creating Detectors](anomaly-detection-creating-detectors): Define anomaly detectors
+[Running Detectors](anomaly-detection-running-detectors): Execute and schedule detectors
+[Dashboard and Visualization](anomaly-detection-dashboard-visualization): View detection results
+
+## Production and Operations
+
+[Production Deployment](search-guard-production): Best practices for production environments
+[Performance Tuning](production-performance-tuning): Optimize Search Guard performance
+[Monitoring](production-monitoring): Monitor Search Guard metrics and logs
+[Troubleshooting](troubleshooting-overview): Common issues and solutions
+
+## REST API
+
+[REST API Overview](rest-api): General API usage and authentication
+[Internal Users API](rest-api-internalusers): Manage internal users
+[Roles API](rest-api-roles): Manage roles programmatically
+[Role Mappings API](rest-api-roles-mapping): Map users to roles
+[Tenants API](rest-api-tenants): Manage Multi-Tenancy
+
+## Optional
+
+[Security Glossary](security-glossary): Definitions of key security terms
+[Alerting Glossary](alerting-glossary): Alerting-specific terminology
+[Encryption at Rest Glossary](encryption-at-rest-glossary): Encryption terminology
+[Anomaly Detection Glossary](anomaly-detection-glossary): Anomaly detection terminology
+[Index Management Glossary](index-management-glossary): AIM terminology
+[Changelogs](changelog-searchguard-flx-3_0_0): Release notes and version history
+[Version Compatibility](search-guard-versions): Elasticsearch and Search Guard version compatibility
