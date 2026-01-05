@@ -105,7 +105,7 @@ The Audit Logging capabilities of Search Guard especially help to keep your Elas
 ## Alerting - Anomaly detection for your data
 
 Search Guard comes with an [Alerting module](elasticsearch-alerting-getting-started) that periodically scans the data in your cluster for anomalies and send out
-notifications on various channels like Email, PagerDuty, Slack, JIRA or any endpoint that provides a Webhook.
+notifications on various channels like Email, PagerDuty, Slack, Jira or any endpoint that provides a Webhook.
 
 The Signals Alerting module provides a fully fledged escalation model so you can choose to send notifications on different channels based on
 the severity of the incident. Search Guard will also notify you once an anomaly is not detected anymore and everything is back to normal.

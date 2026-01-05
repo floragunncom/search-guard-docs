@@ -459,3 +459,9 @@
           slug: changelogs-kibana
         - title: TLS Tool
           slug: changelogs-tlstool
+
+    # ===================================================================
+    # SECTION 14: GLOSSARY
+    # ===================================================================
+    - title: Security Glossary
+      slug: security-glossary

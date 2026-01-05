@@ -11,7 +11,7 @@ description: Changelog for Search Guard 7.x-52.0.0
 
 **Release Date: 2021-07-19**
 
-Search Guard Suite 52.0 is a new major release that primarily adds updates for Document Level Security. Additionally, there are two security bug fixes and one breaking change. Please be sure to thoroughly read the sections on the security bug fixes and breaking changes.
+Search Guard Suite 52.0 is a new major release that primarily adds updates for Document-Level Security. Additionally, there are two security bug fixes and one breaking change. Please be sure to thoroughly read the sections on the security bug fixes and breaking changes.
 
 The security bug fixes are also made available as patch releases for older versions of Search Guard.
 
@@ -93,7 +93,7 @@ Details:
 
 ## New Features and Improvements
 
-### Support for Term Lookup Queries in Document Level Security
+### Support for Term Lookup Queries in Document-Level Security
 
 Term Lookup Queries (TLQ) allow you to retrieve values from one document and use these values for a term query on a different index. This can be useful in document-level security where administrators can then have a separate index that defines which users have access to which documents.
 
@@ -129,7 +129,7 @@ This role definition restricts access to documents in `restricted_index`. For ea
 **Restrictions:** Users using term lookup queries for DLS should be aware that there are some restrictions on accessing these indexes:
 
 - Only a limited set of read operations is available for term lookup queries. These are: `get`, `search`, `mget`, `msearch`.
-- Cross Cluster Search (CCS) with TLQ protected indices on the remote cluster is not completely supported. It works for searches using `minimize_round_trips=true`. However, it does not work for cases where this mode is unavailable, such as scrolling or point-in-time searches.
+- Cross-Cluster Search (CCS) with TLQ protected indices on the remote cluster is not completely supported. It works for searches using `minimize_round_trips=true`. However, it does not work for cases where this mode is unavailable, such as scrolling or point-in-time searches.
 
 Details:
 

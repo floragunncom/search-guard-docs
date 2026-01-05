@@ -171,7 +171,7 @@ Each rule can have one or more alerts attached to it. They define where the actu
 * Email
 * PagerDuty
 * Slack
-* JIRA
+* Jira
 * MS Teams
 * RabbitMQ / ActiveMQ
 * ...

@@ -151,7 +151,7 @@ If you want to add new index- and document-type permissions, click on the "Add n
 
 You can configure Document- and Field-Level-Security for each role and index separately. First, select the index you want to edit. 
 
-You can then enter the Document-Level security in the text field under "Document Level Security Query". Clicking on the tick symbol will validate the query syntactically.
+You can then enter the Document-Level security in the text field under "Document-Level Security Query". Clicking on the tick symbol will validate the query syntactically.
 
 For Fiel-Level-Security you can list the fields, and specify if they should be included (white-listed) or excluded (black-listed).
 

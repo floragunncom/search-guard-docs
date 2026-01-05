@@ -372,7 +372,7 @@ The TLS diagnose tool can be used to verify your certificates and your certifica
 |---|---|
 | -ca,--trusted-ca | Path to a PEM file containing the certificate of a trusted CA|
 | -crt,--certificates | Path to PEM files containing certificates to be checked |
-| -es,--es-config | Path to the ElasticSearch config file containing the SearchGuard TLS configuration |
+| -es,--es-config | Path to the Elasticsearch config file containing the SearchGuard TLS configuration |
 | -v,--verbose | Enable detailed output|
 {: .config-table}
 

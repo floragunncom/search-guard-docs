@@ -1,26 +1,26 @@
 ---
-title: Cross Cluster Search
-html_title: Cross Cluster Search
+title: Cross-Cluster Search
+html_title: Cross-Cluster Search
 permalink: cross-cluster-tribe
 layout: docs
 section: security
 edition: community
-description: Search Guard fully supports the Cross Cluster Search feature of Elasticsearch.
+description: Search Guard fully supports the Cross-Cluster Search feature of Elasticsearch.
   Implement access control on distributed clusters.
 ---
 <!---
 Copyright 2022 floragunn GmbH
 -->
-# Cross Cluster Search Support
+# Cross-Cluster Search Support
 {: .no_toc}
 
 {% include toc.md %}
 
-Search Guard supports [Cross Cluster Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cross-cluster-search.html){:target="_blank"} out of the box, so there is nothing special to configure to make it work. Cross Cluster Search will replace Tribe nodes which are deprecated in Elasticsearch 6.x.
+Search Guard supports [Cross-Cluster Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cross-cluster-search.html){:target="_blank"} out of the box, so there is nothing special to configure to make it work. Cross-Cluster Search will replace Tribe nodes which are deprecated in Elasticsearch 6.x.
 
 ## Authentication Flow
 
-When accessing a `remote cluster` from a `coordinating cluster` via Cross Cluster Search:
+When accessing a `remote cluster` from a `coordinating cluster` via Cross-Cluster Search:
 
 * Search Guard authenticates the user on the coordinating cluster
 * Search Guard fetches the users backend roles on the coordinating cluster

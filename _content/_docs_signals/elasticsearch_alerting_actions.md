@@ -7,7 +7,7 @@ section: alerting
 edition: community
 canonical: elasticsearch-alerting-actions-overview
 description: Actions are used to send notifications by Email or other services like
-  Slack, PagerDuty JIRA or webhooks.
+  Slack, PagerDuty Jira or webhooks.
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 
@@ -49,7 +49,7 @@ These action types are available at the moment:
 
 These action types are only available in the Enterprise Edition:
 
-**[Pager Duty Action Type](elasticsearch-alerting-actions-pagerduty):** Triggers and resolves incidents in PagerDuty.
+**[PagerDuty Action Type](elasticsearch-alerting-actions-pagerduty):** Triggers and resolves incidents in PagerDuty.
 
 **[Jira Action Type](elasticsearch-alerting-actions-jira):** Creates issues in Jira.
 
