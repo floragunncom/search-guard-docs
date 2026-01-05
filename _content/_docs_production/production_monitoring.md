@@ -272,7 +272,7 @@ output.elasticsearch:
       "account": "default",
       "to": ["security@example.com"],
       "subject": "Alert: Multiple Failed Login Attempts Detected",
-      "body": "User(s) with failed login attempts:\n{{#data.failed_logins.aggregations.by_user.buckets}}\n- {{key}}: {{doc_count}} failures\n{{/data.failed_logins.aggregations.by_user.buckets}}"
+      "body": "User(s) with failed login attempts:\n{{data.failed_logins.aggregations.by_user.buckets}}\n- {{key}}: {{doc_count}} failures\n{{data.failed_logins.aggregations.by_user.buckets}}"
     }
   ]
 }
@@ -472,7 +472,7 @@ fi
       "account": "default",
       "to": ["security@example.com"],
       "subject": "SECURITY ALERT: Unusual bulk data access detected",
-      "body": "Large data access detected:\n{{#data.bulk_reads.aggregations.by_user.buckets}}\n- User: {{key}}, Documents: {{doc_count.value}}\n{{/data.bulk_reads.aggregations.by_user.buckets}}"
+      "body": "Large data access detected:\n{{data.bulk_reads.aggregations.by_user.buckets}}\n- User: {{key}}, Documents: {{doc_count.value}}\n{{data.bulk_reads.aggregations.by_user.buckets}}"
     }
   ]
 }
