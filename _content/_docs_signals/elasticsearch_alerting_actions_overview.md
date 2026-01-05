@@ -6,7 +6,7 @@ layout: docs
 section: alerting
 edition: community
 description: The Alerting for Elasticsearch plugin supports multiple connectors like
-  email, Slack, PagerDuty, JIRA or webhooks for sending notifications.
+  email, Slack, PagerDuty, Jira or webhooks for sending notifications.
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 
@@ -47,7 +47,7 @@ These action types are available at the moment:
 
 These action types are only available in the Enterprise Edition:
 
-**[Pager Duty Action Type](elasticsearch-alerting-actions-pagerduty):** Triggers and resolves incidents in PagerDuty.
+**[PagerDuty Action Type](elasticsearch-alerting-actions-pagerduty):** Triggers and resolves incidents in PagerDuty.
 
 **[Jira Action Type](elasticsearch-alerting-actions-jira):** Creates issues in Jira.
 

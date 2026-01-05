@@ -1,11 +1,11 @@
 ---
-title: JIRA Actions
-html_title: JIRA Actions
+title: Jira Actions
+html_title: Jira Actions
 permalink: elasticsearch-alerting-actions-jira
 layout: docs
 section: alerting
 edition: enterprise
-description: How to create JIRA issues directly from Signals Alerting if anomalies
+description: How to create Jira issues directly from Signals Alerting if anomalies
   are detected.
 ---
 <!--- Copyright 2022 floragunn GmbH -->

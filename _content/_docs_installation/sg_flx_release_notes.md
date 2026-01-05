@@ -419,7 +419,7 @@ The `indices:data/read/search/template` and `indices:data/read/msearch/template`
 
 ### Kibana Multi-Tenancy
 
-The multi-tenancy configuration from `sg_config.yml` was moved to a separate file called `sg_frontend_multi_tenancy.yml`. However, the defaults are suitable for most cases and thus do not need to be changed. 
+The Multi-Tenancy configuration from `sg_config.yml` was moved to a separate file called `sg_frontend_multi_tenancy.yml`. However, the defaults are suitable for most cases and thus do not need to be changed. 
 
 
 ##### Related:

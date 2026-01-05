@@ -1,0 +1,82 @@
+# robots.txt for Search Guard Documentation
+# https://docs.search-guard.com
+
+# Default: Allow all crawlers
+User-agent: *
+Allow: /
+
+# Major Search Engines - Explicitly allowed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI Crawlers - Explicitly allowed for training and indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# Sitemaps and AI context files
+Sitemap: https://docs.search-guard.com/sitemap.xml
+
+# LLM context files for AI assistants (see https://llmstxt.org/)
+# llms.txt: Concise documentation overview
+# llms-full.txt: Comprehensive documentation index
+# These files help AI assistants understand and navigate our documentation

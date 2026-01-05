@@ -52,7 +52,7 @@ Programmatic access to Search Guard configuration for custom integrations and ap
 - **[Roles API](rest-api-roles)** - Manage roles and permissions
 - **[Role Mappings API](rest-api-roles-mapping)** - Manage user-to-role mappings
 - **[Action Groups API](rest-api-actiongroups)** - Manage action groups
-- **[Tenants API](rest-api-tenants)** - Manage multi-tenancy
+- **[Tenants API](rest-api-tenants)** - Manage Multi-Tenancy
 - **[Blocks API](rest-api-blocks)** - Manage index blocks
 - **[License API](rest-api-license)** - Check and update licenses
 - **[Cache API](rest-api-cache)** - Manage authentication/authorization cache

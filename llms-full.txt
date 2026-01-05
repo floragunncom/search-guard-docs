@@ -1,0 +1,339 @@
+# Search Guard Documentation
+
+> Search Guard is an Enterprise Security Suite for Elasticsearch and OpenSearch, providing authentication, authorization, encryption, audit logging, and compliance features. Official documentation at https://docs.search-guard.com/latest/
+
+Search Guard protects your Elasticsearch and OpenSearch clusters with a comprehensive security solution. It offers TLS encryption, multiple authentication methods (LDAP, Active Directory, Kerberos, JWT, SAML, OpenID Connect), fine-grained access control, Document-Level Security, Field-Level Security, audit logging, and compliance features.
+
+This documentation covers all Search Guard features across Community and Enterprise editions, including the Signals Alerting plugin, Automated Index Management (AIM), Encryption at Rest, and Anomaly Detection modules.
+
+**Technology Stack:** Jekyll 4.2.0 static site generator, Ruby 3.0, Kramdown (GFM), Algolia search integration
+
+**Editions:** Community (free), Compliance, Enterprise - each with progressive feature sets
+
+## Core Documentation
+
+[Security for Elasticsearch](security-for-elasticsearch): Overview of Search Guard's security features and architecture
+[Main Concepts](main-concepts): Core security concepts including users, roles, permissions, and tenants
+[Getting Started](search-guard-getting-started): Quick start guide for new users
+[Installation and Setup](search-guard-installation-setup): Complete installation guide for Search Guard
+[Demo Installer](demo-installer): Quickly set up Search Guard with sample configuration
+[Security Guided Tour](first-steps-user-auth): Step-by-step walkthrough of Search Guard features
+
+## Installation and Configuration
+
+[Search Guard Installation](search-guard-installation): Detailed installation instructions
+[Plugin Installation](search-guard-plugin-installation): Install Search Guard as an Elasticsearch plugin
+[TLS Configuration](configuring-tls): Configure TLS/SSL encryption for node-to-node and client communication
+[TLS Tool](tls-tool): Generate certificates and TLS configuration
+[TLS Troubleshooting](troubleshooting-tls): Debug TLS/SSL issues
+[Configuration Tools](search-guard-configuration-tools): Overview of sgctl CLI, GUI, and REST API
+[Search Guard Index](search-guard-index): Understanding the Search Guard configuration index
+[Hot Reload](search-guard-hot-reload): Apply configuration changes without restart
+
+## sgctl Command-Line Tool
+
+[sgctl Basics](sgctl): Core sgctl commands and usage
+[sgctl Examples](sgctl-examples): Real-world configuration examples
+[Configuration Changes](sgctl-configuration-changes): Apply and manage configuration
+[System Administration](sgctl-system-administration): Advanced system operations
+
+## Authentication
+
+[Authentication Methods](authentication-methods): Overview of all supported authentication methods
+[Authentication Configuration](authentication-authorization-configuration): Configure authentication backends
+[Internal Users Database](internal-users-database): Built-in user management
+[Active Directory and LDAP](active-directory-ldap): Authenticate users against Active Directory or LDAP
+[HTTP Basic Authorization](http-basic-authorization): Simple username/password authentication
+[Proxy Authentication](proxy-authentication): Authenticate via reverse proxy headers
+[JSON Web Tokens (JWT)](jwt-json-web-tokens): Token-based authentication
+[SAML](saml): SAML 2.0 Single Sign-On integration
+[OpenID Connect](openid-connect): OpenID Connect authentication
+[Kerberos](kerberos): Kerberos/SPNEGO authentication
+[Client Certificates](tls-client-authentication): X.509 client certificate authentication
+[Multi-Factor Authentication](multi-factor-authentication): Add MFA to authentication flows
+
+## Authorization
+
+[Authorization Overview](authorization-overview): Role-based access control (RBAC)
+[Roles and Permissions](roles-permissions): Defining roles and assigning permissions
+[Action Groups](action-groups): Reusable permission sets
+[Mapping Users to Roles](mapping-users-roles): Assign roles to users and backend roles
+[Testing Configuration](first-steps-testing-configuration): Verify role and permission configuration
+[User Impersonation](user-impersonation): Act on behalf of other users
+
+## Fine-Grained Access Control
+
+[Fine-Grained Access Control](search-guard-fine-grained-access): Overview of DLS and FLS
+[Document-Level Security](document-level-security): Restrict access to specific documents
+[Field-Level Security](field-level-security): Hide or anonymize specific fields
+[Advanced DLS](advanced-dls): Advanced Document-Level Security features including DLS for data streams
+[Field Anonymization](field-anonymization): Hash or mask sensitive fields
+[DLS/FLS Performance](dls-fls-performance): Performance considerations
+
+## Kibana Integration
+
+[Kibana Plugin Installation](kibana-plugin-installation): Install and configure the Kibana plugin
+[Kibana Authentication](kibana-authentication): Authentication options for Kibana
+[Kibana Multi-Tenancy](kibana-multi-tenancy): Separate dashboards by users and roles
+[Kibana SAML](kibana-saml): SAML Single Sign-On for Kibana
+[Kibana OpenID Connect](kibana-oidc): OpenID Connect for Kibana
+[Kibana Read-Only Mode](kibana-read-only): Restrict users to dashboard viewing
+[Kibana Configuration UI](configuration-gui): Web-based configuration management
+
+## Audit Logging and Compliance
+
+[Audit Logging and Compliance](search-guard-audit-compliance): Comprehensive audit logging for compliance
+[Audit Log Configuration](audit-logging): Configure audit logging settings
+[Audit Log Categories](audit-logging-categories): Types of events that can be audited
+[Audit Log Storage](audit-logging-storage): Store audit logs internally or externally
+[Compliance Features](compliance-read-history): Track read access to sensitive data
+[GDPR Compliance](gdpr-compliance): GDPR-specific compliance features
+
+## Signals Alerting
+
+[Signals Alerting Overview](elasticsearch-alerting-getting-started): Getting started with Signals Alerting
+[How Signals Works](elasticsearch-alerting-how-it-works): Architecture and execution model
+[Sample Watches](elasticsearch-alerting-watches-sample): Example alerting configurations
+[Execution Chain](elasticsearch-alerting-chaining-checks): Data flow through watch execution
+
+### Triggers
+
+[Triggers Overview](elasticsearch-alerting-triggers-overview): Schedule and event triggers
+[Schedule Triggers](elasticsearch-alerting-triggers-schedule): Cron-based scheduling
+[Timezone Handling](elasticsearch-alerting-triggers-timezones): Configure timezone for schedules
+
+### Inputs
+
+[Inputs Overview](elasticsearch-alerting-inputs-overview): Data sources for watches
+[Static Input](elasticsearch-alerting-inputs-static): Static data input
+[Search Input](elasticsearch-alerting-inputs-elasticsearch): Query Elasticsearch data
+[HTTP Input](elasticsearch-alerting-inputs-http): Fetch data from HTTP endpoints
+
+### Transformations and Conditions
+
+[Transformations Overview](elasticsearch-alerting-transformations-calculations-overview): Transform and calculate data
+[Transformations](elasticsearch-alerting-transformations): Painless script transformations
+[Calculations](elasticsearch-alerting-calculations): Built-in calculation functions
+[Conditions](elasticsearch-alerting-conditions): Determine when to trigger actions
+
+### Actions
+
+[Actions Overview](elasticsearch-alerting-actions-overview): Send notifications and execute actions
+[Email Actions](elasticsearch-alerting-actions-email): Send email notifications
+[Slack Actions](elasticsearch-alerting-actions-slack): Send Slack messages
+[Webhook Actions](elasticsearch-alerting-actions-webhook): Call external HTTP endpoints
+[Index Actions](elasticsearch-alerting-actions-index): Write to Elasticsearch indices
+[PagerDuty Actions](elasticsearch-alerting-actions-pagerduty): Create and resolve PagerDuty incidents (Enterprise)
+[Jira Actions](elasticsearch-alerting-actions-jira): Create Jira issues (Enterprise)
+
+### Configuration and Management
+
+[Accounts](elasticsearch-alerting-accounts): Configure email, Slack, and other accounts
+[Severity Levels](elasticsearch-alerting-severity): Define alert severity and escalation
+[Throttling and Acknowledgement](elasticsearch-alerting-throttling): Prevent alert spam
+[Trust Stores](elasticsearch-alerting-trust-stores): Configure trusted certificates for HTTPS
+[Proxies](elasticsearch-alerting-proxies): Configure HTTP proxies
+[Scripting](signals-alerting-scripting): Painless scripting in watches
+[Administration](elasticsearch-alerting-administration): System-wide settings
+
+### REST API
+
+[Signals REST API Overview](elasticsearch-alerting-rest-api-overview): API authentication and usage
+[Get Watch](elasticsearch-alerting-rest-api-watch-get): Retrieve watch configuration
+[Put Watch](elasticsearch-alerting-rest-api-watch-put): Create or update watch
+[Delete Watch](elasticsearch-alerting-rest-api-watch-delete): Remove watch
+[Search Watches](elasticsearch-alerting-rest-api-watch-search): Query watches
+[Execute Watch](elasticsearch-alerting-rest-api-watch-execute): Test watch execution
+[Acknowledge Watch](elasticsearch-alerting-rest-api-watch-acknowledge): Suppress watch notifications
+[Watch State](elasticsearch-alerting-rest-api-watch-state): Get watch execution state
+[Account Management](elasticsearch-alerting-rest-api-account-put): Manage accounts via API
+[Settings API](elasticsearch-alerting-rest-api-settings-get): Configure Signals settings
+
+### Security
+
+[Security Overview](elasticsearch-alerting-security-overview): Signals security model
+[Signals Indices](elasticsearch-alerting-security-indices): Access control for Signals indices
+[Permissions](elasticsearch-alerting-security-permissions): Required permissions for Signals
+[Execution Context](elasticsearch-alerting-security-security-context): User context for watch execution
+[Multi-Tenancy](elasticsearch-alerting-security-multi-tenancy): Tenant isolation for watches
+
+## Automated Index Management (AIM)
+
+[AIM Overview](automated-index-management-getting-started): Getting started with Automated Index Management
+[How AIM Works](how-automated-index-management-works): Architecture and execution model
+[Index Policies](automated-index-management-policies): Define lifecycle policies for indices
+
+### Conditions
+
+[Conditions Overview](automated-index-management-conditions-overview): Time and metric-based conditions
+[Index Age](automated-index-management-conditions-index-age): Trigger based on index age
+[Index Size](automated-index-management-conditions-index-size): Trigger based on index size
+[Index Count](automated-index-management-conditions-index-count): Trigger based on document count
+[Cron Schedule](automated-index-management-conditions-cron-schedule): Time-based scheduling
+
+### Actions
+
+[Actions Overview](automated-index-management-actions-overview): Index lifecycle actions
+[Rollover](automated-index-management-actions-rollover): Roll over to new index
+[Delete](automated-index-management-actions-delete): Delete old indices
+[Force Merge](automated-index-management-actions-force-merge): Optimize index segments
+[Snapshot](automated-index-management-actions-snapshot): Create index snapshots
+[Set Read-Only](automated-index-management-actions-set-read-only): Make index read-only
+[Replica Count](automated-index-management-actions-replica-count): Adjust replica count
+[Index Priority](automated-index-management-actions-index-priority): Set recovery priority
+[Close Index](automated-index-management-actions-close): Close indices
+[Shrink](automated-index-management-actions-shrink): Reduce shard count
+
+### REST API and Configuration
+
+[AIM REST API Overview](automated-index-management-rest-overview): API documentation
+[Create Policy](automated-index-management-rest-create): Create or update policy
+[Get Policy](automated-index-management-rest-get): Retrieve policy configuration
+[Delete Policy](automated-index-management-rest-delete): Remove policy
+[Attach Policy](automated-index-management-rest-attach): Assign policy to indices
+[Explain](automated-index-management-rest-explain): View policy status
+[Settings](automated-index-management-settings): Configure AIM behavior
+[Security](automated-index-management-security): Permissions for AIM
+
+## Encryption at Rest
+
+[Encryption at Rest Introduction](encryption-at-rest-introduction): Overview of encryption at rest
+[Key Management](encryption-at-rest-key-management): Manage encryption keys
+[Configuration](encryption-at-rest-configuration): Configure encryption at rest
+[Performance](encryption-at-rest-performance): Performance impact and optimization
+
+## Anomaly Detection
+
+[Anomaly Detection Overview](anomaly-detection-overview): Machine learning-based anomaly detection
+[Getting Started](anomaly-detection-getting-started): Set up anomaly detection
+[Creating Detectors](anomaly-detection-creating-detectors): Define anomaly detectors
+[Features](anomaly-detection-features): Configure detector features
+[Running Detectors](anomaly-detection-running-detectors): Execute and schedule detectors
+[Dashboard and Visualization](anomaly-detection-dashboard-visualization): View detection results
+[Alerts](anomaly-detection-alerts): Configure anomaly alerts
+[Advanced Configuration](anomaly-detection-advanced-config): Advanced detector settings
+[Result Mapping](anomaly-detection-result-mapping): Customize result storage
+
+### API Reference
+
+[Detectors API](anomaly-detection-api-detectors): Manage detectors programmatically
+[Jobs API](anomaly-detection-api-jobs): Control detector jobs
+[Results API](anomaly-detection-api-results): Query anomaly results
+
+### Configuration
+
+[Security](anomaly-detection-security): Permissions for anomaly detection
+[Settings](anomaly-detection-settings): System-wide configuration
+[Version Compatibility](anomaly-detection-versions): Compatible Elasticsearch versions
+
+## Production and Operations
+
+[Production Deployment](search-guard-production): Best practices for production environments
+[Performance Tuning](production-performance-tuning): Optimize Search Guard performance
+[Monitoring](production-monitoring): Monitor Search Guard metrics and logs
+[Backup and Restore](production-backup-restore): Backup Search Guard configuration
+[Updating Certificates](production-tls-renew-certificates): Renew and update TLS certificates
+[Node Addition and Removal](production-add-remove-nodes): Manage cluster nodes
+
+## Integrations
+
+### Elastic Stack
+
+[Logstash](search-guard-logstash): Secure Logstash output to Elasticsearch
+[Beats](search-guard-beats): Configure Beats with Search Guard
+[Elastic APM](search-guard-elastic-apm): Secure APM server
+[Cross-Cluster Search](cross-cluster-search-tribe): Secure cross-cluster operations
+[Snapshot and Restore](search-guard-snapshots): Secure backup repositories
+
+### Third-Party
+
+[Grafana](search-guard-grafana): Connect Grafana to secured Elasticsearch
+[ElastAlert](search-guard-elastalert): Configure ElastAlert with Search Guard
+[Curator](search-guard-curator): Use Curator with Search Guard
+[Custom Integrations](custom-http-authenticator): Build custom authentication modules
+
+## Advanced Topics
+
+[OEM Integration](search-guard-oem): Embed Search Guard in applications
+[Custom Authenticators](custom-http-authenticator): Develop custom authentication backends
+[Custom Authorizers](custom-authorizer): Implement custom authorization logic
+[REST Management API](rest-management-api): Advanced API configuration
+[Expert Settings](expert-features-dlsfls): Expert-level DLS/FLS configuration
+
+## REST API Reference
+
+[REST API Overview](rest-api): General API usage and authentication
+[Access Control](rest-api-access-control): API authentication and permissions
+[Internal Users API](rest-api-internalusers): Manage internal users
+[Roles API](rest-api-roles): Manage roles programmatically
+[Role Mappings API](rest-api-roles-mapping): Map users to roles
+[Action Groups API](rest-api-actiongroups): Manage action groups
+[Tenants API](rest-api-tenants): Manage Multi-Tenancy
+[Blocks API](rest-api-blocks): Manage index blocks
+[License API](rest-api-license): Check and update licenses
+[Cache API](rest-api-cache): Clear authentication/authorization cache
+[Bulk Operations](rest-api-bulk): Batch API requests
+[Reserved and Hidden Resources](rest-api-reserved-hidden): System resources protection
+
+## Troubleshooting
+
+[Troubleshooting Overview](troubleshooting-overview): Common issues and diagnostics
+[Authentication Troubleshooting](troubleshooting-auth): Debug authentication problems
+[TLS Troubleshooting](troubleshooting-tls): Resolve TLS/SSL issues
+[Kibana Troubleshooting](troubleshooting-kibana): Fix Kibana integration issues
+[Multi-Tenancy Troubleshooting](troubleshooting-multi-tenancy): Debug Multi-Tenancy problems
+[Performance Issues](troubleshooting-performance): Diagnose performance problems
+[Log Analysis](troubleshooting-logs): Interpret Search Guard logs
+
+## Version Management and Migration
+
+[Search Guard Versions](search-guard-versions): Elasticsearch and Search Guard version compatibility
+[Version Matrix](versionmatrix): Complete compatibility matrix
+[Upgrade Guide](search-guard-flx-upgrade): Upgrade to latest Search Guard FLX
+[FLX 2.0.0 Upgrade](sg-200-upgrade): Breaking changes in FLX 2.0.0
+[Migration from Classic](sg-classic-config-migration): Migrate from Search Guard Classic
+[Migration Guide](sg-classic-config-migration-prod): Production migration strategy
+[Feature Map](config-migration-feature-map): Feature differences between versions
+
+## Changelogs
+
+[Search Guard FLX 3.0.0](changelog-searchguard-flx-3_0_0): Latest release notes
+[Search Guard FLX 2.0.0](changelog-searchguard-flx-2_0_0): FLX 2.0 changelog
+[Search Guard FLX 1.6.0](changelog-searchguard-flx-1_6_0): FLX 1.6 changelog
+[All Changelogs](changelogs-section): Complete version history
+
+## Glossaries
+
+[Security Glossary](security-glossary): Definitions of key security terms
+[Alerting Glossary](alerting-glossary): Alerting-specific terminology
+[Index Management Glossary](index-management-glossary): AIM terminology
+[Encryption at Rest Glossary](encryption-at-rest-glossary): Encryption terms
+[Anomaly Detection Glossary](anomaly-detection-glossary): Anomaly detection terminology
+
+## Optional
+
+### Additional Configuration Files
+
+[sg_authc.yml](authentication-authorization-configuration): Authentication configuration
+[sg_roles.yml](roles-permissions): Role definitions
+[sg_roles_mapping.yml](mapping-users-roles): User to role mappings
+[sg_internal_users.yml](internal-users-database): Internal user database
+[sg_action_groups.yml](action-groups): Action group definitions
+[sg_tenants.yml](kibana-multi-tenancy): Tenant definitions
+[sg_frontend_authc.yml](kibana-authentication-types): Kibana authentication
+[sg_frontend_multi_tenancy.yml](kibana-multi-tenancy): Kibana Multi-Tenancy configuration
+
+### Advanced Features
+
+[Field Masking](field-anonymization): Advanced field anonymization
+[User Attributes](user-attributes): Dynamic user attribute resolution
+[Template-Based Roles](template-based-roles): Dynamic role templates
+[Index Patterns](index-patterns): Complex index pattern matching
+[Exclude Patterns](exclude-patterns): Exclude indices from protection
+
+### Community Resources
+
+Search Guard website: https://search-guard.com
+Support Forum: https://forum.search-guard.com
+GitHub Issues: https://github.com/floragunncom/search-guard
+Elasticsearch Compatibility: Versions 6.x through 8.x supported

@@ -5,7 +5,7 @@ permalink: kibana-authentication-saml
 layout: docs
 section: security
 edition: enterprise
-description: How to configure Kibana for SAML Single Sign On authentication and IdP
+description: How to configure Kibana for SAML Single Sign-On authentication and IdP
   integrations.
 resources:
 - https://search-guard.com/kibana-elasticsearch-saml/|Using SAML for Kibana Single

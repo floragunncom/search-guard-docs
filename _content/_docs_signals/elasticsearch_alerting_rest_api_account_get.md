@@ -37,7 +37,7 @@ Retrieves the account of type `{account_type}` identified by the `{account_id}` 
 
 The account exists and the user has sufficient privileges to access it. 
 
-The return document is structured like an ElasticSearch GetDocument response with the configuration in the `_source` element. See example below.
+The return document is structured like an Elasticsearch GetDocument response with the configuration in the `_source` element. See example below.
 
 ### 403 Forbidden
 

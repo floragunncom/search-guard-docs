@@ -1,0 +1,13 @@
+Contact: mailto:security@search-guard.com
+Contact: https://search-guard.com/contacts/
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en, de
+Canonical: https://docs.search-guard.com/security.txt
+
+# Search Guard Security Policy
+# For security issues related to Search Guard software, please contact:
+# - Email: security@search-guard.com
+# - Website: https://search-guard.com/contacts/
+#
+# This file applies to the Search Guard documentation website.
+# For Search Guard product security issues, please use the contacts above.

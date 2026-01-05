@@ -24,7 +24,7 @@ GET /_signals/account/_search
 POST /_signals/account/_search
 ```
 
-Searches for accounts. Search criteria and options can be specified in a manner similar to the ElasticSearch document search REST API.
+Searches for accounts. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
 
 Both the GET and the POST HTTP method can be used with the same effect.
 
@@ -40,7 +40,7 @@ Both the GET and the POST HTTP method can be used with the same effect.
 
 ## Request Body
 
-The request body specifies search options like the ElasticSearch document search REST API.
+The request body specifies search options like the Elasticsearch document search REST API.
 
 If no request body is specified, all accounts will be returned; limited to the amount specified to the `size` query parameter.
 

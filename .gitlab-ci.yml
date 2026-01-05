@@ -89,11 +89,20 @@ deploy:
         mkdir -p ~/.ssh
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
-        echo "Uploading fles to SFTP server"
+        echo "Uploading files to SFTP server"
 
       sftp  -b - $sftp_user_name@$sftp_server <<EOF
           -mkdir $sftp_root_directory/$sftp_directory
           put -r /builds/search-guard/search-guard-docs/_site/* $sftp_root_directory/$sftp_directory
+          # Copy root-level files to webserver root for SEO and LLM discoverability
+          put /builds/search-guard/search-guard-docs/_site/robots.txt $sftp_root_directory/
+          put /builds/search-guard/search-guard-docs/_site/sitemap.xml $sftp_root_directory/
+          put /builds/search-guard/search-guard-docs/_site/llms.txt $sftp_root_directory/
+          put /builds/search-guard/search-guard-docs/_site/llms-full.txt $sftp_root_directory/
+          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/
+          # Copy security.txt to .well-known directory per RFC 9116
+          -mkdir $sftp_root_directory/.well-known
+          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/.well-known/
       EOF
 
       else

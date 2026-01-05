@@ -30,7 +30,7 @@ Signals Highlights:
   * [Email](elasticsearch-alerting-actions-email)
   * [Webhooks](elasticsearch-alerting-actions-webhook)
   * [PagerDuty](elasticsearch-alerting-actions-pagerduty)
-  * [JIRA](elasticsearch-alerting-actions-jira)
+  * [Jira](elasticsearch-alerting-actions-jira)
 * Write data back to the [local or remote Elasticsearch clusters](elasticsearch-alerting-actions-index)
 * Get notified once a [condition has been resolved](elasticsearch-alerting-how-it-works)
 
