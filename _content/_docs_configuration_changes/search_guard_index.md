@@ -32,8 +32,8 @@ The core configuration consists of the following files:
 If you are running Kibana you might also need the following configuration:
 
 * `sg_frontend_authc.yml`: [authentication for Kibana](kibana-authentication-types)
-* `sg_frontend_multi_tenancy.yml`: [basic multi-tenancy settings for Kibana](kibana-multi-tenancy)
-* `sg_tenants.yml`: [tenants for multi-tenancy](kibana-multi-tenancy)
+* `sg_frontend_multi_tenancy.yml`: [basic Multi-Tenancy settings for Kibana](kibana-multi-tenancy)
+* `sg_tenants.yml`: [tenants for Multi-Tenancy](kibana-multi-tenancy)
 * `sg_license_key.yml`: [enterprise license key](changelog-searchguard-flx-1_0_0#sg_license_key)
 
 For special features or configuration, you have also the following files:

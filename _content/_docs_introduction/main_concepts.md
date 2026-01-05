@@ -65,7 +65,7 @@ A common use case is to combine the Search Guard internal user database with LDA
 Additionally, Search Guard supports so-called user information backends which can enrich the data of an already authenticated user by additional roles or attributes. Thus, you can get authentication from JWT. This JWT might also already carry role information. Using an LDAP user information backend, you can retrieve additional roles for the authenticated user.
 
 
-Search Guard also supports **external authentication and Single Sign On (SSO) solutions**. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. 
+Search Guard also supports **external authentication and Single Sign-On (SSO) solutions**. In most cases, these systems act as a proxy or store authentication information in HTTP header fields. Search Guard provides an HTTP proxy authenticator, which can read and interpret these fields. 
 
 
 ## Users and roles

@@ -8,11 +8,11 @@ edition: enterprise
 description: Search Guard adds true Multi-Tenancy to Kibana. Separate your dashboards
   and visualizations by users and roles.
 resources:
-- https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi Tenancy
+- https://search-guard.com/kibana-multi-tenancy-search-guard/|Kibana Multi-Tenancy
   with Search Guard (blog post)
 - https://sematext.com/blog/elasticsearch-kibana-security-search-guard/|Securing Elasticsearch
   and Kibana with Search Guard for free (blog post, external)
-- troubleshooting-multi-tenancy|Multitenancy Troubleshooting (documentation)
+- troubleshooting-multi-tenancy|Multi-Tenancy Troubleshooting (documentation)
 ---
 # Kibana Multi-Tenancy
 {: .no_toc}
@@ -280,7 +280,7 @@ If a user logs in the first time and has not chosen a tenant yet, Search Guard w
 * choose the first tenant from this list  
 
 #### For FLX v2.0.0 and higher
-Please see the configuration section for ElasticSearch above.
+Please see the configuration section for Elasticsearch above.
 If you want to change the way Search Guard selects the default tenant, configure the preferred tenants in `kibana.yml`:
 
 #### For versions prior to FLX v2.0.0
@@ -373,7 +373,7 @@ In order to include all Kibana indices in your backup / snapshot, the easiest wa
 {kibana index name}*
 ```
 
-## Limitations of multi-tenancy implementation in FLX v2.0.0 and higher
+## Limitations of Multi-Tenancy implementation in FLX v2.0.0 and higher
 Most of the limitations are related to how saved object IDs are modified by SearchGuard to map saved objects to tenants. SearchGuard appends to each saved object's ID a tenant ID. SearchGuard also replaces an extended version of the saved object ID with the genuine one before returning saved objects via API. The genuine version of the saved object ID is returned only when a tenant is selected via the appropriate HTTP header. However, this is not always possible. The inability to restore genuine saved object IDs results in the following limitations
 - Cannot use document ID in query. Such a query may not gain the desired result or gain incorrect results. Example of such a query:
 ```

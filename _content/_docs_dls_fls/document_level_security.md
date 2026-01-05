@@ -100,7 +100,7 @@ For illustration:
 
 A user who is member both of `role_all` and `role_b` gets thus access to all documents. The DLS query of `role_b` does not have any effect.
 
-## Document Level Security for data streams and aliases
+## Document-Level Security for data streams and aliases
 
 The alias and data stream features are only supported in SG FLX version 3.0 and above
 {: .note}

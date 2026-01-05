@@ -1,6 +1,6 @@
 ---
-title: Set Read Only Action
-html_title: Set Read Only Action
+title: Set Read-Only Action
+html_title: Set Read-Only Action
 permalink: automated-index-management-actions-set-read-only
 layout: docs
 section: index_management
@@ -11,7 +11,7 @@ description: How the set read only action works
 
 {% include beta_warning.html %}
 
-# Set Read Only Action
+# Set Read-Only Action
 {: .no_toc}
 
 {% include toc.md %}

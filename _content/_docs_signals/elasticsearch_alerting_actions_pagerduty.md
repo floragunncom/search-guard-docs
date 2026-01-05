@@ -1,6 +1,6 @@
 ---
-title: Pagerduty Actions
-html_title: Pagerduty Actions
+title: PagerDuty Actions
+html_title: PagerDuty Actions
 permalink: elasticsearch-alerting-actions-pagerduty
 layout: docs
 section: alerting

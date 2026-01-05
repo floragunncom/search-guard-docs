@@ -6,7 +6,7 @@ layout: docs
 section: alerting
 edition: community
 description: Signals Alerting for Elasticsearch can use accounts like email, Slack,
-  PagerDuty, JIRA or webhooks to send notifications to.
+  PagerDuty, Jira or webhooks to send notifications to.
 ---
 <!--- Copyright 2022 floragunn GmbH -->
 

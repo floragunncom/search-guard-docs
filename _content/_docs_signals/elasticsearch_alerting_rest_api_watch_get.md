@@ -36,7 +36,7 @@ Retrieves the configuration of a watch identified by the `{watch_id}` path param
 
 The watch exists and the user has sufficient privileges to access it. 
 
-The return document is structured like an ElasticSearch GetDocument response with the watch configuration in the `_source` element. See example below.
+The return document is structured like an Elasticsearch GetDocument response with the watch configuration in the `_source` element. See example below.
 
 ### 403 Forbidden
 

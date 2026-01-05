@@ -46,7 +46,7 @@ Both the GET and the POST HTTP method can be used with the same effect.
 
 ## Request Body
 
-The request body specifies search options like the ElasticSearch document search REST API. Refer to [Get Watch State API](elasticsearch-alerting-rest-api-watch-state) for an overview over the searchable attributes.
+The request body specifies search options like the Elasticsearch document search REST API. Refer to [Get Watch State API](elasticsearch-alerting-rest-api-watch-state) for an overview over the searchable attributes.
 
 If no request body is specified, the states for all watches of the currently selected tenant will be returned; limited to the amount specified to the `size` query parameter.
 
