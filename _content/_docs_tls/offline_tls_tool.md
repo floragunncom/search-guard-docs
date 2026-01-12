@@ -24,7 +24,7 @@ Copyright 2022 floragunn GmbH
 {% include toc.md %}
 
 {% capture tlstool_url %}
-  https://maven.search-guard.com/search-guard-tlstool/com/floragunn/search-guard-tlstool/{{site.sgversions.tlstool}}/search-guard-tlstool-{{site.sgversions.tlstool}}.zip
+  https://maven.search-guard.com/search-guard-tlstool/com/floragunn/search-guard-tlstool/{{site.tlstool}}/search-guard-tlstool-{{site.tlstool}}.zip
 {% endcapture %}
 
 We provide an [offline TLS tool]({{tlstool_url}}){:target="_blank"} which you can use to generate all required certificates for running Search Guard in production: 
