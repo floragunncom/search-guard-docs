@@ -20,7 +20,7 @@ This page lists all available versions of Search Guard.
 
 <table>
   <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
-  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgversions.sgctl }}/sgctl-{{ site.sgversions.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgversions.sgctl }}</a></td></tr>
+  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com//search-guard-flx-release/com/floragunn/sgctl/{{ site.sgctl }}/sgctl-{{ site.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgctl }}</a></td></tr>
 </table>
 
 ### Search Guard FLX for Elasticsearch 9
