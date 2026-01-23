@@ -93,6 +93,7 @@ A Signl4 action in JSON format looks like this:
 
 | Attribute | Description | Required |
 |-----------|-------------|----------|
+| `type` | Must be `webhook` | Yes |
 | `name` | A unique name identifying this action | Yes |
 | `request.url` | The Signl4 webhook URL including your team secret | Yes |
 | `request.body` | The payload to send. Supports Mustache templates. | Yes |
@@ -111,9 +112,9 @@ Use key-value pairs, one per line:
 
 <!-- {% raw %} -->
 ```
-Title: Elasticsearch Alert
+Title: Signals Alert
 Message: High error rate: {{data.mysearch.hits.total.value}} errors
-X-S4-Service: Elasticsearch
+X-S4-Service: Signals
 X-S4-ExternalID: {{watch.id}}
 X-S4-AlertingScenario: single_ack
 ```
@@ -126,9 +127,9 @@ When using JSON, set the header `Content-Type: application/json`.
 <!-- {% raw %} -->
 ```json
 {
-  "title": "Elasticsearch Alert",
+  "title": "Signals Alert",
   "message": "High error rate: {{data.mysearch.hits.total.value}} errors",
-  "X-S4-Service": "Elasticsearch",
+  "X-S4-Service": "Signals",
   "X-S4-ExternalID": "{{watch.id}}",
   "X-S4-AlertingScenario": "single_ack"
 }
@@ -170,9 +171,11 @@ X-S4-ExternalID: {{watch.id}}-{{trigger.triggered_time}}
 
 ## API Key Authentication
 
-For extra security, you can use an API key in the HTTP header instead of including your team secret in the URL. When using an API key, use the endpoint `https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}`.
+For extra security, you can add an API key in the HTTP header. When using an API key, use the Events API endpoint:
 
-The request body format remains the same as with the standard webhook URL. Here is a complete example:
+`https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}`
+
+The request body format remains the same. Here is a complete example:
 
 <!-- {% raw %} -->
 ```json
@@ -202,40 +205,3 @@ Signl4 actions are built on [Webhook Actions](elasticsearch-alerting-actions-web
 - [TLS Configuration](elasticsearch-alerting-actions-webhook#tls) - Configure custom certificates
 - [Security Considerations](elasticsearch-alerting-actions-webhook#security-considerations) - Restrict allowed endpoints
 
-## Troubleshooting
-
-### Alert not received
-
-1. Verify your team secret or API key is correct
-2. Check the webhook URL format
-3. Ensure the Signl4 service is not in maintenance mode
-4. Check the Signals watch execution log for errors
-
-### Invalid payload error
-
-If using JSON format:
-- Ensure your body is valid JSON
-- Check for unescaped quotes in Mustache output
-- Check for missing or trailing commas
-
-## Complete Example
-
-Here's a Signl4 action using JSON body format with multiple control parameters:
-
-<!-- {% raw %} -->
-```json
-{
-  "type": "webhook",
-  "name": "signl4_alert",
-  "throttle_period": "15m",
-  "request": {
-    "method": "POST",
-    "url": "https://connect.signl4.com/webhook/{webhookIdOrTeamId}",
-    "body": "{\"title\": \"High Error Rate\", \"message\": \"{{data.errors.hits.total.value}} errors detected\", \"X-S4-ExternalID\": \"{{watch.id}}\", \"X-S4-Service\": \"Elasticsearch\", \"X-S4-AlertingScenario\": \"single_ack\", \"severity\": \"critical\", \"source\": \"signals\"}",
-    "headers": {
-      "Content-Type": "application/json"
-    }
-  }
-}
-```
-<!-- {% endraw %} -->
