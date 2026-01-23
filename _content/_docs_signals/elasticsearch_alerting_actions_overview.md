@@ -43,6 +43,8 @@ These action types are available at the moment:
 
 **[Webhook Action Type](elasticsearch-alerting-actions-webhook):** Sends HTTP requests to external services.
 
+**[Signl4 Action Type](elasticsearch-alerting-actions-signl4):** Sends mobile alerts via Signl4 push notifications, SMS, or voice calls.
+
 **[Index Action Type](elasticsearch-alerting-actions-index):** Writes data to an Elasticsearch index.
 
 These action types are only available in the Enterprise Edition:
