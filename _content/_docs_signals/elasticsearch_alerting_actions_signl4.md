@@ -154,7 +154,9 @@ Use `Title` and `Message` as the parameter names for your alert content. Any add
 Any additional fields you include (e.g., `source`, `severity`, `environment`) will appear in the alert's detail view.
 
 For more details, see:
-- [Signl4 Webhook Documentation](https://connect.signl4.com/webhook/docs/index.html)
+- [Signl4 Webhook Integration](https://docs.signl4.com/integrations/webhook/webhook.html)
+- [Signl4 Inbound Webhook Documentation](https://connect.signl4.com/webhook/docs/index.html)
+- [Signl4 REST API](https://docs.signl4.com/integrations/rest-api/rest-api.html)
 - [Control Parameters Reference](https://support.signl4.com/hc/en-us/articles/9124452127773-Control-parameters-X-S4-parameters-Status-mapping-enrichment-filtering)
 
 ### Using Mustache Templates
@@ -171,11 +173,11 @@ X-S4-ExternalID: {{watch.id}}-{{trigger.triggered_time}}
 
 ## API Key Authentication
 
-For extra security, you can add an API key in the HTTP header. When using an API key, use the Events API endpoint:
+Instead of using the webhook endpoint directly, you can also send alerts through the [Signl4 REST API](https://docs.signl4.com/integrations/rest-api/rest-api.html) with an API key in the HTTP header. This adds an additional authentication layer, as requests require both the correct endpoint URL and a valid API key. In this case, use the Events endpoint:
 
 `https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}`
 
-The request body format remains the same. Here is a complete example:
+The request body format is the same as for the webhook endpoint. Here is a complete example:
 
 <!-- {% raw %} -->
 ```json
