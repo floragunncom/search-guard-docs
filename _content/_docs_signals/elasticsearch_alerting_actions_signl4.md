@@ -22,7 +22,7 @@ Use Signl4 actions to send mobile alerts to your team via [Signl4](https://www.s
 Signl4 is a mobile alerting service that ensures critical alerts reach the right people via push notifications, SMS, or voice calls. The Signl4 action type in Signals simplifies the configuration by providing:
 
 - A dedicated "Signl4" option in the actions menu
-- A pre-configured webhook URL with a placeholder for your team secret
+- A pre-configured Events API endpoint with placeholders for your team ID and API key
 - A default body format optimized for Signl4
 
 Under the hood, Signl4 actions are webhook actions.
@@ -33,15 +33,19 @@ Before you can use Signl4 actions, you need:
 
 1. **A Signl4 account** - Sign up at [signl4.com](https://www.signl4.com/)
 
-2. **Your Signl4 Team Secret or Webhook ID** - To get your team secret:
+2. **Your Signl4 Team ID** - To get your team ID:
    - Log in to the [Signl4 portal](https://connect.signl4.com/)
    - Navigate to your team settings
-   - Find your **Webhook URL** or **Team Secret**
-   - The team secret is the identifier at the end of your webhook URL
+   - Find your **Team ID** (also called Webhook ID)
 
-Your webhook URL will look like:
+3. **A Signl4 API Key** - To create an API key:
+   - In the Signl4 portal, go to **Integrations** → **API Keys**
+   - Create a new API key
+   - Copy and save the key securely
+
+The Events API endpoint you'll use is:
 ```
-https://connect.signl4.com/webhook/{webhookIdOrTeamId}
+https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}
 ```
 
 ## Basic Functionality
@@ -52,17 +56,20 @@ When creating a watch in the Kibana UI:
 
 1. Click **Add Action** and select **Signl4**
 2. Enter a **Name** for your action
-3. Replace `{webhookIdOrTeamId}` in the **URL** with your team secret
-4. Customize the **Body** with your alert message
+3. Replace `{webhookIdOrTeamId}` in the **URL** with your team ID
+4. Add your API key in the `X-S4-Api-Key` header
+5. Customize the **Body** with your alert message
 
 The default body uses a simple text format that Signl4 parses automatically:
 
+<!-- {% raw %} -->
 ```
 Title: Signals Alert
 Message: Watch "{{watch.id}}" was triggered at {{trigger.triggered_time}}
 X-S4-ExternalID: {{watch.id}}
 X-S4-Service: Security
 ```
+<!-- {% endraw %} -->
 
 ### JSON Format
 
@@ -77,10 +84,11 @@ A Signl4 action in JSON format looks like this:
       "name": "my_signl4_alert",
       "request": {
         "method": "POST",
-        "url": "https://connect.signl4.com/webhook/{webhookIdOrTeamId}",
+        "url": "https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}",
         "body": "Title: Signals Alert\nMessage: {{data.mysearch.hits.total.value}} hits detected\nX-S4-ExternalID: {{watch.id}}",
         "headers": {
-          "Content-Type": "text/plain"
+          "Content-Type": "text/plain",
+          "X-S4-Api-Key": "your-api-key-here"
         }
       }
     }
@@ -95,9 +103,9 @@ A Signl4 action in JSON format looks like this:
 |-----------|-------------|----------|
 | `type` | Must be `webhook` | Yes |
 | `name` | A unique name identifying this action | Yes |
-| `request.url` | The Signl4 webhook URL including your team secret | Yes |
+| `request.url` | The Signl4 Events API endpoint including your team ID | Yes |
 | `request.body` | The payload to send. Supports Mustache templates. | Yes |
-| `request.headers` | HTTP headers | No |
+| `request.headers` | HTTP headers, including `X-S4-Api-Key` for authentication | Yes |
 {: .config-table}
 
 For additional configuration options such as throttling, authentication, and TLS settings, see [Webhook Actions](elasticsearch-alerting-actions-webhook).
@@ -171,33 +179,32 @@ X-S4-ExternalID: {{watch.id}}-{{trigger.triggered_time}}
 ```
 <!-- {% endraw %} -->
 
-## API Key Authentication
+## Webhook Endpoint (Alternative)
 
-Instead of using the webhook endpoint directly, you can also send alerts through the [Signl4 REST API](https://docs.signl4.com/integrations/rest-api/rest-api.html) with an API key in the HTTP header. This adds an additional authentication layer, as requests require both the correct endpoint URL and a valid API key. In this case, use the Events endpoint:
+Alternatively, you can use the [Signl4 webhook endpoint](https://docs.signl4.com/integrations/webhook/webhook.html) directly without an API key. This approach is simpler but provides only URL-based authentication. Use the webhook endpoint:
 
-`https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}`
+`https://connect.signl4.com/webhook/{webhookIdOrTeamId}`
 
-The request body format is the same as for the webhook endpoint. Here is a complete example:
+The request body format is the same as for the Events API. Here is a complete example:
 
 <!-- {% raw %} -->
 ```json
 {
   "type": "webhook",
-  "name": "signl4_with_api_key",
+  "name": "signl4_webhook",
   "request": {
     "method": "POST",
-    "url": "https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}",
+    "url": "https://connect.signl4.com/webhook/{webhookIdOrTeamId}",
     "body": "{\"Title\": \"{{data.mysearch.hits.total.value}} errors detected\", \"Message\": \"Watch {{watch.id}} triggered\"}",
     "headers": {
-      "Content-Type": "application/json",
-      "X-S4-Api-Key": "your-api-key-here"
+      "Content-Type": "application/json"
     }
   }
 }
 ```
 <!-- {% endraw %} -->
 
-API keys can be created in the Signl4 portal under Integrations → API Keys.
+**Note:** The Events API endpoint with API key authentication is recommended for better security.
 
 ## Advanced Options
 
