@@ -219,6 +219,7 @@ eol:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
   search-guard-flx-9:
+    - 9.2.5|4.0.1|4.0.1|yes|no|N/A|N/A
     - 9.2.4|4.0.1|4.0.1|yes|no|1.32-1.34|4.0.1-flx
     - 9.2.3|4.0.1|4.0.1|yes|no|1.32-1.34|4.0.1-flx
     - 9.2.2|4.0.1|4.0.1|yes|no|1.32-1.34|4.0.1-flx
@@ -242,7 +243,8 @@ sgversions:
     - 9.0.2|3.1.3|3.1.3|yes|yes|N/A|N/A
     - 9.0.1|3.1.3|3.1.3|yes|yes|N/A|N/A
   search-guard-flx-8:
-    - 8.19.10|4.0.1|4.0.1|yes|no|1.32-1.34|4.0.1-flx
+    - 8.19.11|4.0.1|4.0.1|yes|no|N/A|N/A
+    - 8.19.10|4.0.1|4.0.1|yes|yes|1.32-1.34|4.0.1-flx
     - 8.19.9|4.0.1|4.0.1|yes|yes|1.32-1.34|4.0.1-flx
     - 8.19.8|4.0.1|4.0.1|yes|yes|1.32-1.34|4.0.1-flx
     - 8.19.7|4.0.1|4.0.1|yes|yes|1.32-1.34|4.0.0-flx
@@ -437,20 +439,23 @@ sgversions:
     - 6.4.0|25.5|19.0|yes|yes
   search-guard-encryption-at-rest:
     # esv |sgv |available| eol
+    - 9.2.5|1.0.0|yes|no
+    - 9.2.4|1.0.0|yes|no
     - 9.2.3|1.0.0|yes|no
     - 9.2.2|1.0.0|yes|no
     - 9.2.1|1.0.0|yes|no
     - 9.2.0|1.0.0|yes|no
-    - 9.1.8|1.0.0|yes|no
-    - 9.1.7|1.0.0|yes|no
-    - 9.1.6|1.0.0|yes|no
-    - 9.1.5|1.0.0|yes|no
-    - 9.1.4|1.0.0|yes|no
-    - 9.1.3|1.0.0|yes|no
-    - 9.1.2|1.0.0|yes|no
-    - 9.1.1|1.0.0|yes|no
-    - 9.1.0|1.0.0|yes|no
-    - 8.19.6|1.0.0|yes|no
+    - 9.1.8|1.0.0|yes|yes
+    - 9.1.7|1.0.0|yes|yes
+    - 9.1.6|1.0.0|yes|yes
+    - 9.1.5|1.0.0|yes|yes
+    - 9.1.4|1.0.0|yes|yes
+    - 9.1.3|1.0.0|yes|yes
+    - 9.1.2|1.0.0|yes|yes
+    - 9.1.1|1.0.0|yes|yes
+    - 9.1.0|1.0.0|yes|yes
+    - 8.19.11|1.0.0|yes|no
+    - 8.19.6|1.0.0|yes|yes
     - 8.19.5|1.0.0|yes|yes
 adversions:
   anomaly-detection:
