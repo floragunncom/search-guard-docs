@@ -484,7 +484,7 @@ Failure store support is available in SearchGuard FLX 4.1.0 and above.
 
 Data streams can optionally have a *failure store* enabled, which holds documents that could not be indexed into the main data stream due to errors such as mapping conflicts or ingest pipeline failures. Action groups alone — even broad ones such as `SGS_READ` or `SGS_CRUD` — do not implicitly grant failure store access.
 
-To allow a user to access the failure store, include `special:failure_store` in the role's `allowed_actions` alongside any other required permissions. Without this privilege, access to the failure store is denied on the data stream.
+To allow a user to access the failure store, include `SGS_FAILURE_STORE_ACCESS` in the role's `allowed_actions` alongside any other required permissions. Without this privilege, access to the failure store is denied on the data stream.
 
 The following example grants read access to both the data and the failure store of data streams matching `ds_a*`:
 
@@ -497,10 +497,10 @@ ds_test_role_with_failure_store:
     - "ds_a*"
     allowed_actions:
     - "SGS_READ"
-    - "special:failure_store"
+    - "SGS_FAILURE_STORE_ACCESS"
 ```
 
-The following role grants full data stream access, including the failure store, because `special:failure_store` matches wildcard `*`:
+The following role grants full data stream access, including the failure store, because the wildcard `*` also covers `SGS_FAILURE_STORE_ACCESS`:
 
 ```yaml
 ds_test_role_no_failure_store:
