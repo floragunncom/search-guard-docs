@@ -477,6 +477,47 @@ Note: This user will not be able to use normal indices, as the `index_permission
 
 [Document level security](document-level-security#document-level-security-for-data-streams-and-aliases), [field level security](field-level-security#fls-on-data-streams-and-aliases) and [field masking](field-anonymization) can be applied as normal.
 
+### Accessing the data stream failure store
+
+Failure store support is available in Search Guard FLX 4.1.0 and above.
+{: .note}
+
+Data streams can optionally have a *failure store* enabled, which holds documents that could not be indexed into the main data stream due to errors such as mapping conflicts or ingest pipeline failures. For accessing the failure store, a special privilege is needed. Normal privileges such as `SGS_READ` or `SGS_CRUD` are not sufficient for accessing the failure store.
+
+To allow a user to access the failure store, include `SGS_FAILURE_STORE_ACCESS` in the role's `allowed_actions` alongside any other required permissions. Without this privilege, access to the failure store is denied on the data stream.
+
+The following example grants read access to both the data and the failure store of data streams matching `ds_a*`:
+
+```yaml
+ds_test_role_with_failure_store:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+  - data_stream_patterns:
+    - "ds_a*"
+    allowed_actions:
+    - "SGS_READ"
+    - "SGS_FAILURE_STORE_ACCESS"
+```
+
+The following role grants full data stream access, including the failure store, because the wildcard `*` also covers `SGS_FAILURE_STORE_ACCESS`:
+
+```yaml
+ds_test_role_no_failure_store:
+  cluster_permissions:
+  - "SGS_CLUSTER_COMPOSITE_OPS"
+  data_stream_permissions:
+  - data_stream_patterns:
+    - "ds_a*"
+    allowed_actions:
+    - "*"
+```
+
+#### DLS, FLS, and field masking with the failure store
+
+Document-level security (DLS), field-level security (FLS), and field masking (FM) are **not supported** for failure store documents. If a role that includes DLS, FLS, or FM rules is used to access the failure store, these restrictions will not be applied correctly — which may result in no documents being returned or in more fields being returned than intended. It is strongly recommended **not to combine** DLS, FLS, or field masking with failure store access.
+{: .note .js-note .note-warning}
+
 ## Cluster Permission Exclusions
 
 Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly defined cluster permissions a user may not have.
