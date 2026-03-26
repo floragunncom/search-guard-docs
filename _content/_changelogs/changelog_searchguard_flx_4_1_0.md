@@ -25,6 +25,14 @@ Note: This feature requires Elasticsearch 9.3.0 or newer.
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/656)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1485)
 
+### Signals: Signl4 action support
+
+Signals now includes a dedicated Signl4 action, making it easier to route alerts to Signl4 from within the existing action configuration flow.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/566)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1124)
+* [Documentation](elasticsearch-alerting-actions-signl4)
+
 ## Improvements
 
 ### OIDC: dynamic frontend URL support
@@ -64,6 +72,20 @@ Signals API requests using URL-encoded tenant names (e.g. `admin%20tenant`) were
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/717)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1451)
+
+### Kibana login page: custom button styling now works
+
+Custom styling configured via `login_page.button_style` in `sg_frontend_authc` now correctly appears on the Kibana login page, making login page branding behave as expected.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/573)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1127)
+
+### Dashboard share URLs now keep the correct tenant
+
+When multitenancy was enabled, dashboard share URLs could be generated with an incorrect or missing tenant, causing links or embeds to open in the wrong tenant context. Share URLs now correctly preserve the active tenant.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/561)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1109)
 
 ## More fixes
 
