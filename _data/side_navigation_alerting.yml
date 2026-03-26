@@ -62,6 +62,8 @@
           slug: elasticsearch-alerting-actions-webhook
         - title: Slack Actions
           slug: elasticsearch-alerting-actions-slack
+        - title: Signl4 Actions
+          slug: elasticsearch-alerting-actions-signl4
         - title: Pagerduty Actions
           slug: elasticsearch-alerting-actions-pagerduty
         - title: JIRA Actions
