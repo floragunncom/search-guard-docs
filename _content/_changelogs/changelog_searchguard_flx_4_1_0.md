@@ -41,6 +41,7 @@ The OIDC authenticator now supports a `use_dynamic_frontend_url` configuration o
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/710)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1454)
+* [Documentation](kibana-authentication-openid-advanced-config#dynamic-frontend-url)
 
 ### Signals: watches can now search remote cluster indices
 
