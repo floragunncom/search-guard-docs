@@ -20,6 +20,8 @@ A new privilege `SGS_FAILURE_STORE_ACCESS` must be explicitly granted in a role'
 
 Note: DLS, FLS, and field masking are not supported for failure store documents and should not be combined with failure store access.
 
+Note: This feature requires Elasticsearch 9.3.0 or newer.
+
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/656)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1485)
 
