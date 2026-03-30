@@ -518,6 +518,11 @@ ds_test_role_no_failure_store:
 Document-level security (DLS), field-level security (FLS), and field masking (FM) are **not supported** for failure store documents. If a role that includes DLS, FLS, or FM rules is used to access the failure store, these restrictions will not be applied correctly — which may result in no documents being returned or in more fields being returned than intended. It is strongly recommended **not to combine** DLS, FLS, or field masking with failure store access.
 {: .note .js-note .note-warning}
 
+#### Failure store backing indices names
+
+The feature only works correctly when failure store backing indices have standard name created by the Elasticsearch (`.fs-<data-stream-name>-<timestamp>-<generation>`).
+{: .note .js-note .note-warning}
+
 ## Cluster Permission Exclusions
 
 Besides using `cluster_permissions` and `index_permissions` to positively define the permissions a user should have, it is also possible to explicitly defined cluster permissions a user may not have.

@@ -22,8 +22,8 @@ Note: DLS, FLS, and field masking are not supported for failure store documents 
 
 Note: This feature requires Elasticsearch 9.3.0 or newer.
 
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/656)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1485)
+* [Documentation](roles-permissions#accessing-the-data-stream-failure-store)
 
 ### Signals: Signl4 action support
 
@@ -67,9 +67,9 @@ Configuration variables could remain unresolved if the variable service had not 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/288)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1354)
 
-### Signals: URL-encoded tenant names in API paths now handled correctly
+### Signals: Tenant names with spaces now work correctly in API paths
 
-Signals API requests using URL-encoded tenant names (e.g. `admin%20tenant`) were not being decoded, causing tenant resolution to fail. These are now correctly decoded.
+Signals API requests for tenants with spaces in their names (e.g. `admin tenant`) were failing due to incorrect handling of the tenant name in the URL. This has been fixed.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/717)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1451)
