@@ -16,7 +16,13 @@ description: Changelog for Search Guard FLX 4.1.0
 
 Search Guard now supports access control for [data stream failure stores](roles-permissions#accessing-the-data-stream-failure-store). A failure store holds documents that could not be indexed into the main data stream due to errors such as mapping conflicts or ingest pipeline failures.
 
-A new privilege `SGS_FAILURE_STORE_ACCESS` must be explicitly granted in a role's `allowed_actions` to allow access to the failure store. Normal privileges such as `SGS_READ` or `SGS_CRUD` are not sufficient.
+A new privilege `SGS_FAILURE_STORE_ACCESS` must be explicitly granted in a role's `allowed_actions` allow access to the failure store. Normal privileges such as `SGS_READ` or `SGS_CRUD` are not sufficient.
+
+The privilege can be granted via the following role definition sections:
+
+- `index_permissions` \- direct access to the backing indices of the failure store
+- `alias_permissions` \- an alias that includes a data stream with an enabled failure store
+- `data_stream_permissions` \- a data stream with an enabled failure store
 
 Note: DLS, FLS, and field masking are not supported for failure store documents and should not be combined with failure store access.
 
@@ -42,14 +48,6 @@ The OIDC authenticator now supports a `use_dynamic_frontend_url` configuration o
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/710)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1454)
 * [Documentation](kibana-authentication-openid-advanced-config#dynamic-frontend-url)
-
-### Signals: watches can now search remote cluster indices
-
-Signals watches support cross-cluster search in their search inputs. Indices on remote clusters can be referenced using the standard `<remote_cluster>:<index>` syntax (e.g. `my_remote:my-index`). Access control is enforced on both the coordinating and the remote cluster.
-
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/169)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1374)
-
 
 ### Audit log: HTTP headers included in Kibana login and logout events
 
@@ -88,7 +86,3 @@ URLs and embeds copied from share dialogs now correctly include the target tenan
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/561)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1109)
-
-## More fixes
-
-This update includes a number of further minor fixes. See [the Gitlab milestone](https://git.floragunn.com/groups/search-guard/-/milestones/27) for all details.
