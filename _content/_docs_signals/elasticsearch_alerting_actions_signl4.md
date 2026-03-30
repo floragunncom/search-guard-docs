@@ -22,10 +22,11 @@ Use Signl4 actions to send mobile alerts to your team via [Signl4](https://www.s
 Signl4 is a mobile alerting service that ensures critical alerts reach the right people via push notifications, SMS, or voice calls. The Signl4 action type in Signals simplifies the configuration by providing:
 
 - A dedicated "Signl4" option in the actions menu
-- A pre-configured Events API endpoint with placeholders for your team ID and API key
+- A URL field pre-filled with the Events API endpoint and placeholder for your team ID
+- An API key field for authentication
 - A default body format optimized for Signl4
 
-Under the hood, Signl4 actions are webhook actions.
+This Signl4 action type is available in the Kibana UI. Via the REST API, create a webhook action as shown in the examples.
 
 ## Prerequisites
 
@@ -38,7 +39,7 @@ Before you can use Signl4 actions, you need:
    - Navigate to your team settings
    - Find your **Team ID** (also called Webhook ID)
 
-3. **A Signl4 API Key** - To create an API key:
+3. **A Signl4 API key** - To create an API key:
    - In the Signl4 portal, go to **Integrations** → **API Keys**
    - Create a new API key
    - Copy and save the key securely
@@ -54,11 +55,13 @@ https://connect.signl4.com/api/v2/events/{webhookIdOrTeamId}
 
 When creating a watch in the Kibana UI:
 
-1. Click **Add Action** and select **Signl4**
+1. Click **Add** and select **Signl4**
 2. Enter a **Name** for your action
 3. Replace `{webhookIdOrTeamId}` in the **URL** with your team ID
-4. Add your API key in the `X-S4-Api-Key` header
+4. Enter your API key in the **API Key** field
 5. Customize the **Body** with your alert message
+
+<img src="{{ '/img/signals-signl4-action-config.png' | relative_url }}" alt="Signl4 action configuration" class="md_image" style="max-width: 100%"/>
 
 The default body uses a simple text format that Signl4 parses automatically:
 
@@ -146,7 +149,7 @@ When using JSON, set the header `Content-Type: application/json`.
 
 ### Alert Title and Message
 
-Use `Title` and `Message` as the parameter names for your alert content. Any additional custom parameters you include will appear in the alert's detail view.
+In the alert payload, use `Title` and `Message` as the parameter names for your alert content. Any additional parameters will be visible in Signl4's alert details.
 
 ### Signl4 Control Parameters
 
@@ -159,7 +162,7 @@ Use `Title` and `Message` as the parameter names for your alert content. Any add
 | `X-S4-Status` | Status management: `new`, `acknowledged`, or `resolved` |
 {: .config-table}
 
-Any additional fields you include (e.g., `source`, `severity`, `environment`) will appear in the alert's detail view.
+Any additional fields you include (e.g., `source`, `severity`, `environment`) will be visible in Signl4's alert details.
 
 For more details, see:
 - [Signl4 Webhook Integration](https://docs.signl4.com/integrations/webhook/webhook.html)
@@ -181,7 +184,7 @@ X-S4-ExternalID: {{watch.id}}-{{trigger.triggered_time}}
 
 ## Webhook Endpoint (Alternative)
 
-Alternatively, you can use the [Signl4 webhook endpoint](https://docs.signl4.com/integrations/webhook/webhook.html) directly without an API key. This approach is simpler but provides only URL-based authentication. Use the webhook endpoint:
+Alternatively, you can use the [Signl4 webhook endpoint](https://docs.signl4.com/integrations/webhook/webhook.html) directly. This approach uses URL-based authentication and does not require an API key. Use the webhook endpoint:
 
 `https://connect.signl4.com/webhook/{webhookIdOrTeamId}`
 
