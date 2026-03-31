@@ -520,7 +520,7 @@ Document-level security (DLS), field-level security (FLS), and field masking (FM
 
 #### Failure store backing indices names
 
-When using the low-level and expert-level Modify Data Stream API, make sure that the standard name pattern is used. Otherwise, access control might not work correctly.
+When using the low-level and expert-level Modify Data Stream API (`POST` `/_data_stream/_modify`), make sure that the standard name pattern is used. Otherwise, access control might not work correctly.
 {: .note .js-note .note-warning}
 
 ## Cluster Permission Exclusions
