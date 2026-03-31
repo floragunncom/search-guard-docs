@@ -479,7 +479,7 @@ Note: This user will not be able to use normal indices, as the `index_permission
 
 ### Accessing the data stream failure store
 
-Failure store support is available in Search Guard FLX 4.1.0 and above.
+Failure store support requires Search Guard FLX 4.1.0 or later and Elasticsearch 9.3.0 or later.
 {: .note}
 
 Data streams can optionally have a *failure store* enabled, which holds documents that could not be indexed into the main data stream due to errors such as mapping conflicts or ingest pipeline failures. For accessing the failure store, a special privilege is needed. Normal privileges such as `SGS_READ` or `SGS_CRUD` are not sufficient for accessing the failure store.
@@ -516,6 +516,11 @@ ds_test_role_no_failure_store:
 #### DLS, FLS, and field masking with the failure store
 
 Document-level security (DLS), field-level security (FLS), and field masking (FM) are **not supported** for failure store documents. If a role that includes DLS, FLS, or FM rules is used to access the failure store, these restrictions will not be applied correctly — which may result in no documents being returned or in more fields being returned than intended. It is strongly recommended **not to combine** DLS, FLS, or field masking with failure store access.
+{: .note .js-note .note-warning}
+
+#### Failure store backing indices names
+
+When using the low-level and expert-level Modify Data Stream API (`POST` `/_data_stream/_modify`), make sure that the standard name pattern is used. Otherwise, access control might not work correctly.
 {: .note .js-note .note-warning}
 
 ## Cluster Permission Exclusions
