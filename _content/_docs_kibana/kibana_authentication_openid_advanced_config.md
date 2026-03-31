@@ -207,3 +207,21 @@ It is possible to DOS attack an OpenID-based infrastructure by sending tokens wi
 ## Maximum clock skew
 
 The `oidc.max_clock_skew_seconds` parameter controls how much time difference is tolerated between server and token issuer clocks. The default is `10` seconds.
+
+## Dynamic Frontend URL
+
+In some deployments — such as multi-tenant environments or setups behind a reverse proxy — the frontend base URL cannot be determined at configuration time. The `oidc.use_dynamic_frontend_url` option enables the OIDC auth domain to accept a frontend base URL supplied at login time, instead of always using the statically configured `frontend_base_url`.
+
+When set to `true`, the frontend base URL can be passed dynamically at runtime. If no dynamic URL is provided, Search Guard falls back to the statically configured `frontend_base_url`. When set to `false` (the default), the static `frontend_base_url` is always used.
+
+### Example
+
+```yaml
+default:
+  auth_domains:
+  - type: oidc
+    oidc.client_id: "my-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/.../.well-known/openid-configuration"
+    oidc.use_dynamic_frontend_url: true
+```
