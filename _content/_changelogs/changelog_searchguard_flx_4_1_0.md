@@ -35,7 +35,6 @@ Note: This feature requires Elasticsearch 9.3.0 or newer.
 
 Signals can now send alerts to <a href="https://www.signl4.com/" target="_blank" rel="noopener">Signl4</a> using a dedicated action type.
 
-* [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/566)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1124)
 * [Documentation](elasticsearch-alerting-actions-signl4)
 
@@ -80,9 +79,13 @@ URLs and embeds copied from share dialogs now correctly include the target tenan
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/561)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1109)
 
+### Fixed issue with Kibana and proxy authentication
+Under certain conditions, Kibana would fail with client side errors when proxy authentication was used. This has been fixed.
+
 ### Configuration variables not resolved at node startup
 
 Fixed an issue with configuration variable loading on cluster startup.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/288)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1354)
+
