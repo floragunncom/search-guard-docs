@@ -89,3 +89,26 @@ Fixed an issue with configuration variable loading on cluster startup.
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/288)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1354)
 
+## Security Fixes
+
+### Search Guard audit logs can contain under certain conditions user credentials
+
+In Search Guard FLX versions from 1.0.0 up to 4.0.1, the audit logging feature might log user credentials from users logging into Kibana.
+
+If you cannot upgrade right away, you can mitigate the issue by, disable request-body logging, either globally `searchguard.audit.log_request_body: false` or specifically `searchguard.audit.ignore_request_bodies: ["*/_searchguard/auth/session*"]`, more details here: https://docs.search-guard.com/latest/audit-logging-compliance#logging-the-request-body and here: https://docs.search-guard.com/latest/audit-logging-compliance#excluding-request-bodies
+
+Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/)
+
+### Some management operations on data streams are not properly restricted when user does not have the necessary privileges
+
+In Search Guard FLX versions from 3.0.0 up to 4.0.1, there exists an issue which allows users without the necessary privileges to execute some management operations against data streams.
+
+If you cannot upgrade right away, you can mitigate the issue by adding `indices:admin/data_stream/modify` to property `searchguard.admin_only_indices` in the `elasticsearch.yml`.
+
+Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/)
+
+### Open redirect vulnerability in Search Guard Kibana Plugin via manipulated requests
+
+In Search Guard FLX up to version 4.0.1, it is possible to use specially crafted requests to redirect the user to an untrusted URL.
+
+Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/)
