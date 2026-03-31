@@ -520,7 +520,7 @@ Document-level security (DLS), field-level security (FLS), and field masking (FM
 
 #### Failure store backing indices names
 
-The feature only works correctly when failure store backing indices have standard name created by the Elasticsearch (`.fs-<data-stream-name>-<timestamp>-<generation>`).
+When using the low-level and expert-level Modify Data Stream API, make sure that the standard name pattern is used. Otherwise, access control might not work correctly.
 {: .note .js-note .note-warning}
 
 ## Cluster Permission Exclusions
