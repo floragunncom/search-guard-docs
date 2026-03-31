@@ -20,9 +20,9 @@ A new privilege `SGS_FAILURE_STORE_ACCESS` must be explicitly granted in a role'
 
 The privilege can be granted via the following role definition sections:
 
-- `index_permissions` \- direct access to the backing indices of the failure store
+- `data_stream_permissions` \- when the index_pattern specifies a pattern matching a data stream
 - `alias_permissions` \- an alias that includes a data stream with an enabled failure store
-- `data_stream_permissions` \- a data stream with an enabled failure store
+
 
 Note: DLS, FLS, and field masking are not supported for failure store documents and should not be combined with failure store access.
 
@@ -58,13 +58,6 @@ The OIDC authenticator now supports a `use_dynamic_frontend_url` configuration o
 
 ## Bug fixes
 
-### Configuration variables not resolved at node startup
-
-Configuration variables could remain unresolved if the variable service had not finished initializing when the configuration was first loaded. Search Guard now waits for the variable service to be ready before loading configuration, ensuring variables are correctly substituted from the start.
-
-* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/288)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1354)
-
 ### Signals: Tenant names with spaces now work correctly in API paths
 
 Signals API requests for tenants with spaces in their names (e.g. `admin tenant`) were failing due to incorrect handling of the tenant name in the URL. This has been fixed.
@@ -86,3 +79,10 @@ URLs and embeds copied from share dialogs now correctly include the target tenan
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/work_items/561)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1109)
+
+### Configuration variables not resolved at node startup
+
+Fixed an issue with configuration variable loading on cluster startup.
+
+* [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/288)
+* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1354)
