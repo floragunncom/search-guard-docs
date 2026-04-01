@@ -103,7 +103,7 @@ Details will be made available on the [CVE Advisory Page](https://search-guard.c
 
 In Search Guard FLX versions from 3.0.0 up to 4.0.1, there exists an issue which allows users without the necessary privileges to execute some management operations against data streams.
 
-If you cannot upgrade right away, you can mitigate the issue by adding `indices:admin/data_stream/modify` to property `searchguard.admin_only_indices` in the `elasticsearch.yml`.
+If you cannot upgrade right away, you can mitigate the issue by adding `indices:admin/data_stream/modify` to property `searchguard.admin_only_actions` in `elasticsearch.yml`.
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/)
 
