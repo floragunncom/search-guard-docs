@@ -40,7 +40,7 @@ If the Kibana log already contains lines like:
 call the uninstall API **before** applying the `kibana.yml` override above:
 
 ```bash
-curl -ksS -u admin:admin \
+curl -ksS -u username:password \
   -H 'kbn-xsrf: true' \
   -X POST 'https://localhost:5601/api/security/entity_store/uninstall' -d '{}'
 ```
