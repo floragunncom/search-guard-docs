@@ -454,10 +454,13 @@ sgversions:
     - 6.4.0|25.5|19.0|yes|yes
   search-guard-encryption-at-rest:
     # esv |sgv |available| eol
-    - 9.3.3|1.0.0|yes|no
-    - 9.3.2|1.0.0|yes|no
-    - 9.3.1|1.0.0|yes|no
-    - 9.3.0|1.0.0|yes|no
+    - 9.4.2|1.0.0|yes|no
+    - 9.4.1|1.0.0|yes|no
+    - 9.4.0|1.0.0|yes|no
+    - 9.3.3|1.0.0|yes|yes
+    - 9.3.2|1.0.0|yes|yes
+    - 9.3.1|1.0.0|yes|yes
+    - 9.3.0|1.0.0|yes|yes
     - 9.2.6|1.0.0|yes|yes
     - 9.2.5|1.0.0|yes|yes
     - 9.2.4|1.0.0|yes|yes
@@ -474,7 +477,9 @@ sgversions:
     - 9.1.2|1.0.0|yes|yes
     - 9.1.1|1.0.0|yes|yes
     - 9.1.0|1.0.0|yes|yes
-    - 8.19.14|1.0.0|yes|no
+    - 8.19.16|1.0.0|yes|no
+    - 8.19.15|1.0.0|yes|yes
+    - 8.19.14|1.0.0|yes|yes
     - 8.19.13|1.0.0|yes|yes
     - 8.19.12|1.0.0|yes|yes
     - 8.19.11|1.0.0|yes|yes
