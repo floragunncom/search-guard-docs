@@ -222,6 +222,7 @@ sgversions:
     - 9.4.2|4.1.2|4.1.2|yes|no|N/A|N/A
     - 9.4.1|4.1.2|4.1.2|yes|no|N/A|N/A
     - 9.4.0|4.1.2|4.1.2|yes|no|N/A|N/A
+    - 9.3.6|4.1.0|4.1.0|yes|yes|N/A|N/A
     - 9.3.5|4.1.0|4.1.0|yes|yes|1.32-1.36|4.1.0-flx
     - 9.3.4|4.1.0|4.1.0|yes|yes|1.32-1.36|4.1.0-flx
     - 9.3.3|4.1.0|4.1.0|yes|yes|1.32-1.36|4.1.0-flx
@@ -458,6 +459,9 @@ sgversions:
     - 9.4.2|1.0.0|yes|no
     - 9.4.1|1.0.0|yes|no
     - 9.4.0|1.0.0|yes|no
+    - 9.3.6|1.0.0|yes|yes
+    - 9.3.5|1.0.0|yes|yes
+    - 9.3.4|1.0.0|yes|yes
     - 9.3.3|1.0.0|yes|yes
     - 9.3.2|1.0.0|yes|yes
     - 9.3.1|1.0.0|yes|yes
@@ -498,5 +502,5 @@ encryptionatrest:
   currentversionelasticsearch: "9.1.8"
 
 tlstool: 4.0.1
-sgctl: 4.0.1
+sgctl: 4.1.2
 enctl: 1.0.0-es-9.1.5
