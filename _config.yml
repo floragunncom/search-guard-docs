@@ -208,13 +208,13 @@ algolia:
       - ignorePlurals
       - singleWordSynonym
 
-eol:
-  features:
-    - 7.10.2
-    - 7.16.2
-    - 7.17.x
-  updates:
-    - n.a.
+#eol:
+#  features:
+#    - 7.10.2
+#    - 7.16.2
+#    - 7.17.x
+#  updates:
+#    - n.a.
 
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm
@@ -503,4 +503,4 @@ encryptionatrest:
 
 tlstool: 4.0.1
 sgctl: 4.1.2
-enctl: 1.0.0-es-9.1.5
+#enctl: 1.0.0-es-9.1.5
