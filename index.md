@@ -23,7 +23,7 @@ Welcome to Search Guard FLX, the enterprise security and alerting suite for Elas
 
 Download Search Guard FLX from the [official download location](search-guard-versions) and [install it](search-guard-installation).
 
-The latest FLX version is: **{{ site.searchguard.currentversion }}** (for Elasticsearch **{{ site.elasticsearch.currentversion }}**)
+The latest FLX version is: **{{ site.searchguard.currentversion }}** (for Elasticsearch **{{ site.elasticsearch.currentversion }}**) released on {{ site.searchguard.releasedate }}
 
 For the latest changes, please refer to the [Changelogs](changelogs-searchguard)
 
