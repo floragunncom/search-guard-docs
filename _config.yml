@@ -21,17 +21,17 @@ plugins:
   - algoliasearch-jekyll
 
 elasticsearch:
-  majorversion: 9
-  minorversion: 9.2
-  previousminorversion: 9.1
-  currentversion: 9.2.3
-  currentversionlastmajor: 8.19.9
+  #majorversion: 9 #unused
+  minorversion: 9.4 #this is the current minor version
+  #previousminorversion: 9.1
+  currentversion: 9.4.2 #this is the current full version available, match minorversion
+  currentversionlastmajor: 8.19.17 #the full version of the last major version
 
 searchguard:
-  version: "SG FLX"
-  islatestversion: true
-  currentversion: "4.0.1"
-  currentversionlastmajor: "3.1.3"
+  version: "SG FLX" # static, won't change
+  islatestversion: true # static, won't change
+  currentversion: "4.1.2" # current full version of SG FLX
+  #currentversionlastmajor: "3.1.3"
 
 index: false
 
