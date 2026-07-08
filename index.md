@@ -19,6 +19,14 @@ Copyright 2022 floragunn GmbH
 
 Welcome to Search Guard FLX, the enterprise security and alerting suite for Elasticsearch!
 
+## Download and Install
+
+Download Search Guard FLX from the [official download location](search-guard-versions) and [install it](search-guard-installation).
+
+The latest FLX version is: **{{ site.searchguard.currentversion }}** (for Elasticsearch **{{ site.elasticsearch.currentversion }}**)
+
+For the latest changes, please refer to the [Changelogs](changelogs-searchguard)
+
 ## Quick Start with Docker
 
 Get started with Search Guard in seconds using Docker:
