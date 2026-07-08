@@ -41,6 +41,13 @@ Once the container is running, point your browser to `http://localhost:5601` and
 
 You now have a fully functional Elasticsearch cluster with Kibana and Search Guard FLX installed!
 
+## Support
+
+For issues or questions:
+- [Search Guard Community Forum](https://forum.search-guard.com)
+- [Commercial Support Contact](https://search-guard.com/contacts/)
+- [Source Code](https://git.floragunn.com/public)
+
 ## What Are You Most Interested In?
 
 Search Guard FLX provides comprehensive enterprise features for Elasticsearch. Choose the area you'd like to explore:
