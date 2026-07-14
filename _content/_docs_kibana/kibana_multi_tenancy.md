@@ -24,8 +24,7 @@ resources:
 > Any data created before implementing the
 > `multi-tenancy` module may be lost, necessitating a secure backup.
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
-This version introduces backwards-incompatible changes.</span>
+<span style="color:red">If you are upgrading from older SG FLX versions to SG FLX 2.0.0 or higher, please review the [the upgrade guide](sg-200-upgrade). If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads)</span>
 {: .note .js-note .note-warning}
 
 ## Tenants: Definition
