@@ -1,14 +1,12 @@
 {% assign sgversions = site.sgversions[include.versions] %}
 
-
-
-
 <table>
   <thead>
   <tr>
     <th>Elasticsearch</th>
     <th>Search Guard Elasticsearch Plugin</th>
     <th>Search Guard Kibana Plugin</th>
+    <th>Release Date</th>
     <th>Search Guard Demo Installer</th>
     <th>Kubernetes Compatibility</th>
     <th>Helm Charts</th>
@@ -18,21 +16,20 @@
   <tbody>
 
   {% for version in sgversions %}
-
     {% assign sgversions = version | split: "|" %}
-    
-      {% capture sg_url %}
-        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}.zip      
-      {% endcapture %}    
-      {% capture kibana_url %}
-        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ sgversions[2] }}-es-{{ sgversions[0] }}/search-guard-flx-kibana-plugin-{{ sgversions[2] }}-es-{{ sgversions[0] }}.zip    
-      {% endcapture %}  
-      {% capture demo_url %}
-        https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}-demo-installer.sh      
-      {% endcapture %}  
-      {% capture helm_url %}
-        https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/tags/{{ sgversions[6] }}  
-      {% endcapture %}  
+  
+    {% capture sg_url %}
+    https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}.zip
+    {% endcapture %}
+    {% capture kibana_url %}
+    https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ sgversions[2] }}-es-{{ sgversions[0] }}/search-guard-flx-kibana-plugin-{{ sgversions[2] }}-es-{{ sgversions[0] }}.zip
+    {% endcapture %}
+    {% capture demo_url %}
+    https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ sgversions[1] }}-es-{{ sgversions[0] }}/search-guard-flx-elasticsearch-plugin-{{ sgversions[1] }}-es-{{ sgversions[0] }}-demo-installer.sh
+    {% endcapture %}
+    {% capture helm_url %}
+    https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/tags/{{ sgversions[6] }}
+    {% endcapture %}
 
   <tr>
     
@@ -46,9 +43,12 @@
 
     <td><a href="{{ kibana_url }}" target="_blank">{{ sgversions[2] }}</a></td>
 
+    <td>{{ sgversions[7] }}</td>
+
     <td><a href="{{ demo_url }}" target="_blank">{{ sgversions[1] }}</a></td>
 
     <td>{{ sgversions[5] }}</td>
+
     {% if sgversions[6] == "N/A" %}
     <td>N/A</td>
     {% else %}
@@ -60,7 +60,7 @@
     {% else %}
     <td>EOL</td>
     {% endif %}
-    
+
     {% else %}
 
     <!-- unavailable version -->

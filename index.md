@@ -19,6 +19,14 @@ Copyright 2022 floragunn GmbH
 
 Welcome to Search Guard FLX, the enterprise security and alerting suite for Elasticsearch!
 
+## Download and Install
+
+Download Search Guard FLX from the [official download location](search-guard-versions) and [install it](search-guard-installation).
+
+The latest FLX version is: **{{ site.searchguard.currentversion }}** (for Elasticsearch **{{ site.elasticsearch.currentversion }}**) released on {{ site.searchguard.releasedate }}
+
+For the latest changes, please refer to the [Changelogs](changelogs-searchguard)
+
 ## Quick Start with Docker
 
 Get started with Search Guard in seconds using Docker:
@@ -32,6 +40,13 @@ Once the container is running, point your browser to `http://localhost:5601` and
 - **Password:** `admin`
 
 You now have a fully functional Elasticsearch cluster with Kibana and Search Guard FLX installed!
+
+## Support
+
+For issues or questions:
+- [Search Guard Community Forum](https://forum.search-guard.com)
+- [Commercial Support Contact](https://search-guard.com/contacts/)
+- [Source Code](https://git.floragunn.com/public)
 
 ## What Are You Most Interested In?
 
