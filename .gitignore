@@ -7,3 +7,4 @@
 _data/breadcrumbs.yml
 _content/_docs_category_pages/*.md
 .bundle/
+*.bak

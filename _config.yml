@@ -25,7 +25,7 @@ elasticsearch:
   minorversion: 9.4 #this is the current minor version
   #previousminorversion: 9.1 # unused and not relevant any longer
   currentversion: 9.4.3 #this is the current full version available, match minorversion
-  currentversionlastmajor: 8.19.17 #the full version of the last major version
+  currentversionlastmajor: 8.19.18 #the full version of the last major version
 
 searchguard:
   version: "SG FLX" # static, won't change
@@ -258,6 +258,7 @@ sgversions:
     - 9.0.1|3.1.3|3.1.3|yes|yes|N/A|N/A|2025-11-07
   # esv |sgv |kbv |available| eol|Kubernetes| helm | release-date (yyyy-mm-dd)
   search-guard-flx-8:
+    - 8.19.18|4.1.2|4.1.2|yes|no|1.32-1.36|4.1.2-flx|2026-07-17
     - 8.19.17|4.1.2|4.1.2|yes|no|1.32-1.36|4.1.0-flx|2026-06-25
     - 8.19.16|4.1.2|4.1.2|yes|yes|1.32-1.36|4.1.0-flx|2026-06-24
     - 8.19.15|4.1.0|4.1.0|yes|yes|1.32-1.34|4.1.0-flx|2026-06-09
@@ -346,6 +347,7 @@ sgversions:
     - 9.1.2|1.0.0|yes|yes|2025-10-17
     - 9.1.1|1.0.0|yes|yes|2025-10-17
     - 9.1.0|1.0.0|yes|yes|2025-10-17
+    - 8.19.18|1.0.0|yes|no|2026-07-17
     - 8.19.16|1.0.0|yes|no|2026-06-10
     - 8.19.15|1.0.0|yes|yes|2026-06-10
     - 8.19.14|1.0.0|yes|yes|2026-04-29
