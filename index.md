@@ -27,6 +27,8 @@ The latest FLX version is: **{{ site.searchguard.currentversion }}** (for Elasti
 
 For the latest changes, please refer to the [Changelogs](changelogs-searchguard)
 
+Install Search Guard into Kubernetes via the [official Helm Chart](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts).
+
 ## Quick Start with Docker
 
 Get started with Search Guard in seconds using Docker:

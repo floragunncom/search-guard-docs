@@ -188,7 +188,12 @@ The Search Guard configuration GUI allows you to edit
 * Role Mappings - Assign users by username or their backend roles to Search Guard roles
 * Internal User Database - An authentication backend that stores users directly in Elasticsearch
 
-Furthermore you can view your currently active license, upload a new license if it has expired, and display the Search Guard system status.
+Furthermore, you can view your currently active license, upload a new license if it has expired, and display the Search Guard system status.
+
+## Kubernetes/Helm Chart
+
+Install Search Guard into Kubernetes via the [official Helm Chart](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts).
+
 
 ## Where to go next
 
