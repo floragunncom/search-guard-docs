@@ -34,7 +34,7 @@ If you have not already done so, make yourself familiar with Elastic's own upgra
   
 ## Prerequisites
 
-In order to to perform a an upgrade from 7.x to 8.x, you need to run at least:
+To perform an upgrade from 7.x to 8.x, you need to run at least:
 
 * Elasticsearch 7.17.x (Elasticsearch requirement)
 * Search Guard FLX 1.0.0 (Search Guard requirement)
