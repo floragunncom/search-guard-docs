@@ -11,7 +11,7 @@ description: Changelog for Search Guard FLX 2.0.0
 
 **Release Date: 2024-05-15**
 
-<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review [the upgrade guide](sg-200-upgrade).
+<span style="color:red">If you're upgrading to SG FLX 2.0.0, please review the [upgrade guide](sg-200-upgrade).
 This version introduces backwards-incompatible changes.</span>
 {: .note .js-note .note-warning}
 
