@@ -44,8 +44,8 @@ build:
       
       mkdir ./dist/latest/.well-known
       cp -v ./dist/latest/security.txt ./dist/latest/.well-known/
-      cp -v _redirects ./dist/latest/
-      cp -v _headers ./dist/latest/
+      cp -v _redirects ./dist/
+      cp -v _headers ./dist/
   artifacts:
     paths:
       - dist/
