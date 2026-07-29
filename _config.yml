@@ -281,7 +281,7 @@ sgversions:
     - 8.19.0|3.1.2|3.1.2|yes|yes|N/A|N/A|2025-09-12
   # esv |earv |available| eol
   search-guard-encryption-at-rest:
-    - 9.4.4|4.1.2|yes|no|2026-07-29
+    - 9.4.4|1.0.0|yes|no|2026-07-29
     - 9.4.3|1.0.0|yes|no|2026-07-17
     - 9.4.2|1.0.0|yes|no|2026-06-17
     - 9.4.1|1.0.0|yes|no|2026-06-17
@@ -309,7 +309,7 @@ sgversions:
     - 9.1.2|1.0.0|yes|yes|2025-10-17
     - 9.1.1|1.0.0|yes|yes|2025-10-17
     - 9.1.0|1.0.0|yes|yes|2025-10-17
-    - 8.19.19|4.1.2|yes|no|2026-07-29
+    - 8.19.19|1.0.0|yes|no|2026-07-29
     - 8.19.18|1.0.0|yes|no|2026-07-17
     - 8.19.17|1.0.0|yes|yes|2026-06-10
     - 8.19.16|1.0.0|yes|yes|2026-06-10
@@ -341,7 +341,7 @@ adversions:
   currentversionelasticsearch: "8.17.0"
 
 encryptionatrest:
-  currentversion: "4.1.2"
+  currentversion: "1.0.0"
   currentversionelasticsearch: "9.4.4"
   releasedate: 2026-07-29
 
