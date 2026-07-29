@@ -24,7 +24,7 @@ build:
 
       echo "## removing old _site directory"
       rm -rf ./_site ./dist
-      mkdir ./dist/
+      mkdir ./dist
       echo "## building docs"
       bundle install
       echo "2-pass build to get auto-generated pages in the build"
@@ -38,7 +38,7 @@ build:
       # --alt-ignore: ignore missing alt in images
       # --allow_hash_href: <a href='#'> is valid
       bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true                    
-      mv ./_site/ ./dist/latest
+      mv ./_site ./dist/latest
       
       # ./dist/latest is the document root
       
