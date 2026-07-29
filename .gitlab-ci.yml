@@ -23,8 +23,8 @@ build:
       (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
 
       echo "## removing old _site directory"
-      rm -rf ./_site
-
+      rm -rf ./_site ./dist
+      mkdir ./dist/
       echo "## building docs"
       bundle install
       echo "2-pass build to get auto-generated pages in the build"
@@ -37,15 +37,15 @@ build:
       # --url-ignore: ignore links to old versions
       # --alt-ignore: ignore missing alt in images
       # --allow_hash_href: <a href='#'> is valid
-      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true              
-      mkdir _site/.well-known
-      cp -v _site/security.txt _site/.well-known/
-      ls -la _site/
-      ls -la _site/.well-known
-      cp _redirects _site/
-      cp _headers _site/
-      mkdir dist/
-      mv _site/ dist/latest
+      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true                    
+      mv ./_site/ ./dist/latest
+      
+      # ./dist/latest is the document root
+      
+      mkdir ./dist/latest/.well-known
+      cp -v ./dist/latest/security.txt ./dist/latest/.well-known/
+      cp -v _redirects ./dist/latest/
+      cp -v _headers ./dist/latest/
   artifacts:
     paths:
       - dist/
