@@ -42,6 +42,8 @@ build:
       cp -v _site/security.txt _site/.well-known/
       ls -la _site/
       ls -la _site/.well-known
+      cp _redirects _site/
+      cp _headers _site/
       mv _site/ dist/
   artifacts:
     paths:

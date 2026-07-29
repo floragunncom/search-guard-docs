@@ -1,0 +1,19 @@
+# Cloudflare Pages _headers for docs.search-guard.com
+# Replicates the security + cache headers from the nginx config.
+# gzip is handled automatically by Cloudflare (gzip + brotli), so it is dropped.
+
+/*
+  Strict-Transport-Security: max-age=63072000
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+
+# nginx set "Cache-Control: public" + "expires 30d" for the docs assets.
+/assets/*
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.css
+  Cache-Control: public, max-age=2592000
+
+/*.js
+  Cache-Control: public, max-age=2592000
