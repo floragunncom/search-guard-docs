@@ -81,7 +81,7 @@ deploy_production:
     - npm install -g wrangler
   script:
     - echo "Deploying to Cloudflare Pages (Production)..."
-    - wrangler pages deploy dist --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=cloudflare-migration --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
+    - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=cloudflare-migration --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
     - echo "Production deployment complete!"
     - echo "Main URL - https://search-guard-docs.pages.dev"
     - echo "Deployment URL - https://$(echo ${CI_COMMIT_SHA} | cut -c1-8).search-guard-docs.pages.dev"
