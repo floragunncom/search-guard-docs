@@ -37,19 +37,11 @@ build:
       # --url-ignore: ignore links to old versions
       # --alt-ignore: ignore missing alt in images
       # --allow_hash_href: <a href='#'> is valid
-      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true
-      
-        #          # Copy root-level files to webserver root for SEO and LLM discoverability
-        #          put /builds/search-guard/search-guard-docs/_site/robots.txt $sftp_root_directory/
-        #          put /builds/search-guard/search-guard-docs/_site/sitemap.xml $sftp_root_directory/
-        #          put /builds/search-guard/search-guard-docs/_site/llms.txt $sftp_root_directory/
-        #          put /builds/search-guard/search-guard-docs/_site/llms-full.txt $sftp_root_directory/
-        #          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/
-        #          # Copy security.txt to .well-known directory per RFC 9116
-        #          -mkdir $sftp_root_directory/.well-known
-        #          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/.well-known/
-              
-      
+      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true              
+      mkdir _site/.well-known
+      cp -v _site/security.txt _site/.well-known/
+      ls -la _site/
+      ls -la _site/.well-known
       mv _site/ dist/
   artifacts:
     paths:
