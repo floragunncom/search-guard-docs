@@ -44,7 +44,8 @@ build:
       ls -la _site/.well-known
       cp _redirects _site/
       cp _headers _site/
-      mv _site/ dist/
+      mkdir dist/
+      mv _site/ dist/latest
   artifacts:
     paths:
       - dist/
