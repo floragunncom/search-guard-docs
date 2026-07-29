@@ -5,6 +5,10 @@ variables:
   LANGUAGE: "en_US.UTF-8"
   CLOUDFLARE_PROJECT_NAME: "search-guard-docs"
   NODE_VERSION: "26"
+  # Gems must live inside the project dir, GitLab can only cache paths below CI_PROJECT_DIR
+  BUNDLE_PATH: "vendor/bundle"
+  BUNDLE_JOBS: "4"
+  BUNDLE_RETRY: "3"
 
 stages:
   - build
@@ -15,18 +19,29 @@ build:
   tags:
     - build
   stage: build
+  cache:
+    # Invalidated whenever Gemfile.lock changes; ruby version is part of the key
+    # so a base image bump does not reuse gems built against the old ABI.
+    key:
+      prefix: "bundler-ruby3.0"
+      files:
+        - Gemfile.lock
+    paths:
+      - vendor/bundle
   script:
     - |
       cat /etc/debian_version || true
       uname -a
+      ruby -v
       echo "Merge marker sanity check"
-      (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
+      (grep -ri --exclude-dir=vendor "<<<<<<" * || grep -ri --exclude-dir=vendor ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
 
       echo "## removing old _site directory"
       rm -rf ./_site ./dist
       mkdir ./dist
       echo "## building docs"
-      bundle install
+      bundle install --quiet
+      bundle clean --force
       echo "2-pass build to get auto-generated pages in the build"
       echo "Starting first pass"
       bundle exec jekyll build --config _config.yml,_versions.yml --incremental
