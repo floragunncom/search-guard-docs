@@ -18,13 +18,15 @@ description: Use the Signals for Alerting Search Accounts REST API to search for
 
 ```
 GET /_signals/account/_search
+GET /_signals/account/{tenant}/_search
 ```
 
 ```
 POST /_signals/account/_search
+POST /_signals/account/{tenant}/_search
 ```
 
-Searches for accounts. Search criteria and options can be specified in a manner similar to the Elasticsearch document search REST API.
+The tenant-independent endpoint searches tenant-independent accounts. The tenant endpoint searches accounts belonging to `{tenant}` and tenant-independent accounts.
 
 Both the GET and the POST HTTP method can be used with the same effect.
 
@@ -69,6 +71,11 @@ This permission is included in the following [built-in action groups](elasticsea
 
 * SGS\_SIGNALS\_ACCOUNT\_MANAGE
 * SGS\_SIGNALS\_ACCOUNT\_READ
+
+The tenant endpoint requires `cluster:admin:searchguard:tenant:signals:account/search`, included in:
+
+* SGS\_SIGNALS\_TENANT\_ACCOUNT\_MANAGE
+* SGS\_SIGNALS\_TENANT\_ACCOUNT\_READ
 
 ## Examples
 
@@ -128,4 +135,3 @@ GET /_signals/account/_search?size=1000
         ]
     }
 }
-
