@@ -81,6 +81,9 @@ deploy_production:
     - npm install -g wrangler
   script:
     - echo "Deploying to Cloudflare Pages (Production)..."
+    # old_releases_docs.zip contains the documentation for the old non flx Search Guard releases
+    # Its stored in the Cloudflare R2 bucket search-guard-docs-old-release-html and can also be accessed via the following link in case it got lost:
+    # https://tresor.it/p#0058l1vfyfp1572c7vikblhn_qXKMHqrlxCNRcGzyJ211QEKyrddwpDrY/old_releases_docs.zip
     - wrangler r2 object get search-guard-docs-old-release-html/old_releases_docs.zip --file ./old_releases_docs.zip
     - unzip -qo old_releases_docs.zip
     - mv ./html/* ./dist/
