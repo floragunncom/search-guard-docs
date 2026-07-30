@@ -66,3 +66,28 @@ The `tls` settings mentioned above offer the following configuration options:
 ## Maximum clock skew
 
 The `jwt.max_clock_skew_seconds` parameter controls how much time difference is tolerated between server and token issuer clocks. The default is `10` seconds.
+
+## Retrieving additional claims from the OIDC UserInfo endpoint
+
+If the JWT does not contain all claims required for user mapping, Search Guard can retrieve additional claims from the OIDC UserInfo endpoint. The JWT is sent to the endpoint as a bearer access token, and the returned claims are available below `oidc_user_info`.
+
+```yaml
+auth_domains:
+- type: jwt
+  jwt.signing.jwks_from_openid_configuration.url: "https://idp.example.com/.well-known/openid-configuration"
+  additional_user_information:
+  - type: oidc_userinfo
+    oidc_userinfo.openid_configuration_url: "https://idp.example.com/.well-known/openid-configuration"
+    oidc_userinfo.request_timeout_ms: 10000
+  user_mapping.roles.from: oidc_user_info.roles
+```
+
+The following options are available:
+
+**oidc_userinfo.openid_configuration_url:** Required. URL of the OIDC discovery document. Search Guard obtains the `userinfo_endpoint` from this document.
+
+**oidc_userinfo.request_timeout_ms:** Timeout in milliseconds for requests to the discovery and UserInfo endpoints. Default: `10000`.
+
+**oidc_userinfo.tls:** TLS settings used for connections to the OIDC provider. See [common TLS settings](#common-tls-settings).
+
+**oidc_userinfo.proxy:** HTTP proxy settings used for connections to the OIDC provider.
