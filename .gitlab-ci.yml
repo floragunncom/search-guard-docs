@@ -81,6 +81,10 @@ deploy_production:
     - npm install -g wrangler
   script:
     - echo "Deploying to Cloudflare Pages (Production)..."
+    - wrangler r2 object get search-guard-docs-old-release-html/old_releases_docs.zip --file ./old_releases_docs.zip
+    - unzip -qo old_releases_docs.zip
+    - mv ./html/* ./dist/
+    - ls -la ./dist/
     - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=cloudflare-migration --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
     - echo "Production deployment complete!"
     - echo "Main URL - https://search-guard-docs.pages.dev"
