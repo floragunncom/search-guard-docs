@@ -35,7 +35,20 @@ Normally, you will use `user_mapping.user_name.from` to extract the user name. T
 
 For anonymous authentication, the option `user_mapping.user_name.static` might be helpful, as it just defines a constant value. This is also evaluated after the authentication frontend, but before any authentication backends.
 
-If you want to map 
+### Converting the user name to lower case
+
+Set `user_mapping.user_name.convert_to_lower_case` to `true` to convert the mapped user name to lower case. The option applies to user names produced by `from`, `from_backend`, and `static` mappings. It defaults to `false`.
+
+For example:
+
+```yaml
+auth_domains:
+- type: jwt
+  user_mapping.user_name.from: jwt.preferred_user_name
+  user_mapping.user_name.convert_to_lower_case: true
+```
+
+If `jwt.preferred_user_name` contains `ExampleUser`, the resulting Search Guard user name is `exampleuser`.
 
 ### Using only certain sections of a string as user name
 
@@ -71,6 +84,54 @@ For this, you can use the shortcut `user_mapping.roles.from_comma_separated_stri
 Like `user_mapping.user_name`, `user_mapping.roles` also supports regular expressions to extract sub-strings from strings. Use the options `user_mapping.roles.from.json_path` and `user_mapping.roles.from.pattern` for this. 
 
 If you have one component which produces role names as a single string, but separated by a character other than a comma, you can use `user_mapping.roles.from.json_path` combined with `user_mapping.roles.from.split` to specify the character to split at.
+
+### Converting roles to lower case
+
+Set `user_mapping.roles.convert_to_lower_case` to `true` to convert all mapped role names to lower case. The option applies to roles produced by `from`, `from_comma_separated_string`, and `static` mappings. It defaults to `false`.
+
+For example:
+
+```yaml
+auth_domains:
+- type: jwt
+  user_mapping.roles.from: jwt.roles
+  user_mapping.roles.convert_to_lower_case: true
+```
+
+If `jwt.roles` contains `["Administrators", "Report_Users"]`, the resulting backend roles are `administrators` and `report_users`.
+
+## `user_mapping.attrs`
+
+The `user_mapping.attrs` options map selected information gathered during authentication to structured attributes of the Search Guard user. Each entry maps a target user-attribute name to either a source JSON path (`from`) or a constant value (`static`).
+
+For example:
+
+```yaml
+auth_domains:
+- type: jwt
+  user_mapping.attrs.from:
+    dept_no: jwt.department.number
+    level: jwt.department.access_level
+```
+
+### Converting attribute names to lower case
+
+Set `user_mapping.attrs.convert_keys_to_lower_case` to `true` to convert the names of all mapped user attributes to lower case. The option applies to attribute names configured with both `from` and `static`, and defaults to `false`.
+
+Only the mapped top-level user-attribute names are converted. Attribute values and keys inside nested attribute values remain unchanged.
+
+For example:
+
+```yaml
+auth_domains:
+- type: jwt
+  user_mapping.attrs.from:
+    Dept_No: jwt.department.number
+    Access_Level: jwt.department.access_level
+  user_mapping.attrs.convert_keys_to_lower_case: true
+```
+
+The resulting user attributes are named `dept_no` and `access_level`.
 
 ## JSON paths
 
