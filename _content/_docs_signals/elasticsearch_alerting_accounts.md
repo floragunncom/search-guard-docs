@@ -27,6 +27,12 @@ The purpose of the account registry is to:
 
 While watches may be configured by a wide range of users, accounts shall be only defined by administrators. Normal users will then be able to use the predefined accounts.
 
+### Account Scope
+
+Accounts created with `/_signals/account/{account_type}/{account_id}` are tenant-independent and can be used by watches in any tenant.
+
+Accounts created with `/_signals/account/{tenant}/{account_type}/{account_id}` belong to that tenant and can only be used by watches in the same tenant. If no tenant-specific account with the requested ID exists, Signals uses a tenant-independent account with that ID, if available.
+
 ## Account Types
 
 ### E-Mail Accounts
@@ -116,5 +122,4 @@ Accounts may be managed using these REST API endpoints:
 * [Put Account](elasticsearch-alerting-rest-api-account-put)
 * [Delete Account](elasticsearch-alerting-rest-api-account-delete)
 * [Search Account](elasticsearch-alerting-rest-api-account-search)
-
 
