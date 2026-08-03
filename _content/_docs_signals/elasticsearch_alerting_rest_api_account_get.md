@@ -20,9 +20,10 @@ description: Use the Signals for Alerting API to retrieve PagerDuty, Email, Slac
 
 ```
 GET /_signals/account/{account_type}/{account_id}
+GET /_signals/account/{tenant}/{account_type}/{account_id}
 ```
 
-Retrieves the account of type `{account_type}` identified by the `{account_id}` path parameter. 
+Retrieves the tenant-independent account, or the account belonging to `{tenant}`, of type `{account_type}` identified by `{account_id}`.
 
 
 ## Path Parameters
@@ -30,6 +31,8 @@ Retrieves the account of type `{account_type}` identified by the `{account_id}` 
 **{account_type}** The type of the account to be retrieved. Required.
 
 **{account_id}** The id of the account to be retrieved. Required.
+
+**{tenant}** The tenant containing the account. Optional.
 
 ## Responses
 
@@ -55,6 +58,11 @@ This permission is included in the following [built-in action groups](elasticsea
 
 * SGS\_SIGNALS\_ACCOUNT\_MANAGE
 * SGS\_SIGNALS\_ACCOUNT\_READ
+
+The tenant endpoint requires `cluster:admin:searchguard:tenant:signals:account/get`, included in:
+
+* SGS\_SIGNALS\_TENANT\_ACCOUNT\_MANAGE
+* SGS\_SIGNALS\_TENANT\_ACCOUNT\_READ
 
 
 ## Examples

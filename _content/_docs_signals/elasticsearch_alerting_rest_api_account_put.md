@@ -21,15 +21,18 @@ description: Use the Signals for Alerting API to create PagerDuty, Email, Slack 
 
 ```
 PUT /_signals/account/{account_type}/{account_id}
+PUT /_signals/account/{tenant}/{account_type}/{account_id}
 ```
 
-Stores or updates an account of type `{account_type}`identified by the `{account_id}` path parameter. 
+Stores or updates the tenant-independent account, or the account belonging to `{tenant}`, of type `{account_type}` identified by `{account_id}`.
 
 ## Path Parameters
 
 **{account_type}** The type of the account to be stored. Required.
 
 **{account_id}** The id of the account to be stored. Required.
+
+**{tenant}** The tenant containing the account. Optional.
 
 ## Request Body
 
@@ -71,6 +74,10 @@ For being able to access the endpoint, the user needs to have the privilege `clu
 This permission is included in the following [built-in action groups](elasticsearch-alerting-security-permissions):
 
 * SGS\_SIGNALS\_ACCOUNT\_MANAGE
+
+The tenant endpoint requires `cluster:admin:searchguard:tenant:signals:account/put`, included in:
+
+* SGS\_SIGNALS\_TENANT\_ACCOUNT\_MANAGE
 
 ## Examples
 
@@ -154,4 +161,3 @@ PUT /_signals/account/email/test
     }
 }
 ```
-
