@@ -34,14 +34,13 @@ The following plugins and tools have been tested for compatibility with Search G
 * [X-Pack Alerting](https://www.elastic.co/guide/en/x-pack/current/xpack-alerting.html){:target="_blank"}
 * [X-Pack Machine Learning](https://www.elastic.co/guide/en/x-pack/current/xpack-ml.html){:target="_blank"}
 * [ElastAlert](https://github.com/Yelp/elastalert){:target="_blank"}
-* [Kibi](https://siren.solutions/kibi/){:target="_blank"}
 * [syslog-ng](https://syslog-ng.org/){:target="_blank"}
-* Kopf / [Cerebro](https://github.com/lmenezes/cerebro){:target="_blank"}
 * [Grafana](https://grafana.com/){:target="_blank"}
-* ES-Hadoop / Spark
+* [ES-Hadoop](https://github.com/elastic/elasticsearch-hadoop){:target="_blank"}
 * [Graylog](http://docs.graylog.org/en/2.3/pages/configuration/elasticsearch.html){:target="_blank"}
 
 
 ## Incompatible plugins and tools
 
-* [JDBC Importer](https://github.com/jprante/elasticsearch-jdbc){:target="_blank"}
+* [Fleet](https://www.elastic.co/docs/reference/fleet){:target="_blank"}
+* [ESQL](https://www.elastic.co/docs/reference/query-languages/esql){:target="_blank"}
