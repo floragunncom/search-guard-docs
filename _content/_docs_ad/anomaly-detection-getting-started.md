@@ -42,8 +42,8 @@ This guide walks you through installing the Anomaly Detection plugins and creati
 
 The Anomaly Detection preview is currently available for Elasticsearch {{ site.adversions.currentversionelasticsearch }}. You need to download three plugins:
 
-- [Anomaly Detection scheduler plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-ad-scheduler-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}-plugin.zip)
-- [Anomaly Detection Elasticsearch plugin](https://maven.search-guard.com//search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip)
+- [Anomaly Detection scheduler plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-ad-scheduler-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}-plugin.zip)
+- [Anomaly Detection Elasticsearch plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip)
 - [Anomaly Detection Kibana plugin](https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-kibana-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip)
 
 ## Installing the Plugins

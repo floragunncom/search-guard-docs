@@ -46,7 +46,7 @@ bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-elasticsear
 
 ## Download and install the Search Guard demo certificates
 
-Download the [certificates zip file](https://maven.search-guard.com//downloads/search-guard-demo-certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
+Download the [certificates zip file](https://maven.search-guard.com/downloads/search-guard-demo-certificates.zip){:target="_blank"}, unpack it and place all files in the following directory:
 
 ```
 <ES installation directory>/config
