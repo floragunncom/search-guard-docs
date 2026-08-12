@@ -27,7 +27,7 @@ If one condition is met all actions of the current *step* get executed in their 
 
 ## Technical Preview Version Download
 
-The Technical Preview version is available [here](https://maven.search-guard.com//search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/aim-tp-4-es-8.18.0/)
+The Technical Preview version is available [here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/aim-tp-4-es-8.18.0/)
 
 ## Building Blocks of a Policy
 
