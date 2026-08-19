@@ -209,24 +209,41 @@ If you have special requirements regarding the storage, you can always implement
 
 ### Implementing a custom storage
 
-Implementing a custom storage is very easy. You just write a class with **a default constructor** that extends `com.floragunn.searchguard.auditlog.impl.AbstractAuditLog`. You need to implement only two methods:
+Implementing a custom storage is very easy. You just write a class with **a constructor (String.class, Settings.class, String.class, Path.class, Client.class, ThreadPool.class, AuditLogSink.class)** that extends `com.floragunn.searchguard.enterprise.auditlog.sink.AuditLogSink`. You need to implement only two methods:
 
 ```java
-protected void save(final AuditMessage msg) {
-}
+public class MyOwnAuditLog extends AuditLogSink {
 
-public void close() throws IOException {
+    public MyOwnAuditLog(final String name, final Settings settings, final String settingsPrefix, final Path configPath, final ThreadPool threadPool,
+            final IndexNameExpressionResolver resolver, final ClusterService clusterService, AuditLogSink fallbackSink) {
+        super(name, settings, settingsPrefix, fallbackSink);
+    }
+
+    @Override
+    public void close() throws IOException {
+        //implement if necessary
+    }
+
+
+    public boolean doStore(AuditMessage msg) {
+        //implement you sink here
+        return true;
+    }
+
 }
 ```
 
-The `save` method is responsible for storing the event to whatever storage you require. The interface `AuditLog` also extends `java.io.Closeable`. If the node is shut down, this method is called, and you can use it to close any resources you have used. For example, the `HttpESAuditLog` uses it to close the connection to the remote ES cluster.
+The `doStore` method is responsible for storing the event to whatever storage you require.
 
 ### Configuring a custom storage
 
-In order for Search Guard to pick up your custom implementation, specify its fully qualified name as `searchguard.audit.type`:
+In order for Search Guard to pick up your custom implementation, specify its fully qualified name as `searchguard.audit.type`.
+Custom attributes to configure the custom auditlog implementation can be specified under `searchguard.audit.config.custom_attributes` key:
 
 ```yaml
-searchguard.audit.type: com.example.MyCustomAuditLogStorage
+searchguard.audit.type: com.example.MyOwnAuditLog
+searchguard.audit.config.custom_attributes.abc: XXX
+searchguard.audit.config.custom_attributes.mykey: XYZ
 ```
 
 Make sure that the class is accessible by Search Guard by putting the respective `jar` file in the `plugins/search-guard-flx` folder.
