@@ -5,6 +5,9 @@ variables:
   LANGUAGE: "en_US.UTF-8"
   CLOUDFLARE_PROJECT_NAME: "search-guard-docs"
   NODE_VERSION: "26"
+  # Pin wrangler to a major version so a breaking release cannot land in a
+  # deploy unreviewed. Minor/patch updates still come in automatically.
+  WRANGLER_VERSION: "4"
   # Gems must live inside the project dir, GitLab can only cache paths below CI_PROJECT_DIR
   BUNDLE_PATH: "vendor/bundle"
   BUNDLE_JOBS: "4"
@@ -78,7 +81,7 @@ deploy_cloudflare:
   dependencies:
     - build
   before_script:
-    - npm install -g wrangler
+    - npm install -g wrangler@${WRANGLER_VERSION}
   script:
     - echo "Deploying to Cloudflare Pages (Branch ${CI_COMMIT_BRANCH})..."
     # old_releases_docs.zip contains the documentation for the old non flx Search Guard releases
