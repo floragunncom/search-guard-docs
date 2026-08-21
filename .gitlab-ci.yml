@@ -70,8 +70,8 @@ build:
     - branches
     - tags
 
-# Deploy to Cloudflare Pages - Production (main branch)
-deploy_production:
+# Deploy to Cloudflare Pages
+deploy_cloudflare:
   tags:
     - build
   stage: deploy
@@ -81,7 +81,7 @@ deploy_production:
   before_script:
     - npm install -g wrangler
   script:
-    - echo "Deploying to Cloudflare Pages (Production)..."
+    - echo "Deploying to Cloudflare Pages (Branch ${CI_COMMIT_BRANCH})..."
     # old_releases_docs.zip contains the documentation for the old non flx Search Guard releases
     # Its stored in the Cloudflare R2 bucket search-guard-docs-old-release-html and can also be accessed via the following link in case it got lost:
     # https://tresor.it/p#0058l1vfyfp1572c7vikblhn_qXKMHqrlxCNRcGzyJ211QEKyrddwpDrY/old_releases_docs.zip
@@ -90,14 +90,11 @@ deploy_production:
     - mv ./html/* ./dist/
     - ls -la ./dist/
     - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=${CI_COMMIT_BRANCH} --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
-    - echo "Production deployment complete!"
+    - echo "Deployment complete!"
     - echo "Main URL - https://search-guard-docs.pages.dev"
     - echo "Deployment URL - https://$(echo ${CI_COMMIT_SHA} | cut -c1-8).search-guard-docs.pages.dev"
     # The Algolia search index is rebuilt by the separate `algolia_index` job below:
     # this job runs on a Node image (needed for wrangler) and has no Ruby/Bundler toolchain.
-  #environment:
-  #  name: migration
-  #  url: https://coretex-axiom.pages.dev
   when: on_success
 
 # Purge Cloudflare cache after production deployment
@@ -142,8 +139,8 @@ purge_cloudflare_cache:
       fi
 
 # Rebuild the Algolia search index after a successful production deployment.
-# Separate from deploy_production because `jekyll algolia push` needs the Ruby/Bundler
-# toolchain, while deploy_production runs on a Node image for wrangler.
+# Separate from deploy_cloudflare because `jekyll algolia push` needs the Ruby/Bundler
+# toolchain, while deploy_cloudflare runs on a Node image for wrangler.
 algolia_index:
   tags:
     - build
@@ -151,10 +148,10 @@ algolia_index:
   image: ruby:3.0
   only:
     - release
-  # Runs as soon as deploy_production succeeded. Deliberately independent of
+  # Runs as soon as deploy_cloudflare succeeded. Deliberately independent of
   # purge_cloudflare_cache so neither job can block or skip the other.
   needs:
-    - job: deploy_production
+    - job: deploy_cloudflare
       artifacts: false
   cache:
     # Same key as the build job, pull-only so this job never rewrites the gem cache.
