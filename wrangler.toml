@@ -6,8 +6,3 @@ compatibility_date = "2024-01-01"
 
 # Pages configuration
 pages_build_output_dir = "dist"
-
-# Environment variables for local development
-# Production variables should be set in Cloudflare dashboard or GitLab CI/CD
-[vars]
-ENVIRONMENT = "migration"
