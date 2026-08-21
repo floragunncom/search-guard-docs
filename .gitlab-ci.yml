@@ -4,7 +4,7 @@ variables:
   LANG: "en_US.UTF-8"
   LANGUAGE: "en_US.UTF-8"
   CLOUDFLARE_PROJECT_NAME: "search-guard-docs"
-  NODE_VERSION: "26"
+  NODE_VERSION: "24"
   # Pin wrangler to a major version so a breaking release cannot land in a
   # deploy unreviewed. Minor/patch updates still come in automatically.
   WRANGLER_VERSION: "4"
