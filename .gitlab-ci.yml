@@ -68,7 +68,6 @@ build:
     expire_in: 1 hour
   only:
     - branches
-    - tags
 
 # Deploy to Cloudflare Pages
 deploy_cloudflare:
