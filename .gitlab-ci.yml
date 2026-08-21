@@ -14,6 +14,7 @@ stages:
   - build
   - deploy
   - cache
+  - index
 
 build:
   tags:
@@ -88,23 +89,15 @@ deploy_production:
     - unzip -qo old_releases_docs.zip
     - mv ./html/* ./dist/
     - ls -la ./dist/
-    - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=cloudflare-migration --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
+    - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=${CI_COMMIT_BRANCH} --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
     - echo "Production deployment complete!"
     - echo "Main URL - https://search-guard-docs.pages.dev"
     - echo "Deployment URL - https://$(echo ${CI_COMMIT_SHA} | cut -c1-8).search-guard-docs.pages.dev"
-    - |
-
-        if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-            echo "## Skipping Search Index"
-        else
-            echo "## Rebuilding Search Index"
-            #bundle exec jekyll algolia push --config _config.yml,_versions.yml
-        fi
+    # The Algolia search index is rebuilt by the separate `algolia_index` job below:
+    # this job runs on a Node image (needed for wrangler) and has no Ruby/Bundler toolchain.
   #environment:
   #  name: migration
   #  url: https://coretex-axiom.pages.dev
-  only:
-    - cloudflare-migration
   when: on_success
 
 # Purge Cloudflare cache after production deployment
@@ -112,13 +105,8 @@ purge_cloudflare_cache:
   tags:
     - build
   stage: cache
-  # TODO: Cache purge is disabled for now. To reactivate, replace the
-  # `rules: - when: never` below with a branch-scoped rule, e.g.:
-  #   rules:
-  #     - if: '$CI_COMMIT_BRANCH == "cloudflare-migration"'
-  #       when: on_success
-  rules:
-    - when: never #disabled for now
+  only:
+    - release
   image: curlimages/curl:latest
   dependencies: []
   script:
@@ -130,6 +118,13 @@ purge_cloudflare_cache:
         exit 1
       fi
     - echo "Zone ID - ${CLOUDFLARE_ZONE_ID}"
+    # NOTE: This purges the ENTIRE search-guard.com zone, not just docs.search-guard.com.
+    # A selective purge scoped to the docs hostname is not possible on our plan: Cloudflare's
+    # purge by "hosts" / "prefixes" / "tags" is an Enterprise-only API feature and is rejected
+    # on our Pro plan with error 1107 ("Prefix, hostname and tag purge requires Enterprise").
+    # Purge by URL list ("files") does work on Pro but is capped at 30 URLs per request, which
+    # does not scale to the full docs site. If the account is ever upgraded to Enterprise,
+    # replace the payload below with: {"hosts":["docs.search-guard.com"]}
     - |
       RESPONSE=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
         -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
@@ -137,12 +132,54 @@ purge_cloudflare_cache:
         --data '{"purge_everything":true}')
     - echo "API Response - ${RESPONSE}"
     - |
-      if echo "$RESPONSE" | grep -q '"success": true'; then
+      # Cloudflare answers with compact JSON ("success":true), so do not expect a space here
+      if echo "$RESPONSE" | grep -qE '"success":[[:space:]]*true'; then
         echo "✓ Cache purged successfully!"
       else
         echo "✗ Cache purge failed!"
         echo "$RESPONSE"
         exit 1
       fi
-  #environment:
-  #  name: production
+
+# Rebuild the Algolia search index after a successful production deployment.
+# Separate from deploy_production because `jekyll algolia push` needs the Ruby/Bundler
+# toolchain, while deploy_production runs on a Node image for wrangler.
+algolia_index:
+  tags:
+    - build
+  stage: index
+  image: ruby:3.0
+  only:
+    - release
+  # Runs as soon as deploy_production succeeded. Deliberately independent of
+  # purge_cloudflare_cache so neither job can block or skip the other.
+  needs:
+    - job: deploy_production
+      artifacts: false
+  cache:
+    # Same key as the build job, pull-only so this job never rewrites the gem cache.
+    key:
+      prefix: "bundler-ruby3.0"
+      files:
+        - Gemfile.lock
+    paths:
+      - vendor/bundle
+    policy: pull
+  script:
+    - |
+      if [ -z "$ALGOLIA_API_KEY" ]; then
+        echo "ERROR: ALGOLIA_API_KEY not set!"
+        echo "Please configure it as a protected CI/CD variable in GitLab."
+        exit 1
+      fi
+      case "$CI_COMMIT_MESSAGE" in
+        *noindex*)
+          echo "## Skipping Search Index (noindex found in commit message)"
+          exit 0
+          ;;
+      esac
+      echo "## Rebuilding Search Index"
+      # `jekyll algolia push` runs its own Jekyll build, so it works on the repo
+      # sources and does not need the dist/ artifact of the build job.
+      bundle install --quiet
+      bundle exec jekyll algolia push --config _config.yml,_versions.yml

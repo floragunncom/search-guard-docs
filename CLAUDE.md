@@ -60,7 +60,8 @@ Rebuild the Algolia search index:
 bundle exec jekyll algolia push --config _config.yml,_versions.yml
 ```
 
-To skip search indexing in deployments, include "noindex" in the commit message.
+Indexing runs in CI on the `release` branch only (job `algolia_index`). To skip it for a
+deployment, include "noindex" in the commit message.
 
 ## Architecture & Content Structure
 
@@ -214,10 +215,26 @@ Permalinks are stable and less likely to change than file paths.
 - Performs 2-pass Jekyll build to include auto-generated pages
 - Validates all internal links with HTMLProofer
 
-**Deploy Stage:**
-- Uploads to production via SFTP
-- Purges Cloudflare cache
-- Rebuilds Algolia search index (unless commit message contains "noindex")
+**Deploy Stage** (all branches):
+- `deploy_production` fetches `old_releases_docs.zip` (docs of the old non-FLX releases) from
+  the Cloudflare R2 bucket and merges it into `dist/`
+- Deploys `dist/` to Cloudflare Pages (project `search-guard-docs`) via wrangler
+
+**Cache Stage** (`release` branch only):
+- `purge_cloudflare_cache` purges the Cloudflare cache after a successful deployment
+- Note: this is a **full zone purge** (`purge_everything`) of `search-guard.com`, not a
+  selective purge of `docs.search-guard.com`. Cloudflare's purge by hostname/prefix/tag is an
+  Enterprise-only API feature and fails on our Pro plan with error 1107; purge by URL list is
+  capped at 30 URLs per request. Revisit if the account is ever upgraded to Enterprise.
+
+**Index Stage** (`release` branch only):
+- `algolia_index` rebuilds the Algolia search index with
+  `bundle exec jekyll algolia push --config _config.yml,_versions.yml`
+- Runs on a Ruby image and only after `deploy_production` succeeded - it is a separate job
+  because the deploy job uses a Node image (wrangler) and has no Ruby toolchain
+- Skipped when the commit message contains "noindex"; a failing index push fails the pipeline
+  but never blocks the other jobs
+- Requires the (protected) `ALGOLIA_API_KEY` CI/CD variable in GitLab
 
 ## Directory Structure Reference
 
