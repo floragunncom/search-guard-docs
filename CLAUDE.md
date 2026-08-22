@@ -216,7 +216,7 @@ Permalinks are stable and less likely to change than file paths.
 - Validates all internal links with HTMLProofer
 
 **Deploy Stage** (all branches):
-- `deploy_production` fetches `old_releases_docs.zip` (docs of the old non-FLX releases) from
+- `deploy_cloudflare` fetches `old_releases_docs.zip` (docs of the old non-FLX releases) from
   the Cloudflare R2 bucket and merges it into `dist/`
 - Deploys `dist/` to Cloudflare Pages (project `search-guard-docs`) via wrangler
 
@@ -230,11 +230,30 @@ Permalinks are stable and less likely to change than file paths.
 **Index Stage** (`release` branch only):
 - `algolia_index` rebuilds the Algolia search index with
   `bundle exec jekyll algolia push --config _config.yml,_versions.yml`
-- Runs on a Ruby image and only after `deploy_production` succeeded - it is a separate job
+- Runs on a Ruby image and only after `deploy_cloudflare` succeeded - it is a separate job
   because the deploy job uses a Node image (wrangler) and has no Ruby toolchain
 - Skipped when the commit message contains "noindex"; a failing index push fails the pipeline
   but never blocks the other jobs
 - Requires the (protected) `ALGOLIA_API_KEY` CI/CD variable in GitLab
+
+**Cleanup Stage** (`release` branch only):
+- `cleanup_cloudflare_deployments` prunes old Cloudflare Pages deployments. Every branch
+  pipeline creates a deployment and Cloudflare keeps them forever, so the project's deployment
+  list would otherwise grow without bound
+- Policy: delete everything older than `RETENTION_DAYS` (14), but always keep the **newest**
+  deployment of each branch in `KEEP_LATEST_BRANCHES` (`master main release`) regardless of age.
+  Branch names are matched exactly, so e.g. `release-candidate` is not protected
+- Set the `DRY_RUN` variable to `true` to only log what would be deleted without deleting it
+- Runs on `alpine:3` (needs `jq`, which the purge job's curl image lacks) and only after
+  `deploy_cloudflare` succeeded, so the deployment just created is the one kept for `release`
+- Requires `CLOUDFLARE_ACCOUNT_ID` to be set explicitly as a CI/CD variable. Unlike the other
+  Cloudflare jobs this one calls the REST API directly instead of going through wrangler, which
+  resolves the account id implicitly. `CLOUDFLARE_API_TOKEN` already has the needed
+  *Cloudflare Pages: Edit* permission
+- Cloudflare refuses to delete the live production deployment (error 8000034) and aliased
+  deployments (8000035). Those rejections are logged and skipped by design - they are a second
+  safety net on top of the branch guard, which is also why no `force` flag is used. The job only
+  fails on a missing variable or a failing list call, never on an individual deletion
 
 ## Directory Structure Reference
 
