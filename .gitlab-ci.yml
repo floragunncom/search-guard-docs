@@ -18,6 +18,7 @@ stages:
   - deploy
   - cache
   - index
+  - cleanup
 
 build:
   tags:
@@ -182,3 +183,144 @@ algolia_index:
       # sources and does not need the dist/ artifact of the build job.
       bundle install --quiet
       bundle exec jekyll algolia push --config _config.yml,_versions.yml
+
+# Housekeeping - delete old Cloudflare Pages deployments.
+# Every branch pipeline creates a Pages deployment (see deploy_cloudflare) and Cloudflare keeps
+# them forever, so without this job the project's deployment list grows without bound.
+# Policy: delete everything older than RETENTION_DAYS, but always keep the newest deployment
+# of each branch listed in KEEP_LATEST_BRANCHES, no matter how old it is.
+cleanup_cloudflare_deployments:
+  tags:
+    - build
+  stage: cleanup
+  # alpine instead of curlimages/curl (used by purge_cloudflare_cache) because this job needs
+  # jq for JSON parsing and date arithmetic, which that image does not ship.
+  image: alpine:3
+  dependencies: []
+  # Runs as soon as deploy_cloudflare succeeded. Deliberately independent of
+  # purge_cloudflare_cache and algolia_index so none of them can block or skip the others.
+  # It has to run after the deploy so that today's deployment is the one kept as
+  # "newest on release".
+  needs:
+    - job: deploy_cloudflare
+      artifacts: false
+  variables:
+    # Deployments older than this are removed.
+    RETENTION_DAYS: "14"
+    # Space separated, exact branch names. The newest deployment of each of these is kept
+    # regardless of its age.
+    KEEP_LATEST_BRANCHES: "master main release"
+    # Set to "true" (CI/CD settings, or a variable on "Run pipeline") to only list what would
+    # be deleted without deleting anything.
+    DRY_RUN: "false"
+  before_script:
+    - apk add --no-cache curl jq
+  script:
+    - |
+      if [ -z "$CLOUDFLARE_ACCOUNT_ID" ] || [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+        echo "ERROR: CLOUDFLARE_ACCOUNT_ID or CLOUDFLARE_API_TOKEN not set!"
+        echo "Please configure these variables in GitLab CI/CD settings."
+        echo "NOTE: wrangler resolves the account id implicitly, plain curl cannot - so"
+        echo "CLOUDFLARE_ACCOUNT_ID has to be set explicitly for this job."
+        exit 1
+      fi
+    - echo "Project - ${CLOUDFLARE_PROJECT_NAME}"
+    - echo "Retention - ${RETENTION_DAYS} days"
+    - echo "Always keeping newest deployment of - ${KEEP_LATEST_BRANCHES}"
+    - echo "Dry run - ${DRY_RUN}"
+    - |
+      set -e
+      API="https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/pages/projects/${CLOUDFLARE_PROJECT_NAME}/deployments"
+
+      ## 1. Collect every deployment, page by page.
+      # per_page is not honoured reliably by this endpoint, so stop on the first empty page
+      # instead of computing a page count from result_info. PAGE_LIMIT is a runaway guard only.
+      echo "[]" > all_deployments.json
+      PAGE=1
+      PAGE_LIMIT=200
+      while [ "$PAGE" -le "$PAGE_LIMIT" ]; do
+        RESPONSE=$(curl -sS -X GET "${API}?page=${PAGE}&per_page=25" \
+          -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+          -H "Content-Type: application/json")
+
+        if ! echo "$RESPONSE" | jq -e '.success == true' > /dev/null 2>&1; then
+          echo "✗ Failed to list deployments (page ${PAGE})"
+          echo "$RESPONSE"
+          exit 1
+        fi
+
+        COUNT=$(echo "$RESPONSE" | jq '.result | length')
+        [ "$COUNT" -eq 0 ] && break
+
+        echo "$RESPONSE" | jq '.result' > page.json
+        jq -s 'add' all_deployments.json page.json > merged.json
+        mv merged.json all_deployments.json
+        PAGE=$((PAGE + 1))
+      done
+
+      echo "Total deployments found - $(jq 'length' all_deployments.json)"
+
+      ## 2. Work out what to delete.
+      # Kept are all deployments newer than the cutoff plus the newest deployment of each
+      # protected branch (whatever its age). created_on can carry fractional seconds, which
+      # fromdateiso8601 cannot parse, so strip them first.
+      jq -r \
+        --argjson days "${RETENTION_DAYS}" \
+        --arg keep "${KEEP_LATEST_BRANCHES}" '
+        ($keep | split(" ")) as $keepbranches
+        | (now - ($days * 86400)) as $cutoff
+        | map({
+            id: .id,
+            branch: (.deployment_trigger.metadata.branch // "unknown"),
+            created_on: .created_on,
+            created: (.created_on | sub("\\.[0-9]+Z$"; "Z") | fromdateiso8601)
+          })
+        | ( [ .[] | select(.branch as $b | $keepbranches | index($b)) ]
+            | group_by(.branch)
+            | map(max_by(.created).id) ) as $protected
+        | .[]
+        | select(.created < $cutoff)
+        | select(.id as $i | $protected | index($i) | not)
+        | "\(.id)\t\(.branch)\t\(.created_on)"
+      ' all_deployments.json > to_delete.tsv
+
+      DELETE_COUNT=$(wc -l < to_delete.tsv | tr -d ' ')
+      echo "Deployments to delete - ${DELETE_COUNT}"
+
+      if [ "$DELETE_COUNT" -eq 0 ]; then
+        echo "✓ Nothing to clean up"
+        exit 0
+      fi
+
+      ## 3. Delete them.
+      # Cloudflare refuses to delete the live production deployment (error 8000034) and
+      # aliased deployments (8000035). That is a welcome second safety net on top of the
+      # branch guard above, so a rejection is logged and skipped rather than failing the job.
+      # No force=true is passed, on purpose - it would defeat exactly that safety net.
+      set +e
+      DELETED=0
+      SKIPPED=0
+      while IFS="$(printf '\t')" read -r ID BRANCH CREATED; do
+        [ -z "$ID" ] && continue
+        if [ "$DRY_RUN" = "true" ]; then
+          echo "  [dry-run] would delete ${ID} - branch ${BRANCH} - created ${CREATED}"
+          DELETED=$((DELETED + 1))
+          continue
+        fi
+        DEL=$(curl -sS -X DELETE "${API}/${ID}" \
+          -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+          -H "Content-Type: application/json")
+        if echo "$DEL" | jq -e '.success == true' > /dev/null 2>&1; then
+          echo "  deleted ${ID} - branch ${BRANCH} - created ${CREATED}"
+          DELETED=$((DELETED + 1))
+        else
+          echo "  skipped ${ID} - branch ${BRANCH} - $(echo "$DEL" | jq -c '.errors' 2>/dev/null || echo "$DEL")"
+          SKIPPED=$((SKIPPED + 1))
+        fi
+      done < to_delete.tsv
+
+      if [ "$DRY_RUN" = "true" ]; then
+        echo "✓ Housekeeping dry run done - would delete ${DELETED}, nothing was changed"
+      else
+        echo "✓ Housekeeping done - deleted ${DELETED}, skipped ${SKIPPED}"
+      fi
