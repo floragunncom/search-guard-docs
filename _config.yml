@@ -12,7 +12,9 @@ sass:
   style: compressed
   sass_dir: ./sass
 
-exclude: ['*.sh', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'README*', 'CLAUDE.md', 'KEY_TERMS.md', 'SECURITY_DOCS*', 'VERSION_MARKERS*']
+# Anything in the source root that is not excluded here (and does not start with "." or "_")
+# is copied verbatim into _site as a static file, so tooling files must be listed explicitly.
+exclude: ['*.sh', '*.py', 'Dockerfile*', 'wrangler.toml', 'LICENSE', 'build_releasenotes.rb', 'sass', '.idea', '.jekyll-cache', 'README*', 'CLAUDE.md', 'KEY_TERMS.md', 'SECURITY_DOCS*', 'VERSION_MARKERS*']
 
 xinclude: ['robots.txt', 'sitemap.xml', 'llms.txt', 'llms-full.txt', 'security.txt']
 

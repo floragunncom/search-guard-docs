@@ -3,30 +3,49 @@ variables:
   LC_ALL: "C.UTF-8"
   LANG: "en_US.UTF-8"
   LANGUAGE: "en_US.UTF-8"
+  CLOUDFLARE_PROJECT_NAME: "search-guard-docs"
+  NODE_VERSION: "24"
+  # Pin wrangler to a major version so a breaking release cannot land in a
+  # deploy unreviewed. Minor/patch updates still come in automatically.
+  WRANGLER_VERSION: "4"
+  # Gems must live inside the project dir, GitLab can only cache paths below CI_PROJECT_DIR
+  BUNDLE_PATH: "vendor/bundle"
+  BUNDLE_JOBS: "4"
+  BUNDLE_RETRY: "3"
 
 stages:
   - build
   - deploy
+  - cache
+  - index
 
 build:
   tags:
-    - docs
+    - build
   stage: build
-  artifacts:
+  cache:
+    # Invalidated whenever Gemfile.lock changes; ruby version is part of the key
+    # so a base image bump does not reuse gems built against the old ABI.
+    key:
+      prefix: "bundler-ruby3.0"
+      files:
+        - Gemfile.lock
     paths:
-      - _site/
+      - vendor/bundle
   script:
     - |
       cat /etc/debian_version || true
       uname -a
+      ruby -v
       echo "Merge marker sanity check"
-      (grep -ri "<<<<<<" * || grep -ri ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
+      (grep -ri --exclude-dir=vendor "<<<<<<" * || grep -ri --exclude-dir=vendor ">>>>>>" *) && (echo "found some merge conflicts, will abort"; exit -1)
 
       echo "## removing old _site directory"
-      rm -rf ./_site
-
+      rm -rf ./_site ./dist
+      mkdir ./dist
       echo "## building docs"
-      bundle install
+      bundle install --quiet
+      bundle clean --force
       echo "2-pass build to get auto-generated pages in the build"
       echo "Starting first pass"
       bundle exec jekyll build --config _config.yml,_versions.yml --incremental
@@ -37,91 +56,129 @@ build:
       # --url-ignore: ignore links to old versions
       # --alt-ignore: ignore missing alt in images
       # --allow_hash_href: <a href='#'> is valid
-      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true
-deploy:
+      bundle exec htmlproofer ./_site --assume-extension .html --disable-external  --url-ignore "/^\/(latest|[67]\.x-\d{2}|v[25])(\/|$)/" --alt-ignore '/.*/' --allow_hash_href true                    
+      mv ./_site ./dist/latest
+      
+      # ./dist/latest is the document root
+      
+      mkdir ./dist/latest/.well-known
+      cp -v ./dist/latest/security.txt ./dist/latest/.well-known/
+      cp -v _redirects ./dist/
+      cp -v _headers ./dist/
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+  only:
+    - branches
+
+# Deploy to Cloudflare Pages
+deploy_cloudflare:
   tags:
-    - docs
+    - build
   stage: deploy
+  image: node:${NODE_VERSION}
   dependencies:
     - build
+  before_script:
+    - npm install -g wrangler@${WRANGLER_VERSION}
+  script:
+    - echo "Deploying to Cloudflare Pages (Branch ${CI_COMMIT_BRANCH})..."
+    # old_releases_docs.zip contains the documentation for the old non flx Search Guard releases
+    # Its stored in the Cloudflare R2 bucket search-guard-docs-old-release-html and can also be accessed via the following link in case it got lost:
+    # https://tresor.it/p#0058l1vfyfp1572c7vikblhn_qXKMHqrlxCNRcGzyJ211QEKyrddwpDrY/old_releases_docs.zip
+    - wrangler r2 object get search-guard-docs-old-release-html/old_releases_docs.zip --file ./old_releases_docs.zip --remote
+    - unzip -qo old_releases_docs.zip
+    - mv ./html/* ./dist/
+    - ls -la ./dist/
+    - wrangler pages deploy dist --commit-dirty=true --project-name=${CLOUDFLARE_PROJECT_NAME} --branch=${CI_COMMIT_BRANCH} --commit-hash=${CI_COMMIT_SHA} --commit-message="${CI_COMMIT_MESSAGE}"
+    - echo "Deployment complete!"
+    - echo "Main URL - https://search-guard-docs.pages.dev"
+    - echo "Deployment URL - https://$(echo ${CI_COMMIT_SHA} | cut -c1-8).search-guard-docs.pages.dev"
+    # The Algolia search index is rebuilt by the separate `algolia_index` job below:
+    # this job runs on a Node image (needed for wrangler) and has no Ruby/Bundler toolchain.
+  when: on_success
+
+# Purge Cloudflare cache after production deployment
+purge_cloudflare_cache:
+  tags:
+    - build
+  stage: cache
   only:
     - release
-  before_script:
-    - apt-get update -yqq
-    - apt-get install -yqq ncftp wget
-    - bundle install
+  image: curlimages/curl:latest
+  dependencies: []
+  script:
+    - echo "Purging Cloudflare cache for production deployment..."
+    - |
+      if [ -z "$CLOUDFLARE_ZONE_ID" ] || [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+        echo "ERROR: CLOUDFLARE_ZONE_ID or CLOUDFLARE_API_TOKEN not set!"
+        echo "Please configure these variables in GitLab CI/CD settings."
+        exit 1
+      fi
+    - echo "Zone ID - ${CLOUDFLARE_ZONE_ID}"
+    # NOTE: This purges the ENTIRE search-guard.com zone, not just docs.search-guard.com.
+    # A selective purge scoped to the docs hostname is not possible on our plan: Cloudflare's
+    # purge by "hosts" / "prefixes" / "tags" is an Enterprise-only API feature and is rejected
+    # on our Pro plan with error 1107 ("Prefix, hostname and tag purge requires Enterprise").
+    # Purge by URL list ("files") does work on Pro but is capped at 30 URLs per request, which
+    # does not scale to the full docs site. If the account is ever upgraded to Enterprise,
+    # replace the payload below with: {"hosts":["docs.search-guard.com"]}
+    - |
+      RESPONSE=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+        -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+        -H "Content-Type: application/json" \
+        --data '{"purge_everything":true}')
+    - echo "API Response - ${RESPONSE}"
+    - |
+      # Cloudflare answers with compact JSON ("success":true), so do not expect a space here
+      if echo "$RESPONSE" | grep -qE '"success":[[:space:]]*true'; then
+        echo "✓ Cache purged successfully!"
+      else
+        echo "✗ Cache purge failed!"
+        echo "$RESPONSE"
+        exit 1
+      fi
+
+# Rebuild the Algolia search index after a successful production deployment.
+# Separate from deploy_cloudflare because `jekyll algolia push` needs the Ruby/Bundler
+# toolchain, while deploy_cloudflare runs on a Node image for wrangler.
+algolia_index:
+  tags:
+    - build
+  stage: index
+  image: ruby:3.0
+  only:
+    - release
+  # Runs as soon as deploy_cloudflare succeeded. Deliberately independent of
+  # purge_cloudflare_cache so neither job can block or skip the other.
+  needs:
+    - job: deploy_cloudflare
+      artifacts: false
+  cache:
+    # Same key as the build job, pull-only so this job never rewrites the gem cache.
+    key:
+      prefix: "bundler-ruby3.0"
+      files:
+        - Gemfile.lock
+    paths:
+      - vendor/bundle
+    policy: pull
   script:
     - |
-      site_dir=$(grep "baseurl:" ./_versions.yml  | awk '{print $2}')
-      sftp_directory=$(sed 's/^\///' <<< $site_dir )
-      sftp_root_directory='html'
-
-      #set default SFTP server
-      if [ ! ${sftp_server+x} ];  then
-        sftp_server=185.233.188.50
+      if [ -z "$ALGOLIA_API_KEY" ]; then
+        echo "ERROR: ALGOLIA_API_KEY not set!"
+        echo "Please configure it as a protected CI/CD variable in GitLab."
+        exit 1
       fi
-      #set default cloudflare zoneid
-      if [ ! ${SG_CLOUDFLARE_ZONEID+x} ];  then
-        SG_CLOUDFLARE_ZONEID=21f0b97bf3df0f55bba6ca46b746da1f
-      fi
-      if [ ! ${REMOVE_CLOUDFLARE_CACHE+x} ];  then
-        REMOVE_CLOUDFLARE_CACHE=true
-      fi
-
-      echo "Building branch $git_branch"
-
-      if [ "$ftp_file_upload" = true ] ; then
-        echo "## Uploading to FTP directory: $site_dir"
-        ncftpput -R -v -u $ftp_username -p $ftp_password 35.214.156.137  "$site_dir" ./_site/*
-        export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
-        echo "Last commit message: $GIT_COMMIT_DESC"
-      else 
-        echo "FTP upload is disabled"
-      fi
-
-      if [ "$sftp_file_upload" = true ] ; then
-
-        echo "## Uploading to SFTP Server $sftp_server directory: $ftp_dir"
-        echo "Set ssh configuration for SFTP"
-        which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
-        eval $(ssh-agent -s)
-        echo "$sftp_user_private_key_base64" | base64 -d | tr -d '\r' | ssh-add -
-        mkdir -p ~/.ssh
-        echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-
-        echo "Uploading files to SFTP server"
-
-      sftp  -b - $sftp_user_name@$sftp_server <<EOF
-          -mkdir $sftp_root_directory/$sftp_directory
-          put -r /builds/search-guard/search-guard-docs/_site/* $sftp_root_directory/$sftp_directory
-          # Copy root-level files to webserver root for SEO and LLM discoverability
-          put /builds/search-guard/search-guard-docs/_site/robots.txt $sftp_root_directory/
-          put /builds/search-guard/search-guard-docs/_site/sitemap.xml $sftp_root_directory/
-          put /builds/search-guard/search-guard-docs/_site/llms.txt $sftp_root_directory/
-          put /builds/search-guard/search-guard-docs/_site/llms-full.txt $sftp_root_directory/
-          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/
-          # Copy security.txt to .well-known directory per RFC 9116
-          -mkdir $sftp_root_directory/.well-known
-          put /builds/search-guard/search-guard-docs/_site/security.txt $sftp_root_directory/.well-known/
-      EOF
-
-      else
-       echo "SFTP upload is disabled"
-      fi
-
-      if $REMOVE_CLOUDFLARE_CACHE ; then
-         echo "Deleting Cloudflare Cache"
-         curl  \
-         -X POST "https://api.cloudflare.com/client/v4/zones/$SG_CLOUDFLARE_ZONEID/purge_cache" \
-         -H "Authorization: Bearer $SG_CLOUDFLARE_DECACHE_TOKEN" \
-         -H "Content-Type: application/json" \
-         --data '{"purge_everything":true}'
-      fi
-
-      if [[ $GIT_COMMIT_DESC == *"noindex"* ]]; then
-        echo "## Skipping Search Index"
-      else
-        echo "## Rebuilding Search Index"
-        bundle exec jekyll algolia push --config _config.yml,_versions.yml
-      fi
-
+      case "$CI_COMMIT_MESSAGE" in
+        *noindex*)
+          echo "## Skipping Search Index (noindex found in commit message)"
+          exit 0
+          ;;
+      esac
+      echo "## Rebuilding Search Index"
+      # `jekyll algolia push` runs its own Jekyll build, so it works on the repo
+      # sources and does not need the dist/ artifact of the build job.
+      bundle install --quiet
+      bundle exec jekyll algolia push --config _config.yml,_versions.yml
