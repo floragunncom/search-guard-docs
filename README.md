@@ -9,6 +9,8 @@ The latest online version can be found here: [Search Guard Documentation](https:
 - [Technologies](#technologies)
 - [Quick Start](#quick-start)
 - [Available Commands](#available-commands)
+- [Version Configuration](#version-configuration)
+- [Search](#search)
 - [Project Structure](#project-structure)
 - [Navigation System](#navigation-system)
 - [Adding Content](#adding-content)
@@ -91,7 +93,12 @@ bundle exec htmlproofer ./_site --assume-extension .html --disable-external \
 bundle exec jekyll algolia push --config _config.yml,_versions.yml
 ```
 
+**The `--config _config.yml,_versions.yml` flags are not optional.** The target index name comes
+from `_versions.yml`, not from `_config.yml` - see [Version Configuration](#version-configuration).
+Without them the push goes to the stale index name still sitting in `_config.yml`.
+
 **Note:** To skip search indexing during deployment, include "noindex" in your commit message.
+In CI the index is only rebuilt on the `release` branch.
 
 ### Helper Scripts
 
@@ -99,6 +106,105 @@ bundle exec jekyll algolia push --config _config.yml,_versions.yml
 ```bash
 ./add_section_fields.sh
 ```
+
+## Version Configuration
+
+The site is built from **two** config files, and the second one wins:
+
+```bash
+bundle exec jekyll build --config _config.yml,_versions.yml
+```
+
+Jekyll merges the files left to right using `Jekyll::Utils.deep_merge_hashes`, which merges nested
+hashes key by key instead of replacing them wholesale. `_versions.yml` is therefore a small overlay
+on top of `_config.yml`, and it is **branch specific** - every documentation root (`latest`,
+`7.x-53`, `6.x-25`, ...) lives on its own branch and carries its own `_versions.yml`.
+
+On `main` / `release` the whole overlay is three keys:
+
+| Key | `_config.yml` | `_versions.yml` (wins) |
+|---|---|---|
+| `index` | `false` | `true` (legacy, no template reads `site.index`) |
+| `baseurl` | absent (`""`) | `/latest` |
+| `algolia.index_name` | `'6x-20'` | `'latest'` |
+
+Everything else - `algolia.application_id`, the entire `algolia.settings` block, `collections`,
+`searchguard.*`, `sgversions`, `kramdown`, `sass` - is taken unchanged from `_config.yml`.
+
+On the frozen version branches `_versions.yml` additionally merges into `searchguard:`. For
+example on `7.x-53`:
+
+```yaml
+searchguard:
+  esmajorversion: 7
+  version: 7.x-53.4.0
+  fullversion: 7.17.4-53.4.0
+  islatestversion: true
+
+baseurl: /7.x-53
+
+algolia:
+  index_name: '7x-53'
+```
+
+So one file gives each documentation root its own URL prefix, its own version numbers and its own
+Algolia index.
+
+> **Always pass `--config _config.yml,_versions.yml`.** Without it you get `baseurl: ""` and the
+> stale `algolia.index_name: '6x-20'` from `_config.yml`. For a plain build that only produces
+> wrong links locally; for `jekyll algolia push` it writes to the wrong index.
+
+## Search
+
+### The Algolia application is shared with the website
+
+Algolia application `2ESDTH812Y` powers **both** this documentation and the search on
+search-guard.com (blog posts and other website content). The website side is connected to
+**Contentful via webhooks**, so for instance the blog post index is updated automatically. None of
+that lives in this repository - only the documentation indices are produced here.
+
+This means the documentation does not own the Algolia account. Plan changes, key rotation and
+application-level settings affect the website search as well and need to be coordinated.
+
+### Indices
+
+One index per documentation root. The name comes from `algolia.index_name`, which is always
+supplied by `_versions.yml` (see [Version Configuration](#version-configuration)):
+
+| Branch | Index |
+|---|---|
+| `main` / `release` | `latest` |
+| `7.x-53` | `7x-53` |
+| `6.x-25` | `6x-25` |
+
+The `'6x-20'` in `_config.yml` is stale - it is only ever used if the `_versions.yml` overlay is
+left off the command line.
+
+### Indexing (Ruby side)
+
+- Gem `algoliasearch-jekyll` 0.9.1 (on `algoliasearch` 1.27.5), declared in the `:jekyll_plugins`
+  group of the `Gemfile`
+- `_plugins/search.rb` chunks each page by heading so every section becomes its own record - see
+  [Algolia Search Integration](#3-algolia-search-integration)
+- Only collection documents are indexed; root pages such as `index.md` and `search.md` are skipped
+- Rebuilt in CI by the `algolia_index` job, `release` branch only
+
+### Search UI (JavaScript side)
+
+- `instantsearch.js` 2.3.2, loaded from the jsDelivr CDN **inline in `_layouts/search.html`**
+  (rendered by `search.md` at `/search.html`). It is not vendored and not installed via npm, and
+  it is not DocSearch - there is nothing Algolia-related in `js/`
+- The application id and the search-only API key are hardcoded in that layout; `indexName` is
+  templated from `{{ site.algolia.index_name }}` and therefore follows the `_versions.yml` overlay
+- The search boxes in the page chrome (`_includes/left_nav_search.html`,
+  `_includes/additional_resources_search.html`) are plain GET forms submitting `?q=` to
+  `/search.html`, which instantsearch v2 picks up through `urlSync`
+
+### The client libraries are outdated on purpose
+
+`algoliasearch-jekyll` has been deprecated in favour of `jekyll-algolia`, and instantsearch.js
+2.3.2 is several major versions behind. Both work exactly as expected, and **there is currently no
+plan to change either of them.** Please do not fold an upgrade into unrelated work.
 
 ## Project Structure
 
@@ -156,8 +262,8 @@ search-guard-docs/
 ├── fonts/                     # Font files
 ├── img/                       # Images and graphics
 ├── _site/                     # Generated static site (git-ignored)
-├── _config.yml               # Main Jekyll configuration
-├── _versions.yml             # Version-specific configuration
+├── _config.yml               # Main Jekyll configuration (base)
+├── _versions.yml             # Per-branch overlay, merged over _config.yml
 ├── Gemfile                   # Ruby dependencies
 └── index.md                  # Homepage
 ```
@@ -544,7 +650,9 @@ search-guard-introduction:
 3. Records include hierarchical categorization via `algolia_hierarchy`
 4. 20KB size limit per chunk
 
-**Note:** The `algoliasearch-jekyll` gem is deprecated but still functional.
+**Note:** The `algoliasearch-jekyll` gem is deprecated but still functional, and is intentionally
+kept as is. For the full picture - the shared Algolia application, the Contentful-fed website
+index, the per-branch index names and the instantsearch.js frontend - see [Search](#search).
 
 ### 4. Custom Kramdown Renderer
 
@@ -567,32 +675,65 @@ search-guard-introduction:
 
 **Location:** `.gitlab-ci.yml`
 
-### Build Stage
+Stages: `build` -> `deploy` -> `cache` -> `index` -> `cleanup`.
 
-1. **Merge conflict detection:** Checks for merge markers
-2. **Clean build:** Removes old `_site` directory
-3. **2-pass Jekyll build:**
-   - First pass generates basic pages
-   - Second pass includes auto-generated category pages
-4. **Link validation:** Runs HTMLProofer to check for broken internal links
+### Build Stage (`build`, all branches)
 
-### Deploy Stage
+1. **Merge conflict detection:** aborts if merge markers are found
+2. **Clean build:** removes old `_site` and `dist` directories
+3. **2-pass Jekyll build** with `--config _config.yml,_versions.yml --incremental`
+   - First pass generates the basic pages
+   - Second pass picks up the auto-generated category pages
+4. **Link validation:** HTMLProofer over `_site`
+5. Moves `_site` to `dist/latest` (the document root, matching `baseurl: /latest`) and copies
+   `_redirects`, `_headers` and `security.txt` into place. `dist/` is passed on as an artifact
 
-**Triggers:** Only on `release` branch
+### Deploy Stage (`deploy_cloudflare`, all branches)
 
-1. **SFTP Upload:** Deploys `_site` to production server
-2. **Cloudflare Cache Purge:** Clears CDN cache
-3. **Algolia Index Rebuild:** Updates search index (unless commit message contains "noindex")
+Runs on a Node image with `wrangler`.
+
+1. Fetches `old_releases_docs.zip` (documentation of the old, pre-FLX releases) from the
+   Cloudflare R2 bucket `search-guard-docs-old-release-html` and unpacks it into `dist/`
+2. Deploys `dist/` to Cloudflare Pages, project `search-guard-docs`, on a branch named after
+   `CI_COMMIT_BRANCH`
+
+Every branch pipeline produces its own preview deployment.
+
+### Cache Stage (`purge_cloudflare_cache`, `release` only)
+
+Purges the Cloudflare cache after a production deployment. Note this is a **full zone purge** of
+`search-guard.com`, not a purge scoped to `docs.search-guard.com` - selective purge by
+hostname/prefix/tag is Enterprise-only and our plan rejects it.
+
+### Index Stage (`algolia_index`, `release` only)
+
+Rebuilds the Algolia search index with
+`bundle exec jekyll algolia push --config _config.yml,_versions.yml`. It runs on a Ruby image
+(the deploy job uses Node for wrangler) and starts as soon as `deploy_cloudflare` succeeded.
+It runs its own Jekyll build from the sources and does not consume the `dist/` artifact.
+Skipped when the commit message contains "noindex". See [Search](#search).
+
+### Cleanup Stage (`cleanup_cloudflare_deployments`, `release` only)
+
+Prunes old Cloudflare Pages deployments, which Cloudflare otherwise keeps forever. Deletes
+everything older than `RETENTION_DAYS` (14) but always keeps the newest deployment of each branch
+in `KEEP_LATEST_BRANCHES` (`master main release`). Set `DRY_RUN` to `true` to only log what would
+be deleted.
 
 ### Environment Variables
 
-- `sftp_server` - SFTP server address
-- `sftp_user_name` - SFTP username
-- `sftp_user_private_key_base64` - SSH private key (base64 encoded)
-- `SG_CLOUDFLARE_ZONEID` - Cloudflare zone ID
-- `SG_CLOUDFLARE_DECACHE_TOKEN` - Cloudflare API token
-- `ALGOLIA_APPLICATION_ID` - Algolia application ID
-- `ALGOLIA_API_KEY` - Algolia admin API key
+CI/CD variables that have to be configured in GitLab:
+
+- `CLOUDFLARE_API_TOKEN` - used by wrangler, the cache purge and the deployment cleanup
+- `CLOUDFLARE_ACCOUNT_ID` - required by the cleanup job, which calls the REST API directly
+- `CLOUDFLARE_ZONE_ID` - required by the cache purge job
+- `ALGOLIA_API_KEY` - Algolia admin key, protected, required by the index job
+
+Defined in the pipeline itself, not as GitLab variables: `CLOUDFLARE_PROJECT_NAME`
+(`search-guard-docs`), `WRANGLER_VERSION`, `NODE_VERSION`, `RETENTION_DAYS`,
+`KEEP_LATEST_BRANCHES`, `DRY_RUN`.
+
+The Algolia **application id** is not a CI variable - it lives in `_config.yml`.
 
 ## Troubleshooting
 
@@ -630,9 +771,18 @@ bundle install
 
 ### Search Not Working
 
-1. Rebuild Algolia index: `bundle exec jekyll algolia push`
-2. Check that `index_algolia: false` is not set in frontmatter
-3. Verify Algolia credentials in `_config.yml`
+1. Rebuild the Algolia index - with **both** config files, otherwise you push to the stale
+   `6x-20` index instead of `latest`:
+   ```bash
+   bundle exec jekyll algolia push --config _config.yml,_versions.yml
+   ```
+2. Check that `index_algolia: false` is not set in the page frontmatter
+3. Verify the Algolia application id in `_config.yml`. The admin API key is **not** in the repo -
+   it comes from the `ALGOLIA_API_KEY` CI/CD variable, so a full index rebuild only happens in CI
+4. Check that the collection is declared in `_config.yml` with an `algolia_hierarchy` key -
+   `_plugins/search.rb` requires one for every output collection
+5. Remember the index is shared infrastructure: website/blog records come from Contentful, not
+   from this build. See [Search](#search)
 
 ### Broken Links
 
