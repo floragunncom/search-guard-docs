@@ -212,7 +212,7 @@ cleanup_cloudflare_deployments:
     KEEP_LATEST_BRANCHES: "master main release"
     # Set to "true" (CI/CD settings, or a variable on "Run pipeline") to only list what would
     # be deleted without deleting anything.
-    DRY_RUN: "true"
+    DRY_RUN: "false"
   before_script:
     - apk add --no-cache curl jq
   script:
