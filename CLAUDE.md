@@ -181,6 +181,85 @@ Permalinks are stable and less likely to change than file paths.
 - `_versions.yml` contains alternate version configurations for separate documentation roots
 - `sgversions` in `_config.yml` defines the compatibility matrix displayed on the version matrix page
 
+### `_versions.yml` overrides `_config.yml`
+
+Every real build and every index push passes **both** config files:
+
+```bash
+bundle exec jekyll build --config _config.yml,_versions.yml
+```
+
+Jekyll merges them left to right with `Jekyll::Utils.deep_merge_hashes`, so nested hashes are
+merged key by key - they are **not** replaced wholesale. `_versions.yml` therefore acts as a small
+per-documentation-version overlay on top of `_config.yml`, and it is **branch specific**: each
+documentation root lives on its own branch with its own `_versions.yml`.
+
+On `main` / `release` the overlay is only three keys:
+
+| Key | `_config.yml` | `_versions.yml` (wins) |
+|---|---|---|
+| `index` | `false` | `true` (legacy - no template reads `site.index`) |
+| `baseurl` | absent (`""`) | `/latest` |
+| `algolia.index_name` | `'6x-20'` | `'latest'` |
+{: .config-table}
+
+Everything else - `algolia.application_id`, the whole `algolia.settings` block, `collections`,
+`searchguard.*`, `sgversions`, `kramdown`, `sass` - comes untouched from `_config.yml`.
+
+On the frozen version branches the same file also deep-merges into `searchguard:`. For example
+`7.x-53` sets `baseurl: /7.x-53`, `algolia.index_name: '7x-53'` and
+`searchguard.version` / `fullversion` / `islatestversion`. So each documentation root gets its own
+baseurl and its own Algolia index from this one file.
+
+**Always pass `--config _config.yml,_versions.yml`.** Without it the build falls back to
+`baseurl: ""` and to the stale `algolia.index_name: '6x-20'` in `_config.yml` - which for
+`jekyll algolia push` means writing to the wrong index.
+
+## Search (Algolia)
+
+### The Algolia application is shared with the website
+
+Algolia application `2ESDTH812Y` powers **both** this documentation and the search on
+search-guard.com (blog posts and other marketing content). The website half is fed from
+**Contentful via webhooks**, so for example the blog post index updates automatically - none of
+that lives in this repository. Only the docs indices are produced here.
+
+Practical consequence: the docs do not own the Algolia account. Account-level changes (plan
+changes, key rotation, application settings) affect the website search too and must be coordinated.
+
+### Indices
+
+One index per documentation root, taken from `algolia.index_name` and always supplied by
+`_versions.yml` (see *Version Management* above): `latest` on `main` / `release`, `7x-53` on the
+`7.x-53` branch, and so on. The `'6x-20'` value in `_config.yml` is stale - it is only ever used
+if someone builds or pushes without the `_versions.yml` overlay.
+
+### Indexing side (Ruby)
+
+- Gem `algoliasearch-jekyll` 0.9.1 (on `algoliasearch` 1.27.5), declared in the `:jekyll_plugins`
+  group of the `Gemfile` and listed again under `plugins:` in `_config.yml`
+- `_plugins/search.rb` chunks pages by heading - see *Algolia Search Hook* under
+  *Custom Jekyll Plugins*
+- Only collection documents are indexed; root pages such as `index.md` and `search.md` are skipped
+- Rebuilt in CI by the `algolia_index` job on the `release` branch only
+
+### Frontend side (JavaScript)
+
+- `instantsearch.js` 2.3.2, loaded from the jsDelivr CDN inline in `_layouts/search.html`
+  (rendered by `search.md` at `/search.html`). Not vendored, not npm, not DocSearch - there is
+  nothing Algolia-related in `js/`
+- The search-only API key and the app id are hardcoded in that layout; `indexName` is templated
+  from `{{ site.algolia.index_name }}`, so it follows the `_versions.yml` overlay
+- Entry points are plain GET forms (`_includes/left_nav_search.html`,
+  `_includes/additional_resources_search.html`) submitting `?q=` to `/search.html`, which
+  instantsearch v2 picks up via `urlSync`
+
+### Both client libraries are intentionally outdated
+
+`algoliasearch-jekyll` is deprecated (superseded by `jekyll-algolia`) and instantsearch.js 2.3.2 is
+several majors behind. Both work exactly as expected and there is **no plan to change them**. Do
+not propose an upgrade as incidental cleanup.
+
 ## Adding New Content
 
 ### Adding a New Main Section
