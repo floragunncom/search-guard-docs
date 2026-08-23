@@ -35,13 +35,30 @@ If you don't have them yet, you need to download a couple of software components
 
 ## Install Search Guard on Elasticsearch
 
-Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
+Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command.
 
-* Download the [Search Guard version](search-guard-versions) matching your Elasticsearch version
+### Installing from the download URL
+
+Change to the directory of your Elasticsearch installation and install the plugin directly from its download URL:
+
+```bash
+bin/elasticsearch-plugin install -b https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}/search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
+```
+
+The URL above installs Search Guard {{ site.searchguard.currentversion }} for **Elasticsearch {{ site.elasticsearch.currentversion }}**. If you are running a different Elasticsearch version, get the matching download URL from [Latest Releases](search-guard-versions) - the Search Guard version must match your Elasticsearch version exactly.
+{: .note}
+
+Installing from a URL requires the machine running Elasticsearch to have outbound HTTPS access to `maven.search-guard.com`.
+
+### Alternative: install from a downloaded file
+
+Use this method if the machine has no outbound internet access, or if you already downloaded the zip:
+
+* Download the plugin zip matching your Elasticsearch version from [Latest Releases](search-guard-versions)
 * Change to the directory of your Elasticsearch installation and type:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-elasticsearch-plugin-{{site.elasticsearch.currentversion}}-es-{{site.searchguard.currentversion}}.zip
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
 ```
 
 ## Download and install the Search Guard demo certificates
@@ -127,14 +144,28 @@ $ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml
 
 ## Install Search Guard on Kibana
 
-If you have a  Kibana setup and the Search Guard plugin ready, the installation is simple:
+If you have a Kibana setup ready, the installation is simple:
 
-* cd into your Kibana installaton directory
+### Installing from the download URL
+
+* cd into your Kibana installation directory
 * execute:
 
 ```bash
-$ bin/kibana-plugin install file:///path/to/kibana-plugin.zip
+bin/kibana-plugin install https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}/search-guard-flx-kibana-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
 ```
+
+The URL above installs the Search Guard Kibana plugin {{ site.searchguard.currentversion }} for **Kibana {{ site.elasticsearch.currentversion }}**. For any other Kibana version, get the matching download URL from [Latest Releases](search-guard-versions).
+{: .note}
+
+### Alternative: install from a downloaded file
+
+Use this method if the machine has no outbound internet access, or if you already downloaded the zip:
+
+```bash
+bin/kibana-plugin install file:///path/to/search-guard-flx-kibana-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
+```
+
 ## Add the Search Guard Kibana configuration
 
 

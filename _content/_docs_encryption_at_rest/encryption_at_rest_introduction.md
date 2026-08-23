@@ -25,7 +25,22 @@ It is the missing piece needed to regain complete control over your data in Elas
 
 ## Installation of Encryption at Rest Plugin
 
-To install the Encryption at Rest plugin, run the following command:
+### Installing from the download URL
+
+Change to the directory of your Elasticsearch installation and install the plugin directly from its download URL:
+
+```bash
+bin/elasticsearch-plugin install -b https://maven.search-guard.com/search-guard-encryption-at-rest-release/com/floragunn/search-guard-encryption-at-rest/search-guard-encryption-at-rest-plugin/{{ site.encryptionatrest.currentversion }}-es-{{ site.encryptionatrest.currentversionelasticsearch }}/search-guard-encryption-at-rest-plugin-{{ site.encryptionatrest.currentversion }}-es-{{ site.encryptionatrest.currentversionelasticsearch }}.zip
+```
+
+The URL above installs Encryption at Rest {{ site.encryptionatrest.currentversion }} for **Elasticsearch {{ site.encryptionatrest.currentversionelasticsearch }}**. For any other Elasticsearch version, use the table under [Download](#download) above: the version number in the *Search Guard Encryption at Rest Plugin* column links directly to the matching zip, and that link is the URL to pass to `elasticsearch-plugin install`.
+{: .note}
+
+Installing from a URL requires the Elasticsearch node to have outbound HTTPS access to `maven.search-guard.com`. If the node has no outbound internet access, use the file-based method below.
+
+### Alternative: install from a downloaded file
+
+Use this method for air-gapped nodes, nodes without outbound internet access, or when the plugin zip has already been staged on the node:
 
 ```bash
 bin/elasticsearch-plugin install -b file:///path/to/search-guard-encryption-at-rest-plugin-{{ site.encryptionatrest.currentversion }}-es-{{ site.encryptionatrest.currentversionelasticsearch }}.zip
