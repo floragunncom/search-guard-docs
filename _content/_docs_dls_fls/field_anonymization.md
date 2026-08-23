@@ -168,7 +168,7 @@ If you use a hashing algorithm, you should configure a custom hash salt.
 For generating a suitable random value for `field_anonymization.salt`, you can use the following command:
 
 ```
-$ xxd -u -l 16 -p /dev/urandom
+xxd -u -l 16 -p /dev/urandom
 ```
 
 ### Constant prefixes for anonymized fields

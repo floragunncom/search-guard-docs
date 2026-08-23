@@ -49,7 +49,7 @@ If you are using password-based authentication, just open `https://your-cluster.
 If you are experiencing issues, you can switch on debug mode. For this, either edit `sg_authc.yml`, add `debug: true` to the top level and upload the file using `sgctl`. Alternatively, just use this command:
 
 ```
-$ ./sgctl.sh set authc debug --true
+./sgctl.sh set authc debug --true
 ```
 
 You can then open the URL `https://your-cluster.example.com:9200/_searchguard/auth/debug` to see detailed information on what is going on during the login process.
@@ -65,7 +65,7 @@ For testing the configuration, just open the Kibana test instance in your favori
 You can also enable a debug mode for Kibana. Use the following command:
 
 ```
-$ ./sgctl.sh set frontend_config debug --true
+./sgctl.sh set frontend_config debug --true
 ```
 
 When debug mode is active, again open Kibana in your browser and try to log in. If you encounter a login failure, you should see more detailed information about the login process. 

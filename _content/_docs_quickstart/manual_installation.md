@@ -114,32 +114,32 @@ For using the Kibana Configuration GUI you need to install the Search Guard Kiba
 If you want to use the `sgctl` tool, you initially need to create a connection configuration for the running cluster. You can do so by executing the `sgctl connect` command like this. You need to adapt the path specifications to the PEM files you [downloaded earlier](#download-and-install-the-search-guard-demo-certificates) in the demo certificates zip file:
 
 ```bash
-$ ./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/kirk.pem --key /path/to/kirk-key.pem
+./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/kirk.pem --key /path/to/kirk-key.pem
 ```
 
 If the connection is successful, the command should print `Connected as CN=kirk,OU=client,O=client,L=test,C=de` and store the connection configuration for future
 use. The connection settings are stored in the `.searchguard` directory inside your home directory. You can test this by just executing:
 
 ```bash
-$ ./sgctl.sh connect
+./sgctl.sh connect
 ```
 
 `sgctl` can upload the Search Guard configuration as YAML files. You can find the initial Search Guard configuration in `</Elasticsearch directory>/plugins/search-guard/sgconfig`. Alternatively you can just retrieve the current configuration from Search Guard by executing
 
 ```bash
-$ ./sgctl.sh get-config -o path/to/output/dir/
+./sgctl.sh get-config -o path/to/output/dir/
 ```
 
 To make configuration changes, just edit these files. If you are done with your changes, you can upload them to Search Guard with:
 
 ```bash
-$ ./sgctl.sh update-config path/to/config/dir/
+./sgctl.sh update-config path/to/config/dir/
 ```
 
 You can also just specify single files using
 
 ```bash
-$ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml
+./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml
 ```
 
 ## Install Search Guard on Kibana
@@ -199,7 +199,7 @@ xpack.security.enabled: false
 Now you can start Kibana: 
 
 ```yaml
-$ bin/kibana
+bin/kibana
 ```
 
 After Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes and cannot be skipped. After the plugin is installed and optimized, Kibana will continue to start.

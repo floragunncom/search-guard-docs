@@ -89,7 +89,7 @@ If you are updating from Search Guard FLX 1.0.0 and want to have your session si
 - Read the session signing key:
 
 ```
-$ ./sgctl.sh rest get /_searchguard/config/vars/sessions_signing_key
+./sgctl.sh rest get /_searchguard/config/vars/sessions_signing_key
 ```
 
 - This gives an output similar to this:
@@ -108,7 +108,7 @@ $ ./sgctl.sh rest get /_searchguard/config/vars/sessions_signing_key
 - Make the session signing key encrypted. Take the value of the `value` attribute of the response above and insert it after `sessions_signing_key` in the command shown below:
 
 ```
-$ ./sgctl.sh update-var sessions_signing_key "value from response above" --encrypt
+./sgctl.sh update-var sessions_signing_key "value from response above" --encrypt
 ```
 
 - You can check with `./sgctl.sh rest get /_searchguard/config/vars/sessions_signing_key` that the value is now stored encrypted.

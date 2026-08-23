@@ -105,7 +105,7 @@ You can find sample sgctl calls in the [examples chapter](sgctl-examples)
 `sgctl` is able to store and automatically re-use the basic connection settings for a cluster. In order to initially set up a connection to a cluster, execute `sgctl` this way:
 
 ```bash
-$ ./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
+./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
 ```
 
 You need to replace the path specifications by paths to the certificate of the root CA which signed the TLS certificates by your cluster (`--ca-cert`)  and by an admin 
@@ -119,7 +119,7 @@ If the connection is successful, the command should print `Connected as CN=kirk,
 use. The connection settings are stored in the `.searchguard` directory inside your home directory. You can test this by just executing:
 
 ```bash
-$ ./sgctl.sh connect
+./sgctl.sh connect
 ```
 
 ### Managing Connection Settings for Several Clusters
@@ -127,33 +127,33 @@ $ ./sgctl.sh connect
 `sgctl` makes it easy to manage several clusters at once. To connect to another cluster, just type:
 
 ```bash
-$ ./sgctl.sh connect another-cluster-host.example.com --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
+./sgctl.sh connect another-cluster-host.example.com --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 ```
 
 This will now connect to this cluster and store the connection settings separately. From now on, in order to switch between both clusters, just type:
 
 
 ```bash
-$ ./sgctl.sh connect localhost
+./sgctl.sh connect localhost
 ```
 
 or
 
 
 ```bash
-$ ./sgctl.sh connect another-cluster-host.example.com
+./sgctl.sh connect another-cluster-host.example.com
 ```
 
 **Note:** By default, `sgctl` uses the host name as identifier of the cluster. If you want to use your own identifiers, you can use the `-c` option to specify it:
 
 ```bash
-$ ./sgctl.sh connect -c my-cluster 2001:0db8:85a3:0000:0000:8a2e:0370:7334 --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
+./sgctl.sh connect -c my-cluster 2001:0db8:85a3:0000:0000:8a2e:0370:7334 --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 ```
 
 Reconnect with:
 
 ```bash
-$ ./sgctl.sh connect -c my-cluster
+./sgctl.sh connect -c my-cluster
 ```
 
 ## Uploading Search Guard configuration
@@ -163,13 +163,13 @@ The most important command of `sgctl` is probably `sgctl update-config`. This co
 You can specify single files to be uploaded:
 
 ```bash
-$ ./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml path/to/config/dir/sg_roles.yml
+./sgctl.sh update-config path/to/config/dir/sg_internal_users.yml path/to/config/dir/sg_roles.yml
 ```
 
 ... or also or a whole directory:
 
 ```bash
-$ ./sgctl.sh update-config path/to/config/dir/
+./sgctl.sh update-config path/to/config/dir/
 ```
 <!--
 Modifying Search Guard configuration on the fly
@@ -179,7 +179,7 @@ Sometimes you need to modify only a single attribute of the Search Guard configu
 A sample command looks like this:
 
 ```
-$ ./sgctl.sh set 
+./sgctl.sh set 
 ```
 
 --->

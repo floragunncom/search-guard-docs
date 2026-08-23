@@ -84,12 +84,12 @@ sg_role_starfleet:
 After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the file to Search Guard:
 
 ```
-$ ./sgctl.sh update-config sg_authc.yml
+./sgctl.sh update-config sg_authc.yml
 ```
 
 That’s it. Use your favorite REST client capable of client certificate authentication to test logging in. If you are using curl, you can use a command similar to the following:
 
 ```
-$ curl --cert client.crt.pem --key client.key.pem "https://cluster.example.com:9200/_searchguard/authinfo"
+curl --cert client.crt.pem --key client.key.pem "https://cluster.example.com:9200/_searchguard/authinfo"
 ```
 

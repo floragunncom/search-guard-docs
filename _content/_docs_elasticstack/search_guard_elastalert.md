@@ -45,7 +45,7 @@ ElastAlert is a Python application and is platform independent. For an in-depth 
 To install ElastAlert, simply run
 
 ```bash
-$ pip install elastalert
+pip install elastalert
 ```
 
 Depending on the version of Elasticsearch, you may need to manually install the correct version of elasticsearch-py.
@@ -53,7 +53,7 @@ Depending on the version of Elasticsearch, you may need to manually install the 
 Elasticsearch 5.0+:
 
 ```bash
-$ pip install "elasticsearch>=5.0.0"
+pip install "elasticsearch>=5.0.0"
 ```
 
 ## Is Elasticsearch alerting free?

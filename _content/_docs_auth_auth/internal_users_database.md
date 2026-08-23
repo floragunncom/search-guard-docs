@@ -123,7 +123,7 @@ You can use `sgctl` to modify the internal users database if your cluster is alr
 In order to add a new user to the internal users database, you can use the following command:
 
 ```
-$ ./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 --password
+./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 --password
 ```
 This will prompt you to enter a password. Then, a user with the name `user_name` and the Search Guard roles `sg_role1` and `sg_role2` is created. Instead of `--sg-roles`, you can also use the shortcut `-r`. 
 
@@ -132,7 +132,7 @@ You can also specify a comma separated list of backend roles using the option `-
 You can define attributes using the option `--attributes` (or `-a`: 
 
 ```
-$ ./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 -a a=1,b.c.d=3,e=foo --password
+./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 -a a=1,b.c.d=3,e=foo --password
 ```
 
 ### Editing users 
@@ -140,7 +140,7 @@ $ ./sgctl.sh add-user user_name --sg-roles sg_role1,sg_role2 -a a=1,b.c.d=3,e=fo
 To edit existing users, use the `update-user` command. The options are similar to the `add-user` command:
 
 ```
-$ ./sgctl.sh update-user user_name --sg-roles sg_role3 
+./sgctl.sh update-user user_name --sg-roles sg_role3 
 ```
 
 This **adds** the role `sg_role3` to the existing Search Guard roles. Likewise, the option `--backend-roles` *adds* new roles to the existing backend roles. To remove existing roles, use the options `--remove-sg-roles` and `--remove-backend-roles`. 
@@ -148,7 +148,7 @@ This **adds** the role `sg_role3` to the existing Search Guard roles. Likewise, 
 To change the password of a user, use this:
 
 ```
-$ ./sgctl.sh update-user user_name --password 
+./sgctl.sh update-user user_name --password 
 ```
 
 
@@ -157,7 +157,7 @@ $ ./sgctl.sh update-user user_name --password
 To delete users, use the `delete-user` command:
 
 ```
-$ ./sgctl.sh delete-user user_name 
+./sgctl.sh delete-user user_name 
 ```
  
 ## Directly modifying `sg_internal_users.yml` 
@@ -172,6 +172,6 @@ You have two choices:
 In order to add the user `jdoe` to the file at `/path/to/a/local/sg_internal_users.yml`, use this command:
 
 ```
-$ ./sgctl.sh add-user-local jdoe --backend-roles hr_department --password -o /path/to/a/local/sg_internal_users.yml
+./sgctl.sh add-user-local jdoe --backend-roles hr_department --password -o /path/to/a/local/sg_internal_users.yml
 ```
 

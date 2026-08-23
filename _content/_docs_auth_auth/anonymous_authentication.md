@@ -104,7 +104,7 @@ auth_domains:
 After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the file to Search Guard:
 
 ```
-$ ./sgctl.sh update-config sg_authc.yml
+./sgctl.sh update-config sg_authc.yml
 ```
 
 That’s it. If you navigate in a browser to your Elasticsearch instance, you should get a basic authentication popup asking for your username and password. If you then click on "Cancel", you should be logged in as anonymous user.

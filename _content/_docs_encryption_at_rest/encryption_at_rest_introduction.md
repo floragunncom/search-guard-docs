@@ -129,7 +129,7 @@ This curl command creates an encrypted index named `my_encrypted_index`. Please 
 To list all your encrypted indices, connect the enctl.sh tool to the cluster (if not already done) and execute the following command:
 
 ```bash
-$ enctl.sh list-encrypted-indices
+enctl.sh list-encrypted-indices
 ```
 **NOTE:** Successful enctl.sh command execution does not return any __success message__.
 
