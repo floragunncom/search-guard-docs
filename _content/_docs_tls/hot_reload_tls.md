@@ -50,8 +50,8 @@ To update node certificates, follow this procedure:
 	5. Trigger the TLS reload. You can use the [sgctl](sgctl) tool or call the REST API directly, for example via `curl`.
 	
 ```
-$ ./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/transport/reloadcerts/
-$ ./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/http/reloadcerts/
+./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/transport/reloadcerts/
+./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/http/reloadcerts/
 ```
 		
 Note: You need to call `sgctl` for each host where you want to perform the reload. You can specify the respective host using the `-h` option.
@@ -73,8 +73,8 @@ To update root certificates, follow this procedure:
     3. Trigger the TLS reload. You can use the [sgctl](sgctl) tool or call the REST API directly, for example via `curl`.
     
 ```
-$ ./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/transport/reloadcerts/
-$ ./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/http/reloadcerts/
+./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/transport/reloadcerts/
+./sgctl.sh -h cluster_node1 rest post _searchguard/api/ssl/http/reloadcerts/
 ```
 
 3. For each node in the cluster, update the node certificate:

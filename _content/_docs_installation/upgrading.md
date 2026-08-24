@@ -83,7 +83,7 @@ You can either use a user that has full cluster management permissions, or use a
 **Example: Using HTTP Basic authentication**
 
 ```bash
-curl -Ss -u admin:admin --insecure -XPUT 'https://localhost:9200/_cluster/settings?pretty' \ 
+curl -Ss -u admin:admin --insecure -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
   -H 'Content-Type: application/json' -d'
 {
   "persistent": {

@@ -85,7 +85,7 @@ This step is optional but recommended especially for large clusters with a huge 
 ### Using curl
 
 ```bash
-curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \ 
+curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
   -H 'Content-Type: application/json' -d'
 {
   "persistent": {
@@ -97,13 +97,30 @@ curl -Ss -XPUT 'https://localhost:9200/_cluster/settings?pretty' \
 
 ## Installing Search Guard
 
-Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command. 
+Search Guard can be installed like any other Elasticsearch plugin by using the `elasticsearch-plugin` command.
 
-* Download the [Search Guard version](search-guard-versions) matching your Elasticsearch version
-* Change to the directory of your Elasticsearch installation and type:
+### Installing from the download URL
+
+Change to the directory of your Elasticsearch installation and install the plugin directly from its download URL:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-<version>.zip
+bin/elasticsearch-plugin install -b https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-elasticsearch-plugin/{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}/search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
+```
+
+The URL above installs Search Guard {{ site.searchguard.currentversion }} for **Elasticsearch {{ site.elasticsearch.currentversion }}**. The Search Guard version must match your Elasticsearch version exactly. If you are running any other Elasticsearch version, open [Latest Releases](search-guard-versions), locate the row for your Elasticsearch version and copy the download URL from the *Search Guard Elasticsearch Plugin* column.
+{: .note}
+
+Installing from a URL requires the Elasticsearch node to have outbound HTTPS access to `maven.search-guard.com`. Nodes without outbound internet access, for example in an air-gapped network, must use the file-based method described below.
+
+### Alternative: install from a downloaded file
+
+Use this method when the node cannot reach `maven.search-guard.com`, or when you pre-stage the plugin artifacts on your own file server or a shared path.
+
+* Download the plugin zip matching your Elasticsearch version from [Latest Releases](search-guard-versions)
+* Copy the zip to the node, change to the directory of your Elasticsearch installation and type:
+
+```bash
+bin/elasticsearch-plugin install -b file:///path/to/search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
 ```
 
 ### Additional permissions dialogue

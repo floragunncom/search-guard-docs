@@ -52,7 +52,7 @@ jwt_audience: "session_prod1"
 The value for `jwt_signing_key_hs512` can be for example generated with the following command:
 
 ```
-$ openssl rand 64 | basenc --base64url 
+openssl rand 64 | basenc --base64url 
 ```
 
 The setting `jwt_audience` identifies the cluster which created the session JWT. Thus, the monitoring cluster can tell where the JWT originally came from.
@@ -60,7 +60,7 @@ The setting `jwt_audience` identifies the cluster which created the session JWT.
 The configuration can be updated using
 
 ```
-$ ./sgctl.sh update-config path/to/sg_sessions.yml 
+./sgctl.sh update-config path/to/sg_sessions.yml 
 ```
 
 The second part is the configuration on the monitoring cluster. An additional authentication domain of type `jwt/external_session` needs to be added to `sg_authc.yml`. That might look like this:

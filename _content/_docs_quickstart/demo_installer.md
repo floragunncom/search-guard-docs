@@ -32,7 +32,7 @@ The following paragraphs will guide you through the installation process.
 - Open a shell, create a working directory, `cd` into the directory. Possibly, you have to mark the script as executable by doing `chmod u+x search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}-demo-installer.sh`. Then, execute the script:
 
 ```bash
-$ ./search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}-demo-installer.sh
+./search-guard-flx-elasticsearch-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}-demo-installer.sh
 ```
 
 - The script will download the Search Guard plugins and the `sgctl` tool. Additionally, it will download the matching version of Elasticsearch, which will be automatically extracted to the working directory. The same will be done for Kibana.
@@ -59,13 +59,13 @@ drwxr-xr-x  2 sg sg 4,0K Sep 15 12:35 my-sg-config
 - You can start the cluster by running 
 
 ```bash
-$ elasticsearch/bin/elasticsearch
+elasticsearch/bin/elasticsearch
 ```
 
 - If you want, you can start Kibana in a parallel shell by executing:
 
 ```bash
-$ kibana/bin/kibana
+kibana/bin/kibana
 ```
 
 Note: While Kibana is started, it will begin optimizing and caching browser bundles. This process may take a few minutes. 

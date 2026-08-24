@@ -19,7 +19,7 @@ In case you encounter problems with authentication in Kibana, you can use a spec
 To do so, use the following command:
 
 ```
-$ ./sgctl.sh set frontend_config debug --true
+./sgctl.sh set frontend_config debug --true
 ```
 
 **Important:** Be aware that this might expose sensitive information to all users which can access the cluster. Don't use this on production clusters.

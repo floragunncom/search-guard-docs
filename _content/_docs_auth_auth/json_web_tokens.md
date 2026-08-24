@@ -102,13 +102,13 @@ In some cases, JWT do not contain role information. In that case, you need a use
 After having applied the changes to `sg_authc.yml`, use `sgctl` to upload the file to Search Guard:
 
 ```
-$ ./sgctl.sh update-config sg_authc.yml
+./sgctl.sh update-config sg_authc.yml
 ```
 
 That’s it. You can test the JWT setup with your favorite REST client. If you are using curl, you can try this command:
 
 ```
-$ curl -H "Authorization: Bearer ${JWT}" "https://node.example.com:9200/_searchguard/authinfo"
+curl -H "Authorization: Bearer ${JWT}" "https://node.example.com:9200/_searchguard/authinfo"
 ```
 
 

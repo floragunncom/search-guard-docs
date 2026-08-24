@@ -91,7 +91,7 @@ The easiest way to add users to a local `sg_internal_users.yml` file is to use `
 Thus, in order to create the `jdoe` user, execute the following command:
 
 ```
-$ ./sgctl.sh add-user-local jdoe --backend-roles hr_department --password -o /path/to/a/local/sg_internal_users.yml
+./sgctl.sh add-user-local jdoe --backend-roles hr_department --password -o /path/to/a/local/sg_internal_users.yml
 ```
 
 When executing this, the command will ask you to enter a password. Alternatively, you can specify the password after the `--password` switch. If the file specified by the `-o` switch does not exist, it is automatically created. If it does already exist, the entry will be appended.
@@ -116,13 +116,13 @@ In order to activate the changed configuration, we need to upload it to the Sear
 If you have already set up the `sgctl` connection to the cluster, just type:
 
 ```bash
-$ ./sgctl.sh update-config /path/to/the/changed/sg_internal_users.yml
+./sgctl.sh update-config /path/to/the/changed/sg_internal_users.yml
 ```
 
 If you have not yet set up the `sgctl` connection, you have to do this once:
 
 ```bash
-$ ./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
+./sgctl.sh connect localhost --ca-cert /path/to/root-ca.pem --cert /path/to/admin-cert.pem --key /path/to/admin-cert-private-key.pem
 ```
 
 The configuration changes are active immediately. There is no need to restart your cluster.
@@ -136,17 +136,17 @@ Alternatively, if you already have a running cluster, you can also `sgctl` to di
 The syntax to add users directly on the cluster is very simple to the syntax of the `add-user-local` command. Just replace `add-user-local` by `add-user` and skip the `-o` option:
 
 ```
-$ ./sgctl.sh add-user jdoe --backend-roles hr_department --password
+./sgctl.sh add-user jdoe --backend-roles hr_department --password
 ```
 
 To modify existing users, use the `update-user` command:
 
 ```
-$ ./sgctl.sh update-user jdoe --backend-roles another_department
+./sgctl.sh update-user jdoe --backend-roles another_department
 ```
 
 Use the `delete-user` command to delete a user:
 
 ```
-$ ./sgctl.sh delete-user jdoe 
+./sgctl.sh delete-user jdoe 
 ```
