@@ -76,13 +76,13 @@ auth_domains:
 You can also use the `sgctl` command to set the flag directly on the cluster without having edit files:
 
 ```
-$ ./sgctl.sh set authc debug --true
+./sgctl.sh set authc debug --true
 ```
 
 To disable it, use this command:
 
 ```
-$ ./sgctl.sh set authc debug --false
+./sgctl.sh set authc debug --false
 ```
 
 If the debug mode is active, open the URL `/_searchguard/auth/debug` - either with your browser, curl or your favorite REST client tool. Provide the credentials you want to test. The endpoints returns a JSON document detailing all intermediate steps of the authentication process and their status.

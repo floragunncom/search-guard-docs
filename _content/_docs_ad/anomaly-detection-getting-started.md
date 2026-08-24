@@ -48,28 +48,48 @@ The Anomaly Detection preview is currently available for Elasticsearch {{ site.a
 
 ## Installing the Plugins
 
-You install Search Guard Anomaly Detection like any other Elasticsearch plugin using the `elasticsearch-plugin` command.
+You install Search Guard Anomaly Detection like any other Elasticsearch plugin using the `elasticsearch-plugin` command. The plugins can be installed straight from their download URLs; each node needs outbound HTTPS access to `maven.search-guard.com` for this. If a node has no outbound internet access, download the zips first and use the file-based commands given under each step.
 
 **Important:** Install the scheduler plugin before the Anomaly Detection Elasticsearch plugin.
 {: .note}
 
 ### Installing the Elasticsearch Plugins
 
-Navigate to your Elasticsearch installation directory and run the following commands in order. Replace `<PATH_TO_PLUGIN>` with the actual path to your downloaded plugin files:
+Navigate to your Elasticsearch installation directory and run the following two commands **in exactly this order** - the scheduler plugin first:
 
 ```bash
-bin/elasticsearch-plugin install -b file:///<PATH_TO_PLUGIN>/anomaly-detection-scheduler-plugin.zip
-bin/elasticsearch-plugin install -b file:///<PATH_TO_PLUGIN>/anomaly-detection-elasticsearch-plugin.zip
+bin/elasticsearch-plugin install -b https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/jobscheduler/search-guard-ad-scheduler/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-ad-scheduler-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}-plugin.zip
+bin/elasticsearch-plugin install -b https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip
+```
+
+The URLs above install Anomaly Detection {{ site.adversions.currentversion }} for **Elasticsearch {{ site.adversions.currentversionelasticsearch }}**. For any other Elasticsearch version, take the download URLs from [Anomaly Detection Versions](anomaly-detection-versions) or from [Downloading the Plugins](#downloading-the-plugins) above.
+{: .note}
+
+#### Alternative: install from downloaded files
+
+Use this method for air-gapped nodes or nodes without outbound internet access. Download the two Elasticsearch plugins from [Downloading the Plugins](#downloading-the-plugins), copy them to the node and replace `<PATH_TO_PLUGIN>` with the directory they were copied to. The install order is the same - scheduler plugin first:
+
+```bash
+bin/elasticsearch-plugin install -b file:///<PATH_TO_PLUGIN>/search-guard-ad-scheduler-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}-plugin.zip
+bin/elasticsearch-plugin install -b file:///<PATH_TO_PLUGIN>/search-guard-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip
 ```
 
 After installation completes, restart your Elasticsearch cluster.
 
 ### Installing the Kibana Plugin
 
-Navigate to your Kibana installation directory and run the following command. Replace `<PATH_TO_PLUGIN>` with the actual path to your downloaded Kibana plugin file:
+Navigate to your Kibana installation directory and install the plugin from its download URL:
 
 ```bash
-bin/kibana-plugin install file:///<PATH_TO_PLUGIN>/anomaly-detection-kibana-plugin.zip
+bin/kibana-plugin install https://maven.search-guard.com/search-guard-anomaly-detection-release/com/floragunn/search-guard-kibana-anomaly-detection/{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}/search-guard-kibana-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip
+```
+
+#### Alternative: install from a downloaded file
+
+Use this method if the Kibana host has no outbound internet access. Download the Kibana plugin from [Downloading the Plugins](#downloading-the-plugins) and replace `<PATH_TO_PLUGIN>` with the directory it was copied to:
+
+```bash
+bin/kibana-plugin install file:///<PATH_TO_PLUGIN>/search-guard-kibana-anomaly-detection-{{ site.adversions.currentversion }}-es-{{ site.adversions.currentversionelasticsearch }}.zip
 ```
 
 After installation completes, restart Kibana.

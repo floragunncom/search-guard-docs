@@ -40,10 +40,33 @@ xpack.security.enabled: false
 
 ## Installing the Search Guard Plugin
 
+### Installing from the download URL
+
+* Stop Kibana
+* cd into your Kibana installation directory
+* Execute:
+
+```bash
+bin/kibana-plugin install https://maven.search-guard.com/search-guard-flx-release/com/floragunn/search-guard-flx-kibana-plugin/{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}/search-guard-flx-kibana-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
+```
+
+The URL above installs the Search Guard Kibana plugin {{ site.searchguard.currentversion }} for **Kibana {{ site.elasticsearch.currentversion }}**. The plugin must match your exact Kibana version. For any other version, open [Latest Releases](search-guard-versions) and copy the download URL from the *Search Guard Kibana Plugin* column of the row for your version.
+{: .note}
+
+Installing from a URL requires the Kibana host to have outbound HTTPS access to `maven.search-guard.com`. Hosts without outbound internet access must use the file-based method below.
+
+### Alternative: install from a downloaded file
+
+Use this method for air-gapped hosts, hosts without outbound internet access, or when the plugin zip has already been staged on the host.
+
 * Download the [Search Guard Kibana plugin zip](search-guard-versions) matching your exact Kibana version from Maven
 * Stop Kibana
 * cd into your Kibana installation directory
-* Execute: `bin/kibana-plugin install file:///path/to/kibana-plugin.zip`
+* Execute:
+
+```bash
+bin/kibana-plugin install file:///path/to/search-guard-flx-kibana-plugin-{{ site.searchguard.currentversion }}-es-{{ site.elasticsearch.currentversion }}.zip
+```
 
 After the plugin has been installed, Kibana will run the optimization process. Depending on your system, this might take a couple of minutes. This is a Kibana internal process required for each installed plugin and cannot be skipped.
 

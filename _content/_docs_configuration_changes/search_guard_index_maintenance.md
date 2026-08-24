@@ -33,21 +33,21 @@ Use `sgctl` to backup the contents of the Search Guard configuration index
 Backup the current configuration from the currently connected cluster and place the files in /etc/sgbackup/:
 
 ```
-$ ./sgctl.sh get-config -o /etc/sgbackup/
+./sgctl.sh get-config -o /etc/sgbackup/
 ```
 
 To upload the dumped files, use:
 
 ```
-$ ./sgctl.sh update-config /etc/sgbackup/
+./sgctl.sh update-config /etc/sgbackup/
 ```
 
 To upload the files to another cluster, either create a separate connection profile or directly specify the connection configuration on the `sgtl update-config` command line. This may look like this:
 
 ```
-$ ./sgctl.sh connect production.example.com -p 9301 --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
+./sgctl.sh connect production.example.com -p 9301 --ca-cert /another/path/to/root-ca.pem --cert /another/path/to/admin-cert.pem --key /another/path/to/admin-cert-private-key.pem
 
-$ ./sgctl.sh update-config /etc/sgbackup/
+./sgctl.sh update-config /etc/sgbackup/
 ```
 
 
@@ -60,20 +60,20 @@ Search Guard manages the number of replica shards of the Search Guard index auto
 If you want to manage the number of replica shards yourself, you can disable the replica auto-expand feature by using the following command:
 
 ```
-$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "false"}}'
+./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "false"}}'
 ```
 
 To set the number of replica shards, use the following command. Be sure to change the number after `number_of_replicas` to the desired value:
 
 ```
-$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"number_of_replicas": 42}}'
+./sgctl.sh rest put .searchguard/_settings --json '{"index":{"number_of_replicas": 42}}'
 ```
 
 
 To re-enable replica auto-expansion, use the following command:
 
 ```
-$ ./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "0-all"}}'
+./sgctl.sh rest put .searchguard/_settings --json '{"index":{"auto_expand_replicas": "0-all"}}'
 ```
 
 ## Disable auto expand replicas of the Search Guard index

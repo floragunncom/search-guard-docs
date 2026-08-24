@@ -30,7 +30,7 @@ Search Guard supports variable substitution for all configuration files. The sub
 You can define configuration variables using the `sgctl` tool. After [having established a connection profile with your cluster](sgctl), you can do the following:
 
 ```
-$ ./sgctl.sh add-var ldap_password secret123 --encrypt 
+./sgctl.sh add-var ldap_password secret123 --encrypt 
 ```
 
 This will store the value under the key `ldap_password` in encrypted form in a protected index, that cannot be accessed by normal users. By default, the encryption key is the hard-coded value `v9hGHVFiTgj+eAhjJrDgAEy5GUoTBUwXkAKEpfCL6dQ`. Thus, you should consider rather as obfuscation than an encryption. However, if you want, you can also configure your own encryption key. TODO
@@ -54,7 +54,7 @@ Note: For a configuration property, you can either use a constant value or a con
 In order to update configuration variables, use `update-var` command:
 
 ```
-$ ./sgctl.sh update-var ldap_password newSecret456 --encrypt 
+./sgctl.sh update-var ldap_password newSecret456 --encrypt 
 ```
 
 This will automatically reload the configuration. Thus, any change applied this way becomes immediately effective.
@@ -64,7 +64,7 @@ This will automatically reload the configuration. Thus, any change applied this 
 If you want to create a dump or backup of all configuration variables, you can use the `sgctl get-config` command:
 
 ```
-$ ./sgctl.sh get-config
+./sgctl.sh get-config
 ```
 
 This includes the configuration variables in the file `sg_config_vars.yml`. Note that encrypted variables are also stored in encrypted form in this file.
