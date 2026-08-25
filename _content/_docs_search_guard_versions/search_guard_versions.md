@@ -21,6 +21,7 @@ If you are looking for Search Guard 2 or Search Guard 5 please contact us.
 <table>
   <tr><th colspan=2 style="text-align:center; font-weight:400">Platform Independent</th></tr>
   <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sgctl/{{ site.sgctl }}/sgctl-{{ site.sgctl }}.sh">Search Guard control tool sgctl {{ site.sgctl }}</a></td></tr>
+  <tr><td colspan=2 style="text-align:center"><a href="https://maven.search-guard.com/search-guard-tlstool/com/floragunn/search-guard-tlstool/{{site.tlstool}}/search-guard-tlstool-{{site.tlstool}}.sh">Search Guard TLS Tool {{ site.tlstool }}</a></td></tr>
 </table>
 
 ### Search Guard FLX for Elasticsearch 9
