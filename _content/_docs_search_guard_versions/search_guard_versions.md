@@ -10,7 +10,7 @@ index_algolia: false
 
 # Search Guard Versions
 
-This page lists all recent versions of Search Guard. Older releases are available in the [Search Guard archive](https://maven.search-guard.com).
+This page lists all recent versions of Search Guard. Older releases are available in the [Search Guard archive](https://archive.search-guard.com).
 If you are looking for Search Guard 2 or Search Guard 5 please contact us.
 
 <span style="color:red">If you are upgrading from older SG FLX versions to SG FLX 2.0.0 or higher, please review the [upgrade guide](sg-200-upgrade). If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads)</span>
@@ -54,3 +54,7 @@ Please contact us for Search Guard 5.
 ### Search Guard Classic for Elasticsearch 2
 
 Please contact us for Search Guard 2.
+
+### Search Guard Archive
+
+[https://archive.search-guard.com](https://archive.search-guard.com)
