@@ -39,8 +39,6 @@
       children:
         - title: Transformations Overview
           slug: elasticsearch-alerting-transformations-calculations-overview
-        - title: Transformations
-          slug: elasticsearch-alerting-transformations
         - title: Calculations
           slug: elasticsearch-alerting-calculations
 
