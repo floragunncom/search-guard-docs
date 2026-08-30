@@ -16,16 +16,13 @@ Copyright 2023 floragunn GmbH
 
 {% include toc.md %}
 
-Upgrading Search Guard from 7.7.x to 8.x.x can be done while you upgrade Elasticsearch from 7.17.x to 8.x.x . You can do this by performing a full cluster restart, or by doing a rolling restart: 
+Upgrading Search Guard from 7.17.x to 8.x.x can be done while you upgrade Elasticsearch from 7.17.x to 8.x.x . You can do this by performing a full cluster restart, or by doing a rolling restart: 
 
-Search Guard supports running a mixed cluster of 7.7.x and 8.x.x nodes and is thus compatible with the Elasticsearch upgrade path.
+Search Guard supports running a mixed cluster of 7.17.x and 8.x.x nodes and is thus compatible with the Elasticsearch upgrade path.
 
 If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
 
-* [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/{{ site.elasticsearch.minorversion }}/upgrading-elastic-stack.html){:target="_blank"}
-* [Upgrade Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/{{ site.elasticsearch.minorversion }}/setup-upgrade.html){:target="_blank"}
-* [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/{{ site.elasticsearch.minorversion }}/upgrade-assistant.html){:target="_blank"}
-* [Rolling Upgrades](https://www.elastic.co/guide/en/elastic-stack/{{ site.elasticsearch.minorversion }}/upgrading-elasticsearch.html){:target="_blank"}
+* [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/8.19/index.html){:target="_blank"}
 
 ## Review breaking changes
 

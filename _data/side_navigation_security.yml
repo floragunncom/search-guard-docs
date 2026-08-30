@@ -77,10 +77,14 @@
           children:
             - title: Upgrading Between Minor Versions
               slug: upgrading
-            - title: Upgrading from FLX 1.x to 2.x
-              slug: sg-200-upgrade
+            - title: Upgrading from 6.x to 7.x
+              slug: sg-upgrade-6-7
             - title: Upgrading from 7.x to 8.x
               slug: sg-upgrade-7-8
+            - title: Upgrading from 8.x to 9.x
+              slug: sg-upgrade-8-9
+            - title: Upgrading from FLX 1.x to 2.x
+              slug: sg-200-upgrade
             - title: Migrating from Classic to FLX
               slug: search-guard-migration
               children:

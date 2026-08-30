@@ -14,6 +14,7 @@ Copyright 2024 floragunn GmbH
 # Upgrade from Search Guard FLX 1.x.x to 2.0.0
 
 Search Guard 2.0.0 is not backwards compatible with previous versions. If you want to upgrade from version 1.x.x to 2.0.0, you will need to follow some additional steps. However, the upgrade process will differ for environments with and without the Multi-Tenancy feature enabled. It is strongly recommended that you read the entire page and clarify all doubts before starting the upgrade.
+If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads) aw well.
 
 ## How to check if Multi-Tenancy is enabled
 To verify if Multi-Tenancy is enabled, please check the Kibana configuration file and the existence of indices dedicated to each tenant.
