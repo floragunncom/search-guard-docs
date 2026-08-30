@@ -2,6 +2,7 @@
 title: OIDC
 html_title: Kibana OpenID
 permalink: kibana-authentication-openid-overview
+nav_parent: kibana-oidc
 layout: docs
 section: security
 edition: enterprise

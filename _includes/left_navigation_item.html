@@ -5,6 +5,14 @@
   {% if include.item.isroot == true and page.isroot == true %}
     {% assign is_current = true %}
   {% endif %}
+  {% comment %}
+    Pages deliberately kept out of the navigation - superseded permalinks that must
+    stay alive for SEO, and stubs - can name the entry they belong under via
+    nav_parent, so their sidebar still shows where they sit.
+  {% endcomment %}
+  {% if page.nav_parent and include.item.slug == page.nav_parent %}
+    {% assign is_current = true %}
+  {% endif %}
 {% endif %}
 
 {{}}

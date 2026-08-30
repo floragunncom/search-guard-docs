@@ -1,6 +1,7 @@
 ---
 title: Generating certificates
 permalink: generating-tls-certificates
+nav_parent: search-guard-tls-setup
 layout: docs
 section: security
 edition: community
