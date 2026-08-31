@@ -1,6 +1,7 @@
 ---
 title: Proxy authentication
 permalink: proxy-authentication-overview
+nav_parent: proxy-auth-overview
 layout: docs
 section: security
 edition: community

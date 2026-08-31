@@ -2,6 +2,7 @@
 title: General configuration
 html_title: Authentication Configuration
 permalink: authentication-authorization-configuration-overview
+nav_parent: authentication-general-config
 layout: docs
 section: security
 edition: community

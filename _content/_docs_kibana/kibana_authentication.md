@@ -2,6 +2,7 @@
 title: Authentication
 html_title: Kibana Authentication
 permalink: kibana-authentication
+nav_parent: kibana-authentication-overview
 layout: docs
 section: security
 edition: community

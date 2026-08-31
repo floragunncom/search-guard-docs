@@ -2,7 +2,7 @@
 title: Search Guard Encryption at Rest
 permalink: changelog-ear_1_0_0
 layout: docs
-section: security
+section: encryption_at_rest
 description: Search Guard Encryption at Rest 1.0.0
 ---
 <!---

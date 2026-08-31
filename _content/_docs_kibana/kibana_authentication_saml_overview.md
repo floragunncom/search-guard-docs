@@ -2,6 +2,7 @@
 title: SAML
 html_title: Kibana SAML
 permalink: kibana-authentication-saml-overview
+nav_parent: kibana-saml
 layout: docs
 section: security
 edition: enterprise
