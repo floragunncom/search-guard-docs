@@ -51,3 +51,11 @@ a.main-nav-level-1.active {
 li.selected > a{
   font-weight: 500 !important;
 }
+
+/* On the left nav "selected" on the <li> means "section unfolded", so the
+   current page is highlighted through the <a> instead. Otherwise it would lose
+   its highlight as soon as its own section is folded. */
+.menu-vertical a.selected {
+  color: #3a6d91;
+  font-weight: 500;
+}
