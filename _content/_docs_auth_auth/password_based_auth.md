@@ -1,6 +1,7 @@
 ---
 title: Password-based authentication
 permalink: password-based-auth
+nav_parent: http-basic-authorization
 layout: docs
 section: security
 edition: community

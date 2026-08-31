@@ -2,6 +2,7 @@
 title: Troubleshooting
 html_title: Authentication Troubleshooting
 permalink: kibana-authentication-troubleshooting
+nav_parent: troubleshooting-kibana-section
 layout: docs
 section: security
 edition: community

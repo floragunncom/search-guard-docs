@@ -1,6 +1,7 @@
 ---
 title: Kibana
 permalink: changelogs-kibana-main
+nav_parent: changelogs-kibana
 layout: docs
 section: security
 description: Changelog for the Search Guard Kibana Plugin

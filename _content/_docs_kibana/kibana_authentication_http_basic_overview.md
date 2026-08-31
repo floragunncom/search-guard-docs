@@ -2,6 +2,7 @@
 title: Password based authentication
 html_title: Username/password based authentication for Kibana
 permalink: kibana-authentication-http-basic-overview
+nav_parent: kibana-authentication-basic
 layout: docs
 section: security
 edition: community

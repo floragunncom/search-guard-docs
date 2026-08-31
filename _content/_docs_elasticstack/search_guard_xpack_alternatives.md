@@ -1,6 +1,7 @@
 ---
 title: X-Pack Alternatives
 permalink: search-guard-xpack-alternatives
+nav_parent: elastic-stack-integrations
 layout: docs
 section: security
 edition: community

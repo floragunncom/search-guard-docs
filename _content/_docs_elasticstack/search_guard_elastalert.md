@@ -1,6 +1,7 @@
 ---
 title: Elastalert
 permalink: search-guard-elastalert
+nav_parent: third-party-integrations
 layout: docs
 section: security
 description: How to configure and use Search Guard and ElastAlert for Elasticsearch

@@ -1,6 +1,7 @@
 ---
 title: Search Guard
 permalink: changelogs-searchguard-main
+nav_parent: changelogs-searchguard
 layout: docs
 section: security
 description: Changelog for the Search Guard and Search Guard SSL
