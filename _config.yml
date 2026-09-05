@@ -283,6 +283,7 @@ sgversions:
     - 8.19.0|3.1.2|3.1.2|yes|yes|N/A|N/A|2025-09-12
   # esv |earv |available| eol
   search-guard-encryption-at-rest:
+    - 9.5.3|1.0.0|yes|no|2026-09-05
     - 9.5.2|1.0.0|yes|no|2026-08-22
     - 9.4.5|1.0.0|yes|yes|2026-08-22
     - 9.4.4|1.0.0|yes|yes|2026-07-29
@@ -313,7 +314,8 @@ sgversions:
     - 9.1.2|1.0.0|yes|yes|2025-10-17
     - 9.1.1|1.0.0|yes|yes|2025-10-17
     - 9.1.0|1.0.0|yes|yes|2025-10-17
-    - 8.19.20|1.0.0|yes|no|2026-08-22
+    - 8.19.21|1.0.0|yes|no|2026-09-04
+    - 8.19.20|1.0.0|yes|yes|2026-08-22
     - 8.19.19|1.0.0|yes|yes|2026-07-29
     - 8.19.18|1.0.0|yes|yes|2026-07-17
     - 8.19.17|1.0.0|yes|yes|2026-06-10
@@ -347,8 +349,8 @@ adversions:
 
 encryptionatrest:
   currentversion: "1.0.0"
-  currentversionelasticsearch: "9.5.2"
-  releasedate: 2026-08-22
+  currentversionelasticsearch: "9.5.3"
+  releasedate: 2026-09-05
 
 tlstool: 4.0.1
 sgctl: 4.1.2
