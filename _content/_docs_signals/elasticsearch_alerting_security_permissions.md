@@ -72,16 +72,18 @@ In the example above, a user with the `sg_signals_multitenancy` role has `manage
 
 ## Account APIs
 
-Accounts are managed globally, so permissions are assigned to Search Guard roles in the  `cluster_permissions` section. Signals ships with the following action groups:
+Signals supports tenant-independent (global) accounts and tenant accounts. Their permissions are assigned in different sections of a Search Guard role.
+
+### Global account permissions
+
+Permissions for tenant-independent accounts are assigned in `cluster_permissions`:
 
 | Action group name | Description |
 |---|---|
-| SGS\_SIGNALS\_ACCOUNT\_MANAGE | Grants access to all Account APIs. Allows reading, searching, creating, updating and deleting accounts.|
-| SGS\_SIGNALS\_ALL | Equivalent to SGS\_SIGNALS\_ACCOUNT\_MANAGE|
-| SGS\_SIGNALS\_ACCOUNT\_READ | Grants read-only access to the Account APIs.|
+| SGS\_SIGNALS\_ALL | Grants all Signals permissions, including account and watch operations.|
+| SGS\_SIGNALS\_ACCOUNT\_MANAGE | Grants permission to read, search, create, update and delete tenant-independent accounts.|
+| SGS\_SIGNALS\_ACCOUNT\_READ | Grants read-only access to tenant-independent accounts.|
 {: .config-table}
-
-### Applying Account permissions to roles
 
 ```
 sg_account_manager:
@@ -93,3 +95,30 @@ sg_account_manager:
   tenant_permissions:
     ...
 ```
+
+### Tenant account permissions
+
+Permissions for tenant accounts are assigned in `tenant_permissions`. They apply only to the tenant patterns configured in that entry:
+
+| Action group name | Description |
+|---|---|
+| SGS\_SIGNALS\_ALL | Grants all tenant-specific Signals permissions in the configured tenants.|
+| SGS\_SIGNALS\_TENANT\_ACCOUNT\_MANAGE | Grants permission to read, search, create, update and delete accounts in the configured tenants.|
+| SGS\_SIGNALS\_TENANT\_ACCOUNT\_READ | Grants read-only access to accounts in the configured tenants.|
+{: .config-table}
+
+```
+sg_tenant_account_manager:
+  cluster_permissions:
+    - SGS_CLUSTER_COMPOSITE
+  index_permissions:
+    ...
+  tenant_permissions:
+    - tenant_patterns:
+        - 'tenant_1'
+        - 'tenant_2'
+      allowed_actions:
+        - SGS_SIGNALS_TENANT_ACCOUNT_MANAGE
+```
+
+`SGS_SIGNALS_ALL` is broader than account management. Prefer the narrower account action groups when a role does not need access to all Signals features.
