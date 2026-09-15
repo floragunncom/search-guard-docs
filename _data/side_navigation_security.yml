@@ -455,7 +455,7 @@
       children:
         - title: Search Guard Security
           slug: changelogs-searchguard
-        - title: Kibana Plugin
+        - title: Kibana Plugin (classic)
           slug: changelogs-kibana
         - title: TLS Tool
           slug: changelogs-tlstool
