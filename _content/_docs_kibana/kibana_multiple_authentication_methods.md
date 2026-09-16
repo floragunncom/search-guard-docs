@@ -118,6 +118,43 @@ Now the two methods can be accessed with `/auth/saml/login?authTypeId=your_saml_
 When `id` is not provided, the domain will receive a hashed hex value (like `ed017b18`). This value may be regenerated during configuration change, so do not leave `id` blank if you wish to provide users with a consistent URL to your method.
 {: .note .js-note .note-warning}
 
+## Selecting Authentication Methods by Kibana Host Name
+
+If a Kibana instance is available under several host names, you can use `enable_by_host` to make authentication domains available only on particular hosts. This can be useful, for example, when a single Kibana instance serves several customers that use different identity providers.
+
+`enable_by_host` is available for every authentication method, not only OIDC. Its value is a list of host name patterns. The patterns use the same wildcard and regular expression syntax as [index patterns](roles-permissions#dynamic-index-patterns-wildcards-and-regular-expressions).
+
+The following example selects a different OIDC authentication domain for each customer host:
+
+```yaml
+default:
+  auth_domains:
+  - type: oidc
+    label: "Company A"
+    enable_by_host:
+    - "company-a-kibana"
+    - "kibana-*.company-a.example.com"
+    oidc.client_id: "company-a-kibana-client"
+    oidc.client_secret: "client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/company-a/.well-known/openid-configuration"
+    user_mapping.roles.from_comma_separated_string: "oidc_id_token.roles"
+  - type: oidc
+    label: "Company B"
+    enable_by_host:
+    - "company-b-kibana"
+    - "kibana.company-b.example.com"
+    oidc.client_id: "company-b-kibana-client"
+    oidc.client_secret: "company-b-client-secret-from-idp"
+    oidc.idp.openid_configuration_url: "https://your.idp/company-b/.well-known/openid-configuration"
+    user_mapping.roles.from_comma_separated_string: "oidc_id_token.roles"
+```
+
+For a request to `kibana-eu.company-a.example.com`, only the `Company A` authentication domain is activated and shown. Search Guard does not activate non-matching domains; in particular, an excluded OIDC domain does not contact its identity provider to retrieve the OpenID configuration.
+
+Authentication domains without `enable_by_host` are always available, independently of the requested host. If host filtering leaves exactly one authentication domain available, Kibana automatically selects it and navigates to its login flow.
+
+Search Guard uses the host information received by Kibana. If Kibana runs behind a reverse proxy or load balancer, configure it to preserve the original host or authority. Otherwise, define the patterns for the host value forwarded to Kibana.
+
 ## Running Several Kibana Instances
 
 If you are running several instances of Kibana, you can assign each Kibana instance a different authentication configuration.
