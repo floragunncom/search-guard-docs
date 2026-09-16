@@ -37,14 +37,14 @@ Accounts created with `/_signals/account/{tenant}/{account_type}/{account_id}` b
 
 Signals in Kibana separates account management into two tabs:
 
-* **Accounts** lists tenant-independent accounts available to watches in every tenant.
-* **Tenant accounts** lists accounts belonging to the currently selected tenant. These accounts are available to watches in that tenant.
+* **Global Accounts** lists tenant-independent accounts available to watches in every tenant.
+* **Tenant Accounts** lists accounts belonging to the currently selected tenant. These accounts are available to watches in that tenant.
 
-The **Tenant accounts** tab is available whenever Search Guard Multi-Tenancy is enabled. See [Account APIs](elasticsearch-alerting-security-permissions#account-apis) for the relevant permissions.
+The **Tenant Accounts** tab is available whenever Search Guard Multi-Tenancy is enabled. See [Account APIs](elasticsearch-alerting-security-permissions#account-apis) for the relevant permissions.
 
 When Multi-Tenancy is disabled, Kibana only provides global account management.
 
-When a tenant account takes precedence over a global account, Signals warns before creation and marks it in the **Tenant accounts** tab.
+When a tenant account takes precedence over a global account, Signals warns before creation and marks it in the **Tenant Accounts** tab.
 
 ## Account Types
 
