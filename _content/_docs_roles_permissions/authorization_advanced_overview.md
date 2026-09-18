@@ -38,10 +38,6 @@ The file structure is very simple:
 Example:
 
 ```yaml
-_sg_meta:
-  type: "actionsgroups"
-  config_version: 2
-  
 MY_ACTION_GROUP:
   reserved: false
   allowed_actions:
