@@ -38,7 +38,7 @@ Regarding config migration, the highest I've tested was 3.x with LDAP auth.
 
 ## The two hard constraints
 
-Everything below follows from these two facts. Both were verified against the released artifacts, not just the documentation — see the [Appendix](#appendix--how-to-re-verify-every-claim).
+Everything below follows from these two facts.
 
 ### Constraint A — the classic-config bridge ends at FLX 3.1.3
 
