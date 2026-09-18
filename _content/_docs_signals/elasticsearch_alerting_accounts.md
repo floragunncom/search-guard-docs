@@ -31,7 +31,20 @@ While watches may be configured by a wide range of users, accounts shall be only
 
 Accounts created with `/_signals/account/{account_type}/{account_id}` are tenant-independent and can be used by watches in any tenant.
 
-Accounts created with `/_signals/account/{tenant}/{account_type}/{account_id}` belong to that tenant and can only be used by watches in the same tenant. If no tenant-specific account with the requested ID exists, Signals uses a tenant-independent account with that ID, if available.
+Accounts created with `/_signals/account/{tenant}/{account_type}/{account_id}` belong to that tenant and can only be used by watches in the same tenant. If no tenant-specific account with the requested type and ID exists, Signals uses a tenant-independent account with that type and ID, if available.
+
+## Managing accounts in Kibana
+
+Signals in Kibana separates account management into two tabs:
+
+* **Global Accounts** lists tenant-independent accounts available to watches in every tenant.
+* **Tenant Accounts** lists accounts belonging to the currently selected tenant. These accounts are available to watches in that tenant.
+
+The **Tenant Accounts** tab is available whenever Search Guard Multi-Tenancy is enabled. See [Account APIs](elasticsearch-alerting-security-permissions#account-apis) for the relevant permissions.
+
+When Multi-Tenancy is disabled, Kibana only provides global account management.
+
+When a tenant account takes precedence over a global account, Signals warns before creation and marks it in the **Tenant Accounts** tab.
 
 ## Account Types
 
