@@ -31,6 +31,9 @@ By using Multi-Tenancy, you can separate the management and execution of watches
 
 1. Watches in one tenant will not be accessible for users in another tenant. 
 2. Execution of watches in one tenant will not interfere with execution of watches in another tenant.
+3. Tenant accounts are visible and usable only in their tenant.
+
+Tenant-independent (global) accounts remain available to watches in every tenant. When a tenant account and a global account have the same account type and ID, the tenant account takes precedence for watches in that tenant. See [Accounts](elasticsearch-alerting-accounts) for account scope, fallback behavior and the Kibana workflow.
 
 ## API permissions
 
