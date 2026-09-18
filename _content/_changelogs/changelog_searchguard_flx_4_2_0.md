@@ -23,7 +23,8 @@ In Search Guard FLX versions before 4.2.0, the transform API can leak data under
 
 Search Guard FLX 4.2.0 ensures proper transform action authorization and adds some further safeguards to prevent data leakage.
 
-If you do not run at least one [transform node](https://www.elastic.co/docs/deploy-manage/distributed-architecture/clusters-nodes-shards/node-roles), you are not affected by this issue.
+If you can't upgrade yet, we recommend removing the transform cluster privileges from all users.
+
 
 Details will be made available on the [CVE Advisory Page](https://search-guard.com/cve-advisory/).
 
