@@ -36,10 +36,9 @@ If the JWT does not contain all claims required for user mapping, Search Guard c
 The JWT is sent to the endpoint as a bearer access token, and the returned claims are available under `oidc_user_info`.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/issues/728)
-* [Merge Request](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/1484)
 * [Documentation](json-web-tokens-advanced#retrieving-additional-claims-from-the-oidc-userinfo-endpoint)
 
-### Support dynamic Authentication Methods by Kibana Host Name
+### Support dynamic authentication methods by Kibana host name
 
 If a Kibana instance is available under several host names, you can use `enable_by_host` to make authentication domains available only on particular hosts. 
 This can be useful, for example, when a single Kibana instance serves several customers that use different identity providers.
@@ -111,7 +110,7 @@ Watches were not loaded in the operator view when multitenancy was enabled and t
 
 ### Signals: Fixed watches created via Kibana not triggering alerts
 
-Watches created using the Kibana UI did not trigger alerts even though the configured thresholds were reached.
+Watches using the Graph watch type with severity enabled no longer get a default > 1000 threshold condition added on save, which could stop severity alerts from triggering. Re-save affected watches to restore alerting.
 
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/557)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1223)
@@ -124,6 +123,9 @@ An account’s default_from mail address was overwritten by the UI’s default v
 * [Issue](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/issues/616)
 * [Merge Request](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/1219)
 
+### Signals: Fixed navigation visibility
+
+Fixed an issue where the Signals navigation entry was displayed even when Signals was not available to the current user.
 
 ### Various version updates of third-party libraries
 
