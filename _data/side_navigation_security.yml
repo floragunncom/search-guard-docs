@@ -75,6 +75,8 @@
         - title: Upgrades and Migrations
           slug: search-guard-upgrades
           children:
+            - title: Upgrade Overview
+              slug: sg-upgrade-overview
             - title: Upgrading Between Minor Versions
               slug: upgrading
             - title: Upgrading from 6.x to 7.x
@@ -88,7 +90,7 @@
             - title: Migrating from Classic to FLX
               slug: search-guard-migration
               children:
-                - title: Migration Overview
+                - title: Migration Outline
                   slug: sg-classic-config-migration-overview
                 - title: Quick Start
                   slug: sg-classic-config-migration-quick
