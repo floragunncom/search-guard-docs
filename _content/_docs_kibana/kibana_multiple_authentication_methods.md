@@ -120,6 +120,9 @@ When `id` is not provided, the domain will receive a hashed hex value (like `ed0
 
 ## Selecting Authentication Methods by Kibana Host Name
 
+Introduced in Search Guard FLX 4.2.0
+{: .available-since}
+
 If a Kibana instance is available under several host names, you can use `enable_by_host` to make authentication domains available only on particular hosts. This can be useful, for example, when a single Kibana instance serves several customers that use different identity providers.
 
 `enable_by_host` is available for every authentication method, not only OIDC. Its value is a list of host name patterns. The patterns use the same wildcard and regular expression syntax as [index patterns](roles-permissions#dynamic-index-patterns-wildcards-and-regular-expressions).

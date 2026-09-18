@@ -29,11 +29,17 @@ While watches may be configured by a wide range of users, accounts shall be only
 
 ### Account Scope
 
+Introduced in Search Guard FLX 4.2.0
+{: .available-since}
+
 Accounts created with `/_signals/account/{account_type}/{account_id}` are tenant-independent and can be used by watches in any tenant.
 
 Accounts created with `/_signals/account/{tenant}/{account_type}/{account_id}` belong to that tenant and can only be used by watches in the same tenant. If no tenant-specific account with the requested type and ID exists, Signals uses a tenant-independent account with that type and ID, if available.
 
 ## Managing accounts in Kibana
+
+Introduced in Search Guard FLX 4.2.0
+{: .available-since}
 
 Signals in Kibana separates account management into two tabs:
 

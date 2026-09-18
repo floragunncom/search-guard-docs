@@ -69,6 +69,9 @@ The `jwt.max_clock_skew_seconds` parameter controls how much time difference is 
 
 ## Retrieving additional claims from the OIDC UserInfo endpoint
 
+Introduced in Search Guard FLX 4.2.0
+{: .available-since}
+
 If the JWT does not contain all claims required for user mapping, Search Guard can retrieve additional claims from the OIDC UserInfo endpoint. The JWT is sent to the endpoint as a bearer access token, and the returned claims are available below `oidc_user_info`.
 
 ```yaml

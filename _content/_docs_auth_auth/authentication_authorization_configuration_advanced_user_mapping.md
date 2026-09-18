@@ -37,6 +37,9 @@ For anonymous authentication, the option `user_mapping.user_name.static` might b
 
 ### Converting the user name to lower case
 
+Introduced in Search Guard FLX 4.2.0
+{: .available-since}
+
 Set `user_mapping.user_name.convert_to_lower_case` to `true` to convert the mapped user name to lower case. The option applies to user names produced by `from`, `from_backend`, and `static` mappings. It defaults to `false`.
 
 For example:
