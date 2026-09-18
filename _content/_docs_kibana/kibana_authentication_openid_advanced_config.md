@@ -37,9 +37,9 @@ default:
 
 ## Using PKCE
 
-PKCE ("Proof Key for Code Exchange") is an extension to the OIDC authorization code flow with the goal of preventing CSRF and auth code injection attacks.  
+PKCE ("Proof Key for Code Exchange") is an extension to the OIDC authorization code flow designed to prevent CSRF and authorization code injection attacks.
 
-If your IdP is capable of supporting PKCE, we are recommending to enable it in Search Guard. To do so, add `oidc.use_pkce: true` to the auth domain configuration.
+Search Guard enables PKCE by default. To turn it off, add `oidc.pkce: false` to the auth domain configuration.
 
 
 ## TLS Settings
