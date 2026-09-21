@@ -148,35 +148,6 @@ Combines the classic → FLX config migration with the Elasticsearch 7 → 8 maj
 
 Choosing between Options 1 and 2 is the customer's call: separate the Search Guard migration from the stack upgrade and test in between (Option 1), or do both at once (Option 2).
 
-### Option 3 — NOT supported: a big-bang migration with a total-outage window
-
-```
-7.17.28-53.10.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-**The premise behind Option 3 is wrong.** The premise is that the 1.6.0 stop exists only for the MT migration, so a customer who never used Multi-Tenancy can skip it. But the 1.6.0 stop does **two** jobs, and only one of them is MT:
-
-1. It is where the MT data migration runs — *skippable* if MT was never used.
-2. It is the **legacy-config bridge** (Constraint A) — **not skippable, ever, by anyone**.
-
-**What actually happens if you try it.** A 4.1.2 node against a classic config index does not crash and does not report a parse error. `ConfigurationLoader` builds its request from `CType.all()`, and `CType.CONFIG` no longer exists, so the legacy document is simply never fetched. The mandatory config types — `internalusers`, `actiongroups`, `roles`, `rolesmapping`, `tenants` — all exist in a classic index, so the node logs `initialized`. But `authc` does not exist, so `AuthenticatingRestFilter` leaves `authenticationProcessor` null and every request gets:
-
-```
-HTTP 503 — Search Guard not initialized (SG11)
-```
-
-**There is a recovery window, and it is admin-certificate-only.** Immediately above that check, `AuthenticatingRestFilter` short-circuits for admin DNs — the source comment reads *"Admin Cert authentication works also without a valid configuration"*. So `sgctl` connected with an admin TLS client certificate can still reach the config APIs while the cluster is SG11-locked, and `update-config` will land. `sgctl migrate-config` can also be run entirely offline beforehand: at tag `sgctl-4.1.2` it is `MigrateConfig implements Callable<Integer>` — not a `ConnectingCommand`, no endpoint options, no REST client — it only reads local `sg_config.yml` and `kibana.yml` and writes files to `-o`.
-
-So Option 3 is not physically impossible. It is a **big-bang migration**, and that is why it should not be offered:
-
-1. **No rolling upgrade is possible.** Mixed 7.17 ↔ 8.x is supported only with FLX on both sides, and 4.1.2 cannot read the configuration the classic nodes are running from. It has to be a full cluster restart.
-2. **Total outage between restart and bootstrap.** All normal traffic — Kibana, applications, password authentication — is SG11-locked from the moment the first 4.1.2 node comes up until the admin-cert `sgctl update-config` succeeds. If that upload is rejected for any reason, the only way back is restore-from-backup: Elasticsearch cannot be downgraded.
-3. **No way to test first.** In Options 1 and 2 the migrated configuration is validated against a running FLX cluster on a known-good version before the stack moves. Here it is validated for the first time during the outage.
-4. **Two silent losses to get right blind.** In classic the license key lived inside `sg_config.dynamic` and the MT settings in `kibana.yml`. At 4.x `LicenseRepository` has no legacy fallback, so `sg_license_key.yml` and `sg_frontend_multi_tenancy.yml` must both be uploaded in that same window or the cluster comes back unlicensed.
-5. **The 3.0.0 and 4.0.0 gates land under pressure.** `sg_authz_dlsfls.yml` with `use_impl: flx`, and a `type` attribute on every custom action group, *can* be authored offline into the migrated files — but they are unverified hand-edits made during an outage. Bouncy Castle removal and the TLS-on-REST default flip surface only after the point of no return, and classic-era clusters are exactly the ones carrying old key formats and weak ciphers.
-
-**Recommendation: do not offer Option 3.** If a customer insists, it requires an offline-prepared config set, a tested admin certificate, an accepted full-outage window, and a backup that has been proved restorable.
-
 ### Recommended minimal path for a customer who never used Multi-Tenancy
 
 **Option 2, keeping the 1.6.0 stop and simply not running the MT command.**
