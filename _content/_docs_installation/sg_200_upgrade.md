@@ -28,7 +28,7 @@ The upgrade procedure for environments with disabled Multi-Tenancy is straightfo
 
 > **VERY IMPORTANT FOR DATA SAFETY**                                                    
 > 
-> Before starting Search Guard's upgrade from version 1.x.x to a newer version along with Search Guard 2.0.0, you need to back up your whole cluster. Furthermore, it is strongly advised that the upgrade procedure is tested first in a test environment containing a copy of the production cluster. If everything goes well, repeat the same procedure for the production cluster. The upgrade procedure can only be performed when an upgraded environment works with installed Search Guard 1.4.0 or 1.6.0 for Elasticsearch 8.7.x.
+> Before starting Search Guard's upgrade from version 1.x.x to a newer version along with Search Guard 2.0.0, you need to back up your whole cluster. Furthermore, it is strongly advised that the upgrade procedure is tested first in a test environment containing a copy of the production cluster. If everything goes well, repeat the same procedure for the production cluster. The upgrade procedure can only be performed when an upgraded environment works with installed Search Guard 1.6.0 for Elasticsearch 8.7.1.
 > ### Troubleshooting
 > In case of any issues, if the cluster encounters problems, the administrator should consider reverting to the previously backed-up version.
 > ### Cluster Restoration
@@ -46,7 +46,7 @@ The upgrade procedure should first be carried out in the test environment, which
 
 Moreover, support for users' private tenants has been removed, and the data associated with private tenants is not migrated to FLX 2.0.0. If data stored within the scope of private tenants is needed, the system administrator should prepare and test the procedure of exporting and importing such data via [Kibana Saved objects APIs](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html). However, due to the removal of private tenants, the data that belongs to users' private tenants in SG FLX 1.x.x must be assigned to the not-private tenant in SG 2.0.0.
 
-2. Upgrade Search Guard to version 1.4.0 or 1.6.0 and Elasticsearch to version 8.7.1\
+2. Upgrade Search Guard to version 1.6.0 and Elasticsearch to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](upgrading).
 3. Adjust Multi-Tenancy configuration.\
    Multi-Tenancy configuration in Search Guard versions before 2.0.0 was present in the `kibana.yml` file, e.g.

@@ -13,17 +13,69 @@ Copyright 2026 floragunn GmbH
 
 # Search Guard Upgrade Overview
 
-Regarding the 8.7.1-1.6.0 to 8.7.1-2.0.0, this stop is required to migrate Kibana multi-tenancy with sgctl.sh special start-mt-data-migration-from-8.7 command. https://docs.search-guard.com/latest/sg-200-upgrade
+## TL;DR
 
-I didn't test mt migration option with any other higher version of FLX and ELK. Also, 8.7.1-1.6.0 or 8.7.1-2.0.0 are not listed on the available versions page. https://docs.search-guard.com/latest/search-guard-versions
-
-Regarding config migration, the highest I've tested was 3.x with LDAP auth.
-
-
+- The recommended general upgrade Path for Elasticsearch is 7.17.x -> 8.19.x -> 9.x.x performing a rolling upgrade.
+- When on 8.19.x indices might need to be reindexed (see Search Guard Upgrade Tool)
+- The recommended upgrade path for Search Guard depends on a few questions:
+  - a) In case Kibana Multitenancy or DLS/FLS or Field Masking (or both) is used the upgrade path needs to be 
+       7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.x.x-4.x.x
+  - b) It's also possible to skip the 7.17.28-1.6.0 step and go directly from 7.17.28-53.10.0 to 8.7.1-1.6.0 in case less testing is toleratable
+  - c) In case neither Kibana Multitenancy nor DLS/FLS nor Field Masking is used the upgrade path can be shortened to be
+       7.17.28-53.10.0 -> 8.19.6-3.1.3 -> 9.x.x-4.x.x
+  
 ## Search Guard Upgrade Tool (Experimental)
 
-- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/0.2.0-beta-1/sg-upgrade-tool-0.2.0-beta-1.sh)
+This tool can be used to reindex Search Guard indices. The tool is experimental and should be like advised by your Support Engineer.
+
+- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/0.3.0/sg-upgrade-tool-0.3.0.sh)
 - [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)
+
+
+## Verdict on the three proposed upgrade paths
+
+### Option 1 — supported, most conservative
+
+```
+7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
+```
+
+Consistent with every documented gate. The classic → FLX config migration happens on ES 7.17.28 exactly as the [production migration guide](https://docs.search-guard.com/latest/sg-classic-config-migration-prod) describes it — same Elasticsearch version, rolling, minimal outage — and can be verified before the stack moves at all. The MT data migration happens on the `8.7.1-1.6.0 → 8.19.19-4.1.2` hop.
+
+### Option 2 — supported in practice, one documented deviation
+
+```
+7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
+```
+
+Combines the classic → FLX config migration with the Elasticsearch 7 → 8 major in a single hop. On paper this deviates: `sg-upgrade-7-8` states the prerequisite as "Search Guard FLX 1.0.0" and says classic "is not supported". In practice it works because 1.6.0 still carries the legacy modules (Constraint A) — that is the safety valve — and support has proved it.
+
+Choosing between Options 1 and 2 is the customer's call: separate the Search Guard migration from the stack upgrade and test in between (Option 1), or do both at once (Option 2).
+
+### Recommended minimal path for a customer who never used Multi-Tenancy
+
+**Option 2, keeping the 1.6.0 stop and simply not running the MT command.**
+
+```
+7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
+```
+
+Skipping `sgctl special start-mt-data-migration-from-8.7` is free for a never-MT customer. Skipping the **8.7.1-1.6.0 stop itself** is not. Every hop here is one support already calls proved.
+
+Whichever variant is chosen, do all of the following **while still on 1.6.0**, before the hop to 4.1.2:
+
+1. **Set `use_impl: flx` in `sg_authz_dlsfls.yml`.** If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand — `sgctl migrate-config` does **not** generate this file. (FLX 3.0.0 gate; safe to set even if unused.)
+2. **Add a `type` attribute to every custom action group.** (FLX 4.0.0 gate. The attribute has existed since FLX 1.0.0, so 1.6.0 accepts it.)
+3. **Remap Kibana users to `SGS_KIBANA_USER_NO_MT`.** This one bites non-MT customers specifically and is easy to miss — from 2.0.0 onward, users left on `SGS_KIBANA_USER` cannot log into Kibana at all.
+4. **Do not create, update or delete auth tokens during the mixed window.** (FLX 3.0.0 restriction.)
+5. **Test TLS material and JWT / OIDC / SAML / LDAP crypto** against the Bouncy Castle removal, and set `searchguard.ssl.http.enabled` explicitly rather than relying on the default.
+
+No stop at 3.1.2 is required: the "FLX 3.1.2 minimum" in `sg-upgrade-8-9` is the floor for the Search Guard version running on the ES 8.19 nodes *entering* the 8 → 9 hop, and 4.1.2 satisfies it.
+
+The tooling for the MT hop is confirmed present in the current sgctl — `sgctl-4.1.2.jar` contains both `StartMultiTenancyDataMigration` and `GetMultiTenancyDataMigrationState` under `commands/special/multitenancy/datamigration880/`.
+
+
+
 
 ### Legend
 
@@ -126,82 +178,3 @@ Not Search Guard events, but they constrain the path.
 | ES 8.19 → 9.x | Requires **ES 8.19.x or later and SG FLX 3.1.2 or later**. ES 8.19 is the last 8.x minor, so it is a mandatory waypoint | [sg-upgrade-8-9](https://docs.search-guard.com/latest/sg-upgrade-8-9) |
 | Mixed clusters | Supported for 7.17 ↔ 8.x and 8.19 ↔ 9.x, **with FLX on both sides**, and only for the duration of the upgrade | sg-upgrade-7-8, sg-upgrade-8-9 |
 
----
-
-## Verdict on the three proposed upgrade paths
-
-### Option 1 — supported, most conservative
-
-```
-7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Consistent with every documented gate. The classic → FLX config migration happens on ES 7.17.28 exactly as the [production migration guide](https://docs.search-guard.com/latest/sg-classic-config-migration-prod) describes it — same Elasticsearch version, rolling, minimal outage — and can be verified before the stack moves at all. The MT data migration happens on the `8.7.1-1.6.0 → 8.19.19-4.1.2` hop.
-
-### Option 2 — supported in practice, one documented deviation
-
-```
-7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Combines the classic → FLX config migration with the Elasticsearch 7 → 8 major in a single hop. On paper this deviates: `sg-upgrade-7-8` states the prerequisite as "Search Guard FLX 1.0.0" and says classic "is not supported". In practice it works because 1.6.0 still carries the legacy modules (Constraint A) — that is the safety valve — and support has proved it.
-
-Choosing between Options 1 and 2 is the customer's call: separate the Search Guard migration from the stack upgrade and test in between (Option 1), or do both at once (Option 2).
-
-### Recommended minimal path for a customer who never used Multi-Tenancy
-
-**Option 2, keeping the 1.6.0 stop and simply not running the MT command.**
-
-```
-7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Skipping `sgctl special start-mt-data-migration-from-8.7` is free for a never-MT customer. Skipping the **8.7.1-1.6.0 stop itself** is not. Every hop here is one support already calls proved.
-
-Whichever variant is chosen, do all of the following **while still on 1.6.0**, before the hop to 4.1.2:
-
-1. **Set `use_impl: flx` in `sg_authz_dlsfls.yml`.** If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand — `sgctl migrate-config` does **not** generate this file. (FLX 3.0.0 gate; safe to set even if unused.)
-2. **Add a `type` attribute to every custom action group.** (FLX 4.0.0 gate. The attribute has existed since FLX 1.0.0, so 1.6.0 accepts it.)
-3. **Remap Kibana users to `SGS_KIBANA_USER_NO_MT`.** This one bites non-MT customers specifically and is easy to miss — from 2.0.0 onward, users left on `SGS_KIBANA_USER` cannot log into Kibana at all.
-4. **Do not create, update or delete auth tokens during the mixed window.** (FLX 3.0.0 restriction.)
-5. **Test TLS material and JWT / OIDC / SAML / LDAP crypto** against the Bouncy Castle removal, and set `searchguard.ssl.http.enabled` explicitly rather than relying on the default.
-
-No stop at 3.1.2 is required: the "FLX 3.1.2 minimum" in `sg-upgrade-8-9` is the floor for the Search Guard version running on the ES 8.19 nodes *entering* the 8 → 9 hop, and 4.1.2 satisfies it.
-
-The tooling for the MT hop is confirmed present in the current sgctl — `sgctl-4.1.2.jar` contains both `StartMultiTenancyDataMigration` and `GetMultiTenancyDataMigrationState` under `commands/special/multitenancy/datamigration880/`.
-
-### A fourth variant worth putting to the team
-
-```
-7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.19.6-3.1.3 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-`sg-flx-3.1.3-es-8.19.6` is the **last release that still carries the legacy modules and the first that runs on ES 8.19**. For a non-MT customer that makes it an attractive landing point: the classic → FLX config migration is done on 1.6.0 at the customer's existing ES 7.17.28 (a drop-in plugin swap, no Elasticsearch change, fully testable), and the ES 7 → 8 crossing then happens FLX-to-FLX with the legacy safety net still present on the destination side.
-
-The cost is one extra hop versus the recommended path, and the `7.17.28-1.6.0 → 8.19.6-3.1.3` hop is not on support's proved list. Listed here — not recommended over Option 2 without confirmation — because it is the only variant that keeps the legacy bridge available on both sides of the Elasticsearch major.
-
----
-
-## Open questions for the Search Guard team
-
-Resolved by this research, no longer open: `migrate-config` is still present in sgctl 4.1.2 and is local-files-only; the last legacy-capable release is FLX 3.1.3; a 4.x node over a classic config index initialises but SG11-locks, with an admin-cert bypass.
-
-Still open:
-
-1. Is the `7.17.28-1.6.0 → 8.19.19-4.1.2` variant (Option 1 without the 8.7.1 stop) proved? It crosses the Elasticsearch major and a 1.6.0 → 4.1.2 Search Guard skew simultaneously. Plausible, but neither documented nor on the proved list.
-2. Same question for the `7.17.28-1.6.0 → 8.19.6-3.1.3` variant above.
-3. Is `sgctl migrate-config` output directly valid for 4.1.2 — specifically, does it emit the `type` attribute on action groups that 4.0.0 made mandatory, or must that be added by hand?
-4. Should the timeline publish the bound *"FLX 3.1.3 is the last version able to read classic configuration"*? It is certain from the source and the artifacts and is genuinely useful, but it is documented nowhere today.
-5. `sg-200-upgrade` says SG 2.0.0 requires ES 8.8.x – 8.12.x, but builds exist up to `2.0.0-es-8.15.2`. Which is right?
-
-## Documentation defects noticed along the way
-
-Not part of this timeline; raised separately.
-
-- `sg_upgrade_8_9.md` is a near-verbatim copy of `sg_upgrade_7_8.md`: its breaking-changes section still says "Elasticsearch 8", the mixed-mode section still says "7.17.x and 8.x nodes", and the classic warning still says "Search Guard 7 classic".
-- The `sgversions` matrix in `_config.yml` no longer contains any FLX 1.x-on-ES-8.7.x, 2.x or 3.0.x row — so the exact stepping stones that `sg-200-upgrade` mandates are not downloadable from the page it links to. Only the archive has them.
-- The `search_guard_upgrades.md` category page omits `sg-upgrade-6-7` and `sg-upgrade-8-9`, unlike the side navigation.
-- `upgrading.md` ends with a stale ES-8.8.0-specific section that duplicates its own top banner.
-- Helm-chart column oddities in the matrix: ES 9.2.6 maps to SG 4.0.1 but chart `4.1.0-flx`; ES 8.19.17 maps to SG 4.1.2 but chart `4.1.0-flx`. Likely data errors.
-- Typos in `sg_200_upgrade.md`: "aw well", "Elasticseare", "should be above a few minutes".
-- No changelog page exists for classic 53.10.0, the final classic release.
