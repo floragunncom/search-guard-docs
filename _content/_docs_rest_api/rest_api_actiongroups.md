@@ -40,7 +40,7 @@ GET /_searchguard/api/actiongroups/SEARCH
 ```
 ```json
 {
-  "allowed_actions" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
+  "allowed_actions" : [ "indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ], "type": "index"
 }
 ```
 
@@ -81,7 +81,7 @@ Replaces or creates the action group specified by `actiongroup`.
 ```
 PUT /_searchguard/api/actiongroups/SEARCH
 {
-  "allowed_actions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ]
+  "allowed_actions": ["indices:data/read/search*", "indices:data/read/msearch*", "SUGGEST" ], "type": "index"
 }
 ```
 The field `allowed_actions` is mandatory and contains permissions or references to other action groups.

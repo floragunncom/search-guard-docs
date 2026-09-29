@@ -50,12 +50,12 @@ It needs to be enabled explicitly in the configuration file when upgrading Searc
 The upgrade procedure should first be carried out in the test environment, which is a copy of the production cluster. Once this test is accomplished successfully, you can upgrade the production environment.
 
 1. Backup.\
-   Preparing a backup is crucial due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. Additionally, the system administrator should follow [Search Guard backup and restore guidance](search-guard-index-maintenance#backup-and-restore) to perform the backup of the Search Guard configuration. It is also worth testing if the created backups can be restored.
-
-Moreover, support for users' private tenants has been removed, and the data associated with private tenants is not migrated to FLX 2.0.0. If data stored within the scope of private tenants is needed, the system administrator should prepare and test the procedure of exporting and importing such data via [Kibana Saved objects APIs](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html). However, due to the removal of private tenants, the data that belongs to users' private tenants in SG FLX 1.x.x must be assigned to the not-private tenant in SG FLX 2.0.0 or later.
+   Preparing a backup is crucial due to Elasticsearch's inability to downgrade the cluster node. Therefore, if the upgrade procedure is not accomplished, you will need backups to restore the cluster to its previous version. Please use the following [documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) to create the cluster backup. Additionally, the system administrator should follow [Search Guard backup and restore guidance](search-guard-index-maintenance#backup-and-restore) to perform the backup of the Search Guard configuration. It is also worth testing if the created backups can be restored.\
+   Moreover, support for users' private tenants has been removed, and the data associated with private tenants is not migrated to FLX 2.0.0. If data stored within the scope of private tenants is needed, the system administrator should prepare and test the procedure of exporting and importing such data via [Kibana Saved objects APIs](https://www.elastic.co/guide/en/kibana/current/saved-objects-api.html). However, due to the removal of private tenants, the data that belongs to users' private tenants in SG FLX 1.x.x must be assigned to the not-private tenant in SG FLX 2.0.0 or later.
 
 2. Upgrade Search Guard to version 1.6.0 and Elasticsearch to version 8.7.1\
 The current step is associated with the usual Search Guard upgrade procedure conveyed by the following [documentation](upgrading).
+
 3. Adjust Multi-Tenancy configuration.\
    Multi-Tenancy configuration in Search Guard versions before 2.0.0 was present in the `kibana.yml` file, e.g.
     ```yml
@@ -71,8 +71,8 @@ The current step is associated with the usual Search Guard upgrade procedure con
     server_user: kibanaserver
     global_tenant_enabled : true
     ```
-4. Set `use_impl: flx` in `sg_authz_dlsfls.yml`. If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand — see ???
-5. Add a `type` attribute to every custom action group. 
+4. Set `use_impl: flx` in `sg_authz_dlsfls.yml`. If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand. See [Field anonymization](field-anonymization#field-anonymization)
+5. Add a `type` attribute to every custom action group. Please refer to the [action groups](action-groups#permissions-and-action-groups) documentation.
 6. Stop Kibana\
 The Kibana should not work during further steps related to the upgrade.
 7. Download new versions of the software.\
