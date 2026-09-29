@@ -17,6 +17,11 @@ Copyright 2026 floragunn GmbH
 
 Upgrading Search Guard can be combined with an upgrade of Elasticsearch but can also be performed without it.
 
+For upgrading Search Guard, regardless of major, minor or patch versions, read the [changelogs](changelogs-searchguard)
+first in case the target version does introduce breaking changes.
+
+If Elasticsearch or Kibana is upgraded too, refer to the [Elasticsearch/Kibana release notes](https://www.elastic.co/docs/release-notes/elasticsearch) and [upgrade instructions](https://www.elastic.co/docs/deploy-manage/upgrade/prepare-to-upgrade) and make sure to follow their recommendations as well.
+
 Search Guard as well as Elasticsearch version number scheme follow [semantic versioning (SemVer)](https://semver.org/).
 Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patch versions is [described here](upgrading)
 
@@ -30,18 +35,18 @@ Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patc
        7.17.28-53.10.0 -> 8.19.6-3.1.3 -> 9.x.x-4.x.x
   
 For a detailed manual refer to
-- Upgrading Elasticsearch [from 6 to 7](sg-upgrade-6-7)
-- Upgrading Elasticsearch [from 7 to 8](sg-upgrade-7-8)
-- Upgrading Elasticsearch [from 8 to 9](sg-upgrade-8-9)
+- Upgrading Elasticsearch [from 6 to 7](sg-upgrade-6-7) (Search Guard Classic only!)
+- Upgrading Elasticsearch [from 7 to 8](sg-upgrade-7-8) (Might imply an upgrade from Search Guard Classic to FLX)
+- Upgrading Elasticsearch [from 8 to 9](sg-upgrade-8-9) (Search Guard FLX only!)
+- Upgrading [Search Guard from Classic to FLX](sg-classic-config-migration-overview)
+- Special [Multi-Tenancy upgrade instructions](sg-200-upgrade) for upgrading from FLX 1.x.x to 2.x.x or later
 
-For upgrading Search Guard, regardless of major, minor or patch versions, read the [changelogs](changelogs-searchguard) 
-first in case the target version does introduce breaking changes.
-
-Upgrading Kibana ....
+Kibana must always be upgraded after Elasticsearch (unless advised differently), and to the same version. Please be advised that rolling upgrades are unsupported in Kibana.
+See [Upgrade Kibana](https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/kibana) for more information.
 
 ## Search Guard Upgrade Tool (Experimental)
 
-This tool can be used to reindex Search Guard indices. The tool is experimental and should be like advised by your support engineer.
+This tool can be used to reindex Search Guard indices. It is experimental and should only be used as advised by your support engineer.
 
 - [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh)
 - [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)

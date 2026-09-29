@@ -48,7 +48,6 @@ After upgrading a node from ES 7 to 8, simply [install](search-guard-installatio
 
 No changes in `elasticsearch.yml` are required
 
-
 ## Upgrading Kibana
 
 Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is completed. Just [install](search-guard-versions) the correct version of the Search Guard plugin to Kibana.
