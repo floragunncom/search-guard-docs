@@ -30,9 +30,9 @@ Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patc
        7.17.28-53.10.0 -> 8.19.6-3.1.3 -> 9.x.x-4.x.x
   
 For a detailed manual refer to
-- Upgrading Elasticsearch [from 6 to 7](sg_upgrade_6_7)
-- Upgrading Elasticsearch [from 7 to 8](sg_upgrade_7_8)
-- Upgrading Elasticsearch [from 8 to 9](sg_upgrade_8_9)
+- Upgrading Elasticsearch [from 6 to 7](sg-upgrade-6-7)
+- Upgrading Elasticsearch [from 7 to 8](sg-upgrade-7-8)
+- Upgrading Elasticsearch [from 8 to 9](sg-upgrade-8-9)
 
 For upgrading Search Guard, regardless of major, minor or patch versions, read the [changelogs](changelogs-searchguard) 
 first in case the target version does introduce breaking changes.
