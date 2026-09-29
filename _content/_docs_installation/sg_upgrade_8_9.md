@@ -11,7 +11,7 @@ description: Upgrade Search Guard FLX to Elasticsearch 9
 Copyright 2026 floragunn GmbH
 -->
 
-# Upgrade from Search Guard 8 to 9
+# Upgrade from Search Guard 8 to 9 (FLX only!)
 {: .no_toc}
 
 {% include toc.md %}

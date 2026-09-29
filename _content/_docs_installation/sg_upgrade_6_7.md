@@ -15,13 +15,13 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">This upgrade guide describes upgrading from Search Guard 6.x to Search Guard 7.x. Classic. 
+<span>This upgrade guide describes upgrading from Search Guard 6.x to Search Guard 7.x. Classic. 
 It is not possible to upgrade from Search Guard 6.x Classic to Search Guard 7.x FLX in one step. To upgrade to FLX you need to
 upgrade from 6.8.x-25.0 to 7.17.28-53.10.0 first and then to 7.17.28-1.6.0 FLX as described [here](sg-classic-config-migration-overview). 
 </span>
 {: .note .js-note .note-warning}
 
-Upgrading Search Guard from 6.8.x to 7.x.x can be done while you upgrade Elasticsearch from 6.8.x to 7.x.x . 
+Upgrading Search Guard from 6.8.x to 7.x.x can be done while you upgrade Elasticsearch from 6.8.x to 7.x.x. 
 You can do this by performing a full cluster restart, or by doing a rolling restart:
 
 Search Guard supports running a mixed cluster of 6.8.x and 7.x nodes and is thus compatible with the Elasticsearch upgrade path.

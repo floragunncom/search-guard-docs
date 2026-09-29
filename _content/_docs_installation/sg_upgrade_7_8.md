@@ -16,7 +16,43 @@ Copyright 2023 floragunn GmbH
 
 {% include toc.md %}
 
-Upgrading Search Guard from 7.17.x to 8.x.x can be done while you upgrade Elasticsearch from 7.17.x to 8.x.x . You can do this by performing a full cluster restart, or by doing a rolling restart: 
+Upgrading Elasticsearch and Search Guard from 7 to 8 can mean two things, depending on your currently deployed Search Guard version:
+
+- Upgrading Search Guard 7 Classic to 8 FLX or
+- Upgrading Search Guard 7 FLX to 8 FLX
+
+## Upgrading Search Guard 7 Classic to 8 FLX
+
+### Prerequisites
+
+To perform an upgrade from Guard 7 Classic to 8 FLX, you need to run at least:
+
+* Elasticsearch 7.17.28 (Elasticsearch requirement)
+* Search Guard Classic 53.10.0 (Search Guard requirement)
+
+If you run older versions of Elasticsearch and/or Search Guard, please upgrade first.
+
+### Multitenancy and DLS/FLS/Field Masking check
+
+The upgrade path to Search Guard 8 FLX depends on whether you use Multitenancy or DLS/FLS/Field Masking features.
+
+**How to check if Multi-Tenancy is enabled**\
+To verify if Multi-Tenancy is enabled, please check the Kibana configuration file and the existence of indices dedicated to each tenant.
+(For future information, please refer to the [documentation](kibana-multi-tenancy)).
+
+**How to check if DLS/FLS/Field Masking enabled**\
+If `sg_roles.yml` contains any role with `dls:` or `fls:` or `masked_fields:` attributes, DLS/FLS/Field Masking is enabled.
+
+If you use one of them (or both) the upgrade seems different and requires additional steps. The upgrade path would look like 7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2
+It's also possible to skip the 7.17.28-1.6.0 step and go directly from 7.17.28-53.10.0 to 8.7.1-1.6.0 in case less testing is toleratable.
+
+If neither Multi-Tenancy nor DLS/FLS/Field Masking is enabled, you can upgrade in a single step directly to 8.19.6-3.1.3 (but not to Search Guard 4.x.x).
+Upgrading to Search Guard 4.x.x would require and additional update (which should be done together with [upgrading to Elasticsearch 9](sg-upgrade-8-9)).
+
+
+## Upgrading Search Guard 7 FLX to 8 FLX
+
+Upgrading Search Guard from 7.17.x to 8.x.x can be done while you upgrade Elasticsearch from 7.17.x to 8.x.x. You can do this by performing a full cluster restart, or by doing a rolling restart: 
 
 Search Guard supports running a mixed cluster of 7.17.x and 8.x.x nodes and is thus compatible with the Elasticsearch upgrade path.
 
@@ -46,7 +82,7 @@ Upgrading from Search Guard 7 classic (i.e., Search Guard versions 53 and before
 
 After upgrading a node from ES 7 to 8, simply [install](search-guard-installation) the [correct version of Search Guard](search-guard-versions) on this node.
 
-No changes in `elasticsearch.yml` are required
+No changes in `elasticsearch.yml` are required.
 
 ## Upgrading Kibana
 
