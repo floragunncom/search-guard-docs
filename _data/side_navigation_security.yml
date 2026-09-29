@@ -85,12 +85,12 @@
               slug: sg-upgrade-7-8
             - title: Upgrading from 8.x to 9.x
               slug: sg-upgrade-8-9
-            - title: Upgrading from FLX 1.x to 2.x
+            - title: Upgrading from FLX 1.x (Multitenancy/DLS)
               slug: sg-200-upgrade
             - title: Migrating from Classic to FLX
               slug: search-guard-migration
               children:
-                - title: Migration Outline
+                - title: FLX Migration Outline
                   slug: sg-classic-config-migration-overview
                 - title: Quick Start
                   slug: sg-classic-config-migration-quick

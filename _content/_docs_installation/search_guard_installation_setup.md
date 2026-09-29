@@ -44,6 +44,10 @@ Check the [Versions and Compatibility](search-guard-versions-compatibility) sect
 
 ### 4. Upgrade or Migrate (If Needed)
 
+xxx
+xxx
+???
+
 If upgrading an existing installation or migrating from classic Search Guard, see [Upgrades and Migrations](search-guard-upgrades):
 - **[Upgrading Between Minor Versions](upgrading)** - Standard upgrade process
 - **[Upgrading from FLX 1.x to 2.x](sg-200-upgrade)** - Major version upgrade guide
