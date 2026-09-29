@@ -366,4 +366,5 @@ encryptionatrest:
 
 tlstool: 4.0.1
 sgctl: 4.2.0
+sg-upgrade-tool: 0.3.0
 #enctl: 1.0.0-es-9.1.5 # unused and not relevant any longer

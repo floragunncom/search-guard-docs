@@ -33,7 +33,7 @@ If you have not already done so, make yourself familiar with Elastic's own upgra
 
 ## Prerequisites
 
-In order to to perform a rolling restart and upgrade from 6.x to 7.x, you need to run at least:
+In order to perform a rolling restart and upgrade from 6.x to 7.x, you need to run at least:
 
 * Elasticsearch 6.7.x (Elasticsearch requirement)
 * Search Guard 6.7.x-25.0 (Search Guard requirement)

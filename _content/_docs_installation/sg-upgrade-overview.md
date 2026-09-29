@@ -15,7 +15,12 @@ Copyright 2026 floragunn GmbH
 
 ## TL;DR
 
-- The recommended general upgrade Path for Elasticsearch is 7.17.x -> 8.19.x -> 9.x.x performing a rolling upgrade.
+Upgrading Search Guard can be combined with an upgrade of Elasticsearch but can also be performed without it.
+
+Search Guard as well as Elasticsearch version number scheme follow [semantic versioning (SemVer)](https://semver.org/).
+Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patch versions is [described here](upgrading)
+
+- The recommended general upgrade path over **major versions** for Elasticsearch is 7.17.x -> 8.19.x -> 9.x.x and can be performed as a [rolling upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html).
 - When on 8.19.x indices might need to be reindexed (see Search Guard Upgrade Tool)
 - The recommended upgrade path for Search Guard depends on a few questions:
   - a) In case Kibana Multitenancy or DLS/FLS or Field Masking (or both) is used the upgrade path needs to be 
@@ -24,58 +29,28 @@ Copyright 2026 floragunn GmbH
   - c) In case neither Kibana Multitenancy nor DLS/FLS nor Field Masking is used the upgrade path can be shortened to be
        7.17.28-53.10.0 -> 8.19.6-3.1.3 -> 9.x.x-4.x.x
   
+For a detailed manual refer to
+- Upgrading Elasticsearch [from 6 to 7](sg_upgrade_6_7)
+- Upgrading Elasticsearch [from 7 to 8](sg_upgrade_7_8)
+- Upgrading Elasticsearch [from 8 to 9](sg_upgrade_8_9)
+
+For upgrading Search Guard, regardless of major, minor or patch versions, read the [changelogs](changelogs-searchguard) 
+first in case the target version does introduce breaking changes.
+
+Upgrading Kibana ....
+
 ## Search Guard Upgrade Tool (Experimental)
 
-This tool can be used to reindex Search Guard indices. The tool is experimental and should be like advised by your Support Engineer.
+This tool can be used to reindex Search Guard indices. The tool is experimental and should be like advised by your support engineer.
 
-- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/0.3.0/sg-upgrade-tool-0.3.0.sh)
+- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh)
 - [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)
 
+---
 
-## Verdict on the three proposed upgrade paths
+## Detailed Search Guard version timeline
 
-### Option 1 — supported, most conservative
-
-```
-7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Consistent with every documented gate. The classic → FLX config migration happens on ES 7.17.28 exactly as the [production migration guide](https://docs.search-guard.com/latest/sg-classic-config-migration-prod) describes it — same Elasticsearch version, rolling, minimal outage — and can be verified before the stack moves at all. The MT data migration happens on the `8.7.1-1.6.0 → 8.19.19-4.1.2` hop.
-
-### Option 2 — supported in practice, one documented deviation
-
-```
-7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Combines the classic → FLX config migration with the Elasticsearch 7 → 8 major in a single hop. On paper this deviates: `sg-upgrade-7-8` states the prerequisite as "Search Guard FLX 1.0.0" and says classic "is not supported". In practice it works because 1.6.0 still carries the legacy modules (Constraint A) — that is the safety valve — and support has proved it.
-
-Choosing between Options 1 and 2 is the customer's call: separate the Search Guard migration from the stack upgrade and test in between (Option 1), or do both at once (Option 2).
-
-### Recommended minimal path for a customer who never used Multi-Tenancy
-
-**Option 2, keeping the 1.6.0 stop and simply not running the MT command.**
-
-```
-7.17.28-53.10.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.4.4-4.1.2
-```
-
-Skipping `sgctl special start-mt-data-migration-from-8.7` is free for a never-MT customer. Skipping the **8.7.1-1.6.0 stop itself** is not. Every hop here is one support already calls proved.
-
-Whichever variant is chosen, do all of the following **while still on 1.6.0**, before the hop to 4.1.2:
-
-1. **Set `use_impl: flx` in `sg_authz_dlsfls.yml`.** If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand — `sgctl migrate-config` does **not** generate this file. (FLX 3.0.0 gate; safe to set even if unused.)
-2. **Add a `type` attribute to every custom action group.** (FLX 4.0.0 gate. The attribute has existed since FLX 1.0.0, so 1.6.0 accepts it.)
-3. **Remap Kibana users to `SGS_KIBANA_USER_NO_MT`.** This one bites non-MT customers specifically and is easy to miss — from 2.0.0 onward, users left on `SGS_KIBANA_USER` cannot log into Kibana at all.
-4. **Do not create, update or delete auth tokens during the mixed window.** (FLX 3.0.0 restriction.)
-5. **Test TLS material and JWT / OIDC / SAML / LDAP crypto** against the Bouncy Castle removal, and set `searchguard.ssl.http.enabled` explicitly rather than relying on the default.
-
-No stop at 3.1.2 is required: the "FLX 3.1.2 minimum" in `sg-upgrade-8-9` is the floor for the Search Guard version running on the ES 8.19 nodes *entering* the 8 → 9 hop, and 4.1.2 satisfies it.
-
-The tooling for the MT hop is confirmed present in the current sgctl — `sgctl-4.1.2.jar` contains both `StartMultiTenancyDataMigration` and `GetMultiTenancyDataMigrationState` under `commands/special/multitenancy/datamigration880/`.
-
-
-
+Detailed timeline of how Search Guard versions evolved.
 
 ### Legend
 
@@ -86,13 +61,11 @@ The tooling for the MT hop is confirmed present in the current sgctl — `sgctl-
 | **ACTION** | A config or data migration you must perform yourself |
 | **HELM** | Helm-chart-only event |
 
----
-
-## The two hard constraints
+### The two hard constraints
 
 Everything below follows from these two facts.
 
-### Constraint A — the classic-config bridge ends at FLX 3.1.3
+#### Constraint A — the classic-config bridge ends at FLX 3.1.3
 
 Search Guard classic stores its configuration as a legacy `sg_config` document in the Search Guard index. The module that reads that format is `search-guard-flx-security-legacy` (with `dlic-search-guard-flx-security-legacy`).
 
@@ -107,7 +80,7 @@ In the Maven archive that module exists for **0.0.1 through 3.1.3 — and for no
 
 This is what makes the classic → FLX crossing survivable — and it has **nothing to do with Multi-Tenancy**. Any path that skips the bridge entirely is broken for every customer, MT or not.
 
-### Constraint B — Elasticsearch 8.7.1 is the only ES 8 build of FLX 1.x
+#### Constraint B — Elasticsearch 8.7.1 is the only ES 8 build of FLX 1.x
 
 Search Guard is built per Elasticsearch patch version, so the SG version and the ES version are tightly coupled. Which builds actually exist:
 
@@ -126,9 +99,7 @@ No Search Guard build spans the gap. **This is why every proved upgrade path fun
 
 `1.6.0-es-7.17.28` also exists, so a customer can swap classic 53.10.0 for FLX 1.6.0 without changing their Elasticsearch version at all.
 
----
-
-## Timeline
+### Timeline
 
 | # | Date | Component | Version | Elasticsearch / Kibana | Event | What it means when upgrading |
 |---|---|---|---|---|---|---|
@@ -163,8 +134,6 @@ No Search Guard build spans the gap. **This is why every proved upgrade path fun
 | H5 | 2025-07-18 | `3.1.1-flx` | **ES 9.0.1** / SG 3.1.1 | **HELM STOP — an Elasticsearch major upgrade hidden behind a chart patch bump** | Chart `3.1.0-flx` ships ES 8.18.3; chart `3.1.1-flx` ships ES 9.0.1. Do not treat this as a patch release |
 | H6 | 2025-11-27 | **`4.0.0-flx`** | ES 9.1.7 / SG 4.0.0 | **HELM ACTION — all four container images renamed and re-published** | `sg-elasticsearch-h4` → `search-guard-flx-elasticsearch`, `sg-kibana-h4` → `search-guard-flx-kibana`, `sg-sgctl-h4` → `search-guard-flx-sgctl`, `sg-kubectl-h4` → `search-guard-flx-cluster-config`. The values key **`common.images.kubectl_base_image` becomes `common.images.cluster_config_base_image`**. Tag format is now `sgversion-es-esversion` (e.g. `4.0.0-es-9.1.6`) and the **`-flx` suffix is gone from `common.sgversion`** — carrying an old `values.yaml` forward gives `ImagePullBackOff`. The Kubernetes floor rises to **1.32** |
 | H7 | 2026-06-29 | `4.1.2-flx` | ES 9.4.2 / SG 4.1.2 | Current chart | Chart version does not always equal SG version: charts `3.1.2`/`3.1.3`/`3.1.4-flx` all ship SG 3.1.1, and chart `4.0.2-flx` ships SG 4.0.1 |
-
-Two standing Helm notes, from the chart `README.md`: use `helm upgrade --set common.es_upgrade_order=true --set common.disable_sharding=true --timeout 1h` for any ES or SG version change, but do **not** set `es_upgrade_order=true` when `master.replicas=1` — it deadlocks.
 
 ### Stack-level gates
 

@@ -100,3 +100,19 @@ Please take into consideration that Kibana in version 8.8.0 or newer uses some a
 * `.kibana_alerting_cases`
 
 Official Kibana [documentation](https://www.elastic.co/guide/en/kibana/current/saved-object-migrations.html)
+
+
+
+---
+Skipping `sgctl special start-mt-data-migration-from-8.7` is free for a never-MT customer. Skipping the **8.7.1-1.6.0 stop itself** is not. Every hop here is one support already calls proved.
+
+Whichever variant is chosen, do all of the following **while still on 1.6.0**, before the hop to 4.1.2:
+
+1. **Set `use_impl: flx` in `sg_authz_dlsfls.yml`.** If DLS, FLS or field masking is used, also transpose `searchguard.compliance.mask_prefix` and the salt settings to `field_anonymization.*` by hand — `sgctl migrate-config` does **not** generate this file. (FLX 3.0.0 gate; safe to set even if unused.)
+2. **Add a `type` attribute to every custom action group.** (FLX 4.0.0 gate. The attribute has existed since FLX 1.0.0, so 1.6.0 accepts it.)
+3. **Remap Kibana users to `SGS_KIBANA_USER_NO_MT`.** This one bites non-MT customers specifically and is easy to miss — from 2.0.0 onward, users left on `SGS_KIBANA_USER` cannot log into Kibana at all.
+4. **Do not create, update or delete auth tokens during the mixed window.** (FLX 3.0.0 restriction.)
+5. **Test TLS material and JWT / OIDC / SAML / LDAP crypto** against the Bouncy Castle removal, and set `searchguard.ssl.http.enabled` explicitly rather than relying on the default.
+
+No stop at 3.1.2 is required: the "FLX 3.1.2 minimum" in `sg-upgrade-8-9` is the floor for the Search Guard version running on the ES 8.19 nodes *entering* the 8 → 9 hop, and 4.1.2 satisfies it.
+
