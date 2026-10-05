@@ -39,9 +39,9 @@ For a detailed manual refer to
 - Upgrading Elasticsearch [from 7 to 8](sg-upgrade-7-8) (Might imply an upgrade from Search Guard Classic to FLX)
 - Upgrading Elasticsearch [from 8 to 9](sg-upgrade-8-9) (Search Guard FLX only!)
 - Upgrading [Search Guard from Classic to FLX](sg-classic-config-migration-overview)
-- Special [Multi-Tenancy upgrade instructions](sg-200-upgrade) for upgrading from FLX 1.x.x to 2.x.x or later
+- Special [Multi-Tenancy related upgrade instructions](sg-200-upgrade) for upgrading from FLX 1.x.x to 2.x.x or later
 
-Kibana must always be upgraded after Elasticsearch (unless advised differently), and to the same version. Please be advised that rolling upgrades are unsupported in Kibana.
+Kibana must always be upgraded after Elasticsearch (unless advised differently), and to the same version. Please note that rolling upgrades are unsupported in Kibana.
 See [Upgrade Kibana](https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/kibana) for more information.
 
 ## Search Guard Upgrade Tool (Experimental)
@@ -51,11 +51,13 @@ This tool can be used to reindex Search Guard indices. It is experimental and sh
 - [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh)
 - [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)
 
+Please refer also to our Blog Post [Upgrading to Elasticsearch 9: Why your read-only 7.x indices still block the boot](https://search-guard.com/blog/upgrading-to-elasticsearch-9-why-your-read-only-7-x-indices-still-block-the-boot/)
+
 ---
 
 ## Detailed Search Guard version timeline
 
-Detailed timeline of how Search Guard versions evolved.
+Detailed timeline of how Search Guard features versions and evolved.
 
 ### Legend
 

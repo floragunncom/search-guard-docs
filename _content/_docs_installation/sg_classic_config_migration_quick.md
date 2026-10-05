@@ -12,7 +12,7 @@ description: How to migrate older Search Guard authentication configurations to 
 Copyright 2022 floragunn GmbH
 -->
 
-# Quick Start: Migrating from Search Guard 53 and before
+# Quick Start: Migrating from Search Guard Classic/53 and before
 {: .no_toc}
 
 This chapter describes how to quickly migrate legacy Search Guard configuration to the new structure. This is useful for testing - possibly as a preparatory step for updating a production cluster.

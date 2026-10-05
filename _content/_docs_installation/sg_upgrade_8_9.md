@@ -54,3 +54,5 @@ This tool can be used to reindex Search Guard indices. It is experimental and sh
 
 - [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh)
 - [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)
+
+Please refer also to our Blog Post [Upgrading to Elasticsearch 9: Why your read-only 7.x indices still block the boot](https://search-guard.com/blog/upgrading-to-elasticsearch-9-why-your-read-only-7-x-indices-still-block-the-boot/)

@@ -11,7 +11,7 @@ description: How to migrate older Search Guard authentication configurations
 Copyright 2022 floragunn GmbH
 -->
 
-# Migrating from Search Guard 53 and before to Search Guard FLX
+# Migrating from Search Guard Classic/53 and before to Search Guard FLX
 {: .no_toc}
 
 If you have an existing cluster running Search Guard 53 or earlier, you need to migrate your configuration. 

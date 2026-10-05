@@ -1,5 +1,5 @@
 ---
-title: Updating Search Guard
+title: Upgrading Search Guard
 permalink: upgrading
 layout: docs
 section: security
@@ -10,7 +10,7 @@ description: How to upgrade Search Guard and Elasticsearch by rolling restarts o
 Copyright 2022 floragunn GmbH
 -->
 
-# Updating Search Guard
+# Upgrading Search Guard
 {: .no_toc}
 
 {% include toc.md %}
@@ -18,7 +18,7 @@ Copyright 2022 floragunn GmbH
 <span style="color:red">If you are upgrading from older SG FLX versions to SG FLX 2.0.0 or higher, please review the [upgrade guide](sg-200-upgrade). If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads)</span>
 {: .note .js-note .note-warning}
 
-If you're looking for specific upgrade instructions from SG 53, please follow the [steps described here](sg-classic-config-migration-overview).
+If you're looking for specific upgrade instructions from SG Classic/53, please follow the [steps described here](sg-classic-config-migration-overview).
 {: .note .js-note .note-warning}
 
 The following instructions assume that Search Guard has been installed on your cluster previously and that the Search Guard configuration index already exists.

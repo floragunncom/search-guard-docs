@@ -12,7 +12,7 @@ description: How to migrate older Kibana authentication configurations to sg_fro
 Copyright 2022 floragunn GmbH
 -->
 
-# Production Cluster: Migrating from Search Guard 53 and before
+# Production Cluster: Migrating from Search Guard Classic/53 and before
 {: .no_toc}
 
 This chapter describes how to migrate a cluster running legacy Search Guard configuration to the new structure with minimal outage.
