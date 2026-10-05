@@ -15,7 +15,7 @@ Copyright 2020 floragunn GmbH
 
 {% include toc.md %}
 
-<span>This upgrade guide describes upgrading from Search Guard 6.x to Search Guard 7.x. Classic. 
+<span>This upgrade guide describes upgrading from Search Guard 6.x to Search Guard 7.x Classic. 
 It is not possible to upgrade from Search Guard 6.x Classic to Search Guard 7.x FLX in one step. To upgrade to FLX you need to
 upgrade from 6.8.x-25.0 to 7.17.28-53.10.0 first and then to 7.17.28-1.6.0 FLX as described [here](sg-classic-config-migration-overview). 
 </span>
@@ -26,7 +26,7 @@ You can do this by performing a full cluster restart, or by doing a rolling rest
 
 Search Guard supports running a mixed cluster of 6.8.x and 7.x nodes and is thus compatible with the Elasticsearch upgrade path.
 
-If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
+If you have not already done so, make yourself familiar with Elastic's own upgrade instructions for the Elastic Stack:
 
 * [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/7.0/upgrading-elastic-stack.html){:target="_blank"}
 * [Upgrade Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/7.0/setup-upgrade.html){:target="_blank"}
@@ -35,7 +35,7 @@ If you have not already done so, make yourself familiar with Elastic's own upgra
 
 ## Review breaking changes
 
-* [Breaking Changes in Elasticsearch 7](https://www.elastic.co/guide/en/elastic-stack/7.0/elastic-stack-breaking-changes.html)
+* [Breaking Changes in Elasticsearch 7](https://www.elastic.co/guide/en/elastic-stack/7.0/elastic-stack-breaking-changes.html){:target="_blank"}
 * [Breaking Changes in Search Guard 7](changelog-searchguard-7-x-35_0_0)
 
 ## Prerequisites
@@ -57,7 +57,7 @@ During migration the REST management API will not work properly and should not b
 If you miss this step, your cluster can become uninitialized, which will result in downtime.
 {: .note .js-note .note-warning}
 
-Download standalone [sgadmin 7](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.17.28-53.10.0/search-guard-suite-plugin-7.17.28-53.10.0-sgadmin-standalone.zip) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run
+Download standalone [sgadmin 7](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.17.28-53.10.0/search-guard-suite-plugin-7.17.28-53.10.0-sgadmin-standalone.zip){:target="_blank"} and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run
 
 * `./sgadmin7/tools/sgadmin.sh -backup "./sgadmin7" <other parameters like -ks -cert etc>`
 
@@ -107,7 +107,7 @@ As long as this migration step is not completed, you cannot use the REST managem
 
 ## Demo roles and action groups
 
-If you use any of the Search Guard demo roles and/or actions groups in production, you should migrate them to the new built-in static [roles](#migrating-to-the-new-built-in-roles) and static [action groups](#migrating-to-the-new-built-in-action-groups).
+If you use any of the Search Guard demo roles and/or action groups in production, you should migrate them to the new built-in static [roles](#migrating-to-the-new-built-in-roles) and static [action groups](#migrating-to-the-new-built-in-action-groups).
 
 ## Upgrading Kibana
 
@@ -115,7 +115,7 @@ Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is comp
 
 ## Running in mixed mode: Limitations
 
-Elasticsearch and Search Guard support running your cluster in mixed mode, means with 6.8.x and 7.x nodes. This makes it possible to upgrade via rolling restart.
+Elasticsearch and Search Guard support running your cluster in mixed mode, that is, with 6.8.x and 7.x nodes. This makes it possible to upgrade via rolling restart.
 
 Running a cluster in mixed mode should only be done while upgrading from 6 to 7. It's not supposed to be a permanent situation, and you should aim to minimize the duration where a mixed cluster exists.
 
@@ -123,7 +123,7 @@ While running in mixed mode, the following limitations apply:
 
 ### Omit Search Guard configuration changes
 
-Search Guard 7 uses a new format for the Search Guard configuration index, and is also able to read and configuration indices created with Search Guard 6.
+Search Guard 7 uses a new format for the Search Guard configuration index, and is also able to read configuration indices created with Search Guard 6.
 
 While running in mixed mode, do not perform changes to the Search Guard configuration index.
 {: .note .js-note .note-warning}

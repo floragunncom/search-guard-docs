@@ -18,23 +18,23 @@ Copyright 2022 floragunn GmbH
 
 ## Configuration
 
-The Search Guard configuration underwent a major redesign. Many configuration options were moved from `elasticsearch.yml` to configuration files which are dynamically updatable using `sgctl`. Furthermore, a number of legacy configuration options was removed in order to simplify and streamline configuration.
+The Search Guard configuration underwent a major redesign. Many configuration options were moved from `elasticsearch.yml` to configuration files which are dynamically updatable using `sgctl`. Furthermore, a number of legacy configuration options were removed in order to simplify and streamline configuration.
 
 ##### Related:
 
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 ### Configuration variables
 
-Search Guard offers now a first-class mechanism for defining variables inside configuration. The variables can be updated at runtime using the `sgctl` tool. 
+Search Guard now offers a first-class mechanism for defining variables inside configuration. The variables can be updated at runtime using the `sgctl` tool. 
 
 The old environment variable substitution mechanism using the syntaxes `${env...}`, `${envbase64...}` or `${envbc...}` is deprecated and only supported for the legacy configuration file formats. It will be removed in the next major release.
 
 ##### Related:
 
 * [Documentation](configuration-password-handling)
-* [Merge Request: Infrastructure for storing configuration secrets](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/99)
-* [Merge Request: Extended SecretsService into a more general ConfigVarService](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/140)
+* [Merge Request: Infrastructure for storing configuration secrets](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/99){:target="_blank"}
+* [Merge Request: Extended SecretsService into a more general ConfigVarService](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/140){:target="_blank"}
 
 <a name="sg_license_key"></a>
 ###  License configuration
@@ -53,28 +53,28 @@ While earlier versions of Search Guard still worked with Search Guard 6 configur
 
 ##### Related:
 
-* [Upgrading from Search Guard 6 to Search Guard 7](https://docs.search-guard.com/7.x-51/upgrading-6-7)
-* [Merge Request: Removed support for Search Guard 6 configuration](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/134)
+* [Upgrading from Search Guard 6 to Search Guard 7](https://docs.search-guard.com/7.x-51/upgrading-6-7){:target="_blank"}
+* [Merge Request: Removed support for Search Guard 6 configuration](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/134){:target="_blank"}
 
 
 ## Authentication
 
 ### New configuration file
 
-The configuration for authentication has been moved from `sg_config.yml` to `sg_authc.yml` to authentication directly at Elasticsearch and `sg_frontend_authc.yml` for authentication at Kibana.
+The configuration for authentication has been moved from `sg_config.yml` to `sg_authc.yml` for authentication directly at Elasticsearch and `sg_frontend_authc.yml` for authentication at Kibana.
 
 Generally, `sg_authc.yml` offers a redesigned approach to authentication configuration, which offers functionality in a more flexible, streamlined and consistent manner.
 
 When using `sg_authc.yml`, you also get access to new implementations of authentication modules, which often offer more features and greater performance.
 
-In most cases, the conversion from `sg_config.yml` to the new config files can be automatically performed using the [sgctl migrate-config command]().
+In most cases, the conversion from `sg_config.yml` to the new config files can be automatically performed using the [sgctl migrate-config command](sg-classic-config-migration-quick#migrating-the-configuration).
 
 ##### Related:
 
 * [Documentation: sgctl migrate-config](sg-classic-config-migration-quick#migrating-the-configuration)
 * [Documentation: Authentication configuration](authentication-authorization-configuration)
 * [Documentation: Authentication configuration for Kibana](kibana-authentication-types)
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 
@@ -91,7 +91,7 @@ When using `sg_authc.yml`, you have access to a completely new LDAP authenticati
 ##### Related:
 
 * [Documentation: LDAP](active-directory-ldap)
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 ### JWT
@@ -104,28 +104,28 @@ Keys can be obtained from certificates, from JWKS, or dynamically from OIDC conf
 ##### Related:
 
 * [Documentation: JWT](json-web-tokens)
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 ### Proxy authentication
 
-The legacy auth modules `proxy` and `proxy2` have been unified into a new `trusted_origin` authentication frontend. The `cert` mode of the old `proxy2` auth module can be now achieved using the `clientcert` authentication frontend.   Like the other new authentication frontends, this new implementations are only available when using `sg_authc.yml`.  
+The legacy auth modules `proxy` and `proxy2` have been unified into a new `trusted_origin` authentication frontend. The `cert` mode of the old `proxy2` auth module can now be achieved using the `clientcert` authentication frontend.   Like the other new authentication frontends, these new implementations are only available when using `sg_authc.yml`.  
 
-The IPs of trusted origins can be now configured in `sg_authc.yml` in the property `network.trusted_proxies`. You can now use CIDR notation in order to define trusted networks.
+The IPs of trusted origins can now be configured in `sg_authc.yml` in the property `network.trusted_proxies`. You can now use CIDR notation in order to define trusted networks.
 
 ##### Related:
 
 * [Documentation: Proxy authentication](proxy-authentication)
 * [Documentation: Client certificate authentication](client-certificate-auth)
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 ### HTTP authentication challenges
 
-In older versions of Search Guard, only one auth domain could send an HTTP authentication challenge. Search Guard FLX now supports sending several authentication challenges at once. Thus, you do no longer have to think about which authentication domain should have an enabled `challenge` flag and which not. If absolutely necessary, you can still disable challenges for HTTP basic, JWT bearer and Kerberos authentication frontends using the `challenge` flags in the respective authentication frontend settings.
+In older versions of Search Guard, only one auth domain could send an HTTP authentication challenge. Search Guard FLX now supports sending several authentication challenges at once. Thus, you no longer have to think about which authentication domain should have an enabled `challenge` flag and which not. If absolutely necessary, you can still disable challenges for HTTP basic, JWT bearer and Kerberos authentication frontends using the `challenge` flags in the respective authentication frontend settings.
 
 ##### Related:
 
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 ### Debug mode
@@ -143,12 +143,12 @@ The Search Guard authentication components now collect some performance metrics 
 
 ##### Related:
 
-* [Merge Request: Metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/200)
+* [Merge Request: Metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/200){:target="_blank"}
 
 
 ### User cache configuration
 
-The purpose of the user cache is to cache the results of authentication backends; thus, it can make authentication fasted because fewer network roundtrips are necessary during authentication. In older Search Guard versions, the expiration time of users cached in the user cache was configured using the setting `searchguard.cache.ttl_minutes` in `elasticsearch.yml`. This setting was moved now to `sg_authc.yml` and looks like this:
+The purpose of the user cache is to cache the results of authentication backends; thus, it can make authentication faster because fewer network roundtrips are necessary during authentication. In older Search Guard versions, the expiration time of users cached in the user cache was configured using the setting `searchguard.cache.ttl_minutes` in `elasticsearch.yml`. This setting has now been moved to `sg_authc.yml` and looks like this:
 
 ```
 auth_domains:
@@ -159,23 +159,23 @@ user_cache:
   max_size: 1000
 ```
 
-Besides the configuration location, the default values have been changed. If you do not specify any user cache configuration, Search Guard will keep users for 2 minutes in its cache. Additionally, the cache is limited to 1000 entries. Before FLX, Search Guard would keep users cached for 1 our by default. The cache size was unlimited.
+Besides the configuration location, the default values have been changed. If you do not specify any user cache configuration, Search Guard will keep users for 2 minutes in its cache. Additionally, the cache is limited to 1000 entries. Before FLX, Search Guard would keep users cached for 1 hour by default. The cache size was unlimited.
 
 You can retrieve metrics for the user cache using `sgctl component-state`.
 
 ##### Related:
 
 * [Documentation: User cache settings](authc-advanced-options#user-cache-settings)
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
     
 ### Removed transport client authentication
 
-Search Guard FLX no longer supports authentication with the deprecated transport client. The only exception are transport clients authenticated by admin certificates, which are still supported for Elasticsearch 7.x.
+Search Guard FLX no longer supports authentication with the deprecated transport client. The only exception is transport clients authenticated by admin certificates, which are still supported for Elasticsearch 7.x.
 
 ##### Related:
 
-* [Merge Request: Removed transport client authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/222)
+* [Merge Request: Removed transport client authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/222){:target="_blank"}
     
     
 ## Authentication for Kibana
@@ -198,14 +198,14 @@ See the documentation for details on the functionality.
 
 * [Documentation: Migrating the configuration](sg-classic-config-migration-quick)
 * [Documentation: Kibana authentication](kibana-authentication-types)
-* [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/71)
-* [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/742)
+* [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/71){:target="_blank"}
+* [Merge Request: Support for session based authentication from the Kibana plugin](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/742){:target="_blank"}
 
 ### Kerberos
 
 When using Kerberos with Kibana, Search Guard will now only authenticate the first request using Kerberos and then create a session. 
 
-If you have configured Kibana with an external monitoring cluster (using the settings `monitoring.ui.elasticsearch.*´), you will need additional configuration on the monitoring cluster. This is necessary because the monitoring cluster will need to use sessions managed by the main cluster in order to authenticate Kibana users. 
+If you have configured Kibana with an external monitoring cluster (using the settings `monitoring.ui.elasticsearch.*`), you will need additional configuration on the monitoring cluster. This is necessary because the monitoring cluster will need to use sessions managed by the main cluster in order to authenticate Kibana users. 
 
 See the documentation for details.
 
@@ -214,15 +214,15 @@ See the documentation for details.
 ##### Related:
 
 * [Documentation: Kerberos authentication for Kibana](kibana-authentication-kerberos)
-* [Merge Request: Let Kerberos authenticated request also start a session](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/781)
-* [Merge Request: New API for creating sessions working on normal authenticated requests ](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/196)
-* [Merge Request: Kerberos authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/184)
+* [Merge Request: Let Kerberos authenticated request also start a session](https://git.floragunn.com/search-guard/search-guard-kibana-plugin/-/merge_requests/781){:target="_blank"}
+* [Merge Request: New API for creating sessions working on normal authenticated requests ](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/196){:target="_blank"}
+* [Merge Request: Kerberos authentication](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/184){:target="_blank"}
 
 ## Authorization
 
 ### More efficient permission resolution
 
-In most cases, privileges can be now evaluated in *constant time*. Earlier versions of Search Guard had linear or even quadratic complexity, depending on number of roles and indices. This is achieved by a number of different techniques:
+In most cases, privileges can now be evaluated in *constant time*. Earlier versions of Search Guard had linear or even quadratic complexity, depending on the number of roles and indices. This is achieved by a number of different techniques:
 
 - The mapping from backend roles to Search Guard roles is performed using trie data structures
 - Index and action name patterns are resolved in advance against all indices in the cluster and a list of well-known actions
@@ -230,35 +230,35 @@ In most cases, privileges can be now evaluated in *constant time*. Earlier versi
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
-* [Merge Request: Moved to trie-based codova Pattern impl](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/210)
-* [Merge Request: Optimized action group resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/147)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}
+* [Merge Request: Moved to trie-based codova Pattern impl](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/210){:target="_blank"}
+* [Merge Request: Optimized action group resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/147){:target="_blank"}
 
 
 ### Handling of unauthorized indices
 
 The `do_not_fail_on_forbidden` mode has been replaced by `ignore_unauthorized` mode with refined semantics. This mode is now active by default. 
 
-We **strongly recommend** to follow the new default and keep `ignore_unauthorized` active. Generally, there should be only very few reasons to disable this setting. 
+We **strongly recommend** following the new default and keep `ignore_unauthorized` active. Generally, there should be only very few reasons to disable this setting. 
 
 See the documentation links below for the behavior in the different modes.
 
 ##### Effects of disabling `ignore_unauthorized` 
 
-If you choose to disable `ignore_unauthorized`, you might need further action in order to make queries with wildcards (like `/_search/_all`) to work. This is necessary because legacy Search Guard
+If you choose to disable `ignore_unauthorized`, you might need further action in order to make queries with wildcards (like `/_search/_all`) work. This is necessary because legacy Search Guard
 versions created the `searchguard` index, which is non-hidden and thus also matched by wildcards. If you disable `ignore_unauthorized` and still have the `searchguard` index, any wildcard query matching the `searchguard` index will fail with a 403 Forbidden error, because normal users are not allowed to access the `searchguard` index, and - as `ignore_unauthorized`  is disabled - it is no longer ignored. 
 
-We then recommend to migrate the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achieve this.
+We then recommend migrating the `searchguard` index to a hidden index, i.e., `.searchguard`. Search Guard provides special tooling and a special process to achieve this.
 
 ##### Related:
 
 * [Documentation: Runtime index privilege evaluation](authorization-runtime-index-privilege-evaluation)
 * [Documentation: Index name migration](search-guard-index-maintenance#index-name-migration)
-* [Merge Request: New approach at privilege evaluation for indices with focus on DNFOF mode.](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/146)
-* [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
-* [Merge Request: Added more action eligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220)
-* [Merge Request: Infrastructure for migration to new .searchguard index name](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/212)
-* [Merge Request: sgctl special mode-sg-index](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/33)
+* [Merge Request: New approach at privilege evaluation for indices with focus on DNFOF mode.](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/146){:target="_blank"}
+* [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209){:target="_blank"}
+* [Merge Request: Added more action eligible for ignore_unauthorized_indices](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/220){:target="_blank"}
+* [Merge Request: Infrastructure for migration to new .searchguard index name](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/212){:target="_blank"}
+* [Merge Request: sgctl special mode-sg-index](https://git.floragunn.com/search-guard/sgctl/-/merge_requests/33){:target="_blank"}
 
 ### User attributes
 
@@ -289,39 +289,39 @@ Negated patterns must come after the patterns that should be restricted by the n
 ##### Related:
 
 
-* [Merge Request: Moved to trie-based codova Pattern impl](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/210)
+* [Merge Request: Moved to trie-based codova Pattern impl](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/210){:target="_blank"}
 
 
 ### Assigning privileges to aliases
 
-Due to performance reasons, privileges cannot be assigned to aliases any longer. Privileges must be always assigned to actual indices. 
+Due to performance reasons, privileges cannot be assigned to aliases any longer. Privileges must always be assigned to actual indices. 
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}
 
-### Seperate config attribute for IPs-based role mapping
+### Separate config attribute for IPs-based role mapping
 
-Older versions of Search Guard allowed to specify both IPs and host names in the `hosts` attribute of `sg_role_mapping.yml`. This created the issue that a reverse DNS lookup was necessary when this attribute was in use; this again could be controlled by the `hosts_resolver_mode` setting. 
+Older versions of Search Guard allowed specifying both IPs and host names in the `hosts` attribute of `sg_role_mapping.yml`. This created the issue that a reverse DNS lookup was necessary when this attribute was in use; this again could be controlled by the `hosts_resolver_mode` setting. 
 
 Search Guard FLX introduces a new `ip` attribute in `sg_role_mapping.yml`, which supports CIDR based matching and will never trigger reverse DNS lookups. 
 
 
 ##### Related:
 
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 ### General authorization settings
 
 The new configuration file `sg_authz.yml` contains a number of general configuration options for authorization; you can update the settings during cluster runtime using the `sgctl` tool. A number
-of these configuration options was found before in `elasticsearch.yml`; thus, any changes to these options required a cluster restart.
+of these configuration options were previously found in `elasticsearch.yml`; thus, any changes to these options required a cluster restart.
 
 - `searchguard.roles_mapping_resolution` was moved  from `elasticsearch.yml` to `sg_authz.yml`. It is now called `role_mapping.resolution_mode`. You need to remove the setting from `elasticsearch.yml` before starting FLX.
 
 
 ##### Related:
 
-* [Merge Request: Cleaned up settings of privileges evaluator](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/215)
+* [Merge Request: Cleaned up settings of privileges evaluator](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/215){:target="_blank"}
 
 ### Debug mode for authorization
 
@@ -334,7 +334,7 @@ You can enable a special debug mode for authorization by setting the `sg_authz.y
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}
 
 
 ### Removed the `multi_rolespan_enabled` setting
@@ -345,7 +345,7 @@ rather just a legacy item.
 
 ##### Related:
 
-* [Merge Request: Removed the `multi_rolespan_enabled` setting](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/148)
+* [Merge Request: Removed the `multi_rolespan_enabled` setting](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/148){:target="_blank"}
 
 ### DLS/FLS/Field anonymization
 
@@ -353,11 +353,11 @@ Search Guard FLX comes with a revised implementation for DLS/FLS and field anony
 
 - Uses a more efficient model for evaluating DLS/FLS/FM permissions. The permissions are now evaluated directly on the shards. Before, the permissions were evaluated up-front and written as a huge blob in a request header.
 - The combination of several roles with FLS or FM rules will always create the union of permissions - i.e., the allowed fields never shrink, they can only grow.
-- FLS now allows to mix inclusions and exclusions using well-defined semantics. Using rules like `a*`, `~ab*` will allow the access to all attributes starting with `a`, but - as an exception - accessing attributes starting with `ab`will be not possible.
+- FLS now allows mixing inclusions and exclusions using well-defined semantics. Using rules like `a*`, `~ab*` will allow the access to all attributes starting with `a`, but - as an exception - accessing attributes starting with `ab` will not be possible.
 - Source documents subject to FLS and FM are now filtered using a streaming parser, which makes processing significantly faster.
-- Most DLS/FLS/FM config attributes which were only available in elasticsearch.yml have been now moved to sg_authz_dlsfls.yml and can be modified during runtime.
+- Most DLS/FLS/FM config attributes which were only available in elasticsearch.yml have now been moved to sg_authz_dlsfls.yml and can be modified during runtime.
 
-**Note:** By default the new implementation is inactive, because it can be only used if all nodes of the cluster have finished the migration to Search Guard FLX. After you have completed the migration, you can activate the new implementation by creating/editing `sg_authz_dlsfls.yml` and setting the attribute `use_impl` to `flx`. 
+**Note:** By default the new implementation is inactive, because it can only be used if all nodes of the cluster have finished the migration to Search Guard FLX. After you have completed the migration, you can activate the new implementation by creating/editing `sg_authz_dlsfls.yml` and setting the attribute `use_impl` to `flx`. 
 
 **Note:** The hashing parameters for the new implementation of field masking have changed. Thus, when switching to the new implementation, the value of hashed fields changes.
 
@@ -366,35 +366,35 @@ Search Guard FLX comes with a revised implementation for DLS/FLS and field anony
 * [Documentation: DLS](document-level-security)
 * [Documentation: FLS](field-level-security)
 * [Documentation: Field anonymization](field-anonymization)
-* [Merge Request: New DLS/FLS implementation](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/223)
+* [Merge Request: New DLS/FLS implementation](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/223){:target="_blank"}
 
 
 
 ### Configurable admin-only actions and indices
 
-Search Guard now allows to configure actions and indices which can be **only** used by users authenticated by an admin certificate. 
+Search Guard now allows configuring actions and indices which can be **only** used by users authenticated by an admin certificate. 
 
 Search Guard uses these configuration options by itself to restrict the access to the internal `searchguard` and `.searchguard_*` indices, and to restrict access to the low-level configuration REST APIs used by `sgctl`. 
 
 Both options are contained in `elasticsearch.yml`:
 
-**searchguard.admin_only_actions:** Actions that can be only used by users authenticated with an admin certificate. A list of patterns. Default: `cluster:admin:searchguard:config/*`, `cluster:admin:searchguard:internal/*`
+**searchguard.admin_only_actions:** Actions that can only be used by users authenticated with an admin certificate. A list of patterns. Default: `cluster:admin:searchguard:config/*`, `cluster:admin:searchguard:internal/*`
 
-**searchguard.admin_only_indices:** Indices that can be only used by users authenticated with an admin certificate. A list of patterns. Default: `searchguard`, `.searchguard_*`, `.signals_watches*`, `.signals_accounts`, `.signals_settings`
+**searchguard.admin_only_indices:** Indices that can only be used by users authenticated with an admin certificate. A list of patterns. Default: `searchguard`, `.searchguard_*`, `.signals_watches*`, `.signals_accounts`, `.signals_settings`
 
 **Note:** These are low-level settings which are not necessary for normal use.
 
 ##### Related:
 
-* [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209)
+* [Merge Request: Replace SearchGuardIndexAccessEvaluator functionality by ignore_unauthorized_indices handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/209){:target="_blank"}
 
 ### Filtered alias settings
 
-The warnings logged by Search Guard regarding filtered aliases usually went unnoticed in the logs and were not really helpful for the user. This. Search Guard no longer warns about filtered alias settings.
+The warnings logged by Search Guard regarding filtered aliases usually went unnoticed in the logs and were not really helpful for the user. Search Guard no longer warns about filtered alias settings.
 
 ##### Related:
 
-* [Merge Request: Removed filtered alias handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/97)
+* [Merge Request: Removed filtered alias handling](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/97){:target="_blank"}
 
 
 ### Snapshot/restore privilege configuration
@@ -404,18 +404,18 @@ make sure that only admin users can execute restore operations, you can use the 
 
 ##### Related:
 
-* [Merge Request: Cleaned up settings of privileges evaluator](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/215)
+* [Merge Request: Cleaned up settings of privileges evaluator](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/215){:target="_blank"}
 
 
 ### Privileges
 
 #### Templated search privileges
 
-The `indices:data/read/search/template` and `indices:data/read/msearch/template` privileges must be now specified as cluster privileges. The actual search privileges must be defined for `indices:data/read/search`.
+The `indices:data/read/search/template` and `indices:data/read/msearch/template` privileges must now be specified as cluster privileges. The actual search privileges must be defined for `indices:data/read/search`.
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}
 
 ### Kibana Multi-Tenancy
 
@@ -424,14 +424,14 @@ The Multi-Tenancy configuration from `sg_config.yml` was moved to a separate fil
 
 ##### Related:
 
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 Users with the `SGS_KIBANA_USER` role automatically get write access to the default tenant. If this is not wanted, you need to use privilege exclusion or use the role `SGS_KIBANA_USER_NO_DEFAULT_TENANT` instead of `SGS_KIBANA_USER`.
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}
 
 
 ## Miscellaneous
@@ -480,7 +480,7 @@ This is no longer necessary. If you enable the auth tokens in `sg_auth_token_ser
 
 ##### Related:
 
-* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162)
+* [Merge Request: New config scheme](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/162){:target="_blank"}
 
 
 ### Metrics
@@ -489,17 +489,17 @@ Search Guard now collects metrics for various information in the cluster. The co
 
 ##### Related:
 
-* [Merge Request: Metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/200)
-* [Merge Request: Track non-well-known actions in metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/216)
+* [Merge Request: Metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/200){:target="_blank"}
+* [Merge Request: Track non-well-known actions in metrics](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/216){:target="_blank"}
 
 
 ### OpenSSL configuration options
 
-Support for OpenSSL was removed from Search Guard already quite a while a go. Now, also the configuration options - which were just ignored in the meantime - have been also removed. Thus, if you have any `searchguard` settings in `elasticsearch.yml` mentioning `openssl`, you need to remove these.
+Support for OpenSSL was removed from Search Guard already quite a while ago. Now, also the configuration options - which were just ignored in the meantime - have been also removed. Thus, if you have any `searchguard` settings in `elasticsearch.yml` mentioning `openssl`, you need to remove these.
 
 ##### Related:
 
-* [Merge Request: Removed OpenSSL support code](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/110)
+* [Merge Request: Removed OpenSSL support code](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/110){:target="_blank"}
 
 ### Removed Kafka audit logging sink
 
@@ -507,7 +507,7 @@ The Kafka audit logging sink was an undocumented experiment. For security reason
 
 ##### Related:
 
-* [Merge Request: Removed Kafka audit logging sink](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/178)
+* [Merge Request: Removed Kafka audit logging sink](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/178){:target="_blank"}
 
 ### Removed user injection functionality
 
@@ -515,20 +515,20 @@ User injection was a niche feature; no use of it is known any more.
 
 ##### Related:
 
-* [Merge Request: Removed user injection functionality](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/163)
+* [Merge Request: Removed user injection functionality](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/163){:target="_blank"}
 
 ### No support for custom authentication modules
 
-Custom authentication modules are no longer supported by Search Guard FLX
+Custom authentication modules are no longer supported by Search Guard FLX.
 
 ### Removed multiple roles and document-level security configuration
 
 The setting `searchguard.dfm_empty_overrides_all` has been deprecated. Search Guard now always behaves like it is set to true.
 
-A user can be member of more than one role, and each role can potentially define a different DLS query for the same index. A standard behaviour is that all DLS queries are collected and combined with `OR`.
+A user can be a member of more than one role, and each role can potentially define a different DLS query for the same index. The standard behaviour is that all DLS queries are collected and combined with `OR`.
 
-Meanwhile if a role does not define DLS query, it grants the user access to all documents. This means that the role overrides and removes any restrictions and overrides all the other roles. The alternative behaviour was rarely needed and used and thus removed from Search Guard FLX.
+Meanwhile, if a role does not define a DLS query, it grants the user access to all documents. This means that the role overrides and removes any restrictions and overrides all the other roles. The alternative behaviour was rarely needed and used and thus removed from Search Guard FLX.
 
 ##### Related:
 
-* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177)
+* [Merge Request: Optimized permission resolution](https://git.floragunn.com/search-guard/search-guard-suite-enterprise/-/merge_requests/177){:target="_blank"}

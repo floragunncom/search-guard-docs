@@ -18,19 +18,19 @@ Copyright 2026 floragunn GmbH
 Upgrading Search Guard can be combined with an upgrade of Elasticsearch but can also be performed without it.
 
 For upgrading Search Guard, regardless of major, minor or patch versions, read the [changelogs](changelogs-searchguard)
-first in case the target version does introduce breaking changes.
+first in case the target version introduces breaking changes.
 
-If Elasticsearch or Kibana is upgraded too, refer to the [Elasticsearch/Kibana release notes](https://www.elastic.co/docs/release-notes/elasticsearch) and [upgrade instructions](https://www.elastic.co/docs/deploy-manage/upgrade/prepare-to-upgrade) and make sure to follow their recommendations as well.
+If Elasticsearch or Kibana is upgraded too, refer to the [Elasticsearch/Kibana release notes](https://www.elastic.co/docs/release-notes/elasticsearch){:target="_blank"} and [upgrade instructions](https://www.elastic.co/docs/deploy-manage/upgrade/prepare-to-upgrade){:target="_blank"} and make sure to follow their recommendations as well.
 
-Search Guard as well as Elasticsearch version number scheme follow [semantic versioning (SemVer)](https://semver.org/).
-Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patch versions is [described here](upgrading)
+The Search Guard and Elasticsearch version number schemes both follow [semantic versioning (SemVer)](https://semver.org/){:target="_blank"}.
+Upgrading Elasticsearch (and therefore Search Guard) over minor versions or patch versions is [described here](upgrading).
 
-- The recommended general upgrade path over **major versions** for Elasticsearch is 7.17.x -> 8.19.x -> 9.x.x and can be performed as a [rolling upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html).
+- The recommended general upgrade path over **major versions** for Elasticsearch is 7.17.x -> 8.19.x -> 9.x.x and can be performed as a [rolling upgrade](https://www.elastic.co/guide/en/elasticsearch/reference/current/rolling-upgrades.html){:target="_blank"}.
 - When on 8.19.x indices might need to be reindexed (see Search Guard Upgrade Tool)
 - The recommended upgrade path for Search Guard depends on a few questions:
-  - a) In case Kibana Multitenancy or DLS/FLS or Field Masking (or both) is used the upgrade path needs to be 
+  - a) In case Kibana Multitenancy or DLS/FLS or Field Masking (or any combination of them) is used the upgrade path needs to be 
        7.17.28-53.10.0 -> 7.17.28-1.6.0 -> 8.7.1-1.6.0 -> 8.19.19-4.1.2 -> 9.x.x-4.x.x
-  - b) It's also possible to skip the 7.17.28-1.6.0 step and go directly from 7.17.28-53.10.0 to 8.7.1-1.6.0 in case less testing is toleratable
+  - b) It's also possible to skip the 7.17.28-1.6.0 step and go directly from 7.17.28-53.10.0 to 8.7.1-1.6.0 in case less testing is tolerable
   - c) In case neither Kibana Multitenancy nor DLS/FLS nor Field Masking is used the upgrade path can be shortened to be
        7.17.28-53.10.0 -> 8.19.6-3.1.3 -> 9.x.x-4.x.x
   
@@ -42,22 +42,22 @@ For a detailed manual refer to
 - Special [Multi-Tenancy related upgrade instructions](sg-200-upgrade) for upgrading from FLX 1.x.x to 2.x.x or later
 
 Kibana must always be upgraded after Elasticsearch (unless advised differently), and to the same version. Please note that rolling upgrades are unsupported in Kibana.
-See [Upgrade Kibana](https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/kibana) for more information.
+See [Upgrade Kibana](https://www.elastic.co/docs/deploy-manage/upgrade/deployment-or-cluster/kibana){:target="_blank"} for more information.
 
 ## Search Guard Upgrade Tool (Experimental)
 
 This tool can be used to reindex Search Guard indices. It is experimental and should only be used as advised by your support engineer.
 
-- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh)
-- [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md)
+- [Download here](https://maven.search-guard.com/search-guard-flx-release/com/floragunn/sg-upgrade-tool/{{ site.sg-upgrade-tool }}/sg-upgrade-tool-{{ site.sg-upgrade-tool }}.sh){:target="_blank"}
+- [Read the Documentation](https://git.floragunn.com/search-guard/sg-upgrade-tool/-/blob/main/README.md){:target="_blank"}
 
-Please refer also to our Blog Post [Upgrading to Elasticsearch 9: Why your read-only 7.x indices still block the boot](https://search-guard.com/blog/upgrading-to-elasticsearch-9-why-your-read-only-7-x-indices-still-block-the-boot/)
+Please refer also to our Blog Post [Upgrading to Elasticsearch 9: Why your read-only 7.x indices still block the boot](https://search-guard.com/blog/upgrading-to-elasticsearch-9-why-your-read-only-7-x-indices-still-block-the-boot/){:target="_blank"}
 
 ---
 
 ## Detailed Search Guard version timeline
 
-Detailed timeline of how Search Guard features versions and evolved.
+Detailed timeline of how Search Guard features and versions evolved.
 
 ### Legend
 
@@ -148,9 +148,9 @@ Not Search Guard events, but they constrain the path.
 
 | Gate | Constraint | Documented in |
 |---|---|---|
-| ES 7.17 → 8.x | Requires **ES 7.17.x or later and SG FLX 1.0.0 or later**. *"Upgrading from Search Guard classic (i.e., Search Guard versions 53 and before) is not supported."* | [sg-upgrade-7-8](https://docs.search-guard.com/latest/sg-upgrade-7-8) |
-| ES / Kibana 8.8.0 | *"Upgrading Elasticsearch and Kibana to 8.8.0 implies also upgrading Search Guard FLX plugin to at least version 2.0.0"* | [upgrading](https://docs.search-guard.com/latest/upgrading) |
-| Kibana 8.8.0+ | Adds `.kibana_analytics`, `.kibana_ingest`, `.kibana_security_solution`, `.kibana_alerting_cases` — widen the backup scope | [sg-200-upgrade](https://docs.search-guard.com/latest/sg-200-upgrade) |
-| ES 8.19 → 9.x | Requires **ES 8.19.x or later and SG FLX 3.1.2 or later**. ES 8.19 is the last 8.x minor, so it is a mandatory waypoint | [sg-upgrade-8-9](https://docs.search-guard.com/latest/sg-upgrade-8-9) |
+| ES 7.17 → 8.x | Requires **ES 7.17.x or later and SG FLX 1.0.0 or later**. *"Upgrading from Search Guard classic (i.e., Search Guard versions 53 and before) is not supported."* | [sg-upgrade-7-8](sg-upgrade-7-8) |
+| ES / Kibana 8.8.0 | *"Upgrading Elasticsearch and Kibana to 8.8.0 implies also upgrading Search Guard FLX plugin to at least version 2.0.0"* | [upgrading](upgrading) |
+| Kibana 8.8.0+ | Adds `.kibana_analytics`, `.kibana_ingest`, `.kibana_security_solution`, `.kibana_alerting_cases` — widen the backup scope | [sg-200-upgrade](sg-200-upgrade) |
+| ES 8.19 → 9.x | Requires **ES 8.19.x or later and SG FLX 3.1.2 or later**. ES 8.19 is the last 8.x minor, so it is a mandatory waypoint | [sg-upgrade-8-9](sg-upgrade-8-9) |
 | Mixed clusters | Supported for 7.17 ↔ 8.x and 8.19 ↔ 9.x, **with FLX on both sides**, and only for the duration of the upgrade | sg-upgrade-7-8, sg-upgrade-8-9 |
 

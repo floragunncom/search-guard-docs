@@ -16,7 +16,7 @@ Copyright 2022 floragunn GmbH
 
 If you have an existing cluster running Search Guard 53 or earlier, you need to migrate your configuration. 
 
-The easiest way to do so is to use the `sgctl` command which can automatically convert most configurations. We provide you the necessary instructions to perform the update in the following sections:
+The easiest way to do so is to use the `sgctl` command which can automatically convert most configurations. We provide the necessary instructions to perform the update in the following sections:
 
 **[Quick Start](sg-classic-config-migration-quick):** If you want to quickly shoot up a new test cluster using a migrated configuration, follow this guide.
 
@@ -25,7 +25,7 @@ The easiest way to do so is to use the `sgctl` command which can automatically c
 
 ## Advanced Topics
 
-For some advanced configurations, automatic conversion might be not available. 
+For some advanced configurations, automatic conversion might not be available. 
 
-**[Feature Map](config-migration-feature-map):** For reference, we provide you an overview which describes how the classic authentication features map to the new authentication features.
+**[Feature Map](config-migration-feature-map):** For reference, we provide an overview that describes how the classic authentication features map to the new authentication features.
 
