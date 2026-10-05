@@ -46,8 +46,10 @@ Check the [Versions and Compatibility](search-guard-versions-compatibility) sect
 
 If upgrading an existing installation or migrating from classic Search Guard, see [Upgrades and Migrations](search-guard-upgrades):
 - **[Upgrading Between Minor Versions](upgrading)** - Standard upgrade process
-- **[Upgrading from FLX 1.x to 2.x](sg-200-upgrade)** - Major version upgrade guide
-- **[Upgrading from 7.x to 8.x](sg-upgrade-7-8)** - Cross-major version upgrade
+- **[Upgrading from 6.x to 7.x](sg-upgrade-6-7)** - Cross-major ES version upgrade (SG Classic Only!)
+- **[Upgrading from 7.x to 8.x](sg-upgrade-7-8)** - Cross-major ES version upgrade (Might imply an upgrade from Search Guard Classic to FLX)
+- **[Upgrading from 8.x to 9.x](sg-upgrade-8-9)** - Cross-major ES version upgrade (SG FLX Only!)
+- **[Upgrading from FLX 1.x to 2.x or higher](sg-200-upgrade)** - Major SG version upgrade guide with special Multi-Tenancy related upgrade instructions
 - **[Migrating from Classic to FLX](search-guard-migration)** - Migration from pre-FLX versions
 
 ## Prerequisites

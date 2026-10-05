@@ -40,6 +40,7 @@ Example:
 ```yaml
 MY_ACTION_GROUP:
   reserved: false
+  type: "index"
   allowed_actions:
     - "indices:data/read/search*"
     - "indices:data/read/msearch*"
@@ -118,11 +119,13 @@ You can define your own action groups in `sg_action_groups.yml`. You can use any
 
 ```yaml
 MY_ACTION_GROUP:
+  type: "index"
   allowed_actions:
     - "indices:data/read/search*"
     - "indices:data/read/msearch*"
     - MY_OTHER_ACTION_GROUP
 MY_OTHER_ACTION_GROUP:
+  type: "index"
   allowed_actions:
     - "indices:data/read/suggest*"
 ```

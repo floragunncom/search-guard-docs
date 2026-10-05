@@ -71,6 +71,10 @@ Release Date: 2024-05-15
 
 Release Date: 2024-02-05
 
+### [Search Guard 7.x-53.10.0](changelog-searchguard-7x-53_10_0)
+
+Release Date: 2024-09-06
+
 ### [Search Guard 7.x-53.9.0](changelog-searchguard-7x-53_9_0)
 
 Release Date: 2024-01-24

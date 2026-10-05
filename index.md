@@ -109,7 +109,7 @@ Automatically detect anomalies and outliers in your time-series data using machi
 - [Demo Installer](demo-installer) - Quick test installation for your local system
 - [Using sgctl](sgctl) - Command-line administration tool
 - [Configuration Variables](configuration-password-handling) - Secure credential management
-- [Migrating from Search Guard 53](sg-classic-config-migration-quick) - Migration guide
+- [Migrating from Search Guard Classic/53](sg-classic-config-migration-quick) - Migration guide
 - [Release Notes](changelog-searchguard-flx-1_0_0) - Latest changes and updates
 
 ## Feedback

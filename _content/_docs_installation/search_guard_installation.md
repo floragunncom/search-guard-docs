@@ -18,7 +18,7 @@ Copyright 2022 floragunn GmbH
 
 {% include toc.md %}
 
-<span style="color:red">If you are upgrading from older SG FLX versions to SG FLX 2.0.0 or higher, please review the [upgrade guide](sg-200-upgrade). If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads)</span>
+<span style="color:red">If you are upgrading from older SG FLX versions to SG FLX 2.0.0 or higher, please review the [upgrade guide](sg-200-upgrade). If you're using Helm Charts make sure to follow the [Helm upgrade guide](https://git.floragunn.com/search-guard/search-guard-flx-helm-charts/-/blob/main/docs/sg-2x-upgrade.md?ref_type=heads){:target="_blank"}</span>
 {: .note .js-note .note-warning}
 
 This chapter describes the steps to install and initialize Search Guard manually. If you just want to try out Search Guard or set up a quick PoC, follow the **[Quickstart Guide](demo-installer)**. 
@@ -33,7 +33,7 @@ If you just want to use the free Community Edition, install Search Guard Enterpr
 
 ### Ensure that your Java Virtual Machine is supported
 
-* We support the same JVM versions and vendors listed here: [Support Matrix](https://www.elastic.co/de/support/matrix#matrix_jvm)
+* We support the same JVM versions and vendors listed here: [Support Matrix](https://www.elastic.co/de/support/matrix#matrix_jvm){:target="_blank"}
 * There is **no** support for IBM VM and Azul Zing
 
 ### Generate all required TLS certificates
@@ -42,7 +42,7 @@ Make sure you have TLS certificates for all nodes and at least one admin certifi
 
 If this is not the case, you have the following options to generate certificates:
 
-* Use the [Search Guard demo installation script](demo-installer)  (not safe for production)
+* Use the [Search Guard demo installation script](demo-installer) (not safe for production)
 * Use the [Offline TLS Tool](offline-tls-tool) (safe for production)
 * Create a CSR and send it to your existing PKI infrastructure, if any (safe for production)
 * Using tools like OpenSSL and/or keytool (safe for production)
@@ -171,7 +171,7 @@ searchguard.ssl.http.pemkey_password: <key_password (optional)>
 searchguard.ssl.http.pemtrustedcas_filepath: <path_to_http_root_ca>
 ```
 
-You can use the same certificates on the transport and on the REST layer. For production systems, we recommend to use individual certificates.
+You can use the same certificates on the transport and on the REST layer. For production systems, we recommend using individual certificates.
 
 ## Optional: Enable the REST management API
 
@@ -195,7 +195,7 @@ After the cluster is up again, re-enable shard allocation so that the Search Gua
 
 ## Initializing Search Guard
 
-All settings regarding users, roles, permissions and authentication methods are stored in an Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reasons. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
+All settings regarding users, roles, permissions and authentication methods are stored in a Search Guard index on Elasticsearch. By default, this index is not populated automatically for security reasons. Search Guard propagates a "Security First" mantra, so no default users or passwords are applied by default.
 
 You initialize Search Guard by using the [sgctl command line tool](sgctl) with the admin certificate configured by the `searchguard.authcz.admin_dn` configuration key. This has to be performed at least once to tell Search Guard which [authentication modules](authentication-authorization-configuration) to use.
 

@@ -12,7 +12,7 @@ Copyright 2022 floragunn GmbH
 
 # Feature Map: Legacy config to new-style config
 
-This section serves as a reference by config file and config name how the classic authentication features map to the new authentication features.
+This section serves as a reference, by config file and config name, for how the classic authentication features map to the new authentication features.
 
 **Note:** You do not have to manually apply the changes listed here. You can use the `sgctl migrate-config` command. 
 
@@ -28,7 +28,7 @@ This section serves as a reference by config file and config name how the classi
 |`dynamic.license` | Property `license` in `sg_license_key.yml` | |
 |`dynamic.filtered_alias_mode` |  No longer supported | Search Guard no longer restricts the use of filtered aliases |
 |`dynamic.multi_rolespan_enabled` | No longer supported | Multi-rolespan is now always active |
-|`dynamic.hosts_resolver_mode` | No longer necessary | Search Guard will automatically lookup host names when any are specified in `sg_roles_mapping.yml`. Lookups can be avoided by specifying IP addresses in the new `ip` attribute in `sg_roles_mapping.yml`. |
+|`dynamic.hosts_resolver_mode` | No longer necessary | Search Guard will automatically look up host names when any are specified in `sg_roles_mapping.yml`. Lookups can be avoided by specifying IP addresses in the new `ip` attribute in `sg_roles_mapping.yml`. |
 |`dynamic.http.anonymous_auth_enabled` | Authentication domain of type `anonymous` in `sg_authc.yml` | See [Anonymous authentication](anonymous-authentication) |
 |`dynamic.http.xff.internalProxies` | Property `network.trusted_proxies` in `sg_authc.yml` | While `xff.internalProxies` expects a regular expression, you can specify subnets in  `network.trusted_proxies` using CIDR expressions. See also [IP addresses of users behind proxies](authentication-authorization-configuration#ip-addresses-of-users-behind-proxies). 
 |`dynamic.http.xff.remoteIpHeader` | Property `network.http.remote_ip_header` in `sg_authc.yml` | |
@@ -60,7 +60,7 @@ The authentication domain settings have been combined with the authorization dom
 |`http_authenticator.type` | First part of the `type` property of an auth domain in `sg_authc.yml` |  |
 |`http_authenticator.challenge` | No longer necessary | Search Guard will combine challenges if necessary |
 |`http_authenticator.config` | The new property is named after the type of the authentication frontend |  |
-|`authentication_backend.type` | Second part of the `type` property of an auth domain in `sg_authc.yml`. | If the `type` was `noop`, this can be now omitted. |
+|`authentication_backend.type` | Second part of the `type` property of an auth domain in `sg_authc.yml`. | If the `type` was `noop`, this can now be omitted. |
 |`authentication_backend.config` | The new property is named after the type of the authentication backend |  |
 
 
@@ -97,7 +97,7 @@ The `proxy` authenticator has been replaced by the `trusted_origin` authenticati
 
 ### `http_authenticator` of type `proxy2`
 
-The `proxy2` authenticator in mode `ip` has been replaced by the `trusted_origin` authentication frontend. The mode `cert` has been replaced by the `clientcert` authenticator. The mode `either` can be achieved with using two different authentication domain. The mode `both` can be achived by the `clientcert` authenticator in combination with the `accept.trusted_ips` property.
+The `proxy2` authenticator in mode `ip` has been replaced by the `trusted_origin` authentication frontend. The mode `cert` has been replaced by the `clientcert` authenticator. The mode `either` can be achieved by using two different authentication domains. The mode `both` can be achieved by the `clientcert` authenticator in combination with the `accept.trusted_ips` property.
 
 | Legacy Config | New Config | Details |
 |---|---|---|
@@ -125,11 +125,11 @@ SAML configuration is now performed in `sg_frontend_authc.yml`.
 |`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana-authentication-saml) |
 |`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`| See [SAML](kibana-authentication-saml) |
 |`config.exchange_key` |  No longer necessary  | |
-|`config.idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
+|`config.idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicitly enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
 |`config.idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | See [SAML](kibana-authentication-saml) |
 |`config.idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [SAML](kibana-authentication-saml) |
 |`config.idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
-|`config.idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
+|`config.idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicitly enabling them is no longer necessary. See [SAML](kibana-authentication-saml) |
 |`config.idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [SAML](kibana-authentication-saml) |
 |`config.idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  See [SAML](kibana-authentication-saml) |
 |`config.idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `saml` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [SAML](kibana-authentication-saml) |
@@ -154,11 +154,11 @@ OIDC configuration is now performed in `sg_frontend_authc.yml`.
 |`config.subject_pattern` | Property `user_mapping.subject_pattern` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
 |`config.roles_key` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
 |`config.roles_path` | Property `user_mapping.roles` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`| [OIDC](kibana-authentication-openid) |
-|`config.openid_connect_idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicit enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.enable_ssl` | No longer necessary | Just specify TLS settings in `idp.tls`. Explicitly enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
 |`config.openid_connect_idp.verify_hostnames` |  Property `idp.tls.verify_hostnames` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | See [OIDC](kibana-authentication-openid) |
 |`config.openid_connect_idp.pemtrustedcas_filepath` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.trusted_cas: "${file:/path/to/file}"`. See [OIDC](kibana-authentication-openid) |
 |`config.openid_connect_idp.pemtrustedcas_content` |  Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-openid) |
-|`config.openid_connect_idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicit enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
+|`config.openid_connect_idp.enable_ssl_client_auth` | No longer necessary | Just specify client auth settings in `idp.tls.client_auth`. Explicitly enabling them is no longer necessary. See [OIDC](kibana-authentication-openid) |
 |`config.openid_connect_idp.pemcert_filepath` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  | Files can be referenced with the special syntax `idp.tls.client_auth.certificate: "${file:/path/to/file}"`.  See [OIDC](kibana-authentication-openid) |
 |`config.openid_connect_idp.pemcert_content` |  Property `idp.tls.client_auth.certificate` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  See [OIDC](kibana-authentication-saml) |
 |`config.openid_connect_idp.pemkey_filepath` |  Property `idp.tls.client_auth.private_key` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml`  |  Files can be referenced with the special syntax `idp.tls.client_auth.private_key: "${file:/path/to/file}"`. See [OIDC](kibana-authentication-openid) |
@@ -209,7 +209,7 @@ The authorization domains have been replaced by user information backends. While
 
 ### `authorization_backend` of type `ldap`
 
-The functionality provided by the `ldap` authorization backend can be now used in two different ways: You can configure group searches directly inside the `ldap` authentication backend. You don't need to configure a separate user information backend for this. If you have an authentication backend of a type other than `ldap`, you can use a user information backend of type `ldap`. 
+The functionality provided by the `ldap` authorization backend can now be used in two different ways: You can configure group searches directly inside the `ldap` authentication backend. You don't need to configure a separate user information backend for this. If you have an authentication backend of a type other than `ldap`, you can use a user information backend of type `ldap`. 
 
 | Legacy Config | New Config | Details |
 |---|---|---|
@@ -228,8 +228,8 @@ The functionality provided by the `ldap` authorization backend can be now used i
 |`config.enable_ssl_client_auth` | No longer necessary | Just specify the `ldap.idp.client_auth` config properties to use TLS client authentication |
 |`config.userbase` | Property `ldap.user_search.base_dn`  of a user information backend in `sg_authc.yml` | |
 |`config.usersearch` | Property `ldap.user_search.filter.raw`  of a user information backend in `sg_authc.yml` | Instead of the placeholder `{0}` you need to use the placeholder `${user.name}`  |
-|`config.users.base` | Property `ldap.user_search.base_dn`  of a user information backend in `sg_authc.yml` | If you need to use several user searches, create one separate `ldap` user information backend entries for each user search criteria |
-|`config.users.search` | Property `ldap.user_search.filter.raw`  of a user information backend in `sg_authc.yml` | If you need to use several user searches, create one separate `ldap` user information backend entries for each user search criteria  |
+|`config.users.base` | Property `ldap.user_search.base_dn`  of a user information backend in `sg_authc.yml` | If you need to use several user searches, create one separate `ldap` user information backend entry for each user search criteria |
+|`config.users.search` | Property `ldap.user_search.filter.raw`  of a user information backend in `sg_authc.yml` | If you need to use several user searches, create one separate `ldap` user information backend entry for each user search criteria  |
 |`config.rolebase` | Property `ldap.group_search.base_dn` of an `ldap` auth domain or user information backend in `sg_authc.yml` |  |
 |`config.rolesearch` | Property `ldap.group_search.filter.raw` of an `ldap` auth domain or user information backend in `sg_authc.yml` | Instead of the placeholder `{0}` you need to use the placeholder `${dn}` |
 |`config.rolename` | Property `ldap.group_search.role_name_attribute` of an `ldap` auth domain or user information backend in `sg_authc.yml` |  |
@@ -246,7 +246,7 @@ The functionality provided by the `ldap` authorization backend can be now used i
 | Legacy Config | New Config | Details |
 |---|---|---|
 |`searchguard.cache.ttl_minutes` | Property `user_cache.expire_after_write` in `sg_authc.yml` | The new property requires the specification of a temporal unit after the amount. To specify 10 minutes, write `10m` |
-|`searchguard.dfm_empty_overrides_all` | none | The setting has been removed. Search Guard now always behave like it is set to true. |
+|`searchguard.dfm_empty_overrides_all` | none | The setting has been removed. Search Guard now always behaves like it is set to true. |
 
 ## `kibana.yml`
 
@@ -261,16 +261,16 @@ The functionality provided by the `ldap` authorization backend can be now used i
 |`searchguard.auth.type: "proxycache"` | No longer supported | Use [proxy authentication](kibana-authentication-anonymous) instead |
 |`searchguard.auth.type: "saml"` | `auth_domain` entry of type `saml` in `sg_frontend_authc.yml` | See [SAML](kibana-authentication-saml) |
 |`searchguard.basicauth.login.*` | Equally named properties in `sg_frontend_authc.yml`  in the section `login_page` | See [Customizing the login page](kibana-login-customizing) |
-|`searchguard.basicauth.forbidden_usernames` | Role `SGS_KIBANA_USER` | The configuration was changed from a blacklist to a whitelist: All users which shall be able to log into Kibana, must have the Search Guard role Role `SGS_KIBANA_USER`  |
+|`searchguard.basicauth.forbidden_usernames` | Role `SGS_KIBANA_USER` | The configuration was changed from a blacklist to a whitelist: All users who shall be able to log into Kibana must have the Search Guard role `SGS_KIBANA_USER`  |
 |`searchguard.jwt.header` | Use proxy authentication to forward the JWT header | See [Proxy authentication](kibana-authentication-anonymous) |
 |`searchguard.jwt.url_parameter` | `searchguard.auth.jwt_param.enabled: true` and `searchguard.auth.jwt_param.url_param: ...` | See [JWT URL Parameters](kibana-authentication-jwt) |
 |`searchguard.jwt.login_endpoint` | `auth_domain` of type `link` in `sg_frontend_authc.yml` | See TODO |
-|`searchguard.openid.connect_url`  | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
-|`searchguard.openid.client_id`  | Property `client_id` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
-|`searchguard.openid.client_secret`  | Property `client_secret` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.connect_url`  | Property `idp.openid_configuration_url` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.client_id`  | Property `client_id` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.client_secret`  | Property `client_secret` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` | See [OIDC](kibana-authentication-openid) |
 |`searchguard.openid.scope`  | none | No longer necessary |
 |`searchguard.openid.header`  | none | No longer necessary |
 |`searchguard.openid.base_redirect_url`  | `server.publicBaseUrl` or `searchguard.frontend_base_url` |See [OIDC](kibana-authentication-openid) |
-|`searchguard.openid.logout_url`  | Property `logout_url` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
-|`searchguard.openid.root_ca`  | Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `odic` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.logout_url`  | Property `logout_url` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
+|`searchguard.openid.root_ca`  | Property `idp.tls.trusted_cas` in an `auth_domain` entry of type `oidc` in `sg_frontend_authc.yml` |See [OIDC](kibana-authentication-openid) |
 |`searchguard.proxycache.*`  | No longer supported | Use [proxy authentication](kibana-authentication-anonymous) instead |
