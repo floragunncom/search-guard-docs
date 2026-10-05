@@ -5,7 +5,7 @@ permalink: disabling-removing-search-guard
 layout: docs
 section: security
 edition: community
-description: How to handle disable Search Guard temporarily without removing the complete
+description: How to disable Search Guard temporarily without removing the complete
   installation.
 ---
 <!---
@@ -34,12 +34,12 @@ If you disable Search Guard, the Search Guard configuration index will also be e
 In order to remove Search Guard completely you need to
 
 * Delete or remove the plugins/search-guard-flx folder from all nodes
-* Delete or comment the Search Guard configuration entries from elasticsearch.yml
+* Delete or comment out the Search Guard configuration entries from elasticsearch.yml
 
-A full cluster restart is required for removing Search Guard completely. Since transport traffic is TLS encrypted, you can't perform a rolling restart. Nodes running with TLS cannot talk to nodes running with TLS anymore, so you would end up with a split cluster (TLS / non-TLS).
+A full cluster restart is required for removing Search Guard completely. Since transport traffic is TLS encrypted, you can't perform a rolling restart. Nodes running with TLS cannot talk to nodes running without TLS anymore, so you would end up with a split cluster (TLS / non-TLS).
 
-The Search Guard configuration entries from `elasticsearch.yml` need to be removed or commented as well. Elasticsearch refuses to start when there are configuration entries present not defined by any installed plugin.
+The Search Guard configuration entries from `elasticsearch.yml` need to be removed or commented as well. Elasticsearch refuses to start when there are configuration entries present that are not defined by any installed plugin.
 
-Once the Search Guard plugin is removed and your cluster is not protected anymore, you will also have access to the Search Guard configuration index. If the index is not needed anymore you delete it as well. The default index name is `searchguard`.
+Once the Search Guard plugin is removed and your cluster is not protected anymore, you will also have access to the Search Guard configuration index. If the index is not needed anymore you can delete it as well. The default index name is `searchguard`.
 
 If you want to backup the configuration before deleting the Search Guard index, you can use the `get-config` command in `sgctl`. This will dump the currently active configuration to your file system. 

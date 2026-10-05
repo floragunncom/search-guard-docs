@@ -19,7 +19,7 @@ Copyright 2022 floragunn GmbH
 
 If you have other plugins installed, please check the compatibility with Search Guard.
 
-As a rule of thumb, if a plugin is compatible with Elasticstack Security, it is also compatible with Search Guard. Specifically:
+As a rule of thumb, if a plugin is compatible with Elastic Stack Security, it is also compatible with Search Guard. Specifically:
 
 If the plugin talks to Elasticsearch using REST and you have REST TLS enabled, the plugin must also support TLS and HTTP Basic Authentication.
 

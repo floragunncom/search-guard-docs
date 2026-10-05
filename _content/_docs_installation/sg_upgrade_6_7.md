@@ -10,33 +10,40 @@ description: Step-by-step upgrade instructions from Search Guard 6.x to Search G
 Copyright 2020 floragunn GmbH
 -->
 
-# Upgrading from 6.x to 7.x
+# Upgrading from 6.x to 7.x (Classic only!)
 {: .no_toc}
 
 {% include toc.md %}
 
-Upgrading Search Guard from 6.7.x to 7.x.x can be done while you upgrade Elasticsearch from 6.7.x to 7.x.x . You can do this by performing a full cluster restart, or by doing a rolling restart:
+<span>This upgrade guide describes upgrading from Search Guard 6.x to Search Guard 7.x Classic. 
+It is not possible to upgrade from Search Guard 6.x Classic to Search Guard 7.x FLX in one step. To upgrade to FLX you need to
+upgrade from 6.8.x-25.0 to 7.17.28-53.10.0 first and then to 7.17.28-1.6.0 FLX as described [here](sg-classic-config-migration-overview). 
+</span>
+{: .note .js-note .note-warning}
 
-Search Guard supports running a mixed cluster of 6.7.x and 7.x nodes and is thus compatible with the Elasticsearch upgrade path.
+Upgrading Search Guard from 6.8.x to 7.x.x can be done while you upgrade Elasticsearch from 6.8.x to 7.x.x. 
+You can do this by performing a full cluster restart, or by doing a rolling restart:
 
-If you have not already done so, make yourself familiar with Elastic's own upgrade instruction for the Elastic stack:
+Search Guard supports running a mixed cluster of 6.8.x and 7.x nodes and is thus compatible with the Elasticsearch upgrade path.
+
+If you have not already done so, make yourself familiar with Elastic's own upgrade instructions for the Elastic Stack:
 
 * [Upgrading the Elastic Stack](https://www.elastic.co/guide/en/elastic-stack/7.0/upgrading-elastic-stack.html){:target="_blank"}
 * [Upgrade Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/7.0/setup-upgrade.html){:target="_blank"}
-* [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/6.7/upgrade-assistant.html){:target="_blank"}
+* [Upgrade Assistant](https://www.elastic.co/guide/en/kibana/6.8/upgrade-assistant.html){:target="_blank"}
 * [Rolling Upgrades](https://www.elastic.co/guide/en/elasticsearch/reference/7.0/rolling-upgrades.html){:target="_blank"}
 
 ## Review breaking changes
 
-* [Breaking Changes in Elasticsearch 7](https://www.elastic.co/guide/en/elasticsearch/reference/current/breaking-changes-7.0.html)
+* [Breaking Changes in Elasticsearch 7](https://www.elastic.co/guide/en/elastic-stack/7.0/elastic-stack-breaking-changes.html){:target="_blank"}
 * [Breaking Changes in Search Guard 7](changelog-searchguard-7-x-35_0_0)
 
 ## Prerequisites
 
-In order to to perform a rolling restart and upgrade from 6.x to 7.x, you need to run at least:
+In order to perform a rolling restart and upgrade from 6.8.x to 7.x, you need to run at least:
 
-* Elasticsearch 6.7.x (Elasticsearch requirement)
-* Search Guard 6.7.x-25.0 (Search Guard requirement)
+* Elasticsearch 6.8.x (Elasticsearch requirement)
+* Search Guard 6.8.x-25.0 (Search Guard requirement)
 
 If you run older versions of Elasticsearch and/or Search Guard, please upgrade first.
 
@@ -47,14 +54,14 @@ During migration the REST management API will not work properly and should not b
 
 ## Check your Search Guard configuration
 
-If you miss this step your cluster can become uninitialized which will result in a downtime.
+If you miss this step, your cluster can become uninitialized, which will result in downtime.
 {: .note .js-note .note-warning}
 
-Download standalone [sgadmin 7](search-guard-versions) and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run
+Download standalone [sgadmin 7](https://maven.search-guard.com/search-guard-suite-release/com/floragunn/search-guard-suite-plugin/7.17.28-53.10.0/search-guard-suite-plugin-7.17.28-53.10.0-sgadmin-standalone.zip){:target="_blank"} and unpack it in a folder called sgadmin7. It is recommended to do this on the machine from where you typically run `sgadmin`. Then run
 
 * `./sgadmin7/tools/sgadmin.sh -backup "./sgadmin7" <other parameters like -ks -cert etc>`
 
-If the command completes successfully then run
+If the command completes successfully, then run
 
 * `./sgadmin7/tools/sgadmin.sh -vc 6 -cd "./sgadmin7"`
 
@@ -78,7 +85,7 @@ Fix the errors, check them with `sgadmin.sh -vc 6` command from above and if no 
 
 ## Upgrading Search Guard
 
-After upgrading a node from ES 6.x to 7.x, simply install the [correct version of Search Guard](search-guard-versions) on this node.
+After upgrading a node from ES 6.x to 7.x, install the [correct version of Search Guard](search-guard-versions) on this node.
 
 Search Guard 7 is able to read the Search Guard configuration index created with Search Guard 6.x. You do not need to change any settings during the upgrade process.
 
@@ -96,11 +103,11 @@ mkdir my_migrate_dir
 
 This will retrieve and save all your original Search Guard configuration files to the my_migrate_dir/ directory. It will then migrate the files to the new configuration format and automatically upload them into your cluster.
 
-As long as this migrate step is not completed you can not use the REST management API.
+As long as this migration step is not completed, you cannot use the REST management API.
 
 ## Demo roles and action groups
 
-If you use any of the Search Guard demo roles and/or actions groups in production, you should migrate them to the new built-in static [roles](#migrating-to-the-new-built-in-roles) and static [action groups](#migrating-to-the-new-built-in-action-groups).
+If you use any of the Search Guard demo roles and/or action groups in production, you should migrate them to the new built-in static [roles](#migrating-to-the-new-built-in-roles) and static [action groups](#migrating-to-the-new-built-in-action-groups).
 
 ## Upgrading Kibana
 
@@ -108,15 +115,15 @@ Kibana should be upgraded after the Elasticsearch / Search Guard upgrade is comp
 
 ## Running in mixed mode: Limitations
 
-Elasticsearch and Search Guard support running your cluster in mixed mode, means with 6.7.x and 7.x nodes. This makes it possible to upgrade via rolling restart.
+Elasticsearch and Search Guard support running your cluster in mixed mode, that is, with 6.8.x and 7.x nodes. This makes it possible to upgrade via rolling restart.
 
-Running a cluster in mixed mode should only be done while upgrading from 6 to 7. It's not supposed to be a permanent situation and you should aim to minimize the duration where a mixed cluster exists.
+Running a cluster in mixed mode should only be done while upgrading from 6 to 7. It's not supposed to be a permanent situation, and you should aim to minimize the duration where a mixed cluster exists.
 
 While running in mixed mode, the following limitations apply:
 
 ### Omit Search Guard configuration changes
 
-Search Guard 7 uses a new format for the Search Guard configuration index, and is also able to read and configuration indices created with Search Guard 6.
+Search Guard 7 uses a new format for the Search Guard configuration index, and is also able to read configuration indices created with Search Guard 6.
 
 While running in mixed mode, do not perform changes to the Search Guard configuration index.
 {: .note .js-note .note-warning}
