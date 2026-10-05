@@ -122,3 +122,30 @@ sg_tenant_account_manager:
 ```
 
 `SGS_SIGNALS_ALL` is broader than account management. Prefer the narrower account action groups when a role does not need access to all Signals features.
+
+## Proxy APIs
+
+[Proxies](elasticsearch-alerting-proxies) are managed globally, so permissions are assigned in `cluster_permissions`:
+
+| Action group name | Description |
+|---|---|
+| SGS\_SIGNALS\_ALL | Grants all Signals permissions, including proxy management.|
+| SGS\_SIGNALS\_PROXY\_CONFIG\_WRITE | Grants permission to read, create, update and delete proxies. Includes SGS\_SIGNALS\_PROXY\_CONFIG\_READ.|
+| SGS\_SIGNALS\_PROXY\_CONFIG\_READ | Grants read-only access to proxies.|
+{: .config-table}
+
+```
+sg_signals_watch_manager:
+  cluster_permissions:
+    - SGS_CLUSTER_COMPOSITE
+    - SGS_SIGNALS_PROXY_CONFIG_READ
+  index_permissions:
+    ...
+  tenant_permissions:
+    - tenant_patterns:
+        - 'SGS_GLOBAL_TENANT'
+      allowed_actions:
+        - SGS_SIGNALS_WATCH_MANAGE
+```
+
+A watch can reference a stored proxy by its ID without any proxy permission. SGS\_SIGNALS\_WATCH\_MANAGE does not include SGS\_SIGNALS\_PROXY\_CONFIG\_READ, though. Grant it to users who create watches in Kibana, so that the **Proxy** field of webhook actions lists the stored proxies. Without it, the field only offers **Default** and **None**, says that the stored proxies can't be listed, and a stored proxy has to be entered by its ID. See [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana).

@@ -73,8 +73,28 @@ The basic configuration attributes are:
 
 **read_timeout:** Specifies the timeout for reading the response data after a connection has been already established. Optional. Specified in seconds.
 
-**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. Optional, defaults to `default`. See [Proxies](elasticsearch-alerting-proxies#proxy-values) for how the value is interpreted.
 
+## Selecting a proxy in Kibana
+
+When you create or edit a watch in Kibana, webhook actions have a **Proxy** field. It sets the action's `proxy` attribute; see [Proxies](elasticsearch-alerting-proxies#proxy-values) for how the values are interpreted.
+
+The field offers:
+
+* **Default (cluster proxy setting)**: Uses the global Signals proxy setting `http.proxy`, if configured. This is the same as leaving the field empty. Nothing is stored in the watch.
+* **None**: Connects directly, even if a global proxy is configured. Stored as `"proxy": "none"`.
+* **Stored proxies**: Each [proxy added with the REST API](elasticsearch-alerting-proxies#proxy-management), shown as *name (id)*. Stored as `"proxy": "<id>"`.
+
+You can also type a value that is not in the list and press Enter:
+
+* A proxy URL starting with `http://` or `https://`, for example `http://proxy.example.com:3128`.
+* The ID of a stored proxy that is not listed.
+
+Listing the stored proxies requires the SGS\_SIGNALS\_PROXY\_CONFIG\_READ permission. Without it, the field only offers **Default** and **None**, says that the stored proxies can't be listed, and you enter a stored proxy by typing its ID. See [Proxy APIs](elasticsearch-alerting-security-permissions#proxy-apis).
+
+When you save the watch, Signals checks that a stored proxy with the given ID exists. If not, the watch is not saved and Kibana shows the error *Http proxy '&lt;id&gt;' not found*.
+
+<img src="{{ '/img/signals-proxy-field.png' | relative_url }}" alt="Proxy field of a webhook action" class="md_image" style="max-width: 100%"/>
 
 ## Dynamic Endpoints
 
