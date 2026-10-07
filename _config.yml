@@ -26,15 +26,15 @@ elasticsearch:
   #majorversion: 9 # unused and not relevant any longer
   minorversion: 9.5 #this is the current minor version
   #previousminorversion: 9.1 # unused and not relevant any longer
-  currentversion: 9.5.4 #this is the current full version available, match minorversion
-  currentversionlastmajor: 8.19.22 #the full version of the last major version
+  currentversion: 9.5.5 #this is the current full version available, match minorversion
+  currentversionlastmajor: 8.19.23 #the full version of the last major version
 
 searchguard:
   version: "SG FLX" # static, won't change
   islatestversion: true # static, won't change
   currentversion: "4.2.0" # current full version of SG FLX
   #currentversionlastmajor: "3.1.3" # unused and not relevant any longer
-  releasedate: 2026-09-18
+  releasedate: 2026-10-07
 
 index: false
 
@@ -223,6 +223,7 @@ algolia:
 sgversions:
   # esv |sgv |kbv |available| eol|Kubernetes| helm | release-date (yyyy-mm-dd)
   search-guard-flx-9:
+    - 9.5.5|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-10-07
     - 9.5.4|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-09-18
     - 9.5.3|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-09-18
     - 9.5.2|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-09-18
@@ -264,7 +265,8 @@ sgversions:
     - 9.0.1|3.1.3|3.1.3|yes|yes|N/A|N/A|2025-11-07
   # esv |sgv |kbv |available| eol|Kubernetes| helm | release-date (yyyy-mm-dd)
   search-guard-flx-8:
-    - 8.19.22|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-09-24
+    - 8.19.23|4.2.0|4.2.0|yes|no|1.33-1.37|4.2.0-flx|2026-10-07
+    - 8.19.22|4.2.0|4.2.0|yes|yes|1.33-1.37|4.2.0-flx|2026-09-24
     - 8.19.21|4.2.0|4.2.0|yes|yes|1.33-1.37|4.2.0-flx|2026-09-23
     - 8.19.20|4.2.0|4.2.0|yes|yes|1.33-1.37|4.2.0-flx|2026-09-23
     - 8.19.19|4.2.0|4.2.0|yes|yes|1.33-1.37|4.2.0-flx|2026-09-23
@@ -292,6 +294,7 @@ sgversions:
     - 8.7.1|1.6.0|1.6.0|yes|yes|1.25-1.29|2.11.0|2024-02-06
   # esv |earv |available| eol
   search-guard-encryption-at-rest:
+    - 9.5.5|1.0.0|yes|no|2026-10-07
     - 9.5.4|1.0.0|yes|no|2026-09-16
     - 9.5.3|1.0.0|yes|no|2026-09-05
     - 9.5.2|1.0.0|yes|no|2026-08-22
@@ -324,7 +327,8 @@ sgversions:
     - 9.1.2|1.0.0|yes|yes|2025-10-17
     - 9.1.1|1.0.0|yes|yes|2025-10-17
     - 9.1.0|1.0.0|yes|yes|2025-10-17
-    - 8.19.22|1.0.0|yes|no|2026-09-24
+    - 8.19.23|1.0.0|yes|no|2026-10-07
+    - 8.19.22|1.0.0|yes|yes|2026-09-24
     - 8.19.21|1.0.0|yes|yes|2026-09-04
     - 8.19.20|1.0.0|yes|yes|2026-08-22
     - 8.19.19|1.0.0|yes|yes|2026-07-29
@@ -361,8 +365,8 @@ adversions:
 
 encryptionatrest:
   currentversion: "1.0.0"
-  currentversionelasticsearch: "9.5.4"
-  releasedate: 2026-09-16
+  currentversionelasticsearch: "9.5.5"
+  releasedate: 2026-10-07
 
 tlstool: 4.0.1
 sgctl: 4.2.0

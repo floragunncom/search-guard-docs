@@ -3,4 +3,4 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 set -e
 
-"$SCRIPT_DIR/sgconfig.py" new-release  --esv "$1" --sgv "$2" --ear-sgv "$2"
+"$SCRIPT_DIR/sgconfig.py" new-release  --esv "$1" --sgv "$2" --ear-sgv "$3"
