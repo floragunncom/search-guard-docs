@@ -121,7 +121,7 @@ Basic authentication credentials are configured in the `auth` section if the `re
 }
 ```
 
-**Note:** In the current version, the password is stored unencrypted and returned in verbatim when the watch is retrieved using the REST API. Future versions will provide a more secure way of storing authentication data.
+**Note:** In the current version, the password is stored unencrypted and returned in verbatim when the watch is retrieved using the REST API. 
 
 ## TLS
 
@@ -129,7 +129,7 @@ You can configure both the trusted certificates and client certificates that sha
 
 If you do not provide an explicit configuration, the defaults configured for the JVM in which ES is running will be used.
 
-**Note:** Right now, certificates have to be specified in PEM format in-line in the watch configuration. Future versions will provide a more secure way of storing certificates.
+**Note:** Right now, certificates have to be specified in PEM format in-line in the watch configuration. 
 
 A TLS configuration might look like this:
 
