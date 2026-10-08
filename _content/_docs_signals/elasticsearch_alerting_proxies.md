@@ -65,7 +65,7 @@ Signals refuses to delete a proxy that is still used by a watch. If a watch refe
 
 ## Selecting a proxy in Kibana
 
-In Kibana, webhook actions have a **Proxy** field that offers **Default**, **None** and the stored proxies. See [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana).
+In Kibana, webhook actions and HTTP input checks have a **Proxy** field that offers **Default**, **None** and the stored proxies. See [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana).
 
 ## Proxy management
 

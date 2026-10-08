@@ -65,7 +65,11 @@ For example, if you aggregate data from the [Search Guard Audit Log](audit-loggi
 
 **read_timeout:** Specifies the timeout for reading the response data after a connection has been already established. Optional. Specified in seconds.
 
-**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. 
+**proxy:** Specifies the proxy through which outgoing requests will be routed. One of: `default`, `none`, an HTTP URL or (starting with Search Guard FLX 1.6.0) the `id` of the [proxy added previously](elasticsearch-alerting-proxies) with the REST API. See [Proxies](elasticsearch-alerting-proxies#proxy-values) for how the value is interpreted.
+
+## Selecting a proxy in Kibana
+
+In Kibana, HTTP input checks of Blocks watches have a **Proxy** field. It offers **Default** (the global proxy setting `http.proxy`), **None** and the stored proxies, and you can type a proxy URL or the ID of a stored proxy. The field works like the one of webhook actions; see [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana) for details.
 
 ## Accessing HTTP input data in the execution chain
 

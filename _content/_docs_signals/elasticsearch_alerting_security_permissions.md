@@ -148,4 +148,4 @@ sg_signals_watch_manager:
         - SGS_SIGNALS_WATCH_MANAGE
 ```
 
-A watch can reference a stored proxy by its ID without any proxy permission. SGS\_SIGNALS\_WATCH\_MANAGE does not include SGS\_SIGNALS\_PROXY\_CONFIG\_READ, though. Grant it to users who create watches in Kibana, so that the **Proxy** field of webhook actions lists the stored proxies. Without it, the field only offers **Default** and **None**, says that the stored proxies can't be listed, and a stored proxy has to be entered by its ID. See [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana).
+A watch can reference a stored proxy by its ID without any proxy permission. SGS\_SIGNALS\_WATCH\_MANAGE does not include SGS\_SIGNALS\_PROXY\_CONFIG\_READ, though. Grant it to users who create watches in Kibana, so that the **Proxy** field of webhook actions and HTTP input checks lists the stored proxies. Without it, the field only offers **Default** and **None**, says that the stored proxies can't be listed, and a stored proxy has to be entered by its ID. See [Selecting a proxy in Kibana](elasticsearch-alerting-actions-webhook#selecting-a-proxy-in-kibana).

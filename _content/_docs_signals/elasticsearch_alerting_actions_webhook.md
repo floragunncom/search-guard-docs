@@ -77,7 +77,7 @@ The basic configuration attributes are:
 
 ## Selecting a proxy in Kibana
 
-When you create or edit a watch in Kibana, webhook actions have a **Proxy** field. It sets the action's `proxy` attribute; see [Proxies](elasticsearch-alerting-proxies#proxy-values) for how the values are interpreted.
+When you create or edit a watch in Kibana, webhook actions and [HTTP input](elasticsearch-alerting-inputs-http#selecting-a-proxy-in-kibana) checks have a **Proxy** field. It sets their `proxy` attribute; see [Proxies](elasticsearch-alerting-proxies#proxy-values) for how the values are interpreted.
 
 The field offers:
 
