@@ -92,8 +92,6 @@ You can also type a value that is not in the list and press Enter:
 
 Listing the stored proxies requires the SGS\_SIGNALS\_PROXY\_CONFIG\_READ permission. Without it, the field only offers **Default** and **None**, says that the stored proxies can't be listed, and you enter a stored proxy by typing its ID. See [Proxy APIs](elasticsearch-alerting-security-permissions#proxy-apis).
 
-When you save the watch, Signals checks that a stored proxy with the given ID exists. If not, the watch is not saved and Kibana shows the error *Http proxy '&lt;id&gt;' not found*.
-
 <img src="{{ '/img/signals-proxy-field.png' | relative_url }}" alt="Proxy field of a webhook action" class="md_image" style="max-width: 100%"/>
 
 ## Dynamic Endpoints
