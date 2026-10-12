@@ -59,9 +59,9 @@ Signals interprets the value of the `proxy` attribute as follows (case-insensiti
 | Anything else | The ID of a proxy added with the [REST API](#proxy-management). |
 {: .config-table}
 
-A value that is neither a keyword nor starts with `http:` or `https:` is always treated as a proxy ID. For example, `127.0.0.1:9199` is not a valid proxy URL, but the ID of a proxy that most likely does not exist. When a watch is created or updated, Signals rejects IDs of proxies that do not exist with the error *Http proxy '&lt;id&gt;' not found*.
+A value that is neither a keyword nor starts with `http:` or `https:` is always treated as a proxy ID. For example, `127.0.0.1:9199` is not a valid proxy URL, but the ID of a proxy that most likely does not exist.
 
-Signals refuses to delete a proxy that is still used by a watch. If a watch references a proxy that does not exist when Signals loads the watch, for example after the watch was restored from a backup, the action or input connects without that proxy and Signals logs a warning.
+Signals refuses to delete a proxy that is still used by a watch.
 
 ## Selecting a proxy in Kibana
 
