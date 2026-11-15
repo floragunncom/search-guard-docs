@@ -15,6 +15,10 @@ description: Changelog Overview for the Search Guard Elasticsearch security plug
 
 Release Date: 18.09.2026
 
+### [Search Guard FLX 4.1.3](changelog-searchguard-flx-4_1_3)
+
+Release Date: 12.11.2026
+
 ### [Search Guard FLX 4.1.2](changelog-searchguard-flx-4_1_2)
 
 Release Date: 25.06.2026
