@@ -374,7 +374,7 @@ encryptionatrest:
   currentversionelasticsearch: "9.5.6"
   releasedate: 2026-11-14
 
-tlstool: 4.0.1
-sgctl: 4.2.0
+tlstool: 4.0.2
+sgctl: 4.2.1
 sg-upgrade-tool: 0.3.0
 #enctl: 1.0.0-es-9.1.5 # unused and not relevant any longer
