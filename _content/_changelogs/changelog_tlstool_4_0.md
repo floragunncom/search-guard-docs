@@ -9,6 +9,13 @@ description: Changelog for the Search Guard TLS Tool 4.0
 Copyright 2022 floragunn GmbH
 -->
 
+# Search Guard TLS Tool 4.0.2
+
+**Release Date: 21.11.2026**
+
+## Fixes
+
+* Update dependencies
 
 # Search Guard TLS Tool 4.0.0
 
